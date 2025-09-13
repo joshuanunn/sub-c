@@ -5,12 +5,9 @@ trap cleanup SIGINT SIGTERM ERR EXIT
 
 script_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd -P)
 
-# subc compiler (.subc) should be installed alongside this script
-SUBC="$script_dir/.subc"
-
 usage() {
   cat <<EOF
-Usage: $(basename "${BASH_SOURCE[0]}") [-h] [-v] [--lex|--parse|--codegen|-S] sourcefile
+Usage: $(basename "${BASH_SOURCE[0]}") [-h] [-d] [--lex|--parse|--codegen|-S] sourcefile
 Sub-C compiler driver.
 Available options:
  -h, --help      Print this help and exit
@@ -83,6 +80,14 @@ parse_params() {
   return 0
 }
 
+# this compiler driver depends on gcc compiler
+CC=gcc
+command -v $CC >/dev/null 2>&1 || die "ERROR: a C compiler was not found on the system. Please install or add to PATH"
+
+# subc compiler (.subc) should be installed alongside this script
+SUBC="$script_dir/.subc"
+[[ -f $SUBC ]] || die "ERROR: the subc compiler could not be found. Expected as ".subc" binary in same directory as this compiler driver"
+
 parse_params "$@"
 
 source_file="${args[0]}"
@@ -94,14 +99,14 @@ output_file="${source_file%.*}"
 [[ "${source_file##*.}" != "c" ]] && die "ERROR: C sourcefile does not have a .c file extension."
 
 # run C preprocessor (omit linemarkers)
-gcc -E -P $source_file -o $preprocessed_file
+$CC -E -P $source_file -o $preprocessed_file
 
 # run sub-c compiler on preprocessed input
 # TODO: implement sub-c compiler
 #$SUBC $preprocessed_file $phase
-gcc -S -O -fno-asynchronous-unwind-tables -fcf-protection=none $preprocessed_file
+$CC -S -O -fno-asynchronous-unwind-tables -fcf-protection=none $preprocessed_file
 
 # assemble and link
 if [[ $assy_link -eq 1 ]]; then
-  gcc $assembly_file -o $output_file
+  $CC $assembly_file -o $output_file
 fi
