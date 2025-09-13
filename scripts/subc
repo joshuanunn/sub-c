@@ -1,0 +1,107 @@
+#!/usr/bin/env bash
+
+set -Eeuo pipefail
+trap cleanup SIGINT SIGTERM ERR EXIT
+
+script_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd -P)
+
+# subc compiler (.subc) should be installed alongside this script
+SUBC="$script_dir/.subc"
+
+usage() {
+  cat <<EOF
+Usage: $(basename "${BASH_SOURCE[0]}") [-h] [-v] [--lex|--parse|--codegen|-S] sourcefile
+Sub-C compiler driver.
+Available options:
+ -h, --help      Print this help and exit
+ -d, --debug     Print script debug info
+     --lex       Run lexer only
+     --parse     Run lexer, parser
+     --codegen   Run lexer, parser, code generation
+ -S              Run lexer, parser, code generation, emit asm file
+EOF
+  exit
+}
+
+cleanup() {
+  trap - SIGINT SIGTERM ERR EXIT
+  [[ -v preprocessed_file ]] && rm -f $preprocessed_file
+  [[ -v assembly_file ]] && rm -f $assembly_file
+}
+
+msg() {
+  echo >&2 -e "${1-}"
+}
+
+die() {
+  local msg=$1
+  local code=${2-1} # default exit status 1
+  msg "$msg"
+  exit "$code"
+}
+
+parse_params() {
+  # compiler defaults to code emission, assembly and linking
+  phase=4
+  assy_link=1
+  modes=0
+
+  args=()
+
+  while [[ $# -gt 0 ]]; do
+    case "${1-}" in
+    -h | --help) usage ;;
+    -d | --debug) set -x ;;
+    --lex)
+      ((modes + 1))
+      phase=1
+      ;;
+    --parse)
+      ((modes + 1))
+      phase=2
+      ;;
+    --codegen)
+      ((modes + 1))
+      phase=3
+      ;;
+    -S)
+      ((modes + 1))
+      phase=4
+      assy_link=0
+      ;;
+    -?*) die "ERROR: unknown option [$1]" ;;
+    *) args+=($1) ;;
+    esac
+    shift
+  done
+
+  # check required params and arguments
+  [[ ${#args[@]} -eq 0 ]] && die "ERROR: missing input C sourcefile path."
+  [[ ${#args[@]} -ne 1 ]] && die "ERROR: provide a path to a single C sourcefile."
+  [[ modes -gt 1 ]] && die "ERROR: flags [ --lex | --parse | --codegen | -S ] are mutually exclusive."
+
+  return 0
+}
+
+parse_params "$@"
+
+source_file="${args[0]}"
+preprocessed_file="${source_file%.*}.i"
+assembly_file="${source_file%.*}.s"
+output_file="${source_file%.*}"
+
+# check provided path to sourcefile appears valid
+[[ "${source_file##*.}" != "c" ]] && die "ERROR: C sourcefile does not have a .c file extension."
+
+# run C preprocessor (omit linemarkers)
+gcc -E -P $source_file -o $preprocessed_file
+
+# run sub-c compiler on preprocessed input
+# TODO: implement sub-c compiler
+#$SUBC $preprocessed_file $phase
+gcc -S -O -fno-asynchronous-unwind-tables -fcf-protection=none $preprocessed_file
+
+# assemble and link
+if [[ $assy_link -eq 1 ]]; then
+  gcc $assembly_file -o $output_file
+fi
