@@ -1,32 +1,14 @@
 open Subc
 
 let%expect_test "leading whitespace" =
-  let input = "   return" in
-  let lexbuf = Lexing.from_string input in
-  let rec loop () =
-    try
-      let tok = Lexer.read lexbuf in
-      print_endline (Token.string_of_token tok);
-      if tok != Token.EOF then loop ()
-    with Subc.Lexer.Lexing_error msg -> Printf.printf "%s\n" msg
-  in
-  loop ();
+  Utils.lex_and_print_string "   return" Lexer.read;
   [%expect {|
     KW_RETURN
     EOF
   |}]
 
 let%expect_test "trailing whitespace" =
-  let input = "0;\t\n" in
-  let lexbuf = Lexing.from_string input in
-  let rec loop () =
-    try
-      let tok = Lexer.read lexbuf in
-      print_endline (Token.string_of_token tok);
-      if tok != Token.EOF then loop ()
-    with Subc.Lexer.Lexing_error msg -> Printf.printf "%s\n" msg
-  in
-  loop ();
+  Utils.lex_and_print_string "0;\t\n" Lexer.read;
   [%expect {|
     LITERAL_INT(0)
     SEMICOLON
@@ -34,16 +16,7 @@ let%expect_test "trailing whitespace" =
   |}]
 
 let%expect_test "a full program" =
-  let input = "int main(void){return 0;}" in
-  let lexbuf = Lexing.from_string input in
-  let rec loop () =
-    try
-      let tok = Lexer.read lexbuf in
-      print_endline (Token.string_of_token tok);
-      if tok != Token.EOF then loop ()
-    with Subc.Lexer.Lexing_error msg -> Printf.printf "%s\n" msg
-  in
-  loop ();
+  Utils.lex_and_print_string "int main(void){return 0;}" Lexer.read;
   [%expect {|
     KW_INT
     IDENTIFIER(main)
@@ -59,16 +32,7 @@ let%expect_test "a full program" =
   |}]
 
 let%expect_test "invalid integer literal" =
-  let input = "(123 bar 123bar);" in
-  let lexbuf = Lexing.from_string input in
-  let rec loop () =
-    try
-      let tok = Lexer.read lexbuf in
-      print_endline (Token.string_of_token tok);
-      if tok != Token.EOF then loop ()
-    with Subc.Lexer.Lexing_error msg -> Printf.printf "%s\n" msg
-  in
-  loop ();
+  Utils.lex_and_print_string "(123 bar 123bar);"  Lexer.read;
   [%expect {|
     LPAREN
     LITERAL_INT(123)
