@@ -52,14 +52,17 @@ parse_params() {
     --lex)
       ((modes + 1))
       phase=1
+      assy_link=0
       ;;
     --parse)
       ((modes + 1))
       phase=2
+      assy_link=0
       ;;
     --codegen)
       ((modes + 1))
       phase=3
+      assy_link=0
       ;;
     -S)
       ((modes + 1))
@@ -103,8 +106,8 @@ $CC -E -P $source_file -o $preprocessed_file
 
 # run sub-c compiler on preprocessed input
 # TODO: implement sub-c compiler
-#$SUBC $preprocessed_file $phase
-$CC -S -O -fno-asynchronous-unwind-tables -fcf-protection=none $preprocessed_file
+$SUBC $preprocessed_file $phase
+#$CC -S -O -fno-asynchronous-unwind-tables -fcf-protection=none $preprocessed_file
 
 # assemble and link
 if [[ $assy_link -eq 1 ]]; then

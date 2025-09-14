@@ -1,2 +1,5 @@
 (library
- (name subc))
+ (name subc)
+ (modules token lexer))
+
+(ocamllex lexer)

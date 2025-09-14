@@ -1,0 +1,30 @@
+{
+open Token
+
+exception Lexing_error of string
+}
+
+let whitespace = [' ' '\t' '\r' '\n']+
+let alpha = ['a'-'z' 'A'-'Z' '_']
+let alphanum = ['a'-'z' 'A'-'Z' '0'-'9' '_']
+let identifier = alpha alphanum*
+let digit = ['0'-'9']
+let integer = '-'? digit+
+let invalid_integer = integer alpha*
+
+rule read =
+  parse
+  | whitespace { read lexbuf }
+  | "int" { KW_INT }
+  | "void" { KW_VOID }
+  | "return" { KW_RETURN }
+  | "(" { LPAREN }
+  | ")" { RPAREN }
+  | "{" { LBRACE }
+  | "}" { RBRACE }
+  | ";" { SEMICOLON }
+  | integer { LITERAL_INT (int_of_string (Lexing.lexeme lexbuf)) }
+  | invalid_integer { raise (Lexing_error ("Invalid integer: " ^ Lexing.lexeme lexbuf)) }
+  | identifier { IDENTIFIER (Lexing.lexeme lexbuf) }
+  | eof { EOF }
+  | _ { raise (Lexing_error ("Unexpected character: " ^ Lexing.lexeme lexbuf)) }

@@ -21,8 +21,8 @@
   (ocaml
    (>= 4.14.0))
   ocamlformat
-  dune)
- (tags
-  ("add topics" "to describe" your project)))
+  dune
+  ppx_expect
+  ppx_inline_test))
 
 ; See the complete stanza docs at https://dune.readthedocs.io/en/stable/reference/dune-project/index.html
