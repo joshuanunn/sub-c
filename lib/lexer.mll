@@ -9,7 +9,7 @@ let alpha = ['a'-'z' 'A'-'Z' '_']
 let alphanum = ['a'-'z' 'A'-'Z' '0'-'9' '_']
 let identifier = alpha alphanum*
 let digit = ['0'-'9']
-let integer = '-'? digit+
+let integer = digit+
 let invalid_integer = integer alpha*
 
 rule read =
