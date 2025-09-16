@@ -1,41 +1,43 @@
 open Subc
 
 let%expect_test "leading whitespace" =
-  Utils.lex_and_print_string "   return" Lexer.read;
+  Utils.lex_and_show_string "   return" Lexer.read;
   [%expect {|
-    KW_RETURN
-    EOF
+    Token.KW_RETURN
+    Token.EOF
   |}]
 
 let%expect_test "trailing whitespace" =
-  Utils.lex_and_print_string "0;\t\n" Lexer.read;
+  Utils.lex_and_show_string "0;\t\n" Lexer.read;
   [%expect {|
-    LITERAL_INT(0)
-    SEMICOLON
-    EOF
+    (Token.LITERAL_INT 0)
+    Token.SEMICOLON
+    Token.EOF
   |}]
 
 let%expect_test "a full program" =
-  Utils.lex_and_print_string "int main(void){return 0;}" Lexer.read;
-  [%expect {|
-    KW_INT
-    IDENTIFIER(main)
-    LPAREN
-    KW_VOID
-    RPAREN
-    LBRACE
-    KW_RETURN
-    LITERAL_INT(0)
-    SEMICOLON
-    RBRACE
-    EOF
-  |}]
+  Utils.lex_and_show_string "int main(void){return 0;}" Lexer.read;
+  [%expect
+    {|
+    Token.KW_INT
+    (Token.IDENTIFIER "main")
+    Token.LPAREN
+    Token.KW_VOID
+    Token.RPAREN
+    Token.LBRACE
+    Token.KW_RETURN
+    (Token.LITERAL_INT 0)
+    Token.SEMICOLON
+    Token.RBRACE
+    Token.EOF
+|}]
 
 let%expect_test "invalid integer literal" =
-  Utils.lex_and_print_string "(123 bar 123bar);"  Lexer.read;
-  [%expect {|
-    LPAREN
-    LITERAL_INT(123)
-    IDENTIFIER(bar)
+  Utils.lex_and_show_string "(123 bar 123bar);" Lexer.read;
+  [%expect
+    {|
+    Token.LPAREN
+    (Token.LITERAL_INT 123)
+    (Token.IDENTIFIER "bar")
     Invalid integer: 123bar
   |}]

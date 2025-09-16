@@ -1,5 +1,11 @@
 (library
  (name subc)
- (modules token lexer))
+ (modules token lexer parser ast)
+ (preprocess
+  (pps ppx_deriving.show)))
+
+(menhir
+ (modules parser)
+ (flags --external-tokens Token))
 
 (ocamllex lexer)

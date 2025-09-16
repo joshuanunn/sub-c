@@ -1,5 +1,7 @@
 (lang dune 3.20)
 
+(using menhir 3.0)
+
 (name subc)
 
 (generate_opam_files true)
@@ -22,6 +24,8 @@
    (>= 4.14.0))
   ocamlformat
   dune
+  menhir
+  ppx_deriving
   ppx_expect
   ppx_inline_test))
 
