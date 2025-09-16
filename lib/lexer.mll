@@ -2,9 +2,19 @@
 open Token
 
 exception Lexing_error of string
+
+let line_number lexbuf =
+  let pos = lexbuf.Lexing.lex_curr_p in
+  let new_pos = {
+    pos with
+    Lexing.pos_lnum = pos.Lexing.pos_lnum + 1;
+    Lexing.pos_bol = lexbuf.Lexing.lex_curr_pos;
+  } in
+  lexbuf.Lexing.lex_curr_p <- new_pos
 }
 
-let whitespace = [' ' '\t' '\r' '\n']+
+let whitespace = [' ' '\t' '\r']+
+let newline = '\n'
 let alpha = ['a'-'z' 'A'-'Z' '_']
 let alphanum = ['a'-'z' 'A'-'Z' '0'-'9' '_']
 let identifier = alpha alphanum*
@@ -15,6 +25,7 @@ let invalid_integer = integer alpha*
 rule read =
   parse
   | whitespace { read lexbuf }
+  | newline { line_number lexbuf; read lexbuf }
   | "int" { KW_INT }
   | "void" { KW_VOID }
   | "return" { KW_RETURN }
