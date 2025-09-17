@@ -14,7 +14,7 @@ for i in $(seq -f "%02g" 1 20); do
 done
 
 # What phases to generate
-PHASES=("lex" "parse")
+PHASES=("lex" "parse" "codegen")
 
 # Loop over test files
 for chapter in "${CHAPTERS[@]}"; do
@@ -29,6 +29,7 @@ for chapter in "${CHAPTERS[@]}"; do
       case "$phase" in
         lex) ext="tokens" ;;
         parse) ext="ast" ;;
+        codegen) ext="ir" ;;
         *) echo "Unknown phase: $phase"; exit 1 ;;
       esac
 

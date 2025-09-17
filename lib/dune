@@ -1,6 +1,6 @@
 (library
  (name subc)
- (modules token lexer parser ast)
+ (modules token lexer parser ast asm codegen)
  (preprocess
   (pps ppx_deriving.show)))
 

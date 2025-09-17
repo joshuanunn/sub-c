@@ -6,7 +6,7 @@ script_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd -P)
 
 TEST_DIR="$script_dir/tests"
 ORACLE_DIR="$script_dir/oracles"
-PHASES=("lex" "parse" "exe")
+PHASES=("lex" "parse" "codegen" "exe")
 
 # Parse commandline options
 
@@ -64,6 +64,8 @@ for chapter in "${CHAPTERS[@]}"; do
         ext="tokens"
       elif [[ "$phase" == "parse" ]]; then
         ext="ast"
+      elif [[ "$phase" == "codegen" ]]; then
+        ext="ir"
       elif [[ "$phase" == "exe" ]]; then
         ext="exit_status"
       else
@@ -102,8 +104,8 @@ for chapter in "${CHAPTERS[@]}"; do
         fi
       fi
 
-      # Lexer and parser tests
-      if [[ "$phase" == "lex" || "$phase" == "parse" ]]; then
+      # Lexer, parser and codegen tests
+      if [[ "$phase" == "lex" || "$phase" == "parse" || "$phase" == "codegen" ]]; then
           output=$(subc "$test_file" --"$phase" 2>&1)
           expected=$(<"$oracle_file")
 
