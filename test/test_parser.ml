@@ -8,6 +8,6 @@ let%expect_test "parse simple program" =
   [%expect
     {|
     (Ast.Program
-       { Ast.return_type = Ast.KwInt; name = "main";
-         body = (Ast.Return (Ast.LiteralInt 2)) })
+       Ast.Function {return_type = Ast.KwInt; name = "main";
+         body = (Ast.Return (Ast.LiteralInt 2))})
   |}]
