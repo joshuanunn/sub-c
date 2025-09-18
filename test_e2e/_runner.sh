@@ -6,7 +6,7 @@ script_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd -P)
 
 TEST_DIR="$script_dir/tests"
 ORACLE_DIR="$script_dir/oracles"
-PHASES=("lex" "parse" "codegen" "exe")
+PHASES=("lex" "parse" "codegen" "emit" "exe")
 
 # Parse commandline options
 
@@ -66,6 +66,8 @@ for chapter in "${CHAPTERS[@]}"; do
         ext="ast"
       elif [[ "$phase" == "codegen" ]]; then
         ext="ir"
+      elif [[ "$phase" == "emit" ]]; then
+        ext="s"
       elif [[ "$phase" == "exe" ]]; then
         ext="exit_status"
       else
@@ -74,6 +76,7 @@ for chapter in "${CHAPTERS[@]}"; do
 
       rel_path="${test_file#$TEST_DIR/}"
       oracle_file="$ORACLE_DIR/${rel_path%.c}.$ext"
+      binary_file="$TEST_DIR/${rel_path%.c}"
 
       # Skip if oracle doesn't exist
       if [[ ! -f "$oracle_file" ]]; then
@@ -83,8 +86,13 @@ for chapter in "${CHAPTERS[@]}"; do
 
       # Exit status test
       if [[ "$phase" == "exe" ]]; then
-        output=$(subc "$test_file" 2>&1)
+        # Compile executable
+        subc "$test_file"
+
+        # Run executable, capture exit status code and cleanup
+        output=$("$binary_file" 2>&1)
         status=$?
+        rm -f "$binary_file"
 
         read -r line < $oracle_file
         if [[ "$line" =~ ^-?[0-9]+$ ]]; then
@@ -104,8 +112,8 @@ for chapter in "${CHAPTERS[@]}"; do
         fi
       fi
 
-      # Lexer, parser and codegen tests
-      if [[ "$phase" == "lex" || "$phase" == "parse" || "$phase" == "codegen" ]]; then
+      # Lexer, parser, codegen and emit tests
+      if [[ "$phase" == "lex" || "$phase" == "parse" || "$phase" == "codegen" || "$phase" == "emit" ]]; then
           output=$(subc "$test_file" --"$phase" 2>&1)
           expected=$(<"$oracle_file")
 

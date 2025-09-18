@@ -7,15 +7,16 @@ script_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd -P)
 
 usage() {
   cat <<EOF
-Usage: $(basename "${BASH_SOURCE[0]}") [-h] [-d] [--lex|--parse|--codegen|-S] sourcefile
+Usage: $(basename "${BASH_SOURCE[0]}") [-h] [-d] [--lex|--parse|--codegen|--emit|-S] sourcefile
 Sub-C compiler driver.
 Available options:
  -h, --help      Print this help and exit
  -d, --debug     Print script debug info
-     --lex       Run lexer only
-     --parse     Run lexer, parser
-     --codegen   Run lexer, parser, code generation
- -S              Run lexer, parser, code generation, emit asm file
+     --lex       [ stdout ] Run lexer
+     --parse     [ stdout ] Run lexer, parser
+     --codegen   [ stdout ] Run lexer, parser, code generation
+     --emit      [ stdout ] Run lexer, parser, code generation, emit asm
+ -S              [  file  ] Run lexer, parser, code generation, emit asm
 EOF
   exit
 }
@@ -39,7 +40,7 @@ die() {
 
 parse_params() {
   # compiler defaults to code emission, assembly and linking
-  phase=4
+  phase=5
   assy_link=1
   modes=0
 
@@ -64,9 +65,14 @@ parse_params() {
       phase=3
       assy_link=0
       ;;
-    -S)
+    --emit)
       ((modes + 1))
       phase=4
+      assy_link=0
+      ;;  
+    -S)
+      ((modes + 1))
+      phase=5
       assy_link=0
       ;;
     -?*) die "ERROR: unknown option [$1]" ;;
@@ -78,7 +84,7 @@ parse_params() {
   # check required params and arguments
   [[ ${#args[@]} -eq 0 ]] && die "ERROR: missing input C sourcefile path."
   [[ ${#args[@]} -ne 1 ]] && die "ERROR: provide a path to a single C sourcefile."
-  [[ modes -gt 1 ]] && die "ERROR: flags [ --lex | --parse | --codegen | -S ] are mutually exclusive."
+  [[ modes -gt 1 ]] && die "ERROR: flags [ --lex | --parse | --codegen | --emit | -S ] are mutually exclusive."
 
   return 0
 }
@@ -105,7 +111,6 @@ output_file="${source_file%.*}"
 $CC -E -P $source_file -o $preprocessed_file
 
 # run sub-c compiler on preprocessed input
-# TODO: implement sub-c compiler
 $SUBC $preprocessed_file $phase
 #$CC -S -O -fno-asynchronous-unwind-tables -fcf-protection=none $preprocessed_file
 
