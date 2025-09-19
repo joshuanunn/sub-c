@@ -18,10 +18,12 @@ let () =
       match phase with
       | 1 -> Io.run_lexer lexbuf
       | 2 -> Io.run_parser lexbuf
-      | 3 -> Io.run_codegen lexbuf
-      | 4 -> Io.run_emit lexbuf
-      | 5 -> Io.run_exe lexbuf target_path
+      | 3 -> Io.run_irgen lexbuf
+      | 4 -> Io.run_codegen lexbuf
+      | 5 -> Io.run_emit lexbuf
+      | 6 -> Io.run_exe lexbuf target_path
       | _ ->
           prerr_endline
-            "Unknown phase. Supported: 1=lex, 2=parse, 3=codegen, 4=emit, 5=exe";
+            "Unknown phase. Supported: 1=lex, 2=parse, 3=irgen, 4=codegen, \
+             5=emit, 6=exe";
           exit 1)

@@ -1,23 +1,26 @@
-open Ast
+open Ir
 open Asm
 
-let compile_expr (e : Ast.expr) : Asm.operand =
-  match e with LiteralInt n -> Asm.Imm n
+let compile_value (o : Ir.value) : Asm.operand =
+  match o with Constant n -> Imm n
 
-let compile_stmt (s : Ast.stmt) : Asm.instruction list =
+let compile_instruction (s : Ir.instruction) : Asm.instruction list =
   match s with
-  | Return e ->
-      let ret = compile_expr e in
-      let mov = Asm.Mov { src = ret; dst = Asm.Register "eax" } in
-      [ mov; Asm.Ret ]
+  | Return v ->
+      let ret = compile_value v in
+      let mov = Mov { src = ret; dst = Register "eax" } in
+      [ mov; Ret ]
 
-let compile_func (f : Ast.func) : Asm.func =
+let compile_func (f : Ir.func) : Asm.func =
   match f with
   | Function fn ->
-      let body = compile_stmt fn.body in
-      Function { name = fn.name; instructions = body }
+      let instructions =
+        List.map (fun instr -> compile_instruction instr) fn.body
+        |> List.flatten
+      in
+      Function { name = fn.name; instructions }
 
-let compile_prog (p : Ast.prog) : Asm.prog =
+let compile_prog (p : Ir.prog) : Asm.prog =
   match p with
   | Program f ->
       let compiled_f = compile_func f in

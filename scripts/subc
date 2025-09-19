@@ -7,16 +7,17 @@ script_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd -P)
 
 usage() {
   cat <<EOF
-Usage: $(basename "${BASH_SOURCE[0]}") [-h] [-d] [--lex|--parse|--codegen|--emit|-S] sourcefile
+Usage: $(basename "${BASH_SOURCE[0]}") [-h] [-d] [--lex|--parse|--irgen|--codegen|--emit|-S] sourcefile
 Sub-C compiler driver.
 Available options:
  -h, --help      Print this help and exit
  -d, --debug     Print script debug info
      --lex       [ stdout ] Run lexer
      --parse     [ stdout ] Run lexer, parser
-     --codegen   [ stdout ] Run lexer, parser, code generation
-     --emit      [ stdout ] Run lexer, parser, code generation, emit asm
- -S              [  file  ] Run lexer, parser, code generation, emit asm
+     --irgen     [ stdout ] Run lexer, parser, IR generation
+     --codegen   [ stdout ] Run lexer, parser, IR generation, code generation
+     --emit      [ stdout ] Run lexer, parser, IR generation, code generation, emit asm
+ -S              [  file  ] Run lexer, parser, IR generation, code generation, emit asm
 EOF
   exit
 }
@@ -40,7 +41,7 @@ die() {
 
 parse_params() {
   # compiler defaults to code emission, assembly and linking
-  phase=5
+  phase=6
   assy_link=1
   modes=0
 
@@ -60,19 +61,24 @@ parse_params() {
       phase=2
       assy_link=0
       ;;
-    --codegen)
+    --irgen)
       ((modes + 1))
       phase=3
       assy_link=0
       ;;
-    --emit)
+    --codegen)
       ((modes + 1))
       phase=4
+      assy_link=0
+      ;;
+    --emit)
+      ((modes + 1))
+      phase=5
       assy_link=0
       ;;  
     -S)
       ((modes + 1))
-      phase=5
+      phase=6
       assy_link=0
       ;;
     -?*) die "ERROR: unknown option [$1]" ;;
@@ -84,7 +90,7 @@ parse_params() {
   # check required params and arguments
   [[ ${#args[@]} -eq 0 ]] && die "ERROR: missing input C sourcefile path."
   [[ ${#args[@]} -ne 1 ]] && die "ERROR: provide a path to a single C sourcefile."
-  [[ modes -gt 1 ]] && die "ERROR: flags [ --lex | --parse | --codegen | --emit | -S ] are mutually exclusive."
+  [[ modes -gt 1 ]] && die "ERROR: flags [ --lex | --parse | --irgen | --codegen | --emit | -S ] are mutually exclusive."
 
   return 0
 }

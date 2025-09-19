@@ -40,10 +40,26 @@ let run_parser lexbuf =
       (pos.Lexing.pos_cnum - pos.Lexing.pos_bol);
     exit 1
 
+let run_irgen lexbuf =
+  try
+    let ast = Parser.prog Lexer.read lexbuf in
+    let ir = Irgen.compile_prog ast in
+    print_endline (Ir.show_prog ir)
+  with
+  | Parser.Error ->
+      let pos = lexbuf.Lexing.lex_curr_p in
+      Printf.eprintf "Parse error at line %d, column %d\n" pos.Lexing.pos_lnum
+        (pos.Lexing.pos_cnum - pos.Lexing.pos_bol);
+      exit 1
+  | e ->
+      prerr_endline ("IR generation error: " ^ Printexc.to_string e);
+      exit 1
+
 let run_codegen lexbuf =
   try
     let ast = Parser.prog Lexer.read lexbuf in
-    let asm = Codegen.compile_prog ast in
+    let ir = Irgen.compile_prog ast in
+    let asm = Codegen.compile_prog ir in
     print_endline (Asm.show_prog asm)
   with
   | Parser.Error ->
@@ -58,7 +74,8 @@ let run_codegen lexbuf =
 let run_emit lexbuf =
   try
     let ast = Parser.prog Lexer.read lexbuf in
-    let asm = Codegen.compile_prog ast in
+    let ir = Irgen.compile_prog ast in
+    let asm = Codegen.compile_prog ir in
     print_endline (Emit.emit_prog asm)
   with
   | Parser.Error ->
@@ -73,7 +90,8 @@ let run_emit lexbuf =
 let run_exe lexbuf output_path =
   try
     let ast = Parser.prog Lexer.read lexbuf in
-    let asm = Codegen.compile_prog ast in
+    let ir = Irgen.compile_prog ast in
+    let asm = Codegen.compile_prog ir in
     let asm_text = Emit.emit_prog asm in
     let oc = open_out output_path in
     Fun.protect

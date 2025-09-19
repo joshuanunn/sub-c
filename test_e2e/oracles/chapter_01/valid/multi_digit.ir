@@ -1,4 +1,2 @@
-(Asm.Program
-   Asm.Function {name = "main";
-     instructions =
-     [Asm.Mov {src = (Asm.Imm 100); dst = (Asm.Register "eax")}; Asm.Ret]})
+(Ir.Program
+   Ir.Function {name = "main"; body = [(Ir.Return (Ir.Constant 100))]})

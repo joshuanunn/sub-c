@@ -6,7 +6,7 @@ script_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd -P)
 
 TEST_DIR="$script_dir/tests"
 ORACLE_DIR="$script_dir/oracles"
-PHASES=("lex" "parse" "codegen" "emit" "exe")
+PHASES=("lex" "parse" "irgen" "codegen" "emit" "exe")
 
 # Parse commandline options
 
@@ -26,7 +26,7 @@ while [[ $# -gt 0 ]]; do
       ;;
     *)
       echo "Unknown argument: $1"
-      echo "Usage: $0 [--chapter 1] [--phase lex|parse|codegen|emit|exe]"
+      echo "Usage: $0 [--chapter 1] [--phase lex|parse|irgen|codegen|emit|exe]"
       exit 1
       ;;
   esac
@@ -67,8 +67,10 @@ for chapter in "${CHAPTERS[@]}"; do
           ext="tokens"
         elif [[ "$phase" == "parse" ]]; then
           ext="ast"
-        elif [[ "$phase" == "codegen" ]]; then
+        elif [[ "$phase" == "irgen" ]]; then
           ext="ir"
+        elif [[ "$phase" == "codegen" ]]; then
+          ext="asm"
         elif [[ "$phase" == "emit" ]]; then
           ext="s"
         elif [[ "$phase" == "exe" ]]; then
@@ -116,7 +118,7 @@ for chapter in "${CHAPTERS[@]}"; do
         fi
 
         # Lexer, parser, codegen and emit tests
-        if [[ "$phase" == "lex" || "$phase" == "parse" || "$phase" == "codegen" || "$phase" == "emit" ]]; then
+        if [[ "$phase" == "lex" || "$phase" == "parse" || "$phase" == "irgen" || "$phase" == "codegen" || "$phase" == "emit" ]]; then
             output=$(subc "$test_file" --"$phase" 2>&1)
             expected=$(<"$oracle_file")
 
