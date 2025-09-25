@@ -1,0 +1,6 @@
+(Ir.Program
+   Ir.Function {name = "main";
+     body =
+     [Ir.Unary {op = Ir.Negate; src = (Ir.Constant 2147483647);
+        dst = (Ir.Var "tmp.0")};
+       (Ir.Return (Ir.Var "tmp.0"))]})
