@@ -85,6 +85,7 @@ for chapter in "${CHAPTERS[@]}"; do
 
         # Skip if oracle doesn't exist
         if [[ ! -f "$oracle_file" ]]; then
+          echo "SKIP: $rel_path ($phase)"
           ((skipped++))
           continue
         fi

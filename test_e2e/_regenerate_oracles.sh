@@ -14,7 +14,7 @@ for i in $(seq -f "%02g" 1 20); do
 done
 
 # What phases to generate
-PHASES=("lex" "parse" "irgen" "codegen" "emit")
+PHASES=("lex" "parse" "irgen" "codegen" "emit" "exe")
 
 # Loop over test files
 for chapter in "${CHAPTERS[@]}"; do
@@ -32,6 +32,7 @@ for chapter in "${CHAPTERS[@]}"; do
         irgen) ext="ir" ;;
         codegen) ext="asm" ;;
         emit) ext="s" ;;
+        exe) ext="exit_status" ;;
         *) echo "Unknown phase: $phase"; exit 1 ;;
       esac
 
@@ -43,7 +44,15 @@ for chapter in "${CHAPTERS[@]}"; do
       mkdir -p "$(dirname "$oracle_file")"
 
       echo "Generating oracle: $oracle_file"
-      subc "$test_file" --"$phase" > "$oracle_file"
+      if [[ $phase == "exe" ]]; then
+        subc "$test_file"
+        exe_file="${test_file%.c}"
+        set +e
+        ( "$exe_file"; echo $? > "$oracle_file"; rm "$exe_file" )
+        set -e
+      else 
+        subc "$test_file" --"$phase" > "$oracle_file"
+      fi
     done
   done
 done
