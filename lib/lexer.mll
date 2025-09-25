@@ -34,6 +34,9 @@ rule read =
   | "{" { LBRACE }
   | "}" { RBRACE }
   | ";" { SEMICOLON }
+  | "--" { DECREMENT }
+  | "-" { MINUS }
+  | "~" { BITNOT }
   | integer { LITERAL_INT (int_of_string (Lexing.lexeme lexbuf)) }
   | invalid_integer { raise (Lexing_error ("Invalid integer: " ^ Lexing.lexeme lexbuf)) }
   | identifier { IDENTIFIER (Lexing.lexeme lexbuf) }

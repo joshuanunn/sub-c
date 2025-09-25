@@ -12,6 +12,9 @@ open Ast
 %token LBRACE
 %token RBRACE
 %token SEMICOLON
+%token DECREMENT
+%token MINUS
+%token BITNOT
 %token EOF
 
 %start <Ast.prog> prog
@@ -33,4 +36,12 @@ stmt:
 
 expr:
   | LITERAL_INT { Ast.mk_int_expr $1 }
+  | DECREMENT expr { failwith "Decrement operator (--expr) is not yet supported" }
+  | unop expr { Ast.mk_unop $1 $2 }
+  | LPAREN expr RPAREN { $2 }
+  ;
+
+unop:
+  | MINUS { Ast.Negate }
+  | BITNOT { Ast.Complement }
   ;

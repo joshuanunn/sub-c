@@ -41,3 +41,41 @@ let%expect_test "invalid integer literal" =
     (Token.IDENTIFIER "bar")
     Invalid integer: 123bar
   |}]
+
+let%expect_test "a full program with a single unary operator" =
+  Utils.lex_and_show_string "int main(void) { return ~2; }" Lexer.read;
+  [%expect
+    {|
+    Token.KW_INT
+    (Token.IDENTIFIER "main")
+    Token.LPAREN
+    Token.KW_VOID
+    Token.RPAREN
+    Token.LBRACE
+    Token.KW_RETURN
+    Token.BITNOT
+    (Token.LITERAL_INT 2)
+    Token.SEMICOLON
+    Token.RBRACE
+    Token.EOF
+|}]
+
+let%expect_test "a full program with chained unary operators" =
+  Utils.lex_and_show_string "int main(void) { return -~-8; }" Lexer.read;
+  [%expect
+    {|
+    Token.KW_INT
+    (Token.IDENTIFIER "main")
+    Token.LPAREN
+    Token.KW_VOID
+    Token.RPAREN
+    Token.LBRACE
+    Token.KW_RETURN
+    Token.MINUS
+    Token.BITNOT
+    Token.MINUS
+    (Token.LITERAL_INT 8)
+    Token.SEMICOLON
+    Token.RBRACE
+    Token.EOF
+|}]

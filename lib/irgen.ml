@@ -1,23 +1,35 @@
 open Ast
+open Env
 open Ir
 
-let compile_expr (e : Ast.expr) : Ir.value =
-  match e with LiteralInt n -> Constant n
+let convert_unop (u : Ast.unop) : Ir.unary_operator =
+  match u with Complement -> Ir.Complement | Negate -> Ir.Negate
 
-let compile_stmt (s : Ast.stmt) : Ir.instruction list =
+let rec convert_expr (v : Ast.expr) (e : Env.senv) :
+    Ir.value * Ir.instruction list =
+  match v with
+  | LiteralInt n -> (Constant n, [])
+  | Unary { unary_operator : unop; exp : expr } ->
+      let op = convert_unop unary_operator in
+      let src, src_instructions = convert_expr exp e in
+      let dst = Var (alloc_senv_value e "tmp") in
+      let instruction = Unary { op; src; dst } in
+      (dst, src_instructions @ [ instruction ])
+
+let convert_stmt (s : Ast.stmt) (e : Env.senv) : Ir.instruction list =
   match s with
-  | Return e ->
-      let ret = compile_expr e in
-      [ Return ret ]
+  | Return v ->
+      let value, instructions = convert_expr v e in
+      instructions @ [ Return value ]
 
-let compile_func (f : Ast.func) : Ir.func =
+let convert_func (f : Ast.func) (e : Env.senv) : Ir.func =
   match f with
   | Function fn ->
-      let body = compile_stmt fn.body in
+      let body = convert_stmt fn.body e in
       Function { name = fn.name; body }
 
-let compile_prog (p : Ast.prog) : Ir.prog =
-  match p with
-  | Program f ->
-      let compiled_f = compile_func f in
-      Program compiled_f
+let convert_prog (Program f : Ast.prog) : Ir.prog * Env.senv =
+  (* Initialise a new environment *)
+  let e = Env.make_senv () in
+  let compiled_f = convert_func f e in
+  (Program compiled_f, e)

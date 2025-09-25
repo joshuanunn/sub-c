@@ -1,6 +1,15 @@
-type operand = Imm of int | Register of string [@@deriving show]
+type reg = AX | R10 [@@deriving show]
 
-type instruction = Mov of { src : operand; dst : operand } | Ret
+type operand = Imm of int | Reg of reg | Pseudo of string | Stack of int
+[@@deriving show]
+
+type unary_operator = Neg | Not [@@deriving show]
+
+type instruction =
+  | Mov of { src : operand; dst : operand }
+  | Unary of { uop : unary_operator; dst : operand }
+  | AllocateStack of int
+  | Ret
 [@@deriving show]
 
 type func = Function of { name : string; instructions : instruction list }

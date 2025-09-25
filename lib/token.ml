@@ -9,5 +9,8 @@ type token =
   | LBRACE
   | RBRACE
   | SEMICOLON
+  | DECREMENT
+  | MINUS
+  | BITNOT
   | EOF
 [@@deriving show]
