@@ -9,12 +9,14 @@ let rec convert_expr (v : Ast.expr) (e : Env.senv) :
     Ir.value * Ir.instruction list =
   match v with
   | LiteralInt n -> (Constant n, [])
-  | Unary { unary_operator : unop; exp : expr } ->
-      let op = convert_unop unary_operator in
+  | Unary { op : unop; exp : expr } ->
+      let op = convert_unop op in
       let src, src_instructions = convert_expr exp e in
       let dst = Var (alloc_senv_value e "tmp") in
       let instruction = Unary { op; src; dst } in
       (dst, src_instructions @ [ instruction ])
+  | Binary _ -> (Constant 1, [])
+(* TODO: placeholder, need to implement *)
 
 let convert_stmt (s : Ast.stmt) (e : Env.senv) : Ir.instruction list =
   match s with

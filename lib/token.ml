@@ -10,7 +10,11 @@ type token =
   | RBRACE
   | SEMICOLON
   | DECREMENT
+  | PLUS
   | MINUS
+  | STAR
+  | SLASH
+  | PERCENT
   | BITNOT
   | EOF
 [@@deriving show]

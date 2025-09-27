@@ -35,7 +35,11 @@ rule read =
   | "}" { RBRACE }
   | ";" { SEMICOLON }
   | "--" { DECREMENT }
+  | "+" { PLUS }
   | "-" { MINUS }
+  | "*" { STAR }
+  | "/" { SLASH }
+  | "%" { PERCENT }
   | "~" { BITNOT }
   | integer { LITERAL_INT (int_of_string (Lexing.lexeme lexbuf)) }
   | invalid_integer { raise (Lexing_error ("Invalid integer: " ^ Lexing.lexeme lexbuf)) }
