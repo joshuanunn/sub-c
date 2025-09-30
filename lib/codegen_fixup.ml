@@ -7,11 +7,33 @@ open Env
     other instructions are returned unchanged. *)
 let fixup_instruction (i : Asm.instruction) : Asm.instruction list =
   match i with
+  (* mov cannot use memory addresses as both source and destination *)
   | Mov { src = Stack s; dst = Stack d } ->
       [
         Mov { src = Stack s; dst = Reg R10 };
         Mov { src = Reg R10; dst = Stack d };
       ]
+  (* add cannot use memory addresses as both source and destination *)
+  | Binary { bop = Add; src2 = Stack s; dst = Stack d } ->
+      [
+        Mov { src = Stack s; dst = Reg R10 };
+        Binary { bop = Add; src2 = Reg R10; dst = Stack d };
+      ]
+  (* sub cannot use memory addresses as both source and destination *)
+  | Binary { bop = Sub; src2 = Stack s; dst = Stack d } ->
+      [
+        Mov { src = Stack s; dst = Reg R10 };
+        Binary { bop = Sub; src2 = Reg R10; dst = Stack d };
+      ]
+  (* mul cannot have memory address as destination, regardless of source *)
+  | Binary { bop = Mult; src2 = s; dst = Stack d } ->
+      [
+        Mov { src = Stack d; dst = Reg R11 };
+        Binary { bop = Mult; src2 = s; dst = Reg R11 };
+        Mov { src = Reg R11; dst = Stack d };
+      ]
+  (* div cannot operate on constant values *)
+  | Idiv (Imm c) -> [ Mov { src = Imm c; dst = Reg R10 }; Idiv (Reg R10) ]
   | _ -> [ i ]
 
 (** [fixup_func f e] rewrites any invalid instructions in the function [f] by

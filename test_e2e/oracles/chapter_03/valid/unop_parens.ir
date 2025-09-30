@@ -1,0 +1,8 @@
+(Ir.Program
+   Ir.Function {name = "main";
+     body =
+     [Ir.Binary {op = Ir.Add; src1 = (Ir.Constant 1); src2 = (Ir.Constant 1);
+        dst = (Ir.Var "tmp.0")};
+       Ir.Unary {op = Ir.Complement; src = (Ir.Var "tmp.0");
+         dst = (Ir.Var "tmp.1")};
+       (Ir.Return (Ir.Var "tmp.1"))]})

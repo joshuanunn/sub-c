@@ -18,6 +18,13 @@ let lower_instruction (i : Asm.instruction) (e : Env.senv) : Asm.instruction =
   | Unary { uop; dst } ->
       let d = lower_operand dst e in
       Unary { uop; dst = d }
+  | Binary { bop; src2; dst } ->
+      let s = lower_operand src2 e in
+      let d = lower_operand dst e in
+      Binary { bop; src2 = s; dst = d }
+  | Idiv dst ->
+      let d = lower_operand dst e in
+      Idiv d
   | _ -> i
 
 (** [lower_func f e] lowers all pseudo operands in the function [f], producing a

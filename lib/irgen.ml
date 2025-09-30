@@ -3,7 +3,15 @@ open Env
 open Ir
 
 let convert_unop (u : Ast.unop) : Ir.unary_operator =
-  match u with Complement -> Ir.Complement | Negate -> Ir.Negate
+  match u with Complement -> Complement | Negate -> Negate
+
+let convert_binop (u : Ast.binop) : Ir.binary_operator =
+  match u with
+  | Add -> Add
+  | Subtract -> Subtract
+  | Multiply -> Multiply
+  | Divide -> Divide
+  | Remainder -> Remainder
 
 let rec convert_expr (v : Ast.expr) (e : Env.senv) :
     Ir.value * Ir.instruction list =
@@ -15,8 +23,13 @@ let rec convert_expr (v : Ast.expr) (e : Env.senv) :
       let dst = Var (alloc_senv_value e "tmp") in
       let instruction = Unary { op; src; dst } in
       (dst, src_instructions @ [ instruction ])
-  | Binary _ -> (Constant 1, [])
-(* TODO: placeholder, need to implement *)
+  | Binary { op : binop; left : expr; right : expr } ->
+      let op = convert_binop op in
+      let src1, src1_instructions = convert_expr left e in
+      let src2, src2_instructions = convert_expr right e in
+      let dst = Var (alloc_senv_value e "tmp") in
+      let instruction = Binary { op; src1; src2; dst } in
+      (dst, src1_instructions @ src2_instructions @ [ instruction ])
 
 let convert_stmt (s : Ast.stmt) (e : Env.senv) : Ir.instruction list =
   match s with
