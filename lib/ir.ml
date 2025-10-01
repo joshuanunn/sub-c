@@ -1,4 +1,4 @@
-type unary_operator = Complement | Negate [@@deriving show]
+type unary_operator = Negate | BwNot [@@deriving show]
 
 type binary_operator = Add | Subtract | Multiply | Divide | Remainder
 [@@deriving show]

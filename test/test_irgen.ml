@@ -24,8 +24,7 @@ let%expect_test "IR generation using single unary operator" =
     (Ir.Program
        Ir.Function {name = "main";
          body =
-         [Ir.Unary {op = Ir.Complement; src = (Ir.Constant 2);
-            dst = (Ir.Var "tmp.0")};
+         [Ir.Unary {op = Ir.BwNot; src = (Ir.Constant 2); dst = (Ir.Var "tmp.0")};
            (Ir.Return (Ir.Var "tmp.0"))]})
     |}]
 
@@ -43,7 +42,7 @@ let%expect_test "IR generation using chained unary operators" =
        Ir.Function {name = "main";
          body =
          [Ir.Unary {op = Ir.Negate; src = (Ir.Constant 8); dst = (Ir.Var "tmp.0")};
-           Ir.Unary {op = Ir.Complement; src = (Ir.Var "tmp.0");
+           Ir.Unary {op = Ir.BwNot; src = (Ir.Var "tmp.0");
              dst = (Ir.Var "tmp.1")};
            Ir.Unary {op = Ir.Negate; src = (Ir.Var "tmp.1");
              dst = (Ir.Var "tmp.2")};

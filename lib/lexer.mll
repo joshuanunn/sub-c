@@ -40,7 +40,12 @@ rule read =
   | "*" { STAR }
   | "/" { SLASH }
   | "%" { PERCENT }
-  | "~" { BITNOT }
+  | "<<" { BW_LSHIFT }
+  | ">>" { BW_RSHIFT }
+  | "~" { BW_NOT }
+  | "&" { BW_AND }
+  | "|" { BW_OR }
+  | "^" { BW_XOR }
   | integer { LITERAL_INT (int_of_string (Lexing.lexeme lexbuf)) }
   | invalid_integer { raise (Lexing_error ("Invalid integer: " ^ Lexing.lexeme lexbuf)) }
   | identifier { IDENTIFIER (Lexing.lexeme lexbuf) }

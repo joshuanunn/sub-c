@@ -21,8 +21,7 @@ let%expect_test "parse program with single unary operator" =
     {|
     (Ast.Program
        Ast.Function {return_type = Ast.KwInt; name = "main";
-         body =
-         (Ast.Return Ast.Unary {op = Ast.Complement; exp = (Ast.LiteralInt 2)})})
+         body = (Ast.Return Ast.Unary {op = Ast.BwNot; exp = (Ast.LiteralInt 2)})})
     |}]
 
 let%expect_test "parse program with chained unary operators" =
@@ -38,7 +37,7 @@ let%expect_test "parse program with chained unary operators" =
          (Ast.Return
             Ast.Unary {op = Ast.Negate;
               exp =
-              Ast.Unary {op = Ast.Complement;
+              Ast.Unary {op = Ast.BwNot;
                 exp = Ast.Unary {op = Ast.Negate; exp = (Ast.LiteralInt 8)}}})})
     |}]
 

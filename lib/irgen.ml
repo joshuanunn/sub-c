@@ -3,7 +3,7 @@ open Env
 open Ir
 
 let convert_unop (u : Ast.unop) : Ir.unary_operator =
-  match u with Complement -> Complement | Negate -> Negate
+  match u with BwNot -> BwNot | Negate -> Negate
 
 let convert_binop (u : Ast.binop) : Ir.binary_operator =
   match u with
@@ -12,6 +12,11 @@ let convert_binop (u : Ast.binop) : Ir.binary_operator =
   | Multiply -> Multiply
   | Divide -> Divide
   | Remainder -> Remainder
+  | BwLeftShift -> failwith "To be implemented"
+  | BwRightShift -> failwith "To be implemented"
+  | BwAnd -> failwith "To be implemented"
+  | BwXor -> failwith "To be implemented"
+  | BwOr -> failwith "To be implemented"
 
 let rec convert_expr (v : Ast.expr) (e : Env.senv) :
     Ir.value * Ir.instruction list =

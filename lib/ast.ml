@@ -1,6 +1,18 @@
 type typ = KwInt | KwVoid [@@deriving show]
-type unop = Complement | Negate [@@deriving show]
-type binop = Add | Subtract | Multiply | Divide | Remainder [@@deriving show]
+type unop = Negate | BwNot [@@deriving show]
+
+type binop =
+  | Add
+  | Subtract
+  | Multiply
+  | Divide
+  | Remainder
+  | BwLeftShift
+  | BwRightShift
+  | BwAnd
+  | BwXor
+  | BwOr
+[@@deriving show]
 
 type expr =
   | LiteralInt of int

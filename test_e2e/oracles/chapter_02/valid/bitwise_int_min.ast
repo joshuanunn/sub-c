@@ -2,6 +2,6 @@
    Ast.Function {return_type = Ast.KwInt; name = "main";
      body =
      (Ast.Return
-        Ast.Unary {op = Ast.Complement;
+        Ast.Unary {op = Ast.BwNot;
           exp =
           Ast.Unary {op = Ast.Negate; exp = (Ast.LiteralInt 2147483647)}})})

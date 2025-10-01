@@ -1,0 +1,15 @@
+Token.KW_INT
+(Token.IDENTIFIER "main")
+Token.LPAREN
+Token.KW_VOID
+Token.RPAREN
+Token.LBRACE
+Token.KW_RETURN
+(Token.LITERAL_INT 33)
+Token.BW_LSHIFT
+(Token.LITERAL_INT 4)
+Token.BW_RSHIFT
+(Token.LITERAL_INT 2)
+Token.SEMICOLON
+Token.RBRACE
+Token.EOF

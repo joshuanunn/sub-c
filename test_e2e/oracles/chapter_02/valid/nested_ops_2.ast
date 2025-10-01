@@ -3,4 +3,4 @@
      body =
      (Ast.Return
         Ast.Unary {op = Ast.Negate;
-          exp = Ast.Unary {op = Ast.Complement; exp = (Ast.LiteralInt 0)}})})
+          exp = Ast.Unary {op = Ast.BwNot; exp = (Ast.LiteralInt 0)}})})

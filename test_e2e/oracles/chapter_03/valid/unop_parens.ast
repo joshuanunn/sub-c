@@ -2,7 +2,7 @@
    Ast.Function {return_type = Ast.KwInt; name = "main";
      body =
      (Ast.Return
-        Ast.Unary {op = Ast.Complement;
+        Ast.Unary {op = Ast.BwNot;
           exp =
           Ast.Binary {op = Ast.Add; left = (Ast.LiteralInt 1);
             right = (Ast.LiteralInt 1)}})})

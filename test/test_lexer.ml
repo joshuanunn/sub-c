@@ -53,7 +53,7 @@ let%expect_test "a full program with a single unary operator" =
     Token.RPAREN
     Token.LBRACE
     Token.KW_RETURN
-    Token.BITNOT
+    Token.BW_NOT
     (Token.LITERAL_INT 2)
     Token.SEMICOLON
     Token.RBRACE
@@ -72,7 +72,7 @@ let%expect_test "a full program with chained unary operators" =
     Token.LBRACE
     Token.KW_RETURN
     Token.MINUS
-    Token.BITNOT
+    Token.BW_NOT
     Token.MINUS
     (Token.LITERAL_INT 8)
     Token.SEMICOLON

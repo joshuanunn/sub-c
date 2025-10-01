@@ -5,7 +5,7 @@ let compile_value (o : Ir.value) : Asm.operand =
   match o with Constant n -> Imm n | Var i -> Pseudo i
 
 let compile_unary_operator (uop : Ir.unary_operator) : Asm.unary_operator =
-  match uop with Complement -> Not | Negate -> Neg
+  match uop with BwNot -> Not | Negate -> Neg
 
 let compile_binary_operator (bop : Ir.binary_operator) : Asm.binary_operator =
   match bop with

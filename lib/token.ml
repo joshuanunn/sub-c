@@ -15,6 +15,11 @@ type token =
   | STAR
   | SLASH
   | PERCENT
-  | BITNOT
+  | BW_LSHIFT
+  | BW_RSHIFT
+  | BW_NOT
+  | BW_AND
+  | BW_OR
+  | BW_XOR
   | EOF
 [@@deriving show]

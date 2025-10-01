@@ -5,7 +5,7 @@ Token.KW_VOID
 Token.RPAREN
 Token.LBRACE
 Token.KW_RETURN
-Token.BITNOT
+Token.BW_NOT
 (Token.LITERAL_INT 12)
 Token.SEMICOLON
 Token.RBRACE

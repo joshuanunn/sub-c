@@ -18,7 +18,12 @@ open Ast
 %token STAR
 %token SLASH
 %token PERCENT
-%token BITNOT
+%token BW_LSHIFT
+%token BW_RSHIFT
+%token BW_NOT
+%token BW_AND
+%token BW_OR
+%token BW_XOR
 %token EOF
 
 %start <prog> prog
@@ -40,7 +45,68 @@ stmt:
 
 (* Lowest precedence: top-level expression *)
 expr:
+  | expr_15 { $1 }
+  ;
+
+(* Comma operator [left associative] *)
+expr_15:
+  | expr_14 { $1 }
+  ;
+
+(* Assignment operators [right associative] *)
+expr_14:
+  | expr_13 { $1 }
+  ;
+
+(* Ternary operators [right associative] *)
+expr_13:
+  | expr_12 { $1 }
+  ;
+
+(* Logical OR operator [left associative] *)
+expr_12:
+  | expr_11 { $1 }
+  ;
+
+(* Logical AND operator [left associative] *)
+expr_11:
+  | expr_10 { $1 }
+  ;
+
+(* Bitwise OR operator [left associative] *)
+expr_10:
+  | expr_10 BW_OR expr_09 { mk_binop_expr BwOr $1 $3 }
+  | expr_09 { $1 }
+  ;
+
+(* Bitwise XOR operator [left associative] *)
+expr_09:
+  | expr_09 BW_XOR expr_08 { mk_binop_expr BwXor $1 $3 }
+  | expr_08 { $1 }
+  ;
+
+(* Bitwise AND operator [left associative] *)
+expr_08:
+  | expr_08 BW_AND expr_07 { mk_binop_expr BwAnd $1 $3 }
+  | expr_07 { $1 }
+  ;
+
+(* Relational equality operators [left associative] *)
+expr_07:
+  | expr_06 { $1 }
+  ;
+
+(* Relational operators [left associative] *)
+expr_06:
+  | expr_05 { $1 }
+  ;
+
+(* Bitwise shift operators [left associative] *)
+expr_05:
+  | expr_05 BW_LSHIFT expr_04 { mk_binop_expr BwLeftShift $1 $3 }
+  | expr_05 BW_RSHIFT expr_04 { mk_binop_expr BwRightShift $1 $3 }
   | expr_04 { $1 }
+  ;
 
 (* Additive binary operators [left associative] *)
 expr_04:
@@ -61,7 +127,7 @@ expr_03:
 expr_02:
   | DECREMENT expr_02 { failwith "Prefix decrement operator (--expr) is not yet supported" }
   | MINUS expr_02 { mk_unop_expr Negate $2 }
-  | BITNOT expr_02 { mk_unop_expr Complement $2 }
+  | BW_NOT expr_02 { mk_unop_expr BwNot $2 }
   | expr_01 { $1 }
   ;
 
