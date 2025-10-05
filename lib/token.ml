@@ -15,11 +15,20 @@ type token =
   | STAR
   | SLASH
   | PERCENT
+  | AND
+  | OR
   | BW_LSHIFT
   | BW_RSHIFT
   | BW_NOT
   | BW_AND
   | BW_OR
   | BW_XOR
+  | EQ
+  | NE
+  | LE
+  | GE
+  | LT
+  | GT
+  | NOT
   | EOF
 [@@deriving show]

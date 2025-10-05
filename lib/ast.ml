@@ -1,5 +1,5 @@
 type typ = KwInt | KwVoid [@@deriving show]
-type unop = Negate | BwNot [@@deriving show]
+type unop = Negate | Not | BwNot [@@deriving show]
 
 type binop =
   | Add
@@ -7,11 +7,19 @@ type binop =
   | Multiply
   | Divide
   | Remainder
+  | And
+  | Or
   | BwLeftShift
   | BwRightShift
   | BwAnd
   | BwXor
   | BwOr
+  | Equal
+  | NotEqual
+  | LessOrEqual
+  | GreaterOrEqual
+  | LessThan
+  | GreaterThan
 [@@deriving show]
 
 type expr =

@@ -18,12 +18,21 @@ open Ast
 %token STAR
 %token SLASH
 %token PERCENT
+%token AND
+%token OR
 %token BW_LSHIFT
 %token BW_RSHIFT
 %token BW_NOT
 %token BW_AND
 %token BW_OR
 %token BW_XOR
+%token EQ
+%token NE
+%token LE
+%token GE
+%token LT
+%token GT
+%token NOT
 %token EOF
 
 %start <prog> prog
@@ -65,11 +74,13 @@ expr_13:
 
 (* Logical OR operator [left associative] *)
 expr_12:
+  | expr_12 OR expr_11 { mk_binop_expr Or $1 $3 }
   | expr_11 { $1 }
   ;
 
 (* Logical AND operator [left associative] *)
 expr_11:
+  | expr_11 AND expr_10 { mk_binop_expr And $1 $3 }
   | expr_10 { $1 }
   ;
 
@@ -93,11 +104,17 @@ expr_08:
 
 (* Relational equality operators [left associative] *)
 expr_07:
+  | expr_07 EQ expr_06 { mk_binop_expr Equal $1 $3 }
+  | expr_07 NE expr_06 { mk_binop_expr NotEqual $1 $3 }
   | expr_06 { $1 }
   ;
 
 (* Relational operators [left associative] *)
 expr_06:
+  | expr_06 LE expr_05 { mk_binop_expr LessOrEqual $1 $3 }
+  | expr_06 GE expr_05 { mk_binop_expr GreaterOrEqual $1 $3 }
+  | expr_06 LT expr_05 { mk_binop_expr LessThan $1 $3 }
+  | expr_06 GT expr_05 { mk_binop_expr GreaterThan $1 $3 }
   | expr_05 { $1 }
   ;
 
@@ -127,6 +144,7 @@ expr_03:
 expr_02:
   | DECREMENT expr_02 { failwith "Prefix decrement operator (--expr) is not yet supported" }
   | MINUS expr_02 { mk_unop_expr Negate $2 }
+  | NOT expr_02 { mk_unop_expr Not $2 }
   | BW_NOT expr_02 { mk_unop_expr BwNot $2 }
   | expr_01 { $1 }
   ;

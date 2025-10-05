@@ -3,7 +3,7 @@ open Env
 open Ir
 
 let convert_unop (u : Ast.unop) : Ir.unary_operator =
-  match u with BwNot -> BwNot | Negate -> Negate
+  match u with BwNot -> BwNot | Negate -> Negate | Not -> failwith "TODO"
 
 let convert_binop (u : Ast.binop) : Ir.binary_operator =
   match u with
@@ -12,11 +12,19 @@ let convert_binop (u : Ast.binop) : Ir.binary_operator =
   | Multiply -> Multiply
   | Divide -> Divide
   | Remainder -> Remainder
+  | And -> failwith "TODO"
+  | Or -> failwith "TODO"
   | BwLeftShift -> BwLeftShift
   | BwRightShift -> BwRightShift
   | BwAnd -> BwAnd
   | BwXor -> BwXor
   | BwOr -> BwOr
+  | Equal -> failwith "TODO"
+  | NotEqual -> failwith "TODO"
+  | LessOrEqual -> failwith "TODO"
+  | GreaterOrEqual -> failwith "TODO"
+  | LessThan -> failwith "TODO"
+  | GreaterThan -> failwith "TODO"
 
 let rec convert_expr (v : Ast.expr) (e : Env.senv) :
     Ir.value * Ir.instruction list =

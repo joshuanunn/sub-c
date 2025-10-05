@@ -1,0 +1,3 @@
+(Ast.Program
+   Ast.Function {return_type = Ast.KwInt; name = "main";
+     body = (Ast.Return Ast.Unary {op = Ast.Not; exp = (Ast.LiteralInt 0)})})
