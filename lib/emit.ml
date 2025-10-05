@@ -2,7 +2,9 @@ open Asm
 
 let emit_operand (o : operand) : string =
   match o with
+  | Reg CL -> "%cl"
   | Reg AX -> "%eax"
+  | Reg CX -> "%ecx"
   | Reg DX -> "%edx"
   | Reg R10 -> "%r10d"
   | Reg R11 -> "%r11d"
@@ -14,7 +16,13 @@ let emit_unary_op (o : unary_operator) : string =
   match o with Neg -> "negl" | Not -> "notl"
 
 let emit_binary_op (o : binary_operator) : string =
-  match o with Add -> "addl" | Sub -> "subl" | Mult -> "imull"
+  match o with
+  | Add -> "addl"
+  | Sub -> "subl"
+  | Mult -> "imull"
+  | BwAnd -> "andl"
+  | BwXor -> "xorl"
+  | BwOr -> "orl"
 
 let emit_instruction (i : instruction) : string list =
   match i with
@@ -36,6 +44,14 @@ let emit_instruction (i : instruction) : string list =
       let d = emit_operand o in
       [ Printf.sprintf "idivl\t%s" d ]
   | Cdq -> [ "cdq" ]
+  | Shl { src; dst } ->
+      let s = emit_operand src in
+      let d = emit_operand dst in
+      [ Printf.sprintf "shll\t%s, %s" s d ]
+  | Sar { src; dst } ->
+      let s = emit_operand src in
+      let d = emit_operand dst in
+      [ Printf.sprintf "sarl\t%s, %s" s d ]
   | AllocateStack n -> [ Printf.sprintf "subq\t$%d, %%rsp" n ]
 
 let emit_func (f : func) : string list =

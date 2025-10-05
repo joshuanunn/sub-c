@@ -22,6 +22,14 @@ let lower_instruction (i : Asm.instruction) (e : Env.senv) : Asm.instruction =
       let s = lower_operand src2 e in
       let d = lower_operand dst e in
       Binary { bop; src2 = s; dst = d }
+  | Shl { src; dst } ->
+      let s = lower_operand src e in
+      let d = lower_operand dst e in
+      Shl { src = s; dst = d }
+  | Sar { src; dst } ->
+      let s = lower_operand src e in
+      let d = lower_operand dst e in
+      Sar { src = s; dst = d }
   | Idiv dst ->
       let d = lower_operand dst e in
       Idiv d

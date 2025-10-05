@@ -1,6 +1,12 @@
 open Asm
 open Env
 
+let binary_mem_mem_fix bop s d =
+  [
+    Mov { src = Stack s; dst = Reg R10 };
+    Binary { bop; src2 = Reg R10; dst = Stack d };
+  ]
+
 (** [fixup_instruction i] rewrites the instruction [i] if it is invalid in
     x86-64, such as a move from one stack location to another. In such cases, it
     inserts an intermediate move through a temporary register (e.g., R10). All
@@ -13,18 +19,17 @@ let fixup_instruction (i : Asm.instruction) : Asm.instruction list =
         Mov { src = Stack s; dst = Reg R10 };
         Mov { src = Reg R10; dst = Stack d };
       ]
-  (* add cannot use memory addresses as both source and destination *)
+  (* binary ops that cannot use memory addresses as both src and dest *)
   | Binary { bop = Add; src2 = Stack s; dst = Stack d } ->
-      [
-        Mov { src = Stack s; dst = Reg R10 };
-        Binary { bop = Add; src2 = Reg R10; dst = Stack d };
-      ]
-  (* sub cannot use memory addresses as both source and destination *)
+      binary_mem_mem_fix Add s d
   | Binary { bop = Sub; src2 = Stack s; dst = Stack d } ->
-      [
-        Mov { src = Stack s; dst = Reg R10 };
-        Binary { bop = Sub; src2 = Reg R10; dst = Stack d };
-      ]
+      binary_mem_mem_fix Sub s d
+  | Binary { bop = BwAnd; src2 = Stack s; dst = Stack d } ->
+      binary_mem_mem_fix BwAnd s d
+  | Binary { bop = BwXor; src2 = Stack s; dst = Stack d } ->
+      binary_mem_mem_fix BwXor s d
+  | Binary { bop = BwOr; src2 = Stack s; dst = Stack d } ->
+      binary_mem_mem_fix BwOr s d
   (* mul cannot have memory address as destination, regardless of source *)
   | Binary { bop = Mult; src2 = s; dst = Stack d } ->
       [

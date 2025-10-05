@@ -12,8 +12,13 @@ let compile_binary_operator (bop : Ir.binary_operator) : Asm.binary_operator =
   | Add -> Add
   | Subtract -> Sub
   | Multiply -> Mult
-  | Divide -> failwith "Cannot directly compile IR Divide to ASM Binary"
-  | Remainder -> failwith "Cannot directly compile IR Remainder to ASM Binary"
+  | Divide -> failwith "Cannot compile IR Divide to ASM Binary"
+  | Remainder -> failwith "Cannot compile IR Remainder to ASM Binary"
+  | BwLeftShift -> failwith "Cannot compile IR BwLeftShift to ASM Binary"
+  | BwRightShift -> failwith "Cannot compile IR BwRightShift to ASM Binary"
+  | BwAnd -> BwAnd
+  | BwXor -> BwXor
+  | BwOr -> BwOr
 
 let compile_instruction (s : Ir.instruction) : Asm.instruction list =
   match s with
@@ -36,6 +41,34 @@ let compile_instruction (s : Ir.instruction) : Asm.instruction list =
       let idiv = Idiv (compile_value src2) in
       let mov2 = Mov { src = Reg DX; dst = compile_value dst } in
       [ mov1; Cdq; idiv; mov2 ]
+  | Binary { op = BwLeftShift; src1; src2; dst } -> (
+      let src2_val = compile_value src2 in
+      let dst_val = compile_value dst in
+      let mov1 = Mov { src = compile_value src1; dst = dst_val } in
+      match src2_val with
+      (* special case: shift using an immediate operand *)
+      | Imm _ ->
+          let shl = Shl { src = src2_val; dst = dst_val } in
+          [ mov1; shl ]
+      (* otherwise: shift using value in cl register *)
+      | _ ->
+          let mov2 = Mov { src = compile_value src2; dst = Reg CX } in
+          let shl = Shl { src = Reg CL; dst = dst_val } in
+          [ mov1; mov2; shl ])
+  | Binary { op = BwRightShift; src1; src2; dst } -> (
+      let src2_val = compile_value src2 in
+      let dst_val = compile_value dst in
+      let mov1 = Mov { src = compile_value src1; dst = dst_val } in
+      match src2_val with
+      (* special case: shift using an immediate operand *)
+      | Imm _ ->
+          let sar = Sar { src = src2_val; dst = dst_val } in
+          [ mov1; sar ]
+      (* otherwise: shift using value in cl register *)
+      | _ ->
+          let mov2 = Mov { src = compile_value src2; dst = Reg CX } in
+          let sar = Sar { src = Reg CL; dst = dst_val } in
+          [ mov1; mov2; sar ])
   | Binary { op; src1; src2; dst } ->
       let bop = compile_binary_operator op in
       let bin =

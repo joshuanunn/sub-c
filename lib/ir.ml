@@ -1,6 +1,16 @@
 type unary_operator = Negate | BwNot [@@deriving show]
 
-type binary_operator = Add | Subtract | Multiply | Divide | Remainder
+type binary_operator =
+  | Add
+  | Subtract
+  | Multiply
+  | Divide
+  | Remainder
+  | BwLeftShift
+  | BwRightShift
+  | BwAnd
+  | BwXor
+  | BwOr
 [@@deriving show]
 
 type value = Constant of int | Var of string [@@deriving show]
