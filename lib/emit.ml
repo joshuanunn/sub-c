@@ -1,6 +1,6 @@
 open Asm
 
-let emit_cond_code (o : cond_code) : string =
+let emit_cc (o : cond_code) : string =
   match o with
   | E -> "e"
   | NE -> "ne"
@@ -9,7 +9,7 @@ let emit_cond_code (o : cond_code) : string =
   | L -> "l"
   | LE -> "le"
 
-let emit_operand (o : operand) : string =
+let emit_op (o : operand) : string =
   match o with
   | Reg AL -> "%al"
   | Reg CL -> "%cl"
@@ -37,58 +37,65 @@ let emit_binary_op (o : binary_operator) : string =
   | BwXor -> "xorl"
   | BwOr -> "orl"
 
+let format_instruction (i : string) (o : string) : string =
+  let ins = Printf.sprintf "    %s" i in
+  Printf.sprintf "%-16s%s" ins o
+
+let format_label (l : string) : string = Printf.sprintf ".L%s:" l
+let format_function (f : string) : string = Printf.sprintf "%s:" f
+
 let emit_instruction (i : instruction) : string list =
   match i with
   | Mov { src; dst } ->
-      let s = emit_operand src in
-      let d = emit_operand dst in
-      [ Printf.sprintf "\tmovl\t%s, %s" s d ]
-  | Ret -> [ "\tmovq\t%rbp, %rsp"; "\tpopq\t%rbp"; "\tret" ]
+      let ops = Printf.sprintf "%s, %s" (emit_op src) (emit_op dst) in
+      [ format_instruction "movl" ops ]
+  | Ret ->
+      [
+        format_instruction "movq" "%rbp, %rsp";
+        format_instruction "popq" "%rbp";
+        format_instruction "ret" "";
+      ]
   | Unary { uop; dst } ->
-      let u = emit_unary_op uop in
-      let d = emit_operand dst in
-      [ Printf.sprintf "\t%s\t%s" u d ]
+      [ format_instruction (emit_unary_op uop) (emit_op dst) ]
   | Binary { bop; src2; dst } ->
-      let u = emit_binary_op bop in
-      let s = emit_operand src2 in
-      let d = emit_operand dst in
-      [ Printf.sprintf "\t%s\t%s, %s" u s d ]
+      let ops = Printf.sprintf "%s, %s" (emit_op src2) (emit_op dst) in
+      [ format_instruction (emit_binary_op bop) ops ]
   | Cmp (op1, op2) ->
-      let o1 = emit_operand op1 in
-      let o2 = emit_operand op2 in
-      [ Printf.sprintf "\tcmpl\t%s, %s" o1 o2 ]
-  | Idiv o ->
-      let d = emit_operand o in
-      [ Printf.sprintf "\tidivl\t%s" d ]
-  | Cdq -> [ "\tcdq" ]
+      let ops = Printf.sprintf "%s, %s" (emit_op op1) (emit_op op2) in
+      [ format_instruction "cmpl" ops ]
+  | Idiv o -> [ format_instruction "idivl" (emit_op o) ]
+  | Cdq -> [ format_instruction "cdq" "" ]
   | Shl { src; dst } ->
-      let s = emit_operand src in
-      let d = emit_operand dst in
-      [ Printf.sprintf "\tshll\t%s, %s" s d ]
+      let ops = Printf.sprintf "%s, %s" (emit_op src) (emit_op dst) in
+      [ format_instruction "shll" ops ]
   | Sar { src; dst } ->
-      let s = emit_operand src in
-      let d = emit_operand dst in
-      [ Printf.sprintf "\tsarl\t%s, %s" s d ]
-  | Jmp l -> [ Printf.sprintf "\tjmp  \t.L%s" l ]
+      let ops = Printf.sprintf "%s, %s" (emit_op src) (emit_op dst) in
+      [ format_instruction "sarl" ops ]
+  | Jmp l ->
+      let ops = Printf.sprintf ".L%s" l in
+      [ format_instruction "jmp" ops ]
   | JmpCC (c, l) ->
-      let cc = emit_cond_code c in
-      [ Printf.sprintf "\tj%-4s\t.L%s" cc l ]
+      let ins = Printf.sprintf "j%s" (emit_cc c) in
+      let ops = Printf.sprintf ".L%s" l in
+      [ format_instruction ins ops ]
   | SetCC (c, o) ->
-      let cc = emit_cond_code c in
-      let o1 = emit_operand o in
-      [ Printf.sprintf "\tset%-2s\t%s" cc o1 ]
-  | Label l -> [ Printf.sprintf ".L%s:" l ]
-  | AllocateStack n -> [ Printf.sprintf "\tsubq\t$%d, %%rsp" n ]
+      let ins = Printf.sprintf "set%s" (emit_cc c) in
+      let ops = Printf.sprintf "%s" (emit_op o) in
+      [ format_instruction ins ops ]
+  | Label l -> [ format_label l ]
+  | AllocateStack n ->
+      let ops = Printf.sprintf "$%d, %%rsp" n in
+      [ format_instruction "subq" ops ]
 
 let emit_func (f : func) : string list =
   match f with
   | Function fn ->
       let prologue =
         [
-          Printf.sprintf "\t.globl\t%s" fn.name;
-          Printf.sprintf "%s:" fn.name;
-          "\tpushq\t%rbp";
-          "\tmovq\t%rsp, %rbp";
+          format_instruction ".globl" fn.name;
+          format_function fn.name;
+          format_instruction "pushq" "%rbp";
+          format_instruction "movq" "%rsp, %rbp";
         ]
       in
       let instructions =
@@ -97,5 +104,7 @@ let emit_func (f : func) : string list =
       prologue @ instructions
 
 let emit_prog (Program p) : string =
-  let footer = [ "\t.section\t.note.GNU-stack,\"\",@progbits\n" ] in
+  let footer =
+    [ format_instruction ".section" ".note.GNU-stack,\"\",@progbits\n" ]
+  in
   String.concat "\n" (emit_func p @ footer)
