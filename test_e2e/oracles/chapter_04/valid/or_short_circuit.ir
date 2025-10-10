@@ -1,0 +1,11 @@
+(Ir.Program
+   Ir.Function {name = "main";
+     body =
+     [Ir.JumpIfNotZero {condition = (Ir.Constant 1); target = "or_true.0"};
+       Ir.Binary {op = Ir.Divide; src1 = (Ir.Constant 1);
+         src2 = (Ir.Constant 0); dst = (Ir.Var "tmp.0")};
+       Ir.JumpIfNotZero {condition = (Ir.Var "tmp.0"); target = "or_true.0"};
+       Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "tmp.1")};
+       Ir.Jump {target = "or_end.1"}; (Ir.Label "or_true.0");
+       Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "tmp.1")};
+       (Ir.Label "or_end.1"); (Ir.Return (Ir.Var "tmp.1"))]})

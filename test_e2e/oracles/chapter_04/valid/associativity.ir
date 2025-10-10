@@ -1,0 +1,10 @@
+(Ir.Program
+   Ir.Function {name = "main";
+     body =
+     [Ir.Binary {op = Ir.GreaterOrEqual; src1 = (Ir.Constant 5);
+        src2 = (Ir.Constant 0); dst = (Ir.Var "tmp.0")};
+       Ir.Binary {op = Ir.GreaterThan; src1 = (Ir.Var "tmp.0");
+         src2 = (Ir.Constant 1); dst = (Ir.Var "tmp.1")};
+       Ir.Binary {op = Ir.LessOrEqual; src1 = (Ir.Var "tmp.1");
+         src2 = (Ir.Constant 0); dst = (Ir.Var "tmp.2")};
+       (Ir.Return (Ir.Var "tmp.2"))]})
