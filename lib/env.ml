@@ -1,11 +1,10 @@
 type senv = {
   table : (string, int) Hashtbl.t;
   mutable offset : int;
-  label : (string, int) Hashtbl.t;
+  mutable label_id : int;
 }
 
-let make_senv () =
-  { table = Hashtbl.create 16; offset = 0; label = Hashtbl.create 16 }
+let make_senv () = { table = Hashtbl.create 16; offset = 0; label_id = 0 }
 
 let alloc_senv_value senv name : string =
   let num = Hashtbl.length senv.table in
@@ -18,7 +17,7 @@ let alloc_senv_value senv name : string =
 let get_senv_offset senv name : int = Hashtbl.find senv.table name
 
 let alloc_senv_label senv name : string =
-  let num = Hashtbl.length senv.label in
+  let num = senv.label_id in
   let eid = name ^ "." ^ string_of_int num in
-  Hashtbl.add senv.label eid 0;
+  senv.label_id <- num + 1;
   eid
