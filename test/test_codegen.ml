@@ -94,3 +94,26 @@ let%expect_test
            Asm.Unary {uop = Asm.Neg; dst = (Asm.Stack -12)};
            Asm.Mov {src = (Asm.Stack -12); dst = (Asm.Reg Asm.AX)}; Asm.Ret]})
     |}]
+
+let%expect_test "test" =
+  let input = "int main(void) { return 6>7; }" in
+  let lexbuf = Lexing.from_string input in
+  let ast = Parser.prog Lexer.read lexbuf in
+  let ir, env = Irgen.convert_prog ast in
+  let asm = Codegen.compile_prog ir in
+  let asm = Codegen_lower.lower_prog asm env in
+  let asm = Codegen_fixup.fixup_prog asm env in
+  print_endline (Asm.show_prog asm);
+  [%expect
+    {|
+    (Asm.Program
+       Asm.Function {name = "main";
+         instructions =
+         [Asm.Mov {src = (Asm.Imm 8); dst = (Asm.Stack -4)};
+           Asm.Unary {uop = Asm.Neg; dst = (Asm.Stack -4)};
+           Asm.Mov {src = (Asm.Stack -4); dst = (Asm.Stack -8)};
+           Asm.Unary {uop = Asm.Not; dst = (Asm.Stack -8)};
+           Asm.Mov {src = (Asm.Stack -8); dst = (Asm.Stack -12)};
+           Asm.Unary {uop = Asm.Neg; dst = (Asm.Stack -12)};
+           Asm.Mov {src = (Asm.Stack -12); dst = (Asm.Reg Asm.AX)}; Asm.Ret]})
+    |}]

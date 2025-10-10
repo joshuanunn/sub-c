@@ -1,4 +1,4 @@
-type unary_operator = Negate | BwNot [@@deriving show]
+type unary_operator = Negate | BwNot | Not [@@deriving show]
 
 type binary_operator =
   | Add
@@ -11,6 +11,12 @@ type binary_operator =
   | BwAnd
   | BwXor
   | BwOr
+  | Equal
+  | NotEqual
+  | LessOrEqual
+  | GreaterOrEqual
+  | LessThan
+  | GreaterThan
 [@@deriving show]
 
 type value = Constant of int | Var of string [@@deriving show]
@@ -19,6 +25,11 @@ type instruction =
   | Return of value
   | Unary of { op : unary_operator; src : value; dst : value }
   | Binary of { op : binary_operator; src1 : value; src2 : value; dst : value }
+  | Copy of { src : value; dst : value }
+  | Jump of { target : string }
+  | JumpIfZero of { condition : value; target : string }
+  | JumpIfNotZero of { condition : value; target : string }
+  | Label of string
 [@@deriving show]
 
 type func = Function of { name : string; body : instruction list }

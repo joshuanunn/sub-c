@@ -7,6 +7,14 @@ let binary_mem_mem_fix bop s d =
     Binary { bop; src2 = Reg R10; dst = Stack d };
   ]
 
+let setcc_low_byte_fix cc hi lo =
+  [
+    (* zero out hi register *)
+    Binary { bop = BwXor; src2 = Reg hi; dst = Reg hi };
+    (* set on low byte *)
+    SetCC (cc, Reg lo);
+  ]
+
 (** [fixup_instruction i] rewrites the instruction [i] if it is invalid in
     x86-64, such as a move from one stack location to another. In such cases, it
     inserts an intermediate move through a temporary register (e.g., R10). All
@@ -19,6 +27,9 @@ let fixup_instruction (i : Asm.instruction) : Asm.instruction list =
         Mov { src = Stack s; dst = Reg R10 };
         Mov { src = Reg R10; dst = Stack d };
       ]
+  (* cmp cannot use memory addresses as both source and destination *)
+  | Cmp (Stack s, Stack d) ->
+      [ Mov { src = Stack s; dst = Reg R10 }; Cmp (Reg R10, Stack d) ]
   (* binary ops that cannot use memory addresses as both src and dest *)
   | Binary { bop = Add; src2 = Stack s; dst = Stack d } ->
       binary_mem_mem_fix Add s d
@@ -30,15 +41,36 @@ let fixup_instruction (i : Asm.instruction) : Asm.instruction list =
       binary_mem_mem_fix BwXor s d
   | Binary { bop = BwOr; src2 = Stack s; dst = Stack d } ->
       binary_mem_mem_fix BwOr s d
-  (* mul cannot have memory address as destination, regardless of source *)
-  | Binary { bop = Mult; src2 = s; dst = Stack d } ->
+  (* mul cannot have memory address or constant as destination *)
+  | Binary { bop = Mult; src2; dst } -> (
+      match dst with
+      | Stack _ | Imm _ ->
+          [
+            Mov { src = dst; dst = Reg R11 };
+            Binary { bop = Mult; src2; dst = Reg R11 };
+            Mov { src = Reg R11; dst };
+          ]
+      | _ -> [ i ])
+  (* binary ops that cannot operate on constant values *)
+  | Binary { bop = Add; src2; dst = Imm d } ->
       [
-        Mov { src = Stack d; dst = Reg R11 };
-        Binary { bop = Mult; src2 = s; dst = Reg R11 };
-        Mov { src = Reg R11; dst = Stack d };
+        Mov { src = Imm d; dst = Reg R11 };
+        Binary { bop = Add; src2; dst = Reg R11 };
+      ]
+  | Binary { bop = Sub; src2; dst = Imm d } ->
+      [
+        Mov { src = Imm d; dst = Reg R11 };
+        Binary { bop = Sub; src2; dst = Reg R11 };
       ]
   (* div cannot operate on constant values *)
   | Idiv (Imm c) -> [ Mov { src = Imm c; dst = Reg R10 }; Idiv (Reg R10) ]
+  (* cmp cannot operate on constant values *)
+  | Cmp (s, Imm d) -> [ Mov { src = Imm d; dst = Reg R11 }; Cmp (s, Reg R11) ]
+  (* set can only operate on 8-bit named registers *)
+  | SetCC (cc, Reg AX) -> setcc_low_byte_fix cc AX AL
+  | SetCC (cc, Reg DX) -> setcc_low_byte_fix cc DX DL
+  | SetCC (cc, Reg R10) -> setcc_low_byte_fix cc R10 R10B
+  | SetCC (cc, Reg R11) -> setcc_low_byte_fix cc R11 R11B
   | _ -> [ i ]
 
 (** [fixup_func f e] rewrites any invalid instructions in the function [f] by

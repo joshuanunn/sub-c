@@ -3,7 +3,7 @@ open Env
 open Ir
 
 let convert_unop (u : Ast.unop) : Ir.unary_operator =
-  match u with BwNot -> BwNot | Negate -> Negate | Not -> failwith "TODO"
+  match u with BwNot -> BwNot | Negate -> Negate | Not -> Not
 
 let convert_binop (u : Ast.binop) : Ir.binary_operator =
   match u with
@@ -12,19 +12,18 @@ let convert_binop (u : Ast.binop) : Ir.binary_operator =
   | Multiply -> Multiply
   | Divide -> Divide
   | Remainder -> Remainder
-  | And -> failwith "TODO"
-  | Or -> failwith "TODO"
   | BwLeftShift -> BwLeftShift
   | BwRightShift -> BwRightShift
   | BwAnd -> BwAnd
   | BwXor -> BwXor
   | BwOr -> BwOr
-  | Equal -> failwith "TODO"
-  | NotEqual -> failwith "TODO"
-  | LessOrEqual -> failwith "TODO"
-  | GreaterOrEqual -> failwith "TODO"
-  | LessThan -> failwith "TODO"
-  | GreaterThan -> failwith "TODO"
+  | Equal -> Equal
+  | NotEqual -> NotEqual
+  | LessOrEqual -> LessOrEqual
+  | GreaterOrEqual -> GreaterOrEqual
+  | LessThan -> LessThan
+  | GreaterThan -> GreaterThan
+  | _ -> failwith "Cannot compile AST binary operator to IR binary"
 
 let rec convert_expr (v : Ast.expr) (e : Env.senv) :
     Ir.value * Ir.instruction list =
@@ -36,6 +35,34 @@ let rec convert_expr (v : Ast.expr) (e : Env.senv) :
       let dst = Var (alloc_senv_value e "tmp") in
       let instruction = Unary { op; src; dst } in
       (dst, src_instructions @ [ instruction ])
+  | Binary { op = And; left : expr; right : expr } ->
+      let lhs, lhs_ins = convert_expr left e in
+      let rhs, rhs_ins = convert_expr right e in
+      let dst = Var (alloc_senv_value e "tmp") in
+      let lbs = alloc_senv_label e "and_false" in
+      let lbe = alloc_senv_label e "and_end" in
+      let jzl = JumpIfZero { condition = lhs; target = lbs } in
+      let jzr = JumpIfZero { condition = rhs; target = lbs } in
+      let c1 = Copy { src = Constant 1; dst } in
+      let je = Jump { target = lbe } in
+      let ls = Label lbs in
+      let c0 = Copy { src = Constant 0; dst } in
+      let le = Label lbe in
+      (dst, lhs_ins @ [ jzl ] @ rhs_ins @ [ jzr; c1; je; ls; c0; le ])
+  | Binary { op = Or; left : expr; right : expr } ->
+      let lhs, lhs_ins = convert_expr left e in
+      let rhs, rhs_ins = convert_expr right e in
+      let dst = Var (alloc_senv_value e "tmp") in
+      let lbs = alloc_senv_label e "or_true" in
+      let lbe = alloc_senv_label e "or_end" in
+      let jzl = JumpIfNotZero { condition = lhs; target = lbs } in
+      let jzr = JumpIfNotZero { condition = rhs; target = lbs } in
+      let c0 = Copy { src = Constant 0; dst } in
+      let je = Jump { target = lbe } in
+      let ls = Label lbs in
+      let c1 = Copy { src = Constant 1; dst } in
+      let le = Label lbe in
+      (dst, lhs_ins @ [ jzl ] @ rhs_ins @ [ jzr; c0; je; ls; c1; le ])
   | Binary { op : binop; left : expr; right : expr } ->
       let op = convert_binop op in
       let src1, src1_instructions = convert_expr left e in
