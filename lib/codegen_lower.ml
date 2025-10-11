@@ -11,35 +11,15 @@ let lower_operand (o : Asm.operand) (e : Env.senv) : Asm.operand =
     by replacing them with stack operands, using the environment [e]. *)
 let lower_instruction (i : Asm.instruction) (e : Env.senv) : Asm.instruction =
   match i with
-  | Mov (src, dst) ->
-      let s = lower_operand src e in
-      let d = lower_operand dst e in
-      Mov (s, d)
-  | Unary { op; dst } ->
-      let d = lower_operand dst e in
-      Unary { op; dst = d }
+  | Mov (src, dst) -> Mov (lower_operand src e, lower_operand dst e)
+  | Unary { op; dst } -> Unary { op; dst = lower_operand dst e }
   | Binary { op; src; dst } ->
-      let s = lower_operand src e in
-      let d = lower_operand dst e in
-      Binary { op; src = s; dst = d }
-  | Cmp (op1, op2) ->
-      let o1 = lower_operand op1 e in
-      let o2 = lower_operand op2 e in
-      Cmp (o1, o2)
-  | Shl (src, dst) ->
-      let s = lower_operand src e in
-      let d = lower_operand dst e in
-      Shl (s, d)
-  | Sar (src, dst) ->
-      let s = lower_operand src e in
-      let d = lower_operand dst e in
-      Sar (s, d)
-  | SetCC (cc, op) ->
-      let o = lower_operand op e in
-      SetCC (cc, o)
-  | Idiv dst ->
-      let d = lower_operand dst e in
-      Idiv d
+      Binary { op; src = lower_operand src e; dst = lower_operand dst e }
+  | Cmp (op1, op2) -> Cmp (lower_operand op1 e, lower_operand op2 e)
+  | Shl (src, dst) -> Shl (lower_operand src e, lower_operand dst e)
+  | Sar (src, dst) -> Sar (lower_operand src e, lower_operand dst e)
+  | SetCC (cc, op) -> SetCC (cc, lower_operand op e)
+  | Idiv dst -> Idiv (lower_operand dst e)
   | _ -> i
 
 (** [lower_func f e] lowers all pseudo operands in the function [f], producing a
