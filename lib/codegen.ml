@@ -48,8 +48,8 @@ let compile_instruction (s : Ir.instruction) : Asm.instruction list =
           [ cmp; mov; scc ]
       (* Other unary operators *)
       | _ ->
-          let uop = compile_unary_operator op in
-          let uin = Unary { uop; dst = dst_val } in
+          let op_val = compile_unary_operator op in
+          let uin = Unary { op = op_val; dst = dst_val } in
           let mov = Mov (src_val, dst_val) in
           [ mov; uin ])
   | Binary { op; src1; src2; dst } -> (

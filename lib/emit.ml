@@ -55,8 +55,7 @@ let emit_instruction (i : instruction) : string list =
         format_instruction "popq" "%rbp";
         format_instruction "ret" "";
       ]
-  | Unary { uop; dst } ->
-      [ format_instruction (emit_unary_op uop) (emit_op dst) ]
+  | Unary { op; dst } -> [ format_instruction (emit_unary_op op) (emit_op dst) ]
   | Binary { bop; src2; dst } ->
       let ops = Printf.sprintf "%s, %s" (emit_op src2) (emit_op dst) in
       [ format_instruction (emit_binary_op bop) ops ]

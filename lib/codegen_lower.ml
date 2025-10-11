@@ -15,9 +15,9 @@ let lower_instruction (i : Asm.instruction) (e : Env.senv) : Asm.instruction =
       let s = lower_operand src e in
       let d = lower_operand dst e in
       Mov (s, d)
-  | Unary { uop; dst } ->
+  | Unary { op; dst } ->
       let d = lower_operand dst e in
-      Unary { uop; dst = d }
+      Unary { op; dst = d }
   | Binary { bop; src2; dst } ->
       let s = lower_operand src2 e in
       let d = lower_operand dst e in

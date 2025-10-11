@@ -2,9 +2,9 @@
    Asm.Function {name = "main";
      instructions =
      [(Asm.AllocateStack 20); (Asm.Mov ((Asm.Imm 2), (Asm.Stack -4)));
-       Asm.Unary {uop = Asm.BwNot; dst = (Asm.Stack -4)};
+       Asm.Unary {op = Asm.BwNot; dst = (Asm.Stack -4)};
        (Asm.Mov ((Asm.Imm 2), (Asm.Stack -8)));
-       Asm.Unary {uop = Asm.Neg; dst = (Asm.Stack -8)};
+       Asm.Unary {op = Asm.Neg; dst = (Asm.Stack -8)};
        (Asm.Mov ((Asm.Stack -4), (Asm.Reg Asm.R10)));
        (Asm.Mov ((Asm.Reg Asm.R10), (Asm.Stack -12)));
        (Asm.Mov ((Asm.Stack -12), (Asm.Reg Asm.R11)));
