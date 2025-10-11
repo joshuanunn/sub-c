@@ -1,6 +1,0 @@
-(library
- (name test_lexer)
- (libraries subc)
- (inline_tests)
- (preprocess
-  (pps ppx_expect)))
