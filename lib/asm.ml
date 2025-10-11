@@ -14,7 +14,7 @@ type binary_operator = Add | Sub | Mult | BwAnd | BwXor | BwOr
 type instruction =
   | Mov of operand * operand
   | Unary of { op : unary_operator; dst : operand }
-  | Binary of { bop : binary_operator; src2 : operand; dst : operand }
+  | Binary of { op : binary_operator; src : operand; dst : operand }
   | Cmp of operand * operand
   | Idiv of operand
   | Cdq

@@ -18,10 +18,10 @@ let lower_instruction (i : Asm.instruction) (e : Env.senv) : Asm.instruction =
   | Unary { op; dst } ->
       let d = lower_operand dst e in
       Unary { op; dst = d }
-  | Binary { bop; src2; dst } ->
-      let s = lower_operand src2 e in
+  | Binary { op; src; dst } ->
+      let s = lower_operand src e in
       let d = lower_operand dst e in
-      Binary { bop; src2 = s; dst = d }
+      Binary { op; src = s; dst = d }
   | Cmp (op1, op2) ->
       let o1 = lower_operand op1 e in
       let o2 = lower_operand op2 e in

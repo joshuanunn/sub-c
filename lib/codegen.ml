@@ -104,11 +104,7 @@ let compile_instruction (s : Ir.instruction) : Asm.instruction list =
       | Add | Subtract | Multiply | BwAnd | BwXor | BwOr ->
           let bin =
             Binary
-              {
-                bop = compile_binary_operator op;
-                src2 = src2_val;
-                dst = dst_val;
-              }
+              { op = compile_binary_operator op; src = src2_val; dst = dst_val }
           in
           let mov = Mov (src1_val, dst_val) in
           [ mov; bin ])

@@ -7,6 +7,6 @@
        (Asm.SetCC (Asm.L, (Asm.Stack -4)));
        (Asm.Mov ((Asm.Imm 5), (Asm.Stack -8)));
        (Asm.Mov ((Asm.Stack -4), (Asm.Reg Asm.R10)));
-       Asm.Binary {bop = Asm.BwXor; src2 = (Asm.Reg Asm.R10);
+       Asm.Binary {op = Asm.BwXor; src = (Asm.Reg Asm.R10);
          dst = (Asm.Stack -8)};
        (Asm.Mov ((Asm.Stack -8), (Asm.Reg Asm.AX))); Asm.Ret]})
