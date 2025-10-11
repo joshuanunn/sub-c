@@ -2,10 +2,7 @@ open Asm
 open Env
 
 let binary_mem_mem_fix bop s d =
-  [
-    Mov { src = Stack s; dst = Reg R10 };
-    Binary { bop; src2 = Reg R10; dst = Stack d };
-  ]
+  [ Mov (Stack s, Reg R10); Binary { bop; src2 = Reg R10; dst = Stack d } ]
 
 let setcc_low_byte_fix cc hi lo =
   [
@@ -22,14 +19,9 @@ let setcc_low_byte_fix cc hi lo =
 let fixup_instruction (i : Asm.instruction) : Asm.instruction list =
   match i with
   (* mov cannot use memory addresses as both source and destination *)
-  | Mov { src = Stack s; dst = Stack d } ->
-      [
-        Mov { src = Stack s; dst = Reg R10 };
-        Mov { src = Reg R10; dst = Stack d };
-      ]
+  | Mov (Stack s, Stack d) -> [ Mov (Stack s, Reg R10); Mov (Reg R10, Stack d) ]
   (* cmp cannot use memory addresses as both source and destination *)
-  | Cmp (Stack s, Stack d) ->
-      [ Mov { src = Stack s; dst = Reg R10 }; Cmp (Reg R10, Stack d) ]
+  | Cmp (Stack s, Stack d) -> [ Mov (Stack s, Reg R10); Cmp (Reg R10, Stack d) ]
   (* binary ops that cannot use memory addresses as both src and dest *)
   | Binary { bop = Add; src2 = Stack s; dst = Stack d } ->
       binary_mem_mem_fix Add s d
@@ -46,26 +38,20 @@ let fixup_instruction (i : Asm.instruction) : Asm.instruction list =
       match dst with
       | Stack _ | Imm _ ->
           [
-            Mov { src = dst; dst = Reg R11 };
+            Mov (dst, Reg R11);
             Binary { bop = Mult; src2; dst = Reg R11 };
-            Mov { src = Reg R11; dst };
+            Mov (Reg R11, dst);
           ]
       | _ -> [ i ])
   (* binary ops that cannot operate on constant values *)
   | Binary { bop = Add; src2; dst = Imm d } ->
-      [
-        Mov { src = Imm d; dst = Reg R11 };
-        Binary { bop = Add; src2; dst = Reg R11 };
-      ]
+      [ Mov (Imm d, Reg R11); Binary { bop = Add; src2; dst = Reg R11 } ]
   | Binary { bop = Sub; src2; dst = Imm d } ->
-      [
-        Mov { src = Imm d; dst = Reg R11 };
-        Binary { bop = Sub; src2; dst = Reg R11 };
-      ]
+      [ Mov (Imm d, Reg R11); Binary { bop = Sub; src2; dst = Reg R11 } ]
   (* div cannot operate on constant values *)
-  | Idiv (Imm c) -> [ Mov { src = Imm c; dst = Reg R10 }; Idiv (Reg R10) ]
+  | Idiv (Imm c) -> [ Mov (Imm c, Reg R10); Idiv (Reg R10) ]
   (* cmp cannot operate on constant values *)
-  | Cmp (s, Imm d) -> [ Mov { src = Imm d; dst = Reg R11 }; Cmp (s, Reg R11) ]
+  | Cmp (s, Imm d) -> [ Mov (Imm d, Reg R11); Cmp (s, Reg R11) ]
   (* set can only operate on 8-bit named registers *)
   | SetCC (cc, Reg AX) -> setcc_low_byte_fix cc AX AL
   | SetCC (cc, Reg DX) -> setcc_low_byte_fix cc DX DL

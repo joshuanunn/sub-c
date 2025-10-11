@@ -46,7 +46,7 @@ let format_function (f : string) : string = Printf.sprintf "%s:" f
 
 let emit_instruction (i : instruction) : string list =
   match i with
-  | Mov { src; dst } ->
+  | Mov (src, dst) ->
       let ops = Printf.sprintf "%s, %s" (emit_op src) (emit_op dst) in
       [ format_instruction "movl" ops ]
   | Ret ->

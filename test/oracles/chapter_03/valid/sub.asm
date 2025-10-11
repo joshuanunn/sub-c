@@ -1,7 +1,6 @@
 (Asm.Program
    Asm.Function {name = "main";
      instructions =
-     [(Asm.AllocateStack 4);
-       Asm.Mov {src = (Asm.Imm 1); dst = (Asm.Stack -4)};
+     [(Asm.AllocateStack 4); (Asm.Mov ((Asm.Imm 1), (Asm.Stack -4)));
        Asm.Binary {bop = Asm.Sub; src2 = (Asm.Imm 2); dst = (Asm.Stack -4)};
-       Asm.Mov {src = (Asm.Stack -4); dst = (Asm.Reg Asm.AX)}; Asm.Ret]})
+       (Asm.Mov ((Asm.Stack -4), (Asm.Reg Asm.AX))); Asm.Ret]})

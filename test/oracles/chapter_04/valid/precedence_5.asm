@@ -1,29 +1,27 @@
 (Asm.Program
    Asm.Function {name = "main";
      instructions =
-     [(Asm.AllocateStack 24);
-       Asm.Mov {src = (Asm.Imm 0); dst = (Asm.Reg Asm.R11)};
+     [(Asm.AllocateStack 24); (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.R11)));
        (Asm.Cmp ((Asm.Imm 0), (Asm.Reg Asm.R11)));
-       Asm.Mov {src = (Asm.Imm 0); dst = (Asm.Stack -4)};
+       (Asm.Mov ((Asm.Imm 0), (Asm.Stack -4)));
        (Asm.SetCC (Asm.E, (Asm.Stack -4)));
        (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -4)));
        (Asm.JmpCC (Asm.E, "and_false.0"));
-       Asm.Mov {src = (Asm.Imm 2); dst = (Asm.Stack -8)};
+       (Asm.Mov ((Asm.Imm 2), (Asm.Stack -8)));
        Asm.Binary {bop = Asm.Add; src2 = (Asm.Imm 1); dst = (Asm.Stack -8)};
        (Asm.Cmp ((Asm.Imm 1), (Asm.Stack -8)));
-       Asm.Mov {src = (Asm.Imm 0); dst = (Asm.Stack -12)};
+       (Asm.Mov ((Asm.Imm 0), (Asm.Stack -12)));
        (Asm.SetCC (Asm.G, (Asm.Stack -12)));
-       Asm.Mov {src = (Asm.Imm 3); dst = (Asm.Reg Asm.R11)};
+       (Asm.Mov ((Asm.Imm 3), (Asm.Reg Asm.R11)));
        (Asm.Cmp ((Asm.Stack -12), (Asm.Reg Asm.R11)));
-       Asm.Mov {src = (Asm.Imm 0); dst = (Asm.Stack -16)};
+       (Asm.Mov ((Asm.Imm 0), (Asm.Stack -16)));
        (Asm.SetCC (Asm.E, (Asm.Stack -16)));
        (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -16)));
        (Asm.JmpCC (Asm.E, "and_false.0"));
-       Asm.Mov {src = (Asm.Imm 1); dst = (Asm.Stack -20)};
-       (Asm.Jmp "and_end.1"); (Asm.Label "and_false.0");
-       Asm.Mov {src = (Asm.Imm 0); dst = (Asm.Stack -20)};
+       (Asm.Mov ((Asm.Imm 1), (Asm.Stack -20))); (Asm.Jmp "and_end.1");
+       (Asm.Label "and_false.0"); (Asm.Mov ((Asm.Imm 0), (Asm.Stack -20)));
        (Asm.Label "and_end.1");
-       Asm.Mov {src = (Asm.Stack -20); dst = (Asm.Reg Asm.R10)};
-       Asm.Mov {src = (Asm.Reg Asm.R10); dst = (Asm.Stack -24)};
+       (Asm.Mov ((Asm.Stack -20), (Asm.Reg Asm.R10)));
+       (Asm.Mov ((Asm.Reg Asm.R10), (Asm.Stack -24)));
        Asm.Binary {bop = Asm.Add; src2 = (Asm.Imm 1); dst = (Asm.Stack -24)};
-       Asm.Mov {src = (Asm.Stack -24); dst = (Asm.Reg Asm.AX)}; Asm.Ret]})
+       (Asm.Mov ((Asm.Stack -24), (Asm.Reg Asm.AX))); Asm.Ret]})

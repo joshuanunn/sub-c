@@ -11,10 +11,10 @@ let lower_operand (o : Asm.operand) (e : Env.senv) : Asm.operand =
     by replacing them with stack operands, using the environment [e]. *)
 let lower_instruction (i : Asm.instruction) (e : Env.senv) : Asm.instruction =
   match i with
-  | Mov { src; dst } ->
+  | Mov (src, dst) ->
       let s = lower_operand src e in
       let d = lower_operand dst e in
-      Mov { src = s; dst = d }
+      Mov (s, d)
   | Unary { uop; dst } ->
       let d = lower_operand dst e in
       Unary { uop; dst = d }

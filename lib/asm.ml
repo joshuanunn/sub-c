@@ -12,7 +12,7 @@ type binary_operator = Add | Sub | Mult | BwAnd | BwXor | BwOr
 [@@deriving show]
 
 type instruction =
-  | Mov of { src : operand; dst : operand }
+  | Mov of operand * operand
   | Unary of { uop : unary_operator; dst : operand }
   | Binary of { bop : binary_operator; src2 : operand; dst : operand }
   | Cmp of operand * operand
