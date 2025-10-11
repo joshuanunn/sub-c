@@ -26,14 +26,14 @@ let lower_instruction (i : Asm.instruction) (e : Env.senv) : Asm.instruction =
       let o1 = lower_operand op1 e in
       let o2 = lower_operand op2 e in
       Cmp (o1, o2)
-  | Shl { src; dst } ->
+  | Shl (src, dst) ->
       let s = lower_operand src e in
       let d = lower_operand dst e in
-      Shl { src = s; dst = d }
-  | Sar { src; dst } ->
+      Shl (s, d)
+  | Sar (src, dst) ->
       let s = lower_operand src e in
       let d = lower_operand dst e in
-      Sar { src = s; dst = d }
+      Sar (s, d)
   | SetCC (cc, op) ->
       let o = lower_operand op e in
       SetCC (cc, o)

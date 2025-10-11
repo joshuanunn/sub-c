@@ -18,8 +18,8 @@ type instruction =
   | Cmp of operand * operand
   | Idiv of operand
   | Cdq
-  | Shl of { src : operand; dst : operand }
-  | Sar of { src : operand; dst : operand }
+  | Shl of operand * operand
+  | Sar of operand * operand
   | Jmp of string
   | JmpCC of cond_code * string
   | SetCC of cond_code * operand

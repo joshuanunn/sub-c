@@ -81,24 +81,24 @@ let compile_instruction (s : Ir.instruction) : Asm.instruction list =
           match src2_val with
           (* special case: shift using an immediate operand *)
           | Imm _ ->
-              let shl = Shl { src = src2_val; dst = dst_val } in
+              let shl = Shl (src2_val, dst_val) in
               [ mov1; shl ]
           (* otherwise: shift using value in cl register *)
           | _ ->
               let mov2 = Mov { src = src2_val; dst = Reg CX } in
-              let shl = Shl { src = Reg CL; dst = dst_val } in
+              let shl = Shl (Reg CL, dst_val) in
               [ mov1; mov2; shl ])
       | BwRightShift -> (
           let mov1 = Mov { src = src1_val; dst = dst_val } in
           match src2_val with
           (* special case: shift using an immediate operand *)
           | Imm _ ->
-              let sar = Sar { src = src2_val; dst = dst_val } in
+              let sar = Sar (src2_val, dst_val) in
               [ mov1; sar ]
           (* otherwise: shift using value in cl register *)
           | _ ->
               let mov2 = Mov { src = src2_val; dst = Reg CX } in
-              let sar = Sar { src = Reg CL; dst = dst_val } in
+              let sar = Sar (Reg CL, dst_val) in
               [ mov1; mov2; sar ])
       (* Everything else *)
       | Add | Subtract | Multiply | BwAnd | BwXor | BwOr ->

@@ -65,10 +65,10 @@ let emit_instruction (i : instruction) : string list =
       [ format_instruction "cmpl" ops ]
   | Idiv o -> [ format_instruction "idivl" (emit_op o) ]
   | Cdq -> [ format_instruction "cdq" "" ]
-  | Shl { src; dst } ->
+  | Shl (src, dst) ->
       let ops = Printf.sprintf "%s, %s" (emit_op src) (emit_op dst) in
       [ format_instruction "shll" ops ]
-  | Sar { src; dst } ->
+  | Sar (src, dst) ->
       let ops = Printf.sprintf "%s, %s" (emit_op src) (emit_op dst) in
       [ format_instruction "sarl" ops ]
   | Jmp l ->
