@@ -28,7 +28,7 @@ let%expect_test "code generation for program with single unary operator" =
        Asm.Function {name = "main";
          instructions =
          [Asm.Mov {src = (Asm.Imm 2); dst = (Asm.Pseudo "tmp.0")};
-           Asm.Unary {uop = Asm.Not; dst = (Asm.Pseudo "tmp.0")};
+           Asm.Unary {uop = Asm.BwNot; dst = (Asm.Pseudo "tmp.0")};
            Asm.Mov {src = (Asm.Pseudo "tmp.0"); dst = (Asm.Reg Asm.AX)}; Asm.Ret]})
     |}]
 
@@ -47,7 +47,7 @@ let%expect_test "code generation for program with chained unary operators" =
          [Asm.Mov {src = (Asm.Imm 8); dst = (Asm.Pseudo "tmp.0")};
            Asm.Unary {uop = Asm.Neg; dst = (Asm.Pseudo "tmp.0")};
            Asm.Mov {src = (Asm.Pseudo "tmp.0"); dst = (Asm.Pseudo "tmp.1")};
-           Asm.Unary {uop = Asm.Not; dst = (Asm.Pseudo "tmp.1")};
+           Asm.Unary {uop = Asm.BwNot; dst = (Asm.Pseudo "tmp.1")};
            Asm.Mov {src = (Asm.Pseudo "tmp.1"); dst = (Asm.Pseudo "tmp.2")};
            Asm.Unary {uop = Asm.Neg; dst = (Asm.Pseudo "tmp.2")};
            Asm.Mov {src = (Asm.Pseudo "tmp.2"); dst = (Asm.Reg Asm.AX)}; Asm.Ret]})
@@ -68,7 +68,7 @@ let%expect_test "lowered code generation for program with single unary operator"
        Asm.Function {name = "main";
          instructions =
          [Asm.Mov {src = (Asm.Imm 2); dst = (Asm.Stack -4)};
-           Asm.Unary {uop = Asm.Not; dst = (Asm.Stack -4)};
+           Asm.Unary {uop = Asm.BwNot; dst = (Asm.Stack -4)};
            Asm.Mov {src = (Asm.Stack -4); dst = (Asm.Reg Asm.AX)}; Asm.Ret]})
     |}]
 
@@ -89,7 +89,7 @@ let%expect_test
          [Asm.Mov {src = (Asm.Imm 8); dst = (Asm.Stack -4)};
            Asm.Unary {uop = Asm.Neg; dst = (Asm.Stack -4)};
            Asm.Mov {src = (Asm.Stack -4); dst = (Asm.Stack -8)};
-           Asm.Unary {uop = Asm.Not; dst = (Asm.Stack -8)};
+           Asm.Unary {uop = Asm.BwNot; dst = (Asm.Stack -8)};
            Asm.Mov {src = (Asm.Stack -8); dst = (Asm.Stack -12)};
            Asm.Unary {uop = Asm.Neg; dst = (Asm.Stack -12)};
            Asm.Mov {src = (Asm.Stack -12); dst = (Asm.Reg Asm.AX)}; Asm.Ret]})
