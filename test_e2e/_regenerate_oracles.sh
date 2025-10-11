@@ -38,20 +38,21 @@ for chapter in "${CHAPTERS[@]}"; do
 
       # Relative path from test dir and target oracle path
       rel_path="${test_file#$TEST_DIR/}"
-      oracle_file="$ORACLE_DIR/${rel_path%.c}.$ext"
+      oracle_file="${rel_path%.c}.$ext"
+      oracle_path="$ORACLE_DIR/$oracle_file"
 
       # Ensure output directory exists
-      mkdir -p "$(dirname "$oracle_file")"
+      mkdir -p "$(dirname "$oracle_path")"
 
       echo "Generating oracle: $oracle_file"
       if [[ $phase == "exe" ]]; then
         subc "$test_file"
         exe_file="${test_file%.c}"
         set +e
-        ( "$exe_file"; echo $? > "$oracle_file"; rm "$exe_file" )
+        ( "$exe_file"; echo $? > "$oracle_path"; rm "$exe_file" )
         set -e
       else 
-        subc "$test_file" --"$phase" > "$oracle_file"
+        subc "$test_file" --"$phase" > "$oracle_path"
       fi
     done
   done
