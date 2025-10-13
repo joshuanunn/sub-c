@@ -1,0 +1,23 @@
+Token.KW_INT
+(Token.IDENTIFIER "main")
+Token.LPAREN
+Token.KW_VOID
+Token.RPAREN
+Token.LBRACE
+Token.KW_INT
+(Token.IDENTIFIER "first_variable")
+Token.ASSIGN
+(Token.LITERAL_INT 1)
+Token.SEMICOLON
+Token.KW_INT
+(Token.IDENTIFIER "second_variable")
+Token.ASSIGN
+(Token.LITERAL_INT 2)
+Token.SEMICOLON
+Token.KW_RETURN
+(Token.IDENTIFIER "first_variable")
+Token.PLUS
+(Token.IDENTIFIER "second_variable")
+Token.SEMICOLON
+Token.RBRACE
+Token.EOF

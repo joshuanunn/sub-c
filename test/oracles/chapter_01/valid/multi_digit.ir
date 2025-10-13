@@ -1,2 +1,3 @@
 (Ir.Program
-   Ir.Function {name = "main"; body = [(Ir.Return (Ir.Constant 100))]})
+   Ir.Function {name = "main";
+     body = [(Ir.Return (Ir.Constant 100)); (Ir.Return (Ir.Constant 0))]})

@@ -1,11 +1,12 @@
 (Ir.Program
    Ir.Function {name = "main";
      body =
-     [Ir.JumpIfZero {condition = (Ir.Constant 0); target = "and_false.0"};
+     [Ir.JumpIfZero {condition = (Ir.Constant 0); target = "and_false.2"};
        Ir.Binary {op = Ir.Divide; src1 = (Ir.Constant 1);
          src2 = (Ir.Constant 0); dst = (Ir.Var "tmp.0")};
-       Ir.JumpIfZero {condition = (Ir.Var "tmp.0"); target = "and_false.0"};
+       Ir.JumpIfZero {condition = (Ir.Var "tmp.0"); target = "and_false.2"};
        Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "tmp.1")};
-       Ir.Jump {target = "and_end.1"}; (Ir.Label "and_false.0");
+       Ir.Jump {target = "and_end.3"}; (Ir.Label "and_false.2");
        Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "tmp.1")};
-       (Ir.Label "and_end.1"); (Ir.Return (Ir.Var "tmp.1"))]})
+       (Ir.Label "and_end.3"); (Ir.Return (Ir.Var "tmp.1"));
+       (Ir.Return (Ir.Constant 0))]})

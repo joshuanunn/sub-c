@@ -30,5 +30,6 @@ type token =
   | LT
   | GT
   | NOT
+  | ASSIGN
   | EOF
 [@@deriving show]
