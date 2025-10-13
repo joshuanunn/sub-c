@@ -23,7 +23,8 @@ let resolve_decl (scope : ident) (d : decl) (e : senv) : decl =
   match d with
   | Declaration (id, None) -> Declaration (declare_var scope id e, None)
   | Declaration (id, Some expr) ->
-      Declaration (declare_var scope id e, Some (resolve_expr scope expr e))
+      let var = declare_var scope id e in
+      Declaration (var, Some (resolve_expr scope expr e))
 
 let resolve_stmt (scope : ident) (s : stmt) (e : senv) : stmt =
   match s with
