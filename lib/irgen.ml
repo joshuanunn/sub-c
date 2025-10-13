@@ -110,7 +110,9 @@ let convert_func (f : Ast.func) (e : Env.senv) : Ir.func =
           fn.body
         |> List.flatten
       in
-      Function { name = ident_to_string fn.name; body }
+      (* Append "return 0" to the function end, in case no return present *)
+      let body_safe_return = body @ [ Return (Constant 0) ] in
+      Function { name = ident_to_string fn.name; body = body_safe_return }
 
 let convert_prog (Program f : Ast.prog) (e : Env.senv) : Ir.prog =
   Program (convert_func f e)
