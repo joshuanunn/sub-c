@@ -6,7 +6,7 @@
        (Asm.Mov ((Asm.Imm 0), (Asm.Stack -4)));
        (Asm.SetCC (Asm.E, (Asm.Stack -4)));
        (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -4)));
-       (Asm.JmpCC (Asm.E, "and_false.0"));
+       (Asm.JmpCC (Asm.E, "and_false.5"));
        (Asm.Mov ((Asm.Imm 2), (Asm.Stack -8)));
        Asm.Binary {op = Asm.Add; src = (Asm.Imm 1); dst = (Asm.Stack -8)};
        (Asm.Cmp ((Asm.Imm 1), (Asm.Stack -8)));
@@ -17,10 +17,10 @@
        (Asm.Mov ((Asm.Imm 0), (Asm.Stack -16)));
        (Asm.SetCC (Asm.E, (Asm.Stack -16)));
        (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -16)));
-       (Asm.JmpCC (Asm.E, "and_false.0"));
-       (Asm.Mov ((Asm.Imm 1), (Asm.Stack -20))); (Asm.Jmp "and_end.1");
-       (Asm.Label "and_false.0"); (Asm.Mov ((Asm.Imm 0), (Asm.Stack -20)));
-       (Asm.Label "and_end.1");
+       (Asm.JmpCC (Asm.E, "and_false.5"));
+       (Asm.Mov ((Asm.Imm 1), (Asm.Stack -20))); (Asm.Jmp "and_end.6");
+       (Asm.Label "and_false.5"); (Asm.Mov ((Asm.Imm 0), (Asm.Stack -20)));
+       (Asm.Label "and_end.6");
        (Asm.Mov ((Asm.Stack -20), (Asm.Reg Asm.R10)));
        (Asm.Mov ((Asm.Reg Asm.R10), (Asm.Stack -24)));
        Asm.Binary {op = Asm.Add; src = (Asm.Imm 1); dst = (Asm.Stack -24)};
