@@ -3,4 +3,4 @@
      body =
      [Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "main.a.0")};
        Ir.Copy {src = (Ir.Var "main.a.0"); dst = (Ir.Var "main.b.1")};
-       (Ir.Return (Ir.Var "main.b.1"))]})
+       (Ir.Return (Ir.Var "main.b.1")); (Ir.Return (Ir.Constant 0))]})

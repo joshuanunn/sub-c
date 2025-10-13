@@ -10,4 +10,4 @@
        Ir.Unary {op = Ir.Negate; src = (Ir.Var "main.a.0");
          dst = (Ir.Var "tmp.4")};
        Ir.Copy {src = (Ir.Var "tmp.4"); dst = (Ir.Var "main.b.1")};
-       (Ir.Return (Ir.Var "main.b.1"))]})
+       (Ir.Return (Ir.Var "main.b.1")); (Ir.Return (Ir.Constant 0))]})

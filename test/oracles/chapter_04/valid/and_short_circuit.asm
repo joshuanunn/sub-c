@@ -13,4 +13,4 @@
        (Asm.Mov ((Asm.Imm 1), (Asm.Stack -8))); (Asm.Jmp "and_end.3");
        (Asm.Label "and_false.2"); (Asm.Mov ((Asm.Imm 0), (Asm.Stack -8)));
        (Asm.Label "and_end.3"); (Asm.Mov ((Asm.Stack -8), (Asm.Reg Asm.AX)));
-       Asm.Ret]})
+       Asm.Ret; (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX))); Asm.Ret]})

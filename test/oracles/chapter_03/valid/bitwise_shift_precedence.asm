@@ -9,4 +9,5 @@
        (Asm.Mov ((Asm.Stack -8), (Asm.Reg Asm.R10)));
        (Asm.Mov ((Asm.Reg Asm.R10), (Asm.Stack -12)));
        (Asm.Sar ((Asm.Imm 1), (Asm.Stack -12)));
-       (Asm.Mov ((Asm.Stack -12), (Asm.Reg Asm.AX))); Asm.Ret]})
+       (Asm.Mov ((Asm.Stack -12), (Asm.Reg Asm.AX))); Asm.Ret;
+       (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX))); Asm.Ret]})

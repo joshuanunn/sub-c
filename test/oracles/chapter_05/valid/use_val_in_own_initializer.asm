@@ -11,4 +11,5 @@
        (Asm.Label "and_end.3");
        (Asm.Mov ((Asm.Stack -8), (Asm.Reg Asm.R10)));
        (Asm.Mov ((Asm.Reg Asm.R10), (Asm.Stack -16)));
-       (Asm.Mov ((Asm.Stack -16), (Asm.Reg Asm.AX))); Asm.Ret]})
+       (Asm.Mov ((Asm.Stack -16), (Asm.Reg Asm.AX))); Asm.Ret;
+       (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX))); Asm.Ret]})

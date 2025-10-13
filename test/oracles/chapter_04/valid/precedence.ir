@@ -12,4 +12,5 @@
        Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "tmp.3")};
        Ir.Jump {target = "or_end.5"}; (Ir.Label "or_true.4");
        Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "tmp.3")};
-       (Ir.Label "or_end.5"); (Ir.Return (Ir.Var "tmp.3"))]})
+       (Ir.Label "or_end.5"); (Ir.Return (Ir.Var "tmp.3"));
+       (Ir.Return (Ir.Constant 0))]})

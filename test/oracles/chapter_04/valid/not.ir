@@ -2,4 +2,4 @@
    Ir.Function {name = "main";
      body =
      [Ir.Unary {op = Ir.Not; src = (Ir.Constant 5); dst = (Ir.Var "tmp.0")};
-       (Ir.Return (Ir.Var "tmp.0"))]})
+       (Ir.Return (Ir.Var "tmp.0")); (Ir.Return (Ir.Constant 0))]})

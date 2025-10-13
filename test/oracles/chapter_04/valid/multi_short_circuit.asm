@@ -20,4 +20,4 @@
        (Asm.Mov ((Asm.Imm 0), (Asm.Stack -12))); (Asm.Jmp "or_end.6");
        (Asm.Label "or_true.5"); (Asm.Mov ((Asm.Imm 1), (Asm.Stack -12)));
        (Asm.Label "or_end.6"); (Asm.Mov ((Asm.Stack -12), (Asm.Reg Asm.AX)));
-       Asm.Ret]})
+       Asm.Ret; (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX))); Asm.Ret]})

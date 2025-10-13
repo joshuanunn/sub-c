@@ -8,4 +8,4 @@
        Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "tmp.1")};
        (Ir.Label "or_end.3");
        Ir.Copy {src = (Ir.Var "tmp.1"); dst = (Ir.Var "main.a.0")};
-       (Ir.Return (Ir.Var "main.a.0"))]})
+       (Ir.Return (Ir.Var "main.a.0")); (Ir.Return (Ir.Constant 0))]})

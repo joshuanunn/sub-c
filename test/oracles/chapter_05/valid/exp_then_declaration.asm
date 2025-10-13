@@ -16,4 +16,5 @@
        Asm.Unary {op = Asm.Neg; dst = (Asm.Stack -28)};
        (Asm.Mov ((Asm.Stack -28), (Asm.Reg Asm.R10)));
        (Asm.Mov ((Asm.Reg Asm.R10), (Asm.Stack -36)));
-       (Asm.Mov ((Asm.Stack -36), (Asm.Reg Asm.AX))); Asm.Ret]})
+       (Asm.Mov ((Asm.Stack -36), (Asm.Reg Asm.AX))); Asm.Ret;
+       (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX))); Asm.Ret]})

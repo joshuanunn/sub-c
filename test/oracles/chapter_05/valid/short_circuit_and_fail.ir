@@ -8,4 +8,5 @@
        Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "tmp.1")};
        Ir.Jump {target = "and_end.3"}; (Ir.Label "and_false.2");
        Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "tmp.1")};
-       (Ir.Label "and_end.3"); (Ir.Return (Ir.Var "main.a.0"))]})
+       (Ir.Label "and_end.3"); (Ir.Return (Ir.Var "main.a.0"));
+       (Ir.Return (Ir.Constant 0))]})
