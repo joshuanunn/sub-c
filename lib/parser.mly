@@ -33,6 +33,7 @@ open Ast
 %token LT
 %token GT
 %token NOT
+%token ASSIGN
 %token EOF
 
 %start <prog> prog
@@ -44,12 +45,29 @@ prog:
   ;
 
 func:
-  | KW_INT IDENTIFIER LPAREN KW_VOID RPAREN LBRACE stmt RBRACE {
+  | KW_INT identifier LPAREN KW_VOID RPAREN LBRACE block_items RBRACE {
       mk_func ~return_type:KwInt ~name:$2 ~body:$7 }
+  ;
+
+block_items:
+  | block_items block_item { $1 @ [$2] }
+  | { [] }
+  ;
+
+block_item:
+  | decl { mk_block_decl $1 }
+  | stmt { mk_block_stmt $1 }
+  ;
+
+decl:
+  | KW_INT identifier ASSIGN expr SEMICOLON { mk_decl_init_stmt $2 $4 }
+  | KW_INT identifier SEMICOLON { mk_decl_stmt $2 }
   ;
 
 stmt:
   | KW_RETURN expr SEMICOLON { mk_return_stmt $2 }
+  | expr SEMICOLON { mk_expr_stmt $1 }
+  | SEMICOLON { Null }
   ;
 
 (* Lowest precedence: top-level expression *)
@@ -64,6 +82,7 @@ expr_15:
 
 (* Assignment operators [right associative] *)
 expr_14:
+  | identifier ASSIGN expr_14 { mk_assign_expr $1 $3 }
   | expr_13 { $1 }
   ;
 
@@ -159,4 +178,8 @@ expr_01:
 atom:
   | LPAREN expr RPAREN { $2 }
   | LITERAL_INT { mk_int_expr $1 }
+  | identifier { Var $1 }
   ;
+
+identifier:
+  | IDENTIFIER { mk_ident $1 }

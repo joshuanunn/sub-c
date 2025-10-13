@@ -5,7 +5,7 @@ open Env
     using the variable-to-offset mapping in the environment [e]. All other
     operands are returned unchanged. *)
 let lower_operand (o : Asm.operand) (e : Env.senv) : Asm.operand =
-  match o with Pseudo v -> Stack (get_senv_offset e v) | _ -> o
+  match o with Pseudo v -> Stack (get_value_offset v e) | _ -> o
 
 (** [lower_instruction i e] lowers any pseudo-registers in the instruction [i]
     by replacing them with stack operands, using the environment [e]. *)

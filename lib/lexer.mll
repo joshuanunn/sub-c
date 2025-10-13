@@ -55,6 +55,7 @@ rule read =
   | "<" { LT }
   | ">" { GT }
   | "!" { NOT }
+  | "=" { ASSIGN }
   | integer { LITERAL_INT (int_of_string (Lexing.lexeme lexbuf)) }
   | invalid_integer { raise (Lexing_error ("Invalid integer: " ^ Lexing.lexeme lexbuf)) }
   | identifier { IDENTIFIER (Lexing.lexeme lexbuf) }
