@@ -12,13 +12,13 @@ Sub-C compiler driver.
 Available options:
  -h, --help      Print this help and exit
  -d, --debug     Print script debug info
-     --lex       [ stdout ] Run lexer only
-     --parse     [ stdout ] Run above + parser
-     --validate  [ stdout ] Run above + semantic analysis
-     --irgen     [ stdout ] Run above + IR generation
-     --codegen   [ stdout ] Run above + code generation
-     --emit      [ stdout ] Run above + emit asm
- -S              [  file  ] Run above + output to file
+     --lex       [ stdout ] Run -> lexer
+     --parse     [ stdout ] Run -> parser
+     --validate  [ stdout ] Run -> semantic analysis
+     --irgen     [ stdout ] Run -> IR generation
+     --codegen   [ stdout ] Run -> code generation
+     --emit      [ stdout ] Run -> code emission
+ -S              [  file  ] Output asm to file (do not run assembler or linker)
 EOF
   exit
 }
