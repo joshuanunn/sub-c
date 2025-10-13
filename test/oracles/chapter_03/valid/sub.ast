@@ -1,6 +1,8 @@
 (Ast.Program
-   Ast.Function {return_type = Ast.KwInt; name = "main";
+   Ast.Function {return_type = Ast.KwInt; name = (Ast.Identifier "main");
      body =
-     (Ast.Return
-        Ast.Binary {op = Ast.Subtract; left = (Ast.LiteralInt 1);
-          right = (Ast.LiteralInt 2)})})
+     [(Ast.S
+         (Ast.Return
+            Ast.Binary {op = Ast.Subtract; left = (Ast.LiteralInt 1);
+              right = (Ast.LiteralInt 2)}))
+       ]})
