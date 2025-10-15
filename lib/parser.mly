@@ -206,3 +206,4 @@ atom:
 
 identifier:
   | IDENTIFIER { mk_ident $1 }
+  ;
