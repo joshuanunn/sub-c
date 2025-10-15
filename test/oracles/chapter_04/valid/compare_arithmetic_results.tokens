@@ -7,12 +7,12 @@ Token.LBRACE
 Token.KW_RETURN
 Token.BW_NOT
 (Token.LITERAL_INT 2)
-Token.STAR
-Token.MINUS
+Token.MUL
+Token.SUB
 (Token.LITERAL_INT 2)
 Token.EQ
 (Token.LITERAL_INT 1)
-Token.PLUS
+Token.ADD
 (Token.LITERAL_INT 5)
 Token.SEMICOLON
 Token.RBRACE

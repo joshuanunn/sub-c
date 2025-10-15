@@ -9,7 +9,7 @@ Token.KW_RETURN
 Token.AND
 Token.LPAREN
 (Token.LITERAL_INT 1)
-Token.SLASH
+Token.DIV
 (Token.LITERAL_INT 0)
 Token.RPAREN
 Token.SEMICOLON

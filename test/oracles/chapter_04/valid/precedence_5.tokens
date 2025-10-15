@@ -13,12 +13,12 @@ Token.AND
 (Token.LITERAL_INT 3)
 Token.EQ
 (Token.LITERAL_INT 2)
-Token.PLUS
+Token.ADD
 (Token.LITERAL_INT 1)
 Token.GT
 (Token.LITERAL_INT 1)
 Token.RPAREN
-Token.PLUS
+Token.ADD
 (Token.LITERAL_INT 1)
 Token.SEMICOLON
 Token.RBRACE

@@ -16,7 +16,7 @@ Token.ASSIGN
 Token.SEMICOLON
 Token.KW_RETURN
 (Token.IDENTIFIER "first_variable")
-Token.PLUS
+Token.ADD
 (Token.IDENTIFIER "second_variable")
 Token.SEMICOLON
 Token.RBRACE

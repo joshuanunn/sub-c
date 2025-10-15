@@ -7,19 +7,19 @@ Token.LBRACE
 Token.KW_INT
 (Token.IDENTIFIER "a")
 Token.ASSIGN
-Token.MINUS
+Token.SUB
 (Token.LITERAL_INT 2593)
 Token.SEMICOLON
 (Token.IDENTIFIER "a")
 Token.ASSIGN
 (Token.IDENTIFIER "a")
-Token.PERCENT
+Token.MOD
 (Token.LITERAL_INT 3)
 Token.SEMICOLON
 Token.KW_INT
 (Token.IDENTIFIER "b")
 Token.ASSIGN
-Token.MINUS
+Token.SUB
 (Token.IDENTIFIER "a")
 Token.SEMICOLON
 Token.KW_RETURN

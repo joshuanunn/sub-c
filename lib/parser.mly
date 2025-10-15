@@ -13,11 +13,11 @@ open Ast
 %token RBRACE
 %token SEMICOLON
 %token DECREMENT
-%token PLUS
-%token MINUS
-%token STAR
-%token SLASH
-%token PERCENT
+%token ADD
+%token SUB
+%token MUL
+%token DIV
+%token MOD
 %token AND
 %token OR
 %token BW_LSHIFT
@@ -146,23 +146,23 @@ expr_05:
 
 (* Additive binary operators [left associative] *)
 expr_04:
-  | expr_04 PLUS expr_03 { mk_binop_expr Add $1 $3 }
-  | expr_04 MINUS expr_03 { mk_binop_expr Subtract $1 $3 }
+  | expr_04 ADD expr_03 { mk_binop_expr Add $1 $3 }
+  | expr_04 SUB expr_03 { mk_binop_expr Subtract $1 $3 }
   | expr_03 { $1 }
   ;
 
 (* Multiplicative binary operators [left associative] *)
 expr_03:
-  | expr_03 STAR expr_02 { mk_binop_expr Multiply $1 $3 }
-  | expr_03 SLASH expr_02 { mk_binop_expr Divide $1 $3 }
-  | expr_03 PERCENT expr_02 { mk_binop_expr Remainder $1 $3 }
+  | expr_03 MUL expr_02 { mk_binop_expr Multiply $1 $3 }
+  | expr_03 DIV expr_02 { mk_binop_expr Divide $1 $3 }
+  | expr_03 MOD expr_02 { mk_binop_expr Remainder $1 $3 }
   | expr_02 { $1 }
   ;
 
 (* Unary operators [right associative] *)
 expr_02:
   | DECREMENT expr_02 { failwith "Prefix decrement operator (--expr) is not yet supported" }
-  | MINUS expr_02 { mk_unop_expr Negate $2 }
+  | SUB expr_02 { mk_unop_expr Negate $2 }
   | NOT expr_02 { mk_unop_expr Not $2 }
   | BW_NOT expr_02 { mk_unop_expr BwNot $2 }
   | expr_01 { $1 }

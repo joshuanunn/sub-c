@@ -7,7 +7,7 @@ Token.LBRACE
 Token.KW_RETURN
 Token.BW_NOT
 (Token.LITERAL_INT 2)
-Token.PLUS
+Token.ADD
 (Token.LITERAL_INT 3)
 Token.SEMICOLON
 Token.RBRACE

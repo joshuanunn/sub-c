@@ -6,7 +6,7 @@ Token.RPAREN
 Token.LBRACE
 Token.KW_RETURN
 (Token.LITERAL_INT 4)
-Token.PERCENT
+Token.MOD
 (Token.LITERAL_INT 2)
 Token.SEMICOLON
 Token.RBRACE

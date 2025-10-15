@@ -35,11 +35,11 @@ rule read =
   | "}" { RBRACE }
   | ";" { SEMICOLON }
   | "--" { DECREMENT }
-  | "+" { PLUS }
-  | "-" { MINUS }
-  | "*" { STAR }
-  | "/" { SLASH }
-  | "%" { PERCENT }
+  | "+" { ADD }
+  | "-" { SUB }
+  | "*" { MUL }
+  | "/" { DIV }
+  | "%" { MOD }
   | "&&" { AND }
   | "||" { OR }
   | "<<" { BW_LSHIFT }

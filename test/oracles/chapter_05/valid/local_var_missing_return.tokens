@@ -12,7 +12,7 @@ Token.SEMICOLON
 (Token.IDENTIFIER "a")
 Token.ASSIGN
 (Token.IDENTIFIER "a")
-Token.PLUS
+Token.ADD
 (Token.LITERAL_INT 5)
 Token.SEMICOLON
 Token.RBRACE

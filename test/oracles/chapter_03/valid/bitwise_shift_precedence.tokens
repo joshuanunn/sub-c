@@ -8,7 +8,7 @@ Token.KW_RETURN
 (Token.LITERAL_INT 40)
 Token.BW_LSHIFT
 (Token.LITERAL_INT 4)
-Token.PLUS
+Token.ADD
 (Token.LITERAL_INT 12)
 Token.BW_RSHIFT
 (Token.LITERAL_INT 1)

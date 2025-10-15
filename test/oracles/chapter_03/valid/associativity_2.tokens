@@ -6,9 +6,9 @@ Token.RPAREN
 Token.LBRACE
 Token.KW_RETURN
 (Token.LITERAL_INT 6)
-Token.SLASH
+Token.DIV
 (Token.LITERAL_INT 3)
-Token.SLASH
+Token.DIV
 (Token.LITERAL_INT 2)
 Token.SEMICOLON
 Token.RBRACE

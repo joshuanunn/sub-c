@@ -5,7 +5,7 @@ Token.KW_VOID
 Token.RPAREN
 Token.LBRACE
 (Token.LITERAL_INT 2)
-Token.PLUS
+Token.ADD
 (Token.LITERAL_INT 2)
 Token.SEMICOLON
 Token.KW_RETURN

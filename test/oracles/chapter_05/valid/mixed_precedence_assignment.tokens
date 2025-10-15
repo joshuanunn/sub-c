@@ -17,7 +17,7 @@ Token.SEMICOLON
 (Token.IDENTIFIER "a")
 Token.ASSIGN
 (Token.LITERAL_INT 3)
-Token.STAR
+Token.MUL
 Token.LPAREN
 (Token.IDENTIFIER "b")
 Token.ASSIGN
@@ -26,7 +26,7 @@ Token.RPAREN
 Token.SEMICOLON
 Token.KW_RETURN
 (Token.IDENTIFIER "a")
-Token.PLUS
+Token.ADD
 (Token.IDENTIFIER "b")
 Token.SEMICOLON
 Token.RBRACE

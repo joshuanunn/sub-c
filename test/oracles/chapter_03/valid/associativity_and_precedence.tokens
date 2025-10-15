@@ -6,16 +6,16 @@ Token.RPAREN
 Token.LBRACE
 Token.KW_RETURN
 (Token.LITERAL_INT 5)
-Token.STAR
+Token.MUL
 (Token.LITERAL_INT 4)
-Token.SLASH
+Token.DIV
 (Token.LITERAL_INT 2)
-Token.MINUS
+Token.SUB
 (Token.LITERAL_INT 3)
-Token.PERCENT
+Token.MOD
 Token.LPAREN
 (Token.LITERAL_INT 2)
-Token.PLUS
+Token.ADD
 (Token.LITERAL_INT 1)
 Token.RPAREN
 Token.SEMICOLON

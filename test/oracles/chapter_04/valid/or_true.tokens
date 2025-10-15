@@ -10,13 +10,13 @@ Token.LPAREN
 Token.OR
 (Token.LITERAL_INT 0)
 Token.RPAREN
-Token.PLUS
+Token.ADD
 Token.LPAREN
 (Token.LITERAL_INT 0)
 Token.OR
 (Token.LITERAL_INT 3)
 Token.RPAREN
-Token.PLUS
+Token.ADD
 Token.LPAREN
 (Token.LITERAL_INT 5)
 Token.OR

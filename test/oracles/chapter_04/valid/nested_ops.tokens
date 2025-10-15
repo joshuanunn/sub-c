@@ -6,7 +6,7 @@ Token.RPAREN
 Token.LBRACE
 Token.KW_RETURN
 Token.NOT
-Token.MINUS
+Token.SUB
 (Token.LITERAL_INT 3)
 Token.SEMICOLON
 Token.RBRACE

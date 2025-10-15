@@ -10,11 +10,11 @@ Token.LPAREN
 Token.GE
 (Token.LITERAL_INT 1)
 Token.RPAREN
-Token.PLUS
+Token.ADD
 Token.LPAREN
 (Token.LITERAL_INT 1)
 Token.GE
-Token.MINUS
+Token.SUB
 (Token.LITERAL_INT 4)
 Token.RPAREN
 Token.SEMICOLON

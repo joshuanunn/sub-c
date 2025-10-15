@@ -10,7 +10,7 @@ Token.LPAREN
 Token.LE
 (Token.LITERAL_INT 2)
 Token.RPAREN
-Token.PLUS
+Token.ADD
 Token.LPAREN
 (Token.LITERAL_INT 0)
 Token.LE

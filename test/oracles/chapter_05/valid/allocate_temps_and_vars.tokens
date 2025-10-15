@@ -18,19 +18,19 @@ Token.KW_INT
 (Token.IDENTIFIER "c")
 Token.ASSIGN
 (Token.IDENTIFIER "a")
-Token.SLASH
+Token.DIV
 (Token.LITERAL_INT 6)
-Token.PLUS
+Token.ADD
 Token.NOT
 (Token.IDENTIFIER "b")
 Token.SEMICOLON
 Token.KW_RETURN
 (Token.IDENTIFIER "c")
-Token.STAR
+Token.MUL
 (Token.LITERAL_INT 2)
 Token.EQ
 (Token.IDENTIFIER "a")
-Token.MINUS
+Token.SUB
 (Token.LITERAL_INT 1431655762)
 Token.SEMICOLON
 Token.RBRACE

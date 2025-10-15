@@ -8,7 +8,7 @@ Token.KW_RETURN
 Token.BW_NOT
 Token.LPAREN
 (Token.LITERAL_INT 1)
-Token.PLUS
+Token.ADD
 (Token.LITERAL_INT 1)
 Token.RPAREN
 Token.SEMICOLON

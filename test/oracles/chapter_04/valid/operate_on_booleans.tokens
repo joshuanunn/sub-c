@@ -11,8 +11,8 @@ Token.LPAREN
 Token.AND
 (Token.LITERAL_INT 1)
 Token.RPAREN
-Token.MINUS
-Token.MINUS
+Token.SUB
+Token.SUB
 Token.LPAREN
 (Token.LITERAL_INT 4)
 Token.OR

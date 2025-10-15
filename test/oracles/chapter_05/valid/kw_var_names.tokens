@@ -16,7 +16,7 @@ Token.ASSIGN
 Token.SEMICOLON
 Token.KW_RETURN
 (Token.IDENTIFIER "return_val")
-Token.PLUS
+Token.ADD
 (Token.IDENTIFIER "void2")
 Token.SEMICOLON
 Token.RBRACE

@@ -10,17 +10,17 @@ Token.LPAREN
 Token.BW_LSHIFT
 Token.LPAREN
 (Token.LITERAL_INT 2)
-Token.STAR
+Token.MUL
 (Token.LITERAL_INT 2)
 Token.RPAREN
 Token.RPAREN
-Token.PLUS
+Token.ADD
 Token.LPAREN
 (Token.LITERAL_INT 100)
 Token.BW_RSHIFT
 Token.LPAREN
 (Token.LITERAL_INT 1)
-Token.PLUS
+Token.ADD
 (Token.LITERAL_INT 2)
 Token.RPAREN
 Token.RPAREN
