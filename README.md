@@ -8,4 +8,4 @@ This software is released under the MIT license [MIT](LICENSE).
 
 ## Third-party Content
 
-This project includes test cases derived from [github.com/nlsandler/writing-a-c-compiler-tests](https://github.com/nlsandler/writing-a-c-compiler-tests), licensed under the MIT License. See [test_e2e/tests/LICENSE.third_party](test_e2e/tests/LICENSE.third_party) for details.
+This project includes test cases derived from [github.com/nlsandler/writing-a-c-compiler-tests](https://github.com/nlsandler/writing-a-c-compiler-tests), licensed under the MIT License. See [test/tests/LICENSE.third_party](test_e2e/tests/LICENSE.third_party) for details.
