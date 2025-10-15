@@ -12,7 +12,18 @@ open Ast
 %token LBRACE
 %token RBRACE
 %token SEMICOLON
+%token INCREMENT
 %token DECREMENT
+%token ADD_ASSIGN
+%token SUB_ASSIGN
+%token MUL_ASSIGN
+%token DIV_ASSIGN
+%token MOD_ASSIGN
+%token LSHIFT_ASSIGN
+%token RSHIFT_ASSIGN
+%token BW_AND_ASSIGN
+%token BW_OR_ASSIGN
+%token BW_XOR_ASSIGN
 %token ADD
 %token SUB
 %token MUL
@@ -83,6 +94,16 @@ expr_15:
 (* Assignment operators [right associative] *)
 expr_14:
   | identifier ASSIGN expr_14 { mk_assign_expr $1 $3 }
+  | identifier ADD_ASSIGN expr_14 { mk_comp_assign_expr Add $1 $3 }
+  | identifier SUB_ASSIGN expr_14 { mk_comp_assign_expr Subtract $1 $3 }
+  | identifier MUL_ASSIGN expr_14 { mk_comp_assign_expr Multiply $1 $3 }
+  | identifier DIV_ASSIGN expr_14 { mk_comp_assign_expr Divide $1 $3 }
+  | identifier MOD_ASSIGN expr_14 { mk_comp_assign_expr Remainder $1 $3 }
+  | identifier LSHIFT_ASSIGN expr_14 { mk_comp_assign_expr BwLeftShift $1 $3 }
+  | identifier RSHIFT_ASSIGN expr_14 { mk_comp_assign_expr BwRightShift $1 $3 }
+  | identifier BW_AND_ASSIGN expr_14 { mk_comp_assign_expr BwAnd $1 $3 }
+  | identifier BW_XOR_ASSIGN expr_14 { mk_comp_assign_expr BwXor $1 $3 }
+  | identifier BW_OR_ASSIGN expr_14 { mk_comp_assign_expr BwOr $1 $3 }
   | expr_13 { $1 }
   ;
 
@@ -161,6 +182,7 @@ expr_03:
 
 (* Unary operators [right associative] *)
 expr_02:
+  | INCREMENT expr_02 { failwith "Prefix increment operator (++expr) is not yet supported" }
   | DECREMENT expr_02 { failwith "Prefix decrement operator (--expr) is not yet supported" }
   | SUB expr_02 { mk_unop_expr Negate $2 }
   | NOT expr_02 { mk_unop_expr Not $2 }
@@ -170,7 +192,8 @@ expr_02:
 
 (* Postfix operators [left associative] *)
 expr_01:
-  | expr_01 DECREMENT { failwith "Postfix decrement operator (--expr) is not yet supported" }
+  | expr_01 INCREMENT { failwith "Postfix increment operator (expr++) is not yet supported" }
+  | expr_01 DECREMENT { failwith "Postfix decrement operator (expr--) is not yet supported" }
   | atom { $1 }
   ;
 

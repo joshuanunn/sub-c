@@ -1,0 +1,16 @@
+(Ast.Program
+   Ast.Function {return_type = Ast.KwInt; name = (Ast.Identifier "main");
+     body =
+     [(Ast.D
+         (Ast.Declaration ((Ast.Identifier "var_to_shift"),
+            (Some (Ast.LiteralInt 1234)))));
+       (Ast.D
+          (Ast.Declaration ((Ast.Identifier "x"), (Some (Ast.LiteralInt 0)))));
+       (Ast.S
+          (Ast.Expression
+             (Ast.Assignment ((Ast.Var (Ast.Identifier "x")),
+                Ast.Binary {op = Ast.BwRightShift;
+                  left = (Ast.Var (Ast.Identifier "var_to_shift"));
+                  right = (Ast.LiteralInt 4)}
+                ))));
+       (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "x"))))]})

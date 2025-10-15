@@ -1,0 +1,27 @@
+Token.KW_INT
+(Token.IDENTIFIER "main")
+Token.LPAREN
+Token.KW_VOID
+Token.RPAREN
+Token.LBRACE
+Token.KW_INT
+(Token.IDENTIFIER "var_to_shift")
+Token.ASSIGN
+(Token.LITERAL_INT 1234)
+Token.SEMICOLON
+Token.KW_INT
+(Token.IDENTIFIER "x")
+Token.ASSIGN
+(Token.LITERAL_INT 0)
+Token.SEMICOLON
+(Token.IDENTIFIER "x")
+Token.ASSIGN
+(Token.IDENTIFIER "var_to_shift")
+Token.BW_RSHIFT
+(Token.LITERAL_INT 4)
+Token.SEMICOLON
+Token.KW_RETURN
+(Token.IDENTIFIER "x")
+Token.SEMICOLON
+Token.RBRACE
+Token.EOF

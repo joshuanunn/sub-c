@@ -54,3 +54,10 @@ let mk_decl_init_stmt i v = Declaration (i, Some v)
 let mk_decl_stmt i = Declaration (i, None)
 let mk_block_stmt s = S s
 let mk_block_decl d = D d
+
+(** [mk_comp_assign_expr op left right] resolves compound ops by evaluating the
+    binary expression [left] [op] [right], then assigning result to [left] *)
+let mk_comp_assign_expr op left right =
+  let var = Var left in
+  let result = mk_binop_expr op var right in
+  Assignment (var, result)

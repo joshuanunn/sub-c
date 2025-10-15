@@ -1,0 +1,20 @@
+Token.KW_INT
+(Token.IDENTIFIER "main")
+Token.LPAREN
+Token.KW_VOID
+Token.RPAREN
+Token.LBRACE
+Token.KW_INT
+(Token.IDENTIFIER "to_divide")
+Token.ASSIGN
+(Token.LITERAL_INT 8)
+Token.SEMICOLON
+(Token.IDENTIFIER "to_divide")
+Token.DIV_ASSIGN
+(Token.LITERAL_INT 4)
+Token.SEMICOLON
+Token.KW_RETURN
+(Token.IDENTIFIER "to_divide")
+Token.SEMICOLON
+Token.RBRACE
+Token.EOF

@@ -1,0 +1,20 @@
+Token.KW_INT
+(Token.IDENTIFIER "main")
+Token.LPAREN
+Token.KW_VOID
+Token.RPAREN
+Token.LBRACE
+Token.KW_INT
+(Token.IDENTIFIER "to_subtract")
+Token.ASSIGN
+(Token.LITERAL_INT 10)
+Token.SEMICOLON
+(Token.IDENTIFIER "to_subtract")
+Token.SUB_ASSIGN
+(Token.LITERAL_INT 8)
+Token.SEMICOLON
+Token.KW_RETURN
+(Token.IDENTIFIER "to_subtract")
+Token.SEMICOLON
+Token.RBRACE
+Token.EOF

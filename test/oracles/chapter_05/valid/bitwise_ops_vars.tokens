@@ -1,0 +1,30 @@
+Token.KW_INT
+(Token.IDENTIFIER "main")
+Token.LPAREN
+Token.KW_VOID
+Token.RPAREN
+Token.LBRACE
+Token.KW_INT
+(Token.IDENTIFIER "a")
+Token.ASSIGN
+(Token.LITERAL_INT 3)
+Token.SEMICOLON
+Token.KW_INT
+(Token.IDENTIFIER "b")
+Token.ASSIGN
+(Token.LITERAL_INT 5)
+Token.SEMICOLON
+Token.KW_INT
+(Token.IDENTIFIER "c")
+Token.ASSIGN
+(Token.LITERAL_INT 8)
+Token.SEMICOLON
+Token.KW_RETURN
+(Token.IDENTIFIER "a")
+Token.BW_AND
+(Token.IDENTIFIER "b")
+Token.BW_OR
+(Token.IDENTIFIER "c")
+Token.SEMICOLON
+Token.RBRACE
+Token.EOF

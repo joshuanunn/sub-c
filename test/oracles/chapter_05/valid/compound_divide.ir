@@ -1,0 +1,8 @@
+(Ir.Program
+   Ir.Function {name = "main";
+     body =
+     [Ir.Copy {src = (Ir.Constant 8); dst = (Ir.Var "main.to_divide.0")};
+       Ir.Binary {op = Ir.Divide; src1 = (Ir.Var "main.to_divide.0");
+         src2 = (Ir.Constant 4); dst = (Ir.Var "tmp.1")};
+       Ir.Copy {src = (Ir.Var "tmp.1"); dst = (Ir.Var "main.to_divide.0")};
+       (Ir.Return (Ir.Var "main.to_divide.0")); (Ir.Return (Ir.Constant 0))]})

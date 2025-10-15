@@ -34,7 +34,18 @@ rule read =
   | "{" { LBRACE }
   | "}" { RBRACE }
   | ";" { SEMICOLON }
+  | "++" { INCREMENT }
   | "--" { DECREMENT }
+  | "+=" { ADD_ASSIGN }
+  | "-=" { SUB_ASSIGN }
+  | "*=" { MUL_ASSIGN }
+  | "/=" { DIV_ASSIGN }
+  | "%=" { MOD_ASSIGN }
+  | "<<=" { LSHIFT_ASSIGN }
+  | ">>=" { RSHIFT_ASSIGN }
+  | "&=" { BW_AND_ASSIGN }
+  | "^=" { BW_XOR_ASSIGN }
+  | "|=" { BW_OR_ASSIGN }
   | "+" { ADD }
   | "-" { SUB }
   | "*" { MUL }

@@ -1,0 +1,123 @@
+Token.KW_INT
+(Token.IDENTIFIER "main")
+Token.LPAREN
+Token.KW_VOID
+Token.RPAREN
+Token.LBRACE
+Token.KW_INT
+(Token.IDENTIFIER "a")
+Token.ASSIGN
+(Token.LITERAL_INT 250)
+Token.SEMICOLON
+Token.KW_INT
+(Token.IDENTIFIER "b")
+Token.ASSIGN
+(Token.LITERAL_INT 200)
+Token.SEMICOLON
+Token.KW_INT
+(Token.IDENTIFIER "c")
+Token.ASSIGN
+(Token.LITERAL_INT 100)
+Token.SEMICOLON
+Token.KW_INT
+(Token.IDENTIFIER "d")
+Token.ASSIGN
+(Token.LITERAL_INT 75)
+Token.SEMICOLON
+Token.KW_INT
+(Token.IDENTIFIER "e")
+Token.ASSIGN
+(Token.LITERAL_INT 50)
+Token.SEMICOLON
+Token.KW_INT
+(Token.IDENTIFIER "f")
+Token.ASSIGN
+(Token.LITERAL_INT 25)
+Token.SEMICOLON
+Token.KW_INT
+(Token.IDENTIFIER "g")
+Token.ASSIGN
+(Token.LITERAL_INT 10)
+Token.SEMICOLON
+Token.KW_INT
+(Token.IDENTIFIER "h")
+Token.ASSIGN
+(Token.LITERAL_INT 1)
+Token.SEMICOLON
+Token.KW_INT
+(Token.IDENTIFIER "j")
+Token.ASSIGN
+(Token.LITERAL_INT 0)
+Token.SEMICOLON
+Token.KW_INT
+(Token.IDENTIFIER "x")
+Token.ASSIGN
+(Token.LITERAL_INT 0)
+Token.SEMICOLON
+(Token.IDENTIFIER "x")
+Token.ASSIGN
+(Token.IDENTIFIER "a")
+Token.BW_AND_ASSIGN
+(Token.IDENTIFIER "b")
+Token.MUL_ASSIGN
+(Token.IDENTIFIER "c")
+Token.BW_OR_ASSIGN
+(Token.IDENTIFIER "d")
+Token.ASSIGN
+(Token.IDENTIFIER "e")
+Token.BW_XOR_ASSIGN
+(Token.IDENTIFIER "f")
+Token.ADD_ASSIGN
+(Token.IDENTIFIER "g")
+Token.RSHIFT_ASSIGN
+(Token.IDENTIFIER "h")
+Token.LSHIFT_ASSIGN
+(Token.IDENTIFIER "j")
+Token.ASSIGN
+(Token.LITERAL_INT 1)
+Token.SEMICOLON
+Token.KW_RETURN
+Token.LPAREN
+(Token.IDENTIFIER "a")
+Token.EQ
+(Token.LITERAL_INT 40)
+Token.AND
+(Token.IDENTIFIER "b")
+Token.EQ
+(Token.LITERAL_INT 21800)
+Token.AND
+(Token.IDENTIFIER "c")
+Token.EQ
+(Token.LITERAL_INT 109)
+Token.AND
+(Token.IDENTIFIER "d")
+Token.EQ
+(Token.LITERAL_INT 41)
+Token.AND
+(Token.IDENTIFIER "e")
+Token.EQ
+(Token.LITERAL_INT 41)
+Token.AND
+(Token.IDENTIFIER "f")
+Token.EQ
+(Token.LITERAL_INT 27)
+Token.AND
+(Token.IDENTIFIER "g")
+Token.EQ
+(Token.LITERAL_INT 2)
+Token.AND
+(Token.IDENTIFIER "h")
+Token.EQ
+(Token.LITERAL_INT 2)
+Token.AND
+(Token.IDENTIFIER "j")
+Token.EQ
+(Token.LITERAL_INT 1)
+Token.AND
+(Token.IDENTIFIER "x")
+Token.EQ
+(Token.LITERAL_INT 40)
+Token.RPAREN
+Token.SEMICOLON
+Token.RBRACE
+Token.EOF

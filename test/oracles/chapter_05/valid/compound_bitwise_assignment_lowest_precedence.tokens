@@ -1,0 +1,86 @@
+Token.KW_INT
+(Token.IDENTIFIER "main")
+Token.LPAREN
+Token.KW_VOID
+Token.RPAREN
+Token.LBRACE
+Token.KW_INT
+(Token.IDENTIFIER "a")
+Token.ASSIGN
+(Token.LITERAL_INT 11)
+Token.SEMICOLON
+Token.KW_INT
+(Token.IDENTIFIER "b")
+Token.ASSIGN
+(Token.LITERAL_INT 12)
+Token.SEMICOLON
+(Token.IDENTIFIER "a")
+Token.BW_AND_ASSIGN
+(Token.LITERAL_INT 0)
+Token.OR
+(Token.IDENTIFIER "b")
+Token.SEMICOLON
+(Token.IDENTIFIER "b")
+Token.BW_XOR_ASSIGN
+(Token.IDENTIFIER "a")
+Token.OR
+(Token.LITERAL_INT 1)
+Token.SEMICOLON
+Token.KW_INT
+(Token.IDENTIFIER "c")
+Token.ASSIGN
+(Token.LITERAL_INT 14)
+Token.SEMICOLON
+(Token.IDENTIFIER "c")
+Token.BW_OR_ASSIGN
+(Token.IDENTIFIER "a")
+Token.OR
+(Token.IDENTIFIER "b")
+Token.SEMICOLON
+Token.KW_INT
+(Token.IDENTIFIER "d")
+Token.ASSIGN
+(Token.LITERAL_INT 16)
+Token.SEMICOLON
+(Token.IDENTIFIER "d")
+Token.RSHIFT_ASSIGN
+(Token.IDENTIFIER "c")
+Token.OR
+(Token.IDENTIFIER "d")
+Token.SEMICOLON
+Token.KW_INT
+(Token.IDENTIFIER "e")
+Token.ASSIGN
+(Token.LITERAL_INT 18)
+Token.SEMICOLON
+(Token.IDENTIFIER "e")
+Token.LSHIFT_ASSIGN
+(Token.IDENTIFIER "c")
+Token.OR
+(Token.IDENTIFIER "d")
+Token.SEMICOLON
+Token.KW_RETURN
+Token.LPAREN
+(Token.IDENTIFIER "a")
+Token.EQ
+(Token.LITERAL_INT 1)
+Token.AND
+(Token.IDENTIFIER "b")
+Token.EQ
+(Token.LITERAL_INT 13)
+Token.AND
+(Token.IDENTIFIER "c")
+Token.EQ
+(Token.LITERAL_INT 15)
+Token.AND
+(Token.IDENTIFIER "d")
+Token.EQ
+(Token.LITERAL_INT 8)
+Token.AND
+(Token.IDENTIFIER "e")
+Token.EQ
+(Token.LITERAL_INT 36)
+Token.RPAREN
+Token.SEMICOLON
+Token.RBRACE
+Token.EOF

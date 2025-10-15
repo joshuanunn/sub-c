@@ -1,0 +1,14 @@
+(Ast.Program
+   Ast.Function {return_type = Ast.KwInt; name = (Ast.Identifier "main");
+     body =
+     [(Ast.D
+         (Ast.Declaration ((Ast.Identifier "to_or"),
+            (Some (Ast.LiteralInt 1)))));
+       (Ast.S
+          (Ast.Expression
+             (Ast.Assignment ((Ast.Var (Ast.Identifier "to_or")),
+                Ast.Binary {op = Ast.BwOr;
+                  left = (Ast.Var (Ast.Identifier "to_or"));
+                  right = (Ast.LiteralInt 30)}
+                ))));
+       (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "to_or"))))]})
