@@ -1,0 +1,20 @@
+(Ir.Program
+   Ir.Function {name = "main";
+     body =
+     [Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "main.a.0")};
+       Ir.Copy {src = (Ir.Var "main.a.0"); dst = (Ir.Var "tmp.2")};
+       Ir.Binary {op = Ir.Add; src1 = (Ir.Var "tmp.2");
+         src2 = (Ir.Constant 1); dst = (Ir.Var "main.a.0")};
+       Ir.Unary {op = Ir.Not; src = (Ir.Var "tmp.2"); dst = (Ir.Var "tmp.3")};
+       Ir.Copy {src = (Ir.Var "tmp.3"); dst = (Ir.Var "main.b.1")};
+       Ir.Binary {op = Ir.Equal; src1 = (Ir.Var "main.a.0");
+         src2 = (Ir.Constant 2); dst = (Ir.Var "tmp.4")};
+       Ir.JumpIfZero {condition = (Ir.Var "tmp.4"); target = "and_false.7"};
+       Ir.Binary {op = Ir.Equal; src1 = (Ir.Var "main.b.1");
+         src2 = (Ir.Constant 0); dst = (Ir.Var "tmp.5")};
+       Ir.JumpIfZero {condition = (Ir.Var "tmp.5"); target = "and_false.7"};
+       Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "tmp.6")};
+       Ir.Jump {target = "and_end.8"}; (Ir.Label "and_false.7");
+       Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "tmp.6")};
+       (Ir.Label "and_end.8"); (Ir.Return (Ir.Var "tmp.6"));
+       (Ir.Return (Ir.Constant 0))]})

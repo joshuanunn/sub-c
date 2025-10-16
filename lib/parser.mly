@@ -182,8 +182,8 @@ expr_03:
 
 (* Unary operators [right associative] *)
 expr_02:
-  | INCREMENT expr_02 { failwith "Prefix increment operator (++expr) is not yet supported" }
-  | DECREMENT expr_02 { failwith "Prefix decrement operator (--expr) is not yet supported" }
+  | INCREMENT expr_02 { mk_unary_update_expr PreIncrement $2 }
+  | DECREMENT expr_02 { mk_unary_update_expr PreDecrement $2 }
   | SUB expr_02 { mk_unop_expr Negate $2 }
   | NOT expr_02 { mk_unop_expr Not $2 }
   | BW_NOT expr_02 { mk_unop_expr BwNot $2 }
@@ -192,8 +192,8 @@ expr_02:
 
 (* Postfix operators [left associative] *)
 expr_01:
-  | expr_01 INCREMENT { failwith "Postfix increment operator (expr++) is not yet supported" }
-  | expr_01 DECREMENT { failwith "Postfix decrement operator (expr--) is not yet supported" }
+  | atom INCREMENT { mk_unary_update_expr PostIncrement $1 }
+  | atom DECREMENT { mk_unary_update_expr PostDecrement $1 }
   | atom { $1 }
   ;
 

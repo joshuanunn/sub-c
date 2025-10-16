@@ -7,13 +7,17 @@
           (Ast.Declaration ((Ast.Identifier "b"), (Some (Ast.LiteralInt 2)))));
        (Ast.D
           (Ast.Declaration ((Ast.Identifier "c"),
-             (Some Ast.Unary {op = Ast.PreIncrement;
-                     exp = (Ast.Var (Ast.Identifier "a"))})
+             (Some Ast.Unary {op = Ast.Negate;
+                     exp =
+                     Ast.Unary {op = Ast.PreIncrement;
+                       exp = (Ast.Var (Ast.Identifier "a"))}})
              )));
        (Ast.D
           (Ast.Declaration ((Ast.Identifier "d"),
-             (Some Ast.Unary {op = Ast.PreDecrement;
-                     exp = (Ast.Var (Ast.Identifier "b"))})
+             (Some Ast.Unary {op = Ast.Not;
+                     exp =
+                     Ast.Unary {op = Ast.PostDecrement;
+                       exp = (Ast.Var (Ast.Identifier "b"))}})
              )));
        (Ast.S
           (Ast.Return
@@ -33,9 +37,10 @@
                  right =
                  Ast.Binary {op = Ast.Equal;
                    left = (Ast.Var (Ast.Identifier "c"));
-                   right = (Ast.LiteralInt 2)}};
+                   right =
+                   Ast.Unary {op = Ast.Negate; exp = (Ast.LiteralInt 2)}}};
                right =
                Ast.Binary {op = Ast.Equal;
                  left = (Ast.Var (Ast.Identifier "d"));
-                 right = (Ast.LiteralInt 1)}}))
+                 right = (Ast.LiteralInt 0)}}))
        ]})

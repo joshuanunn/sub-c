@@ -1,4 +1,12 @@
-type unary_operator = Negate | BwNot | Not [@@deriving show]
+type unary_operator =
+  | Negate
+  | BwNot
+  | Not
+  | PreIncrement
+  | PreDecrement
+  | PostIncrement
+  | PostDecrement
+[@@deriving show]
 
 type binary_operator =
   | Add

@@ -1,6 +1,15 @@
 type typ = KwInt | KwVoid [@@deriving show]
 type ident = Identifier of string [@@deriving show]
-type unop = Negate | Not | BwNot [@@deriving show]
+
+type unop =
+  | Negate
+  | Not
+  | BwNot
+  | PreIncrement
+  | PreDecrement
+  | PostIncrement
+  | PostDecrement
+[@@deriving show]
 
 type binop =
   | Add
@@ -61,3 +70,8 @@ let mk_comp_assign_expr op left right =
   let var = Var left in
   let result = mk_binop_expr op var right in
   Assignment (var, result)
+
+let mk_unary_update_expr (op : unop) (exp : expr) =
+  match exp with
+  | Var _ -> mk_unop_expr op exp
+  | _ -> failwith "unary increment/decrement can only be applied to variables"

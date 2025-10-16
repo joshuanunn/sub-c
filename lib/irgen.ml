@@ -4,8 +4,23 @@ open Ir
 
 let ident_to_string = function Identifier s -> s
 
+let update_op (u : Ast.unop) : Ir.binary_operator =
+  match u with
+  | PreIncrement -> Add
+  | PreDecrement -> Subtract
+  | PostIncrement -> Add
+  | PostDecrement -> Subtract
+  | _ -> failwith "cannot map AST unary update operator to IR binary operator"
+
 let convert_unop (u : Ast.unop) : Ir.unary_operator =
-  match u with BwNot -> BwNot | Negate -> Negate | Not -> Not
+  match u with
+  | BwNot -> BwNot
+  | Negate -> Negate
+  | Not -> Not
+  | PreIncrement -> PreIncrement
+  | PreDecrement -> PreDecrement
+  | PostIncrement -> PostIncrement
+  | PostDecrement -> PostDecrement
 
 let convert_binop (u : Ast.binop) : Ir.binary_operator =
   match u with
@@ -25,7 +40,7 @@ let convert_binop (u : Ast.binop) : Ir.binary_operator =
   | GreaterOrEqual -> GreaterOrEqual
   | LessThan -> LessThan
   | GreaterThan -> GreaterThan
-  | _ -> failwith "Cannot compile AST binary operator to IR binary"
+  | _ -> failwith "cannot compile AST binary operator to IR binary"
 
 let rec convert_expr (v : Ast.expr) (e : Env.senv) :
     Ir.value * Ir.instruction list =
@@ -33,12 +48,30 @@ let rec convert_expr (v : Ast.expr) (e : Env.senv) :
   | LiteralInt n -> (Constant n, [])
   (* Insert any AST Vars into IR Vars, as names are gaurunteed unique *)
   | Var (Identifier v) -> (Var (insert_value v e), [])
-  | Unary { op : unop; exp : expr } ->
-      let op = convert_unop op in
+  | Unary { op : unop; exp : expr } -> (
       let src, src_instructions = convert_expr exp e in
-      let dst = Var (declare_value "tmp" e) in
-      let instruction = Unary { op; src; dst } in
-      (dst, src_instructions @ [ instruction ])
+      let tmp = Var (declare_value "tmp" e) in
+      match op with
+      (* Pre-update unary ops: adjust variable and return updated value *)
+      | PreIncrement | PreDecrement ->
+          let ins_copy_tmp = Copy { src; dst = tmp } in
+          let imm, ins_imm = convert_expr (LiteralInt 1) e in
+          let ins_adjust_var =
+            Binary { op = update_op op; src1 = tmp; src2 = imm; dst = src }
+          in
+          (src, [ ins_copy_tmp ] @ ins_imm @ [ ins_adjust_var ])
+      (* Post-update unary ops: adjust variable and return original value *)
+      | PostIncrement | PostDecrement ->
+          let ins_copy_tmp = Copy { src; dst = tmp } in
+          let imm, ins_imm = convert_expr (LiteralInt 1) e in
+          let ins_adjust_var =
+            Binary { op = update_op op; src1 = tmp; src2 = imm; dst = src }
+          in
+          (tmp, [ ins_copy_tmp ] @ ins_imm @ [ ins_adjust_var ])
+      (* Everything else *)
+      | _ ->
+          let instruction = Unary { op = convert_unop op; src; dst = tmp } in
+          (tmp, src_instructions @ [ instruction ]))
   | Binary { op = And; left : expr; right : expr } ->
       let lhs, lhs_ins = convert_expr left e in
       let rhs, rhs_ins = convert_expr right e in
