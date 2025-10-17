@@ -6,8 +6,6 @@ main:
     movl        $1, -24(%rbp)
     movl        -24(%rbp), %r10d
     movl        %r10d, -12(%rbp)
-    movl        -12(%rbp), %r10d
-    movl        %r10d, -24(%rbp)
     addl        $1, -24(%rbp)
     cmpl        $0, -12(%rbp)
     movl        $0, -16(%rbp)

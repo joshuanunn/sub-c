@@ -50,26 +50,26 @@ let rec convert_expr (v : Ast.expr) (e : Env.senv) :
   | Var (Identifier v) -> (Var (insert_value v e), [])
   | Unary { op : unop; exp : expr } -> (
       let src, src_instructions = convert_expr exp e in
-      let tmp = Var (declare_value "tmp" e) in
       match op with
       (* Pre-update unary ops: adjust variable and return updated value *)
       | PreIncrement | PreDecrement ->
-          let ins_copy_tmp = Copy { src; dst = tmp } in
-          let imm, ins_imm = convert_expr (LiteralInt 1) e in
           let ins_adjust_var =
-            Binary { op = update_op op; src1 = tmp; src2 = imm; dst = src }
+            Binary
+              { op = update_op op; src1 = src; src2 = Constant 1; dst = src }
           in
-          (src, [ ins_copy_tmp ] @ ins_imm @ [ ins_adjust_var ])
+          (src, src_instructions @ [ ins_adjust_var ])
       (* Post-update unary ops: adjust variable and return original value *)
       | PostIncrement | PostDecrement ->
+          let tmp = Var (declare_value "tmp" e) in
           let ins_copy_tmp = Copy { src; dst = tmp } in
-          let imm, ins_imm = convert_expr (LiteralInt 1) e in
           let ins_adjust_var =
-            Binary { op = update_op op; src1 = tmp; src2 = imm; dst = src }
+            Binary
+              { op = update_op op; src1 = src; src2 = Constant 1; dst = src }
           in
-          (tmp, [ ins_copy_tmp ] @ ins_imm @ [ ins_adjust_var ])
+          (tmp, src_instructions @ [ ins_copy_tmp ] @ [ ins_adjust_var ])
       (* Everything else *)
       | _ ->
+          let tmp = Var (declare_value "tmp" e) in
           let instruction = Unary { op = convert_unop op; src; dst = tmp } in
           (tmp, src_instructions @ [ instruction ]))
   | Binary { op = And; left : expr; right : expr } ->

@@ -7,15 +7,11 @@ main:
     movl        $2, -44(%rbp)
     movl        -36(%rbp), %r10d
     movl        %r10d, -16(%rbp)
-    movl        -16(%rbp), %r10d
-    movl        %r10d, -36(%rbp)
     addl        $1, -36(%rbp)
     movl        -16(%rbp), %r10d
     movl        %r10d, -56(%rbp)
     movl        -44(%rbp), %r10d
     movl        %r10d, -28(%rbp)
-    movl        -28(%rbp), %r10d
-    movl        %r10d, -44(%rbp)
     subl        $1, -44(%rbp)
     movl        -28(%rbp), %r10d
     movl        %r10d, -68(%rbp)

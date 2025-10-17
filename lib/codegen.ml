@@ -89,10 +89,14 @@ let compile_instruction (s : Ir.instruction) : Asm.instruction list =
               ])
       (* Everything else *)
       | Add | Subtract | Multiply | BwAnd | BwXor | BwOr ->
-          [
-            Mov (src1_val, dst_val);
-            Binary { op = compile_binary_op op; src = src2_val; dst = dst_val };
-          ])
+          let maybe_mov =
+            if src1_val = dst_val then [] else [ Mov (src1_val, dst_val) ]
+          in
+          maybe_mov
+          @ [
+              Binary
+                { op = compile_binary_op op; src = src2_val; dst = dst_val };
+            ])
   | Jump { target } -> [ Jmp target ]
   | JumpIfZero { condition; target } ->
       [ Cmp (Imm 0, compile_val condition); JmpCC (E, target) ]
