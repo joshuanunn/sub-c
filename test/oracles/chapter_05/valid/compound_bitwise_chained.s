@@ -2,177 +2,177 @@
 main:
     pushq       %rbp
     movq        %rsp, %rbp
-    subq        $252, %rsp
-    movl        $250, -140(%rbp)
-    movl        $200, -148(%rbp)
-    movl        $100, -160(%rbp)
-    movl        $75, -172(%rbp)
-    movl        $50, -184(%rbp)
-    movl        $25, -196(%rbp)
-    movl        $10, -208(%rbp)
-    movl        $1, -220(%rbp)
-    movl        $0, -232(%rbp)
-    movl        $0, -244(%rbp)
-    movl        $1, -232(%rbp)
-    movl        -220(%rbp), %r10d
-    movl        %r10d, -76(%rbp)
-    movl        -232(%rbp), %ecx
-    shll        %cl, -76(%rbp)
-    movl        -76(%rbp), %r10d
-    movl        %r10d, -220(%rbp)
-    movl        -208(%rbp), %r10d
-    movl        %r10d, -84(%rbp)
-    movl        -220(%rbp), %ecx
-    sarl        %cl, -84(%rbp)
-    movl        -84(%rbp), %r10d
-    movl        %r10d, -208(%rbp)
-    movl        -196(%rbp), %r10d
-    movl        %r10d, -92(%rbp)
-    movl        -208(%rbp), %r10d
-    addl        %r10d, -92(%rbp)
-    movl        -92(%rbp), %r10d
-    movl        %r10d, -196(%rbp)
-    movl        -184(%rbp), %r10d
-    movl        %r10d, -100(%rbp)
-    movl        -196(%rbp), %r10d
-    xorl        %r10d, -100(%rbp)
-    movl        -100(%rbp), %r10d
-    movl        %r10d, -184(%rbp)
-    movl        -184(%rbp), %r10d
-    movl        %r10d, -172(%rbp)
-    movl        -160(%rbp), %r10d
-    movl        %r10d, -112(%rbp)
-    movl        -172(%rbp), %r10d
-    orl         %r10d, -112(%rbp)
-    movl        -112(%rbp), %r10d
-    movl        %r10d, -160(%rbp)
-    movl        -148(%rbp), %r10d
-    movl        %r10d, -120(%rbp)
-    movl        -120(%rbp), %r11d
-    imull       -160(%rbp), %r11d
-    movl        %r11d, -120(%rbp)
-    movl        -120(%rbp), %r10d
-    movl        %r10d, -148(%rbp)
-    movl        -140(%rbp), %r10d
-    movl        %r10d, -128(%rbp)
-    movl        -148(%rbp), %r10d
-    andl        %r10d, -128(%rbp)
-    movl        -128(%rbp), %r10d
-    movl        %r10d, -140(%rbp)
-    movl        -140(%rbp), %r10d
-    movl        %r10d, -244(%rbp)
-    cmpl        $40, -140(%rbp)
-    movl        $0, -144(%rbp)
-    sete        -144(%rbp)
-    cmpl        $0, -144(%rbp)
+    subq        $144, %rsp
+    movl        $250, -4(%rbp)
+    movl        $200, -8(%rbp)
+    movl        $100, -12(%rbp)
+    movl        $75, -16(%rbp)
+    movl        $50, -20(%rbp)
+    movl        $25, -24(%rbp)
+    movl        $10, -28(%rbp)
+    movl        $1, -32(%rbp)
+    movl        $0, -36(%rbp)
+    movl        $0, -40(%rbp)
+    movl        $1, -36(%rbp)
+    movl        -32(%rbp), %r10d
+    movl        %r10d, -44(%rbp)
+    movl        -36(%rbp), %ecx
+    shll        %cl, -44(%rbp)
+    movl        -44(%rbp), %r10d
+    movl        %r10d, -32(%rbp)
+    movl        -28(%rbp), %r10d
+    movl        %r10d, -48(%rbp)
+    movl        -32(%rbp), %ecx
+    sarl        %cl, -48(%rbp)
+    movl        -48(%rbp), %r10d
+    movl        %r10d, -28(%rbp)
+    movl        -24(%rbp), %r10d
+    movl        %r10d, -52(%rbp)
+    movl        -28(%rbp), %r10d
+    addl        %r10d, -52(%rbp)
+    movl        -52(%rbp), %r10d
+    movl        %r10d, -24(%rbp)
+    movl        -20(%rbp), %r10d
+    movl        %r10d, -56(%rbp)
+    movl        -24(%rbp), %r10d
+    xorl        %r10d, -56(%rbp)
+    movl        -56(%rbp), %r10d
+    movl        %r10d, -20(%rbp)
+    movl        -20(%rbp), %r10d
+    movl        %r10d, -16(%rbp)
+    movl        -12(%rbp), %r10d
+    movl        %r10d, -60(%rbp)
+    movl        -16(%rbp), %r10d
+    orl         %r10d, -60(%rbp)
+    movl        -60(%rbp), %r10d
+    movl        %r10d, -12(%rbp)
+    movl        -8(%rbp), %r10d
+    movl        %r10d, -64(%rbp)
+    movl        -64(%rbp), %r11d
+    imull       -12(%rbp), %r11d
+    movl        %r11d, -64(%rbp)
+    movl        -64(%rbp), %r10d
+    movl        %r10d, -8(%rbp)
+    movl        -4(%rbp), %r10d
+    movl        %r10d, -68(%rbp)
+    movl        -8(%rbp), %r10d
+    andl        %r10d, -68(%rbp)
+    movl        -68(%rbp), %r10d
+    movl        %r10d, -4(%rbp)
+    movl        -4(%rbp), %r10d
+    movl        %r10d, -40(%rbp)
+    cmpl        $40, -4(%rbp)
+    movl        $0, -72(%rbp)
+    sete        -72(%rbp)
+    cmpl        $0, -72(%rbp)
     je          .Land_false.20
-    cmpl        $21800, -148(%rbp)
-    movl        $0, -152(%rbp)
-    sete        -152(%rbp)
-    cmpl        $0, -152(%rbp)
+    cmpl        $21800, -8(%rbp)
+    movl        $0, -76(%rbp)
+    sete        -76(%rbp)
+    cmpl        $0, -76(%rbp)
     je          .Land_false.20
-    movl        $1, -156(%rbp)
+    movl        $1, -80(%rbp)
     jmp         .Land_end.21
 .Land_false.20:
-    movl        $0, -156(%rbp)
+    movl        $0, -80(%rbp)
 .Land_end.21:
-    cmpl        $0, -156(%rbp)
+    cmpl        $0, -80(%rbp)
     je          .Land_false.24
-    cmpl        $109, -160(%rbp)
-    movl        $0, -164(%rbp)
-    sete        -164(%rbp)
-    cmpl        $0, -164(%rbp)
+    cmpl        $109, -12(%rbp)
+    movl        $0, -84(%rbp)
+    sete        -84(%rbp)
+    cmpl        $0, -84(%rbp)
     je          .Land_false.24
-    movl        $1, -168(%rbp)
+    movl        $1, -88(%rbp)
     jmp         .Land_end.25
 .Land_false.24:
-    movl        $0, -168(%rbp)
+    movl        $0, -88(%rbp)
 .Land_end.25:
-    cmpl        $0, -168(%rbp)
+    cmpl        $0, -88(%rbp)
     je          .Land_false.28
-    cmpl        $41, -172(%rbp)
-    movl        $0, -176(%rbp)
-    sete        -176(%rbp)
-    cmpl        $0, -176(%rbp)
+    cmpl        $41, -16(%rbp)
+    movl        $0, -92(%rbp)
+    sete        -92(%rbp)
+    cmpl        $0, -92(%rbp)
     je          .Land_false.28
-    movl        $1, -180(%rbp)
+    movl        $1, -96(%rbp)
     jmp         .Land_end.29
 .Land_false.28:
-    movl        $0, -180(%rbp)
+    movl        $0, -96(%rbp)
 .Land_end.29:
-    cmpl        $0, -180(%rbp)
+    cmpl        $0, -96(%rbp)
     je          .Land_false.32
-    cmpl        $41, -184(%rbp)
-    movl        $0, -188(%rbp)
-    sete        -188(%rbp)
-    cmpl        $0, -188(%rbp)
+    cmpl        $41, -20(%rbp)
+    movl        $0, -100(%rbp)
+    sete        -100(%rbp)
+    cmpl        $0, -100(%rbp)
     je          .Land_false.32
-    movl        $1, -192(%rbp)
+    movl        $1, -104(%rbp)
     jmp         .Land_end.33
 .Land_false.32:
-    movl        $0, -192(%rbp)
+    movl        $0, -104(%rbp)
 .Land_end.33:
-    cmpl        $0, -192(%rbp)
+    cmpl        $0, -104(%rbp)
     je          .Land_false.36
-    cmpl        $27, -196(%rbp)
-    movl        $0, -200(%rbp)
-    sete        -200(%rbp)
-    cmpl        $0, -200(%rbp)
+    cmpl        $27, -24(%rbp)
+    movl        $0, -108(%rbp)
+    sete        -108(%rbp)
+    cmpl        $0, -108(%rbp)
     je          .Land_false.36
-    movl        $1, -204(%rbp)
+    movl        $1, -112(%rbp)
     jmp         .Land_end.37
 .Land_false.36:
-    movl        $0, -204(%rbp)
+    movl        $0, -112(%rbp)
 .Land_end.37:
-    cmpl        $0, -204(%rbp)
+    cmpl        $0, -112(%rbp)
     je          .Land_false.40
-    cmpl        $2, -208(%rbp)
-    movl        $0, -212(%rbp)
-    sete        -212(%rbp)
-    cmpl        $0, -212(%rbp)
+    cmpl        $2, -28(%rbp)
+    movl        $0, -116(%rbp)
+    sete        -116(%rbp)
+    cmpl        $0, -116(%rbp)
     je          .Land_false.40
-    movl        $1, -216(%rbp)
+    movl        $1, -120(%rbp)
     jmp         .Land_end.41
 .Land_false.40:
-    movl        $0, -216(%rbp)
+    movl        $0, -120(%rbp)
 .Land_end.41:
-    cmpl        $0, -216(%rbp)
+    cmpl        $0, -120(%rbp)
     je          .Land_false.44
-    cmpl        $2, -220(%rbp)
-    movl        $0, -224(%rbp)
-    sete        -224(%rbp)
-    cmpl        $0, -224(%rbp)
+    cmpl        $2, -32(%rbp)
+    movl        $0, -124(%rbp)
+    sete        -124(%rbp)
+    cmpl        $0, -124(%rbp)
     je          .Land_false.44
-    movl        $1, -228(%rbp)
+    movl        $1, -128(%rbp)
     jmp         .Land_end.45
 .Land_false.44:
-    movl        $0, -228(%rbp)
+    movl        $0, -128(%rbp)
 .Land_end.45:
-    cmpl        $0, -228(%rbp)
+    cmpl        $0, -128(%rbp)
     je          .Land_false.48
-    cmpl        $1, -232(%rbp)
-    movl        $0, -236(%rbp)
-    sete        -236(%rbp)
-    cmpl        $0, -236(%rbp)
+    cmpl        $1, -36(%rbp)
+    movl        $0, -132(%rbp)
+    sete        -132(%rbp)
+    cmpl        $0, -132(%rbp)
     je          .Land_false.48
-    movl        $1, -240(%rbp)
+    movl        $1, -136(%rbp)
     jmp         .Land_end.49
 .Land_false.48:
-    movl        $0, -240(%rbp)
+    movl        $0, -136(%rbp)
 .Land_end.49:
-    cmpl        $0, -240(%rbp)
+    cmpl        $0, -136(%rbp)
     je          .Land_false.52
-    cmpl        $40, -244(%rbp)
-    movl        $0, -248(%rbp)
-    sete        -248(%rbp)
-    cmpl        $0, -248(%rbp)
+    cmpl        $40, -40(%rbp)
+    movl        $0, -140(%rbp)
+    sete        -140(%rbp)
+    cmpl        $0, -140(%rbp)
     je          .Land_false.52
-    movl        $1, -252(%rbp)
+    movl        $1, -144(%rbp)
     jmp         .Land_end.53
 .Land_false.52:
-    movl        $0, -252(%rbp)
+    movl        $0, -144(%rbp)
 .Land_end.53:
-    movl        -252(%rbp), %eax
+    movl        -144(%rbp), %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         

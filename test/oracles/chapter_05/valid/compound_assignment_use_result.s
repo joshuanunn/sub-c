@@ -2,31 +2,31 @@
 main:
     pushq       %rbp
     movq        %rsp, %rbp
-    subq        $40, %rsp
-    movl        $1, -24(%rbp)
-    movl        -24(%rbp), %r10d
+    subq        $24, %rsp
+    movl        $1, -4(%rbp)
+    movl        -4(%rbp), %r10d
     movl        %r10d, -12(%rbp)
     addl        $3, -12(%rbp)
     movl        -12(%rbp), %r10d
-    movl        %r10d, -24(%rbp)
-    movl        -24(%rbp), %r10d
-    movl        %r10d, -32(%rbp)
-    cmpl        $4, -24(%rbp)
-    movl        $0, -28(%rbp)
-    sete        -28(%rbp)
-    cmpl        $0, -28(%rbp)
+    movl        %r10d, -4(%rbp)
+    movl        -4(%rbp), %r10d
+    movl        %r10d, -8(%rbp)
+    cmpl        $4, -4(%rbp)
+    movl        $0, -16(%rbp)
+    sete        -16(%rbp)
+    cmpl        $0, -16(%rbp)
     je          .Land_false.6
-    cmpl        $4, -32(%rbp)
-    movl        $0, -36(%rbp)
-    sete        -36(%rbp)
-    cmpl        $0, -36(%rbp)
+    cmpl        $4, -8(%rbp)
+    movl        $0, -20(%rbp)
+    sete        -20(%rbp)
+    cmpl        $0, -20(%rbp)
     je          .Land_false.6
-    movl        $1, -40(%rbp)
+    movl        $1, -24(%rbp)
     jmp         .Land_end.7
 .Land_false.6:
-    movl        $0, -40(%rbp)
+    movl        $0, -24(%rbp)
 .Land_end.7:
-    movl        -40(%rbp), %eax
+    movl        -24(%rbp), %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         

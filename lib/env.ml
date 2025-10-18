@@ -23,11 +23,11 @@ let declare_value name senv : string =
   senv.offset <- new_offset;
   eid
 
-let insert_value name senv : string =
+let insert_value (Identifier name) senv : unit =
   let new_offset = senv.offset - 4 in
   Hashtbl.add senv.table name new_offset;
   senv.offset <- new_offset;
-  name
+  ()
 
 let get_value_offset name senv : int = Hashtbl.find senv.table name
 

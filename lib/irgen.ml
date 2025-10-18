@@ -47,7 +47,7 @@ let rec convert_expr (v : Ast.expr) (e : Env.senv) :
   match v with
   | LiteralInt n -> (Constant n, [])
   (* Insert any AST Vars into IR Vars, as names are gaurunteed unique *)
-  | Var (Identifier v) -> (Var (insert_value v e), [])
+  | Var (Identifier v) -> (Var v, [])
   | Unary { op : unop; exp : expr } -> (
       let src, src_instructions = convert_expr exp e in
       match op with
@@ -57,7 +57,7 @@ let rec convert_expr (v : Ast.expr) (e : Env.senv) :
             Binary
               { op = update_op op; src1 = src; src2 = Constant 1; dst = src }
           in
-          (src, src_instructions @ [ ins_adjust_var ])
+          (src, [ ins_adjust_var ])
       (* Post-update unary ops: adjust variable and return original value *)
       | PostIncrement | PostDecrement ->
           let tmp = Var (declare_value "tmp" e) in
@@ -66,7 +66,7 @@ let rec convert_expr (v : Ast.expr) (e : Env.senv) :
             Binary
               { op = update_op op; src1 = src; src2 = Constant 1; dst = src }
           in
-          (tmp, src_instructions @ [ ins_copy_tmp ] @ [ ins_adjust_var ])
+          (tmp, [ ins_copy_tmp ] @ [ ins_adjust_var ])
       (* Everything else *)
       | _ ->
           let tmp = Var (declare_value "tmp" e) in
@@ -126,9 +126,12 @@ let convert_stmt (s : Ast.stmt) (e : Env.senv) : Ir.instruction list =
 let convert_dclr (d : Ast.decl) (e : Env.senv) : Ir.instruction list =
   match d with
   (* No need to generate instructions for variable declaration *)
-  | Declaration (_, None) -> []
+  | Declaration (lhs, None) ->
+      insert_value lhs e;
+      []
   (* Handle a declaration with initialiser as an assignment expression *)
   | Declaration (lhs, Some rhs) ->
+      insert_value lhs e;
       let initialiser = Assignment (Ast.Var lhs, rhs) in
       let _, instructions = convert_expr initialiser e in
       instructions
