@@ -1,0 +1,28 @@
+Token.KW_INT
+(Token.IDENTIFIER "main")
+Token.LPAREN
+Token.KW_VOID
+Token.RPAREN
+Token.LBRACE
+Token.KW_INT
+(Token.IDENTIFIER "result")
+Token.SEMICOLON
+(Token.LITERAL_INT 1)
+Token.BW_XOR
+(Token.LITERAL_INT 1)
+Token.QUESTION
+(Token.IDENTIFIER "result")
+Token.ASSIGN
+(Token.LITERAL_INT 4)
+Token.COLON
+Token.LPAREN
+(Token.IDENTIFIER "result")
+Token.ASSIGN
+(Token.LITERAL_INT 5)
+Token.RPAREN
+Token.SEMICOLON
+Token.KW_RETURN
+(Token.IDENTIFIER "result")
+Token.SEMICOLON
+Token.RBRACE
+Token.EOF

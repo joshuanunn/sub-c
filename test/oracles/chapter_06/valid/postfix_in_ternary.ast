@@ -1,0 +1,17 @@
+(Ast.Program
+   Ast.Function {return_type = Ast.KwInt; name = (Ast.Identifier "main");
+     body =
+     [(Ast.D
+         (Ast.Declaration ((Ast.Identifier "x"), (Some (Ast.LiteralInt 10)))));
+       (Ast.S
+          (Ast.Expression
+             Ast.Conditional {
+               cond_exp =
+               Ast.Binary {op = Ast.Subtract;
+                 left = (Ast.Var (Ast.Identifier "x"));
+                 right = (Ast.LiteralInt 10)};
+               then_exp = (Ast.LiteralInt 0);
+               else_exp =
+               Ast.Unary {op = Ast.PostDecrement;
+                 exp = (Ast.Var (Ast.Identifier "x"))}}));
+       (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "x"))))]})

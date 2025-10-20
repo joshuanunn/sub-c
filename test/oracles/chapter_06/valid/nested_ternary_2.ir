@@ -1,0 +1,18 @@
+(Ir.Program
+   Ir.Function {name = "main";
+     body =
+     [Ir.JumpIfZero {condition = (Ir.Constant 1); target = "cond_e2.3"};
+       Ir.JumpIfZero {condition = (Ir.Constant 2); target = "cond_e2.5"};
+       Ir.Jump {target = "cond_end.4"}; (Ir.Label "cond_e2.5");
+       (Ir.Label "cond_end.4"); Ir.Jump {target = "cond_end.2"};
+       (Ir.Label "cond_e2.3"); (Ir.Label "cond_end.2");
+       Ir.Copy {src = (Ir.Constant 3); dst = (Ir.Var "main.a.0")};
+       Ir.JumpIfZero {condition = (Ir.Constant 0); target = "cond_e2.7"};
+       Ir.JumpIfZero {condition = (Ir.Constant 2); target = "cond_e2.9"};
+       Ir.Jump {target = "cond_end.8"}; (Ir.Label "cond_e2.9");
+       (Ir.Label "cond_end.8"); Ir.Jump {target = "cond_end.6"};
+       (Ir.Label "cond_e2.7"); (Ir.Label "cond_end.6");
+       Ir.Copy {src = (Ir.Constant 3); dst = (Ir.Var "main.b.1")};
+       Ir.Binary {op = Ir.Multiply; src1 = (Ir.Var "main.a.0");
+         src2 = (Ir.Var "main.b.1"); dst = (Ir.Var "tmp.10")};
+       (Ir.Return (Ir.Var "tmp.10")); (Ir.Return (Ir.Constant 0))]})

@@ -1,0 +1,12 @@
+(Ir.Program
+   Ir.Function {name = "main";
+     body =
+     [Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "main.a.0")};
+       Ir.Unary {op = Ir.Negate; src = (Ir.Constant 1);
+         dst = (Ir.Var "tmp.1")};
+       Ir.Binary {op = Ir.GreaterThan; src1 = (Ir.Var "main.a.0");
+         src2 = (Ir.Var "tmp.1"); dst = (Ir.Var "tmp.2")};
+       Ir.JumpIfZero {condition = (Ir.Var "tmp.2"); target = "cond_e2.4"};
+       Ir.Jump {target = "cond_end.3"}; (Ir.Label "cond_e2.4");
+       (Ir.Label "cond_end.3"); (Ir.Return (Ir.Constant 4));
+       (Ir.Return (Ir.Constant 0))]})

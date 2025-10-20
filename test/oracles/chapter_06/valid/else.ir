@@ -1,0 +1,8 @@
+(Ir.Program
+   Ir.Function {name = "main";
+     body =
+     [Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "main.a.0")};
+       Ir.JumpIfZero {condition = (Ir.Var "main.a.0"); target = "if_else.2"};
+       (Ir.Return (Ir.Constant 1)); Ir.Jump {target = "if_end.1"};
+       (Ir.Label "if_else.2"); (Ir.Return (Ir.Constant 2));
+       (Ir.Label "if_end.1"); (Ir.Return (Ir.Constant 0))]})
