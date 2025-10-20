@@ -38,9 +38,16 @@ type expr =
   | Unary of { op : unop; exp : expr }
   | Binary of { op : binop; left : expr; right : expr }
   | Assignment of expr * expr
+  | Conditional of { cond_exp : expr; then_exp : expr; else_exp : expr }
 [@@deriving show]
 
-type stmt = Return of expr | Expression of expr | Null [@@deriving show]
+type stmt =
+  | Return of expr
+  | Expression of expr
+  | If of { cond_exp : expr; then_smt : stmt; else_smt : stmt option }
+  | Null
+[@@deriving show]
+
 type decl = Declaration of ident * expr option [@@deriving show]
 type block_item = S of stmt | D of decl [@@deriving show]
 type block = block_item list [@@deriving show]
@@ -57,8 +64,13 @@ let mk_int_expr n = LiteralInt n
 let mk_binop_expr op left right = Binary { op; left; right }
 let mk_unop_expr op exp = Unary { op; exp }
 let mk_assign_expr left right = Assignment (Var left, right)
+
+let mk_cond_expr cond_exp then_exp else_exp =
+  Conditional { cond_exp; then_exp; else_exp }
+
 let mk_return_stmt s = Return s
 let mk_expr_stmt s = Expression s
+let mk_if_stmt i t e = If { cond_exp = i; then_smt = t; else_smt = e }
 let mk_decl_init_stmt i v = Declaration (i, Some v)
 let mk_decl_stmt i = Declaration (i, None)
 let mk_block_stmt s = S s

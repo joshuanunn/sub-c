@@ -1,0 +1,15 @@
+(Ir.Program
+   Ir.Function {name = "main";
+     body =
+     [Ir.JumpIfZero {condition = (Ir.Constant 0); target = "cond_e2.2"};
+       Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "tmp.0")};
+       Ir.Jump {target = "cond_end.1"}; (Ir.Label "cond_e2.2");
+       Ir.JumpIfNotZero {condition = (Ir.Constant 0); target = "or_true.4"};
+       Ir.JumpIfNotZero {condition = (Ir.Constant 2); target = "or_true.4"};
+       Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "tmp.3")};
+       Ir.Jump {target = "or_end.5"}; (Ir.Label "or_true.4");
+       Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "tmp.3")};
+       (Ir.Label "or_end.5");
+       Ir.Copy {src = (Ir.Var "tmp.3"); dst = (Ir.Var "tmp.0")};
+       (Ir.Label "cond_end.1"); (Ir.Return (Ir.Var "tmp.0"));
+       (Ir.Return (Ir.Constant 0))]})

@@ -1,0 +1,28 @@
+(Ir.Program
+   Ir.Function {name = "main";
+     body =
+     [Ir.JumpIfZero {condition = (Ir.Constant 1); target = "cond_e2.4"};
+       Ir.JumpIfZero {condition = (Ir.Constant 2); target = "cond_e2.7"};
+       Ir.Copy {src = (Ir.Constant 3); dst = (Ir.Var "tmp.5")};
+       Ir.Jump {target = "cond_end.6"}; (Ir.Label "cond_e2.7");
+       Ir.Copy {src = (Ir.Constant 4); dst = (Ir.Var "tmp.5")};
+       (Ir.Label "cond_end.6");
+       Ir.Copy {src = (Ir.Var "tmp.5"); dst = (Ir.Var "tmp.2")};
+       Ir.Jump {target = "cond_end.3"}; (Ir.Label "cond_e2.4");
+       Ir.Copy {src = (Ir.Constant 5); dst = (Ir.Var "tmp.2")};
+       (Ir.Label "cond_end.3");
+       Ir.Copy {src = (Ir.Var "tmp.2"); dst = (Ir.Var "main.a.0")};
+       Ir.JumpIfZero {condition = (Ir.Constant 0); target = "cond_e2.10"};
+       Ir.JumpIfZero {condition = (Ir.Constant 2); target = "cond_e2.13"};
+       Ir.Copy {src = (Ir.Constant 3); dst = (Ir.Var "tmp.11")};
+       Ir.Jump {target = "cond_end.12"}; (Ir.Label "cond_e2.13");
+       Ir.Copy {src = (Ir.Constant 4); dst = (Ir.Var "tmp.11")};
+       (Ir.Label "cond_end.12");
+       Ir.Copy {src = (Ir.Var "tmp.11"); dst = (Ir.Var "tmp.8")};
+       Ir.Jump {target = "cond_end.9"}; (Ir.Label "cond_e2.10");
+       Ir.Copy {src = (Ir.Constant 5); dst = (Ir.Var "tmp.8")};
+       (Ir.Label "cond_end.9");
+       Ir.Copy {src = (Ir.Var "tmp.8"); dst = (Ir.Var "main.b.1")};
+       Ir.Binary {op = Ir.Multiply; src1 = (Ir.Var "main.a.0");
+         src2 = (Ir.Var "main.b.1"); dst = (Ir.Var "tmp.14")};
+       (Ir.Return (Ir.Var "tmp.14")); (Ir.Return (Ir.Constant 0))]})

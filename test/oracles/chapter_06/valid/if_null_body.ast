@@ -1,0 +1,12 @@
+(Ast.Program
+   Ast.Function {return_type = Ast.KwInt; name = (Ast.Identifier "main");
+     body =
+     [(Ast.D
+         (Ast.Declaration ((Ast.Identifier "x"), (Some (Ast.LiteralInt 0)))));
+       (Ast.S
+          Ast.If {cond_exp = (Ast.LiteralInt 0); then_smt = Ast.Null;
+            else_smt =
+            (Some (Ast.Expression
+                     (Ast.Assignment ((Ast.Var (Ast.Identifier "x")),
+                        (Ast.LiteralInt 1)))))});
+       (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "x"))))]})
