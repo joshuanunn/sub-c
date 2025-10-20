@@ -4,11 +4,15 @@ type token =
   | KW_INT
   | KW_VOID
   | KW_RETURN
+  | KW_IF
+  | KW_ELSE
   | LPAREN
   | RPAREN
   | LBRACE
   | RBRACE
   | SEMICOLON
+  | QUESTION
+  | COLON
   | INCREMENT
   | DECREMENT
   | ADD_ASSIGN

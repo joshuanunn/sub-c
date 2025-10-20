@@ -29,11 +29,15 @@ rule read =
   | "int" { KW_INT }
   | "void" { KW_VOID }
   | "return" { KW_RETURN }
+  | "if" { KW_IF }
+  | "else" { KW_ELSE }
   | "(" { LPAREN }
   | ")" { RPAREN }
   | "{" { LBRACE }
   | "}" { RBRACE }
   | ";" { SEMICOLON }
+  | "?" { QUESTION }
+  | ":" { COLON }
   | "++" { INCREMENT }
   | "--" { DECREMENT }
   | "+=" { ADD_ASSIGN }

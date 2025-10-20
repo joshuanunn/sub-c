@@ -7,11 +7,15 @@ open Ast
 %token KW_INT
 %token KW_VOID
 %token KW_RETURN
+%token KW_IF
+%token KW_ELSE
 %token LPAREN
 %token RPAREN
 %token LBRACE
 %token RBRACE
 %token SEMICOLON
+%token QUESTION
+%token COLON
 %token INCREMENT
 %token DECREMENT
 %token ADD_ASSIGN
@@ -47,6 +51,10 @@ open Ast
 %token ASSIGN
 %token EOF
 
+(* Resolve dangling else in if statements by prefering to shift else *)
+%nonassoc IFX
+%nonassoc KW_ELSE
+
 %start <prog> prog
 
 %%
@@ -76,6 +84,8 @@ decl:
   ;
 
 stmt:
+  | KW_IF LPAREN expr RPAREN stmt KW_ELSE stmt { mk_if_stmt $3 $5 (Some $7) }
+  | KW_IF LPAREN expr RPAREN stmt %prec IFX { mk_if_stmt $3 $5 None }
   | KW_RETURN expr SEMICOLON { mk_return_stmt $2 }
   | expr SEMICOLON { mk_expr_stmt $1 }
   | SEMICOLON { Null }
@@ -109,6 +119,7 @@ expr_14:
 
 (* Ternary operators [right associative] *)
 expr_13:
+  | expr_12 QUESTION expr COLON expr_13 { mk_cond_expr $1 $3 $5 }
   | expr_12 { $1 }
   ;
 

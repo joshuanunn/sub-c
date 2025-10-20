@@ -18,6 +18,13 @@ let rec resolve_expr (scope : ident) (exp : expr) (e : senv) : expr =
       | Var _ ->
           Assignment (resolve_expr scope lvalue e, resolve_expr scope rvalue e)
       | _ -> failwith "lvalues in assignments must be variables")
+  | Conditional { cond_exp; then_exp; else_exp } ->
+      Conditional
+        {
+          cond_exp = resolve_expr scope cond_exp e;
+          then_exp = resolve_expr scope then_exp e;
+          else_exp = resolve_expr scope else_exp e;
+        }
 
 let resolve_decl (scope : ident) (d : decl) (e : senv) : decl =
   match d with
@@ -26,10 +33,24 @@ let resolve_decl (scope : ident) (d : decl) (e : senv) : decl =
       let var = declare_var scope id e in
       Declaration (var, Some (resolve_expr scope expr e))
 
-let resolve_stmt (scope : ident) (s : stmt) (e : senv) : stmt =
+let rec resolve_stmt (scope : ident) (s : stmt) (e : senv) : stmt =
   match s with
   | Return expr -> Return (resolve_expr scope expr e)
   | Expression expr -> Expression (resolve_expr scope expr e)
+  | If { cond_exp; then_smt; else_smt = None } ->
+      If
+        {
+          cond_exp = resolve_expr scope cond_exp e;
+          then_smt = resolve_stmt scope then_smt e;
+          else_smt = None;
+        }
+  | If { cond_exp; then_smt; else_smt = Some stmt } ->
+      If
+        {
+          cond_exp = resolve_expr scope cond_exp e;
+          then_smt = resolve_stmt scope then_smt e;
+          else_smt = Some (resolve_stmt scope stmt e);
+        }
   | Null -> Null
 
 let resolve_block (scope : ident) (items : block) (e : senv) : block =
