@@ -4,9 +4,11 @@
      [Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "main.a.0")};
        Ir.Binary {op = Ir.Add; src1 = (Ir.Var "main.a.0");
          src2 = (Ir.Constant 1); dst = (Ir.Var "main.a.0")};
-       Ir.JumpIfZero {condition = (Ir.Var "main.a.0"); target = "cond_e2.2"};
+       Ir.JumpIfZero {condition = (Ir.Var "main.a.0"); target = "cond_e2.3"};
        Ir.Binary {op = Ir.Add; src1 = (Ir.Var "main.a.0");
          src2 = (Ir.Constant 1); dst = (Ir.Var "main.a.0")};
-       Ir.Jump {target = "cond_end.1"}; (Ir.Label "cond_e2.2");
-       (Ir.Label "cond_end.1"); (Ir.Return (Ir.Var "main.a.0"));
+       Ir.Copy {src = (Ir.Var "main.a.0"); dst = (Ir.Var "tmp.1")};
+       Ir.Jump {target = "cond_end.2"}; (Ir.Label "cond_e2.3");
+       Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "tmp.1")};
+       (Ir.Label "cond_end.2"); (Ir.Return (Ir.Var "tmp.1"));
        (Ir.Return (Ir.Constant 0))]})

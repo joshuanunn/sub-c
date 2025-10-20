@@ -2,17 +2,20 @@
 main:
     pushq       %rbp
     movq        %rsp, %rbp
-    subq        $8, %rsp
+    subq        $12, %rsp
     movl        $1, -4(%rbp)
     cmpl        $2, -4(%rbp)
-    movl        $0, -8(%rbp)
-    setne       -8(%rbp)
-    cmpl        $0, -8(%rbp)
-    je          .Lcond_e2.3
+    movl        $0, -12(%rbp)
+    setne       -12(%rbp)
+    cmpl        $0, -12(%rbp)
+    je          .Lcond_e2.4
     movl        $2, -4(%rbp)
-    jmp         .Lcond_end.2
-.Lcond_e2.3:
-.Lcond_end.2:
+    movl        -4(%rbp), %r10d
+    movl        %r10d, -8(%rbp)
+    jmp         .Lcond_end.3
+.Lcond_e2.4:
+    movl        $0, -8(%rbp)
+.Lcond_end.3:
     movl        -4(%rbp), %eax
     movq        %rbp, %rsp
     popq        %rbp

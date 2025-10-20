@@ -3,13 +3,15 @@
      body =
      [Ir.Copy {src = (Ir.Constant 10); dst = (Ir.Var "main.a.0")};
        Ir.JumpIfNotZero {condition = (Ir.Var "main.a.0");
-         target = "or_true.2"};
-       Ir.JumpIfNotZero {condition = (Ir.Constant 0); target = "or_true.2"};
+         target = "or_true.3"};
+       Ir.JumpIfNotZero {condition = (Ir.Constant 0); target = "or_true.3"};
+       Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "tmp.2")};
+       Ir.Jump {target = "or_end.4"}; (Ir.Label "or_true.3");
+       Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "tmp.2")};
+       (Ir.Label "or_end.4");
+       Ir.JumpIfZero {condition = (Ir.Var "tmp.2"); target = "cond_e2.6"};
+       Ir.Copy {src = (Ir.Constant 20); dst = (Ir.Var "tmp.1")};
+       Ir.Jump {target = "cond_end.5"}; (Ir.Label "cond_e2.6");
        Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "tmp.1")};
-       Ir.Jump {target = "or_end.3"}; (Ir.Label "or_true.2");
-       Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "tmp.1")};
-       (Ir.Label "or_end.3");
-       Ir.JumpIfZero {condition = (Ir.Var "tmp.1"); target = "cond_e2.5"};
-       Ir.Jump {target = "cond_end.4"}; (Ir.Label "cond_e2.5");
-       (Ir.Label "cond_end.4"); (Ir.Return (Ir.Constant 20));
+       (Ir.Label "cond_end.5"); (Ir.Return (Ir.Var "tmp.1"));
        (Ir.Return (Ir.Constant 0))]})

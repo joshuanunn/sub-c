@@ -2,25 +2,28 @@
 main:
     pushq       %rbp
     movq        %rsp, %rbp
-    subq        $4, %rsp
+    subq        $8, %rsp
     movl        $0, %r11d
     cmpl        $0, %r11d
-    je          .Lcond_e2.1
-    jmp         .Lcond_end.0
-.Lcond_e2.1:
+    je          .Lcond_e2.2
+    movl        $1, -4(%rbp)
+    jmp         .Lcond_end.1
+.Lcond_e2.2:
     movl        $0, %r11d
     cmpl        $0, %r11d
-    jne         .Lor_true.3
+    jne         .Lor_true.4
     movl        $2, %r11d
     cmpl        $0, %r11d
-    jne         .Lor_true.3
-    movl        $0, -4(%rbp)
-    jmp         .Lor_end.4
-.Lor_true.3:
-    movl        $1, -4(%rbp)
-.Lor_end.4:
-.Lcond_end.0:
-    movl        $1, %eax
+    jne         .Lor_true.4
+    movl        $0, -8(%rbp)
+    jmp         .Lor_end.5
+.Lor_true.4:
+    movl        $1, -8(%rbp)
+.Lor_end.5:
+    movl        -8(%rbp), %r10d
+    movl        %r10d, -4(%rbp)
+.Lcond_end.1:
+    movl        -4(%rbp), %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         
