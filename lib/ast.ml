@@ -60,7 +60,7 @@ type func = Function of { return_type : typ; name : ident; body : block }
 type prog = Program of func [@@deriving show]
 
 let mk_prog f = Program f
-let mk_func ~return_type ~name ~body = Function { return_type; name; body }
+let mk_func return_type name body = Function { return_type; name; body }
 let mk_ident i = Identifier i
 let mk_int_expr n = LiteralInt n
 let mk_binop_expr op left right = Binary { op; left; right }

@@ -65,8 +65,11 @@ prog:
   ;
 
 func:
-  | KW_INT identifier LPAREN KW_VOID RPAREN LBRACE block_items RBRACE {
-      mk_func ~return_type:KwInt ~name:$2 ~body:$7 }
+  | KW_INT identifier LPAREN KW_VOID RPAREN block { mk_func KwInt $2 $6 }
+  ;
+
+block:
+  | LBRACE block_items RBRACE { $2 }
   ;
 
 block_items:
