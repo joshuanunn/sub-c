@@ -156,6 +156,8 @@ let rec convert_stmt (s : Ast.stmt) (e : Env.senv) : Ir.instruction list =
       let l_end = Label s_end in
       cond_ins @ [ jz_cond ] @ then_ins @ [ j_end; l_else ] @ else_ins
       @ [ l_end ]
+  | Goto (Identifier id) -> [ Jump { target = id } ]
+  | Label (Identifier id, next_stmt) -> [ Label id ] @ convert_stmt next_stmt e
   | Null -> []
 
 let convert_dclr (d : Ast.decl) (e : Env.senv) : Ir.instruction list =

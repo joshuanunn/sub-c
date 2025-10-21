@@ -51,6 +51,10 @@ let rec resolve_stmt (scope : ident) (s : stmt) (e : senv) : stmt =
           then_smt = resolve_stmt scope then_smt e;
           else_smt = Some (resolve_stmt scope stmt e);
         }
+  (* goto label resolution cannot be completed until after analysis pass *)
+  | Goto id -> Goto id
+  | Label (id, s) ->
+      Label (declare_scoped_label scope id e, resolve_stmt scope s e)
   | Null -> Null
 
 let resolve_block (scope : ident) (items : block) (e : senv) : block =

@@ -5,6 +5,7 @@ type senv = {
   table : (string, int) Hashtbl.t;
   mutable offset : int;
   scoped_var : (string, string) Hashtbl.t;
+  scoped_lab : (string, string) Hashtbl.t;
 }
 
 let make_senv () =
@@ -13,6 +14,7 @@ let make_senv () =
     table = Hashtbl.create 16;
     offset = 0;
     scoped_var = Hashtbl.create 16;
+    scoped_lab = Hashtbl.create 16;
   }
 
 let declare_value name senv : string =
@@ -55,3 +57,22 @@ let resolve_var (Identifier scope) (Identifier var_name) senv : ident =
   match entry with
   | Some unique_name -> Identifier unique_name
   | None -> failwith ("variable " ^ var_name ^ " is not defined in " ^ scope)
+
+let declare_scoped_label (Identifier scope) (Identifier lab_name) senv : ident =
+  let scoped_name = scope ^ "." ^ lab_name in
+  let entry = Hashtbl.find_opt senv.scoped_lab scoped_name in
+  match entry with
+  | Some _ ->
+      failwith ("label " ^ lab_name ^ " has already been declared in " ^ scope)
+  | None ->
+      let unique_name = scoped_name ^ "." ^ string_of_int senv.counter in
+      senv.counter <- senv.counter + 1;
+      Hashtbl.add senv.scoped_lab scoped_name unique_name;
+      Identifier unique_name
+
+let resolve_scoped_label (Identifier scope) (Identifier lab_name) senv : ident =
+  let scoped_name = scope ^ "." ^ lab_name in
+  let entry = Hashtbl.find_opt senv.scoped_lab scoped_name in
+  match entry with
+  | Some unique_name -> Identifier unique_name
+  | None -> failwith ("label " ^ lab_name ^ " is not defined in " ^ scope)

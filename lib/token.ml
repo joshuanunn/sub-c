@@ -6,6 +6,7 @@ type token =
   | KW_RETURN
   | KW_IF
   | KW_ELSE
+  | KW_GOTO
   | LPAREN
   | RPAREN
   | LBRACE

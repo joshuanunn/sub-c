@@ -31,6 +31,7 @@ rule read =
   | "return" { KW_RETURN }
   | "if" { KW_IF }
   | "else" { KW_ELSE }
+  | "goto" { KW_GOTO }
   | "(" { LPAREN }
   | ")" { RPAREN }
   | "{" { LBRACE }

@@ -45,6 +45,8 @@ type stmt =
   | Return of expr
   | Expression of expr
   | If of { cond_exp : expr; then_smt : stmt; else_smt : stmt option }
+  | Goto of ident
+  | Label of ident * stmt
   | Null
 [@@deriving show]
 
@@ -71,6 +73,8 @@ let mk_cond_expr cond_exp then_exp else_exp =
 let mk_return_stmt s = Return s
 let mk_expr_stmt s = Expression s
 let mk_if_stmt i t e = If { cond_exp = i; then_smt = t; else_smt = e }
+let mk_goto_stmt l = Goto l
+let mk_label_stmt l s = Label (l, s)
 let mk_decl_init_stmt i v = Declaration (i, Some v)
 let mk_decl_stmt i = Declaration (i, None)
 let mk_block_stmt s = S s

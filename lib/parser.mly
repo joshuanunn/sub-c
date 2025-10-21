@@ -9,6 +9,7 @@ open Ast
 %token KW_RETURN
 %token KW_IF
 %token KW_ELSE
+%token KW_GOTO
 %token LPAREN
 %token RPAREN
 %token LBRACE
@@ -88,6 +89,8 @@ stmt:
   | KW_IF LPAREN expr RPAREN stmt %prec IFX { mk_if_stmt $3 $5 None }
   | KW_RETURN expr SEMICOLON { mk_return_stmt $2 }
   | expr SEMICOLON { mk_expr_stmt $1 }
+  | KW_GOTO identifier SEMICOLON { mk_goto_stmt $2 }
+  | identifier COLON stmt { mk_label_stmt $1 $3 }
   | SEMICOLON { Null }
   ;
 
