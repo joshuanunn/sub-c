@@ -25,9 +25,7 @@ let rec resolve_stmt (scope : ident) (s : stmt) (e : senv) : stmt =
 let resolve_block (scope : ident) (items : block) (e : senv) : block =
   List.map
     (fun item ->
-      match item with
-      | D d -> D d
-      | S s -> S (resolve_stmt scope s e))
+      match item with D d -> D d | S s -> S (resolve_stmt scope s e))
     items
 
 let resolve_func (f : Ast.func) (e : senv) : Ast.func =
