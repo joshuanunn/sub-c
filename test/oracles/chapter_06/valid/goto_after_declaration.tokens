@@ -1,0 +1,42 @@
+Token.KW_INT
+(Token.IDENTIFIER "main")
+Token.LPAREN
+Token.KW_VOID
+Token.RPAREN
+Token.LBRACE
+Token.KW_INT
+(Token.IDENTIFIER "x")
+Token.ASSIGN
+(Token.LITERAL_INT 1)
+Token.SEMICOLON
+Token.KW_GOTO
+(Token.IDENTIFIER "post_declaration")
+Token.SEMICOLON
+Token.KW_INT
+(Token.IDENTIFIER "i")
+Token.ASSIGN
+Token.LPAREN
+(Token.IDENTIFIER "x")
+Token.ASSIGN
+(Token.LITERAL_INT 0)
+Token.RPAREN
+Token.SEMICOLON
+(Token.IDENTIFIER "post_declaration")
+Token.COLON
+(Token.IDENTIFIER "i")
+Token.ASSIGN
+(Token.LITERAL_INT 5)
+Token.SEMICOLON
+Token.KW_RETURN
+Token.LPAREN
+(Token.IDENTIFIER "x")
+Token.EQ
+(Token.LITERAL_INT 1)
+Token.AND
+(Token.IDENTIFIER "i")
+Token.EQ
+(Token.LITERAL_INT 5)
+Token.RPAREN
+Token.SEMICOLON
+Token.RBRACE
+Token.EOF

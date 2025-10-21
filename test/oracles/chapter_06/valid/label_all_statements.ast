@@ -1,0 +1,33 @@
+(Ast.Program
+   Ast.Function {return_type = Ast.KwInt; name = (Ast.Identifier "main");
+     body =
+     [(Ast.D
+         (Ast.Declaration ((Ast.Identifier "a"), (Some (Ast.LiteralInt 1)))));
+       (Ast.S
+          (Ast.Label ((Ast.Identifier "label_if"),
+             Ast.If {cond_exp = (Ast.Var (Ast.Identifier "a"));
+               then_smt = (Ast.Goto (Ast.Identifier "label_expression"));
+               else_smt = (Some (Ast.Goto (Ast.Identifier "label_empty")))}
+             )));
+       (Ast.S
+          (Ast.Label ((Ast.Identifier "label_goto"),
+             (Ast.Goto (Ast.Identifier "label_return")))));
+       (Ast.S
+          Ast.If {cond_exp = (Ast.LiteralInt 0);
+            then_smt =
+            (Ast.Label ((Ast.Identifier "label_expression"),
+               (Ast.Expression
+                  (Ast.Assignment ((Ast.Var (Ast.Identifier "a")),
+                     (Ast.LiteralInt 0))))
+               ));
+            else_smt = None});
+       (Ast.S (Ast.Goto (Ast.Identifier "label_if")));
+       (Ast.S
+          (Ast.Label ((Ast.Identifier "label_return"),
+             (Ast.Return (Ast.Var (Ast.Identifier "a"))))));
+       (Ast.S (Ast.Label ((Ast.Identifier "label_empty"), Ast.Null)));
+       (Ast.S
+          (Ast.Expression
+             (Ast.Assignment ((Ast.Var (Ast.Identifier "a")),
+                (Ast.LiteralInt 100)))));
+       (Ast.S (Ast.Goto (Ast.Identifier "label_goto")))]})

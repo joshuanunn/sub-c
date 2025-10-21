@@ -1,0 +1,9 @@
+(Ast.Program
+   Ast.Function {return_type = Ast.KwInt; name = (Ast.Identifier "main");
+     body =
+     [(Ast.S (Ast.Goto (Ast.Identifier "_main")));
+       (Ast.S (Ast.Return (Ast.LiteralInt 0)));
+       (Ast.S
+          (Ast.Label ((Ast.Identifier "_main"),
+             (Ast.Return (Ast.LiteralInt 1)))))
+       ]})
