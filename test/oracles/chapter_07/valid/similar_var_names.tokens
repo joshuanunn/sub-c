@@ -1,0 +1,108 @@
+Token.KW_INT
+(Token.IDENTIFIER "main")
+Token.LPAREN
+Token.KW_VOID
+Token.RPAREN
+Token.LBRACE
+Token.KW_INT
+(Token.IDENTIFIER "a")
+Token.SEMICOLON
+Token.KW_INT
+(Token.IDENTIFIER "result")
+Token.SEMICOLON
+Token.KW_INT
+(Token.IDENTIFIER "a1")
+Token.ASSIGN
+(Token.LITERAL_INT 1)
+Token.SEMICOLON
+Token.LBRACE
+Token.KW_INT
+(Token.IDENTIFIER "a")
+Token.ASSIGN
+(Token.LITERAL_INT 2)
+Token.SEMICOLON
+Token.KW_INT
+(Token.IDENTIFIER "a1")
+Token.ASSIGN
+(Token.LITERAL_INT 2)
+Token.SEMICOLON
+Token.LBRACE
+Token.KW_INT
+(Token.IDENTIFIER "a")
+Token.SEMICOLON
+Token.LBRACE
+Token.KW_INT
+(Token.IDENTIFIER "a")
+Token.SEMICOLON
+Token.LBRACE
+Token.KW_INT
+(Token.IDENTIFIER "a")
+Token.SEMICOLON
+Token.LBRACE
+Token.KW_INT
+(Token.IDENTIFIER "a")
+Token.SEMICOLON
+Token.LBRACE
+Token.KW_INT
+(Token.IDENTIFIER "a")
+Token.SEMICOLON
+Token.LBRACE
+Token.KW_INT
+(Token.IDENTIFIER "a")
+Token.SEMICOLON
+Token.LBRACE
+Token.KW_INT
+(Token.IDENTIFIER "a")
+Token.SEMICOLON
+Token.LBRACE
+Token.KW_INT
+(Token.IDENTIFIER "a")
+Token.SEMICOLON
+Token.LBRACE
+Token.KW_INT
+(Token.IDENTIFIER "a")
+Token.ASSIGN
+(Token.LITERAL_INT 20)
+Token.SEMICOLON
+(Token.IDENTIFIER "result")
+Token.ASSIGN
+(Token.IDENTIFIER "a")
+Token.SEMICOLON
+Token.LBRACE
+Token.KW_INT
+(Token.IDENTIFIER "a")
+Token.SEMICOLON
+(Token.IDENTIFIER "a")
+Token.ASSIGN
+(Token.LITERAL_INT 5)
+Token.SEMICOLON
+(Token.IDENTIFIER "result")
+Token.ASSIGN
+(Token.IDENTIFIER "result")
+Token.ADD
+(Token.IDENTIFIER "a")
+Token.SEMICOLON
+Token.RBRACE
+Token.RBRACE
+Token.RBRACE
+Token.RBRACE
+Token.RBRACE
+Token.RBRACE
+Token.RBRACE
+Token.RBRACE
+Token.RBRACE
+Token.RBRACE
+(Token.IDENTIFIER "result")
+Token.ASSIGN
+(Token.IDENTIFIER "result")
+Token.ADD
+(Token.IDENTIFIER "a1")
+Token.SEMICOLON
+Token.RBRACE
+Token.KW_RETURN
+(Token.IDENTIFIER "result")
+Token.ADD
+(Token.IDENTIFIER "a1")
+Token.SEMICOLON
+Token.RBRACE
+Token.EOF
