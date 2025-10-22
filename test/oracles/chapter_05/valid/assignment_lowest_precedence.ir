@@ -7,5 +7,5 @@
        Ir.Jump {target = "or_end.2"}; (Ir.Label "or_true.1");
        Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "tmp.0")};
        (Ir.Label "or_end.2");
-       Ir.Copy {src = (Ir.Var "tmp.0"); dst = (Ir.Var "main.a.0")};
-       (Ir.Return (Ir.Var "main.a.0")); (Ir.Return (Ir.Constant 0))]})
+       Ir.Copy {src = (Ir.Var "tmp.0"); dst = (Ir.Var "a.0")};
+       (Ir.Return (Ir.Var "a.0")); (Ir.Return (Ir.Constant 0))]})

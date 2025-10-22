@@ -8,5 +8,5 @@
        Ir.Jump {target = "cond_end.1"}; (Ir.Label "cond_e2.2");
        Ir.Copy {src = (Ir.Constant 4); dst = (Ir.Var "tmp.0")};
        (Ir.Label "cond_end.1");
-       Ir.Copy {src = (Ir.Var "tmp.0"); dst = (Ir.Var "main.a.0")};
-       (Ir.Return (Ir.Var "main.a.0")); (Ir.Return (Ir.Constant 0))]})
+       Ir.Copy {src = (Ir.Var "tmp.0"); dst = (Ir.Var "a.0")};
+       (Ir.Return (Ir.Var "a.0")); (Ir.Return (Ir.Constant 0))]})

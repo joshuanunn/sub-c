@@ -2,10 +2,10 @@
    Ir.Function {name = "main";
      body =
      [Ir.JumpIfZero {condition = (Ir.Constant 0); target = "and_false.1"};
-       Ir.JumpIfZero {condition = (Ir.Var "main.a.0"); target = "and_false.1"};
+       Ir.JumpIfZero {condition = (Ir.Var "a.0"); target = "and_false.1"};
        Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "tmp.0")};
        Ir.Jump {target = "and_end.2"}; (Ir.Label "and_false.1");
        Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "tmp.0")};
        (Ir.Label "and_end.2");
-       Ir.Copy {src = (Ir.Var "tmp.0"); dst = (Ir.Var "main.a.0")};
-       (Ir.Return (Ir.Var "main.a.0")); (Ir.Return (Ir.Constant 0))]})
+       Ir.Copy {src = (Ir.Var "tmp.0"); dst = (Ir.Var "a.0")};
+       (Ir.Return (Ir.Var "a.0")); (Ir.Return (Ir.Constant 0))]})

@@ -1,18 +1,18 @@
 (Ir.Program
    Ir.Function {name = "main";
      body =
-     [Ir.Copy {src = (Ir.Constant 10); dst = (Ir.Var "main.x.0")};
-       Ir.Binary {op = Ir.Subtract; src1 = (Ir.Var "main.x.0");
+     [Ir.Copy {src = (Ir.Constant 10); dst = (Ir.Var "x.0")};
+       Ir.Binary {op = Ir.Subtract; src1 = (Ir.Var "x.0");
          src2 = (Ir.Constant 1); dst = (Ir.Var "tmp.1")};
-       Ir.Copy {src = (Ir.Var "tmp.1"); dst = (Ir.Var "main.x.0")};
-       Ir.JumpIfZero {condition = (Ir.Var "main.x.0"); target = "cond_e2.3"};
-       Ir.Binary {op = Ir.Divide; src1 = (Ir.Var "main.x.0");
+       Ir.Copy {src = (Ir.Var "tmp.1"); dst = (Ir.Var "x.0")};
+       Ir.JumpIfZero {condition = (Ir.Var "x.0"); target = "cond_e2.3"};
+       Ir.Binary {op = Ir.Divide; src1 = (Ir.Var "x.0");
          src2 = (Ir.Constant 2); dst = (Ir.Var "tmp.4")};
-       Ir.Copy {src = (Ir.Var "tmp.4"); dst = (Ir.Var "main.x.0")};
-       Ir.Copy {src = (Ir.Var "main.x.0"); dst = (Ir.Var "tmp.0")};
+       Ir.Copy {src = (Ir.Var "tmp.4"); dst = (Ir.Var "x.0")};
+       Ir.Copy {src = (Ir.Var "x.0"); dst = (Ir.Var "tmp.0")};
        Ir.Jump {target = "cond_end.2"}; (Ir.Label "cond_e2.3");
        Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "tmp.0")};
        (Ir.Label "cond_end.2");
-       Ir.Binary {op = Ir.Equal; src1 = (Ir.Var "main.x.0");
+       Ir.Binary {op = Ir.Equal; src1 = (Ir.Var "x.0");
          src2 = (Ir.Constant 4); dst = (Ir.Var "tmp.5")};
        (Ir.Return (Ir.Var "tmp.5")); (Ir.Return (Ir.Constant 0))]})

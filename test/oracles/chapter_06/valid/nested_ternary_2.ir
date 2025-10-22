@@ -11,7 +11,7 @@
        Ir.Jump {target = "cond_end.1"}; (Ir.Label "cond_e2.2");
        Ir.Copy {src = (Ir.Constant 5); dst = (Ir.Var "tmp.0")};
        (Ir.Label "cond_end.1");
-       Ir.Copy {src = (Ir.Var "tmp.0"); dst = (Ir.Var "main.a.0")};
+       Ir.Copy {src = (Ir.Var "tmp.0"); dst = (Ir.Var "a.0")};
        Ir.JumpIfZero {condition = (Ir.Constant 0); target = "cond_e2.8"};
        Ir.JumpIfZero {condition = (Ir.Constant 2); target = "cond_e2.11"};
        Ir.Copy {src = (Ir.Constant 3); dst = (Ir.Var "tmp.9")};
@@ -22,7 +22,7 @@
        Ir.Jump {target = "cond_end.7"}; (Ir.Label "cond_e2.8");
        Ir.Copy {src = (Ir.Constant 5); dst = (Ir.Var "tmp.6")};
        (Ir.Label "cond_end.7");
-       Ir.Copy {src = (Ir.Var "tmp.6"); dst = (Ir.Var "main.b.1")};
-       Ir.Binary {op = Ir.Multiply; src1 = (Ir.Var "main.a.0");
-         src2 = (Ir.Var "main.b.1"); dst = (Ir.Var "tmp.12")};
+       Ir.Copy {src = (Ir.Var "tmp.6"); dst = (Ir.Var "b.1")};
+       Ir.Binary {op = Ir.Multiply; src1 = (Ir.Var "a.0");
+         src2 = (Ir.Var "b.1"); dst = (Ir.Var "tmp.12")};
        (Ir.Return (Ir.Var "tmp.12")); (Ir.Return (Ir.Constant 0))]})

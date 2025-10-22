@@ -1,9 +1,8 @@
 (Ir.Program
    Ir.Function {name = "main";
      body =
-     [Ir.Copy {src = (Ir.Constant 10); dst = (Ir.Var "main.to_subtract.0")};
-       Ir.Binary {op = Ir.Subtract; src1 = (Ir.Var "main.to_subtract.0");
+     [Ir.Copy {src = (Ir.Constant 10); dst = (Ir.Var "to_subtract.0")};
+       Ir.Binary {op = Ir.Subtract; src1 = (Ir.Var "to_subtract.0");
          src2 = (Ir.Constant 8); dst = (Ir.Var "tmp.0")};
-       Ir.Copy {src = (Ir.Var "tmp.0"); dst = (Ir.Var "main.to_subtract.0")};
-       (Ir.Return (Ir.Var "main.to_subtract.0")); (Ir.Return (Ir.Constant 0))
-       ]})
+       Ir.Copy {src = (Ir.Var "tmp.0"); dst = (Ir.Var "to_subtract.0")};
+       (Ir.Return (Ir.Var "to_subtract.0")); (Ir.Return (Ir.Constant 0))]})
