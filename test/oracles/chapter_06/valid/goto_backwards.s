@@ -4,13 +4,13 @@ main:
     movq        %rsp, %rbp
     movl        $0, %r11d
     cmpl        $0, %r11d
-    je          .Lif_end.1
+    je          .Lif_end.0
 .Lmain.label.0:
     movl        $5, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         
-.Lif_end.1:
+.Lif_end.0:
     jmp         .Lmain.label.0
     movl        $0, %eax
     movq        %rbp, %rsp

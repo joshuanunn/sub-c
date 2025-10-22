@@ -12,14 +12,14 @@
        (Asm.Mov ((Asm.Imm 0), (Asm.Stack -12)));
        (Asm.SetCC (Asm.E, (Asm.Stack -12)));
        (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -12)));
-       (Asm.JmpCC (Asm.E, "and_false.6"));
+       (Asm.JmpCC (Asm.E, "and_false.3"));
        (Asm.Cmp ((Asm.Imm 5), (Asm.Stack -8)));
        (Asm.Mov ((Asm.Imm 0), (Asm.Stack -16)));
        (Asm.SetCC (Asm.E, (Asm.Stack -16)));
        (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -16)));
-       (Asm.JmpCC (Asm.E, "and_false.6"));
-       (Asm.Mov ((Asm.Imm 1), (Asm.Stack -20))); (Asm.Jmp "and_end.7");
-       (Asm.Label "and_false.6"); (Asm.Mov ((Asm.Imm 0), (Asm.Stack -20)));
-       (Asm.Label "and_end.7");
+       (Asm.JmpCC (Asm.E, "and_false.3"));
+       (Asm.Mov ((Asm.Imm 1), (Asm.Stack -20))); (Asm.Jmp "and_end.4");
+       (Asm.Label "and_false.3"); (Asm.Mov ((Asm.Imm 0), (Asm.Stack -20)));
+       (Asm.Label "and_end.4");
        (Asm.Mov ((Asm.Stack -20), (Asm.Reg Asm.AX))); Asm.Ret;
        (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX))); Asm.Ret]})

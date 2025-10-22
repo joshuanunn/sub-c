@@ -3,8 +3,8 @@
      body =
      [Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "main.a.0")};
        Ir.Binary {op = Ir.Add; src1 = (Ir.Var "main.a.0");
-         src2 = (Ir.Constant 1); dst = (Ir.Var "tmp.1")};
-       Ir.Copy {src = (Ir.Var "tmp.1"); dst = (Ir.Var "main.a.0")};
-       Ir.JumpIfZero {condition = (Ir.Var "main.a.0"); target = "if_end.2"};
-       (Ir.Return (Ir.Var "main.a.0")); (Ir.Label "if_end.2");
+         src2 = (Ir.Constant 1); dst = (Ir.Var "tmp.0")};
+       Ir.Copy {src = (Ir.Var "tmp.0"); dst = (Ir.Var "main.a.0")};
+       Ir.JumpIfZero {condition = (Ir.Var "main.a.0"); target = "if_end.1"};
+       (Ir.Return (Ir.Var "main.a.0")); (Ir.Label "if_end.1");
        (Ir.Return (Ir.Constant 10)); (Ir.Return (Ir.Constant 0))]})

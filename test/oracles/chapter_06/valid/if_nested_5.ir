@@ -2,13 +2,13 @@
    Ir.Function {name = "main";
      body =
      [Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "main.a.0")};
-       Ir.JumpIfZero {condition = (Ir.Constant 0); target = "if_else.2"};
-       Ir.JumpIfZero {condition = (Ir.Constant 0); target = "if_else.4"};
+       Ir.JumpIfZero {condition = (Ir.Constant 0); target = "if_else.1"};
+       Ir.JumpIfZero {condition = (Ir.Constant 0); target = "if_else.3"};
        Ir.Copy {src = (Ir.Constant 3); dst = (Ir.Var "main.a.0")};
-       Ir.Jump {target = "if_end.3"}; (Ir.Label "if_else.4");
+       Ir.Jump {target = "if_end.2"}; (Ir.Label "if_else.3");
        Ir.Copy {src = (Ir.Constant 4); dst = (Ir.Var "main.a.0")};
-       (Ir.Label "if_end.3"); Ir.Jump {target = "if_end.1"};
-       (Ir.Label "if_else.2");
+       (Ir.Label "if_end.2"); Ir.Jump {target = "if_end.0"};
+       (Ir.Label "if_else.1");
        Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "main.a.0")};
-       (Ir.Label "if_end.1"); (Ir.Return (Ir.Var "main.a.0"));
+       (Ir.Label "if_end.0"); (Ir.Return (Ir.Var "main.a.0"));
        (Ir.Return (Ir.Constant 0))]})

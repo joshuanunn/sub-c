@@ -6,11 +6,11 @@ main:
     movl        $0, -4(%rbp)
     movl        $0, %r11d
     cmpl        $0, %r11d
-    je          .Lif_else.2
-    jmp         .Lif_end.1
-.Lif_else.2:
+    je          .Lif_else.1
+    jmp         .Lif_end.0
+.Lif_else.1:
     movl        $1, -4(%rbp)
-.Lif_end.1:
+.Lif_end.0:
     movl        -4(%rbp), %eax
     movq        %rbp, %rsp
     popq        %rbp

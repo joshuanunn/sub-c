@@ -5,6 +5,6 @@
        Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "main.x.1")};
        Ir.Binary {op = Ir.BwRightShift;
          src1 = (Ir.Var "main.var_to_shift.0"); src2 = (Ir.Constant 4);
-         dst = (Ir.Var "tmp.2")};
-       Ir.Copy {src = (Ir.Var "tmp.2"); dst = (Ir.Var "main.x.1")};
+         dst = (Ir.Var "tmp.0")};
+       Ir.Copy {src = (Ir.Var "tmp.0"); dst = (Ir.Var "main.x.1")};
        (Ir.Return (Ir.Var "main.x.1")); (Ir.Return (Ir.Constant 0))]})
