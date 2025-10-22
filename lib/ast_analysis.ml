@@ -28,10 +28,13 @@ let rec resolve_expr (scope : ident) (exp : expr) (e : senv) : expr =
 
 let resolve_decl (scope : ident) (d : decl) (e : senv) : decl =
   match d with
-  | Declaration (id, None) -> Declaration (declare_var scope id e, None)
+  | Declaration (id, None) ->
+      let var = declare_var scope id e in
+      Declaration (var, None)
   | Declaration (id, Some expr) ->
       let var = declare_var scope id e in
-      Declaration (var, Some (resolve_expr scope expr e))
+      let init = Some (resolve_expr scope expr e) in
+      Declaration (var, init)
 
 let rec resolve_stmt (scope : ident) (s : stmt) (e : senv) : stmt =
   match s with
@@ -51,25 +54,30 @@ let rec resolve_stmt (scope : ident) (s : stmt) (e : senv) : stmt =
           then_smt = resolve_stmt scope then_smt e;
           else_smt = Some (resolve_stmt scope stmt e);
         }
+  | Compound b -> Compound (resolve_block scope b e)
   (* goto label resolution cannot be completed until after analysis pass *)
   | Goto id -> Goto id
   | Label (id, s) ->
       Label (declare_scoped_label scope id e, resolve_stmt scope s e)
   | Null -> Null
 
-let resolve_block (scope : ident) (items : block) (e : senv) : block =
-  List.map
-    (fun item ->
-      match item with
-      | D d -> D (resolve_decl scope d e)
-      | S s -> S (resolve_stmt scope s e))
-    items
-
-let resolve_func (f : Ast.func) (e : senv) : Ast.func =
+and resolve_func (f : Ast.func) (e : senv) : Ast.func =
   match f with
   | Function fn ->
       let body = resolve_block fn.name fn.body e in
       Function { name = fn.name; body; return_type = fn.return_type }
+
+and resolve_block (scope : ident) (items : block) (e : senv) : block =
+  let (Block item_list) = items in
+  let resolved_items =
+    List.map
+      (fun item ->
+        match item with
+        | D d -> D (resolve_decl scope d e)
+        | S s -> S (resolve_stmt scope s e))
+      item_list
+  in
+  Block resolved_items
 
 let resolve_prog (Program f : Ast.prog) (e : Env.senv) : Ast.prog =
   Program (resolve_func f e)

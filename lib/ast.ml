@@ -45,14 +45,15 @@ type stmt =
   | Return of expr
   | Expression of expr
   | If of { cond_exp : expr; then_smt : stmt; else_smt : stmt option }
+  | Compound of block
   | Goto of ident
   | Label of ident * stmt
   | Null
 [@@deriving show]
 
-type decl = Declaration of ident * expr option [@@deriving show]
-type block_item = S of stmt | D of decl [@@deriving show]
-type block = block_item list [@@deriving show]
+and decl = Declaration of ident * expr option [@@deriving show]
+and block_item = S of stmt | D of decl [@@deriving show]
+and block = Block of block_item list [@@deriving show]
 
 type func = Function of { return_type : typ; name : ident; body : block }
 [@@deriving show]
@@ -60,7 +61,7 @@ type func = Function of { return_type : typ; name : ident; body : block }
 type prog = Program of func [@@deriving show]
 
 let mk_prog f = Program f
-let mk_func return_type name body = Function { return_type; name; body }
+let mk_func return_type name b = Function { return_type; name; body = Block b }
 let mk_ident i = Identifier i
 let mk_int_expr n = LiteralInt n
 let mk_binop_expr op left right = Binary { op; left; right }
@@ -73,12 +74,13 @@ let mk_cond_expr cond_exp then_exp else_exp =
 let mk_return_stmt s = Return s
 let mk_expr_stmt s = Expression s
 let mk_if_stmt i t e = If { cond_exp = i; then_smt = t; else_smt = e }
+let mk_block_stmt l = Compound (Block l)
 let mk_goto_stmt l = Goto l
 let mk_label_stmt l s = Label (l, s)
 let mk_decl_init_stmt i v = Declaration (i, Some v)
 let mk_decl_stmt i = Declaration (i, None)
-let mk_block_stmt s = S s
-let mk_block_decl d = D d
+let mk_stmt_block_item s = S s
+let mk_decl_block_item d = D d
 
 (** [mk_comp_assign_expr op left right] resolves compound ops by evaluating the
     binary expression [left] [op] [right], then assigning result to [left] *)

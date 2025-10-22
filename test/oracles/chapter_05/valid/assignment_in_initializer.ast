@@ -1,10 +1,11 @@
 (Ast.Program
    Ast.Function {return_type = Ast.KwInt; name = (Ast.Identifier "main");
      body =
-     [(Ast.D (Ast.Declaration ((Ast.Identifier "a"), None)));
-       (Ast.D
-          (Ast.Declaration ((Ast.Identifier "b"),
-             (Some (Ast.Assignment ((Ast.Var (Ast.Identifier "a")),
-                      (Ast.LiteralInt 0))))
-             )));
-       (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "b"))))]})
+     (Ast.Block
+        [(Ast.D (Ast.Declaration ((Ast.Identifier "a"), None)));
+          (Ast.D
+             (Ast.Declaration ((Ast.Identifier "b"),
+                (Some (Ast.Assignment ((Ast.Var (Ast.Identifier "a")),
+                         (Ast.LiteralInt 0))))
+                )));
+          (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "b"))))])})

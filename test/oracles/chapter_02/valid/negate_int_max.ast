@@ -1,7 +1,8 @@
 (Ast.Program
    Ast.Function {return_type = Ast.KwInt; name = (Ast.Identifier "main");
      body =
-     [(Ast.S
-         (Ast.Return
-            Ast.Unary {op = Ast.Negate; exp = (Ast.LiteralInt 2147483647)}))
-       ]})
+     (Ast.Block
+        [(Ast.S
+            (Ast.Return
+               Ast.Unary {op = Ast.Negate; exp = (Ast.LiteralInt 2147483647)}))
+          ])})

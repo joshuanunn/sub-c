@@ -156,11 +156,18 @@ let rec convert_stmt (s : Ast.stmt) (e : Env.senv) : Ir.instruction list =
       let l_end = Label s_end in
       cond_ins @ [ jz_cond ] @ then_ins @ [ j_end; l_else ] @ else_ins
       @ [ l_end ]
+  | Compound b ->
+      let (Block items) = b in
+      List.map
+        (fun node ->
+          match node with S s -> convert_stmt s e | D d -> convert_dclr d e)
+        items
+      |> List.flatten
   | Goto (Identifier id) -> [ Jump { target = id } ]
   | Label (Identifier id, next_stmt) -> [ Label id ] @ convert_stmt next_stmt e
   | Null -> []
 
-let convert_dclr (d : Ast.decl) (e : Env.senv) : Ir.instruction list =
+and convert_dclr (d : Ast.decl) (e : Env.senv) : Ir.instruction list =
   match d with
   (* No need to generate instructions for variable declaration *)
   | Declaration (lhs, None) ->
@@ -173,14 +180,15 @@ let convert_dclr (d : Ast.decl) (e : Env.senv) : Ir.instruction list =
       let _, instructions = convert_expr initialiser e in
       instructions
 
-let convert_func (f : Ast.func) (e : Env.senv) : Ir.func =
+and convert_func (f : Ast.func) (e : Env.senv) : Ir.func =
   match f with
   | Function fn ->
+      let (Block block_items) = fn.body in
       let body =
         List.map
           (fun node ->
             match node with S s -> convert_stmt s e | D d -> convert_dclr d e)
-          fn.body
+          block_items
         |> List.flatten
       in
       (* Append "return 0" to the function end, in case no return present *)

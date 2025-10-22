@@ -1,14 +1,15 @@
 (Ast.Program
    Ast.Function {return_type = Ast.KwInt; name = (Ast.Identifier "main");
      body =
-     [(Ast.D
-         (Ast.Declaration ((Ast.Identifier "to_shiftr"),
-            (Some (Ast.LiteralInt 382574)))));
-       (Ast.S
-          (Ast.Expression
-             (Ast.Assignment ((Ast.Var (Ast.Identifier "to_shiftr")),
-                Ast.Binary {op = Ast.BwRightShift;
-                  left = (Ast.Var (Ast.Identifier "to_shiftr"));
-                  right = (Ast.LiteralInt 4)}
-                ))));
-       (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "to_shiftr"))))]})
+     (Ast.Block
+        [(Ast.D
+            (Ast.Declaration ((Ast.Identifier "to_shiftr"),
+               (Some (Ast.LiteralInt 382574)))));
+          (Ast.S
+             (Ast.Expression
+                (Ast.Assignment ((Ast.Var (Ast.Identifier "to_shiftr")),
+                   Ast.Binary {op = Ast.BwRightShift;
+                     left = (Ast.Var (Ast.Identifier "to_shiftr"));
+                     right = (Ast.LiteralInt 4)}
+                   ))));
+          (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "to_shiftr"))))])})

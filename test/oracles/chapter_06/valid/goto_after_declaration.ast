@@ -1,29 +1,31 @@
 (Ast.Program
    Ast.Function {return_type = Ast.KwInt; name = (Ast.Identifier "main");
      body =
-     [(Ast.D
-         (Ast.Declaration ((Ast.Identifier "x"), (Some (Ast.LiteralInt 1)))));
-       (Ast.S (Ast.Goto (Ast.Identifier "post_declaration")));
-       (Ast.D
-          (Ast.Declaration ((Ast.Identifier "i"),
-             (Some (Ast.Assignment ((Ast.Var (Ast.Identifier "x")),
-                      (Ast.LiteralInt 0))))
-             )));
-       (Ast.S
-          (Ast.Label ((Ast.Identifier "post_declaration"),
-             (Ast.Expression
-                (Ast.Assignment ((Ast.Var (Ast.Identifier "i")),
-                   (Ast.LiteralInt 5))))
-             )));
-       (Ast.S
-          (Ast.Return
-             Ast.Binary {op = Ast.And;
-               left =
-               Ast.Binary {op = Ast.Equal;
-                 left = (Ast.Var (Ast.Identifier "x"));
-                 right = (Ast.LiteralInt 1)};
-               right =
-               Ast.Binary {op = Ast.Equal;
-                 left = (Ast.Var (Ast.Identifier "i"));
-                 right = (Ast.LiteralInt 5)}}))
-       ]})
+     (Ast.Block
+        [(Ast.D
+            (Ast.Declaration ((Ast.Identifier "x"), (Some (Ast.LiteralInt 1))
+               )));
+          (Ast.S (Ast.Goto (Ast.Identifier "post_declaration")));
+          (Ast.D
+             (Ast.Declaration ((Ast.Identifier "i"),
+                (Some (Ast.Assignment ((Ast.Var (Ast.Identifier "x")),
+                         (Ast.LiteralInt 0))))
+                )));
+          (Ast.S
+             (Ast.Label ((Ast.Identifier "post_declaration"),
+                (Ast.Expression
+                   (Ast.Assignment ((Ast.Var (Ast.Identifier "i")),
+                      (Ast.LiteralInt 5))))
+                )));
+          (Ast.S
+             (Ast.Return
+                Ast.Binary {op = Ast.And;
+                  left =
+                  Ast.Binary {op = Ast.Equal;
+                    left = (Ast.Var (Ast.Identifier "x"));
+                    right = (Ast.LiteralInt 1)};
+                  right =
+                  Ast.Binary {op = Ast.Equal;
+                    left = (Ast.Var (Ast.Identifier "i"));
+                    right = (Ast.LiteralInt 5)}}))
+          ])})
