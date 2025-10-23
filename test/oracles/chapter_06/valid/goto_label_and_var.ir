@@ -1,7 +1,7 @@
 (Ir.Program
    Ir.Function {name = "main";
      body =
-     [Ir.Copy {src = (Ir.Constant 5); dst = (Ir.Var "ident.0")};
-       Ir.Jump {target = "ident.1"}; (Ir.Return (Ir.Constant 0));
-       (Ir.Label "ident.1"); (Ir.Return (Ir.Var "ident.0"));
+     [Ir.Copy {src = (Ir.Constant 5); dst = (Ir.Var "ident.1")};
+       Ir.Jump {target = "ident"}; (Ir.Return (Ir.Constant 0));
+       (Ir.Label "ident"); (Ir.Return (Ir.Var "ident.1"));
        (Ir.Return (Ir.Constant 0))]})

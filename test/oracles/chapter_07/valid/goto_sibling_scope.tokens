@@ -1,0 +1,73 @@
+Token.KW_INT
+(Token.IDENTIFIER "main")
+Token.LPAREN
+Token.KW_VOID
+Token.RPAREN
+Token.LBRACE
+Token.KW_INT
+(Token.IDENTIFIER "sum")
+Token.ASSIGN
+(Token.LITERAL_INT 0)
+Token.SEMICOLON
+Token.KW_IF
+Token.LPAREN
+(Token.LITERAL_INT 1)
+Token.RPAREN
+Token.LBRACE
+Token.KW_INT
+(Token.IDENTIFIER "a")
+Token.ASSIGN
+(Token.LITERAL_INT 5)
+Token.SEMICOLON
+Token.KW_GOTO
+(Token.IDENTIFIER "other_if")
+Token.SEMICOLON
+(Token.IDENTIFIER "sum")
+Token.ASSIGN
+(Token.LITERAL_INT 0)
+Token.SEMICOLON
+(Token.IDENTIFIER "first_if")
+Token.COLON
+(Token.IDENTIFIER "a")
+Token.ASSIGN
+(Token.LITERAL_INT 5)
+Token.SEMICOLON
+(Token.IDENTIFIER "sum")
+Token.ASSIGN
+(Token.IDENTIFIER "sum")
+Token.ADD
+(Token.IDENTIFIER "a")
+Token.SEMICOLON
+Token.RBRACE
+Token.KW_IF
+Token.LPAREN
+(Token.LITERAL_INT 0)
+Token.RPAREN
+Token.LBRACE
+(Token.IDENTIFIER "other_if")
+Token.COLON
+Token.SEMICOLON
+Token.KW_INT
+(Token.IDENTIFIER "a")
+Token.ASSIGN
+(Token.LITERAL_INT 6)
+Token.SEMICOLON
+(Token.IDENTIFIER "sum")
+Token.ASSIGN
+(Token.IDENTIFIER "sum")
+Token.ADD
+(Token.IDENTIFIER "a")
+Token.SEMICOLON
+Token.KW_GOTO
+(Token.IDENTIFIER "first_if")
+Token.SEMICOLON
+(Token.IDENTIFIER "sum")
+Token.ASSIGN
+(Token.LITERAL_INT 0)
+Token.SEMICOLON
+Token.RBRACE
+Token.KW_RETURN
+(Token.IDENTIFIER "sum")
+Token.SEMICOLON
+Token.RBRACE
+Token.EOF

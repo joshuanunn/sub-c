@@ -1,0 +1,9 @@
+(Ir.Program
+   Ir.Function {name = "main";
+     body =
+     [Ir.Copy {src = (Ir.Constant 5); dst = (Ir.Var "x.1")};
+       Ir.Jump {target = "inner"};
+       Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "x.2")};
+       (Ir.Label "inner");
+       Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "x.2")};
+       (Ir.Return (Ir.Var "x.2")); (Ir.Return (Ir.Constant 0))]})

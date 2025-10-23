@@ -4,31 +4,31 @@ main:
     movq        %rsp, %rbp
     subq        $4, %rsp
     movl        $1, -4(%rbp)
-.Llabel_if.1:
+.Llabel_if:
     cmpl        $0, -4(%rbp)
     je          .Lif_else.1
-    jmp         .Llabel_expression.3
+    jmp         .Llabel_expression
     jmp         .Lif_end.0
 .Lif_else.1:
-    jmp         .Llabel_empty.5
+    jmp         .Llabel_empty
 .Lif_end.0:
-.Llabel_goto.2:
-    jmp         .Llabel_return.4
+.Llabel_goto:
+    jmp         .Llabel_return
     movl        $0, %r11d
     cmpl        $0, %r11d
     je          .Lif_end.2
-.Llabel_expression.3:
+.Llabel_expression:
     movl        $0, -4(%rbp)
 .Lif_end.2:
-    jmp         .Llabel_if.1
-.Llabel_return.4:
+    jmp         .Llabel_if
+.Llabel_return:
     movl        -4(%rbp), %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         
-.Llabel_empty.5:
+.Llabel_empty:
     movl        $100, -4(%rbp)
-    jmp         .Llabel_goto.2
+    jmp         .Llabel_goto
     movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp

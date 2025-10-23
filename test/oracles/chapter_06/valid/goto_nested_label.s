@@ -2,9 +2,9 @@
 main:
     pushq       %rbp
     movq        %rsp, %rbp
-    jmp         .LlabelB.0
-.LlabelA.1:
-.LlabelB.0:
+    jmp         .LlabelB
+.LlabelA:
+.LlabelB:
     movl        $5, %eax
     movq        %rbp, %rsp
     popq        %rbp

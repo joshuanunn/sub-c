@@ -2,11 +2,10 @@
    Asm.Function {name = "main";
      instructions =
      [(Asm.AllocateStack 20); (Asm.Mov ((Asm.Imm 1), (Asm.Stack -4)));
-       (Asm.Jmp "post_declaration.2");
-       (Asm.Mov ((Asm.Imm 0), (Asm.Stack -4)));
+       (Asm.Jmp "post_declaration"); (Asm.Mov ((Asm.Imm 0), (Asm.Stack -4)));
        (Asm.Mov ((Asm.Stack -4), (Asm.Reg Asm.R10)));
        (Asm.Mov ((Asm.Reg Asm.R10), (Asm.Stack -8)));
-       (Asm.Label "post_declaration.2");
+       (Asm.Label "post_declaration");
        (Asm.Mov ((Asm.Imm 5), (Asm.Stack -8)));
        (Asm.Cmp ((Asm.Imm 1), (Asm.Stack -4)));
        (Asm.Mov ((Asm.Imm 0), (Asm.Stack -12)));

@@ -2,6 +2,6 @@
    Ir.Function {name = "main";
      body =
      [Ir.JumpIfZero {condition = (Ir.Constant 0); target = "if_end.0"};
-       (Ir.Label "label.0"); (Ir.Return (Ir.Constant 5));
-       (Ir.Label "if_end.0"); Ir.Jump {target = "label.0"};
+       (Ir.Label "label"); (Ir.Return (Ir.Constant 5));
+       (Ir.Label "if_end.0"); Ir.Jump {target = "label"};
        (Ir.Return (Ir.Constant 0)); (Ir.Return (Ir.Constant 0))]})
