@@ -51,20 +51,39 @@ let rec resolve_stmt (s : Ast.stmt) (se : Env.senv) : Ast.stmt =
   | Compound b ->
       (* Push new scope before compound statement entry and pop after exit *)
       push_var_scope se;
-      push_lab_scope se;
       let result = Compound (resolve_block b se) in
       pop_var_scope se;
-      pop_lab_scope se;
       result
   (* goto label resolution cannot be completed until after analysis pass *)
   | Goto id -> Goto id
-  | Label (id, s) -> Label (declare_lab id se, resolve_stmt s se)
+  | Label (id, s) -> Label (id, resolve_stmt s se)
   | Null -> Null
 
 and resolve_func (f : Ast.func) (se : Env.senv) : Ast.func =
   match f with
   | Function fn ->
+      push_lab_scope se;
+
+      (* --- Phase 1: predeclare all labels in the function --- *)
+      let rec predeclare_labels block =
+        let (Block items) = block in
+        List.iter
+          (function
+            | S (Label (id, _)) -> ignore (declare_lab id se)
+            | S (If { then_smt; else_smt = Some e; _ }) ->
+                predeclare_labels (Block [ S then_smt; S e ])
+            | S (If { then_smt; else_smt = None; _ }) ->
+                predeclare_labels (Block [ S then_smt ])
+            | S (Compound inner) -> predeclare_labels inner
+            | _ -> ())
+          items
+      in
+      predeclare_labels fn.body;
+
+      (* --- Phase 2: resolve variables, labels, gotos --- *)
       let body = resolve_block fn.body se in
+
+      pop_lab_scope se;
       Function { name = fn.name; body; return_type = fn.return_type }
 
 and resolve_block (b : Ast.block) (se : Env.senv) : Ast.block =
