@@ -1,19 +1,19 @@
 (Ir.Program
    Ir.Function {name = "main";
      body =
-     [Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "main.x.0")};
-       Ir.Binary {op = Ir.Add; src1 = (Ir.Var "main.x.0");
-         src2 = (Ir.Constant 3); dst = (Ir.Var "tmp.2")};
-       Ir.Copy {src = (Ir.Var "tmp.2"); dst = (Ir.Var "main.x.0")};
-       Ir.Copy {src = (Ir.Var "main.x.0"); dst = (Ir.Var "main.y.1")};
-       Ir.Binary {op = Ir.Equal; src1 = (Ir.Var "main.x.0");
-         src2 = (Ir.Constant 4); dst = (Ir.Var "tmp.3")};
-       Ir.JumpIfZero {condition = (Ir.Var "tmp.3"); target = "and_false.6"};
-       Ir.Binary {op = Ir.Equal; src1 = (Ir.Var "main.y.1");
-         src2 = (Ir.Constant 4); dst = (Ir.Var "tmp.4")};
-       Ir.JumpIfZero {condition = (Ir.Var "tmp.4"); target = "and_false.6"};
-       Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "tmp.5")};
-       Ir.Jump {target = "and_end.7"}; (Ir.Label "and_false.6");
-       Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "tmp.5")};
-       (Ir.Label "and_end.7"); (Ir.Return (Ir.Var "tmp.5"));
+     [Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "x.0")};
+       Ir.Binary {op = Ir.Add; src1 = (Ir.Var "x.0"); src2 = (Ir.Constant 3);
+         dst = (Ir.Var "tmp.0")};
+       Ir.Copy {src = (Ir.Var "tmp.0"); dst = (Ir.Var "x.0")};
+       Ir.Copy {src = (Ir.Var "x.0"); dst = (Ir.Var "y.1")};
+       Ir.Binary {op = Ir.Equal; src1 = (Ir.Var "x.0");
+         src2 = (Ir.Constant 4); dst = (Ir.Var "tmp.1")};
+       Ir.JumpIfZero {condition = (Ir.Var "tmp.1"); target = "and_false.4"};
+       Ir.Binary {op = Ir.Equal; src1 = (Ir.Var "y.1");
+         src2 = (Ir.Constant 4); dst = (Ir.Var "tmp.2")};
+       Ir.JumpIfZero {condition = (Ir.Var "tmp.2"); target = "and_false.4"};
+       Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "tmp.3")};
+       Ir.Jump {target = "and_end.5"}; (Ir.Label "and_false.4");
+       Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "tmp.3")};
+       (Ir.Label "and_end.5"); (Ir.Return (Ir.Var "tmp.3"));
        (Ir.Return (Ir.Constant 0))]})

@@ -59,11 +59,11 @@ let fixup_instruction (i : Asm.instruction) : Asm.instruction list =
   | SetCC (cc, Reg R11) -> setcc_low_byte_fix cc R11 R11B
   | _ -> [ i ]
 
-(** [fixup_func f e] rewrites any invalid instructions in the function [f] by
+(** [fixup_func f le] rewrites any invalid instructions in the function [f] by
     applying [fixup_instruction] to each instruction. It also prepends a stack
-    allocation instruction based on the environment [e], if necessary. This may
+    allocation instruction based on the environment [le], if necessary. This may
     expand a single instruction into multiple valid ones. *)
-let fixup_func (f : Asm.func) (e : Env.senv) : Asm.func =
+let fixup_func (f : Asm.func) (le : Env.lenv) : Asm.func =
   match f with
   | Function fn ->
       let fixed_func_instrs =
@@ -71,7 +71,7 @@ let fixup_func (f : Asm.func) (e : Env.senv) : Asm.func =
         |> List.concat_map (fun instr -> fixup_instruction instr)
       in
       let stack_alloc_instrs =
-        if e.offset <> 0 then [ AllocateStack (-e.offset) ] else []
+        if le.offset <> 0 then [ AllocateStack (-le.offset) ] else []
       in
       Function
         {
@@ -79,8 +79,9 @@ let fixup_func (f : Asm.func) (e : Env.senv) : Asm.func =
           instructions = stack_alloc_instrs @ fixed_func_instrs;
         }
 
-(** [fixup_prog p e] rewrites the assembly program [p] by fixing up any invalid
+(** [fixup_prog p le] rewrites the assembly program [p] by fixing up any invalid
     instructions in each function and prepending stack allocation based on the
-    environment [e]. This ensures the resulting program only contains valid
+    environment [le]. This ensures the resulting program only contains valid
     x86-64 instructions. *)
-let fixup_prog (Program p) (e : Env.senv) : Asm.prog = Program (fixup_func p e)
+let fixup_prog (Program p) (le : Env.lenv) : Asm.prog =
+  Program (fixup_func p le)

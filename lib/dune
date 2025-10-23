@@ -8,7 +8,6 @@
   parser
   ast
   ast_analysis
-  ast_resolution
   irgen
   ir
   codegen

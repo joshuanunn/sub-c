@@ -10,7 +10,7 @@ main:
     movl        -12(%rbp), %r10d
     movl        %r10d, -4(%rbp)
     cmpl        $0, -4(%rbp)
-    je          .Lcond_e2.4
+    je          .Lcond_e2.3
     movl        -4(%rbp), %eax
     cdq         
     movl        $2, %r10d
@@ -20,10 +20,10 @@ main:
     movl        %r10d, -4(%rbp)
     movl        -4(%rbp), %r10d
     movl        %r10d, -8(%rbp)
-    jmp         .Lcond_end.3
-.Lcond_e2.4:
+    jmp         .Lcond_end.2
+.Lcond_e2.3:
     movl        $0, -8(%rbp)
-.Lcond_end.3:
+.Lcond_end.2:
     cmpl        $4, -4(%rbp)
     movl        $0, -20(%rbp)
     sete        -20(%rbp)

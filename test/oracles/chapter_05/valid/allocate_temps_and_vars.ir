@@ -1,19 +1,18 @@
 (Ir.Program
    Ir.Function {name = "main";
      body =
-     [Ir.Copy {src = (Ir.Constant 2147483646); dst = (Ir.Var "main.a.0")};
-       Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "main.b.1")};
-       Ir.Binary {op = Ir.Divide; src1 = (Ir.Var "main.a.0");
-         src2 = (Ir.Constant 6); dst = (Ir.Var "tmp.3")};
-       Ir.Unary {op = Ir.Not; src = (Ir.Var "main.b.1");
-         dst = (Ir.Var "tmp.4")};
-       Ir.Binary {op = Ir.Add; src1 = (Ir.Var "tmp.3");
+     [Ir.Copy {src = (Ir.Constant 2147483646); dst = (Ir.Var "a.0")};
+       Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "b.1")};
+       Ir.Binary {op = Ir.Divide; src1 = (Ir.Var "a.0");
+         src2 = (Ir.Constant 6); dst = (Ir.Var "tmp.0")};
+       Ir.Unary {op = Ir.Not; src = (Ir.Var "b.1"); dst = (Ir.Var "tmp.1")};
+       Ir.Binary {op = Ir.Add; src1 = (Ir.Var "tmp.0");
+         src2 = (Ir.Var "tmp.1"); dst = (Ir.Var "tmp.2")};
+       Ir.Copy {src = (Ir.Var "tmp.2"); dst = (Ir.Var "c.2")};
+       Ir.Binary {op = Ir.Multiply; src1 = (Ir.Var "c.2");
+         src2 = (Ir.Constant 2); dst = (Ir.Var "tmp.3")};
+       Ir.Binary {op = Ir.Subtract; src1 = (Ir.Var "a.0");
+         src2 = (Ir.Constant 1431655762); dst = (Ir.Var "tmp.4")};
+       Ir.Binary {op = Ir.Equal; src1 = (Ir.Var "tmp.3");
          src2 = (Ir.Var "tmp.4"); dst = (Ir.Var "tmp.5")};
-       Ir.Copy {src = (Ir.Var "tmp.5"); dst = (Ir.Var "main.c.2")};
-       Ir.Binary {op = Ir.Multiply; src1 = (Ir.Var "main.c.2");
-         src2 = (Ir.Constant 2); dst = (Ir.Var "tmp.6")};
-       Ir.Binary {op = Ir.Subtract; src1 = (Ir.Var "main.a.0");
-         src2 = (Ir.Constant 1431655762); dst = (Ir.Var "tmp.7")};
-       Ir.Binary {op = Ir.Equal; src1 = (Ir.Var "tmp.6");
-         src2 = (Ir.Var "tmp.7"); dst = (Ir.Var "tmp.8")};
-       (Ir.Return (Ir.Var "tmp.8")); (Ir.Return (Ir.Constant 0))]})
+       (Ir.Return (Ir.Var "tmp.5")); (Ir.Return (Ir.Constant 0))]})

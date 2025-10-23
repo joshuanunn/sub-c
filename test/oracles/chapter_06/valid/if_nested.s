@@ -6,15 +6,15 @@ main:
     movl        $1, -4(%rbp)
     movl        $0, -8(%rbp)
     cmpl        $0, -4(%rbp)
-    je          .Lif_else.3
+    je          .Lif_else.1
     movl        $1, -8(%rbp)
-    jmp         .Lif_end.2
-.Lif_else.3:
+    jmp         .Lif_end.0
+.Lif_else.1:
     cmpl        $0, -8(%rbp)
-    je          .Lif_end.4
+    je          .Lif_end.2
     movl        $2, -8(%rbp)
-.Lif_end.4:
 .Lif_end.2:
+.Lif_end.0:
     movl        -8(%rbp), %eax
     movq        %rbp, %rsp
     popq        %rbp

@@ -2,13 +2,13 @@
 main:
     pushq       %rbp
     movq        %rsp, %rbp
-    jmp         .Lmain.label2.0
+    jmp         .Llabel2
     movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         
-.Lmain.label1.1:
-.Lmain.label2.0:
+.Llabel1:
+.Llabel2:
     movl        $1, %eax
     movq        %rbp, %rsp
     popq        %rbp

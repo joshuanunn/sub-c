@@ -14,17 +14,18 @@ let () =
         prerr_endline "Phase must be an integer";
         exit 1
   in
-  (* Initialise a new environment *)
-  let env = Env.make_senv () in
+  (* Initialise new environments *)
+  let s_env = Env.make_senv () in
+  let l_env = Env.make_lenv () in
   Io.with_input_file source_path (fun lexbuf ->
       match phase with
       | 1 -> Io.run_lexer lexbuf
       | 2 -> Io.run_parser lexbuf
-      | 3 -> Io.run_validator lexbuf env
-      | 4 -> Io.run_irgen lexbuf env
-      | 5 -> Io.run_codegen lexbuf env
-      | 6 -> Io.run_emit lexbuf env
-      | 7 -> Io.run_exe lexbuf target_path env
+      | 3 -> Io.run_validator lexbuf s_env
+      | 4 -> Io.run_irgen lexbuf s_env l_env
+      | 5 -> Io.run_codegen lexbuf s_env l_env
+      | 6 -> Io.run_emit lexbuf s_env l_env
+      | 7 -> Io.run_exe lexbuf target_path s_env l_env
       | _ ->
           prerr_endline
             "Unknown phase. Supported: 1=lex, 2=parse, 3=validate, 4=irgen, \

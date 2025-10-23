@@ -1,8 +1,8 @@
 (Ir.Program
    Ir.Function {name = "main";
      body =
-     [Ir.Copy {src = (Ir.Constant 382574); dst = (Ir.Var "main.to_shiftr.0")};
-       Ir.Binary {op = Ir.BwRightShift; src1 = (Ir.Var "main.to_shiftr.0");
-         src2 = (Ir.Constant 4); dst = (Ir.Var "tmp.1")};
-       Ir.Copy {src = (Ir.Var "tmp.1"); dst = (Ir.Var "main.to_shiftr.0")};
-       (Ir.Return (Ir.Var "main.to_shiftr.0")); (Ir.Return (Ir.Constant 0))]})
+     [Ir.Copy {src = (Ir.Constant 382574); dst = (Ir.Var "to_shiftr.0")};
+       Ir.Binary {op = Ir.BwRightShift; src1 = (Ir.Var "to_shiftr.0");
+         src2 = (Ir.Constant 4); dst = (Ir.Var "tmp.0")};
+       Ir.Copy {src = (Ir.Var "tmp.0"); dst = (Ir.Var "to_shiftr.0")};
+       (Ir.Return (Ir.Var "to_shiftr.0")); (Ir.Return (Ir.Constant 0))]})

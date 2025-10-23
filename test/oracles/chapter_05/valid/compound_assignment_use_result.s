@@ -15,17 +15,17 @@ main:
     movl        $0, -16(%rbp)
     sete        -16(%rbp)
     cmpl        $0, -16(%rbp)
-    je          .Land_false.6
+    je          .Land_false.4
     cmpl        $4, -8(%rbp)
     movl        $0, -20(%rbp)
     sete        -20(%rbp)
     cmpl        $0, -20(%rbp)
-    je          .Land_false.6
+    je          .Land_false.4
     movl        $1, -24(%rbp)
-    jmp         .Land_end.7
-.Land_false.6:
+    jmp         .Land_end.5
+.Land_false.4:
     movl        $0, -24(%rbp)
-.Land_end.7:
+.Land_end.5:
     movl        -24(%rbp), %eax
     movq        %rbp, %rsp
     popq        %rbp

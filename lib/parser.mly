@@ -78,8 +78,8 @@ block_items:
   ;
 
 block_item:
-  | decl { mk_block_decl $1 }
-  | stmt { mk_block_stmt $1 }
+  | decl { mk_decl_block_item $1 }
+  | stmt { mk_stmt_block_item $1 }
   ;
 
 decl:
@@ -88,10 +88,11 @@ decl:
   ;
 
 stmt:
-  | KW_IF LPAREN expr RPAREN stmt KW_ELSE stmt { mk_if_stmt $3 $5 (Some $7) }
-  | KW_IF LPAREN expr RPAREN stmt %prec IFX { mk_if_stmt $3 $5 None }
   | KW_RETURN expr SEMICOLON { mk_return_stmt $2 }
   | expr SEMICOLON { mk_expr_stmt $1 }
+  | KW_IF LPAREN expr RPAREN stmt KW_ELSE stmt { mk_if_stmt $3 $5 (Some $7) }
+  | KW_IF LPAREN expr RPAREN stmt %prec IFX { mk_if_stmt $3 $5 None }
+  | block { mk_block_stmt $1 }
   | KW_GOTO identifier SEMICOLON { mk_goto_stmt $2 }
   | identifier COLON stmt { mk_label_stmt $1 $3 }
   | SEMICOLON { Null }

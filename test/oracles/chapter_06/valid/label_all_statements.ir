@@ -1,19 +1,18 @@
 (Ir.Program
    Ir.Function {name = "main";
      body =
-     [Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "main.a.0")};
-       (Ir.Label "main.label_if.1");
-       Ir.JumpIfZero {condition = (Ir.Var "main.a.0"); target = "if_else.7"};
-       Ir.Jump {target = "main.label_expression.3"};
-       Ir.Jump {target = "if_end.6"}; (Ir.Label "if_else.7");
-       Ir.Jump {target = "main.label_empty.5"}; (Ir.Label "if_end.6");
-       (Ir.Label "main.label_goto.2");
-       Ir.Jump {target = "main.label_return.4"};
-       Ir.JumpIfZero {condition = (Ir.Constant 0); target = "if_end.8"};
-       (Ir.Label "main.label_expression.3");
-       Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "main.a.0")};
-       (Ir.Label "if_end.8"); Ir.Jump {target = "main.label_if.1"};
-       (Ir.Label "main.label_return.4"); (Ir.Return (Ir.Var "main.a.0"));
-       (Ir.Label "main.label_empty.5");
-       Ir.Copy {src = (Ir.Constant 100); dst = (Ir.Var "main.a.0")};
-       Ir.Jump {target = "main.label_goto.2"}; (Ir.Return (Ir.Constant 0))]})
+     [Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "a.5")};
+       (Ir.Label "label_if");
+       Ir.JumpIfZero {condition = (Ir.Var "a.5"); target = "if_else.1"};
+       Ir.Jump {target = "label_expression"}; Ir.Jump {target = "if_end.0"};
+       (Ir.Label "if_else.1"); Ir.Jump {target = "label_empty"};
+       (Ir.Label "if_end.0"); (Ir.Label "label_goto");
+       Ir.Jump {target = "label_return"};
+       Ir.JumpIfZero {condition = (Ir.Constant 0); target = "if_end.2"};
+       (Ir.Label "label_expression");
+       Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "a.5")};
+       (Ir.Label "if_end.2"); Ir.Jump {target = "label_if"};
+       (Ir.Label "label_return"); (Ir.Return (Ir.Var "a.5"));
+       (Ir.Label "label_empty");
+       Ir.Copy {src = (Ir.Constant 100); dst = (Ir.Var "a.5")};
+       Ir.Jump {target = "label_goto"}; (Ir.Return (Ir.Constant 0))]})

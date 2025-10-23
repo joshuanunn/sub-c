@@ -1,6 +1,6 @@
 (Ir.Program
    Ir.Function {name = "main";
      body =
-     [Ir.Jump {target = "main.main.0"}; (Ir.Return (Ir.Constant 5));
-       (Ir.Label "main.main.0"); (Ir.Return (Ir.Constant 0));
+     [Ir.Jump {target = "main"}; (Ir.Return (Ir.Constant 5));
+       (Ir.Label "main"); (Ir.Return (Ir.Constant 0));
        (Ir.Return (Ir.Constant 0))]})
