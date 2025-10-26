@@ -3,7 +3,7 @@
      body =
      (Ast.Block
         [(Ast.D
-            (Ast.Declaration ((Ast.Identifier "sum.3"),
+            (Ast.Declaration ((Ast.Identifier "sum.5"),
                (Some (Ast.LiteralInt 0)))));
           (Ast.S (Ast.Goto (Ast.Identifier "do_label")));
           (Ast.S (Ast.Return (Ast.LiteralInt 0)));
@@ -16,7 +16,7 @@
                         [(Ast.S
                             (Ast.Expression
                                (Ast.Assignment (
-                                  (Ast.Var (Ast.Identifier "sum.3")),
+                                  (Ast.Var (Ast.Identifier "sum.5")),
                                   (Ast.LiteralInt 1)))));
                           (Ast.S (Ast.Goto (Ast.Identifier "while_label")))]));
                   cond = (Ast.LiteralInt 1);
@@ -31,9 +31,9 @@
                         [(Ast.S
                             (Ast.Expression
                                (Ast.Assignment (
-                                  (Ast.Var (Ast.Identifier "sum.3")),
+                                  (Ast.Var (Ast.Identifier "sum.5")),
                                   Ast.Binary {op = Ast.Add;
-                                    left = (Ast.Var (Ast.Identifier "sum.3"));
+                                    left = (Ast.Var (Ast.Identifier "sum.5"));
                                     right = (Ast.LiteralInt 1)}
                                   ))));
                           (Ast.S (Ast.Goto (Ast.Identifier "break_label")));
@@ -52,16 +52,16 @@
                 Ast.For {
                   init =
                   (Ast.InclDecl
-                     (Ast.Declaration ((Ast.Identifier "i.4"),
+                     (Ast.Declaration ((Ast.Identifier "i.6"),
                         (Some (Ast.LiteralInt 0)))));
                   cond =
                   (Some Ast.Binary {op = Ast.LessThan;
-                          left = (Ast.Var (Ast.Identifier "i.4"));
+                          left = (Ast.Var (Ast.Identifier "i.6"));
                           right = (Ast.LiteralInt 10)});
                   post =
-                  (Some (Ast.Assignment ((Ast.Var (Ast.Identifier "i.4")),
+                  (Some (Ast.Assignment ((Ast.Var (Ast.Identifier "i.6")),
                            Ast.Binary {op = Ast.Add;
-                             left = (Ast.Var (Ast.Identifier "i.4"));
+                             left = (Ast.Var (Ast.Identifier "i.6"));
                              right = (Ast.LiteralInt 1)}
                            )));
                   body =
@@ -70,9 +70,9 @@
                         [(Ast.S
                             (Ast.Expression
                                (Ast.Assignment (
-                                  (Ast.Var (Ast.Identifier "sum.3")),
+                                  (Ast.Var (Ast.Identifier "sum.5")),
                                   Ast.Binary {op = Ast.Add;
-                                    left = (Ast.Var (Ast.Identifier "sum.3"));
+                                    left = (Ast.Var (Ast.Identifier "sum.5"));
                                     right = (Ast.LiteralInt 1)}
                                   ))));
                           (Ast.S (Ast.Goto (Ast.Identifier "continue_label")));
@@ -84,4 +84,4 @@
                           (Ast.S (Ast.Return (Ast.LiteralInt 0)))]));
                   id = (Some (Ast.Identifier "for.3"))}
                 )));
-          (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "sum.3"))))])})
+          (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "sum.5"))))])})

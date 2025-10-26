@@ -93,7 +93,9 @@ and resolve_func (f : Ast.func) (se : Env.senv) : Ast.func =
         let (Block items) = block in
         List.iter
           (function
-            | S (Label (id, _)) -> ignore (declare_lab id se)
+            | S (Label (id, s)) ->
+                ignore (declare_lab id se);
+                predeclare_labels (Block [ S s ])
             | S (If { then_smt; else_smt = Some e; _ }) ->
                 predeclare_labels (Block [ S then_smt; S e ])
             | S (If { then_smt; else_smt = None; _ }) ->
