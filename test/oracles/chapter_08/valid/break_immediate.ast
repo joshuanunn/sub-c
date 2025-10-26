@@ -10,5 +10,5 @@
                cond =
                (Ast.Assignment ((Ast.Var (Ast.Identifier "a")),
                   (Ast.LiteralInt 1)));
-               body = (Ast.Break None)});
+               body = (Ast.Break None); id = None});
           (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "a"))))])})

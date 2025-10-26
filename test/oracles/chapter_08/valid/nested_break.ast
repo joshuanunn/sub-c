@@ -57,5 +57,7 @@
                                Ast.Binary {op = Ast.Add;
                                  left = (Ast.Var (Ast.Identifier "ans"));
                                  right = (Ast.Var (Ast.Identifier "i"))}
-                               ))))}}});
+                               ))))};
+                 id = None};
+               id = None});
           (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "ans"))))])})

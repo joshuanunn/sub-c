@@ -24,7 +24,8 @@
                               left = (Ast.Var (Ast.Identifier "i"));
                               right = (Ast.LiteralInt 10)};
                             then_smt = (Ast.Break None); else_smt = None})
-                       ]))});
+                       ]));
+               id = None});
           (Ast.D
              (Ast.Declaration ((Ast.Identifier "j"),
                 (Some (Ast.LiteralInt 10)))));
@@ -47,7 +48,8 @@
                               left = (Ast.Var (Ast.Identifier "j"));
                               right = (Ast.LiteralInt 0)};
                             then_smt = (Ast.Break None); else_smt = None})
-                       ]))});
+                       ]));
+               id = None});
           (Ast.D
              (Ast.Declaration ((Ast.Identifier "result"),
                 (Some Ast.Binary {op = Ast.And;

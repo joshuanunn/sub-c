@@ -31,5 +31,6 @@
                       right = (Ast.LiteralInt 0)};
                     then_smt = (Ast.Return (Ast.LiteralInt 1));
                     else_smt = None}
-                  ))});
+                  ));
+               id = None});
           (Ast.S (Ast.Return (Ast.LiteralInt 0)))])})

@@ -17,5 +17,6 @@
                      Ast.Binary {op = Ast.Add;
                        left = (Ast.Var (Ast.Identifier "a"));
                        right = (Ast.LiteralInt 2)}
-                     )))});
+                     )));
+               id = None});
           (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "a"))))])})

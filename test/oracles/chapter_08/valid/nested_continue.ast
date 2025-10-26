@@ -57,7 +57,8 @@
                                                   (Ast.Identifier "acc"));
                                                right = (Ast.LiteralInt 1)}
                                              ))))
-                                    ]))});
+                                    ]));
+                            id = None});
                        (Ast.S
                           (Ast.Expression
                              (Ast.Assignment ((Ast.Var (Ast.Identifier "x")),
@@ -65,5 +66,6 @@
                                   left = (Ast.Var (Ast.Identifier "x"));
                                   right = (Ast.LiteralInt 1)}
                                 ))))
-                       ]))});
+                       ]));
+               id = None});
           (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "acc"))))])})

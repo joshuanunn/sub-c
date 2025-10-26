@@ -43,7 +43,8 @@
                               left = (Ast.Var (Ast.Identifier "a"));
                               right = (Ast.LiteralInt 0)};
                             then_smt = (Ast.Break None); else_smt = None})
-                       ]))});
+                       ]));
+               id = None});
           (Ast.S
              (Ast.Return
                 Ast.Binary {op = Ast.And;

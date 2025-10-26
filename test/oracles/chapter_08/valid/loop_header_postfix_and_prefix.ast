@@ -16,7 +16,8 @@
                body =
                (Ast.Expression
                   Ast.Unary {op = Ast.PostIncrement;
-                    exp = (Ast.Var (Ast.Identifier "count"))})});
+                    exp = (Ast.Var (Ast.Identifier "count"))});
+               id = None});
           (Ast.S
              Ast.If {
                cond_exp =
@@ -40,7 +41,8 @@
                body =
                (Ast.Expression
                   Ast.Unary {op = Ast.PostIncrement;
-                    exp = (Ast.Var (Ast.Identifier "count"))})});
+                    exp = (Ast.Var (Ast.Identifier "count"))});
+               id = None});
           (Ast.S
              Ast.If {
                cond_exp =

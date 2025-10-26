@@ -19,7 +19,7 @@
                                   (Ast.Var (Ast.Identifier "sum")),
                                   (Ast.LiteralInt 1)))));
                           (Ast.S (Ast.Goto (Ast.Identifier "while_label")))]));
-                  cond = (Ast.LiteralInt 1)}
+                  cond = (Ast.LiteralInt 1); id = None}
                 )));
           (Ast.S
              (Ast.Label ((Ast.Identifier "while_label"),
@@ -40,7 +40,8 @@
                           (Ast.S
                              (Ast.Label ((Ast.Identifier "break_label"),
                                 (Ast.Break None))))
-                          ]))}
+                          ]));
+                  id = None}
                 )));
           (Ast.S Ast.Null); (Ast.S (Ast.Goto (Ast.Identifier "for_label")));
           (Ast.S (Ast.Return (Ast.LiteralInt 0)));
@@ -77,6 +78,7 @@
                           (Ast.S
                              (Ast.Label ((Ast.Identifier "continue_label"),
                                 (Ast.Continue None))));
-                          (Ast.S (Ast.Return (Ast.LiteralInt 0)))]))}
+                          (Ast.S (Ast.Return (Ast.LiteralInt 0)))]));
+                  id = None}
                 )));
           (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "sum"))))])})

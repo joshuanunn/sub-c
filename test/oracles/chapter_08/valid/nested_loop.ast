@@ -46,8 +46,10 @@
                                                (Ast.Var (Ast.Identifier "y"));
                                                right = (Ast.LiteralInt 1)}
                                              ))))
-                                    ]))})
-                       ]))});
+                                    ]));
+                            id = None})
+                       ]));
+               id = None});
           (Ast.S
              (Ast.Return
                 Ast.Binary {op = Ast.And;

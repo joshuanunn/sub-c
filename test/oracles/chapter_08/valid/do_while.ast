@@ -21,5 +21,6 @@
                cond =
                Ast.Binary {op = Ast.LessThan;
                  left = (Ast.Var (Ast.Identifier "a"));
-                 right = (Ast.LiteralInt 11)}});
+                 right = (Ast.LiteralInt 11)};
+               id = None});
           (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "a"))))])})

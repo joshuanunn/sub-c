@@ -41,5 +41,6 @@
                                   left = (Ast.Var (Ast.Identifier "sum"));
                                   right = (Ast.Var (Ast.Identifier "i"))}
                                 ))))
-                       ]))});
+                       ]));
+               id = None});
           (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "sum"))))])})

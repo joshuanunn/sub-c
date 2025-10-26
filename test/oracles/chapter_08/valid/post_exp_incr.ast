@@ -29,5 +29,6 @@
                                  left = (Ast.Var (Ast.Identifier "product"));
                                  right = (Ast.LiteralInt 2)}
                                ))))
-                       ]))});
+                       ]));
+               id = None});
           (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "product"))))])})

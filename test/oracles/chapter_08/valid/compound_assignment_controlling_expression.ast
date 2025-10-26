@@ -22,7 +22,8 @@
                   Ast.Binary {op = Ast.Subtract;
                     left = (Ast.Var (Ast.Identifier "i"));
                     right = (Ast.LiteralInt 1)}
-                  ))});
+                  ));
+               id = None});
           (Ast.S
              (Ast.Return
                 Ast.Binary {op = Ast.And;

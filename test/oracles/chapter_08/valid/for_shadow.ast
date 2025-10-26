@@ -35,7 +35,8 @@
                                  left = (Ast.Var (Ast.Identifier "acc"));
                                  right = (Ast.Var (Ast.Identifier "shadow"))}
                                ))))
-                       ]))});
+                       ]));
+               id = None});
           (Ast.S
              (Ast.Return
                 Ast.Binary {op = Ast.And;

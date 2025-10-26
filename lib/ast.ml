@@ -48,13 +48,14 @@ type stmt =
   | Compound of block
   | Break of ident option
   | Continue of ident option
-  | While of { cond : expr; body : stmt }
-  | DoWhile of { body : stmt; cond : expr }
+  | While of { cond : expr; body : stmt; id : ident option }
+  | DoWhile of { body : stmt; cond : expr; id : ident option }
   | For of {
       init : for_init;
       cond : expr option;
       post : expr option;
       body : stmt;
+      id : ident option;
     }
   | Goto of ident
   | Label of ident * stmt
@@ -86,12 +87,15 @@ let mk_return_stmt s = Return s
 let mk_expr_stmt s = Expression s
 let mk_if_stmt i t e = If { cond_exp = i; then_smt = t; else_smt = e }
 let mk_block_stmt l = Compound (Block l)
-let mk_while_stmt c b = While { cond = c; body = b }
-let mk_dowhile_stmt b c = DoWhile { body = b; cond = c }
+let mk_while_stmt c b = While { cond = c; body = b; id = None }
+let mk_dowhile_stmt b c = DoWhile { body = b; cond = c; id = None }
 let mk_empty_init_exp = InitExp None
 let mk_init_exp e = InitExp (Some e)
 let mk_incl_decl d = InclDecl d
-let mk_for_stmt i c p b = For { init = i; cond = c; post = p; body = b }
+
+let mk_for_stmt i c p b =
+  For { init = i; cond = c; post = p; body = b; id = None }
+
 let mk_goto_stmt l = Goto l
 let mk_label_stmt l s = Label (l, s)
 let mk_decl_init_stmt i v = Declaration (i, Some v)

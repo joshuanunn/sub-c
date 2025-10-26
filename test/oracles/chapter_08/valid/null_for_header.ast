@@ -24,5 +24,6 @@
                               left = (Ast.Var (Ast.Identifier "a"));
                               right = (Ast.LiteralInt 3)};
                             then_smt = (Ast.Break None); else_smt = None})
-                       ]))});
+                       ]));
+               id = None});
           (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "a"))))])})

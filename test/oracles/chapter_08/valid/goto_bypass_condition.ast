@@ -30,5 +30,5 @@
                             (Ast.Goto (Ast.Identifier "while_start"));
                             else_smt = None})
                        ]));
-               cond = (Ast.LiteralInt 0)});
+               cond = (Ast.LiteralInt 0); id = None});
           (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "i"))))])})

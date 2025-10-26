@@ -43,7 +43,8 @@
                           (Ast.Expression
                              (Ast.Assignment ((Ast.Var (Ast.Identifier "k")),
                                 (Ast.Var (Ast.Identifier "j"))))))
-                       ]))});
+                       ]));
+               id = None});
           (Ast.S
              (Ast.Return
                 Ast.Binary {op = Ast.And;

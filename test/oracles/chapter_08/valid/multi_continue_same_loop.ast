@@ -55,7 +55,8 @@
                cond =
                Ast.Binary {op = Ast.NotEqual;
                  left = (Ast.Var (Ast.Identifier "z"));
-                 right = (Ast.LiteralInt 50)}});
+                 right = (Ast.LiteralInt 50)};
+               id = None});
           (Ast.S
              (Ast.Return
                 Ast.Binary {op = Ast.And;

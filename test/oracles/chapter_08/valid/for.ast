@@ -28,5 +28,6 @@
                      Ast.Binary {op = Ast.Divide;
                        left = (Ast.Var (Ast.Identifier "a"));
                        right = (Ast.LiteralInt 3)}
-                     )))});
+                     )));
+               id = None});
           (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "a"))))])})
