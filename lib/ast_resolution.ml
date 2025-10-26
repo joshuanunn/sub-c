@@ -1,6 +1,28 @@
 open Ast
 open Env
 
+let rec predeclare_labels (block : Ast.block) (se : Env.senv) : unit =
+  let (Ast.Block items) = block in
+  List.iter
+    (fun item ->
+      match item with
+      | Ast.D _ -> () (* Declarations don't contain labels *)
+      | Ast.S stmt -> predeclare_stmt_labels stmt se)
+    items
+
+and predeclare_stmt_labels (stmt : Ast.stmt) (se : Env.senv) : unit =
+  match stmt with
+  | Label (id, inner) ->
+      ignore (declare_lab id se);
+      predeclare_stmt_labels inner se (* Recurse into inner statement *)
+  | Compound block -> predeclare_labels block se
+  | If { then_smt; else_smt; _ } -> (
+      predeclare_stmt_labels then_smt se;
+      match else_smt with Some s -> predeclare_stmt_labels s se | None -> ())
+  | While { body; _ } | DoWhile { body; _ } | For { body; _ } ->
+      predeclare_stmt_labels body se
+  | Break _ | Continue _ | Goto _ | Return _ | Expression _ | Null -> ()
+
 let rec resolve_expr (e : Ast.expr) (se : Env.senv) : Ast.expr =
   match e with
   | LiteralInt i -> LiteralInt i
@@ -89,25 +111,7 @@ and resolve_func (f : Ast.func) (se : Env.senv) : Ast.func =
       push_lab_scope se;
 
       (* --- Phase 1: predeclare all labels in the function --- *)
-      let rec predeclare_labels block =
-        let (Block items) = block in
-        List.iter
-          (function
-            | S (Label (id, s)) ->
-                ignore (declare_lab id se);
-                predeclare_labels (Block [ S s ])
-            | S (If { then_smt; else_smt = Some e; _ }) ->
-                predeclare_labels (Block [ S then_smt; S e ])
-            | S (If { then_smt; else_smt = None; _ }) ->
-                predeclare_labels (Block [ S then_smt ])
-            | S (Compound inner) -> predeclare_labels inner
-            | S (While { body; _ }) -> predeclare_labels (Block [ S body ])
-            | S (DoWhile { body; _ }) -> predeclare_labels (Block [ S body ])
-            | S (For { body; _ }) -> predeclare_labels (Block [ S body ])
-            | _ -> ())
-          items
-      in
-      predeclare_labels fn.body;
+      predeclare_labels fn.body se;
 
       (* --- Phase 2: resolve variables, labels, gotos --- *)
       let body = resolve_block fn.body se in
