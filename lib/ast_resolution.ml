@@ -64,18 +64,18 @@ let rec resolve_stmt (s : Ast.stmt) (se : Env.senv) : Ast.stmt =
       result
   | Break id -> Break id
   | Continue id -> Continue id
-  | While { cond : expr; body : stmt } ->
-      While { cond = resolve_expr cond se; body = resolve_stmt body se }
-  | DoWhile { body : stmt; cond : expr } ->
-      DoWhile { body = resolve_stmt body se; cond = resolve_expr cond se }
-  | For { init; cond; post; body } ->
+  | While { cond; body; id } ->
+      While { cond = resolve_expr cond se; body = resolve_stmt body se; id }
+  | DoWhile { body; cond; id } ->
+      DoWhile { body = resolve_stmt body se; cond = resolve_expr cond se; id }
+  | For { init; cond; post; body; id } ->
       (* For loop header introduces new scope *)
       push_var_scope se;
       let init = resolve_for_init init se in
       let cond = resolve_opt_expr cond se in
       let post = resolve_opt_expr post se in
       let body = resolve_stmt body se in
-      let result = For { init; cond; post; body } in
+      let result = For { init; cond; post; body; id } in
       pop_var_scope se;
       result
   (* goto label resolution cannot be completed until after analysis pass *)
