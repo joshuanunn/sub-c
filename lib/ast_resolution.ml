@@ -99,6 +99,9 @@ and resolve_func (f : Ast.func) (se : Env.senv) : Ast.func =
             | S (If { then_smt; else_smt = None; _ }) ->
                 predeclare_labels (Block [ S then_smt ])
             | S (Compound inner) -> predeclare_labels inner
+            | S (While { body; _ }) -> predeclare_labels (Block [ S body ])
+            | S (DoWhile { body; _ }) -> predeclare_labels (Block [ S body ])
+            | S (For { body; _ }) -> predeclare_labels (Block [ S body ])
             | _ -> ())
           items
       in
