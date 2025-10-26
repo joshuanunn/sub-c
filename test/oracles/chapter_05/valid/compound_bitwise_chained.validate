@@ -1,0 +1,160 @@
+(Ast.Program
+   Ast.Function {return_type = Ast.KwInt; name = (Ast.Identifier "main");
+     body =
+     (Ast.Block
+        [(Ast.D
+            (Ast.Declaration ((Ast.Identifier "a.0"),
+               (Some (Ast.LiteralInt 250)))));
+          (Ast.D
+             (Ast.Declaration ((Ast.Identifier "b.1"),
+                (Some (Ast.LiteralInt 200)))));
+          (Ast.D
+             (Ast.Declaration ((Ast.Identifier "c.2"),
+                (Some (Ast.LiteralInt 100)))));
+          (Ast.D
+             (Ast.Declaration ((Ast.Identifier "d.3"),
+                (Some (Ast.LiteralInt 75)))));
+          (Ast.D
+             (Ast.Declaration ((Ast.Identifier "e.4"),
+                (Some (Ast.LiteralInt 50)))));
+          (Ast.D
+             (Ast.Declaration ((Ast.Identifier "f.5"),
+                (Some (Ast.LiteralInt 25)))));
+          (Ast.D
+             (Ast.Declaration ((Ast.Identifier "g.6"),
+                (Some (Ast.LiteralInt 10)))));
+          (Ast.D
+             (Ast.Declaration ((Ast.Identifier "h.7"),
+                (Some (Ast.LiteralInt 1)))));
+          (Ast.D
+             (Ast.Declaration ((Ast.Identifier "j.8"),
+                (Some (Ast.LiteralInt 0)))));
+          (Ast.D
+             (Ast.Declaration ((Ast.Identifier "x.9"),
+                (Some (Ast.LiteralInt 0)))));
+          (Ast.S
+             (Ast.Expression
+                (Ast.Assignment ((Ast.Var (Ast.Identifier "x.9")),
+                   (Ast.Assignment ((Ast.Var (Ast.Identifier "a.0")),
+                      Ast.Binary {op = Ast.BwAnd;
+                        left = (Ast.Var (Ast.Identifier "a.0"));
+                        right =
+                        (Ast.Assignment ((Ast.Var (Ast.Identifier "b.1")),
+                           Ast.Binary {op = Ast.Multiply;
+                             left = (Ast.Var (Ast.Identifier "b.1"));
+                             right =
+                             (Ast.Assignment (
+                                (Ast.Var (Ast.Identifier "c.2")),
+                                Ast.Binary {op = Ast.BwOr;
+                                  left = (Ast.Var (Ast.Identifier "c.2"));
+                                  right =
+                                  (Ast.Assignment (
+                                     (Ast.Var (Ast.Identifier "d.3")),
+                                     (Ast.Assignment (
+                                        (Ast.Var (Ast.Identifier "e.4")),
+                                        Ast.Binary {op = Ast.BwXor;
+                                          left =
+                                          (Ast.Var (Ast.Identifier "e.4"));
+                                          right =
+                                          (Ast.Assignment (
+                                             (Ast.Var (Ast.Identifier "f.5")),
+                                             Ast.Binary {op = Ast.Add;
+                                               left =
+                                               (Ast.Var
+                                                  (Ast.Identifier "f.5"));
+                                               right =
+                                               (Ast.Assignment (
+                                                  (Ast.Var
+                                                     (Ast.Identifier "g.6")),
+                                                  Ast.Binary {
+                                                    op = Ast.BwRightShift;
+                                                    left =
+                                                    (Ast.Var
+                                                       (Ast.Identifier "g.6"));
+                                                    right =
+                                                    (Ast.Assignment (
+                                                       (Ast.Var
+                                                          (Ast.Identifier
+                                                             "h.7")),
+                                                       Ast.Binary {
+                                                         op = Ast.BwLeftShift;
+                                                         left =
+                                                         (Ast.Var
+                                                            (Ast.Identifier
+                                                               "h.7"));
+                                                         right =
+                                                         (Ast.Assignment (
+                                                            (Ast.Var
+                                                               (Ast.Identifier
+                                                                  "j.8")),
+                                                            (Ast.LiteralInt 1)
+                                                            ))}
+                                                       ))}
+                                                  ))}
+                                             ))}
+                                        ))
+                                     ))}
+                                ))}
+                           ))}
+                      ))
+                   ))));
+          (Ast.S
+             (Ast.Return
+                Ast.Binary {op = Ast.And;
+                  left =
+                  Ast.Binary {op = Ast.And;
+                    left =
+                    Ast.Binary {op = Ast.And;
+                      left =
+                      Ast.Binary {op = Ast.And;
+                        left =
+                        Ast.Binary {op = Ast.And;
+                          left =
+                          Ast.Binary {op = Ast.And;
+                            left =
+                            Ast.Binary {op = Ast.And;
+                              left =
+                              Ast.Binary {op = Ast.And;
+                                left =
+                                Ast.Binary {op = Ast.And;
+                                  left =
+                                  Ast.Binary {op = Ast.Equal;
+                                    left = (Ast.Var (Ast.Identifier "a.0"));
+                                    right = (Ast.LiteralInt 40)};
+                                  right =
+                                  Ast.Binary {op = Ast.Equal;
+                                    left = (Ast.Var (Ast.Identifier "b.1"));
+                                    right = (Ast.LiteralInt 21800)}};
+                                right =
+                                Ast.Binary {op = Ast.Equal;
+                                  left = (Ast.Var (Ast.Identifier "c.2"));
+                                  right = (Ast.LiteralInt 109)}};
+                              right =
+                              Ast.Binary {op = Ast.Equal;
+                                left = (Ast.Var (Ast.Identifier "d.3"));
+                                right = (Ast.LiteralInt 41)}};
+                            right =
+                            Ast.Binary {op = Ast.Equal;
+                              left = (Ast.Var (Ast.Identifier "e.4"));
+                              right = (Ast.LiteralInt 41)}};
+                          right =
+                          Ast.Binary {op = Ast.Equal;
+                            left = (Ast.Var (Ast.Identifier "f.5"));
+                            right = (Ast.LiteralInt 27)}};
+                        right =
+                        Ast.Binary {op = Ast.Equal;
+                          left = (Ast.Var (Ast.Identifier "g.6"));
+                          right = (Ast.LiteralInt 2)}};
+                      right =
+                      Ast.Binary {op = Ast.Equal;
+                        left = (Ast.Var (Ast.Identifier "h.7"));
+                        right = (Ast.LiteralInt 2)}};
+                    right =
+                    Ast.Binary {op = Ast.Equal;
+                      left = (Ast.Var (Ast.Identifier "j.8"));
+                      right = (Ast.LiteralInt 1)}};
+                  right =
+                  Ast.Binary {op = Ast.Equal;
+                    left = (Ast.Var (Ast.Identifier "x.9"));
+                    right = (Ast.LiteralInt 40)}}))
+          ])})

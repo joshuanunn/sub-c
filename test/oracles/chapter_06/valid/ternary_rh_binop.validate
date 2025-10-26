@@ -1,0 +1,12 @@
+(Ast.Program
+   Ast.Function {return_type = Ast.KwInt; name = (Ast.Identifier "main");
+     body =
+     (Ast.Block
+        [(Ast.S
+            (Ast.Return
+               Ast.Conditional {cond_exp = (Ast.LiteralInt 0);
+                 then_exp = (Ast.LiteralInt 1);
+                 else_exp =
+                 Ast.Binary {op = Ast.Or; left = (Ast.LiteralInt 0);
+                   right = (Ast.LiteralInt 2)}}))
+          ])})

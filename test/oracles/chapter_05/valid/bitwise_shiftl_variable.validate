@@ -1,0 +1,13 @@
+(Ast.Program
+   Ast.Function {return_type = Ast.KwInt; name = (Ast.Identifier "main");
+     body =
+     (Ast.Block
+        [(Ast.D
+            (Ast.Declaration ((Ast.Identifier "x.0"),
+               (Some (Ast.LiteralInt 3)))));
+          (Ast.S
+             (Ast.Return
+                Ast.Binary {op = Ast.BwLeftShift;
+                  left = (Ast.Var (Ast.Identifier "x.0"));
+                  right = (Ast.LiteralInt 3)}))
+          ])})

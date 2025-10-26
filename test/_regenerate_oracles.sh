@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -Eeuo pipefail
+#set -Eeuo pipefail
 
 script_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd -P)
 
@@ -14,7 +14,7 @@ for i in $(seq -f "%02g" 1 20); do
 done
 
 # What phases to generate
-PHASES=("lex" "parse" "irgen" "codegen" "emit" "exe")
+PHASES=("lex" "parse" "validate" "irgen" "codegen" "emit" "exe")
 
 # Loop over test files
 for chapter in "${CHAPTERS[@]}"; do
@@ -29,6 +29,7 @@ for chapter in "${CHAPTERS[@]}"; do
       case "$phase" in
         lex) ext="tokens" ;;
         parse) ext="ast" ;;
+        validate) ext="validate" ;;
         irgen) ext="ir" ;;
         codegen) ext="asm" ;;
         emit) ext="s" ;;

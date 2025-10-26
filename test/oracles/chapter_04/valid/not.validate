@@ -1,0 +1,7 @@
+(Ast.Program
+   Ast.Function {return_type = Ast.KwInt; name = (Ast.Identifier "main");
+     body =
+     (Ast.Block
+        [(Ast.S
+            (Ast.Return Ast.Unary {op = Ast.Not; exp = (Ast.LiteralInt 5)}))
+          ])})

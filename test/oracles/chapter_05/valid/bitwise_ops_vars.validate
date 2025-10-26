@@ -1,0 +1,22 @@
+(Ast.Program
+   Ast.Function {return_type = Ast.KwInt; name = (Ast.Identifier "main");
+     body =
+     (Ast.Block
+        [(Ast.D
+            (Ast.Declaration ((Ast.Identifier "a.0"),
+               (Some (Ast.LiteralInt 3)))));
+          (Ast.D
+             (Ast.Declaration ((Ast.Identifier "b.1"),
+                (Some (Ast.LiteralInt 5)))));
+          (Ast.D
+             (Ast.Declaration ((Ast.Identifier "c.2"),
+                (Some (Ast.LiteralInt 8)))));
+          (Ast.S
+             (Ast.Return
+                Ast.Binary {op = Ast.BwOr;
+                  left =
+                  Ast.Binary {op = Ast.BwAnd;
+                    left = (Ast.Var (Ast.Identifier "a.0"));
+                    right = (Ast.Var (Ast.Identifier "b.1"))};
+                  right = (Ast.Var (Ast.Identifier "c.2"))}))
+          ])})
