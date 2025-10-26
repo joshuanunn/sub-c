@@ -1,0 +1,68 @@
+Token.KW_INT
+(Token.IDENTIFIER "main")
+Token.LPAREN
+Token.KW_VOID
+Token.RPAREN
+Token.LBRACE
+Token.KW_INT
+(Token.IDENTIFIER "x")
+Token.ASSIGN
+(Token.LITERAL_INT 5)
+Token.SEMICOLON
+Token.KW_INT
+(Token.IDENTIFIER "acc")
+Token.ASSIGN
+(Token.LITERAL_INT 0)
+Token.SEMICOLON
+Token.KW_WHILE
+Token.LPAREN
+(Token.IDENTIFIER "x")
+Token.GE
+(Token.LITERAL_INT 0)
+Token.RPAREN
+Token.LBRACE
+Token.KW_INT
+(Token.IDENTIFIER "i")
+Token.ASSIGN
+(Token.IDENTIFIER "x")
+Token.SEMICOLON
+Token.KW_WHILE
+Token.LPAREN
+(Token.IDENTIFIER "i")
+Token.LE
+(Token.LITERAL_INT 10)
+Token.RPAREN
+Token.LBRACE
+(Token.IDENTIFIER "i")
+Token.ASSIGN
+(Token.IDENTIFIER "i")
+Token.ADD
+(Token.LITERAL_INT 1)
+Token.SEMICOLON
+Token.KW_IF
+Token.LPAREN
+(Token.IDENTIFIER "i")
+Token.MOD
+(Token.LITERAL_INT 2)
+Token.RPAREN
+Token.KW_CONTINUE
+Token.SEMICOLON
+(Token.IDENTIFIER "acc")
+Token.ASSIGN
+(Token.IDENTIFIER "acc")
+Token.ADD
+(Token.LITERAL_INT 1)
+Token.SEMICOLON
+Token.RBRACE
+(Token.IDENTIFIER "x")
+Token.ASSIGN
+(Token.IDENTIFIER "x")
+Token.SUB
+(Token.LITERAL_INT 1)
+Token.SEMICOLON
+Token.RBRACE
+Token.KW_RETURN
+(Token.IDENTIFIER "acc")
+Token.SEMICOLON
+Token.RBRACE
+Token.EOF

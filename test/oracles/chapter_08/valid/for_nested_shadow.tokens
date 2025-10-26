@@ -1,0 +1,71 @@
+Token.KW_INT
+(Token.IDENTIFIER "main")
+Token.LPAREN
+Token.KW_VOID
+Token.RPAREN
+Token.LBRACE
+Token.KW_INT
+(Token.IDENTIFIER "i")
+Token.ASSIGN
+(Token.LITERAL_INT 0)
+Token.SEMICOLON
+Token.KW_INT
+(Token.IDENTIFIER "j")
+Token.ASSIGN
+(Token.LITERAL_INT 0)
+Token.SEMICOLON
+Token.KW_INT
+(Token.IDENTIFIER "k")
+Token.ASSIGN
+(Token.LITERAL_INT 1)
+Token.SEMICOLON
+Token.KW_FOR
+Token.LPAREN
+Token.KW_INT
+(Token.IDENTIFIER "i")
+Token.ASSIGN
+(Token.LITERAL_INT 100)
+Token.SEMICOLON
+(Token.IDENTIFIER "i")
+Token.GT
+(Token.LITERAL_INT 0)
+Token.SEMICOLON
+(Token.IDENTIFIER "i")
+Token.ASSIGN
+(Token.IDENTIFIER "i")
+Token.SUB
+(Token.LITERAL_INT 1)
+Token.RPAREN
+Token.LBRACE
+Token.KW_INT
+(Token.IDENTIFIER "i")
+Token.ASSIGN
+(Token.LITERAL_INT 1)
+Token.SEMICOLON
+Token.KW_INT
+(Token.IDENTIFIER "j")
+Token.ASSIGN
+(Token.IDENTIFIER "i")
+Token.ADD
+(Token.IDENTIFIER "k")
+Token.SEMICOLON
+(Token.IDENTIFIER "k")
+Token.ASSIGN
+(Token.IDENTIFIER "j")
+Token.SEMICOLON
+Token.RBRACE
+Token.KW_RETURN
+(Token.IDENTIFIER "k")
+Token.EQ
+(Token.LITERAL_INT 101)
+Token.AND
+(Token.IDENTIFIER "i")
+Token.EQ
+(Token.LITERAL_INT 0)
+Token.AND
+(Token.IDENTIFIER "j")
+Token.EQ
+(Token.LITERAL_INT 0)
+Token.SEMICOLON
+Token.RBRACE
+Token.EOF

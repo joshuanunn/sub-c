@@ -1,0 +1,50 @@
+Token.KW_INT
+(Token.IDENTIFIER "main")
+Token.LPAREN
+Token.KW_VOID
+Token.RPAREN
+Token.LBRACE
+Token.KW_INT
+(Token.IDENTIFIER "sum")
+Token.ASSIGN
+(Token.LITERAL_INT 0)
+Token.SEMICOLON
+Token.KW_FOR
+Token.LPAREN
+Token.KW_INT
+(Token.IDENTIFIER "i")
+Token.ASSIGN
+(Token.LITERAL_INT 0)
+Token.SEMICOLON
+(Token.IDENTIFIER "i")
+Token.LT
+(Token.LITERAL_INT 10)
+Token.SEMICOLON
+Token.RPAREN
+Token.LBRACE
+(Token.IDENTIFIER "i")
+Token.ASSIGN
+(Token.IDENTIFIER "i")
+Token.ADD
+(Token.LITERAL_INT 1)
+Token.SEMICOLON
+Token.KW_IF
+Token.LPAREN
+(Token.IDENTIFIER "i")
+Token.MOD
+(Token.LITERAL_INT 2)
+Token.RPAREN
+Token.KW_CONTINUE
+Token.SEMICOLON
+(Token.IDENTIFIER "sum")
+Token.ASSIGN
+(Token.IDENTIFIER "sum")
+Token.ADD
+(Token.IDENTIFIER "i")
+Token.SEMICOLON
+Token.RBRACE
+Token.KW_RETURN
+(Token.IDENTIFIER "sum")
+Token.SEMICOLON
+Token.RBRACE
+Token.EOF

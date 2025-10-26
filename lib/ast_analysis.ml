@@ -20,6 +20,9 @@ let rec resolve_expr (e : Ast.expr) (se : Env.senv) : Ast.expr =
           else_exp = resolve_expr else_exp se;
         }
 
+let resolve_opt_expr (e : Ast.expr option) (se : Env.senv) : Ast.expr option =
+  match e with Some exp -> Some (resolve_expr exp se) | None -> None
+
 let resolve_decl (d : Ast.decl) (se : Env.senv) : Ast.decl =
   match d with
   | Declaration (id, None) ->
@@ -29,6 +32,11 @@ let resolve_decl (d : Ast.decl) (se : Env.senv) : Ast.decl =
       let var = declare_var id se in
       let init = Some (resolve_expr expr se) in
       Declaration (var, init)
+
+let resolve_for_init (i : Ast.for_init) (se : Env.senv) : Ast.for_init =
+  match i with
+  | InclDecl d -> InclDecl (resolve_decl d se)
+  | InitExp e -> InitExp (resolve_opt_expr e se)
 
 let rec resolve_stmt (s : Ast.stmt) (se : Env.senv) : Ast.stmt =
   match s with
@@ -52,6 +60,22 @@ let rec resolve_stmt (s : Ast.stmt) (se : Env.senv) : Ast.stmt =
       (* Push new scope before compound statement entry and pop after exit *)
       push_var_scope se;
       let result = Compound (resolve_block b se) in
+      pop_var_scope se;
+      result
+  | Break id -> Break id
+  | Continue id -> Continue id
+  | While { cond : expr; body : stmt } ->
+      While { cond = resolve_expr cond se; body = resolve_stmt body se }
+  | DoWhile { body : stmt; cond : expr } ->
+      DoWhile { body = resolve_stmt body se; cond = resolve_expr cond se }
+  | For { init; cond; post; body } ->
+      (* For loop header introduces new scope *)
+      push_var_scope se;
+      let init = resolve_for_init init se in
+      let cond = resolve_opt_expr cond se in
+      let post = resolve_opt_expr post se in
+      let body = resolve_stmt body se in
+      let result = For { init; cond; post; body } in
       pop_var_scope se;
       result
   (* goto label resolution cannot be completed until after analysis pass *)

@@ -163,6 +163,11 @@ let rec convert_stmt (s : Ast.stmt) (le : Env.lenv) : Ir.instruction list =
           match node with S s -> convert_stmt s le | D d -> convert_dclr d le)
         items
       |> List.flatten
+  | Break _ -> failwith "TODO"
+  | Continue _ -> failwith "TODO"
+  | While _ -> failwith "TODO"
+  | DoWhile _ -> failwith "TODO"
+  | For _ -> failwith "TODO"
   | Goto (Identifier id) -> [ Jump { target = id } ]
   | Label (Identifier id, next_stmt) -> [ Label id ] @ convert_stmt next_stmt le
   | Null -> []
