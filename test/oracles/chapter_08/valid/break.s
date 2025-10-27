@@ -9,12 +9,12 @@ main:
     negl        -12(%rbp)
     movl        -12(%rbp), %r10d
     movl        %r10d, -8(%rbp)
-.Lstart.for.1:
+.Lloop.st.1:
     cmpl        $0, -8(%rbp)
     movl        $0, -16(%rbp)
     setl        -16(%rbp)
     cmpl        $0, -16(%rbp)
-    je          .Lbreak.for.1
+    je          .Lloop.br.1
     movl        -4(%rbp), %r10d
     movl        %r10d, -20(%rbp)
     subl        $1, -20(%rbp)
@@ -25,16 +25,16 @@ main:
     setle       -24(%rbp)
     cmpl        $0, -24(%rbp)
     je          .Lif_end.4
-    jmp         .Lbreak.for.1
+    jmp         .Lloop.br.1
 .Lif_end.4:
-.Lcontinue.for.1:
+.Lloop.ct.1:
     movl        -8(%rbp), %r10d
     movl        %r10d, -28(%rbp)
     addl        $1, -28(%rbp)
     movl        -28(%rbp), %r10d
     movl        %r10d, -8(%rbp)
-    jmp         .Lstart.for.1
-.Lbreak.for.1:
+    jmp         .Lloop.st.1
+.Lloop.br.1:
     cmpl        $0, -4(%rbp)
     movl        $0, -32(%rbp)
     sete        -32(%rbp)

@@ -10,19 +10,19 @@ main:
     popq        %rbp
     ret         
 .Ldo_label:
-.Lstart.dowhile.1:
+.Lloop.st.1:
     movl        $1, -4(%rbp)
     jmp         .Lwhile_label
-.Lcontinue.dowhile.1:
+.Lloop.ct.1:
     movl        $1, %r11d
     cmpl        $0, %r11d
-    jne         .Lstart.dowhile.1
-.Lbreak.dowhile.1:
+    jne         .Lloop.st.1
+.Lloop.br.1:
 .Lwhile_label:
-.Lcontinue.while.2:
+.Lloop.ct.2:
     movl        $1, %r11d
     cmpl        $0, %r11d
-    je          .Lbreak.while.2
+    je          .Lloop.br.2
     movl        -4(%rbp), %r10d
     movl        %r10d, -8(%rbp)
     addl        $1, -8(%rbp)
@@ -34,9 +34,9 @@ main:
     popq        %rbp
     ret         
 .Lbreak_label:
-    jmp         .Lbreak.while.2
-    jmp         .Lcontinue.while.2
-.Lbreak.while.2:
+    jmp         .Lloop.br.2
+    jmp         .Lloop.ct.2
+.Lloop.br.2:
     jmp         .Lfor_label
     movl        $0, %eax
     movq        %rbp, %rsp
@@ -44,12 +44,12 @@ main:
     ret         
 .Lfor_label:
     movl        $0, -12(%rbp)
-.Lstart.for.3:
+.Lloop.st.3:
     cmpl        $10, -12(%rbp)
     movl        $0, -16(%rbp)
     setl        -16(%rbp)
     cmpl        $0, -16(%rbp)
-    je          .Lbreak.for.3
+    je          .Lloop.br.3
     movl        -4(%rbp), %r10d
     movl        %r10d, -20(%rbp)
     addl        $1, -20(%rbp)
@@ -61,19 +61,19 @@ main:
     popq        %rbp
     ret         
 .Lcontinue_label:
-    jmp         .Lcontinue.for.3
+    jmp         .Lloop.ct.3
     movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         
-.Lcontinue.for.3:
+.Lloop.ct.3:
     movl        -12(%rbp), %r10d
     movl        %r10d, -24(%rbp)
     addl        $1, -24(%rbp)
     movl        -24(%rbp), %r10d
     movl        %r10d, -12(%rbp)
-    jmp         .Lstart.for.3
-.Lbreak.for.3:
+    jmp         .Lloop.st.3
+.Lloop.br.3:
     movl        -4(%rbp), %eax
     movq        %rbp, %rsp
     popq        %rbp

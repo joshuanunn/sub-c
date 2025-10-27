@@ -2,14 +2,13 @@
    Ir.Function {name = "main";
      body =
      [Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "a.0")};
-       (Ir.Label "start.dowhile.1");
+       (Ir.Label "loop.st.1");
        Ir.Binary {op = Ir.Multiply; src1 = (Ir.Var "a.0");
          src2 = (Ir.Constant 2); dst = (Ir.Var "tmp.0")};
        Ir.Copy {src = (Ir.Var "tmp.0"); dst = (Ir.Var "a.0")};
-       (Ir.Label "continue.dowhile.1");
+       (Ir.Label "loop.ct.1");
        Ir.Binary {op = Ir.LessThan; src1 = (Ir.Var "a.0");
          src2 = (Ir.Constant 11); dst = (Ir.Var "tmp.1")};
-       Ir.JumpIfNotZero {condition = (Ir.Var "tmp.1");
-         target = "start.dowhile.1"};
-       (Ir.Label "break.dowhile.1"); (Ir.Return (Ir.Var "a.0"));
+       Ir.JumpIfNotZero {condition = (Ir.Var "tmp.1"); target = "loop.st.1"};
+       (Ir.Label "loop.br.1"); (Ir.Return (Ir.Var "a.0"));
        (Ir.Return (Ir.Constant 0))]})

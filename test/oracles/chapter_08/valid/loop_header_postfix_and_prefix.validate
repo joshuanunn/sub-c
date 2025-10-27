@@ -17,7 +17,7 @@
                (Ast.Expression
                   Ast.Unary {op = Ast.PostIncrement;
                     exp = (Ast.Var (Ast.Identifier "count.1"))});
-               id = (Some (Ast.Identifier "while.1"))});
+               id = (Some (Ast.Identifier "1"))});
           (Ast.S
              Ast.If {
                cond_exp =
@@ -42,7 +42,7 @@
                (Ast.Expression
                   Ast.Unary {op = Ast.PostIncrement;
                     exp = (Ast.Var (Ast.Identifier "count.1"))});
-               id = (Some (Ast.Identifier "while.2"))});
+               id = (Some (Ast.Identifier "2"))});
           (Ast.S
              Ast.If {
                cond_exp =

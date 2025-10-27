@@ -5,21 +5,21 @@ main:
     subq        $28, %rsp
     movl        $100, -4(%rbp)
     movl        $0, -8(%rbp)
-.Lstart.dowhile.1:
+.Lloop.st.1:
     movl        -8(%rbp), %r10d
     movl        %r10d, -12(%rbp)
     addl        $2, -12(%rbp)
     movl        -12(%rbp), %r10d
     movl        %r10d, -8(%rbp)
-.Lcontinue.dowhile.1:
+.Lloop.ct.1:
     movl        -4(%rbp), %r10d
     movl        %r10d, -16(%rbp)
     subl        $1, -16(%rbp)
     movl        -16(%rbp), %r10d
     movl        %r10d, -4(%rbp)
     cmpl        $0, -4(%rbp)
-    jne         .Lstart.dowhile.1
-.Lbreak.dowhile.1:
+    jne         .Lloop.st.1
+.Lloop.br.1:
     cmpl        $0, -4(%rbp)
     movl        $0, -20(%rbp)
     sete        -20(%rbp)

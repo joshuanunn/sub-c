@@ -4,7 +4,7 @@ main:
     movq        %rsp, %rbp
     subq        $12, %rsp
     movl        $1, -4(%rbp)
-.Lstart.dowhile.1:
+.Lloop.st.1:
 .Lwhile_start:
     movl        -4(%rbp), %r10d
     movl        %r10d, -8(%rbp)
@@ -18,11 +18,11 @@ main:
     je          .Lif_end.2
     jmp         .Lwhile_start
 .Lif_end.2:
-.Lcontinue.dowhile.1:
+.Lloop.ct.1:
     movl        $0, %r11d
     cmpl        $0, %r11d
-    jne         .Lstart.dowhile.1
-.Lbreak.dowhile.1:
+    jne         .Lloop.st.1
+.Lloop.br.1:
     movl        -4(%rbp), %eax
     movq        %rbp, %rsp
     popq        %rbp

@@ -5,19 +5,19 @@ main:
     subq        $44, %rsp
     movl        $0, -4(%rbp)
     movl        $0, -8(%rbp)
-.Lstart.for.1:
+.Lloop.st.1:
     cmpl        $10, -8(%rbp)
     movl        $0, -12(%rbp)
     setl        -12(%rbp)
     cmpl        $0, -12(%rbp)
-    je          .Lbreak.for.1
+    je          .Lloop.br.1
     movl        $0, -16(%rbp)
-.Lstart.for.2:
+.Lloop.st.2:
     cmpl        $10, -16(%rbp)
     movl        $0, -20(%rbp)
     setl        -20(%rbp)
     cmpl        $0, -20(%rbp)
-    je          .Lbreak.for.2
+    je          .Lloop.br.2
     movl        -8(%rbp), %eax
     cdq         
     movl        $2, %r10d
@@ -34,7 +34,7 @@ main:
     sete        -32(%rbp)
     cmpl        $0, -32(%rbp)
     je          .Lif_else.6
-    jmp         .Lbreak.for.2
+    jmp         .Lloop.br.2
     jmp         .Lif_end.5
 .Lif_else.6:
     movl        -4(%rbp), %r10d
@@ -44,22 +44,22 @@ main:
     movl        -36(%rbp), %r10d
     movl        %r10d, -4(%rbp)
 .Lif_end.5:
-.Lcontinue.for.2:
+.Lloop.ct.2:
     movl        -16(%rbp), %r10d
     movl        %r10d, -40(%rbp)
     addl        $1, -40(%rbp)
     movl        -40(%rbp), %r10d
     movl        %r10d, -16(%rbp)
-    jmp         .Lstart.for.2
-.Lbreak.for.2:
-.Lcontinue.for.1:
+    jmp         .Lloop.st.2
+.Lloop.br.2:
+.Lloop.ct.1:
     movl        -8(%rbp), %r10d
     movl        %r10d, -44(%rbp)
     addl        $1, -44(%rbp)
     movl        -44(%rbp), %r10d
     movl        %r10d, -8(%rbp)
-    jmp         .Lstart.for.1
-.Lbreak.for.1:
+    jmp         .Lloop.st.1
+.Lloop.br.1:
     movl        -4(%rbp), %eax
     movq        %rbp, %rsp
     popq        %rbp

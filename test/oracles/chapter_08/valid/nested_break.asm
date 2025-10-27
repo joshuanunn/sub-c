@@ -2,18 +2,18 @@
    Asm.Function {name = "main";
      instructions =
      [(Asm.AllocateStack 44); (Asm.Mov ((Asm.Imm 0), (Asm.Stack -4)));
-       (Asm.Mov ((Asm.Imm 0), (Asm.Stack -8))); (Asm.Label "start.for.1");
+       (Asm.Mov ((Asm.Imm 0), (Asm.Stack -8))); (Asm.Label "loop.st.1");
        (Asm.Cmp ((Asm.Imm 10), (Asm.Stack -8)));
        (Asm.Mov ((Asm.Imm 0), (Asm.Stack -12)));
        (Asm.SetCC (Asm.L, (Asm.Stack -12)));
        (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -12)));
-       (Asm.JmpCC (Asm.E, "break.for.1"));
-       (Asm.Mov ((Asm.Imm 0), (Asm.Stack -16))); (Asm.Label "start.for.2");
+       (Asm.JmpCC (Asm.E, "loop.br.1"));
+       (Asm.Mov ((Asm.Imm 0), (Asm.Stack -16))); (Asm.Label "loop.st.2");
        (Asm.Cmp ((Asm.Imm 10), (Asm.Stack -16)));
        (Asm.Mov ((Asm.Imm 0), (Asm.Stack -20)));
        (Asm.SetCC (Asm.L, (Asm.Stack -20)));
        (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -20)));
-       (Asm.JmpCC (Asm.E, "break.for.2"));
+       (Asm.JmpCC (Asm.E, "loop.br.2"));
        (Asm.Mov ((Asm.Stack -8), (Asm.Reg Asm.AX))); Asm.Cdq;
        (Asm.Mov ((Asm.Imm 2), (Asm.Reg Asm.R10)));
        (Asm.Idiv (Asm.Reg Asm.R10));
@@ -28,7 +28,7 @@
        (Asm.Mov ((Asm.Imm 0), (Asm.Stack -32)));
        (Asm.SetCC (Asm.E, (Asm.Stack -32)));
        (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -32)));
-       (Asm.JmpCC (Asm.E, "if_else.6")); (Asm.Jmp "break.for.2");
+       (Asm.JmpCC (Asm.E, "if_else.6")); (Asm.Jmp "loop.br.2");
        (Asm.Jmp "if_end.5"); (Asm.Label "if_else.6");
        (Asm.Mov ((Asm.Stack -4), (Asm.Reg Asm.R10)));
        (Asm.Mov ((Asm.Reg Asm.R10), (Asm.Stack -36)));
@@ -37,19 +37,17 @@
          dst = (Asm.Stack -36)};
        (Asm.Mov ((Asm.Stack -36), (Asm.Reg Asm.R10)));
        (Asm.Mov ((Asm.Reg Asm.R10), (Asm.Stack -4))); (Asm.Label "if_end.5");
-       (Asm.Label "continue.for.2");
+       (Asm.Label "loop.ct.2");
        (Asm.Mov ((Asm.Stack -16), (Asm.Reg Asm.R10)));
        (Asm.Mov ((Asm.Reg Asm.R10), (Asm.Stack -40)));
        Asm.Binary {op = Asm.Add; src = (Asm.Imm 1); dst = (Asm.Stack -40)};
        (Asm.Mov ((Asm.Stack -40), (Asm.Reg Asm.R10)));
-       (Asm.Mov ((Asm.Reg Asm.R10), (Asm.Stack -16)));
-       (Asm.Jmp "start.for.2"); (Asm.Label "break.for.2");
-       (Asm.Label "continue.for.1");
+       (Asm.Mov ((Asm.Reg Asm.R10), (Asm.Stack -16))); (Asm.Jmp "loop.st.2");
+       (Asm.Label "loop.br.2"); (Asm.Label "loop.ct.1");
        (Asm.Mov ((Asm.Stack -8), (Asm.Reg Asm.R10)));
        (Asm.Mov ((Asm.Reg Asm.R10), (Asm.Stack -44)));
        Asm.Binary {op = Asm.Add; src = (Asm.Imm 1); dst = (Asm.Stack -44)};
        (Asm.Mov ((Asm.Stack -44), (Asm.Reg Asm.R10)));
-       (Asm.Mov ((Asm.Reg Asm.R10), (Asm.Stack -8)));
-       (Asm.Jmp "start.for.1"); (Asm.Label "break.for.1");
-       (Asm.Mov ((Asm.Stack -4), (Asm.Reg Asm.AX))); Asm.Ret;
-       (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX))); Asm.Ret]})
+       (Asm.Mov ((Asm.Reg Asm.R10), (Asm.Stack -8))); (Asm.Jmp "loop.st.1");
+       (Asm.Label "loop.br.1"); (Asm.Mov ((Asm.Stack -4), (Asm.Reg Asm.AX)));
+       Asm.Ret; (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX))); Asm.Ret]})

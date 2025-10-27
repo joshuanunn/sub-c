@@ -10,6 +10,6 @@
                cond =
                (Ast.Assignment ((Ast.Var (Ast.Identifier "a.0")),
                   (Ast.LiteralInt 1)));
-               body = (Ast.Break (Some (Ast.Identifier "while.1")));
-               id = (Some (Ast.Identifier "while.1"))});
+               body = (Ast.Break (Some (Ast.Identifier "1")));
+               id = (Some (Ast.Identifier "1"))});
           (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "a.0"))))])})

@@ -3,15 +3,11 @@ open Ast
 (* Declare static counter for unqiue loop labeling *)
 let counter = ref 0
 
-(** [loop_label prefix] generates a new unique identifier for a loop based on
-    [prefix]. Only "while", "dowhile", and "for" are valid prefixes. *)
-let loop_label (prefix : string) : ident =
-  match prefix with
-  | "while" | "dowhile" | "for" ->
-      incr counter;
-      let label = Printf.sprintf "%s.%d" prefix !counter in
-      Identifier label
-  | _ -> failwith ("cannot label loop with prefix " ^ prefix)
+(** [loop_label] generates a new unique identifier for a loop. *)
+let loop_label () : ident =
+  incr counter;
+  let label = Printf.sprintf "%d" !counter in
+  Identifier label
 
 (** [label_loop s label] traverses a statement [s] and:
     - Assigns a unique loop label to any while/do-while/for loops
@@ -40,19 +36,19 @@ let rec label_loop (s : Ast.stmt) (label : ident option) : Ast.stmt =
   | While { cond; body; id } -> (
       match id with
       | None ->
-          let new_label = Some (loop_label "while") in
+          let new_label = Some (loop_label ()) in
           While { cond; body = label_loop body new_label; id = new_label }
       | Some _ -> failwith "while loop has already been labeled")
   | DoWhile { body; cond; id } -> (
       match id with
       | None ->
-          let new_label = Some (loop_label "dowhile") in
+          let new_label = Some (loop_label ()) in
           DoWhile { body = label_loop body new_label; cond; id = new_label }
       | Some _ -> failwith "dowhile loop has already been labeled")
   | For { init; cond; post; body; id } -> (
       match id with
       | None ->
-          let new_label = Some (loop_label "for") in
+          let new_label = Some (loop_label ()) in
           For
             {
               init;

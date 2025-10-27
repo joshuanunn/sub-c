@@ -165,17 +165,17 @@ let rec convert_stmt (s : Ast.stmt) (le : Env.lenv) : Ir.instruction list =
       |> List.flatten
   | Break id -> (
       match id with
-      | Some (Identifier i) -> [ Jump { target = "break." ^ i } ]
+      | Some (Identifier i) -> [ Jump { target = "loop.br." ^ i } ]
       | None -> failwith "break statement has missing label")
   | Continue id -> (
       match id with
-      | Some (Identifier i) -> [ Jump { target = "continue." ^ i } ]
+      | Some (Identifier i) -> [ Jump { target = "loop.ct." ^ i } ]
       | None -> failwith "continue statement has missing label")
   | While { cond; body; id } -> (
       match id with
       | Some (Identifier i) ->
-          let s_continue = "continue." ^ i in
-          let s_break = "break." ^ i in
+          let s_continue = "loop.ct." ^ i in
+          let s_break = "loop.br." ^ i in
           let l_continue = Label s_continue in
           let cond, cond_ins = convert_expr cond le in
           let jz_cond = JumpIfZero { condition = cond; target = s_break } in
@@ -188,26 +188,26 @@ let rec convert_stmt (s : Ast.stmt) (le : Env.lenv) : Ir.instruction list =
   | DoWhile { body; cond; id } -> (
       match id with
       | Some (Identifier i) ->
-          let s_start = "start." ^ i in
+          let s_start = "loop.st." ^ i in
           let l_start = Label s_start in
           let body_ins = convert_stmt body le in
-          let l_continue = Label ("continue." ^ i) in
+          let l_continue = Label ("loop.ct." ^ i) in
           let cond, cond_ins = convert_expr cond le in
           let jz_cond = JumpIfNotZero { condition = cond; target = s_start } in
-          let l_break = Label ("break." ^ i) in
+          let l_break = Label ("loop.br." ^ i) in
           [ l_start ] @ body_ins @ [ l_continue ] @ cond_ins @ [ jz_cond ]
           @ [ l_break ]
       | None -> failwith "dowhile statement has missing label")
   | For { init; cond; post; body; id } -> (
       match id with
       | Some (Identifier i) ->
-          let s_break = "break." ^ i in
+          let s_break = "loop.br." ^ i in
           let init_ins = convert_for_init init le in
-          let s_start = "start." ^ i in
+          let s_start = "loop.st." ^ i in
           let l_start = Label s_start in
           let cond_ins = convert_for_cond cond s_break le in
           let body_ins = convert_stmt body le in
-          let s_continue = "continue." ^ i in
+          let s_continue = "loop.ct." ^ i in
           let l_continue = Label s_continue in
           let post_ins = convert_for_post post le in
           let j_start = Jump { target = s_start } in

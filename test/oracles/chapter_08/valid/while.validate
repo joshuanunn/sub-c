@@ -18,5 +18,5 @@
                        left = (Ast.Var (Ast.Identifier "a.0"));
                        right = (Ast.LiteralInt 2)}
                      )));
-               id = (Some (Ast.Identifier "while.1"))});
+               id = (Some (Ast.Identifier "1"))});
           (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "a.0"))))])})

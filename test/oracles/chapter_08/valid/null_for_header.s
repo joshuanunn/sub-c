@@ -4,7 +4,7 @@ main:
     movq        %rsp, %rbp
     subq        $12, %rsp
     movl        $0, -4(%rbp)
-.Lstart.for.1:
+.Lloop.st.1:
     movl        -4(%rbp), %r10d
     movl        %r10d, -8(%rbp)
     addl        $1, -8(%rbp)
@@ -15,11 +15,11 @@ main:
     setg        -12(%rbp)
     cmpl        $0, -12(%rbp)
     je          .Lif_end.2
-    jmp         .Lbreak.for.1
+    jmp         .Lloop.br.1
 .Lif_end.2:
-.Lcontinue.for.1:
-    jmp         .Lstart.for.1
-.Lbreak.for.1:
+.Lloop.ct.1:
+    jmp         .Lloop.st.1
+.Lloop.br.1:
     movl        -4(%rbp), %eax
     movq        %rbp, %rsp
     popq        %rbp

@@ -37,7 +37,7 @@
                                  (Ast.Var (Ast.Identifier "shadow.2"))}
                                ))))
                        ]));
-               id = (Some (Ast.Identifier "for.1"))});
+               id = (Some (Ast.Identifier "1"))});
           (Ast.S
              (Ast.Return
                 Ast.Binary {op = Ast.And;

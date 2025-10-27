@@ -7,7 +7,7 @@ main:
     negl        -8(%rbp)
     movl        -8(%rbp), %r10d
     movl        %r10d, -4(%rbp)
-.Lstart.for.1:
+.Lloop.st.1:
     movl        -4(%rbp), %eax
     cdq         
     movl        $5, %r10d
@@ -17,15 +17,15 @@ main:
     movl        $0, -16(%rbp)
     setne       -16(%rbp)
     cmpl        $0, -16(%rbp)
-    je          .Lbreak.for.1
+    je          .Lloop.br.1
     movl        -4(%rbp), %r10d
     movl        %r10d, -20(%rbp)
     addl        $1, -20(%rbp)
     movl        -20(%rbp), %r10d
     movl        %r10d, -4(%rbp)
-.Lcontinue.for.1:
-    jmp         .Lstart.for.1
-.Lbreak.for.1:
+.Lloop.ct.1:
+    jmp         .Lloop.st.1
+.Lloop.br.1:
     movl        -4(%rbp), %eax
     cdq         
     movl        $5, %r10d

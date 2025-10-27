@@ -5,9 +5,9 @@ main:
     subq        $36, %rsp
     movl        $0, -4(%rbp)
     movl        $100, -8(%rbp)
-.Lcontinue.while.1:
+.Lloop.ct.1:
     cmpl        $0, -8(%rbp)
-    je          .Lbreak.while.1
+    je          .Lloop.br.1
     movl        $10, -12(%rbp)
     movl        -8(%rbp), %r10d
     movl        %r10d, -16(%rbp)
@@ -15,9 +15,9 @@ main:
     subl        %r10d, -16(%rbp)
     movl        -16(%rbp), %r10d
     movl        %r10d, -8(%rbp)
-.Lcontinue.while.2:
+.Lloop.ct.2:
     cmpl        $0, -12(%rbp)
-    je          .Lbreak.while.2
+    je          .Lloop.br.2
     movl        -4(%rbp), %r10d
     movl        %r10d, -20(%rbp)
     addl        $1, -20(%rbp)
@@ -28,10 +28,10 @@ main:
     subl        $1, -24(%rbp)
     movl        -24(%rbp), %r10d
     movl        %r10d, -12(%rbp)
-    jmp         .Lcontinue.while.2
-.Lbreak.while.2:
-    jmp         .Lcontinue.while.1
-.Lbreak.while.1:
+    jmp         .Lloop.ct.2
+.Lloop.br.2:
+    jmp         .Lloop.ct.1
+.Lloop.br.1:
     cmpl        $100, -4(%rbp)
     movl        $0, -28(%rbp)
     sete        -28(%rbp)

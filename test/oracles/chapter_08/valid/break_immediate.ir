@@ -2,9 +2,9 @@
    Ir.Function {name = "main";
      body =
      [Ir.Copy {src = (Ir.Constant 10); dst = (Ir.Var "a.0")};
-       (Ir.Label "continue.while.1");
+       (Ir.Label "loop.ct.1");
        Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "a.0")};
-       Ir.JumpIfZero {condition = (Ir.Var "a.0"); target = "break.while.1"};
-       Ir.Jump {target = "break.while.1"};
-       Ir.Jump {target = "continue.while.1"}; (Ir.Label "break.while.1");
-       (Ir.Return (Ir.Var "a.0")); (Ir.Return (Ir.Constant 0))]})
+       Ir.JumpIfZero {condition = (Ir.Var "a.0"); target = "loop.br.1"};
+       Ir.Jump {target = "loop.br.1"}; Ir.Jump {target = "loop.ct.1"};
+       (Ir.Label "loop.br.1"); (Ir.Return (Ir.Var "a.0"));
+       (Ir.Return (Ir.Constant 0))]})

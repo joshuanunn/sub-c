@@ -6,26 +6,26 @@ main:
     movl        $1, -4(%rbp)
     movl        $0, -8(%rbp)
     movl        $0, -12(%rbp)
-.Lstart.for.1:
+.Lloop.st.1:
     cmpl        $10, -12(%rbp)
     movl        $0, -16(%rbp)
     setl        -16(%rbp)
     cmpl        $0, -16(%rbp)
-    je          .Lbreak.for.1
+    je          .Lloop.br.1
     movl        -8(%rbp), %r10d
     movl        %r10d, -20(%rbp)
     movl        -12(%rbp), %r10d
     addl        %r10d, -20(%rbp)
     movl        -20(%rbp), %r10d
     movl        %r10d, -8(%rbp)
-.Lcontinue.for.1:
+.Lloop.ct.1:
     movl        -12(%rbp), %r10d
     movl        %r10d, -24(%rbp)
     addl        $1, -24(%rbp)
     movl        -24(%rbp), %r10d
     movl        %r10d, -12(%rbp)
-    jmp         .Lstart.for.1
-.Lbreak.for.1:
+    jmp         .Lloop.st.1
+.Lloop.br.1:
     cmpl        $45, -8(%rbp)
     movl        $0, -28(%rbp)
     sete        -28(%rbp)

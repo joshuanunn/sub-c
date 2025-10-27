@@ -3,12 +3,12 @@
      instructions =
      [(Asm.AllocateStack 36); (Asm.Mov ((Asm.Imm 1), (Asm.Stack -4)));
        (Asm.Mov ((Asm.Imm 0), (Asm.Stack -8)));
-       (Asm.Mov ((Asm.Imm 0), (Asm.Stack -12))); (Asm.Label "start.for.1");
+       (Asm.Mov ((Asm.Imm 0), (Asm.Stack -12))); (Asm.Label "loop.st.1");
        (Asm.Cmp ((Asm.Imm 10), (Asm.Stack -12)));
        (Asm.Mov ((Asm.Imm 0), (Asm.Stack -16)));
        (Asm.SetCC (Asm.L, (Asm.Stack -16)));
        (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -16)));
-       (Asm.JmpCC (Asm.E, "break.for.1"));
+       (Asm.JmpCC (Asm.E, "loop.br.1"));
        (Asm.Mov ((Asm.Stack -8), (Asm.Reg Asm.R10)));
        (Asm.Mov ((Asm.Reg Asm.R10), (Asm.Stack -20)));
        (Asm.Mov ((Asm.Stack -12), (Asm.Reg Asm.R10)));
@@ -16,14 +16,13 @@
          dst = (Asm.Stack -20)};
        (Asm.Mov ((Asm.Stack -20), (Asm.Reg Asm.R10)));
        (Asm.Mov ((Asm.Reg Asm.R10), (Asm.Stack -8)));
-       (Asm.Label "continue.for.1");
+       (Asm.Label "loop.ct.1");
        (Asm.Mov ((Asm.Stack -12), (Asm.Reg Asm.R10)));
        (Asm.Mov ((Asm.Reg Asm.R10), (Asm.Stack -24)));
        Asm.Binary {op = Asm.Add; src = (Asm.Imm 1); dst = (Asm.Stack -24)};
        (Asm.Mov ((Asm.Stack -24), (Asm.Reg Asm.R10)));
-       (Asm.Mov ((Asm.Reg Asm.R10), (Asm.Stack -12)));
-       (Asm.Jmp "start.for.1"); (Asm.Label "break.for.1");
-       (Asm.Cmp ((Asm.Imm 45), (Asm.Stack -8)));
+       (Asm.Mov ((Asm.Reg Asm.R10), (Asm.Stack -12))); (Asm.Jmp "loop.st.1");
+       (Asm.Label "loop.br.1"); (Asm.Cmp ((Asm.Imm 45), (Asm.Stack -8)));
        (Asm.Mov ((Asm.Imm 0), (Asm.Stack -28)));
        (Asm.SetCC (Asm.E, (Asm.Stack -28)));
        (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -28)));

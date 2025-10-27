@@ -13,7 +13,7 @@ main:
     movl        %r11d, -12(%rbp)
     movl        -12(%rbp), %r10d
     movl        %r10d, -4(%rbp)
-.Lstart.for.1:
+.Lloop.st.1:
     movl        $100, -16(%rbp)
     negl        -16(%rbp)
     movl        -16(%rbp), %r10d
@@ -21,15 +21,15 @@ main:
     movl        $0, -20(%rbp)
     setge       -20(%rbp)
     cmpl        $0, -20(%rbp)
-    je          .Lbreak.for.1
-.Lcontinue.for.1:
+    je          .Lloop.br.1
+.Lloop.ct.1:
     movl        -4(%rbp), %r10d
     movl        %r10d, -24(%rbp)
     subl        $3, -24(%rbp)
     movl        -24(%rbp), %r10d
     movl        %r10d, -4(%rbp)
-    jmp         .Lstart.for.1
-.Lbreak.for.1:
+    jmp         .Lloop.st.1
+.Lloop.br.1:
     movl        $103, -28(%rbp)
     negl        -28(%rbp)
     movl        -28(%rbp), %r10d

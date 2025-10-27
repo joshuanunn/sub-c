@@ -23,5 +23,5 @@
                Ast.Binary {op = Ast.LessThan;
                  left = (Ast.Var (Ast.Identifier "a.0"));
                  right = (Ast.LiteralInt 11)};
-               id = (Some (Ast.Identifier "dowhile.1"))});
+               id = (Some (Ast.Identifier "1"))});
           (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "a.0"))))])})

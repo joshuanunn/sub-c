@@ -19,8 +19,7 @@
                                   (Ast.Var (Ast.Identifier "sum.5")),
                                   (Ast.LiteralInt 1)))));
                           (Ast.S (Ast.Goto (Ast.Identifier "while_label")))]));
-                  cond = (Ast.LiteralInt 1);
-                  id = (Some (Ast.Identifier "dowhile.1"))}
+                  cond = (Ast.LiteralInt 1); id = (Some (Ast.Identifier "1"))}
                 )));
           (Ast.S
              (Ast.Label ((Ast.Identifier "while_label"),
@@ -40,10 +39,9 @@
                           (Ast.S (Ast.Return (Ast.LiteralInt 0)));
                           (Ast.S
                              (Ast.Label ((Ast.Identifier "break_label"),
-                                (Ast.Break (Some (Ast.Identifier "while.2")))
-                                )))
+                                (Ast.Break (Some (Ast.Identifier "2"))))))
                           ]));
-                  id = (Some (Ast.Identifier "while.2"))}
+                  id = (Some (Ast.Identifier "2"))}
                 )));
           (Ast.S Ast.Null); (Ast.S (Ast.Goto (Ast.Identifier "for_label")));
           (Ast.S (Ast.Return (Ast.LiteralInt 0)));
@@ -79,9 +77,8 @@
                           (Ast.S (Ast.Return (Ast.LiteralInt 0)));
                           (Ast.S
                              (Ast.Label ((Ast.Identifier "continue_label"),
-                                (Ast.Continue (Some (Ast.Identifier "for.3")))
-                                )));
+                                (Ast.Continue (Some (Ast.Identifier "3"))))));
                           (Ast.S (Ast.Return (Ast.LiteralInt 0)))]));
-                  id = (Some (Ast.Identifier "for.3"))}
+                  id = (Some (Ast.Identifier "3"))}
                 )));
           (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "sum.5"))))])})

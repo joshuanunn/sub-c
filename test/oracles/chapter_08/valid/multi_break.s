@@ -4,10 +4,10 @@ main:
     movq        %rsp, %rbp
     subq        $44, %rsp
     movl        $0, -4(%rbp)
-.Lcontinue.while.1:
+.Lloop.ct.1:
     movl        $1, %r11d
     cmpl        $0, %r11d
-    je          .Lbreak.while.1
+    je          .Lloop.br.1
     movl        -4(%rbp), %r10d
     movl        %r10d, -8(%rbp)
     addl        $1, -8(%rbp)
@@ -18,15 +18,15 @@ main:
     setg        -12(%rbp)
     cmpl        $0, -12(%rbp)
     je          .Lif_end.2
-    jmp         .Lbreak.while.1
+    jmp         .Lloop.br.1
 .Lif_end.2:
-    jmp         .Lcontinue.while.1
-.Lbreak.while.1:
+    jmp         .Lloop.ct.1
+.Lloop.br.1:
     movl        $10, -16(%rbp)
-.Lcontinue.while.2:
+.Lloop.ct.2:
     movl        $1, %r11d
     cmpl        $0, %r11d
-    je          .Lbreak.while.2
+    je          .Lloop.br.2
     movl        -16(%rbp), %r10d
     movl        %r10d, -20(%rbp)
     subl        $1, -20(%rbp)
@@ -37,10 +37,10 @@ main:
     setl        -24(%rbp)
     cmpl        $0, -24(%rbp)
     je          .Lif_end.5
-    jmp         .Lbreak.while.2
+    jmp         .Lloop.br.2
 .Lif_end.5:
-    jmp         .Lcontinue.while.2
-.Lbreak.while.2:
+    jmp         .Lloop.ct.2
+.Lloop.br.2:
     movl        $1, -32(%rbp)
     negl        -32(%rbp)
     movl        -32(%rbp), %r10d

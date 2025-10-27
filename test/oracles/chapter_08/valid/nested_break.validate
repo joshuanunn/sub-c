@@ -49,7 +49,7 @@
                          right = (Ast.LiteralInt 2)};
                        right = (Ast.LiteralInt 2)};
                      right = (Ast.Var (Ast.Identifier "i.1"))};
-                   then_smt = (Ast.Break (Some (Ast.Identifier "for.2")));
+                   then_smt = (Ast.Break (Some (Ast.Identifier "2")));
                    else_smt =
                    (Some (Ast.Expression
                             (Ast.Assignment (
@@ -58,6 +58,6 @@
                                  left = (Ast.Var (Ast.Identifier "ans.0"));
                                  right = (Ast.Var (Ast.Identifier "i.1"))}
                                ))))};
-                 id = (Some (Ast.Identifier "for.2"))};
-               id = (Some (Ast.Identifier "for.1"))});
+                 id = (Some (Ast.Identifier "2"))};
+               id = (Some (Ast.Identifier "1"))});
           (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "ans.0"))))])})

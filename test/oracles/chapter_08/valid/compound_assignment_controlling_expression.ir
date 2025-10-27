@@ -3,17 +3,16 @@
      body =
      [Ir.Copy {src = (Ir.Constant 100); dst = (Ir.Var "i.0")};
        Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "sum.1")};
-       (Ir.Label "start.dowhile.1");
+       (Ir.Label "loop.st.1");
        Ir.Binary {op = Ir.Add; src1 = (Ir.Var "sum.1");
          src2 = (Ir.Constant 2); dst = (Ir.Var "tmp.0")};
        Ir.Copy {src = (Ir.Var "tmp.0"); dst = (Ir.Var "sum.1")};
-       (Ir.Label "continue.dowhile.1");
+       (Ir.Label "loop.ct.1");
        Ir.Binary {op = Ir.Subtract; src1 = (Ir.Var "i.0");
          src2 = (Ir.Constant 1); dst = (Ir.Var "tmp.1")};
        Ir.Copy {src = (Ir.Var "tmp.1"); dst = (Ir.Var "i.0")};
-       Ir.JumpIfNotZero {condition = (Ir.Var "i.0");
-         target = "start.dowhile.1"};
-       (Ir.Label "break.dowhile.1");
+       Ir.JumpIfNotZero {condition = (Ir.Var "i.0"); target = "loop.st.1"};
+       (Ir.Label "loop.br.1");
        Ir.Binary {op = Ir.Equal; src1 = (Ir.Var "i.0");
          src2 = (Ir.Constant 0); dst = (Ir.Var "tmp.2")};
        Ir.JumpIfZero {condition = (Ir.Var "tmp.2"); target = "and_false.5"};

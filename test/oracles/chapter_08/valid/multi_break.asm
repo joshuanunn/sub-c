@@ -2,10 +2,9 @@
    Asm.Function {name = "main";
      instructions =
      [(Asm.AllocateStack 44); (Asm.Mov ((Asm.Imm 0), (Asm.Stack -4)));
-       (Asm.Label "continue.while.1");
-       (Asm.Mov ((Asm.Imm 1), (Asm.Reg Asm.R11)));
+       (Asm.Label "loop.ct.1"); (Asm.Mov ((Asm.Imm 1), (Asm.Reg Asm.R11)));
        (Asm.Cmp ((Asm.Imm 0), (Asm.Reg Asm.R11)));
-       (Asm.JmpCC (Asm.E, "break.while.1"));
+       (Asm.JmpCC (Asm.E, "loop.br.1"));
        (Asm.Mov ((Asm.Stack -4), (Asm.Reg Asm.R10)));
        (Asm.Mov ((Asm.Reg Asm.R10), (Asm.Stack -8)));
        Asm.Binary {op = Asm.Add; src = (Asm.Imm 1); dst = (Asm.Stack -8)};
@@ -15,14 +14,12 @@
        (Asm.Mov ((Asm.Imm 0), (Asm.Stack -12)));
        (Asm.SetCC (Asm.G, (Asm.Stack -12)));
        (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -12)));
-       (Asm.JmpCC (Asm.E, "if_end.2")); (Asm.Jmp "break.while.1");
-       (Asm.Label "if_end.2"); (Asm.Jmp "continue.while.1");
-       (Asm.Label "break.while.1");
-       (Asm.Mov ((Asm.Imm 10), (Asm.Stack -16)));
-       (Asm.Label "continue.while.2");
-       (Asm.Mov ((Asm.Imm 1), (Asm.Reg Asm.R11)));
+       (Asm.JmpCC (Asm.E, "if_end.2")); (Asm.Jmp "loop.br.1");
+       (Asm.Label "if_end.2"); (Asm.Jmp "loop.ct.1");
+       (Asm.Label "loop.br.1"); (Asm.Mov ((Asm.Imm 10), (Asm.Stack -16)));
+       (Asm.Label "loop.ct.2"); (Asm.Mov ((Asm.Imm 1), (Asm.Reg Asm.R11)));
        (Asm.Cmp ((Asm.Imm 0), (Asm.Reg Asm.R11)));
-       (Asm.JmpCC (Asm.E, "break.while.2"));
+       (Asm.JmpCC (Asm.E, "loop.br.2"));
        (Asm.Mov ((Asm.Stack -16), (Asm.Reg Asm.R10)));
        (Asm.Mov ((Asm.Reg Asm.R10), (Asm.Stack -20)));
        Asm.Binary {op = Asm.Sub; src = (Asm.Imm 1); dst = (Asm.Stack -20)};
@@ -32,9 +29,9 @@
        (Asm.Mov ((Asm.Imm 0), (Asm.Stack -24)));
        (Asm.SetCC (Asm.L, (Asm.Stack -24)));
        (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -24)));
-       (Asm.JmpCC (Asm.E, "if_end.5")); (Asm.Jmp "break.while.2");
-       (Asm.Label "if_end.5"); (Asm.Jmp "continue.while.2");
-       (Asm.Label "break.while.2"); (Asm.Mov ((Asm.Imm 1), (Asm.Stack -32)));
+       (Asm.JmpCC (Asm.E, "if_end.5")); (Asm.Jmp "loop.br.2");
+       (Asm.Label "if_end.5"); (Asm.Jmp "loop.ct.2");
+       (Asm.Label "loop.br.2"); (Asm.Mov ((Asm.Imm 1), (Asm.Stack -32)));
        Asm.Unary {op = Asm.Neg; dst = (Asm.Stack -32)};
        (Asm.Mov ((Asm.Stack -32), (Asm.Reg Asm.R10)));
        (Asm.Cmp ((Asm.Reg Asm.R10), (Asm.Stack -16)));

@@ -4,13 +4,13 @@ main:
     movq        %rsp, %rbp
     subq        $4, %rsp
     movl        $10, -4(%rbp)
-.Lcontinue.while.1:
+.Lloop.ct.1:
     movl        $1, -4(%rbp)
     cmpl        $0, -4(%rbp)
-    je          .Lbreak.while.1
-    jmp         .Lbreak.while.1
-    jmp         .Lcontinue.while.1
-.Lbreak.while.1:
+    je          .Lloop.br.1
+    jmp         .Lloop.br.1
+    jmp         .Lloop.ct.1
+.Lloop.br.1:
     movl        -4(%rbp), %eax
     movq        %rbp, %rsp
     popq        %rbp

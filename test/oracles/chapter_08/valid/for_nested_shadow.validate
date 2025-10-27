@@ -45,7 +45,7 @@
                                 (Ast.Var (Ast.Identifier "k.2")),
                                 (Ast.Var (Ast.Identifier "j.5"))))))
                        ]));
-               id = (Some (Ast.Identifier "for.1"))});
+               id = (Some (Ast.Identifier "1"))});
           (Ast.S
              (Ast.Return
                 Ast.Binary {op = Ast.And;

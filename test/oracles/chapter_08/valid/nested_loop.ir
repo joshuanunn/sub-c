@@ -3,22 +3,22 @@
      body =
      [Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "acc.0")};
        Ir.Copy {src = (Ir.Constant 100); dst = (Ir.Var "x.1")};
-       (Ir.Label "continue.while.1");
-       Ir.JumpIfZero {condition = (Ir.Var "x.1"); target = "break.while.1"};
+       (Ir.Label "loop.ct.1");
+       Ir.JumpIfZero {condition = (Ir.Var "x.1"); target = "loop.br.1"};
        Ir.Copy {src = (Ir.Constant 10); dst = (Ir.Var "y.2")};
        Ir.Binary {op = Ir.Subtract; src1 = (Ir.Var "x.1");
          src2 = (Ir.Var "y.2"); dst = (Ir.Var "tmp.0")};
        Ir.Copy {src = (Ir.Var "tmp.0"); dst = (Ir.Var "x.1")};
-       (Ir.Label "continue.while.2");
-       Ir.JumpIfZero {condition = (Ir.Var "y.2"); target = "break.while.2"};
+       (Ir.Label "loop.ct.2");
+       Ir.JumpIfZero {condition = (Ir.Var "y.2"); target = "loop.br.2"};
        Ir.Binary {op = Ir.Add; src1 = (Ir.Var "acc.0");
          src2 = (Ir.Constant 1); dst = (Ir.Var "tmp.1")};
        Ir.Copy {src = (Ir.Var "tmp.1"); dst = (Ir.Var "acc.0")};
        Ir.Binary {op = Ir.Subtract; src1 = (Ir.Var "y.2");
          src2 = (Ir.Constant 1); dst = (Ir.Var "tmp.2")};
        Ir.Copy {src = (Ir.Var "tmp.2"); dst = (Ir.Var "y.2")};
-       Ir.Jump {target = "continue.while.2"}; (Ir.Label "break.while.2");
-       Ir.Jump {target = "continue.while.1"}; (Ir.Label "break.while.1");
+       Ir.Jump {target = "loop.ct.2"}; (Ir.Label "loop.br.2");
+       Ir.Jump {target = "loop.ct.1"}; (Ir.Label "loop.br.1");
        Ir.Binary {op = Ir.Equal; src1 = (Ir.Var "acc.0");
          src2 = (Ir.Constant 100); dst = (Ir.Var "tmp.3")};
        Ir.JumpIfZero {condition = (Ir.Var "tmp.3"); target = "and_false.6"};

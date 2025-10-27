@@ -25,10 +25,10 @@
                               left = (Ast.Var (Ast.Identifier "i.0"));
                               right = (Ast.LiteralInt 10)};
                             then_smt =
-                            (Ast.Break (Some (Ast.Identifier "while.1")));
+                            (Ast.Break (Some (Ast.Identifier "1")));
                             else_smt = None})
                        ]));
-               id = (Some (Ast.Identifier "while.1"))});
+               id = (Some (Ast.Identifier "1"))});
           (Ast.D
              (Ast.Declaration ((Ast.Identifier "j.1"),
                 (Some (Ast.LiteralInt 10)))));
@@ -52,10 +52,10 @@
                               left = (Ast.Var (Ast.Identifier "j.1"));
                               right = (Ast.LiteralInt 0)};
                             then_smt =
-                            (Ast.Break (Some (Ast.Identifier "while.2")));
+                            (Ast.Break (Some (Ast.Identifier "2")));
                             else_smt = None})
                        ]));
-               id = (Some (Ast.Identifier "while.2"))});
+               id = (Some (Ast.Identifier "2"))});
           (Ast.D
              (Ast.Declaration ((Ast.Identifier "result.2"),
                 (Some Ast.Binary {op = Ast.And;

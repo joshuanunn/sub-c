@@ -47,7 +47,7 @@
                                            right = (Ast.LiteralInt 2)};
                                          then_smt =
                                          (Ast.Continue
-                                            (Some (Ast.Identifier "while.2")));
+                                            (Some (Ast.Identifier "2")));
                                          else_smt = None});
                                     (Ast.S
                                        (Ast.Expression
@@ -61,7 +61,7 @@
                                                right = (Ast.LiteralInt 1)}
                                              ))))
                                     ]));
-                            id = (Some (Ast.Identifier "while.2"))});
+                            id = (Some (Ast.Identifier "2"))});
                        (Ast.S
                           (Ast.Expression
                              (Ast.Assignment (
@@ -71,5 +71,5 @@
                                   right = (Ast.LiteralInt 1)}
                                 ))))
                        ]));
-               id = (Some (Ast.Identifier "while.1"))});
+               id = (Some (Ast.Identifier "1"))});
           (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "acc.1"))))])})

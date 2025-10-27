@@ -6,7 +6,7 @@ main:
     movl        $10, -4(%rbp)
     movl        $0, -8(%rbp)
     movl        $0, -12(%rbp)
-.Lstart.dowhile.1:
+.Lloop.st.1:
     movl        -12(%rbp), %r10d
     movl        %r10d, -16(%rbp)
     addl        $1, -16(%rbp)
@@ -17,7 +17,7 @@ main:
     setle       -20(%rbp)
     cmpl        $0, -20(%rbp)
     je          .Lif_end.2
-    jmp         .Lcontinue.dowhile.1
+    jmp         .Lloop.ct.1
 .Lif_end.2:
     movl        -4(%rbp), %r10d
     movl        %r10d, -24(%rbp)
@@ -29,20 +29,20 @@ main:
     setge       -28(%rbp)
     cmpl        $0, -28(%rbp)
     je          .Lif_end.5
-    jmp         .Lcontinue.dowhile.1
+    jmp         .Lloop.ct.1
 .Lif_end.5:
     movl        -8(%rbp), %r10d
     movl        %r10d, -32(%rbp)
     addl        $1, -32(%rbp)
     movl        -32(%rbp), %r10d
     movl        %r10d, -8(%rbp)
-.Lcontinue.dowhile.1:
+.Lloop.ct.1:
     cmpl        $50, -12(%rbp)
     movl        $0, -36(%rbp)
     setne       -36(%rbp)
     cmpl        $0, -36(%rbp)
-    jne         .Lstart.dowhile.1
-.Lbreak.dowhile.1:
+    jne         .Lloop.st.1
+.Lloop.br.1:
     cmpl        $50, -12(%rbp)
     movl        $0, -40(%rbp)
     sete        -40(%rbp)
