@@ -1,0 +1,67 @@
+(Ast.Program
+   Ast.Function {return_type = Ast.KwInt; name = (Ast.Identifier "main");
+     body =
+     (Ast.Block
+        [(Ast.D
+            (Ast.Declaration ((Ast.Identifier "i"), (Some (Ast.LiteralInt 0))
+               )));
+          (Ast.S
+             Ast.While {cond = (Ast.LiteralInt 1);
+               body =
+               (Ast.Compound
+                  (Ast.Block
+                     [(Ast.S
+                         (Ast.Expression
+                            (Ast.Assignment ((Ast.Var (Ast.Identifier "i")),
+                               Ast.Binary {op = Ast.Add;
+                                 left = (Ast.Var (Ast.Identifier "i"));
+                                 right = (Ast.LiteralInt 1)}
+                               ))));
+                       (Ast.S
+                          Ast.If {
+                            cond_exp =
+                            Ast.Binary {op = Ast.GreaterThan;
+                              left = (Ast.Var (Ast.Identifier "i"));
+                              right = (Ast.LiteralInt 10)};
+                            then_smt = (Ast.Break None); else_smt = None})
+                       ]));
+               id = None});
+          (Ast.D
+             (Ast.Declaration ((Ast.Identifier "j"),
+                (Some (Ast.LiteralInt 10)))));
+          (Ast.S
+             Ast.While {cond = (Ast.LiteralInt 1);
+               body =
+               (Ast.Compound
+                  (Ast.Block
+                     [(Ast.S
+                         (Ast.Expression
+                            (Ast.Assignment ((Ast.Var (Ast.Identifier "j")),
+                               Ast.Binary {op = Ast.Subtract;
+                                 left = (Ast.Var (Ast.Identifier "j"));
+                                 right = (Ast.LiteralInt 1)}
+                               ))));
+                       (Ast.S
+                          Ast.If {
+                            cond_exp =
+                            Ast.Binary {op = Ast.LessThan;
+                              left = (Ast.Var (Ast.Identifier "j"));
+                              right = (Ast.LiteralInt 0)};
+                            then_smt = (Ast.Break None); else_smt = None})
+                       ]));
+               id = None});
+          (Ast.D
+             (Ast.Declaration ((Ast.Identifier "result"),
+                (Some Ast.Binary {op = Ast.And;
+                        left =
+                        Ast.Binary {op = Ast.Equal;
+                          left = (Ast.Var (Ast.Identifier "j"));
+                          right =
+                          Ast.Unary {op = Ast.Negate;
+                            exp = (Ast.LiteralInt 1)}};
+                        right =
+                        Ast.Binary {op = Ast.Equal;
+                          left = (Ast.Var (Ast.Identifier "i"));
+                          right = (Ast.LiteralInt 11)}})
+                )));
+          (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "result"))))])})

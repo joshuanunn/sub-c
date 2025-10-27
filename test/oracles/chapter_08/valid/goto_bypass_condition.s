@@ -1,0 +1,34 @@
+    .globl      main
+main:
+    pushq       %rbp
+    movq        %rsp, %rbp
+    subq        $12, %rsp
+    movl        $1, -4(%rbp)
+.Lstart.dowhile.1:
+.Lwhile_start:
+    movl        -4(%rbp), %r10d
+    movl        %r10d, -8(%rbp)
+    addl        $1, -8(%rbp)
+    movl        -8(%rbp), %r10d
+    movl        %r10d, -4(%rbp)
+    cmpl        $10, -4(%rbp)
+    movl        $0, -12(%rbp)
+    setl        -12(%rbp)
+    cmpl        $0, -12(%rbp)
+    je          .Lif_end.2
+    jmp         .Lwhile_start
+.Lif_end.2:
+.Lcontinue.dowhile.1:
+    movl        $0, %r11d
+    cmpl        $0, %r11d
+    jne         .Lstart.dowhile.1
+.Lbreak.dowhile.1:
+    movl        -4(%rbp), %eax
+    movq        %rbp, %rsp
+    popq        %rbp
+    ret         
+    movl        $0, %eax
+    movq        %rbp, %rsp
+    popq        %rbp
+    ret         
+    .section    .note.GNU-stack,"",@progbits

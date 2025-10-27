@@ -1,0 +1,18 @@
+(Ast.Program
+   Ast.Function {return_type = Ast.KwInt; name = (Ast.Identifier "main");
+     body =
+     (Ast.Block
+        [(Ast.D
+            (Ast.Declaration ((Ast.Identifier "a.0"),
+               (Some (Ast.LiteralInt 1)))));
+          (Ast.D
+             (Ast.Declaration ((Ast.Identifier "b.1"),
+                (Some (Ast.LiteralInt 0)))));
+          (Ast.S
+             Ast.If {cond_exp = (Ast.Var (Ast.Identifier "a.0"));
+               then_smt =
+               (Ast.Expression
+                  (Ast.Assignment ((Ast.Var (Ast.Identifier "b.1")),
+                     (Ast.LiteralInt 1))));
+               else_smt = None});
+          (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "b.1"))))])})

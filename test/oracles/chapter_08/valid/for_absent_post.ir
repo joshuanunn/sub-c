@@ -1,0 +1,28 @@
+(Ir.Program
+   Ir.Function {name = "main";
+     body =
+     [Ir.Unary {op = Ir.Negate; src = (Ir.Constant 2147483647);
+        dst = (Ir.Var "tmp.0")};
+       Ir.Copy {src = (Ir.Var "tmp.0"); dst = (Ir.Var "a.0")};
+       (Ir.Label "start.for.1");
+       Ir.Binary {op = Ir.Remainder; src1 = (Ir.Var "a.0");
+         src2 = (Ir.Constant 5); dst = (Ir.Var "tmp.1")};
+       Ir.Binary {op = Ir.NotEqual; src1 = (Ir.Var "tmp.1");
+         src2 = (Ir.Constant 0); dst = (Ir.Var "tmp.2")};
+       Ir.JumpIfZero {condition = (Ir.Var "tmp.2"); target = "break.for.1"};
+       Ir.Binary {op = Ir.Add; src1 = (Ir.Var "a.0"); src2 = (Ir.Constant 1);
+         dst = (Ir.Var "tmp.3")};
+       Ir.Copy {src = (Ir.Var "tmp.3"); dst = (Ir.Var "a.0")};
+       (Ir.Label "continue.for.1"); Ir.Jump {target = "start.for.1"};
+       (Ir.Label "break.for.1");
+       Ir.Binary {op = Ir.Remainder; src1 = (Ir.Var "a.0");
+         src2 = (Ir.Constant 5); dst = (Ir.Var "tmp.4")};
+       Ir.JumpIfNotZero {condition = (Ir.Var "tmp.4"); target = "or_true.7"};
+       Ir.Binary {op = Ir.GreaterThan; src1 = (Ir.Var "a.0");
+         src2 = (Ir.Constant 0); dst = (Ir.Var "tmp.5")};
+       Ir.JumpIfNotZero {condition = (Ir.Var "tmp.5"); target = "or_true.7"};
+       Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "tmp.6")};
+       Ir.Jump {target = "or_end.8"}; (Ir.Label "or_true.7");
+       Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "tmp.6")};
+       (Ir.Label "or_end.8"); (Ir.Return (Ir.Var "tmp.6"));
+       (Ir.Return (Ir.Constant 0))]})

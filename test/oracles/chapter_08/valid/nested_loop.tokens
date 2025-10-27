@@ -1,0 +1,62 @@
+Token.KW_INT
+(Token.IDENTIFIER "main")
+Token.LPAREN
+Token.KW_VOID
+Token.RPAREN
+Token.LBRACE
+Token.KW_INT
+(Token.IDENTIFIER "acc")
+Token.ASSIGN
+(Token.LITERAL_INT 0)
+Token.SEMICOLON
+Token.KW_INT
+(Token.IDENTIFIER "x")
+Token.ASSIGN
+(Token.LITERAL_INT 100)
+Token.SEMICOLON
+Token.KW_WHILE
+Token.LPAREN
+(Token.IDENTIFIER "x")
+Token.RPAREN
+Token.LBRACE
+Token.KW_INT
+(Token.IDENTIFIER "y")
+Token.ASSIGN
+(Token.LITERAL_INT 10)
+Token.SEMICOLON
+(Token.IDENTIFIER "x")
+Token.ASSIGN
+(Token.IDENTIFIER "x")
+Token.SUB
+(Token.IDENTIFIER "y")
+Token.SEMICOLON
+Token.KW_WHILE
+Token.LPAREN
+(Token.IDENTIFIER "y")
+Token.RPAREN
+Token.LBRACE
+(Token.IDENTIFIER "acc")
+Token.ASSIGN
+(Token.IDENTIFIER "acc")
+Token.ADD
+(Token.LITERAL_INT 1)
+Token.SEMICOLON
+(Token.IDENTIFIER "y")
+Token.ASSIGN
+(Token.IDENTIFIER "y")
+Token.SUB
+(Token.LITERAL_INT 1)
+Token.SEMICOLON
+Token.RBRACE
+Token.RBRACE
+Token.KW_RETURN
+(Token.IDENTIFIER "acc")
+Token.EQ
+(Token.LITERAL_INT 100)
+Token.AND
+(Token.IDENTIFIER "x")
+Token.EQ
+(Token.LITERAL_INT 0)
+Token.SEMICOLON
+Token.RBRACE
+Token.EOF

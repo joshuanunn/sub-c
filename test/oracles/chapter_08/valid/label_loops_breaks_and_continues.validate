@@ -1,0 +1,87 @@
+(Ast.Program
+   Ast.Function {return_type = Ast.KwInt; name = (Ast.Identifier "main");
+     body =
+     (Ast.Block
+        [(Ast.D
+            (Ast.Declaration ((Ast.Identifier "sum.5"),
+               (Some (Ast.LiteralInt 0)))));
+          (Ast.S (Ast.Goto (Ast.Identifier "do_label")));
+          (Ast.S (Ast.Return (Ast.LiteralInt 0)));
+          (Ast.S
+             (Ast.Label ((Ast.Identifier "do_label"),
+                Ast.DoWhile {
+                  body =
+                  (Ast.Compound
+                     (Ast.Block
+                        [(Ast.S
+                            (Ast.Expression
+                               (Ast.Assignment (
+                                  (Ast.Var (Ast.Identifier "sum.5")),
+                                  (Ast.LiteralInt 1)))));
+                          (Ast.S (Ast.Goto (Ast.Identifier "while_label")))]));
+                  cond = (Ast.LiteralInt 1);
+                  id = (Some (Ast.Identifier "dowhile.1"))}
+                )));
+          (Ast.S
+             (Ast.Label ((Ast.Identifier "while_label"),
+                Ast.While {cond = (Ast.LiteralInt 1);
+                  body =
+                  (Ast.Compound
+                     (Ast.Block
+                        [(Ast.S
+                            (Ast.Expression
+                               (Ast.Assignment (
+                                  (Ast.Var (Ast.Identifier "sum.5")),
+                                  Ast.Binary {op = Ast.Add;
+                                    left = (Ast.Var (Ast.Identifier "sum.5"));
+                                    right = (Ast.LiteralInt 1)}
+                                  ))));
+                          (Ast.S (Ast.Goto (Ast.Identifier "break_label")));
+                          (Ast.S (Ast.Return (Ast.LiteralInt 0)));
+                          (Ast.S
+                             (Ast.Label ((Ast.Identifier "break_label"),
+                                (Ast.Break (Some (Ast.Identifier "while.2")))
+                                )))
+                          ]));
+                  id = (Some (Ast.Identifier "while.2"))}
+                )));
+          (Ast.S Ast.Null); (Ast.S (Ast.Goto (Ast.Identifier "for_label")));
+          (Ast.S (Ast.Return (Ast.LiteralInt 0)));
+          (Ast.S
+             (Ast.Label ((Ast.Identifier "for_label"),
+                Ast.For {
+                  init =
+                  (Ast.InclDecl
+                     (Ast.Declaration ((Ast.Identifier "i.6"),
+                        (Some (Ast.LiteralInt 0)))));
+                  cond =
+                  (Some Ast.Binary {op = Ast.LessThan;
+                          left = (Ast.Var (Ast.Identifier "i.6"));
+                          right = (Ast.LiteralInt 10)});
+                  post =
+                  (Some (Ast.Assignment ((Ast.Var (Ast.Identifier "i.6")),
+                           Ast.Binary {op = Ast.Add;
+                             left = (Ast.Var (Ast.Identifier "i.6"));
+                             right = (Ast.LiteralInt 1)}
+                           )));
+                  body =
+                  (Ast.Compound
+                     (Ast.Block
+                        [(Ast.S
+                            (Ast.Expression
+                               (Ast.Assignment (
+                                  (Ast.Var (Ast.Identifier "sum.5")),
+                                  Ast.Binary {op = Ast.Add;
+                                    left = (Ast.Var (Ast.Identifier "sum.5"));
+                                    right = (Ast.LiteralInt 1)}
+                                  ))));
+                          (Ast.S (Ast.Goto (Ast.Identifier "continue_label")));
+                          (Ast.S (Ast.Return (Ast.LiteralInt 0)));
+                          (Ast.S
+                             (Ast.Label ((Ast.Identifier "continue_label"),
+                                (Ast.Continue (Some (Ast.Identifier "for.3")))
+                                )));
+                          (Ast.S (Ast.Return (Ast.LiteralInt 0)))]));
+                  id = (Some (Ast.Identifier "for.3"))}
+                )));
+          (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "sum.5"))))])})

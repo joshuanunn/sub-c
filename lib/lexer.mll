@@ -31,6 +31,11 @@ rule read =
   | "return" { KW_RETURN }
   | "if" { KW_IF }
   | "else" { KW_ELSE }
+  | "do" { KW_DO }
+  | "while" { KW_WHILE }
+  | "for" { KW_FOR }
+  | "break" { KW_BREAK }
+  | "continue" { KW_CONTINUE }
   | "goto" { KW_GOTO }
   | "(" { LPAREN }
   | ")" { RPAREN }

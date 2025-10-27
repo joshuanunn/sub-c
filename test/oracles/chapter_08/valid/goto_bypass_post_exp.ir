@@ -1,0 +1,20 @@
+(Ir.Program
+   Ir.Function {name = "main";
+     body =
+     [Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "sum.1")};
+       Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "i.2")};
+       (Ir.Label "start.for.1"); (Ir.Label "lbl");
+       Ir.Binary {op = Ir.Add; src1 = (Ir.Var "sum.1");
+         src2 = (Ir.Constant 1); dst = (Ir.Var "tmp.0")};
+       Ir.Copy {src = (Ir.Var "tmp.0"); dst = (Ir.Var "sum.1")};
+       Ir.Binary {op = Ir.Add; src1 = (Ir.Var "i.2"); src2 = (Ir.Constant 1);
+         dst = (Ir.Var "tmp.1")};
+       Ir.Copy {src = (Ir.Var "tmp.1"); dst = (Ir.Var "i.2")};
+       Ir.Binary {op = Ir.GreaterThan; src1 = (Ir.Var "i.2");
+         src2 = (Ir.Constant 10); dst = (Ir.Var "tmp.2")};
+       Ir.JumpIfZero {condition = (Ir.Var "tmp.2"); target = "if_end.3"};
+       Ir.Jump {target = "break.for.1"}; (Ir.Label "if_end.3");
+       Ir.Jump {target = "lbl"}; (Ir.Label "continue.for.1");
+       Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "i.2")};
+       Ir.Jump {target = "start.for.1"}; (Ir.Label "break.for.1");
+       (Ir.Return (Ir.Var "sum.1")); (Ir.Return (Ir.Constant 0))]})

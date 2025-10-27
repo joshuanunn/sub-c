@@ -1,0 +1,50 @@
+(Ast.Program
+   Ast.Function {return_type = Ast.KwInt; name = (Ast.Identifier "main");
+     body =
+     (Ast.Block
+        [(Ast.D
+            (Ast.Declaration ((Ast.Identifier "a.0"),
+               (Some (Ast.LiteralInt 5)))));
+          (Ast.S
+             Ast.If {
+               cond_exp =
+               Ast.Binary {op = Ast.GreaterThan;
+                 left = (Ast.Var (Ast.Identifier "a.0"));
+                 right = (Ast.LiteralInt 4)};
+               then_smt =
+               (Ast.Compound
+                  (Ast.Block
+                     [(Ast.S
+                         (Ast.Expression
+                            (Ast.Assignment (
+                               (Ast.Var (Ast.Identifier "a.0")),
+                               Ast.Binary {op = Ast.Subtract;
+                                 left = (Ast.Var (Ast.Identifier "a.0"));
+                                 right = (Ast.LiteralInt 4)}
+                               ))));
+                       (Ast.D
+                          (Ast.Declaration ((Ast.Identifier "a.1"),
+                             (Some (Ast.LiteralInt 5)))));
+                       (Ast.S
+                          Ast.If {
+                            cond_exp =
+                            Ast.Binary {op = Ast.GreaterThan;
+                              left = (Ast.Var (Ast.Identifier "a.1"));
+                              right = (Ast.LiteralInt 4)};
+                            then_smt =
+                            (Ast.Compound
+                               (Ast.Block
+                                  [(Ast.S
+                                      (Ast.Expression
+                                         (Ast.Assignment (
+                                            (Ast.Var (Ast.Identifier "a.1")),
+                                            Ast.Binary {op = Ast.Subtract;
+                                              left =
+                                              (Ast.Var (Ast.Identifier "a.1"));
+                                              right = (Ast.LiteralInt 4)}
+                                            ))))
+                                    ]));
+                            else_smt = None})
+                       ]));
+               else_smt = None});
+          (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "a.0"))))])})

@@ -1,0 +1,52 @@
+Token.KW_INT
+(Token.IDENTIFIER "main")
+Token.LPAREN
+Token.KW_VOID
+Token.RPAREN
+Token.LBRACE
+Token.KW_INT
+(Token.IDENTIFIER "shadow")
+Token.ASSIGN
+(Token.LITERAL_INT 1)
+Token.SEMICOLON
+Token.KW_INT
+(Token.IDENTIFIER "acc")
+Token.ASSIGN
+(Token.LITERAL_INT 0)
+Token.SEMICOLON
+Token.KW_FOR
+Token.LPAREN
+Token.KW_INT
+(Token.IDENTIFIER "shadow")
+Token.ASSIGN
+(Token.LITERAL_INT 0)
+Token.SEMICOLON
+(Token.IDENTIFIER "shadow")
+Token.LT
+(Token.LITERAL_INT 10)
+Token.SEMICOLON
+(Token.IDENTIFIER "shadow")
+Token.ASSIGN
+(Token.IDENTIFIER "shadow")
+Token.ADD
+(Token.LITERAL_INT 1)
+Token.RPAREN
+Token.LBRACE
+(Token.IDENTIFIER "acc")
+Token.ASSIGN
+(Token.IDENTIFIER "acc")
+Token.ADD
+(Token.IDENTIFIER "shadow")
+Token.SEMICOLON
+Token.RBRACE
+Token.KW_RETURN
+(Token.IDENTIFIER "acc")
+Token.EQ
+(Token.LITERAL_INT 45)
+Token.AND
+(Token.IDENTIFIER "shadow")
+Token.EQ
+(Token.LITERAL_INT 1)
+Token.SEMICOLON
+Token.RBRACE
+Token.EOF

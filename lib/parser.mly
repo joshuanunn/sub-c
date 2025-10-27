@@ -9,6 +9,11 @@ open Ast
 %token KW_RETURN
 %token KW_IF
 %token KW_ELSE
+%token KW_DO
+%token KW_WHILE
+%token KW_FOR
+%token KW_BREAK
+%token KW_CONTINUE
 %token KW_GOTO
 %token LPAREN
 %token RPAREN
@@ -87,12 +92,26 @@ decl:
   | KW_INT identifier SEMICOLON { mk_decl_stmt $2 }
   ;
 
+for_init:
+  | decl { mk_incl_decl $1 }
+  | expr SEMICOLON { mk_init_exp $1 }
+  | SEMICOLON { mk_empty_init_exp }
+  ;
+
 stmt:
   | KW_RETURN expr SEMICOLON { mk_return_stmt $2 }
   | expr SEMICOLON { mk_expr_stmt $1 }
   | KW_IF LPAREN expr RPAREN stmt KW_ELSE stmt { mk_if_stmt $3 $5 (Some $7) }
   | KW_IF LPAREN expr RPAREN stmt %prec IFX { mk_if_stmt $3 $5 None }
   | block { mk_block_stmt $1 }
+  | KW_BREAK SEMICOLON { Break None }
+  | KW_CONTINUE SEMICOLON { Continue None }
+  | KW_WHILE LPAREN expr RPAREN stmt { mk_while_stmt $3 $5 }
+  | KW_DO stmt KW_WHILE LPAREN expr RPAREN SEMICOLON { mk_dowhile_stmt $2 $5 }
+  | KW_FOR LPAREN for_init expr SEMICOLON expr RPAREN stmt { mk_for_stmt $3 (Some $4) (Some $6) $8 }
+  | KW_FOR LPAREN for_init expr SEMICOLON RPAREN stmt { mk_for_stmt $3 (Some $4) None $7 }
+  | KW_FOR LPAREN for_init SEMICOLON expr RPAREN stmt { mk_for_stmt $3 None (Some $5) $7 }
+  | KW_FOR LPAREN for_init SEMICOLON RPAREN stmt { mk_for_stmt $3 None None $6 }
   | KW_GOTO identifier SEMICOLON { mk_goto_stmt $2 }
   | identifier COLON stmt { mk_label_stmt $1 $3 }
   | SEMICOLON { Null }

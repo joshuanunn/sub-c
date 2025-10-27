@@ -1,0 +1,27 @@
+(Ast.Program
+   Ast.Function {return_type = Ast.KwInt; name = (Ast.Identifier "main");
+     body =
+     (Ast.Block
+        [(Ast.D
+            (Ast.Declaration ((Ast.Identifier "a.0"),
+               (Some (Ast.LiteralInt 1)))));
+          (Ast.S
+             Ast.DoWhile {
+               body =
+               (Ast.Compound
+                  (Ast.Block
+                     [(Ast.S
+                         (Ast.Expression
+                            (Ast.Assignment (
+                               (Ast.Var (Ast.Identifier "a.0")),
+                               Ast.Binary {op = Ast.Multiply;
+                                 left = (Ast.Var (Ast.Identifier "a.0"));
+                                 right = (Ast.LiteralInt 2)}
+                               ))))
+                       ]));
+               cond =
+               Ast.Binary {op = Ast.LessThan;
+                 left = (Ast.Var (Ast.Identifier "a.0"));
+                 right = (Ast.LiteralInt 11)};
+               id = (Some (Ast.Identifier "dowhile.1"))});
+          (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "a.0"))))])})

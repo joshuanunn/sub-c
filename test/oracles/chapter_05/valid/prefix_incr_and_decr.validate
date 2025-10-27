@@ -1,0 +1,44 @@
+(Ast.Program
+   Ast.Function {return_type = Ast.KwInt; name = (Ast.Identifier "main");
+     body =
+     (Ast.Block
+        [(Ast.D
+            (Ast.Declaration ((Ast.Identifier "a.0"),
+               (Some (Ast.LiteralInt 1)))));
+          (Ast.D
+             (Ast.Declaration ((Ast.Identifier "b.1"),
+                (Some (Ast.LiteralInt 2)))));
+          (Ast.D
+             (Ast.Declaration ((Ast.Identifier "c.2"),
+                (Some Ast.Unary {op = Ast.PreIncrement;
+                        exp = (Ast.Var (Ast.Identifier "a.0"))})
+                )));
+          (Ast.D
+             (Ast.Declaration ((Ast.Identifier "d.3"),
+                (Some Ast.Unary {op = Ast.PreDecrement;
+                        exp = (Ast.Var (Ast.Identifier "b.1"))})
+                )));
+          (Ast.S
+             (Ast.Return
+                Ast.Binary {op = Ast.And;
+                  left =
+                  Ast.Binary {op = Ast.And;
+                    left =
+                    Ast.Binary {op = Ast.And;
+                      left =
+                      Ast.Binary {op = Ast.Equal;
+                        left = (Ast.Var (Ast.Identifier "a.0"));
+                        right = (Ast.LiteralInt 2)};
+                      right =
+                      Ast.Binary {op = Ast.Equal;
+                        left = (Ast.Var (Ast.Identifier "b.1"));
+                        right = (Ast.LiteralInt 1)}};
+                    right =
+                    Ast.Binary {op = Ast.Equal;
+                      left = (Ast.Var (Ast.Identifier "c.2"));
+                      right = (Ast.LiteralInt 2)}};
+                  right =
+                  Ast.Binary {op = Ast.Equal;
+                    left = (Ast.Var (Ast.Identifier "d.3"));
+                    right = (Ast.LiteralInt 1)}}))
+          ])})

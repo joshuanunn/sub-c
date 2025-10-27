@@ -6,6 +6,11 @@ type token =
   | KW_RETURN
   | KW_IF
   | KW_ELSE
+  | KW_DO
+  | KW_WHILE
+  | KW_FOR
+  | KW_BREAK
+  | KW_CONTINUE
   | KW_GOTO
   | LPAREN
   | RPAREN

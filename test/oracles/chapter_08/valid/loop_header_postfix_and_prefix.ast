@@ -1,0 +1,53 @@
+(Ast.Program
+   Ast.Function {return_type = Ast.KwInt; name = (Ast.Identifier "main");
+     body =
+     (Ast.Block
+        [(Ast.D
+            (Ast.Declaration ((Ast.Identifier "i"),
+               (Some (Ast.LiteralInt 100)))));
+          (Ast.D
+             (Ast.Declaration ((Ast.Identifier "count"),
+                (Some (Ast.LiteralInt 0)))));
+          (Ast.S
+             Ast.While {
+               cond =
+               Ast.Unary {op = Ast.PostDecrement;
+                 exp = (Ast.Var (Ast.Identifier "i"))};
+               body =
+               (Ast.Expression
+                  Ast.Unary {op = Ast.PostIncrement;
+                    exp = (Ast.Var (Ast.Identifier "count"))});
+               id = None});
+          (Ast.S
+             Ast.If {
+               cond_exp =
+               Ast.Binary {op = Ast.NotEqual;
+                 left = (Ast.Var (Ast.Identifier "count"));
+                 right = (Ast.LiteralInt 100)};
+               then_smt = (Ast.Return (Ast.LiteralInt 0)); else_smt = None});
+          (Ast.S
+             (Ast.Expression
+                (Ast.Assignment ((Ast.Var (Ast.Identifier "i")),
+                   (Ast.LiteralInt 100)))));
+          (Ast.S
+             (Ast.Expression
+                (Ast.Assignment ((Ast.Var (Ast.Identifier "count")),
+                   (Ast.LiteralInt 0)))));
+          (Ast.S
+             Ast.While {
+               cond =
+               Ast.Unary {op = Ast.PreDecrement;
+                 exp = (Ast.Var (Ast.Identifier "i"))};
+               body =
+               (Ast.Expression
+                  Ast.Unary {op = Ast.PostIncrement;
+                    exp = (Ast.Var (Ast.Identifier "count"))});
+               id = None});
+          (Ast.S
+             Ast.If {
+               cond_exp =
+               Ast.Binary {op = Ast.NotEqual;
+                 left = (Ast.Var (Ast.Identifier "count"));
+                 right = (Ast.LiteralInt 99)};
+               then_smt = (Ast.Return (Ast.LiteralInt 0)); else_smt = None});
+          (Ast.S (Ast.Return (Ast.LiteralInt 1)))])})

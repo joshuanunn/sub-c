@@ -1,0 +1,15 @@
+(Ir.Program
+   Ir.Function {name = "main";
+     body =
+     [Ir.Copy {src = (Ir.Constant 400); dst = (Ir.Var "i.0")};
+       (Ir.Label "start.for.1");
+       Ir.Binary {op = Ir.Equal; src1 = (Ir.Var "i.0");
+         src2 = (Ir.Constant 100); dst = (Ir.Var "tmp.0")};
+       Ir.JumpIfZero {condition = (Ir.Var "tmp.0"); target = "if_end.1"};
+       (Ir.Return (Ir.Constant 0)); (Ir.Label "if_end.1");
+       (Ir.Label "continue.for.1");
+       Ir.Binary {op = Ir.Subtract; src1 = (Ir.Var "i.0");
+         src2 = (Ir.Constant 100); dst = (Ir.Var "tmp.2")};
+       Ir.Copy {src = (Ir.Var "tmp.2"); dst = (Ir.Var "i.0")};
+       Ir.Jump {target = "start.for.1"}; (Ir.Label "break.for.1");
+       (Ir.Return (Ir.Constant 0))]})
