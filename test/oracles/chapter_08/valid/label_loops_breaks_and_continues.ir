@@ -1,0 +1,37 @@
+(Ir.Program
+   Ir.Function {name = "main";
+     body =
+     [Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "sum.5")};
+       Ir.Jump {target = "do_label"}; (Ir.Return (Ir.Constant 0));
+       (Ir.Label "do_label"); (Ir.Label "start.dowhile.1");
+       Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "sum.5")};
+       Ir.Jump {target = "while_label"}; (Ir.Label "continue.dowhile.1");
+       Ir.JumpIfNotZero {condition = (Ir.Constant 1);
+         target = "start.dowhile.1"};
+       (Ir.Label "break.dowhile.1"); (Ir.Label "while_label");
+       (Ir.Label "continue.while.2");
+       Ir.JumpIfZero {condition = (Ir.Constant 1); target = "break.while.2"};
+       Ir.Binary {op = Ir.Add; src1 = (Ir.Var "sum.5");
+         src2 = (Ir.Constant 1); dst = (Ir.Var "tmp.0")};
+       Ir.Copy {src = (Ir.Var "tmp.0"); dst = (Ir.Var "sum.5")};
+       Ir.Jump {target = "break_label"}; (Ir.Return (Ir.Constant 0));
+       (Ir.Label "break_label"); Ir.Jump {target = "break.while.2"};
+       Ir.Jump {target = "continue.while.2"}; (Ir.Label "break.while.2");
+       Ir.Jump {target = "for_label"}; (Ir.Return (Ir.Constant 0));
+       (Ir.Label "for_label");
+       Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "i.6")};
+       (Ir.Label "start.for.3");
+       Ir.Binary {op = Ir.LessThan; src1 = (Ir.Var "i.6");
+         src2 = (Ir.Constant 10); dst = (Ir.Var "tmp.1")};
+       Ir.JumpIfZero {condition = (Ir.Var "tmp.1"); target = "break.for.3"};
+       Ir.Binary {op = Ir.Add; src1 = (Ir.Var "sum.5");
+         src2 = (Ir.Constant 1); dst = (Ir.Var "tmp.2")};
+       Ir.Copy {src = (Ir.Var "tmp.2"); dst = (Ir.Var "sum.5")};
+       Ir.Jump {target = "continue_label"}; (Ir.Return (Ir.Constant 0));
+       (Ir.Label "continue_label"); Ir.Jump {target = "continue.for.3"};
+       (Ir.Return (Ir.Constant 0)); (Ir.Label "continue.for.3");
+       Ir.Binary {op = Ir.Add; src1 = (Ir.Var "i.6"); src2 = (Ir.Constant 1);
+         dst = (Ir.Var "tmp.3")};
+       Ir.Copy {src = (Ir.Var "tmp.3"); dst = (Ir.Var "i.6")};
+       Ir.Jump {target = "start.for.3"}; (Ir.Label "break.for.3");
+       (Ir.Return (Ir.Var "sum.5")); (Ir.Return (Ir.Constant 0))]})

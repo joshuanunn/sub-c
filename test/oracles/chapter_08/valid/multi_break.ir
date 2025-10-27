@@ -1,0 +1,39 @@
+(Ir.Program
+   Ir.Function {name = "main";
+     body =
+     [Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "i.0")};
+       (Ir.Label "continue.while.1");
+       Ir.JumpIfZero {condition = (Ir.Constant 1); target = "break.while.1"};
+       Ir.Binary {op = Ir.Add; src1 = (Ir.Var "i.0"); src2 = (Ir.Constant 1);
+         dst = (Ir.Var "tmp.0")};
+       Ir.Copy {src = (Ir.Var "tmp.0"); dst = (Ir.Var "i.0")};
+       Ir.Binary {op = Ir.GreaterThan; src1 = (Ir.Var "i.0");
+         src2 = (Ir.Constant 10); dst = (Ir.Var "tmp.1")};
+       Ir.JumpIfZero {condition = (Ir.Var "tmp.1"); target = "if_end.2"};
+       Ir.Jump {target = "break.while.1"}; (Ir.Label "if_end.2");
+       Ir.Jump {target = "continue.while.1"}; (Ir.Label "break.while.1");
+       Ir.Copy {src = (Ir.Constant 10); dst = (Ir.Var "j.1")};
+       (Ir.Label "continue.while.2");
+       Ir.JumpIfZero {condition = (Ir.Constant 1); target = "break.while.2"};
+       Ir.Binary {op = Ir.Subtract; src1 = (Ir.Var "j.1");
+         src2 = (Ir.Constant 1); dst = (Ir.Var "tmp.3")};
+       Ir.Copy {src = (Ir.Var "tmp.3"); dst = (Ir.Var "j.1")};
+       Ir.Binary {op = Ir.LessThan; src1 = (Ir.Var "j.1");
+         src2 = (Ir.Constant 0); dst = (Ir.Var "tmp.4")};
+       Ir.JumpIfZero {condition = (Ir.Var "tmp.4"); target = "if_end.5"};
+       Ir.Jump {target = "break.while.2"}; (Ir.Label "if_end.5");
+       Ir.Jump {target = "continue.while.2"}; (Ir.Label "break.while.2");
+       Ir.Unary {op = Ir.Negate; src = (Ir.Constant 1);
+         dst = (Ir.Var "tmp.6")};
+       Ir.Binary {op = Ir.Equal; src1 = (Ir.Var "j.1");
+         src2 = (Ir.Var "tmp.6"); dst = (Ir.Var "tmp.7")};
+       Ir.JumpIfZero {condition = (Ir.Var "tmp.7"); target = "and_false.10"};
+       Ir.Binary {op = Ir.Equal; src1 = (Ir.Var "i.0");
+         src2 = (Ir.Constant 11); dst = (Ir.Var "tmp.8")};
+       Ir.JumpIfZero {condition = (Ir.Var "tmp.8"); target = "and_false.10"};
+       Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "tmp.9")};
+       Ir.Jump {target = "and_end.11"}; (Ir.Label "and_false.10");
+       Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "tmp.9")};
+       (Ir.Label "and_end.11");
+       Ir.Copy {src = (Ir.Var "tmp.9"); dst = (Ir.Var "result.2")};
+       (Ir.Return (Ir.Var "result.2")); (Ir.Return (Ir.Constant 0))]})

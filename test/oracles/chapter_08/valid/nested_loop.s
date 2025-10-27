@@ -1,0 +1,58 @@
+    .globl      main
+main:
+    pushq       %rbp
+    movq        %rsp, %rbp
+    subq        $36, %rsp
+    movl        $0, -4(%rbp)
+    movl        $100, -8(%rbp)
+.Lcontinue.while.1:
+    cmpl        $0, -8(%rbp)
+    je          .Lbreak.while.1
+    movl        $10, -12(%rbp)
+    movl        -8(%rbp), %r10d
+    movl        %r10d, -16(%rbp)
+    movl        -12(%rbp), %r10d
+    subl        %r10d, -16(%rbp)
+    movl        -16(%rbp), %r10d
+    movl        %r10d, -8(%rbp)
+.Lcontinue.while.2:
+    cmpl        $0, -12(%rbp)
+    je          .Lbreak.while.2
+    movl        -4(%rbp), %r10d
+    movl        %r10d, -20(%rbp)
+    addl        $1, -20(%rbp)
+    movl        -20(%rbp), %r10d
+    movl        %r10d, -4(%rbp)
+    movl        -12(%rbp), %r10d
+    movl        %r10d, -24(%rbp)
+    subl        $1, -24(%rbp)
+    movl        -24(%rbp), %r10d
+    movl        %r10d, -12(%rbp)
+    jmp         .Lcontinue.while.2
+.Lbreak.while.2:
+    jmp         .Lcontinue.while.1
+.Lbreak.while.1:
+    cmpl        $100, -4(%rbp)
+    movl        $0, -28(%rbp)
+    sete        -28(%rbp)
+    cmpl        $0, -28(%rbp)
+    je          .Land_false.6
+    cmpl        $0, -8(%rbp)
+    movl        $0, -32(%rbp)
+    sete        -32(%rbp)
+    cmpl        $0, -32(%rbp)
+    je          .Land_false.6
+    movl        $1, -36(%rbp)
+    jmp         .Land_end.7
+.Land_false.6:
+    movl        $0, -36(%rbp)
+.Land_end.7:
+    movl        -36(%rbp), %eax
+    movq        %rbp, %rsp
+    popq        %rbp
+    ret         
+    movl        $0, %eax
+    movq        %rbp, %rsp
+    popq        %rbp
+    ret         
+    .section    .note.GNU-stack,"",@progbits
