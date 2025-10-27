@@ -163,11 +163,58 @@ let rec convert_stmt (s : Ast.stmt) (le : Env.lenv) : Ir.instruction list =
           match node with S s -> convert_stmt s le | D d -> convert_dclr d le)
         items
       |> List.flatten
-  | Break _ -> failwith "TODO"
-  | Continue _ -> failwith "TODO"
-  | While _ -> failwith "TODO"
-  | DoWhile _ -> failwith "TODO"
-  | For _ -> failwith "TODO"
+  | Break id -> (
+      match id with
+      | Some (Identifier i) -> [ Jump { target = "break." ^ i } ]
+      | None -> failwith "break statement has missing label")
+  | Continue id -> (
+      match id with
+      | Some (Identifier i) -> [ Jump { target = "continue." ^ i } ]
+      | None -> failwith "continue statement has missing label")
+  | While { cond; body; id } -> (
+      match id with
+      | Some (Identifier i) ->
+          let s_continue = "continue." ^ i in
+          let s_break = "break." ^ i in
+          let l_continue = Label s_continue in
+          let cond, cond_ins = convert_expr cond le in
+          let jz_cond = JumpIfZero { condition = cond; target = s_break } in
+          let body_ins = convert_stmt body le in
+          let j_continue = Jump { target = s_continue } in
+          let l_break = Label s_break in
+          [ l_continue ] @ cond_ins @ [ jz_cond ] @ body_ins @ [ j_continue ]
+          @ [ l_break ]
+      | None -> failwith "while statement has missing label")
+  | DoWhile { body; cond; id } -> (
+      match id with
+      | Some (Identifier i) ->
+          let s_start = "start." ^ i in
+          let l_start = Label s_start in
+          let body_ins = convert_stmt body le in
+          let l_continue = Label ("continue." ^ i) in
+          let cond, cond_ins = convert_expr cond le in
+          let jz_cond = JumpIfNotZero { condition = cond; target = s_start } in
+          let l_break = Label ("break." ^ i) in
+          [ l_start ] @ body_ins @ [ l_continue ] @ cond_ins @ [ jz_cond ]
+          @ [ l_break ]
+      | None -> failwith "dowhile statement has missing label")
+  | For { init; cond; post; body; id } -> (
+      match id with
+      | Some (Identifier i) ->
+          let s_break = "break." ^ i in
+          let init_ins = convert_for_init init le in
+          let s_start = "start." ^ i in
+          let l_start = Label s_start in
+          let cond_ins = convert_for_cond cond s_break le in
+          let body_ins = convert_stmt body le in
+          let s_continue = "continue." ^ i in
+          let l_continue = Label s_continue in
+          let post_ins = convert_for_post post le in
+          let j_start = Jump { target = s_start } in
+          let l_break = Label s_break in
+          init_ins @ [ l_start ] @ cond_ins @ body_ins @ [ l_continue ]
+          @ post_ins @ [ j_start ] @ [ l_break ]
+      | None -> failwith "for statement has missing label")
   | Goto (Identifier id) -> [ Jump { target = id } ]
   | Label (Identifier id, next_stmt) -> [ Label id ] @ convert_stmt next_stmt le
   | Null -> []
@@ -184,6 +231,31 @@ and convert_dclr (d : Ast.decl) (le : Env.lenv) : Ir.instruction list =
       let initialiser = Assignment (Ast.Var lhs, rhs) in
       let _, instructions = convert_expr initialiser le in
       instructions
+
+and convert_for_init (i : Ast.for_init) (le : Env.lenv) : Ir.instruction list =
+  match i with
+  | InclDecl d -> convert_dclr d le
+  | InitExp (Some e) ->
+      let _, ins = convert_expr e le in
+      ins
+  | InitExp None -> []
+
+and convert_for_cond (e : Ast.expr option) (exit_target : string)
+    (le : Env.lenv) : Ir.instruction list =
+  match e with
+  | Some exp ->
+      let cond, cond_ins = convert_expr exp le in
+      let jz_cond = JumpIfZero { condition = cond; target = exit_target } in
+      cond_ins @ [ jz_cond ]
+  | None -> []
+
+and convert_for_post (e : Ast.expr option) (le : Env.lenv) : Ir.instruction list
+    =
+  match e with
+  | Some exp ->
+      let _, ins = convert_expr exp le in
+      ins
+  | None -> []
 
 and convert_func (f : Ast.func) (le : Env.lenv) : Ir.func =
   match f with
