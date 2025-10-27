@@ -6,14 +6,14 @@ main:
     movl        $0, -4(%rbp)
     addl        $1, -4(%rbp)
     cmpl        $0, -4(%rbp)
-    je          .Lcond_e2.2
+    je          .Lcond.el.2
     addl        $1, -4(%rbp)
     movl        -4(%rbp), %r10d
     movl        %r10d, -8(%rbp)
-    jmp         .Lcond_end.1
-.Lcond_e2.2:
+    jmp         .Lcond.en.1
+.Lcond.el.2:
     movl        $0, -8(%rbp)
-.Lcond_end.1:
+.Lcond.en.1:
     movl        -8(%rbp), %eax
     movq        %rbp, %rsp
     popq        %rbp

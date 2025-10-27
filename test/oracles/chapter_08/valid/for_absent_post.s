@@ -32,17 +32,17 @@ main:
     idivl       %r10d
     movl        %edx, -24(%rbp)
     cmpl        $0, -24(%rbp)
-    jne         .Lor_true.7
+    jne         .Lor.tr.7
     cmpl        $0, -4(%rbp)
     movl        $0, -28(%rbp)
     setg        -28(%rbp)
     cmpl        $0, -28(%rbp)
-    jne         .Lor_true.7
+    jne         .Lor.tr.7
     movl        $0, -32(%rbp)
-    jmp         .Lor_end.8
-.Lor_true.7:
+    jmp         .Lor.en.8
+.Lor.tr.7:
     movl        $1, -32(%rbp)
-.Lor_end.8:
+.Lor.en.8:
     movl        -32(%rbp), %eax
     movq        %rbp, %rsp
     popq        %rbp

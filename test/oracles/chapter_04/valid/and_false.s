@@ -5,41 +5,41 @@ main:
     subq        $20, %rsp
     movl        $10, %r11d
     cmpl        $0, %r11d
-    je          .Land_false.1
+    je          .Land.fl.1
     movl        $0, %r11d
     cmpl        $0, %r11d
-    je          .Land_false.1
+    je          .Land.fl.1
     movl        $1, -4(%rbp)
-    jmp         .Land_end.2
-.Land_false.1:
+    jmp         .Land.en.2
+.Land.fl.1:
     movl        $0, -4(%rbp)
-.Land_end.2:
+.Land.en.2:
     movl        $0, %r11d
     cmpl        $0, %r11d
-    je          .Land_false.4
+    je          .Land.fl.4
     movl        $4, %r11d
     cmpl        $0, %r11d
-    je          .Land_false.4
+    je          .Land.fl.4
     movl        $1, -8(%rbp)
-    jmp         .Land_end.5
-.Land_false.4:
+    jmp         .Land.en.5
+.Land.fl.4:
     movl        $0, -8(%rbp)
-.Land_end.5:
+.Land.en.5:
     movl        -4(%rbp), %r10d
     movl        %r10d, -12(%rbp)
     movl        -8(%rbp), %r10d
     addl        %r10d, -12(%rbp)
     movl        $0, %r11d
     cmpl        $0, %r11d
-    je          .Land_false.8
+    je          .Land.fl.8
     movl        $0, %r11d
     cmpl        $0, %r11d
-    je          .Land_false.8
+    je          .Land.fl.8
     movl        $1, -16(%rbp)
-    jmp         .Land_end.9
-.Land_false.8:
+    jmp         .Land.en.9
+.Land.fl.8:
     movl        $0, -16(%rbp)
-.Land_end.9:
+.Land.en.9:
     movl        -12(%rbp), %r10d
     movl        %r10d, -20(%rbp)
     movl        -16(%rbp), %r10d

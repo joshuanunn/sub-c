@@ -76,8 +76,8 @@ let rec convert_expr (e : Ast.expr) (le : Env.lenv) :
       let lhs, lhs_ins = convert_expr left le in
       let rhs, rhs_ins = convert_expr right le in
       let dst = Var (declare_value "tmp" le) in
-      let lbs = declare_label "and_false" le in
-      let lbe = declare_label "and_end" le in
+      let lbs = declare_label "and.fl" le in
+      let lbe = declare_label "and.en" le in
       let jzl = JumpIfZero { condition = lhs; target = lbs } in
       let jzr = JumpIfZero { condition = rhs; target = lbs } in
       let c1 = Copy { src = Constant 1; dst } in
@@ -90,8 +90,8 @@ let rec convert_expr (e : Ast.expr) (le : Env.lenv) :
       let lhs, lhs_ins = convert_expr left le in
       let rhs, rhs_ins = convert_expr right le in
       let dst = Var (declare_value "tmp" le) in
-      let lbs = declare_label "or_true" le in
-      let lbe = declare_label "or_end" le in
+      let lbs = declare_label "or.tr" le in
+      let lbe = declare_label "or.en" le in
       let jzl = JumpIfNotZero { condition = lhs; target = lbs } in
       let jzr = JumpIfNotZero { condition = rhs; target = lbs } in
       let c0 = Copy { src = Constant 0; dst } in
@@ -115,8 +115,8 @@ let rec convert_expr (e : Ast.expr) (le : Env.lenv) :
   | Conditional { cond_exp; then_exp; else_exp } ->
       let result = Var (declare_value "tmp" le) in
       let cond, cond_ins = convert_expr cond_exp le in
-      let l_end = declare_label "cond_end" le in
-      let l_e2 = declare_label "cond_e2" le in
+      let l_end = declare_label "cond.en" le in
+      let l_e2 = declare_label "cond.el" le in
       let jz_cond = JumpIfZero { condition = cond; target = l_e2 } in
       let v1, e1_ins = convert_expr then_exp le in
       let c1 = Copy { src = v1; dst = result } in
@@ -137,14 +137,14 @@ let rec convert_stmt (s : Ast.stmt) (le : Env.lenv) : Ir.instruction list =
       instructions
   | If { cond_exp; then_smt; else_smt = None } ->
       let cond, cond_ins = convert_expr cond_exp le in
-      let l_end = declare_label "if_end" le in
+      let l_end = declare_label "if.en" le in
       let jz_cond = JumpIfZero { condition = cond; target = l_end } in
       let then_ins = convert_stmt then_smt le in
       cond_ins @ [ jz_cond ] @ then_ins @ [ Label l_end ]
   | If { cond_exp; then_smt; else_smt = Some s } ->
       let cond, cond_ins = convert_expr cond_exp le in
-      let l_end = declare_label "if_end" le in
-      let l_else = declare_label "if_else" le in
+      let l_end = declare_label "if.en" le in
+      let l_else = declare_label "if.el" le in
       let jz_cond = JumpIfZero { condition = cond; target = l_else } in
       let then_ins = convert_stmt then_smt le in
       let j_end = Jump { target = l_end } in

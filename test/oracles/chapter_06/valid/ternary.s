@@ -11,12 +11,12 @@ main:
     movl        $0, -16(%rbp)
     setg        -16(%rbp)
     cmpl        $0, -16(%rbp)
-    je          .Lcond_e2.4
+    je          .Lcond.el.4
     movl        $4, -8(%rbp)
-    jmp         .Lcond_end.3
-.Lcond_e2.4:
+    jmp         .Lcond.en.3
+.Lcond.el.4:
     movl        $5, -8(%rbp)
-.Lcond_end.3:
+.Lcond.en.3:
     movl        -8(%rbp), %eax
     movq        %rbp, %rsp
     popq        %rbp

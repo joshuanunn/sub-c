@@ -12,8 +12,8 @@
        (Asm.Mov ((Asm.Imm 0), (Asm.Stack -12)));
        (Asm.SetCC (Asm.L, (Asm.Stack -12)));
        (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -12)));
-       (Asm.JmpCC (Asm.E, "if_end.2")); (Asm.Jmp "while_start");
-       (Asm.Label "if_end.2"); (Asm.Label "loop.ct.1");
+       (Asm.JmpCC (Asm.E, "if.en.2")); (Asm.Jmp "while_start");
+       (Asm.Label "if.en.2"); (Asm.Label "loop.ct.1");
        (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.R11)));
        (Asm.Cmp ((Asm.Imm 0), (Asm.Reg Asm.R11)));
        (Asm.JmpCC (Asm.NE, "loop.st.1")); (Asm.Label "loop.br.1");

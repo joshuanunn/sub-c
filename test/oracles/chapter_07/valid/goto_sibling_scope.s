@@ -6,7 +6,7 @@ main:
     movl        $0, -4(%rbp)
     movl        $1, %r11d
     cmpl        $0, %r11d
-    je          .Lif_end.0
+    je          .Lif.en.0
     movl        $5, -8(%rbp)
     jmp         .Lother_if
     movl        $0, -4(%rbp)
@@ -18,10 +18,10 @@ main:
     addl        %r10d, -12(%rbp)
     movl        -12(%rbp), %r10d
     movl        %r10d, -4(%rbp)
-.Lif_end.0:
+.Lif.en.0:
     movl        $0, %r11d
     cmpl        $0, %r11d
-    je          .Lif_end.2
+    je          .Lif.en.2
 .Lother_if:
     movl        $6, -16(%rbp)
     movl        -4(%rbp), %r10d
@@ -32,7 +32,7 @@ main:
     movl        %r10d, -4(%rbp)
     jmp         .Lfirst_if
     movl        $0, -4(%rbp)
-.Lif_end.2:
+.Lif.en.2:
     movl        -4(%rbp), %eax
     movq        %rbp, %rsp
     popq        %rbp

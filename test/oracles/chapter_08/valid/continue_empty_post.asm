@@ -18,8 +18,8 @@
        (Asm.Idiv (Asm.Reg Asm.R10));
        (Asm.Mov ((Asm.Reg Asm.DX), (Asm.Stack -20)));
        (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -20)));
-       (Asm.JmpCC (Asm.E, "if_end.3")); (Asm.Jmp "loop.ct.1");
-       (Asm.Label "if_end.3"); (Asm.Mov ((Asm.Stack -4), (Asm.Reg Asm.R10)));
+       (Asm.JmpCC (Asm.E, "if.en.3")); (Asm.Jmp "loop.ct.1");
+       (Asm.Label "if.en.3"); (Asm.Mov ((Asm.Stack -4), (Asm.Reg Asm.R10)));
        (Asm.Mov ((Asm.Reg Asm.R10), (Asm.Stack -24)));
        (Asm.Mov ((Asm.Stack -8), (Asm.Reg Asm.R10)));
        Asm.Binary {op = Asm.Add; src = (Asm.Reg Asm.R10);

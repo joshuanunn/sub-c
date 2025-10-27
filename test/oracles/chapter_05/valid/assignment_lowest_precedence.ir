@@ -1,11 +1,11 @@
 (Ir.Program
    Ir.Function {name = "main";
      body =
-     [Ir.JumpIfNotZero {condition = (Ir.Constant 0); target = "or_true.1"};
-       Ir.JumpIfNotZero {condition = (Ir.Constant 5); target = "or_true.1"};
+     [Ir.JumpIfNotZero {condition = (Ir.Constant 0); target = "or.tr.1"};
+       Ir.JumpIfNotZero {condition = (Ir.Constant 5); target = "or.tr.1"};
        Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "tmp.0")};
-       Ir.Jump {target = "or_end.2"}; (Ir.Label "or_true.1");
+       Ir.Jump {target = "or.en.2"}; (Ir.Label "or.tr.1");
        Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "tmp.0")};
-       (Ir.Label "or_end.2");
+       (Ir.Label "or.en.2");
        Ir.Copy {src = (Ir.Var "tmp.0"); dst = (Ir.Var "a.0")};
        (Ir.Return (Ir.Var "a.0")); (Ir.Return (Ir.Constant 0))]})

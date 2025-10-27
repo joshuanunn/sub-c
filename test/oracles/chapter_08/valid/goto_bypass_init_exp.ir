@@ -11,8 +11,8 @@
        (Ir.Label "target");
        Ir.Binary {op = Ir.Equal; src1 = (Ir.Var "i.1");
          src2 = (Ir.Constant 0); dst = (Ir.Var "tmp.1")};
-       Ir.JumpIfZero {condition = (Ir.Var "tmp.1"); target = "if_end.2"};
-       (Ir.Return (Ir.Constant 1)); (Ir.Label "if_end.2");
+       Ir.JumpIfZero {condition = (Ir.Var "tmp.1"); target = "if.en.2"};
+       (Ir.Return (Ir.Constant 1)); (Ir.Label "if.en.2");
        (Ir.Label "loop.ct.1");
        Ir.Binary {op = Ir.Add; src1 = (Ir.Var "i.1"); src2 = (Ir.Constant 1);
          dst = (Ir.Var "tmp.3")};

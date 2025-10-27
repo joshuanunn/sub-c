@@ -15,12 +15,12 @@
        (Ir.Label "loop.br.1");
        Ir.Binary {op = Ir.Equal; src1 = (Ir.Var "i.0");
          src2 = (Ir.Constant 0); dst = (Ir.Var "tmp.2")};
-       Ir.JumpIfZero {condition = (Ir.Var "tmp.2"); target = "and_false.5"};
+       Ir.JumpIfZero {condition = (Ir.Var "tmp.2"); target = "and.fl.5"};
        Ir.Binary {op = Ir.Equal; src1 = (Ir.Var "sum.1");
          src2 = (Ir.Constant 200); dst = (Ir.Var "tmp.3")};
-       Ir.JumpIfZero {condition = (Ir.Var "tmp.3"); target = "and_false.5"};
+       Ir.JumpIfZero {condition = (Ir.Var "tmp.3"); target = "and.fl.5"};
        Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "tmp.4")};
-       Ir.Jump {target = "and_end.6"}; (Ir.Label "and_false.5");
+       Ir.Jump {target = "and.en.6"}; (Ir.Label "and.fl.5");
        Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "tmp.4")};
-       (Ir.Label "and_end.6"); (Ir.Return (Ir.Var "tmp.4"));
+       (Ir.Label "and.en.6"); (Ir.Return (Ir.Var "tmp.4"));
        (Ir.Return (Ir.Constant 0))]})

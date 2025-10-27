@@ -5,29 +5,29 @@ main:
     subq        $20, %rsp
     movl        $0, %r11d
     cmpl        $0, %r11d
-    je          .Land_false.1
+    je          .Land.fl.1
     movl        $1, %r11d
     cmpl        $0, %r11d
-    je          .Land_false.1
+    je          .Land.fl.1
     movl        $1, -4(%rbp)
-    jmp         .Land_end.2
-.Land_false.1:
+    jmp         .Land.en.2
+.Land.fl.1:
     movl        $0, -4(%rbp)
-.Land_end.2:
+.Land.en.2:
     movl        -4(%rbp), %r10d
     movl        %r10d, -8(%rbp)
     notl        -8(%rbp)
     movl        $4, %r11d
     cmpl        $0, %r11d
-    jne         .Lor_true.5
+    jne         .Lor.tr.5
     movl        $3, %r11d
     cmpl        $0, %r11d
-    jne         .Lor_true.5
+    jne         .Lor.tr.5
     movl        $0, -12(%rbp)
-    jmp         .Lor_end.6
-.Lor_true.5:
+    jmp         .Lor.en.6
+.Lor.tr.5:
     movl        $1, -12(%rbp)
-.Lor_end.6:
+.Lor.en.6:
     movl        -12(%rbp), %r10d
     movl        %r10d, -16(%rbp)
     negl        -16(%rbp)

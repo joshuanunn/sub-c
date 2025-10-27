@@ -15,20 +15,20 @@
        Ir.Copy {src = (Ir.Var "tmp.2"); dst = (Ir.Var "c.2")};
        Ir.Binary {op = Ir.Equal; src1 = (Ir.Var "a.0");
          src2 = (Ir.Constant 3); dst = (Ir.Var "tmp.3")};
-       Ir.JumpIfZero {condition = (Ir.Var "tmp.3"); target = "and_false.6"};
+       Ir.JumpIfZero {condition = (Ir.Var "tmp.3"); target = "and.fl.6"};
        Ir.Binary {op = Ir.Equal; src1 = (Ir.Var "b.1");
          src2 = (Ir.Constant 6); dst = (Ir.Var "tmp.4")};
-       Ir.JumpIfZero {condition = (Ir.Var "tmp.4"); target = "and_false.6"};
+       Ir.JumpIfZero {condition = (Ir.Var "tmp.4"); target = "and.fl.6"};
        Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "tmp.5")};
-       Ir.Jump {target = "and_end.7"}; (Ir.Label "and_false.6");
+       Ir.Jump {target = "and.en.7"}; (Ir.Label "and.fl.6");
        Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "tmp.5")};
-       (Ir.Label "and_end.7");
-       Ir.JumpIfZero {condition = (Ir.Var "tmp.5"); target = "and_false.10"};
+       (Ir.Label "and.en.7");
+       Ir.JumpIfZero {condition = (Ir.Var "tmp.5"); target = "and.fl.10"};
        Ir.Binary {op = Ir.Equal; src1 = (Ir.Var "c.2");
          src2 = (Ir.Constant 10); dst = (Ir.Var "tmp.8")};
-       Ir.JumpIfZero {condition = (Ir.Var "tmp.8"); target = "and_false.10"};
+       Ir.JumpIfZero {condition = (Ir.Var "tmp.8"); target = "and.fl.10"};
        Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "tmp.9")};
-       Ir.Jump {target = "and_end.11"}; (Ir.Label "and_false.10");
+       Ir.Jump {target = "and.en.11"}; (Ir.Label "and.fl.10");
        Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "tmp.9")};
-       (Ir.Label "and_end.11"); (Ir.Return (Ir.Var "tmp.9"));
+       (Ir.Label "and.en.11"); (Ir.Return (Ir.Var "tmp.9"));
        (Ir.Return (Ir.Constant 0))]})

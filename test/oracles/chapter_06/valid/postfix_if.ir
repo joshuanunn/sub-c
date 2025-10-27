@@ -5,13 +5,13 @@
        Ir.Copy {src = (Ir.Var "a.0"); dst = (Ir.Var "tmp.0")};
        Ir.Binary {op = Ir.Subtract; src1 = (Ir.Var "a.0");
          src2 = (Ir.Constant 1); dst = (Ir.Var "a.0")};
-       Ir.JumpIfZero {condition = (Ir.Var "tmp.0"); target = "if_else.2"};
-       (Ir.Return (Ir.Constant 0)); Ir.Jump {target = "if_end.1"};
-       (Ir.Label "if_else.2");
+       Ir.JumpIfZero {condition = (Ir.Var "tmp.0"); target = "if.el.2"};
+       (Ir.Return (Ir.Constant 0)); Ir.Jump {target = "if.en.1"};
+       (Ir.Label "if.el.2");
        Ir.Copy {src = (Ir.Var "a.0"); dst = (Ir.Var "tmp.3")};
        Ir.Binary {op = Ir.Subtract; src1 = (Ir.Var "a.0");
          src2 = (Ir.Constant 1); dst = (Ir.Var "a.0")};
-       Ir.JumpIfZero {condition = (Ir.Var "tmp.3"); target = "if_end.4"};
-       (Ir.Return (Ir.Constant 1)); (Ir.Label "if_end.4");
-       (Ir.Label "if_end.1"); (Ir.Return (Ir.Constant 0));
+       Ir.JumpIfZero {condition = (Ir.Var "tmp.3"); target = "if.en.4"};
+       (Ir.Return (Ir.Constant 1)); (Ir.Label "if.en.4");
+       (Ir.Label "if.en.1"); (Ir.Return (Ir.Constant 0));
        (Ir.Return (Ir.Constant 0))]})

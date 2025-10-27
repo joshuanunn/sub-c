@@ -9,22 +9,22 @@ main:
     movl        %r10d, -4(%rbp)
     addl        $1, -4(%rbp)
     cmpl        $0, -4(%rbp)
-    je          .Lif_else.2
+    je          .Lif.el.2
     movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         
-    jmp         .Lif_end.1
-.Lif_else.2:
+    jmp         .Lif.en.1
+.Lif.el.2:
     addl        $1, -4(%rbp)
     cmpl        $0, -4(%rbp)
-    je          .Lif_end.3
+    je          .Lif.en.3
     movl        $1, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         
-.Lif_end.3:
-.Lif_end.1:
+.Lif.en.3:
+.Lif.en.1:
     movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp

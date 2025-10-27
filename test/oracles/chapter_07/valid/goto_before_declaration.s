@@ -8,13 +8,13 @@ main:
     movl        $0, -8(%rbp)
     setne       -8(%rbp)
     cmpl        $0, -8(%rbp)
-    je          .Lif_end.1
+    je          .Lif.en.1
 .Lreturn_a:
     movl        -4(%rbp), %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         
-.Lif_end.1:
+.Lif.en.1:
     movl        $4, -12(%rbp)
     jmp         .Lreturn_a
     movl        $0, %eax

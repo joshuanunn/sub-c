@@ -12,8 +12,8 @@
        Ir.Copy {src = (Ir.Var "tmp.1"); dst = (Ir.Var "i.1")};
        Ir.Binary {op = Ir.Remainder; src1 = (Ir.Var "i.1");
          src2 = (Ir.Constant 2); dst = (Ir.Var "tmp.2")};
-       Ir.JumpIfZero {condition = (Ir.Var "tmp.2"); target = "if_end.3"};
-       Ir.Jump {target = "loop.ct.1"}; (Ir.Label "if_end.3");
+       Ir.JumpIfZero {condition = (Ir.Var "tmp.2"); target = "if.en.3"};
+       Ir.Jump {target = "loop.ct.1"}; (Ir.Label "if.en.3");
        Ir.Binary {op = Ir.Add; src1 = (Ir.Var "sum.0");
          src2 = (Ir.Var "i.1"); dst = (Ir.Var "tmp.4")};
        Ir.Copy {src = (Ir.Var "tmp.4"); dst = (Ir.Var "sum.0")};

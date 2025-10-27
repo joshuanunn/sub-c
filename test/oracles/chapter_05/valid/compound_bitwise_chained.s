@@ -65,113 +65,113 @@ main:
     movl        $0, -72(%rbp)
     sete        -72(%rbp)
     cmpl        $0, -72(%rbp)
-    je          .Land_false.10
+    je          .Land.fl.10
     cmpl        $21800, -8(%rbp)
     movl        $0, -76(%rbp)
     sete        -76(%rbp)
     cmpl        $0, -76(%rbp)
-    je          .Land_false.10
+    je          .Land.fl.10
     movl        $1, -80(%rbp)
-    jmp         .Land_end.11
-.Land_false.10:
+    jmp         .Land.en.11
+.Land.fl.10:
     movl        $0, -80(%rbp)
-.Land_end.11:
+.Land.en.11:
     cmpl        $0, -80(%rbp)
-    je          .Land_false.14
+    je          .Land.fl.14
     cmpl        $109, -12(%rbp)
     movl        $0, -84(%rbp)
     sete        -84(%rbp)
     cmpl        $0, -84(%rbp)
-    je          .Land_false.14
+    je          .Land.fl.14
     movl        $1, -88(%rbp)
-    jmp         .Land_end.15
-.Land_false.14:
+    jmp         .Land.en.15
+.Land.fl.14:
     movl        $0, -88(%rbp)
-.Land_end.15:
+.Land.en.15:
     cmpl        $0, -88(%rbp)
-    je          .Land_false.18
+    je          .Land.fl.18
     cmpl        $41, -16(%rbp)
     movl        $0, -92(%rbp)
     sete        -92(%rbp)
     cmpl        $0, -92(%rbp)
-    je          .Land_false.18
+    je          .Land.fl.18
     movl        $1, -96(%rbp)
-    jmp         .Land_end.19
-.Land_false.18:
+    jmp         .Land.en.19
+.Land.fl.18:
     movl        $0, -96(%rbp)
-.Land_end.19:
+.Land.en.19:
     cmpl        $0, -96(%rbp)
-    je          .Land_false.22
+    je          .Land.fl.22
     cmpl        $41, -20(%rbp)
     movl        $0, -100(%rbp)
     sete        -100(%rbp)
     cmpl        $0, -100(%rbp)
-    je          .Land_false.22
+    je          .Land.fl.22
     movl        $1, -104(%rbp)
-    jmp         .Land_end.23
-.Land_false.22:
+    jmp         .Land.en.23
+.Land.fl.22:
     movl        $0, -104(%rbp)
-.Land_end.23:
+.Land.en.23:
     cmpl        $0, -104(%rbp)
-    je          .Land_false.26
+    je          .Land.fl.26
     cmpl        $27, -24(%rbp)
     movl        $0, -108(%rbp)
     sete        -108(%rbp)
     cmpl        $0, -108(%rbp)
-    je          .Land_false.26
+    je          .Land.fl.26
     movl        $1, -112(%rbp)
-    jmp         .Land_end.27
-.Land_false.26:
+    jmp         .Land.en.27
+.Land.fl.26:
     movl        $0, -112(%rbp)
-.Land_end.27:
+.Land.en.27:
     cmpl        $0, -112(%rbp)
-    je          .Land_false.30
+    je          .Land.fl.30
     cmpl        $2, -28(%rbp)
     movl        $0, -116(%rbp)
     sete        -116(%rbp)
     cmpl        $0, -116(%rbp)
-    je          .Land_false.30
+    je          .Land.fl.30
     movl        $1, -120(%rbp)
-    jmp         .Land_end.31
-.Land_false.30:
+    jmp         .Land.en.31
+.Land.fl.30:
     movl        $0, -120(%rbp)
-.Land_end.31:
+.Land.en.31:
     cmpl        $0, -120(%rbp)
-    je          .Land_false.34
+    je          .Land.fl.34
     cmpl        $2, -32(%rbp)
     movl        $0, -124(%rbp)
     sete        -124(%rbp)
     cmpl        $0, -124(%rbp)
-    je          .Land_false.34
+    je          .Land.fl.34
     movl        $1, -128(%rbp)
-    jmp         .Land_end.35
-.Land_false.34:
+    jmp         .Land.en.35
+.Land.fl.34:
     movl        $0, -128(%rbp)
-.Land_end.35:
+.Land.en.35:
     cmpl        $0, -128(%rbp)
-    je          .Land_false.38
+    je          .Land.fl.38
     cmpl        $1, -36(%rbp)
     movl        $0, -132(%rbp)
     sete        -132(%rbp)
     cmpl        $0, -132(%rbp)
-    je          .Land_false.38
+    je          .Land.fl.38
     movl        $1, -136(%rbp)
-    jmp         .Land_end.39
-.Land_false.38:
+    jmp         .Land.en.39
+.Land.fl.38:
     movl        $0, -136(%rbp)
-.Land_end.39:
+.Land.en.39:
     cmpl        $0, -136(%rbp)
-    je          .Land_false.42
+    je          .Land.fl.42
     cmpl        $40, -40(%rbp)
     movl        $0, -140(%rbp)
     sete        -140(%rbp)
     cmpl        $0, -140(%rbp)
-    je          .Land_false.42
+    je          .Land.fl.42
     movl        $1, -144(%rbp)
-    jmp         .Land_end.43
-.Land_false.42:
+    jmp         .Land.en.43
+.Land.fl.42:
     movl        $0, -144(%rbp)
-.Land_end.43:
+.Land.en.43:
     movl        -144(%rbp), %eax
     movq        %rbp, %rsp
     popq        %rbp

@@ -9,12 +9,12 @@ main:
     movl        $0, -8(%rbp)
     sete        -8(%rbp)
     cmpl        $0, -8(%rbp)
-    je          .Lif_end.1
+    je          .Lif.en.1
     movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         
-.Lif_end.1:
+.Lif.en.1:
 .Lloop.ct.1:
     movl        -4(%rbp), %r10d
     movl        %r10d, -12(%rbp)

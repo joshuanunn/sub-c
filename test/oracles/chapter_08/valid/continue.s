@@ -22,9 +22,9 @@ main:
     movl        $0, -24(%rbp)
     sete        -24(%rbp)
     cmpl        $0, -24(%rbp)
-    je          .Lif_end.3
+    je          .Lif.en.3
     jmp         .Lloop.ct.1
-.Lif_end.3:
+.Lif.en.3:
     movl        -4(%rbp), %r10d
     movl        %r10d, -28(%rbp)
     addl        $1, -28(%rbp)
@@ -42,17 +42,17 @@ main:
     movl        $0, -36(%rbp)
     sete        -36(%rbp)
     cmpl        $0, -36(%rbp)
-    je          .Land_false.9
+    je          .Land.fl.9
     cmpl        $10, -8(%rbp)
     movl        $0, -40(%rbp)
     sete        -40(%rbp)
     cmpl        $0, -40(%rbp)
-    je          .Land_false.9
+    je          .Land.fl.9
     movl        $1, -44(%rbp)
-    jmp         .Land_end.10
-.Land_false.9:
+    jmp         .Land.en.10
+.Land.fl.9:
     movl        $0, -44(%rbp)
-.Land_end.10:
+.Land.en.10:
     movl        -44(%rbp), %eax
     movq        %rbp, %rsp
     popq        %rbp

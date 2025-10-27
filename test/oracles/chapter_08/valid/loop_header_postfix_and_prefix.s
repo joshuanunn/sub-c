@@ -20,12 +20,12 @@ main:
     movl        $0, -20(%rbp)
     setne       -20(%rbp)
     cmpl        $0, -20(%rbp)
-    je          .Lif_end.3
+    je          .Lif.en.3
     movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         
-.Lif_end.3:
+.Lif.en.3:
     movl        $100, -4(%rbp)
     movl        $0, -8(%rbp)
 .Lloop.ct.2:
@@ -41,12 +41,12 @@ main:
     movl        $0, -28(%rbp)
     setne       -28(%rbp)
     cmpl        $0, -28(%rbp)
-    je          .Lif_end.6
+    je          .Lif.en.6
     movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         
-.Lif_end.6:
+.Lif.en.6:
     movl        $1, %eax
     movq        %rbp, %rsp
     popq        %rbp

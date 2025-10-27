@@ -26,13 +26,13 @@
        (Asm.Idiv (Asm.Reg Asm.R10));
        (Asm.Mov ((Asm.Reg Asm.DX), (Asm.Stack -24)));
        (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -24)));
-       (Asm.JmpCC (Asm.NE, "or_true.7"));
+       (Asm.JmpCC (Asm.NE, "or.tr.7"));
        (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -4)));
        (Asm.Mov ((Asm.Imm 0), (Asm.Stack -28)));
        (Asm.SetCC (Asm.G, (Asm.Stack -28)));
        (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -28)));
-       (Asm.JmpCC (Asm.NE, "or_true.7"));
-       (Asm.Mov ((Asm.Imm 0), (Asm.Stack -32))); (Asm.Jmp "or_end.8");
-       (Asm.Label "or_true.7"); (Asm.Mov ((Asm.Imm 1), (Asm.Stack -32)));
-       (Asm.Label "or_end.8"); (Asm.Mov ((Asm.Stack -32), (Asm.Reg Asm.AX)));
+       (Asm.JmpCC (Asm.NE, "or.tr.7"));
+       (Asm.Mov ((Asm.Imm 0), (Asm.Stack -32))); (Asm.Jmp "or.en.8");
+       (Asm.Label "or.tr.7"); (Asm.Mov ((Asm.Imm 1), (Asm.Stack -32)));
+       (Asm.Label "or.en.8"); (Asm.Mov ((Asm.Stack -32), (Asm.Reg Asm.AX)));
        Asm.Ret; (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX))); Asm.Ret]})

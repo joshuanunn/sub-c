@@ -6,9 +6,9 @@ main:
     movl        $1, -4(%rbp)
     movl        $0, -8(%rbp)
     cmpl        $0, -4(%rbp)
-    je          .Lif_end.0
+    je          .Lif.en.0
     movl        $1, -8(%rbp)
-.Lif_end.0:
+.Lif.en.0:
     movl        -8(%rbp), %eax
     movq        %rbp, %rsp
     popq        %rbp

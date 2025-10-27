@@ -3,14 +3,14 @@
      instructions =
      [(Asm.AllocateStack 8); (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.R11)));
        (Asm.Cmp ((Asm.Imm 0), (Asm.Reg Asm.R11)));
-       (Asm.JmpCC (Asm.E, "and_false.2"));
+       (Asm.JmpCC (Asm.E, "and.fl.2"));
        (Asm.Mov ((Asm.Imm 1), (Asm.Reg Asm.AX))); Asm.Cdq;
        (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.R10)));
        (Asm.Idiv (Asm.Reg Asm.R10));
        (Asm.Mov ((Asm.Reg Asm.AX), (Asm.Stack -4)));
        (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -4)));
-       (Asm.JmpCC (Asm.E, "and_false.2"));
-       (Asm.Mov ((Asm.Imm 1), (Asm.Stack -8))); (Asm.Jmp "and_end.3");
-       (Asm.Label "and_false.2"); (Asm.Mov ((Asm.Imm 0), (Asm.Stack -8)));
-       (Asm.Label "and_end.3"); (Asm.Mov ((Asm.Stack -8), (Asm.Reg Asm.AX)));
+       (Asm.JmpCC (Asm.E, "and.fl.2"));
+       (Asm.Mov ((Asm.Imm 1), (Asm.Stack -8))); (Asm.Jmp "and.en.3");
+       (Asm.Label "and.fl.2"); (Asm.Mov ((Asm.Imm 0), (Asm.Stack -8)));
+       (Asm.Label "and.en.3"); (Asm.Mov ((Asm.Stack -8), (Asm.Reg Asm.AX)));
        Asm.Ret; (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX))); Asm.Ret]})

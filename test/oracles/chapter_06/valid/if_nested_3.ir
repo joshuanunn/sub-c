@@ -3,12 +3,12 @@
      body =
      [Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "a.0")};
        Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "a.0")};
-       Ir.JumpIfZero {condition = (Ir.Var "a.0"); target = "if_end.0"};
+       Ir.JumpIfZero {condition = (Ir.Var "a.0"); target = "if.en.0"};
        Ir.Binary {op = Ir.Equal; src1 = (Ir.Var "a.0");
          src2 = (Ir.Constant 1); dst = (Ir.Var "tmp.1")};
-       Ir.JumpIfZero {condition = (Ir.Var "tmp.1"); target = "if_else.3"};
+       Ir.JumpIfZero {condition = (Ir.Var "tmp.1"); target = "if.el.3"};
        Ir.Copy {src = (Ir.Constant 3); dst = (Ir.Var "a.0")};
-       Ir.Jump {target = "if_end.2"}; (Ir.Label "if_else.3");
+       Ir.Jump {target = "if.en.2"}; (Ir.Label "if.el.3");
        Ir.Copy {src = (Ir.Constant 4); dst = (Ir.Var "a.0")};
-       (Ir.Label "if_end.2"); (Ir.Label "if_end.0");
+       (Ir.Label "if.en.2"); (Ir.Label "if.en.0");
        (Ir.Return (Ir.Var "a.0")); (Ir.Return (Ir.Constant 0))]})

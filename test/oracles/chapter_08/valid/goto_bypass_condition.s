@@ -15,9 +15,9 @@ main:
     movl        $0, -12(%rbp)
     setl        -12(%rbp)
     cmpl        $0, -12(%rbp)
-    je          .Lif_end.2
+    je          .Lif.en.2
     jmp         .Lwhile_start
-.Lif_end.2:
+.Lif.en.2:
 .Lloop.ct.1:
     movl        $0, %r11d
     cmpl        $0, %r11d

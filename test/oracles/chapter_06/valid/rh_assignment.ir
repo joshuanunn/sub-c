@@ -3,11 +3,11 @@
      body =
      [Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "flag.0")};
        Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "a.1")};
-       Ir.JumpIfZero {condition = (Ir.Var "flag.0"); target = "cond_e2.2"};
+       Ir.JumpIfZero {condition = (Ir.Var "flag.0"); target = "cond.el.2"};
        Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "a.1")};
        Ir.Copy {src = (Ir.Var "a.1"); dst = (Ir.Var "tmp.0")};
-       Ir.Jump {target = "cond_end.1"}; (Ir.Label "cond_e2.2");
+       Ir.Jump {target = "cond.en.1"}; (Ir.Label "cond.el.2");
        Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "a.1")};
        Ir.Copy {src = (Ir.Var "a.1"); dst = (Ir.Var "tmp.0")};
-       (Ir.Label "cond_end.1"); (Ir.Return (Ir.Var "a.1"));
+       (Ir.Label "cond.en.1"); (Ir.Return (Ir.Var "a.1"));
        (Ir.Return (Ir.Constant 0))]})

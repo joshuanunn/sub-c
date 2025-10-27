@@ -6,19 +6,19 @@ main:
     movl        $0, -4(%rbp)
     movl        $0, %r11d
     cmpl        $0, %r11d
-    je          .Lif_else.1
+    je          .Lif.el.1
     movl        $0, %r11d
     cmpl        $0, %r11d
-    je          .Lif_else.3
+    je          .Lif.el.3
     movl        $3, -4(%rbp)
-    jmp         .Lif_end.2
-.Lif_else.3:
+    jmp         .Lif.en.2
+.Lif.el.3:
     movl        $4, -4(%rbp)
-.Lif_end.2:
-    jmp         .Lif_end.0
-.Lif_else.1:
+.Lif.en.2:
+    jmp         .Lif.en.0
+.Lif.el.1:
     movl        $1, -4(%rbp)
-.Lif_end.0:
+.Lif.en.0:
     movl        -4(%rbp), %eax
     movq        %rbp, %rsp
     popq        %rbp

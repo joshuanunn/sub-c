@@ -5,18 +5,18 @@ main:
     subq        $4, %rsp
     movl        $0, -4(%rbp)
     cmpl        $0, -4(%rbp)
-    je          .Lif_else.1
+    je          .Lif.el.1
     movl        $1, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         
-    jmp         .Lif_end.0
-.Lif_else.1:
+    jmp         .Lif.en.0
+.Lif.el.1:
     movl        $2, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         
-.Lif_end.0:
+.Lif.en.0:
     movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp

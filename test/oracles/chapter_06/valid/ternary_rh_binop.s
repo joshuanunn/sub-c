@@ -5,24 +5,24 @@ main:
     subq        $8, %rsp
     movl        $0, %r11d
     cmpl        $0, %r11d
-    je          .Lcond_e2.2
+    je          .Lcond.el.2
     movl        $1, -4(%rbp)
-    jmp         .Lcond_end.1
-.Lcond_e2.2:
+    jmp         .Lcond.en.1
+.Lcond.el.2:
     movl        $0, %r11d
     cmpl        $0, %r11d
-    jne         .Lor_true.4
+    jne         .Lor.tr.4
     movl        $2, %r11d
     cmpl        $0, %r11d
-    jne         .Lor_true.4
+    jne         .Lor.tr.4
     movl        $0, -8(%rbp)
-    jmp         .Lor_end.5
-.Lor_true.4:
+    jmp         .Lor.en.5
+.Lor.tr.4:
     movl        $1, -8(%rbp)
-.Lor_end.5:
+.Lor.en.5:
     movl        -8(%rbp), %r10d
     movl        %r10d, -4(%rbp)
-.Lcond_end.1:
+.Lcond.en.1:
     movl        -4(%rbp), %eax
     movq        %rbp, %rsp
     popq        %rbp

@@ -6,20 +6,20 @@ main:
     movl        $1, -4(%rbp)
 .Llabel_if:
     cmpl        $0, -4(%rbp)
-    je          .Lif_else.1
+    je          .Lif.el.1
     jmp         .Llabel_expression
-    jmp         .Lif_end.0
-.Lif_else.1:
+    jmp         .Lif.en.0
+.Lif.el.1:
     jmp         .Llabel_empty
-.Lif_end.0:
+.Lif.en.0:
 .Llabel_goto:
     jmp         .Llabel_return
     movl        $0, %r11d
     cmpl        $0, %r11d
-    je          .Lif_end.2
+    je          .Lif.en.2
 .Llabel_expression:
     movl        $0, -4(%rbp)
-.Lif_end.2:
+.Lif.en.2:
     jmp         .Llabel_if
 .Llabel_return:
     movl        -4(%rbp), %eax
