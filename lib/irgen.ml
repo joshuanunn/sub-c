@@ -82,10 +82,10 @@ let rec convert_expr (e : Ast.expr) (le : Env.lenv) :
       let jzr = JumpIfZero { condition = rhs; target = lbs } in
       let c1 = Copy { src = Constant 1; dst } in
       let je = Jump { target = lbe } in
-      let ls = Label lbs in
       let c0 = Copy { src = Constant 0; dst } in
-      let le = Label lbe in
-      (dst, lhs_ins @ [ jzl ] @ rhs_ins @ [ jzr; c1; je; ls; c0; le ])
+      ( dst,
+        lhs_ins @ [ jzl ] @ rhs_ins @ [ jzr; c1; je; Label lbs; c0; Label lbe ]
+      )
   | Binary { op = Or; left : expr; right : expr } ->
       let lhs, lhs_ins = convert_expr left le in
       let rhs, rhs_ins = convert_expr right le in
@@ -96,10 +96,10 @@ let rec convert_expr (e : Ast.expr) (le : Env.lenv) :
       let jzr = JumpIfNotZero { condition = rhs; target = lbs } in
       let c0 = Copy { src = Constant 0; dst } in
       let je = Jump { target = lbe } in
-      let ls = Label lbs in
       let c1 = Copy { src = Constant 1; dst } in
-      let le = Label lbe in
-      (dst, lhs_ins @ [ jzl ] @ rhs_ins @ [ jzr; c0; je; ls; c1; le ])
+      ( dst,
+        lhs_ins @ [ jzl ] @ rhs_ins @ [ jzr; c0; je; Label lbs; c1; Label lbe ]
+      )
   | Binary { op : binop; left : expr; right : expr } ->
       let op = convert_binop op in
       let src1, src1_instructions = convert_expr left le in
@@ -115,19 +115,17 @@ let rec convert_expr (e : Ast.expr) (le : Env.lenv) :
   | Conditional { cond_exp; then_exp; else_exp } ->
       let result = Var (declare_value "tmp" le) in
       let cond, cond_ins = convert_expr cond_exp le in
-      let s_end = declare_label "cond_end" le in
-      let s_e2 = declare_label "cond_e2" le in
-      let jz_cond = JumpIfZero { condition = cond; target = s_e2 } in
+      let l_end = declare_label "cond_end" le in
+      let l_e2 = declare_label "cond_e2" le in
+      let jz_cond = JumpIfZero { condition = cond; target = l_e2 } in
       let v1, e1_ins = convert_expr then_exp le in
       let c1 = Copy { src = v1; dst = result } in
-      let j_end = Jump { target = s_end } in
-      let l_e2 = Label s_e2 in
+      let j_end = Jump { target = l_end } in
       let v2, e2_ins = convert_expr else_exp le in
       let c2 = Copy { src = v2; dst = result } in
-      let l_end = Label s_end in
       ( result,
-        cond_ins @ [ jz_cond ] @ e1_ins @ [ c1; j_end; l_e2 ] @ e2_ins
-        @ [ c2; l_end ] )
+        cond_ins @ [ jz_cond ] @ e1_ins @ [ c1; j_end; Label l_e2 ] @ e2_ins
+        @ [ c2; Label l_end ] )
 
 let rec convert_stmt (s : Ast.stmt) (le : Env.lenv) : Ir.instruction list =
   match s with
@@ -139,23 +137,20 @@ let rec convert_stmt (s : Ast.stmt) (le : Env.lenv) : Ir.instruction list =
       instructions
   | If { cond_exp; then_smt; else_smt = None } ->
       let cond, cond_ins = convert_expr cond_exp le in
-      let s_end = declare_label "if_end" le in
-      let jz_cond = JumpIfZero { condition = cond; target = s_end } in
+      let l_end = declare_label "if_end" le in
+      let jz_cond = JumpIfZero { condition = cond; target = l_end } in
       let then_ins = convert_stmt then_smt le in
-      let l_end = Label s_end in
-      cond_ins @ [ jz_cond ] @ then_ins @ [ l_end ]
+      cond_ins @ [ jz_cond ] @ then_ins @ [ Label l_end ]
   | If { cond_exp; then_smt; else_smt = Some s } ->
       let cond, cond_ins = convert_expr cond_exp le in
-      let s_end = declare_label "if_end" le in
-      let s_else = declare_label "if_else" le in
-      let jz_cond = JumpIfZero { condition = cond; target = s_else } in
+      let l_end = declare_label "if_end" le in
+      let l_else = declare_label "if_else" le in
+      let jz_cond = JumpIfZero { condition = cond; target = l_else } in
       let then_ins = convert_stmt then_smt le in
-      let j_end = Jump { target = s_end } in
-      let l_else = Label s_else in
+      let j_end = Jump { target = l_end } in
       let else_ins = convert_stmt s le in
-      let l_end = Label s_end in
-      cond_ins @ [ jz_cond ] @ then_ins @ [ j_end; l_else ] @ else_ins
-      @ [ l_end ]
+      cond_ins @ [ jz_cond ] @ then_ins @ [ j_end; Label l_else ] @ else_ins
+      @ [ Label l_end ]
   | Compound b ->
       let (Block items) = b in
       List.map
@@ -174,46 +169,40 @@ let rec convert_stmt (s : Ast.stmt) (le : Env.lenv) : Ir.instruction list =
   | While { cond; body; id } -> (
       match id with
       | Some (Identifier i) ->
-          let s_continue = "loop.ct." ^ i in
-          let s_break = "loop.br." ^ i in
-          let l_continue = Label s_continue in
+          let l_continue = "loop.ct." ^ i in
+          let l_break = "loop.br." ^ i in
           let cond, cond_ins = convert_expr cond le in
-          let jz_cond = JumpIfZero { condition = cond; target = s_break } in
+          let jz_cond = JumpIfZero { condition = cond; target = l_break } in
           let body_ins = convert_stmt body le in
-          let j_continue = Jump { target = s_continue } in
-          let l_break = Label s_break in
-          [ l_continue ] @ cond_ins @ [ jz_cond ] @ body_ins @ [ j_continue ]
-          @ [ l_break ]
+          let j_continue = Jump { target = l_continue } in
+          [ Label l_continue ] @ cond_ins @ [ jz_cond ] @ body_ins
+          @ [ j_continue ] @ [ Label l_break ]
       | None -> failwith "while statement has missing label")
   | DoWhile { body; cond; id } -> (
       match id with
       | Some (Identifier i) ->
-          let s_start = "loop.st." ^ i in
-          let l_start = Label s_start in
+          let l_start = "loop.st." ^ i in
           let body_ins = convert_stmt body le in
-          let l_continue = Label ("loop.ct." ^ i) in
           let cond, cond_ins = convert_expr cond le in
-          let jz_cond = JumpIfNotZero { condition = cond; target = s_start } in
-          let l_break = Label ("loop.br." ^ i) in
-          [ l_start ] @ body_ins @ [ l_continue ] @ cond_ins @ [ jz_cond ]
-          @ [ l_break ]
+          let jz_cond = JumpIfNotZero { condition = cond; target = l_start } in
+          [ Label l_start ] @ body_ins
+          @ [ Label ("loop.ct." ^ i) ]
+          @ cond_ins @ [ jz_cond ]
+          @ [ Label ("loop.br." ^ i) ]
       | None -> failwith "dowhile statement has missing label")
   | For { init; cond; post; body; id } -> (
       match id with
       | Some (Identifier i) ->
-          let s_break = "loop.br." ^ i in
+          let l_break = "loop.br." ^ i in
           let init_ins = convert_for_init init le in
-          let s_start = "loop.st." ^ i in
-          let l_start = Label s_start in
-          let cond_ins = convert_for_cond cond s_break le in
+          let l_start = "loop.st." ^ i in
+          let cond_ins = convert_for_cond cond l_break le in
           let body_ins = convert_stmt body le in
-          let s_continue = "loop.ct." ^ i in
-          let l_continue = Label s_continue in
           let post_ins = convert_for_post post le in
-          let j_start = Jump { target = s_start } in
-          let l_break = Label s_break in
-          init_ins @ [ l_start ] @ cond_ins @ body_ins @ [ l_continue ]
-          @ post_ins @ [ j_start ] @ [ l_break ]
+          let j_start = Jump { target = l_start } in
+          init_ins @ [ Label l_start ] @ cond_ins @ body_ins
+          @ [ Label ("loop.ct." ^ i) ]
+          @ post_ins @ [ j_start ] @ [ Label l_break ]
       | None -> failwith "for statement has missing label")
   | Goto (Identifier id) -> [ Jump { target = id } ]
   | Label (Identifier id, next_stmt) -> [ Label id ] @ convert_stmt next_stmt le
