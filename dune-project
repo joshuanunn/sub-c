@@ -15,6 +15,9 @@
 
 (license MIT)
 
+(formatting
+ (enabled_for ocaml))
+
 (package
  (name subc)
  (synopsis "A short synopsis")
