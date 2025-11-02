@@ -42,9 +42,8 @@
                             Ast.Binary {op = Ast.GreaterThan;
                               left = (Ast.Var (Ast.Identifier "i.2"));
                               right = (Ast.LiteralInt 10)};
-                            then_smt =
-                            (Ast.Break (Some (Ast.Identifier "1")));
+                            then_smt = (Ast.Break (Some (Ast.LoopLabel "1")));
                             else_smt = None});
                        (Ast.S (Ast.Goto (Ast.Identifier "lbl")))]));
-               id = (Some (Ast.Identifier "1"))});
+               id = (Some (Ast.LoopLabel "1"))});
           (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "sum.1"))))])})

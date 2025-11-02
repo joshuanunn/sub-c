@@ -36,6 +36,9 @@ rule read =
   | "for" { KW_FOR }
   | "break" { KW_BREAK }
   | "continue" { KW_CONTINUE }
+  | "switch" { KW_SWITCH }
+  | "case" { KW_CASE }
+  | "default" { KW_DEFAULT }
   | "goto" { KW_GOTO }
   | "(" { LPAREN }
   | ")" { RPAREN }

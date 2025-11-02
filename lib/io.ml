@@ -44,7 +44,7 @@ let run_validator lexbuf s_env =
   try
     let ast = Parser.prog Lexer.read lexbuf in
     let ast = Ast_resolution.resolve_prog ast s_env in
-    let ast = Ast_loop_analysis.label_prog ast in
+    let ast = Ast_flow_label.label_prog ast in
     print_endline (Ast.show_prog ast)
   with
   | Parser.Error ->
@@ -60,7 +60,7 @@ let run_irgen lexbuf s_env l_env =
   try
     let ast = Parser.prog Lexer.read lexbuf in
     let ast = Ast_resolution.resolve_prog ast s_env in
-    let ast = Ast_loop_analysis.label_prog ast in
+    let ast = Ast_flow_label.label_prog ast in
     let ir = Irgen.convert_prog ast l_env in
     print_endline (Ir.show_prog ir)
   with
@@ -77,7 +77,7 @@ let run_codegen lexbuf s_env l_env =
   try
     let ast = Parser.prog Lexer.read lexbuf in
     let ast = Ast_resolution.resolve_prog ast s_env in
-    let ast = Ast_loop_analysis.label_prog ast in
+    let ast = Ast_flow_label.label_prog ast in
     let ir = Irgen.convert_prog ast l_env in
     let asm = Codegen.compile_prog ir in
     let asm = Codegen_lower.lower_prog asm l_env in
@@ -97,7 +97,7 @@ let run_emit lexbuf s_env l_env =
   try
     let ast = Parser.prog Lexer.read lexbuf in
     let ast = Ast_resolution.resolve_prog ast s_env in
-    let ast = Ast_loop_analysis.label_prog ast in
+    let ast = Ast_flow_label.label_prog ast in
     let ir = Irgen.convert_prog ast l_env in
     let asm = Codegen.compile_prog ir in
     let asm = Codegen_lower.lower_prog asm l_env in
@@ -117,7 +117,7 @@ let run_exe lexbuf output_path s_env l_env =
   try
     let ast = Parser.prog Lexer.read lexbuf in
     let ast = Ast_resolution.resolve_prog ast s_env in
-    let ast = Ast_loop_analysis.label_prog ast in
+    let ast = Ast_flow_label.label_prog ast in
     let ir = Irgen.convert_prog ast l_env in
     let asm = Codegen.compile_prog ir in
     let asm = Codegen_lower.lower_prog asm l_env in

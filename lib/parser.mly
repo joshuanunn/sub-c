@@ -14,6 +14,9 @@ open Ast
 %token KW_FOR
 %token KW_BREAK
 %token KW_CONTINUE
+%token KW_SWITCH
+%token KW_CASE
+%token KW_DEFAULT
 %token KW_GOTO
 %token LPAREN
 %token RPAREN
@@ -112,6 +115,9 @@ stmt:
   | KW_FOR LPAREN for_init expr SEMICOLON RPAREN stmt { mk_for_stmt $3 (Some $4) None $7 }
   | KW_FOR LPAREN for_init SEMICOLON expr RPAREN stmt { mk_for_stmt $3 None (Some $5) $7 }
   | KW_FOR LPAREN for_init SEMICOLON RPAREN stmt { mk_for_stmt $3 None None $6 }
+  | KW_SWITCH LPAREN expr RPAREN stmt { mk_switch_stmt $3 $5 }
+  | KW_CASE expr COLON stmt { mk_case_stmt $2 $4 }
+  | KW_DEFAULT COLON stmt { mk_default_stmt $3 }
   | KW_GOTO identifier SEMICOLON { mk_goto_stmt $2 }
   | identifier COLON stmt { mk_label_stmt $1 $3 }
   | SEMICOLON { Null }

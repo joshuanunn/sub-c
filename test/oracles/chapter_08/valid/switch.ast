@@ -1,0 +1,24 @@
+(Ast.Program
+   Ast.Function {return_type = Ast.KwInt; name = (Ast.Identifier "main");
+     body =
+     (Ast.Block
+        [(Ast.S
+            Ast.Switch {cond = (Ast.LiteralInt 3);
+              body =
+              (Ast.Compound
+                 (Ast.Block
+                    [(Ast.S
+                        Ast.Case {value = (Ast.LiteralInt 0);
+                          body = (Ast.Return (Ast.LiteralInt 0))});
+                      (Ast.S
+                         Ast.Case {value = (Ast.LiteralInt 1);
+                           body = (Ast.Return (Ast.LiteralInt 1))});
+                      (Ast.S
+                         Ast.Case {value = (Ast.LiteralInt 3);
+                           body = (Ast.Return (Ast.LiteralInt 3))});
+                      (Ast.S
+                         Ast.Case {value = (Ast.LiteralInt 5);
+                           body = (Ast.Return (Ast.LiteralInt 5))})
+                      ]));
+              id = None})
+          ])})

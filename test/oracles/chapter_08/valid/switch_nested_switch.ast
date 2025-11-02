@@ -1,0 +1,51 @@
+(Ast.Program
+   Ast.Function {return_type = Ast.KwInt; name = (Ast.Identifier "main");
+     body =
+     (Ast.Block
+        [(Ast.S
+            Ast.Switch {cond = (Ast.LiteralInt 3);
+              body =
+              (Ast.Compound
+                 (Ast.Block
+                    [(Ast.S
+                        Ast.Case {value = (Ast.LiteralInt 0);
+                          body = (Ast.Return (Ast.LiteralInt 0))});
+                      (Ast.S
+                         Ast.Case {value = (Ast.LiteralInt 3);
+                           body =
+                           (Ast.Compound
+                              (Ast.Block
+                                 [(Ast.S
+                                     Ast.Switch {cond = (Ast.LiteralInt 4);
+                                       body =
+                                       (Ast.Compound
+                                          (Ast.Block
+                                             [(Ast.S
+                                                 Ast.Case {
+                                                   value = (Ast.LiteralInt 3);
+                                                   body =
+                                                   (Ast.Return
+                                                      (Ast.LiteralInt 0))});
+                                               (Ast.S
+                                                  Ast.Case {
+                                                    value =
+                                                    (Ast.LiteralInt 4);
+                                                    body =
+                                                    (Ast.Return
+                                                       (Ast.LiteralInt 1))});
+                                               (Ast.S
+                                                  Ast.Default {
+                                                    body =
+                                                    (Ast.Return
+                                                       (Ast.LiteralInt 0))})
+                                               ]));
+                                       id = None})
+                                   ]))});
+                      (Ast.S
+                         Ast.Case {value = (Ast.LiteralInt 4);
+                           body = (Ast.Return (Ast.LiteralInt 0))});
+                      (Ast.S
+                         Ast.Default {body = (Ast.Return (Ast.LiteralInt 0))})
+                      ]));
+              id = None})
+          ])})

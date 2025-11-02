@@ -1,0 +1,148 @@
+Token.KW_INT
+(Token.IDENTIFIER "main")
+Token.LPAREN
+Token.KW_VOID
+Token.RPAREN
+Token.LBRACE
+Token.KW_INT
+(Token.IDENTIFIER "switch1")
+Token.ASSIGN
+(Token.LITERAL_INT 0)
+Token.SEMICOLON
+Token.KW_INT
+(Token.IDENTIFIER "switch2")
+Token.ASSIGN
+(Token.LITERAL_INT 0)
+Token.SEMICOLON
+Token.KW_INT
+(Token.IDENTIFIER "switch3")
+Token.ASSIGN
+(Token.LITERAL_INT 0)
+Token.SEMICOLON
+Token.KW_SWITCH
+Token.LPAREN
+(Token.LITERAL_INT 3)
+Token.RPAREN
+Token.LBRACE
+Token.KW_CASE
+(Token.LITERAL_INT 0)
+Token.COLON
+Token.KW_RETURN
+(Token.LITERAL_INT 0)
+Token.SEMICOLON
+Token.KW_CASE
+(Token.LITERAL_INT 1)
+Token.COLON
+Token.KW_IF
+Token.LPAREN
+(Token.LITERAL_INT 0)
+Token.RPAREN
+Token.LBRACE
+Token.KW_CASE
+(Token.LITERAL_INT 3)
+Token.COLON
+(Token.IDENTIFIER "switch1")
+Token.ASSIGN
+(Token.LITERAL_INT 1)
+Token.SEMICOLON
+Token.KW_BREAK
+Token.SEMICOLON
+Token.RBRACE
+Token.KW_DEFAULT
+Token.COLON
+Token.KW_RETURN
+(Token.LITERAL_INT 0)
+Token.SEMICOLON
+Token.RBRACE
+Token.KW_SWITCH
+Token.LPAREN
+(Token.LITERAL_INT 4)
+Token.RPAREN
+Token.LBRACE
+Token.KW_CASE
+(Token.LITERAL_INT 0)
+Token.COLON
+Token.KW_RETURN
+(Token.LITERAL_INT 0)
+Token.SEMICOLON
+Token.KW_IF
+Token.LPAREN
+(Token.LITERAL_INT 1)
+Token.RPAREN
+Token.LBRACE
+Token.KW_RETURN
+(Token.LITERAL_INT 0)
+Token.SEMICOLON
+Token.RBRACE
+Token.KW_ELSE
+Token.LBRACE
+Token.KW_CASE
+(Token.LITERAL_INT 4)
+Token.COLON
+(Token.IDENTIFIER "switch2")
+Token.ASSIGN
+(Token.LITERAL_INT 1)
+Token.SEMICOLON
+Token.KW_BREAK
+Token.SEMICOLON
+Token.RBRACE
+Token.KW_DEFAULT
+Token.COLON
+Token.KW_RETURN
+(Token.LITERAL_INT 0)
+Token.SEMICOLON
+Token.RBRACE
+Token.KW_SWITCH
+Token.LPAREN
+(Token.LITERAL_INT 5)
+Token.RPAREN
+Token.LBRACE
+Token.KW_FOR
+Token.LPAREN
+Token.KW_INT
+(Token.IDENTIFIER "i")
+Token.ASSIGN
+(Token.LITERAL_INT 0)
+Token.SEMICOLON
+(Token.IDENTIFIER "i")
+Token.LT
+(Token.LITERAL_INT 10)
+Token.SEMICOLON
+(Token.IDENTIFIER "i")
+Token.ASSIGN
+(Token.IDENTIFIER "i")
+Token.ADD
+(Token.LITERAL_INT 1)
+Token.RPAREN
+Token.LBRACE
+(Token.IDENTIFIER "switch1")
+Token.ASSIGN
+(Token.LITERAL_INT 0)
+Token.SEMICOLON
+Token.KW_CASE
+(Token.LITERAL_INT 5)
+Token.COLON
+(Token.IDENTIFIER "switch3")
+Token.ASSIGN
+(Token.LITERAL_INT 1)
+Token.SEMICOLON
+Token.KW_BREAK
+Token.SEMICOLON
+Token.KW_DEFAULT
+Token.COLON
+Token.KW_RETURN
+(Token.LITERAL_INT 0)
+Token.SEMICOLON
+Token.RBRACE
+Token.RBRACE
+Token.KW_RETURN
+Token.LPAREN
+(Token.IDENTIFIER "switch1")
+Token.AND
+(Token.IDENTIFIER "switch2")
+Token.AND
+(Token.IDENTIFIER "switch3")
+Token.RPAREN
+Token.SEMICOLON
+Token.RBRACE
+Token.EOF

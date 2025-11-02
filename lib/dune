@@ -8,7 +8,7 @@
   parser
   ast
   ast_resolution
-  ast_loop_analysis
+  ast_flow_label
   irgen
   ir
   codegen

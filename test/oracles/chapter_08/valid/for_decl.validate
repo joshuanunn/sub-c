@@ -30,5 +30,5 @@
                        left = (Ast.Var (Ast.Identifier "a.0"));
                        right = (Ast.LiteralInt 1)}
                      )));
-               id = (Some (Ast.Identifier "1"))});
+               id = (Some (Ast.LoopLabel "1"))});
           (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "a.0"))))])})
