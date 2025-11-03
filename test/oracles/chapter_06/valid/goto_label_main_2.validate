@@ -2,9 +2,9 @@
    Ast.Function {return_type = Ast.KwInt; name = (Ast.Identifier "main");
      body =
      (Ast.Block
-        [(Ast.S (Ast.Goto (Ast.Identifier "_main")));
+        [(Ast.S (Ast.Goto (Ast.GotoLabel "_main.0")));
           (Ast.S (Ast.Return (Ast.LiteralInt 0)));
           (Ast.S
-             (Ast.Label ((Ast.Identifier "_main"),
+             (Ast.Label ((Ast.GotoLabel "_main.0"),
                 (Ast.Return (Ast.LiteralInt 1)))))
           ])})

@@ -5,9 +5,9 @@
         [(Ast.D
             (Ast.Declaration ((Ast.Identifier "ident.1"),
                (Some (Ast.LiteralInt 5)))));
-          (Ast.S (Ast.Goto (Ast.Identifier "ident")));
+          (Ast.S (Ast.Goto (Ast.GotoLabel "ident.0")));
           (Ast.S (Ast.Return (Ast.LiteralInt 0)));
           (Ast.S
-             (Ast.Label ((Ast.Identifier "ident"),
+             (Ast.Label ((Ast.GotoLabel "ident.0"),
                 (Ast.Return (Ast.Var (Ast.Identifier "ident.1"))))))
           ])})

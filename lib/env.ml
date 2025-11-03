@@ -128,7 +128,7 @@ let declare_lab id (se : senv) : Ast.ident =
       let unique = name ^ "." ^ string_of_int se.counter in
       se.counter <- se.counter + 1;
       Hashtbl.add top_scope name unique;
-      Identifier unique
+      GotoLabel unique
 
 (** Resolve a label name by searching outward through the label stack. *)
 let resolve_lab id (se : senv) : Ast.ident =
@@ -137,7 +137,7 @@ let resolve_lab id (se : senv) : Ast.ident =
     | [] -> failwith ("label " ^ name ^ " is not defined")
     | scope :: rest -> (
         match Hashtbl.find_opt scope name with
-        | Some unique -> Identifier unique
+        | Some unique -> GotoLabel unique
         | None -> find rest)
   in
   find se.lab_stack

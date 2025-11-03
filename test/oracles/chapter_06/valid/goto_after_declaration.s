@@ -4,11 +4,11 @@ main:
     movq        %rsp, %rbp
     subq        $20, %rsp
     movl        $1, -4(%rbp)
-    jmp         .Lpost_declaration
+    jmp         .Lpost_declaration.0
     movl        $0, -4(%rbp)
     movl        -4(%rbp), %r10d
     movl        %r10d, -8(%rbp)
-.Lpost_declaration:
+.Lpost_declaration.0:
     movl        $5, -8(%rbp)
     cmpl        $1, -4(%rbp)
     movl        $0, -12(%rbp)

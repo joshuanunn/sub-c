@@ -5,7 +5,7 @@
         [(Ast.D
             (Ast.Declaration ((Ast.Identifier "x.1"),
                (Some (Ast.LiteralInt 5)))));
-          (Ast.S (Ast.Goto (Ast.Identifier "inner")));
+          (Ast.S (Ast.Goto (Ast.GotoLabel "inner.0")));
           (Ast.S
              (Ast.Compound
                 (Ast.Block
@@ -13,7 +13,7 @@
                        (Ast.Declaration ((Ast.Identifier "x.2"),
                           (Some (Ast.LiteralInt 0)))));
                      (Ast.S
-                        (Ast.Label ((Ast.Identifier "inner"),
+                        (Ast.Label ((Ast.GotoLabel "inner.0"),
                            (Ast.Expression
                               (Ast.Assignment (
                                  (Ast.Var (Ast.Identifier "x.2")),

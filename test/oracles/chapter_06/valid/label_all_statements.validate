@@ -6,30 +6,31 @@
             (Ast.Declaration ((Ast.Identifier "a.5"),
                (Some (Ast.LiteralInt 1)))));
           (Ast.S
-             (Ast.Label ((Ast.Identifier "label_if"),
+             (Ast.Label ((Ast.GotoLabel "label_if.0"),
                 Ast.If {cond_exp = (Ast.Var (Ast.Identifier "a.5"));
-                  then_smt = (Ast.Goto (Ast.Identifier "label_expression"));
-                  else_smt = (Some (Ast.Goto (Ast.Identifier "label_empty")))}
+                  then_smt = (Ast.Goto (Ast.GotoLabel "label_expression.2"));
+                  else_smt =
+                  (Some (Ast.Goto (Ast.GotoLabel "label_empty.4")))}
                 )));
           (Ast.S
-             (Ast.Label ((Ast.Identifier "label_goto"),
-                (Ast.Goto (Ast.Identifier "label_return")))));
+             (Ast.Label ((Ast.GotoLabel "label_goto.1"),
+                (Ast.Goto (Ast.GotoLabel "label_return.3")))));
           (Ast.S
              Ast.If {cond_exp = (Ast.LiteralInt 0);
                then_smt =
-               (Ast.Label ((Ast.Identifier "label_expression"),
+               (Ast.Label ((Ast.GotoLabel "label_expression.2"),
                   (Ast.Expression
                      (Ast.Assignment ((Ast.Var (Ast.Identifier "a.5")),
                         (Ast.LiteralInt 0))))
                   ));
                else_smt = None});
-          (Ast.S (Ast.Goto (Ast.Identifier "label_if")));
+          (Ast.S (Ast.Goto (Ast.GotoLabel "label_if.0")));
           (Ast.S
-             (Ast.Label ((Ast.Identifier "label_return"),
+             (Ast.Label ((Ast.GotoLabel "label_return.3"),
                 (Ast.Return (Ast.Var (Ast.Identifier "a.5"))))));
-          (Ast.S (Ast.Label ((Ast.Identifier "label_empty"), Ast.Null)));
+          (Ast.S (Ast.Label ((Ast.GotoLabel "label_empty.4"), Ast.Null)));
           (Ast.S
              (Ast.Expression
                 (Ast.Assignment ((Ast.Var (Ast.Identifier "a.5")),
                    (Ast.LiteralInt 100)))));
-          (Ast.S (Ast.Goto (Ast.Identifier "label_goto")))])})
+          (Ast.S (Ast.Goto (Ast.GotoLabel "label_goto.1")))])})

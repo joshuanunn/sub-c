@@ -2,7 +2,9 @@ open Ast
 open Env
 open Ir
 
-let ident_to_string = function Identifier s -> s
+let identifier_to_string = function
+  | Identifier s -> s
+  | _ -> failwith "expected Identifier"
 
 let update_op (u : Ast.unop) : Ir.binary_operator =
   match u with
@@ -47,7 +49,10 @@ let rec convert_expr (e : Ast.expr) (le : Env.lenv) :
   match e with
   | LiteralInt n -> (Constant n, [])
   (* Insert any AST Vars into IR Vars, as names are gaurunteed unique *)
-  | Var (Identifier v) -> (Var v, [])
+  | Var id -> (
+      match id with
+      | Identifier v -> (Var v, [])
+      | _ -> failwith "Var name must be Identifier")
   | Unary { op : unop; exp : expr } -> (
       let src, src_instructions = convert_expr exp le in
       match op with
@@ -160,15 +165,16 @@ let rec convert_stmt (s : Ast.stmt) (le : Env.lenv) : Ir.instruction list =
       |> List.flatten
   | Break id -> (
       match id with
-      | Some (Identifier i) -> [ Jump { target = "loop.br." ^ i } ]
-      | None -> failwith "break statement has missing label")
+      | Some (LoopLabel i) -> [ Jump { target = "loop.br." ^ i } ]
+      | Some (SwitchLabel i) -> [ Jump { target = "swit.br." ^ i } ]
+      | _ -> failwith "break statement has missing label")
   | Continue id -> (
       match id with
-      | Some (Identifier i) -> [ Jump { target = "loop.ct." ^ i } ]
-      | None -> failwith "continue statement has missing label")
+      | Some (LoopLabel i) -> [ Jump { target = "loop.ct." ^ i } ]
+      | _ -> failwith "continue statement has missing label")
   | While { cond; body; id } -> (
       match id with
-      | Some (Identifier i) ->
+      | Some (LoopLabel i) ->
           let l_continue = "loop.ct." ^ i in
           let l_break = "loop.br." ^ i in
           let cond, cond_ins = convert_expr cond le in
@@ -177,10 +183,10 @@ let rec convert_stmt (s : Ast.stmt) (le : Env.lenv) : Ir.instruction list =
           let j_continue = Jump { target = l_continue } in
           [ Label l_continue ] @ cond_ins @ [ jz_cond ] @ body_ins
           @ [ j_continue ] @ [ Label l_break ]
-      | None -> failwith "while statement has missing label")
+      | _ -> failwith "while statement has missing label")
   | DoWhile { body; cond; id } -> (
       match id with
-      | Some (Identifier i) ->
+      | Some (LoopLabel i) ->
           let l_start = "loop.st." ^ i in
           let body_ins = convert_stmt body le in
           let cond, cond_ins = convert_expr cond le in
@@ -189,10 +195,10 @@ let rec convert_stmt (s : Ast.stmt) (le : Env.lenv) : Ir.instruction list =
           @ [ Label ("loop.ct." ^ i) ]
           @ cond_ins @ [ jz_cond ]
           @ [ Label ("loop.br." ^ i) ]
-      | None -> failwith "dowhile statement has missing label")
+      | _ -> failwith "dowhile statement has missing label")
   | For { init; cond; post; body; id } -> (
       match id with
-      | Some (Identifier i) ->
+      | Some (LoopLabel i) ->
           let l_break = "loop.br." ^ i in
           let init_ins = convert_for_init init le in
           let l_start = "loop.st." ^ i in
@@ -203,9 +209,18 @@ let rec convert_stmt (s : Ast.stmt) (le : Env.lenv) : Ir.instruction list =
           init_ins @ [ Label l_start ] @ cond_ins @ body_ins
           @ [ Label ("loop.ct." ^ i) ]
           @ post_ins @ [ j_start ] @ [ Label l_break ]
-      | None -> failwith "for statement has missing label")
-  | Goto (Identifier id) -> [ Jump { target = id } ]
-  | Label (Identifier id, next_stmt) -> [ Label id ] @ convert_stmt next_stmt le
+      | _ -> failwith "for statement has missing label")
+  | Switch _ -> failwith "TODO"
+  | Case _ -> failwith "TODO"
+  | Default _ -> failwith "TODO"
+  | Goto id -> (
+      match id with
+      | GotoLabel id -> [ Jump { target = id } ]
+      | _ -> failwith "goto statement has missing label")
+  | Label (id, next_stmt) -> (
+      match id with
+      | GotoLabel name -> [ Label name ] @ convert_stmt next_stmt le
+      | _ -> failwith "label statement has missing label")
   | Null -> []
 
 and convert_dclr (d : Ast.decl) (le : Env.lenv) : Ir.instruction list =
@@ -261,7 +276,7 @@ and convert_func (f : Ast.func) (le : Env.lenv) : Ir.func =
       in
       (* Append "return 0" to the function end, in case no return present *)
       let body_safe_return = body @ [ Return (Constant 0) ] in
-      Function { name = ident_to_string fn.name; body = body_safe_return }
+      Function { name = identifier_to_string fn.name; body = body_safe_return }
 
 let convert_prog (Program p : Ast.prog) (le : Env.lenv) : Ir.prog =
   Program (convert_func p le)

@@ -133,9 +133,14 @@ let rec resolve_stmt (s : Ast.stmt) (se : Env.senv) : Ast.stmt =
       | LiteralInt _ -> Case { value = value'; body = body'; id }
       | _ -> failwith "case label must be a constant integer expression")
   | Default { body; id } -> Default { body = resolve_stmt body se; id }
-  (* goto label resolution cannot be completed until after analysis pass *)
-  | Goto id -> Goto id
-  | Label (id, s) -> Label (id, resolve_stmt s se)
+  (* goto labels can now be resolved following label predeclaration pass *)
+  | Goto id ->
+      let resolved_id = Env.resolve_lab id se in
+      Goto resolved_id
+  (* labels can now be updated following label predeclaration pass *)
+  | Label (id, s) ->
+      let resolved_id = Env.resolve_lab id se in
+      Label (resolved_id, resolve_stmt s se)
   | Null -> Null
 
 (** [resolve_func f se] resolves all declarations, variables, and labels in
