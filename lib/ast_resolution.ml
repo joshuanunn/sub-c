@@ -1,5 +1,3 @@
-open Ast
-
 (** [predeclare_labels block se] traverses a block of statements to predeclare
     all labels in the environment [se]. This is needed so that forward gotos can
     be resolved. *)
@@ -101,7 +99,7 @@ let rec resolve_stmt (s : Ast.stmt) (se : Env.senv) : Ast.stmt =
   | Compound b ->
       (* Push new scope for compound statement *)
       Env.push_var_scope se;
-      let result = Compound (resolve_block b se) in
+      let result = Ast.Compound (resolve_block b se) in
       Env.pop_var_scope se;
       result
   | Break id -> Break id
@@ -117,7 +115,7 @@ let rec resolve_stmt (s : Ast.stmt) (se : Env.senv) : Ast.stmt =
       let cond = resolve_opt_expr cond se in
       let post = resolve_opt_expr post se in
       let body = resolve_stmt body se in
-      let result = For { init; cond; post; body; id } in
+      let result = Ast.For { init; cond; post; body; id } in
       Env.pop_var_scope se;
       result
   | Switch { cond; body; id } ->
@@ -167,8 +165,8 @@ and resolve_block (b : Ast.block) (se : Env.senv) : Ast.block =
     List.map
       (fun item ->
         match item with
-        | D d -> D (resolve_decl d se)
-        | S s -> S (resolve_stmt s se))
+        | Ast.D d -> Ast.D (resolve_decl d se)
+        | Ast.S s -> Ast.S (resolve_stmt s se))
       item_list
   in
   Block resolved_items

@@ -1,8 +1,6 @@
-open Ast
-
 (** Extract the string name from an [Identifier], or fail. *)
 let get_identifier_name = function
-  | Identifier name -> name
+  | Ast.Identifier name -> name
   | _ -> failwith "expected Identifier"
 
 (** ------------------------------------------------------------------------
@@ -111,7 +109,7 @@ let resolve_var id (se : senv) : Ast.ident =
     | [] -> failwith ("variable " ^ name ^ " is not defined")
     | scope :: rest -> (
         match Hashtbl.find_opt scope name with
-        | Some unique -> Identifier unique
+        | Some unique -> Ast.Identifier unique
         | None -> find rest)
   in
   find se.var_stack
@@ -137,7 +135,7 @@ let resolve_lab id (se : senv) : Ast.ident =
     | [] -> failwith ("label " ^ name ^ " is not defined")
     | scope :: rest -> (
         match Hashtbl.find_opt scope name with
-        | Some unique -> GotoLabel unique
+        | Some unique -> Ast.GotoLabel unique
         | None -> find rest)
   in
   find se.lab_stack

@@ -1,5 +1,5 @@
 %{
-open Ast
+
 %}
 
 %token <string> IDENTIFIER
@@ -64,16 +64,16 @@ open Ast
 %nonassoc IFX
 %nonassoc KW_ELSE
 
-%start <prog> prog
+%start <Ast.prog> prog
 
 %%
 
 prog:
-  | func EOF { mk_prog $1 }
+  | func EOF { Ast.mk_prog $1 }
   ;
 
 func:
-  | KW_INT identifier LPAREN KW_VOID RPAREN block { mk_func KwInt $2 $6 }
+  | KW_INT identifier LPAREN KW_VOID RPAREN block { Ast.mk_func Ast.KwInt $2 $6 }
   ;
 
 block:
@@ -86,41 +86,41 @@ block_items:
   ;
 
 block_item:
-  | decl { mk_decl_block_item $1 }
-  | stmt { mk_stmt_block_item $1 }
+  | decl { Ast.mk_decl_block_item $1 }
+  | stmt { Ast.mk_stmt_block_item $1 }
   ;
 
 decl:
-  | KW_INT identifier ASSIGN expr SEMICOLON { mk_decl_init_stmt $2 $4 }
-  | KW_INT identifier SEMICOLON { mk_decl_stmt $2 }
+  | KW_INT identifier ASSIGN expr SEMICOLON { Ast.mk_decl_init_stmt $2 $4 }
+  | KW_INT identifier SEMICOLON { Ast.mk_decl_stmt $2 }
   ;
 
 for_init:
-  | decl { mk_incl_decl $1 }
-  | expr SEMICOLON { mk_init_exp $1 }
-  | SEMICOLON { mk_empty_init_exp }
+  | decl { Ast.mk_incl_decl $1 }
+  | expr SEMICOLON { Ast.mk_init_exp $1 }
+  | SEMICOLON { Ast.mk_empty_init_exp }
   ;
 
 stmt:
-  | KW_RETURN expr SEMICOLON { mk_return_stmt $2 }
-  | expr SEMICOLON { mk_expr_stmt $1 }
-  | KW_IF LPAREN expr RPAREN stmt KW_ELSE stmt { mk_if_stmt $3 $5 (Some $7) }
-  | KW_IF LPAREN expr RPAREN stmt %prec IFX { mk_if_stmt $3 $5 None }
-  | block { mk_block_stmt $1 }
-  | KW_BREAK SEMICOLON { Break None }
-  | KW_CONTINUE SEMICOLON { Continue None }
-  | KW_WHILE LPAREN expr RPAREN stmt { mk_while_stmt $3 $5 }
-  | KW_DO stmt KW_WHILE LPAREN expr RPAREN SEMICOLON { mk_dowhile_stmt $2 $5 }
-  | KW_FOR LPAREN for_init expr SEMICOLON expr RPAREN stmt { mk_for_stmt $3 (Some $4) (Some $6) $8 }
-  | KW_FOR LPAREN for_init expr SEMICOLON RPAREN stmt { mk_for_stmt $3 (Some $4) None $7 }
-  | KW_FOR LPAREN for_init SEMICOLON expr RPAREN stmt { mk_for_stmt $3 None (Some $5) $7 }
-  | KW_FOR LPAREN for_init SEMICOLON RPAREN stmt { mk_for_stmt $3 None None $6 }
-  | KW_SWITCH LPAREN expr RPAREN stmt { mk_switch_stmt $3 $5 }
-  | KW_CASE expr COLON stmt { mk_case_stmt $2 $4 }
-  | KW_DEFAULT COLON stmt { mk_default_stmt $3 }
-  | KW_GOTO identifier SEMICOLON { mk_goto_stmt $2 }
-  | identifier COLON stmt { mk_label_stmt $1 $3 }
-  | SEMICOLON { Null }
+  | KW_RETURN expr SEMICOLON { Ast.mk_return_stmt $2 }
+  | expr SEMICOLON { Ast.mk_expr_stmt $1 }
+  | KW_IF LPAREN expr RPAREN stmt KW_ELSE stmt { Ast.mk_if_stmt $3 $5 (Some $7) }
+  | KW_IF LPAREN expr RPAREN stmt %prec IFX { Ast.mk_if_stmt $3 $5 None }
+  | block { Ast.mk_block_stmt $1 }
+  | KW_BREAK SEMICOLON { Ast.Break None }
+  | KW_CONTINUE SEMICOLON { Ast.Continue None }
+  | KW_WHILE LPAREN expr RPAREN stmt { Ast.mk_while_stmt $3 $5 }
+  | KW_DO stmt KW_WHILE LPAREN expr RPAREN SEMICOLON { Ast.mk_dowhile_stmt $2 $5 }
+  | KW_FOR LPAREN for_init expr SEMICOLON expr RPAREN stmt { Ast.mk_for_stmt $3 (Some $4) (Some $6) $8 }
+  | KW_FOR LPAREN for_init expr SEMICOLON RPAREN stmt { Ast.mk_for_stmt $3 (Some $4) None $7 }
+  | KW_FOR LPAREN for_init SEMICOLON expr RPAREN stmt { Ast.mk_for_stmt $3 None (Some $5) $7 }
+  | KW_FOR LPAREN for_init SEMICOLON RPAREN stmt { Ast.mk_for_stmt $3 None None $6 }
+  | KW_SWITCH LPAREN expr RPAREN stmt { Ast.mk_switch_stmt $3 $5 }
+  | KW_CASE expr COLON stmt { Ast.mk_case_stmt $2 $4 }
+  | KW_DEFAULT COLON stmt { Ast.mk_default_stmt $3 }
+  | KW_GOTO identifier SEMICOLON { Ast.mk_goto_stmt $2 }
+  | identifier COLON stmt { Ast.mk_label_stmt $1 $3 }
+  | SEMICOLON { Ast.Null }
   ;
 
 (* Lowest precedence: top-level expression *)
@@ -135,118 +135,118 @@ expr_15:
 
 (* Assignment operators [right associative] *)
 expr_14:
-  | identifier ASSIGN expr_14 { mk_assign_expr $1 $3 }
-  | identifier ADD_ASSIGN expr_14 { mk_comp_assign_expr Add $1 $3 }
-  | identifier SUB_ASSIGN expr_14 { mk_comp_assign_expr Subtract $1 $3 }
-  | identifier MUL_ASSIGN expr_14 { mk_comp_assign_expr Multiply $1 $3 }
-  | identifier DIV_ASSIGN expr_14 { mk_comp_assign_expr Divide $1 $3 }
-  | identifier MOD_ASSIGN expr_14 { mk_comp_assign_expr Remainder $1 $3 }
-  | identifier LSHIFT_ASSIGN expr_14 { mk_comp_assign_expr BwLeftShift $1 $3 }
-  | identifier RSHIFT_ASSIGN expr_14 { mk_comp_assign_expr BwRightShift $1 $3 }
-  | identifier BW_AND_ASSIGN expr_14 { mk_comp_assign_expr BwAnd $1 $3 }
-  | identifier BW_XOR_ASSIGN expr_14 { mk_comp_assign_expr BwXor $1 $3 }
-  | identifier BW_OR_ASSIGN expr_14 { mk_comp_assign_expr BwOr $1 $3 }
+  | identifier ASSIGN expr_14 { Ast.mk_assign_expr $1 $3 }
+  | identifier ADD_ASSIGN expr_14 { Ast.mk_comp_assign_expr Ast.Add $1 $3 }
+  | identifier SUB_ASSIGN expr_14 { Ast.mk_comp_assign_expr Ast.Subtract $1 $3 }
+  | identifier MUL_ASSIGN expr_14 { Ast.mk_comp_assign_expr Ast.Multiply $1 $3 }
+  | identifier DIV_ASSIGN expr_14 { Ast.mk_comp_assign_expr Ast.Divide $1 $3 }
+  | identifier MOD_ASSIGN expr_14 { Ast.mk_comp_assign_expr Ast.Remainder $1 $3 }
+  | identifier LSHIFT_ASSIGN expr_14 { Ast.mk_comp_assign_expr Ast.BwLeftShift $1 $3 }
+  | identifier RSHIFT_ASSIGN expr_14 { Ast.mk_comp_assign_expr Ast.BwRightShift $1 $3 }
+  | identifier BW_AND_ASSIGN expr_14 { Ast.mk_comp_assign_expr Ast.BwAnd $1 $3 }
+  | identifier BW_XOR_ASSIGN expr_14 { Ast.mk_comp_assign_expr Ast.BwXor $1 $3 }
+  | identifier BW_OR_ASSIGN expr_14 { Ast.mk_comp_assign_expr Ast.BwOr $1 $3 }
   | expr_13 { $1 }
   ;
 
 (* Ternary operators [right associative] *)
 expr_13:
-  | expr_12 QUESTION expr COLON expr_13 { mk_cond_expr $1 $3 $5 }
+  | expr_12 QUESTION expr COLON expr_13 { Ast.mk_cond_expr $1 $3 $5 }
   | expr_12 { $1 }
   ;
 
 (* Logical OR operator [left associative] *)
 expr_12:
-  | expr_12 OR expr_11 { mk_binop_expr Or $1 $3 }
+  | expr_12 OR expr_11 { Ast.mk_binop_expr Ast.Or $1 $3 }
   | expr_11 { $1 }
   ;
 
 (* Logical AND operator [left associative] *)
 expr_11:
-  | expr_11 AND expr_10 { mk_binop_expr And $1 $3 }
+  | expr_11 AND expr_10 { Ast.mk_binop_expr Ast.And $1 $3 }
   | expr_10 { $1 }
   ;
 
 (* Bitwise OR operator [left associative] *)
 expr_10:
-  | expr_10 BW_OR expr_09 { mk_binop_expr BwOr $1 $3 }
+  | expr_10 BW_OR expr_09 { Ast.mk_binop_expr Ast.BwOr $1 $3 }
   | expr_09 { $1 }
   ;
 
 (* Bitwise XOR operator [left associative] *)
 expr_09:
-  | expr_09 BW_XOR expr_08 { mk_binop_expr BwXor $1 $3 }
+  | expr_09 BW_XOR expr_08 { Ast.mk_binop_expr Ast.BwXor $1 $3 }
   | expr_08 { $1 }
   ;
 
 (* Bitwise AND operator [left associative] *)
 expr_08:
-  | expr_08 BW_AND expr_07 { mk_binop_expr BwAnd $1 $3 }
+  | expr_08 BW_AND expr_07 { Ast.mk_binop_expr Ast.BwAnd $1 $3 }
   | expr_07 { $1 }
   ;
 
 (* Relational equality operators [left associative] *)
 expr_07:
-  | expr_07 EQ expr_06 { mk_binop_expr Equal $1 $3 }
-  | expr_07 NE expr_06 { mk_binop_expr NotEqual $1 $3 }
+  | expr_07 EQ expr_06 { Ast.mk_binop_expr Ast.Equal $1 $3 }
+  | expr_07 NE expr_06 { Ast.mk_binop_expr Ast.NotEqual $1 $3 }
   | expr_06 { $1 }
   ;
 
 (* Relational operators [left associative] *)
 expr_06:
-  | expr_06 LE expr_05 { mk_binop_expr LessOrEqual $1 $3 }
-  | expr_06 GE expr_05 { mk_binop_expr GreaterOrEqual $1 $3 }
-  | expr_06 LT expr_05 { mk_binop_expr LessThan $1 $3 }
-  | expr_06 GT expr_05 { mk_binop_expr GreaterThan $1 $3 }
+  | expr_06 LE expr_05 { Ast.mk_binop_expr Ast.LessOrEqual $1 $3 }
+  | expr_06 GE expr_05 { Ast.mk_binop_expr Ast.GreaterOrEqual $1 $3 }
+  | expr_06 LT expr_05 { Ast.mk_binop_expr Ast.LessThan $1 $3 }
+  | expr_06 GT expr_05 { Ast.mk_binop_expr Ast.GreaterThan $1 $3 }
   | expr_05 { $1 }
   ;
 
 (* Bitwise shift operators [left associative] *)
 expr_05:
-  | expr_05 BW_LSHIFT expr_04 { mk_binop_expr BwLeftShift $1 $3 }
-  | expr_05 BW_RSHIFT expr_04 { mk_binop_expr BwRightShift $1 $3 }
+  | expr_05 BW_LSHIFT expr_04 { Ast.mk_binop_expr Ast.BwLeftShift $1 $3 }
+  | expr_05 BW_RSHIFT expr_04 { Ast.mk_binop_expr Ast.BwRightShift $1 $3 }
   | expr_04 { $1 }
   ;
 
 (* Additive binary operators [left associative] *)
 expr_04:
-  | expr_04 ADD expr_03 { mk_binop_expr Add $1 $3 }
-  | expr_04 SUB expr_03 { mk_binop_expr Subtract $1 $3 }
+  | expr_04 ADD expr_03 { Ast.mk_binop_expr Ast.Add $1 $3 }
+  | expr_04 SUB expr_03 { Ast.mk_binop_expr Ast.Subtract $1 $3 }
   | expr_03 { $1 }
   ;
 
 (* Multiplicative binary operators [left associative] *)
 expr_03:
-  | expr_03 MUL expr_02 { mk_binop_expr Multiply $1 $3 }
-  | expr_03 DIV expr_02 { mk_binop_expr Divide $1 $3 }
-  | expr_03 MOD expr_02 { mk_binop_expr Remainder $1 $3 }
+  | expr_03 MUL expr_02 { Ast.mk_binop_expr Ast.Multiply $1 $3 }
+  | expr_03 DIV expr_02 { Ast.mk_binop_expr Ast.Divide $1 $3 }
+  | expr_03 MOD expr_02 { Ast.mk_binop_expr Ast.Remainder $1 $3 }
   | expr_02 { $1 }
   ;
 
 (* Unary operators [right associative] *)
 expr_02:
-  | INCREMENT expr_02 { mk_unary_update_expr PreIncrement $2 }
-  | DECREMENT expr_02 { mk_unary_update_expr PreDecrement $2 }
-  | SUB expr_02 { mk_unop_expr Negate $2 }
-  | NOT expr_02 { mk_unop_expr Not $2 }
-  | BW_NOT expr_02 { mk_unop_expr BwNot $2 }
+  | INCREMENT expr_02 { Ast.mk_unary_update_expr Ast.PreIncrement $2 }
+  | DECREMENT expr_02 { Ast.mk_unary_update_expr Ast.PreDecrement $2 }
+  | SUB expr_02 { Ast.mk_unop_expr Ast.Negate $2 }
+  | NOT expr_02 { Ast.mk_unop_expr Ast.Not $2 }
+  | BW_NOT expr_02 { Ast.mk_unop_expr Ast.BwNot $2 }
   | expr_01 { $1 }
   ;
 
 (* Postfix operators [left associative] *)
 expr_01:
-  | atom INCREMENT { mk_unary_update_expr PostIncrement $1 }
-  | atom DECREMENT { mk_unary_update_expr PostDecrement $1 }
+  | atom INCREMENT { Ast.mk_unary_update_expr Ast.PostIncrement $1 }
+  | atom DECREMENT { Ast.mk_unary_update_expr Ast.PostDecrement $1 }
   | atom { $1 }
   ;
 
 (* Highest precedence: literals, identifiers, parentheses *)
 atom:
   | LPAREN expr RPAREN { $2 }
-  | LITERAL_INT { mk_int_expr $1 }
-  | identifier { Var $1 }
+  | LITERAL_INT { Ast.mk_int_expr $1 }
+  | identifier { Ast.Var $1 }
   ;
 
 identifier:
-  | IDENTIFIER { mk_ident $1 }
+  | IDENTIFIER { Ast.mk_ident $1 }
   ;

@@ -1,10 +1,9 @@
-open Asm
-open Env
-
-let binary_mem_mem_fix op s d =
+let binary_mem_mem_fix (op : Asm.binary_operator) (s : int) (d : int) :
+    Asm.instruction list =
   [ Mov (Stack s, Reg R10); Binary { op; src = Reg R10; dst = Stack d } ]
 
-let setcc_low_byte_fix cc hi lo =
+let setcc_low_byte_fix (cc : Asm.cond_code) (hi : Asm.reg) (lo : Asm.reg) :
+    Asm.instruction list =
   [
     (* zero out hi register *)
     Binary { op = BwXor; src = Reg hi; dst = Reg hi };
@@ -71,7 +70,7 @@ let fixup_func (f : Asm.func) (le : Env.lenv) : Asm.func =
         |> List.concat_map (fun instr -> fixup_instruction instr)
       in
       let stack_alloc_instrs =
-        if le.offset <> 0 then [ AllocateStack (-le.offset) ] else []
+        if le.offset <> 0 then [ Asm.AllocateStack (-le.offset) ] else []
       in
       Function
         {
@@ -83,5 +82,5 @@ let fixup_func (f : Asm.func) (le : Env.lenv) : Asm.func =
     instructions in each function and prepending stack allocation based on the
     environment [le]. This ensures the resulting program only contains valid
     x86-64 instructions. *)
-let fixup_prog (Program p) (le : Env.lenv) : Asm.prog =
+let fixup_prog (Asm.Program p) (le : Env.lenv) : Asm.prog =
   Program (fixup_func p le)
