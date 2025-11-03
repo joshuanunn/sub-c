@@ -1,9 +1,19 @@
 open Ast
 
-(* Control contexts to represent nested loops and switches. *)
-type context = LoopCtx of ident | SwitchCtx of ident
+let literal_to_int : Ast.expr -> int = function
+  | LiteralInt i -> i
+  | _ -> failwith "expected LiteralInt"
 
-(* Declare static counter for unique loop and switch labeling *)
+type switch_ctx = {
+  id : ident;
+  cases : (int, unit) Hashtbl.t;
+  mutable has_default : bool;
+}
+
+(* Control contexts to represent nested loops and switches. *)
+type context = LoopCtx of ident | SwitchCtx of switch_ctx
+
+(* Declare static counter for unique loop and switch labeling. *)
 let counter = ref 0
 
 (** [loop_label] generates a new unique identifier for a loop. *)
@@ -22,7 +32,7 @@ let break_target (stack : context list) : ident option =
   match stack with
   | [] -> None
   | LoopCtx id :: _ -> Some id
-  | SwitchCtx id :: _ -> Some id
+  | SwitchCtx { id; _ } :: _ -> Some id
 
 (** Get the current active control label for a [continue] statement. This must
     be the innermost loop on the stack. *)
@@ -31,12 +41,12 @@ let continue_target (stack : context list) : ident option =
   | Some (LoopCtx id) -> Some id
   | _ -> None
 
-(** Get the parent switch label for a [case] or [default] statement. *)
-let rec parent_switch (stack : context list) : ident =
+(** Find the switch context for a [case] or [default] statement. *)
+let rec find_switch (stack : context list) : switch_ctx =
   match stack with
+  | SwitchCtx s :: _ -> s
+  | _ :: rest -> find_switch rest
   | [] -> failwith "case/default statement is outside of a switch"
-  | SwitchCtx id :: _ -> id
-  | _ :: rest -> parent_switch rest
 
 (** [label_control_stmt s label] traverses a statement [s] and:
     - assigns unique labels to loops and switches
@@ -100,16 +110,26 @@ let rec label_control_stmt (s : Ast.stmt) (stack : context list) : Ast.stmt =
       match id with
       | None ->
           let new_id = switch_label () in
-          let new_stack = SwitchCtx new_id :: stack in
+          let new_ctx =
+            SwitchCtx
+              { id = new_id; cases = Hashtbl.create 16; has_default = false }
+          in
+          let new_stack = new_ctx :: stack in
           Switch
             { cond; body = label_control_stmt body new_stack; id = Some new_id }
       | Some _ -> failwith "switch statement has already been labeled")
   | Case { value; body; _ } ->
-      let switch_label = Some (parent_switch stack) in
-      Case { value; body = label_control_stmt body stack; id = switch_label }
+      let int_value = literal_to_int value in
+      let switch = find_switch stack in
+      if Hashtbl.mem switch.cases int_value then
+        failwith (Printf.sprintf "duplicate case value: %d" int_value);
+      Hashtbl.add switch.cases int_value ();
+      Case { value; body = label_control_stmt body stack; id = Some switch.id }
   | Default { body; _ } ->
-      let switch_label = Some (parent_switch stack) in
-      Default { body = label_control_stmt body stack; id = switch_label }
+      let switch = find_switch stack in
+      if switch.has_default then failwith "multiple default labels in switch";
+      switch.has_default <- true;
+      Default { body = label_control_stmt body stack; id = Some switch.id }
   | Label (id, s) -> Label (id, label_control_stmt s stack)
   | _ -> s
 
