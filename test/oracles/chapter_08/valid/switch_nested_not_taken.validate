@@ -21,20 +21,24 @@
                                    [(Ast.S
                                        Ast.Case {value = (Ast.LiteralInt 0);
                                          body =
-                                         (Ast.Return (Ast.LiteralInt 0))});
+                                         (Ast.Return (Ast.LiteralInt 0));
+                                         id = (Some (Ast.SwitchLabel "2"))});
                                      (Ast.S
                                         Ast.Default {
                                           body =
-                                          (Ast.Return (Ast.LiteralInt 0))})
+                                          (Ast.Return (Ast.LiteralInt 0));
+                                          id = (Some (Ast.SwitchLabel "2"))})
                                      ]));
-                             id = (Some (Ast.SwitchLabel "2"))}});
+                             id = (Some (Ast.SwitchLabel "2"))};
+                           id = (Some (Ast.SwitchLabel "1"))});
                        (Ast.S
                           Ast.Default {
                             body =
                             (Ast.Expression
                                (Ast.Assignment (
                                   (Ast.Var (Ast.Identifier "a.0")),
-                                  (Ast.LiteralInt 2))))})
+                                  (Ast.LiteralInt 2))));
+                            id = (Some (Ast.SwitchLabel "1"))})
                        ]));
                id = (Some (Ast.SwitchLabel "1"))});
           (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "a.0"))))])})

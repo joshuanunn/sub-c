@@ -18,7 +18,8 @@
                   (Ast.Block
                      [(Ast.S
                          Ast.Case {value = (Ast.LiteralInt 0);
-                           body = (Ast.Return (Ast.LiteralInt 0))});
+                           body = (Ast.Return (Ast.LiteralInt 0));
+                           id = (Some (Ast.SwitchLabel "1"))});
                        (Ast.S
                           Ast.Case {value = (Ast.LiteralInt 1);
                             body =
@@ -34,14 +35,18 @@
                                                 (Ast.Var
                                                    (Ast.Identifier
                                                       "switch1.0")),
-                                                (Ast.LiteralInt 1))))});
+                                                (Ast.LiteralInt 1))));
+                                          id = (Some (Ast.SwitchLabel "1"))});
                                       (Ast.S
                                          (Ast.Break
                                             (Some (Ast.SwitchLabel "1"))))
                                       ]));
-                              else_smt = None}});
+                              else_smt = None};
+                            id = (Some (Ast.SwitchLabel "1"))});
                        (Ast.S
-                          Ast.Default {body = (Ast.Return (Ast.LiteralInt 0))})
+                          Ast.Default {
+                            body = (Ast.Return (Ast.LiteralInt 0));
+                            id = (Some (Ast.SwitchLabel "1"))})
                        ]));
                id = (Some (Ast.SwitchLabel "1"))});
           (Ast.S
@@ -51,7 +56,8 @@
                   (Ast.Block
                      [(Ast.S
                          Ast.Case {value = (Ast.LiteralInt 0);
-                           body = (Ast.Return (Ast.LiteralInt 0))});
+                           body = (Ast.Return (Ast.LiteralInt 0));
+                           id = (Some (Ast.SwitchLabel "2"))});
                        (Ast.S
                           Ast.If {cond_exp = (Ast.LiteralInt 1);
                             then_smt =
@@ -70,13 +76,17 @@
                                                     (Ast.Var
                                                        (Ast.Identifier
                                                           "switch2.1")),
-                                                    (Ast.LiteralInt 1))))});
+                                                    (Ast.LiteralInt 1))));
+                                              id =
+                                              (Some (Ast.SwitchLabel "2"))});
                                           (Ast.S
                                              (Ast.Break
                                                 (Some (Ast.SwitchLabel "2"))))
                                           ])))});
                        (Ast.S
-                          Ast.Default {body = (Ast.Return (Ast.LiteralInt 0))})
+                          Ast.Default {
+                            body = (Ast.Return (Ast.LiteralInt 0));
+                            id = (Some (Ast.SwitchLabel "2"))})
                        ]));
                id = (Some (Ast.SwitchLabel "2"))});
           (Ast.S
@@ -117,13 +127,15 @@
                                            (Ast.Assignment (
                                               (Ast.Var
                                                  (Ast.Identifier "switch3.2")),
-                                              (Ast.LiteralInt 1))))});
+                                              (Ast.LiteralInt 1))));
+                                        id = (Some (Ast.SwitchLabel "3"))});
                                    (Ast.S
                                       (Ast.Break (Some (Ast.LoopLabel "4"))));
                                    (Ast.S
                                       Ast.Default {
                                         body =
-                                        (Ast.Return (Ast.LiteralInt 0))})
+                                        (Ast.Return (Ast.LiteralInt 0));
+                                        id = (Some (Ast.SwitchLabel "3"))})
                                    ]));
                            id = (Some (Ast.LoopLabel "4"))})
                        ]));

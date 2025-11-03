@@ -22,21 +22,24 @@
                   (Ast.Block
                      [(Ast.S
                          Ast.Case {value = (Ast.LiteralInt 0);
-                           body = (Ast.Return (Ast.LiteralInt 5))});
+                           body = (Ast.Return (Ast.LiteralInt 5));
+                           id = (Some (Ast.SwitchLabel "1"))});
                        (Ast.S
                           Ast.Case {value = (Ast.LiteralInt 7);
                             body =
                             (Ast.Expression
                                (Ast.Assignment (
                                   (Ast.Var (Ast.Identifier "c.2")),
-                                  (Ast.LiteralInt 1))))});
+                                  (Ast.LiteralInt 1))));
+                            id = (Some (Ast.SwitchLabel "1"))});
                        (Ast.S
                           Ast.Case {value = (Ast.LiteralInt 9);
                             body =
                             (Ast.Expression
                                (Ast.Assignment (
                                   (Ast.Var (Ast.Identifier "c.2")),
-                                  (Ast.LiteralInt 2))))});
+                                  (Ast.LiteralInt 2))));
+                            id = (Some (Ast.SwitchLabel "1"))});
                        (Ast.S
                           Ast.Case {value = (Ast.LiteralInt 1);
                             body =
@@ -46,7 +49,8 @@
                                   Ast.Binary {op = Ast.Add;
                                     left = (Ast.Var (Ast.Identifier "c.2"));
                                     right = (Ast.LiteralInt 4)}
-                                  )))})
+                                  )));
+                            id = (Some (Ast.SwitchLabel "1"))})
                        ]));
                id = (Some (Ast.SwitchLabel "1"))});
           (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "c.2"))))])})

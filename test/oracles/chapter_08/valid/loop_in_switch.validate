@@ -12,7 +12,8 @@
                   (Ast.Block
                      [(Ast.S
                          Ast.Case {value = (Ast.LiteralInt 1);
-                           body = (Ast.Return (Ast.LiteralInt 0))});
+                           body = (Ast.Return (Ast.LiteralInt 0));
+                           id = (Some (Ast.SwitchLabel "1"))});
                        (Ast.S
                           Ast.Case {value = (Ast.LiteralInt 10);
                             body =
@@ -60,10 +61,13 @@
                                               (Some (Ast.LoopLabel "2")));
                                            else_smt = None})
                                       ]));
-                              id = (Some (Ast.LoopLabel "2"))}});
+                              id = (Some (Ast.LoopLabel "2"))};
+                            id = (Some (Ast.SwitchLabel "1"))});
                        (Ast.S (Ast.Return (Ast.LiteralInt 123)));
                        (Ast.S
-                          Ast.Default {body = (Ast.Return (Ast.LiteralInt 2))})
+                          Ast.Default {
+                            body = (Ast.Return (Ast.LiteralInt 2));
+                            id = (Some (Ast.SwitchLabel "1"))})
                        ]));
                id = (Some (Ast.SwitchLabel "1"))});
           (Ast.S (Ast.Return (Ast.LiteralInt 3)))])})

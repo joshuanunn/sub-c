@@ -9,7 +9,7 @@
                  (Ast.Block
                     [(Ast.S
                         Ast.Case {value = (Ast.LiteralInt 0);
-                          body = (Ast.Return (Ast.LiteralInt 0))});
+                          body = (Ast.Return (Ast.LiteralInt 0)); id = None});
                       (Ast.S
                          Ast.Case {value = (Ast.LiteralInt 4);
                            body =
@@ -77,7 +77,8 @@
                                    (Ast.S
                                       (Ast.Return
                                          (Ast.Var (Ast.Identifier "acc"))))
-                                   ]))})
+                                   ]));
+                           id = None})
                       ]));
               id = None});
           (Ast.S (Ast.Return (Ast.LiteralInt 0)))])})

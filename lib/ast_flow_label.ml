@@ -31,6 +31,13 @@ let continue_target (stack : context list) : ident option =
   | Some (LoopCtx id) -> Some id
   | _ -> None
 
+(** Get the parent switch label for a [case] or [default] statement. *)
+let rec parent_switch (stack : context list) : ident =
+  match stack with
+  | [] -> failwith "case/default statement is outside of a switch"
+  | SwitchCtx id :: _ -> id
+  | _ :: rest -> parent_switch rest
+
 (** [label_control_stmt s label] traverses a statement [s] and:
     - assigns unique labels to loops and switches
     - labels [break]/[continue] with the innermost enclosing construct *)
@@ -97,8 +104,12 @@ let rec label_control_stmt (s : Ast.stmt) (stack : context list) : Ast.stmt =
           Switch
             { cond; body = label_control_stmt body new_stack; id = Some new_id }
       | Some _ -> failwith "switch statement has already been labeled")
-  | Case { value; body } -> Case { value; body = label_control_stmt body stack }
-  | Default { body } -> Default { body = label_control_stmt body stack }
+  | Case { value; body; _ } ->
+      let switch_label = Some (parent_switch stack) in
+      Case { value; body = label_control_stmt body stack; id = switch_label }
+  | Default { body; _ } ->
+      let switch_label = Some (parent_switch stack) in
+      Default { body = label_control_stmt body stack; id = switch_label }
   | Label (id, s) -> Label (id, label_control_stmt s stack)
   | _ -> s
 

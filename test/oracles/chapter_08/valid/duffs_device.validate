@@ -55,7 +55,8 @@
                                                      (Ast.Identifier
                                                         "count.0"));
                                                   right = (Ast.LiteralInt 1)}
-                                                )))});
+                                                )));
+                                          id = (Some (Ast.SwitchLabel "1"))});
                                      (Ast.S
                                         Ast.Case {value = (Ast.LiteralInt 3);
                                           body =
@@ -70,7 +71,8 @@
                                                      (Ast.Identifier
                                                         "count.0"));
                                                   right = (Ast.LiteralInt 1)}
-                                                )))});
+                                                )));
+                                          id = (Some (Ast.SwitchLabel "1"))});
                                      (Ast.S
                                         Ast.Case {value = (Ast.LiteralInt 2);
                                           body =
@@ -85,7 +87,8 @@
                                                      (Ast.Identifier
                                                         "count.0"));
                                                   right = (Ast.LiteralInt 1)}
-                                                )))});
+                                                )));
+                                          id = (Some (Ast.SwitchLabel "1"))});
                                      (Ast.S
                                         Ast.Case {value = (Ast.LiteralInt 1);
                                           body =
@@ -100,7 +103,8 @@
                                                      (Ast.Identifier
                                                         "count.0"));
                                                   right = (Ast.LiteralInt 1)}
-                                                )))})
+                                                )));
+                                          id = (Some (Ast.SwitchLabel "1"))})
                                      ]));
                              cond =
                              Ast.Binary {op = Ast.GreaterThan;
@@ -113,7 +117,8 @@
                                     right = (Ast.LiteralInt 1)}
                                   ));
                                right = (Ast.LiteralInt 0)};
-                             id = (Some (Ast.LoopLabel "2"))}})
+                             id = (Some (Ast.LoopLabel "2"))};
+                           id = (Some (Ast.SwitchLabel "1"))})
                        ]));
                id = (Some (Ast.SwitchLabel "1"))});
           (Ast.S

@@ -28,7 +28,8 @@
                                             (Ast.Var (Ast.Identifier "b.1")),
                                             (Ast.Var (Ast.Identifier "a.2"))
                                             ))))
-                                   ]))})
+                                   ]));
+                           id = (Some (Ast.SwitchLabel "1"))})
                        ]));
                id = (Some (Ast.SwitchLabel "1"))});
           (Ast.S

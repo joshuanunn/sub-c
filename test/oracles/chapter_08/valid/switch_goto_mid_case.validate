@@ -17,7 +17,8 @@
                            (Ast.Expression
                               (Ast.Assignment (
                                  (Ast.Var (Ast.Identifier "a.1")),
-                                 (Ast.LiteralInt 5))))});
+                                 (Ast.LiteralInt 5))));
+                           id = (Some (Ast.SwitchLabel "1"))});
                        (Ast.S
                           (Ast.Label ((Ast.Identifier "mid_case"),
                              (Ast.Expression

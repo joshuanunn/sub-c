@@ -12,13 +12,16 @@
                   (Ast.Block
                      [(Ast.S
                          Ast.Case {value = (Ast.LiteralInt 0);
-                           body = (Ast.Return (Ast.LiteralInt 0))});
+                           body = (Ast.Return (Ast.LiteralInt 0));
+                           id = (Some (Ast.SwitchLabel "1"))});
                        (Ast.S
                           Ast.Case {value = (Ast.LiteralInt 2);
-                            body = (Ast.Return (Ast.LiteralInt 0))});
+                            body = (Ast.Return (Ast.LiteralInt 0));
+                            id = (Some (Ast.SwitchLabel "1"))});
                        (Ast.S
                           Ast.Case {value = (Ast.LiteralInt 3);
-                            body = (Ast.Return (Ast.LiteralInt 0))})
+                            body = (Ast.Return (Ast.LiteralInt 0));
+                            id = (Some (Ast.SwitchLabel "1"))})
                        ]));
                id = (Some (Ast.SwitchLabel "1"))});
           (Ast.S (Ast.Return (Ast.LiteralInt 1)))])})

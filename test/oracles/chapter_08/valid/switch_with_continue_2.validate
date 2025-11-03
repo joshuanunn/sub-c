@@ -37,7 +37,8 @@
                                      Ast.Case {value = (Ast.LiteralInt 0);
                                        body =
                                        (Ast.Continue
-                                          (Some (Ast.LoopLabel "1")))});
+                                          (Some (Ast.LoopLabel "1")));
+                                       id = (Some (Ast.SwitchLabel "2"))});
                                    (Ast.S
                                       Ast.Default {
                                         body =
@@ -50,7 +51,8 @@
                                                 (Ast.Var
                                                    (Ast.Identifier "sum.0"));
                                                 right = (Ast.LiteralInt 1)}
-                                              )))})
+                                              )));
+                                        id = (Some (Ast.SwitchLabel "2"))})
                                    ]));
                            id = (Some (Ast.SwitchLabel "2"))})
                        ]));

@@ -26,7 +26,8 @@
                                          (Ast.Assignment (
                                             (Ast.Var (Ast.Identifier "b")),
                                             (Ast.Var (Ast.Identifier "a"))))))
-                                   ]))})
+                                   ]));
+                           id = None})
                        ]));
                id = None});
           (Ast.S

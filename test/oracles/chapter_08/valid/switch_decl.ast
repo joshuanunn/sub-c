@@ -25,7 +25,8 @@
                             (Ast.Expression
                                (Ast.Assignment (
                                   (Ast.Var (Ast.Identifier "a")),
-                                  (Ast.LiteralInt 4))))});
+                                  (Ast.LiteralInt 4))));
+                            id = None});
                        (Ast.S
                           (Ast.Expression
                              (Ast.Assignment ((Ast.Var (Ast.Identifier "b")),

@@ -28,7 +28,7 @@ and predeclare_stmt_labels (stmt : Ast.stmt) (se : Env.senv) : unit =
   | For { body; _ }
   | Switch { body; _ }
   | Case { body; _ }
-  | Default { body } ->
+  | Default { body; _ } ->
       predeclare_stmt_labels body se
   | Break _ | Continue _ | Goto _ | Return _ | Expression _ | Null -> ()
 
@@ -125,14 +125,14 @@ let rec resolve_stmt (s : Ast.stmt) (se : Env.senv) : Ast.stmt =
       (* TODO: add typecheck as cond' should resolve to an integer. *)
       let body' = resolve_stmt body se in
       Switch { cond = cond'; body = body'; id }
-  | Case { value; body } -> (
+  | Case { value; body; id } -> (
       let value' = resolve_expr value se in
       let body' = resolve_stmt body se in
       match value' with
       (* TODO: add support for other integer types once implemented *)
-      | LiteralInt _ -> Case { value = value'; body = body' }
+      | LiteralInt _ -> Case { value = value'; body = body'; id }
       | _ -> failwith "case label must be a constant integer expression")
-  | Default { body } -> Default { body = resolve_stmt body se }
+  | Default { body; id } -> Default { body = resolve_stmt body se; id }
   (* goto label resolution cannot be completed until after analysis pass *)
   | Goto id -> Goto id
   | Label (id, s) -> Label (id, resolve_stmt s se)

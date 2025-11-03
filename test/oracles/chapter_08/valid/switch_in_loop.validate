@@ -39,7 +39,8 @@
                                           (Ast.Assignment (
                                              (Ast.Var
                                                 (Ast.Identifier "acc.0")),
-                                             (Ast.LiteralInt 2))))});
+                                             (Ast.LiteralInt 2))));
+                                       id = (Some (Ast.SwitchLabel "2"))});
                                    (Ast.S
                                       (Ast.Break (Some (Ast.SwitchLabel "2"))));
                                    (Ast.S
@@ -54,7 +55,8 @@
                                                 (Ast.Var
                                                    (Ast.Identifier "acc.0"));
                                                 right = (Ast.LiteralInt 3)}
-                                              )))});
+                                              )));
+                                        id = (Some (Ast.SwitchLabel "2"))});
                                    (Ast.S
                                       (Ast.Break (Some (Ast.SwitchLabel "2"))));
                                    (Ast.S
@@ -69,7 +71,8 @@
                                                 (Ast.Var
                                                    (Ast.Identifier "acc.0"));
                                                 right = (Ast.LiteralInt 4)}
-                                              )))});
+                                              )));
+                                        id = (Some (Ast.SwitchLabel "2"))});
                                    (Ast.S
                                       (Ast.Break (Some (Ast.SwitchLabel "2"))));
                                    (Ast.S
@@ -84,7 +87,8 @@
                                                 (Ast.Var
                                                    (Ast.Identifier "acc.0"));
                                                 right = (Ast.LiteralInt 1)}
-                                              )))})
+                                              )));
+                                        id = (Some (Ast.SwitchLabel "2"))})
                                    ]));
                            id = (Some (Ast.SwitchLabel "2"))});
                        (Ast.S

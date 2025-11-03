@@ -9,7 +9,8 @@
                  (Ast.Block
                     [(Ast.S
                         Ast.Case {value = (Ast.LiteralInt 0);
-                          body = (Ast.Return (Ast.LiteralInt 0))});
+                          body = (Ast.Return (Ast.LiteralInt 0));
+                          id = (Some (Ast.SwitchLabel "1"))});
                       (Ast.S
                          Ast.Case {value = (Ast.LiteralInt 3);
                            body =
@@ -25,27 +26,38 @@
                                                    value = (Ast.LiteralInt 3);
                                                    body =
                                                    (Ast.Return
-                                                      (Ast.LiteralInt 0))});
+                                                      (Ast.LiteralInt 0));
+                                                   id =
+                                                   (Some (Ast.SwitchLabel "2"))});
                                                (Ast.S
                                                   Ast.Case {
                                                     value =
                                                     (Ast.LiteralInt 4);
                                                     body =
                                                     (Ast.Return
-                                                       (Ast.LiteralInt 1))});
+                                                       (Ast.LiteralInt 1));
+                                                    id =
+                                                    (Some (Ast.SwitchLabel
+                                                             "2"))});
                                                (Ast.S
                                                   Ast.Default {
                                                     body =
                                                     (Ast.Return
-                                                       (Ast.LiteralInt 0))})
+                                                       (Ast.LiteralInt 0));
+                                                    id =
+                                                    (Some (Ast.SwitchLabel
+                                                             "2"))})
                                                ]));
                                        id = (Some (Ast.SwitchLabel "2"))})
-                                   ]))});
+                                   ]));
+                           id = (Some (Ast.SwitchLabel "1"))});
                       (Ast.S
                          Ast.Case {value = (Ast.LiteralInt 4);
-                           body = (Ast.Return (Ast.LiteralInt 0))});
+                           body = (Ast.Return (Ast.LiteralInt 0));
+                           id = (Some (Ast.SwitchLabel "1"))});
                       (Ast.S
-                         Ast.Default {body = (Ast.Return (Ast.LiteralInt 0))})
+                         Ast.Default {body = (Ast.Return (Ast.LiteralInt 0));
+                           id = (Some (Ast.SwitchLabel "1"))})
                       ]));
               id = (Some (Ast.SwitchLabel "1"))})
           ])})

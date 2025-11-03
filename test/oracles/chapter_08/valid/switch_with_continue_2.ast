@@ -35,7 +35,7 @@
                               (Ast.Block
                                  [(Ast.S
                                      Ast.Case {value = (Ast.LiteralInt 0);
-                                       body = (Ast.Continue None)});
+                                       body = (Ast.Continue None); id = None});
                                    (Ast.S
                                       Ast.Default {
                                         body =
@@ -47,7 +47,8 @@
                                                 (Ast.Var
                                                    (Ast.Identifier "sum"));
                                                 right = (Ast.LiteralInt 1)}
-                                              )))})
+                                              )));
+                                        id = None})
                                    ]));
                            id = None})
                        ]));

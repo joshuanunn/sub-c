@@ -12,7 +12,7 @@
                   (Ast.Block
                      [(Ast.S
                          Ast.Case {value = (Ast.LiteralInt 1);
-                           body = (Ast.Return (Ast.LiteralInt 0))});
+                           body = (Ast.Return (Ast.LiteralInt 0)); id = None});
                        (Ast.S
                           Ast.Case {value = (Ast.LiteralInt 10);
                             body =
@@ -57,10 +57,12 @@
                                            then_smt = (Ast.Break None);
                                            else_smt = None})
                                       ]));
-                              id = None}});
+                              id = None};
+                            id = None});
                        (Ast.S (Ast.Return (Ast.LiteralInt 123)));
                        (Ast.S
-                          Ast.Default {body = (Ast.Return (Ast.LiteralInt 2))})
+                          Ast.Default {
+                            body = (Ast.Return (Ast.LiteralInt 2)); id = None})
                        ]));
                id = None});
           (Ast.S (Ast.Return (Ast.LiteralInt 3)))])})

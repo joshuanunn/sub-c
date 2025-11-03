@@ -16,7 +16,8 @@
                            (Ast.Expression
                               (Ast.Assignment (
                                  (Ast.Var (Ast.Identifier "a")),
-                                 (Ast.LiteralInt 10))))});
+                                 (Ast.LiteralInt 10))));
+                           id = None});
                        (Ast.S (Ast.Break None));
                        (Ast.S
                           Ast.Case {value = (Ast.LiteralInt 6);
@@ -24,7 +25,8 @@
                             (Ast.Expression
                                (Ast.Assignment (
                                   (Ast.Var (Ast.Identifier "a")),
-                                  (Ast.LiteralInt 0))))});
+                                  (Ast.LiteralInt 0))));
+                            id = None});
                        (Ast.S (Ast.Break None))]));
                id = None});
           (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "a"))))])})

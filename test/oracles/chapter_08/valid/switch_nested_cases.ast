@@ -18,7 +18,7 @@
                   (Ast.Block
                      [(Ast.S
                          Ast.Case {value = (Ast.LiteralInt 0);
-                           body = (Ast.Return (Ast.LiteralInt 0))});
+                           body = (Ast.Return (Ast.LiteralInt 0)); id = None});
                        (Ast.S
                           Ast.Case {value = (Ast.LiteralInt 1);
                             body =
@@ -33,11 +33,14 @@
                                              (Ast.Assignment (
                                                 (Ast.Var
                                                    (Ast.Identifier "switch1")),
-                                                (Ast.LiteralInt 1))))});
+                                                (Ast.LiteralInt 1))));
+                                          id = None});
                                       (Ast.S (Ast.Break None))]));
-                              else_smt = None}});
+                              else_smt = None};
+                            id = None});
                        (Ast.S
-                          Ast.Default {body = (Ast.Return (Ast.LiteralInt 0))})
+                          Ast.Default {
+                            body = (Ast.Return (Ast.LiteralInt 0)); id = None})
                        ]));
                id = None});
           (Ast.S
@@ -47,7 +50,7 @@
                   (Ast.Block
                      [(Ast.S
                          Ast.Case {value = (Ast.LiteralInt 0);
-                           body = (Ast.Return (Ast.LiteralInt 0))});
+                           body = (Ast.Return (Ast.LiteralInt 0)); id = None});
                        (Ast.S
                           Ast.If {cond_exp = (Ast.LiteralInt 1);
                             then_smt =
@@ -66,10 +69,12 @@
                                                     (Ast.Var
                                                        (Ast.Identifier
                                                           "switch2")),
-                                                    (Ast.LiteralInt 1))))});
+                                                    (Ast.LiteralInt 1))));
+                                              id = None});
                                           (Ast.S (Ast.Break None))])))});
                        (Ast.S
-                          Ast.Default {body = (Ast.Return (Ast.LiteralInt 0))})
+                          Ast.Default {
+                            body = (Ast.Return (Ast.LiteralInt 0)); id = None})
                        ]));
                id = None});
           (Ast.S
@@ -110,12 +115,14 @@
                                            (Ast.Assignment (
                                               (Ast.Var
                                                  (Ast.Identifier "switch3")),
-                                              (Ast.LiteralInt 1))))});
+                                              (Ast.LiteralInt 1))));
+                                        id = None});
                                    (Ast.S (Ast.Break None));
                                    (Ast.S
                                       Ast.Default {
                                         body =
-                                        (Ast.Return (Ast.LiteralInt 0))})
+                                        (Ast.Return (Ast.LiteralInt 0));
+                                        id = None})
                                    ]));
                            id = None})
                        ]));

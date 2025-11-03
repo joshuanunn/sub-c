@@ -16,11 +16,13 @@
                            (Ast.Expression
                               (Ast.Assignment (
                                  (Ast.Var (Ast.Identifier "a.0")),
-                                 (Ast.LiteralInt 0))))});
+                                 (Ast.LiteralInt 0))));
+                           id = (Some (Ast.SwitchLabel "1"))});
                        (Ast.S
                           Ast.Case {value = (Ast.LiteralInt 1);
                             body =
-                            (Ast.Return (Ast.Var (Ast.Identifier "a.0")))})
+                            (Ast.Return (Ast.Var (Ast.Identifier "a.0")));
+                            id = (Some (Ast.SwitchLabel "1"))})
                        ]));
                id = (Some (Ast.SwitchLabel "1"))});
           (Ast.S

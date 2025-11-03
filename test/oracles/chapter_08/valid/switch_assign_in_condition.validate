@@ -15,7 +15,8 @@
                   (Ast.Block
                      [(Ast.S
                          Ast.Case {value = (Ast.LiteralInt 0);
-                           body = (Ast.Return (Ast.LiteralInt 10))});
+                           body = (Ast.Return (Ast.LiteralInt 10));
+                           id = (Some (Ast.SwitchLabel "1"))});
                        (Ast.S
                           Ast.Case {value = (Ast.LiteralInt 1);
                             body =
@@ -25,7 +26,8 @@
                                   Ast.Binary {op = Ast.Multiply;
                                     left = (Ast.Var (Ast.Identifier "a.0"));
                                     right = (Ast.LiteralInt 2)}
-                                  )))});
+                                  )));
+                            id = (Some (Ast.SwitchLabel "1"))});
                        (Ast.S (Ast.Break (Some (Ast.SwitchLabel "1"))));
                        (Ast.S
                           Ast.Default {
@@ -33,7 +35,8 @@
                             (Ast.Expression
                                (Ast.Assignment (
                                   (Ast.Var (Ast.Identifier "a.0")),
-                                  (Ast.LiteralInt 99))))})
+                                  (Ast.LiteralInt 99))));
+                            id = (Some (Ast.SwitchLabel "1"))})
                        ]));
                id = (Some (Ast.SwitchLabel "1"))});
           (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "a.0"))))])})

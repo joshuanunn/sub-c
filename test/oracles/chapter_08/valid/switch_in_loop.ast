@@ -38,7 +38,8 @@
                                        (Ast.Expression
                                           (Ast.Assignment (
                                              (Ast.Var (Ast.Identifier "acc")),
-                                             (Ast.LiteralInt 2))))});
+                                             (Ast.LiteralInt 2))));
+                                       id = None});
                                    (Ast.S (Ast.Break None));
                                    (Ast.S
                                       Ast.Case {value = (Ast.LiteralInt 1);
@@ -51,7 +52,8 @@
                                                 (Ast.Var
                                                    (Ast.Identifier "acc"));
                                                 right = (Ast.LiteralInt 3)}
-                                              )))});
+                                              )));
+                                        id = None});
                                    (Ast.S (Ast.Break None));
                                    (Ast.S
                                       Ast.Case {value = (Ast.LiteralInt 2);
@@ -64,7 +66,8 @@
                                                 (Ast.Var
                                                    (Ast.Identifier "acc"));
                                                 right = (Ast.LiteralInt 4)}
-                                              )))});
+                                              )));
+                                        id = None});
                                    (Ast.S (Ast.Break None));
                                    (Ast.S
                                       Ast.Default {
@@ -77,7 +80,8 @@
                                                 (Ast.Var
                                                    (Ast.Identifier "acc"));
                                                 right = (Ast.LiteralInt 1)}
-                                              )))})
+                                              )));
+                                        id = None})
                                    ]));
                            id = None});
                        (Ast.S

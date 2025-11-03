@@ -54,7 +54,8 @@
                                                   (Ast.Var
                                                      (Ast.Identifier "count"));
                                                   right = (Ast.LiteralInt 1)}
-                                                )))});
+                                                )));
+                                          id = None});
                                      (Ast.S
                                         Ast.Case {value = (Ast.LiteralInt 3);
                                           body =
@@ -68,7 +69,8 @@
                                                   (Ast.Var
                                                      (Ast.Identifier "count"));
                                                   right = (Ast.LiteralInt 1)}
-                                                )))});
+                                                )));
+                                          id = None});
                                      (Ast.S
                                         Ast.Case {value = (Ast.LiteralInt 2);
                                           body =
@@ -82,7 +84,8 @@
                                                   (Ast.Var
                                                      (Ast.Identifier "count"));
                                                   right = (Ast.LiteralInt 1)}
-                                                )))});
+                                                )));
+                                          id = None});
                                      (Ast.S
                                         Ast.Case {value = (Ast.LiteralInt 1);
                                           body =
@@ -96,7 +99,8 @@
                                                   (Ast.Var
                                                      (Ast.Identifier "count"));
                                                   right = (Ast.LiteralInt 1)}
-                                                )))})
+                                                )));
+                                          id = None})
                                      ]));
                              cond =
                              Ast.Binary {op = Ast.GreaterThan;
@@ -109,7 +113,8 @@
                                     right = (Ast.LiteralInt 1)}
                                   ));
                                right = (Ast.LiteralInt 0)};
-                             id = None}})
+                             id = None};
+                           id = None})
                        ]));
                id = None});
           (Ast.S

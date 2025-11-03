@@ -18,10 +18,12 @@
                (Ast.Compound
                   (Ast.Block
                      [(Ast.S
-                         Ast.Default {body = (Ast.Return (Ast.LiteralInt 0))});
+                         Ast.Default {body = (Ast.Return (Ast.LiteralInt 0));
+                           id = (Some (Ast.SwitchLabel "1"))});
                        (Ast.S
                           Ast.Case {value = (Ast.LiteralInt 2);
-                            body = (Ast.Return (Ast.LiteralInt 1))})
+                            body = (Ast.Return (Ast.LiteralInt 1));
+                            id = (Some (Ast.SwitchLabel "1"))})
                        ]));
                id = (Some (Ast.SwitchLabel "1"))})
           ])})
