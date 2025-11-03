@@ -1,34 +1,28 @@
-open Ast
-
-let literal_to_int : Ast.expr -> int = function
-  | LiteralInt i -> i
-  | _ -> failwith "expected LiteralInt"
-
 type switch_ctx = {
-  id : ident;
+  id : Ast.ident;
   cases : (int, unit) Hashtbl.t;
   mutable has_default : bool;
 }
 
 (* Control contexts to represent nested loops and switches. *)
-type context = LoopCtx of ident | SwitchCtx of switch_ctx
+type context = LoopCtx of Ast.ident | SwitchCtx of switch_ctx
 
 (* Declare static counter for unique loop and switch labeling. *)
 let counter = ref 0
 
 (** [loop_label] generates a new unique identifier for a loop. *)
-let loop_label () : ident =
+let loop_label () : Ast.ident =
   incr counter;
   LoopLabel (Printf.sprintf "%d" !counter)
 
 (** [switch_label] generates a new unique identifier for a switch. *)
-let switch_label () : ident =
+let switch_label () : Ast.ident =
   incr counter;
   SwitchLabel (Printf.sprintf "%d" !counter)
 
 (** Get the current active control label for a [break] statement. This must be
     the innermost loop or switch on the stack. *)
-let break_target (stack : context list) : ident option =
+let break_target (stack : context list) : Ast.ident option =
   match stack with
   | [] -> None
   | LoopCtx id :: _ -> Some id
@@ -36,7 +30,7 @@ let break_target (stack : context list) : ident option =
 
 (** Get the current active control label for a [continue] statement. This must
     be the innermost loop on the stack. *)
-let continue_target (stack : context list) : ident option =
+let continue_target (stack : context list) : Ast.ident option =
   match List.find_opt (function LoopCtx _ -> true | _ -> false) stack with
   | Some (LoopCtx id) -> Some id
   | _ -> None
@@ -119,7 +113,7 @@ let rec label_control_stmt (s : Ast.stmt) (stack : context list) : Ast.stmt =
             { cond; body = label_control_stmt body new_stack; id = Some new_id }
       | Some _ -> failwith "switch statement has already been labeled")
   | Case { value; body; _ } ->
-      let int_value = literal_to_int value in
+      let int_value = Ast.literal_to_int value in
       let switch = find_switch stack in
       if Hashtbl.mem switch.cases int_value then
         failwith (Printf.sprintf "duplicate case value: %d" int_value);
@@ -138,7 +132,8 @@ and label_block (b : Ast.block) (stack : context list) : Ast.block =
   let (Block items) = b in
   let labelled_items =
     List.map
-      (function D d -> D d | S s -> S (label_control_stmt s stack))
+      (function
+        | Ast.D d -> Ast.D d | Ast.S s -> Ast.S (label_control_stmt s stack))
       items
   in
   Block labelled_items

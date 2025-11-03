@@ -81,6 +81,10 @@ type func = Function of { return_type : typ; name : ident; body : block }
 
 type prog = Program of func [@@deriving show]
 
+let literal_to_int : expr -> int = function
+  | LiteralInt i -> i
+  | _ -> failwith "expected LiteralInt"
+
 let mk_prog f = Program f
 let mk_func return_type name b = Function { return_type; name; body = Block b }
 let mk_ident i = Identifier i
