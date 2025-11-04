@@ -1,6 +1,4 @@
-open Asm
-
-let emit_cc (o : cond_code) : string =
+let emit_cc (o : Asm.cond_code) : string =
   match o with
   | E -> "e"
   | NE -> "ne"
@@ -9,7 +7,7 @@ let emit_cc (o : cond_code) : string =
   | L -> "l"
   | LE -> "le"
 
-let emit_op (o : operand) : string =
+let emit_op (o : Asm.operand) : string =
   match o with
   | Reg AL -> "%al"
   | Reg CL -> "%cl"
@@ -25,10 +23,10 @@ let emit_op (o : operand) : string =
   | Imm i -> Printf.sprintf "$%d" i
   | Pseudo s -> failwith ("Pseudo operand " ^ s ^ " has not been lowered")
 
-let emit_unary_op (o : unary_operator) : string =
+let emit_unary_op (o : Asm.unary_operator) : string =
   match o with BwNot -> "notl" | Neg -> "negl"
 
-let emit_binary_op (o : binary_operator) : string =
+let emit_binary_op (o : Asm.binary_operator) : string =
   match o with
   | Add -> "addl"
   | Sub -> "subl"
@@ -44,7 +42,7 @@ let format_instruction (i : string) (o : string) : string =
 let format_label (l : string) : string = Printf.sprintf ".L%s:" l
 let format_function (f : string) : string = Printf.sprintf "%s:" f
 
-let emit_instruction (i : instruction) : string list =
+let emit_instruction (i : Asm.instruction) : string list =
   match i with
   | Mov (src, dst) ->
       let ops = Printf.sprintf "%s, %s" (emit_op src) (emit_op dst) in
@@ -86,7 +84,7 @@ let emit_instruction (i : instruction) : string list =
       let ops = Printf.sprintf "$%d, %%rsp" n in
       [ format_instruction "subq" ops ]
 
-let emit_func (f : func) : string list =
+let emit_func (f : Asm.func) : string list =
   match f with
   | Function fn ->
       let prologue =
@@ -102,7 +100,7 @@ let emit_func (f : func) : string list =
       in
       prologue @ instructions
 
-let emit_prog (Program p) : string =
+let emit_prog (Asm.Program p) : string =
   let footer =
     [ format_instruction ".section" ".note.GNU-stack,\"\",@progbits\n" ]
   in

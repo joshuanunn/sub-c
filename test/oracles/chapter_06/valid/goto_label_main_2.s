@@ -2,12 +2,12 @@
 main:
     pushq       %rbp
     movq        %rsp, %rbp
-    jmp         .L_main
+    jmp         .L_main.0
     movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         
-.L_main:
+.L_main.0:
     movl        $1, %eax
     movq        %rbp, %rsp
     popq        %rbp

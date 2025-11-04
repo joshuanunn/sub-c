@@ -2,9 +2,9 @@
    Ir.Function {name = "main";
      body =
      [Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "result.1")};
-       Ir.Jump {target = "label"}; (Ir.Label "loop.ct.1");
+       Ir.Jump {target = "label.0"}; (Ir.Label "loop.ct.1");
        Ir.JumpIfZero {condition = (Ir.Constant 0); target = "loop.br.1"};
-       (Ir.Label "label");
+       (Ir.Label "label.0");
        Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "result.1")};
        Ir.Jump {target = "loop.ct.1"}; (Ir.Label "loop.br.1");
        (Ir.Return (Ir.Var "result.1")); (Ir.Return (Ir.Constant 0))]})

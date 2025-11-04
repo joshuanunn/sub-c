@@ -1,6 +1,3 @@
-open Ir
-open Asm
-
 let compile_val (o : Ir.value) : Asm.operand =
   match o with Constant n -> Imm n | Var i -> Pseudo i
 
@@ -90,7 +87,7 @@ let compile_instruction (s : Ir.instruction) : Asm.instruction list =
       (* Everything else *)
       | Add | Subtract | Multiply | BwAnd | BwXor | BwOr ->
           let maybe_mov =
-            if src1_val = dst_val then [] else [ Mov (src1_val, dst_val) ]
+            if src1_val = dst_val then [] else [ Asm.Mov (src1_val, dst_val) ]
           in
           maybe_mov
           @ [

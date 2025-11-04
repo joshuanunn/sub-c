@@ -10,10 +10,10 @@ main:
     movl        $1, -12(%rbp)
     movl        -12(%rbp), %r10d
     movl        %r10d, -8(%rbp)
-    jmp         .Lend
+    jmp         .Lend.0
 .Lif.en.0:
     movl        $9, -4(%rbp)
-.Lend:
+.Lend.0:
     cmpl        $10, -4(%rbp)
     movl        $0, -16(%rbp)
     sete        -16(%rbp)

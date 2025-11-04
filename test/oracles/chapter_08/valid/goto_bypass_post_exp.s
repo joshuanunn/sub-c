@@ -6,7 +6,7 @@ main:
     movl        $0, -4(%rbp)
     movl        $0, -8(%rbp)
 .Lloop.st.1:
-.Llbl:
+.Llbl.0:
     movl        -4(%rbp), %r10d
     movl        %r10d, -12(%rbp)
     addl        $1, -12(%rbp)
@@ -24,7 +24,7 @@ main:
     je          .Lif.en.3
     jmp         .Lloop.br.1
 .Lif.en.3:
-    jmp         .Llbl
+    jmp         .Llbl.0
 .Lloop.ct.1:
     movl        $0, -8(%rbp)
     jmp         .Lloop.st.1

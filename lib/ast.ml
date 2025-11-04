@@ -1,5 +1,11 @@
 type typ = KwInt | KwVoid [@@deriving show]
-type ident = Identifier of string [@@deriving show]
+
+type ident =
+  | Identifier of string
+  | GotoLabel of string
+  | LoopLabel of string
+  | SwitchLabel of string
+[@@deriving show]
 
 type unop =
   | Negate
@@ -57,6 +63,9 @@ type stmt =
       body : stmt;
       id : ident option;
     }
+  | Switch of { cond : expr; body : stmt; id : ident option }
+  | Case of { value : expr; body : stmt; id : ident option }
+  | Default of { body : stmt; id : ident option }
   | Goto of ident
   | Label of ident * stmt
   | Null
@@ -71,6 +80,10 @@ type func = Function of { return_type : typ; name : ident; body : block }
 [@@deriving show]
 
 type prog = Program of func [@@deriving show]
+
+let literal_to_int : expr -> int = function
+  | LiteralInt i -> i
+  | _ -> failwith "expected LiteralInt"
 
 let mk_prog f = Program f
 let mk_func return_type name b = Function { return_type; name; body = Block b }
@@ -98,6 +111,9 @@ let mk_for_stmt i c p b =
 
 let mk_goto_stmt l = Goto l
 let mk_label_stmt l s = Label (l, s)
+let mk_switch_stmt e s = Switch { cond = e; body = s; id = None }
+let mk_case_stmt e s = Case { value = e; body = s; id = None }
+let mk_default_stmt s = Default { body = s; id = None }
 let mk_decl_init_stmt i v = Declaration (i, Some v)
 let mk_decl_stmt i = Declaration (i, None)
 let mk_stmt_block_item s = S s

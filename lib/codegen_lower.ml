@@ -1,11 +1,8 @@
-open Asm
-open Env
-
 (** [lower_operand o le] replaces a pseudo operand with a concrete stack
     operand, using the variable-to-offset mapping in the environment [le]. All
     other operands are returned unchanged. *)
 let lower_operand (o : Asm.operand) (le : Env.lenv) : Asm.operand =
-  match o with Pseudo v -> Stack (get_value_offset v le) | _ -> o
+  match o with Pseudo v -> Stack (Env.get_value_offset v le) | _ -> o
 
 (** [lower_instruction i le] lowers any pseudo-registers in the instruction [i]
     by replacing them with stack operands, using the environment [le]. *)
@@ -36,5 +33,5 @@ let lower_func (f : Asm.func) (le : Env.lenv) : Asm.func =
 (** [lower_prog p le] lowers all pseudo operands in the program [p], returning a
     new program where pseudo registers have been replaced with stack-based
     addressing using the environment [le]. *)
-let lower_prog (Program p) (le : Env.lenv) : Asm.prog =
+let lower_prog (Asm.Program p) (le : Env.lenv) : Asm.prog =
   Program (lower_func p le)

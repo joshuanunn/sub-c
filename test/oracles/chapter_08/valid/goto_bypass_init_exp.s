@@ -4,7 +4,7 @@ main:
     movq        %rsp, %rbp
     subq        $16, %rsp
     movl        $0, -4(%rbp)
-    jmp         .Ltarget
+    jmp         .Ltarget.0
     movl        $5, -4(%rbp)
 .Lloop.st.1:
     cmpl        $10, -4(%rbp)
@@ -12,7 +12,7 @@ main:
     setl        -8(%rbp)
     cmpl        $0, -8(%rbp)
     je          .Lloop.br.1
-.Ltarget:
+.Ltarget.0:
     cmpl        $0, -4(%rbp)
     movl        $0, -12(%rbp)
     sete        -12(%rbp)

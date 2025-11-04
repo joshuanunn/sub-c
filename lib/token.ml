@@ -11,6 +11,9 @@ type token =
   | KW_FOR
   | KW_BREAK
   | KW_CONTINUE
+  | KW_SWITCH
+  | KW_CASE
+  | KW_DEFAULT
   | KW_GOTO
   | LPAREN
   | RPAREN

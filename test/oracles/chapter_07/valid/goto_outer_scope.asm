@@ -7,9 +7,9 @@
        (Asm.JmpCC (Asm.E, "if.en.0"));
        (Asm.Mov ((Asm.Imm 1), (Asm.Stack -12)));
        (Asm.Mov ((Asm.Stack -12), (Asm.Reg Asm.R10)));
-       (Asm.Mov ((Asm.Reg Asm.R10), (Asm.Stack -8))); (Asm.Jmp "end");
+       (Asm.Mov ((Asm.Reg Asm.R10), (Asm.Stack -8))); (Asm.Jmp "end.0");
        (Asm.Label "if.en.0"); (Asm.Mov ((Asm.Imm 9), (Asm.Stack -4)));
-       (Asm.Label "end"); (Asm.Cmp ((Asm.Imm 10), (Asm.Stack -4)));
+       (Asm.Label "end.0"); (Asm.Cmp ((Asm.Imm 10), (Asm.Stack -4)));
        (Asm.Mov ((Asm.Imm 0), (Asm.Stack -16)));
        (Asm.SetCC (Asm.E, (Asm.Stack -16)));
        (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -16)));

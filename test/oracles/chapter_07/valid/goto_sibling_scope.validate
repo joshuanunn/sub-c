@@ -13,14 +13,14 @@
                      [(Ast.D
                          (Ast.Declaration ((Ast.Identifier "a.3"),
                             (Some (Ast.LiteralInt 5)))));
-                       (Ast.S (Ast.Goto (Ast.Identifier "other_if")));
+                       (Ast.S (Ast.Goto (Ast.GotoLabel "other_if.1")));
                        (Ast.S
                           (Ast.Expression
                              (Ast.Assignment (
                                 (Ast.Var (Ast.Identifier "sum.2")),
                                 (Ast.LiteralInt 0)))));
                        (Ast.S
-                          (Ast.Label ((Ast.Identifier "first_if"),
+                          (Ast.Label ((Ast.GotoLabel "first_if.0"),
                              (Ast.Expression
                                 (Ast.Assignment (
                                    (Ast.Var (Ast.Identifier "a.3")),
@@ -42,7 +42,7 @@
                (Ast.Compound
                   (Ast.Block
                      [(Ast.S
-                         (Ast.Label ((Ast.Identifier "other_if"), Ast.Null)));
+                         (Ast.Label ((Ast.GotoLabel "other_if.1"), Ast.Null)));
                        (Ast.D
                           (Ast.Declaration ((Ast.Identifier "a.4"),
                              (Some (Ast.LiteralInt 6)))));
@@ -54,7 +54,7 @@
                                   left = (Ast.Var (Ast.Identifier "sum.2"));
                                   right = (Ast.Var (Ast.Identifier "a.4"))}
                                 ))));
-                       (Ast.S (Ast.Goto (Ast.Identifier "first_if")));
+                       (Ast.S (Ast.Goto (Ast.GotoLabel "first_if.0")));
                        (Ast.S
                           (Ast.Expression
                              (Ast.Assignment (

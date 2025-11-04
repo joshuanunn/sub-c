@@ -16,5 +16,5 @@
                       right = (Ast.LiteralInt 5)}
                     ));
                  right = (Ast.LiteralInt 256)};
-               id = (Some (Ast.Identifier "1"))});
+               id = (Some (Ast.LoopLabel "1"))});
           (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "i.0"))))])})

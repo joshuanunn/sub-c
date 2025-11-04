@@ -31,7 +31,7 @@
                               left = (Ast.Var (Ast.Identifier "x.0"));
                               right = (Ast.LiteralInt 0)};
                             then_smt =
-                            (Ast.Continue (Some (Ast.Identifier "1")));
+                            (Ast.Continue (Some (Ast.LoopLabel "1")));
                             else_smt = None});
                        (Ast.S
                           (Ast.Expression
@@ -48,7 +48,7 @@
                               left = (Ast.Var (Ast.Identifier "y.1"));
                               right = (Ast.LiteralInt 10)};
                             then_smt =
-                            (Ast.Continue (Some (Ast.Identifier "1")));
+                            (Ast.Continue (Some (Ast.LoopLabel "1")));
                             else_smt = None});
                        (Ast.S
                           (Ast.Expression
@@ -63,7 +63,7 @@
                Ast.Binary {op = Ast.NotEqual;
                  left = (Ast.Var (Ast.Identifier "z.2"));
                  right = (Ast.LiteralInt 50)};
-               id = (Some (Ast.Identifier "1"))});
+               id = (Some (Ast.LoopLabel "1"))});
           (Ast.S
              (Ast.Return
                 Ast.Binary {op = Ast.And;

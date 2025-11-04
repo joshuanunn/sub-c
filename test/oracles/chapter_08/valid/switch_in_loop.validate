@@ -1,0 +1,115 @@
+(Ast.Program
+   Ast.Function {return_type = Ast.KwInt; name = (Ast.Identifier "main");
+     body =
+     (Ast.Block
+        [(Ast.D
+            (Ast.Declaration ((Ast.Identifier "acc.0"),
+               (Some (Ast.LiteralInt 0)))));
+          (Ast.D
+             (Ast.Declaration ((Ast.Identifier "ctr.1"),
+                (Some (Ast.LiteralInt 0)))));
+          (Ast.S
+             Ast.For {
+               init =
+               (Ast.InclDecl
+                  (Ast.Declaration ((Ast.Identifier "i.2"),
+                     (Some (Ast.LiteralInt 0)))));
+               cond =
+               (Some Ast.Binary {op = Ast.LessThan;
+                       left = (Ast.Var (Ast.Identifier "i.2"));
+                       right = (Ast.LiteralInt 10)});
+               post =
+               (Some (Ast.Assignment ((Ast.Var (Ast.Identifier "i.2")),
+                        Ast.Binary {op = Ast.Add;
+                          left = (Ast.Var (Ast.Identifier "i.2"));
+                          right = (Ast.LiteralInt 1)}
+                        )));
+               body =
+               (Ast.Compound
+                  (Ast.Block
+                     [(Ast.S
+                         Ast.Switch {cond = (Ast.Var (Ast.Identifier "i.2"));
+                           body =
+                           (Ast.Compound
+                              (Ast.Block
+                                 [(Ast.S
+                                     Ast.Case {value = (Ast.LiteralInt 0);
+                                       body =
+                                       (Ast.Expression
+                                          (Ast.Assignment (
+                                             (Ast.Var
+                                                (Ast.Identifier "acc.0")),
+                                             (Ast.LiteralInt 2))));
+                                       id = (Some (Ast.SwitchLabel "2"))});
+                                   (Ast.S
+                                      (Ast.Break (Some (Ast.SwitchLabel "2"))));
+                                   (Ast.S
+                                      Ast.Case {value = (Ast.LiteralInt 1);
+                                        body =
+                                        (Ast.Expression
+                                           (Ast.Assignment (
+                                              (Ast.Var
+                                                 (Ast.Identifier "acc.0")),
+                                              Ast.Binary {op = Ast.Multiply;
+                                                left =
+                                                (Ast.Var
+                                                   (Ast.Identifier "acc.0"));
+                                                right = (Ast.LiteralInt 3)}
+                                              )));
+                                        id = (Some (Ast.SwitchLabel "2"))});
+                                   (Ast.S
+                                      (Ast.Break (Some (Ast.SwitchLabel "2"))));
+                                   (Ast.S
+                                      Ast.Case {value = (Ast.LiteralInt 2);
+                                        body =
+                                        (Ast.Expression
+                                           (Ast.Assignment (
+                                              (Ast.Var
+                                                 (Ast.Identifier "acc.0")),
+                                              Ast.Binary {op = Ast.Multiply;
+                                                left =
+                                                (Ast.Var
+                                                   (Ast.Identifier "acc.0"));
+                                                right = (Ast.LiteralInt 4)}
+                                              )));
+                                        id = (Some (Ast.SwitchLabel "2"))});
+                                   (Ast.S
+                                      (Ast.Break (Some (Ast.SwitchLabel "2"))));
+                                   (Ast.S
+                                      Ast.Default {
+                                        body =
+                                        (Ast.Expression
+                                           (Ast.Assignment (
+                                              (Ast.Var
+                                                 (Ast.Identifier "acc.0")),
+                                              Ast.Binary {op = Ast.Add;
+                                                left =
+                                                (Ast.Var
+                                                   (Ast.Identifier "acc.0"));
+                                                right = (Ast.LiteralInt 1)}
+                                              )));
+                                        id = (Some (Ast.SwitchLabel "2"))})
+                                   ]));
+                           id = (Some (Ast.SwitchLabel "2"))});
+                       (Ast.S
+                          (Ast.Expression
+                             (Ast.Assignment (
+                                (Ast.Var (Ast.Identifier "ctr.1")),
+                                Ast.Binary {op = Ast.Add;
+                                  left = (Ast.Var (Ast.Identifier "ctr.1"));
+                                  right = (Ast.LiteralInt 1)}
+                                ))))
+                       ]));
+               id = (Some (Ast.LoopLabel "1"))});
+          (Ast.S
+             (Ast.Return
+                Ast.Binary {op = Ast.And;
+                  left =
+                  Ast.Binary {op = Ast.Equal;
+                    left = (Ast.Var (Ast.Identifier "ctr.1"));
+                    right = (Ast.LiteralInt 10)};
+                  right =
+                  Ast.Binary {op = Ast.Equal;
+                    left = (Ast.Var (Ast.Identifier "acc.0"));
+                    right = (Ast.LiteralInt 31)}}))
+          ])})

@@ -4,12 +4,12 @@ main:
     movq        %rsp, %rbp
     subq        $4, %rsp
     movl        $5, -4(%rbp)
-    jmp         .Lident
+    jmp         .Lident.0
     movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         
-.Lident:
+.Lident.0:
     movl        -4(%rbp), %eax
     movq        %rbp, %rsp
     popq        %rbp

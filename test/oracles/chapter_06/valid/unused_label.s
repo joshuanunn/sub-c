@@ -2,7 +2,7 @@
 main:
     pushq       %rbp
     movq        %rsp, %rbp
-.Lunused:
+.Lunused.0:
     movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp

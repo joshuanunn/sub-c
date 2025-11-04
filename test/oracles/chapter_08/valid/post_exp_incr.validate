@@ -31,5 +31,5 @@
                                  right = (Ast.LiteralInt 2)}
                                ))))
                        ]));
-               id = (Some (Ast.Identifier "1"))});
+               id = (Some (Ast.LoopLabel "1"))});
           (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "product.0"))))])})

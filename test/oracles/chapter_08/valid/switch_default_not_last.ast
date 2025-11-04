@@ -1,0 +1,28 @@
+(Ast.Program
+   Ast.Function {return_type = Ast.KwInt; name = (Ast.Identifier "main");
+     body =
+     (Ast.Block
+        [(Ast.D (Ast.Declaration ((Ast.Identifier "a"), None)));
+          (Ast.D
+             (Ast.Declaration ((Ast.Identifier "b"),
+                (Some (Ast.Assignment ((Ast.Var (Ast.Identifier "a")),
+                         (Ast.LiteralInt 7))))
+                )));
+          (Ast.S
+             Ast.Switch {
+               cond =
+               Ast.Binary {op = Ast.Add;
+                 left = (Ast.Var (Ast.Identifier "a"));
+                 right = (Ast.Var (Ast.Identifier "b"))};
+               body =
+               (Ast.Compound
+                  (Ast.Block
+                     [(Ast.S
+                         Ast.Default {body = (Ast.Return (Ast.LiteralInt 0));
+                           id = None});
+                       (Ast.S
+                          Ast.Case {value = (Ast.LiteralInt 2);
+                            body = (Ast.Return (Ast.LiteralInt 1)); id = None})
+                       ]));
+               id = None})
+          ])})

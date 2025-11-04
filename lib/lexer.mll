@@ -1,6 +1,4 @@
 {
-open Token
-
 exception Lexing_error of string
 
 let line_number lexbuf =
@@ -26,59 +24,62 @@ rule read =
   parse
   | whitespace { read lexbuf }
   | newline { line_number lexbuf; read lexbuf }
-  | "int" { KW_INT }
-  | "void" { KW_VOID }
-  | "return" { KW_RETURN }
-  | "if" { KW_IF }
-  | "else" { KW_ELSE }
-  | "do" { KW_DO }
-  | "while" { KW_WHILE }
-  | "for" { KW_FOR }
-  | "break" { KW_BREAK }
-  | "continue" { KW_CONTINUE }
-  | "goto" { KW_GOTO }
-  | "(" { LPAREN }
-  | ")" { RPAREN }
-  | "{" { LBRACE }
-  | "}" { RBRACE }
-  | ";" { SEMICOLON }
-  | "?" { QUESTION }
-  | ":" { COLON }
-  | "++" { INCREMENT }
-  | "--" { DECREMENT }
-  | "+=" { ADD_ASSIGN }
-  | "-=" { SUB_ASSIGN }
-  | "*=" { MUL_ASSIGN }
-  | "/=" { DIV_ASSIGN }
-  | "%=" { MOD_ASSIGN }
-  | "<<=" { LSHIFT_ASSIGN }
-  | ">>=" { RSHIFT_ASSIGN }
-  | "&=" { BW_AND_ASSIGN }
-  | "^=" { BW_XOR_ASSIGN }
-  | "|=" { BW_OR_ASSIGN }
-  | "+" { ADD }
-  | "-" { SUB }
-  | "*" { MUL }
-  | "/" { DIV }
-  | "%" { MOD }
-  | "&&" { AND }
-  | "||" { OR }
-  | "<<" { BW_LSHIFT }
-  | ">>" { BW_RSHIFT }
-  | "~" { BW_NOT }
-  | "&" { BW_AND }
-  | "|" { BW_OR }
-  | "^" { BW_XOR }
-  | "==" { EQ }
-  | "!=" { NE }
-  | "<=" { LE }
-  | ">=" { GE }
-  | "<" { LT }
-  | ">" { GT }
-  | "!" { NOT }
-  | "=" { ASSIGN }
-  | integer { LITERAL_INT (int_of_string (Lexing.lexeme lexbuf)) }
+  | "int" { Token.KW_INT }
+  | "void" { Token.KW_VOID }
+  | "return" { Token.KW_RETURN }
+  | "if" { Token.KW_IF }
+  | "else" { Token.KW_ELSE }
+  | "do" { Token.KW_DO }
+  | "while" { Token.KW_WHILE }
+  | "for" { Token.KW_FOR }
+  | "break" { Token.KW_BREAK }
+  | "continue" { Token.KW_CONTINUE }
+  | "switch" { Token.KW_SWITCH }
+  | "case" { Token.KW_CASE }
+  | "default" { Token.KW_DEFAULT }
+  | "goto" { Token.KW_GOTO }
+  | "(" { Token.LPAREN }
+  | ")" { Token.RPAREN }
+  | "{" { Token.LBRACE }
+  | "}" { Token.RBRACE }
+  | ";" { Token.SEMICOLON }
+  | "?" { Token.QUESTION }
+  | ":" { Token.COLON }
+  | "++" { Token.INCREMENT }
+  | "--" { Token.DECREMENT }
+  | "+=" { Token.ADD_ASSIGN }
+  | "-=" { Token.SUB_ASSIGN }
+  | "*=" { Token.MUL_ASSIGN }
+  | "/=" { Token.DIV_ASSIGN }
+  | "%=" { Token.MOD_ASSIGN }
+  | "<<=" { Token.LSHIFT_ASSIGN }
+  | ">>=" { Token.RSHIFT_ASSIGN }
+  | "&=" { Token.BW_AND_ASSIGN }
+  | "^=" { Token.BW_XOR_ASSIGN }
+  | "|=" { Token.BW_OR_ASSIGN }
+  | "+" { Token.ADD }
+  | "-" { Token.SUB }
+  | "*" { Token.MUL }
+  | "/" { Token.DIV }
+  | "%" { Token.MOD }
+  | "&&" { Token.AND }
+  | "||" { Token.OR }
+  | "<<" { Token.BW_LSHIFT }
+  | ">>" { Token.BW_RSHIFT }
+  | "~" { Token.BW_NOT }
+  | "&" { Token.BW_AND }
+  | "|" { Token.BW_OR }
+  | "^" { Token.BW_XOR }
+  | "==" { Token.EQ }
+  | "!=" { Token.NE }
+  | "<=" { Token.LE }
+  | ">=" { Token.GE }
+  | "<" { Token.LT }
+  | ">" { Token.GT }
+  | "!" { Token.NOT }
+  | "=" { Token.ASSIGN }
+  | integer { Token.LITERAL_INT (int_of_string (Lexing.lexeme lexbuf)) }
   | invalid_integer { raise (Lexing_error ("Invalid integer: " ^ Lexing.lexeme lexbuf)) }
-  | identifier { IDENTIFIER (Lexing.lexeme lexbuf) }
-  | eof { EOF }
+  | identifier { Token.IDENTIFIER (Lexing.lexeme lexbuf) }
+  | eof { Token.EOF }
   | _ { raise (Lexing_error ("Unexpected character: " ^ Lexing.lexeme lexbuf)) }

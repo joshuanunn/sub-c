@@ -1,4 +1,7 @@
-open Ast
+(** Extract the string name from an [Identifier], or fail. *)
+let get_identifier_name = function
+  | Ast.Identifier name -> name
+  | _ -> failwith "expected Identifier"
 
 (** ------------------------------------------------------------------------
     Local environment (lenv)
@@ -31,7 +34,8 @@ let declare_value name (le : lenv) : string =
 
 (** Insert a user-declared variable into the stack offset table. Used for
     explicit declarations (e.g. int x;). *)
-let insert_value (Identifier name) (le : lenv) : unit =
+let insert_value id (le : lenv) : unit =
+  let name = get_identifier_name id in
   let new_offset = le.offset - 4 in
   Hashtbl.add le.stack_offsets name new_offset;
   le.offset <- new_offset;
@@ -85,7 +89,8 @@ let pop_lab_scope (se : senv) =
 
 (** Declare a new variable in the current scope. Generates a unique scoped name
     (e.g. "x.3"). Raises if the variable already exists in the same scope. *)
-let declare_var (Identifier name) (se : senv) : Ast.ident =
+let declare_var id (se : senv) : Ast.ident =
+  let name = get_identifier_name id in
   match se.var_stack with
   | [] -> failwith "declare var: no active scope"
   | top_scope :: _ ->
@@ -98,19 +103,21 @@ let declare_var (Identifier name) (se : senv) : Ast.ident =
 
 (** Resolve a variable identifier by searching the stack of scopes. Looks from
     innermost to outermost scope. Raises if the variable is not defined. *)
-let resolve_var (Identifier name) (se : senv) : Ast.ident =
+let resolve_var id (se : senv) : Ast.ident =
+  let name = get_identifier_name id in
   let rec find = function
     | [] -> failwith ("variable " ^ name ^ " is not defined")
     | scope :: rest -> (
         match Hashtbl.find_opt scope name with
-        | Some unique -> Identifier unique
+        | Some unique -> Ast.Identifier unique
         | None -> find rest)
   in
   find se.var_stack
 
 (** Declare a label in the current scope. Like variables, labels must be unique
     within the same scope. *)
-let declare_lab (Identifier name) (se : senv) : Ast.ident =
+let declare_lab id (se : senv) : Ast.ident =
+  let name = get_identifier_name id in
   match se.lab_stack with
   | [] -> failwith "declare lab: no active scope"
   | top_scope :: _ ->
@@ -119,15 +126,16 @@ let declare_lab (Identifier name) (se : senv) : Ast.ident =
       let unique = name ^ "." ^ string_of_int se.counter in
       se.counter <- se.counter + 1;
       Hashtbl.add top_scope name unique;
-      Identifier unique
+      GotoLabel unique
 
 (** Resolve a label name by searching outward through the label stack. *)
-let resolve_lab (Identifier name) (se : senv) : Ast.ident =
+let resolve_lab id (se : senv) : Ast.ident =
+  let name = get_identifier_name id in
   let rec find = function
     | [] -> failwith ("label " ^ name ^ " is not defined")
     | scope :: rest -> (
         match Hashtbl.find_opt scope name with
-        | Some unique -> Identifier unique
+        | Some unique -> Ast.GotoLabel unique
         | None -> find rest)
   in
   find se.lab_stack

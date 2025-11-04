@@ -1,0 +1,104 @@
+Token.KW_INT
+(Token.IDENTIFIER "main")
+Token.LPAREN
+Token.KW_VOID
+Token.RPAREN
+Token.LBRACE
+Token.KW_INT
+(Token.IDENTIFIER "count")
+Token.ASSIGN
+(Token.LITERAL_INT 37)
+Token.SEMICOLON
+Token.KW_INT
+(Token.IDENTIFIER "iterations")
+Token.ASSIGN
+Token.LPAREN
+(Token.IDENTIFIER "count")
+Token.ADD
+(Token.LITERAL_INT 4)
+Token.RPAREN
+Token.DIV
+(Token.LITERAL_INT 5)
+Token.SEMICOLON
+Token.KW_SWITCH
+Token.LPAREN
+(Token.IDENTIFIER "count")
+Token.MOD
+(Token.LITERAL_INT 5)
+Token.RPAREN
+Token.LBRACE
+Token.KW_CASE
+(Token.LITERAL_INT 0)
+Token.COLON
+Token.KW_DO
+Token.LBRACE
+(Token.IDENTIFIER "count")
+Token.ASSIGN
+(Token.IDENTIFIER "count")
+Token.SUB
+(Token.LITERAL_INT 1)
+Token.SEMICOLON
+Token.KW_CASE
+(Token.LITERAL_INT 4)
+Token.COLON
+(Token.IDENTIFIER "count")
+Token.ASSIGN
+(Token.IDENTIFIER "count")
+Token.SUB
+(Token.LITERAL_INT 1)
+Token.SEMICOLON
+Token.KW_CASE
+(Token.LITERAL_INT 3)
+Token.COLON
+(Token.IDENTIFIER "count")
+Token.ASSIGN
+(Token.IDENTIFIER "count")
+Token.SUB
+(Token.LITERAL_INT 1)
+Token.SEMICOLON
+Token.KW_CASE
+(Token.LITERAL_INT 2)
+Token.COLON
+(Token.IDENTIFIER "count")
+Token.ASSIGN
+(Token.IDENTIFIER "count")
+Token.SUB
+(Token.LITERAL_INT 1)
+Token.SEMICOLON
+Token.KW_CASE
+(Token.LITERAL_INT 1)
+Token.COLON
+(Token.IDENTIFIER "count")
+Token.ASSIGN
+(Token.IDENTIFIER "count")
+Token.SUB
+(Token.LITERAL_INT 1)
+Token.SEMICOLON
+Token.RBRACE
+Token.KW_WHILE
+Token.LPAREN
+Token.LPAREN
+(Token.IDENTIFIER "iterations")
+Token.ASSIGN
+(Token.IDENTIFIER "iterations")
+Token.SUB
+(Token.LITERAL_INT 1)
+Token.RPAREN
+Token.GT
+(Token.LITERAL_INT 0)
+Token.RPAREN
+Token.SEMICOLON
+Token.RBRACE
+Token.KW_RETURN
+Token.LPAREN
+(Token.IDENTIFIER "count")
+Token.EQ
+(Token.LITERAL_INT 0)
+Token.AND
+(Token.IDENTIFIER "iterations")
+Token.EQ
+(Token.LITERAL_INT 0)
+Token.RPAREN
+Token.SEMICOLON
+Token.RBRACE
+Token.EOF

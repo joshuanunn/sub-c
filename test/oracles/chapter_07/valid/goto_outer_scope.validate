@@ -21,14 +21,14 @@
                              (Ast.Assignment (
                                 (Ast.Var (Ast.Identifier "b.2")),
                                 (Ast.Var (Ast.Identifier "a.3"))))));
-                       (Ast.S (Ast.Goto (Ast.Identifier "end")))]));
+                       (Ast.S (Ast.Goto (Ast.GotoLabel "end.0")))]));
                else_smt = None});
           (Ast.S
              (Ast.Expression
                 (Ast.Assignment ((Ast.Var (Ast.Identifier "a.1")),
                    (Ast.LiteralInt 9)))));
           (Ast.S
-             (Ast.Label ((Ast.Identifier "end"),
+             (Ast.Label ((Ast.GotoLabel "end.0"),
                 (Ast.Return
                    Ast.Binary {op = Ast.And;
                      left =
