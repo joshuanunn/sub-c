@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
 set -Eeuo pipefail
+
+keep_asm=0
 trap cleanup SIGINT SIGTERM ERR EXIT
 
 script_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd -P)
@@ -27,7 +29,9 @@ EOF
 cleanup() {
   trap - SIGINT SIGTERM ERR EXIT
   [[ -v preprocessed_file ]] && rm -f $preprocessed_file
-  [[ -v assembly_file ]] && rm -f $assembly_file
+  if [[ $keep_asm -eq 0 ]]; then
+    [[ -v assembly_file ]] && rm -f $assembly_file
+  fi
 }
 
 msg() {
@@ -87,6 +91,7 @@ parse_params() {
       ((modes + 1))
       phase=7
       assy_link=0
+      keep_asm=1
       ;;
     -c)
       ((modes + 1))
