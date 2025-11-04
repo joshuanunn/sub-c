@@ -7,7 +7,7 @@ script_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd -P)
 
 usage() {
   cat <<EOF
-Usage: $(basename "${BASH_SOURCE[0]}") [-h] [-d] [--lex|--parse|--irgen|--codegen|--emit|-S] sourcefile
+Usage: $(basename "${BASH_SOURCE[0]}") [-h] [-d] [--lex|--parse|--irgen|--codegen|--emit|-S|-c] sourcefile
 Sub-C compiler driver.
 Available options:
  -h, --help      Print this help and exit
@@ -19,6 +19,7 @@ Available options:
      --codegen   [ stdout ] Run -> code generation
      --emit      [ stdout ] Run -> code emission
  -S              [  file  ] Output asm to file (do not run assembler or linker)
+ -c              [  file  ] Output object file (do not run linker)
 EOF
   exit
 }
@@ -43,7 +44,7 @@ die() {
 parse_params() {
   # compiler defaults to code emission, assembly and linking
   phase=7
-  assy_link=1
+  assy_link=2
   modes=0
 
   args=()
@@ -87,6 +88,11 @@ parse_params() {
       phase=7
       assy_link=0
       ;;
+    -c)
+      ((modes + 1))
+      phase=7
+      assy_link=1
+      ;;
     -?*) die "ERROR: unknown option [$1]" ;;
     *) args+=($1) ;;
     esac
@@ -96,7 +102,7 @@ parse_params() {
   # check required params and arguments
   [[ ${#args[@]} -eq 0 ]] && die "ERROR: missing input C sourcefile path."
   [[ ${#args[@]} -ne 1 ]] && die "ERROR: provide a path to a single C sourcefile."
-  [[ modes -gt 1 ]] && die "ERROR: flags [ --lex | --parse | --validate | --irgen | --codegen | --emit | -S ] are mutually exclusive."
+  [[ modes -gt 1 ]] && die "ERROR: flags [ --lex | --parse | --validate | --irgen | --codegen | --emit | -S | -c ] are mutually exclusive."
 
   return 0
 }
@@ -114,7 +120,6 @@ parse_params "$@"
 source_file="${args[0]}"
 preprocessed_file="${source_file%.*}.i"
 assembly_file="${source_file%.*}.s"
-output_file="${source_file%.*}"
 
 # check provided path to sourcefile appears valid
 [[ "${source_file##*.}" != "c" ]] && die "ERROR: C sourcefile does not have a .c file extension."
@@ -126,7 +131,12 @@ $CC -E -P $source_file -o $preprocessed_file
 $SUBC $preprocessed_file $phase
 #$CC -S -O -fno-asynchronous-unwind-tables -fcf-protection=none $preprocessed_file
 
-# assemble and link
 if [[ $assy_link -eq 1 ]]; then
+  # assemble only
+  output_file="${source_file%.*}.o"
+  $CC -c $assembly_file -o $output_file
+elif [[ $assy_link -eq 2 ]]; then
+  # assemble and link
+  output_file="${source_file%.*}"
   $CC $assembly_file -o $output_file
 fi
