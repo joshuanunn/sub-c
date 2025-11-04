@@ -2,12 +2,12 @@
    Asm.Function {name = "main";
      instructions =
      [(Asm.AllocateStack 16); (Asm.Mov ((Asm.Imm 0), (Asm.Stack -4)));
-       (Asm.Jmp "target"); (Asm.Mov ((Asm.Imm 5), (Asm.Stack -4)));
+       (Asm.Jmp "target.0"); (Asm.Mov ((Asm.Imm 5), (Asm.Stack -4)));
        (Asm.Label "loop.st.1"); (Asm.Cmp ((Asm.Imm 10), (Asm.Stack -4)));
        (Asm.Mov ((Asm.Imm 0), (Asm.Stack -8)));
        (Asm.SetCC (Asm.L, (Asm.Stack -8)));
        (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -8)));
-       (Asm.JmpCC (Asm.E, "loop.br.1")); (Asm.Label "target");
+       (Asm.JmpCC (Asm.E, "loop.br.1")); (Asm.Label "target.0");
        (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -4)));
        (Asm.Mov ((Asm.Imm 0), (Asm.Stack -12)));
        (Asm.SetCC (Asm.E, (Asm.Stack -12)));

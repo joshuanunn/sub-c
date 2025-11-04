@@ -1,0 +1,18 @@
+(Ir.Program
+   Ir.Function {name = "main";
+     body =
+     [Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "a.0")};
+       Ir.Binary {op = Ir.Equal; src1 = (Ir.Var "a.0");
+         src2 = (Ir.Constant 1); dst = (Ir.Var "tmp.0")};
+       Ir.JumpIfNotZero {condition = (Ir.Var "tmp.0"); target = "swit.cs.1.1"};
+       Ir.Jump {target = "swit.df.1"}; (Ir.Label "swit.cs.1.1");
+       Ir.Binary {op = Ir.Equal; src1 = (Ir.Var "a.0");
+         src2 = (Ir.Constant 0); dst = (Ir.Var "tmp.1")};
+       Ir.JumpIfNotZero {condition = (Ir.Var "tmp.1"); target = "swit.cs.2.0"};
+       Ir.Jump {target = "swit.df.2"}; (Ir.Label "swit.cs.2.0");
+       (Ir.Return (Ir.Constant 0)); (Ir.Label "swit.df.2");
+       (Ir.Return (Ir.Constant 0)); (Ir.Label "swit.br.2");
+       (Ir.Label "swit.df.1");
+       Ir.Copy {src = (Ir.Constant 2); dst = (Ir.Var "a.0")};
+       (Ir.Label "swit.br.1"); (Ir.Return (Ir.Var "a.0"));
+       (Ir.Return (Ir.Constant 0))]})

@@ -19,7 +19,7 @@
                (Ast.Compound
                   (Ast.Block
                      [(Ast.S
-                         (Ast.Label ((Ast.Identifier "lbl"),
+                         (Ast.Label ((Ast.GotoLabel "lbl.0"),
                             (Ast.Expression
                                (Ast.Assignment (
                                   (Ast.Var (Ast.Identifier "sum.1")),
@@ -44,6 +44,6 @@
                               right = (Ast.LiteralInt 10)};
                             then_smt = (Ast.Break (Some (Ast.LoopLabel "1")));
                             else_smt = None});
-                       (Ast.S (Ast.Goto (Ast.Identifier "lbl")))]));
+                       (Ast.S (Ast.Goto (Ast.GotoLabel "lbl.0")))]));
                id = (Some (Ast.LoopLabel "1"))});
           (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "sum.1"))))])})

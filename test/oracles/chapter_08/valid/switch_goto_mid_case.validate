@@ -5,7 +5,7 @@
         [(Ast.D
             (Ast.Declaration ((Ast.Identifier "a.1"),
                (Some (Ast.LiteralInt 0)))));
-          (Ast.S (Ast.Goto (Ast.Identifier "mid_case")));
+          (Ast.S (Ast.Goto (Ast.GotoLabel "mid_case.0")));
           (Ast.S
              Ast.Switch {cond = (Ast.LiteralInt 4);
                body =
@@ -20,7 +20,7 @@
                                  (Ast.LiteralInt 5))));
                            id = (Some (Ast.SwitchLabel "1"))});
                        (Ast.S
-                          (Ast.Label ((Ast.Identifier "mid_case"),
+                          (Ast.Label ((Ast.GotoLabel "mid_case.0"),
                              (Ast.Expression
                                 (Ast.Assignment (
                                    (Ast.Var (Ast.Identifier "a.1")),

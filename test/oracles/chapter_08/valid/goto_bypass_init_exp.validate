@@ -5,7 +5,7 @@
         [(Ast.D
             (Ast.Declaration ((Ast.Identifier "i.1"),
                (Some (Ast.LiteralInt 0)))));
-          (Ast.S (Ast.Goto (Ast.Identifier "target")));
+          (Ast.S (Ast.Goto (Ast.GotoLabel "target.0")));
           (Ast.S
              Ast.For {
                init =
@@ -23,7 +23,7 @@
                           right = (Ast.LiteralInt 1)}
                         )));
                body =
-               (Ast.Label ((Ast.Identifier "target"),
+               (Ast.Label ((Ast.GotoLabel "target.0"),
                   Ast.If {
                     cond_exp =
                     Ast.Binary {op = Ast.Equal;

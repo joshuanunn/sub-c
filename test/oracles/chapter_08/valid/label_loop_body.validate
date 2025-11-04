@@ -5,11 +5,11 @@
         [(Ast.D
             (Ast.Declaration ((Ast.Identifier "result.1"),
                (Some (Ast.LiteralInt 0)))));
-          (Ast.S (Ast.Goto (Ast.Identifier "label")));
+          (Ast.S (Ast.Goto (Ast.GotoLabel "label.0")));
           (Ast.S
              Ast.While {cond = (Ast.LiteralInt 0);
                body =
-               (Ast.Label ((Ast.Identifier "label"),
+               (Ast.Label ((Ast.GotoLabel "label.0"),
                   (Ast.Compound
                      (Ast.Block
                         [(Ast.S
