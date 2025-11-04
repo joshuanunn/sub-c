@@ -40,6 +40,30 @@ let convert_binop (u : Ast.binop) : Ir.binary_operator =
   | GreaterThan -> GreaterThan
   | _ -> failwith "cannot compile AST binary operator to IR binary"
 
+(** Collect all [case] and [default] labels inside a statement AST node. *)
+let rec collect_cases (s : Ast.stmt) : (Ast.expr option * string) list =
+  match s with
+  | Case { value; body; id = Some (SwitchLabel i) } ->
+      let int_value = Ast.literal_to_int value in
+      let label_name = Printf.sprintf "swit.cs.%s.%d" i int_value in
+      let subcases = collect_cases body in
+      (Some value, label_name) :: subcases
+  | Default { body; id = Some (SwitchLabel i) } ->
+      let label_name = Printf.sprintf "swit.df.%s" i in
+      let subcases = collect_cases body in
+      (None, label_name) :: subcases
+  | Compound (Ast.Block items) ->
+      List.concat_map
+        (function Ast.S s -> collect_cases s | Ast.D _ -> [])
+        items
+  | If { then_smt; else_smt; _ } -> (
+      collect_cases then_smt
+      @ match else_smt with Some e -> collect_cases e | None -> [])
+  | While { body; _ } | DoWhile { body; _ } | For { body; _ } ->
+      collect_cases body
+  | Label (_, s) -> collect_cases s
+  | _ -> []
+
 let rec convert_expr (e : Ast.expr) (le : Env.lenv) :
     Ir.value * Ir.instruction list =
   match e with
@@ -211,9 +235,69 @@ let rec convert_stmt (s : Ast.stmt) (le : Env.lenv) : Ir.instruction list =
           @ [ Ir.Label ("loop.ct." ^ i) ]
           @ post_ins @ [ j_start ] @ [ Ir.Label l_break ]
       | _ -> failwith "for statement has missing label")
-  | Switch _ -> failwith "TODO"
-  | Case _ -> failwith "TODO"
-  | Default _ -> failwith "TODO"
+  | Switch { cond; body; id } -> (
+      match id with
+      | Some (SwitchLabel i) ->
+          let switch_break = "swit.br." ^ i in
+          let cond_val, cond_ins = convert_expr cond le in
+
+          (* Collect all linked case and default labels *)
+          let cases = collect_cases body in
+
+          let default_label =
+            match List.find_opt (fun (v, _) -> v = None) cases with
+            | Some (_, lbl) -> Some lbl
+            | None -> None
+          in
+          let cases_only =
+            List.filter_map
+              (function Some v, lbl -> Some (v, lbl) | None, _ -> None)
+              cases
+          in
+
+          let dispatch_ins =
+            List.concat_map
+              (fun (v, lbl) ->
+                let tmp = Ir.Var (Env.declare_value "tmp" le) in
+                [
+                  Ir.Binary
+                    {
+                      op = Ir.Equal;
+                      src1 = cond_val;
+                      src2 = Constant (Ast.literal_to_int v);
+                      dst = tmp;
+                    };
+                  Ir.JumpIfNotZero { condition = tmp; target = lbl };
+                ])
+              cases_only
+          in
+
+          let jmp_default =
+            match default_label with
+            | Some lbl -> [ Ir.Jump { target = lbl } ]
+            | None -> [ Ir.Jump { target = switch_break } ]
+          in
+
+          let body_ins = convert_stmt body le in
+
+          cond_ins @ dispatch_ins @ jmp_default @ body_ins
+          @ [ Ir.Label switch_break ]
+      | _ -> failwith "case statement has missing label")
+  | Case { value; body; id } -> (
+      match id with
+      | Some (SwitchLabel i) ->
+          let int_value = Ast.literal_to_int value in
+          let l_case = Printf.sprintf "swit.cs.%s.%d" i int_value in
+          let body_ins = convert_stmt body le in
+          [ Ir.Label l_case ] @ body_ins
+      | _ -> failwith "case statement has missing label")
+  | Default { body; id } -> (
+      match id with
+      | Some (SwitchLabel i) ->
+          let l_case = "swit.df." ^ i in
+          let body_ins = convert_stmt body le in
+          [ Ir.Label l_case ] @ body_ins
+      | _ -> failwith "default statement has missing label")
   | Goto id -> (
       match id with
       | GotoLabel id -> [ Jump { target = id } ]
