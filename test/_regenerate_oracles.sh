@@ -47,12 +47,17 @@ for chapter in "${CHAPTERS[@]}"; do
 
       echo "Generating oracle: $oracle_file"
       if [[ $phase == "exe" ]]; then
-        subc "$test_file"
         exe_file="${test_file%.c}"
-        set +e
-        ( "$exe_file"; echo $? > "$oracle_path"; rm "$exe_file" )
-        set -e
-      else 
+        subc "$test_file" -o "$exe_file"
+        if [[ -x "$exe_file" ]]; then
+          "$exe_file"
+          echo $? > "$oracle_path"
+          rm -f "$exe_file"
+        else
+          echo "Executable not found: $exe_file" >&2
+          echo 127 > "$oracle_path"
+        fi
+      else
         subc "$test_file" --"$phase" > "$oracle_path"
       fi
     done

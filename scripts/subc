@@ -3,17 +3,25 @@
 set -Eeuo pipefail
 
 keep_asm=0
+keep_obj=0
+output_file="a.out"
+
+preprocessed_files=()
+assembly_files=()
+object_files=()
+
 trap cleanup SIGINT SIGTERM ERR EXIT
 
 script_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd -P)
 
 usage() {
   cat <<EOF
-Usage: $(basename "${BASH_SOURCE[0]}") [-h] [-d] [--lex|--parse|--irgen|--codegen|--emit|-S|-c] sourcefile
+Usage: $(basename "${BASH_SOURCE[0]}") [-h] [-d] [-o] [--lex|--parse|--irgen|--codegen|--emit|-S|-c] sourcefile(s)
 Sub-C compiler driver.
 Available options:
  -h, --help      Print this help and exit
  -d, --debug     Print script debug info
+ -o              Specify output filename for generated executable
      --lex       [ stdout ] Run -> lexer
      --parse     [ stdout ] Run -> parser
      --validate  [ stdout ] Run -> semantic analysis
@@ -28,9 +36,21 @@ EOF
 
 cleanup() {
   trap - SIGINT SIGTERM ERR EXIT
-  [[ -v preprocessed_file ]] && rm -f $preprocessed_file
+
+  for f in "${preprocessed_files[@]}"; do
+    [[ -f $f ]] && rm -f "$f";
+  done
+
   if [[ $keep_asm -eq 0 ]]; then
-    [[ -v assembly_file ]] && rm -f $assembly_file
+    for f in "${assembly_files[@]}"; do
+      [[ -f $f ]] && rm -f "$f";
+    done
+  fi
+
+  if [[ $keep_obj -eq 0 ]]; then
+    for f in "${object_files[@]}"; do
+      [[ -f $f ]] && rm -f "$f";
+    done
   fi
 }
 
@@ -97,16 +117,21 @@ parse_params() {
       ((modes + 1))
       phase=7
       assy_link=1
+      keep_obj=1
+      ;;
+    -o)
+      shift
+      [[ $# -eq 0 ]] && die "ERROR: missing filename after -o"
+      output_file="$1"
       ;;
     -?*) die "ERROR: unknown option [$1]" ;;
-    *) args+=($1) ;;
+    *) args+=("$1") ;;
     esac
     shift
   done
 
   # check required params and arguments
-  [[ ${#args[@]} -eq 0 ]] && die "ERROR: missing input C sourcefile path."
-  [[ ${#args[@]} -ne 1 ]] && die "ERROR: provide a path to a single C sourcefile."
+  [[ ${#args[@]} -eq 0 ]] && die "ERROR: missing input C sourcefile path(s)."
   [[ modes -gt 1 ]] && die "ERROR: flags [ --lex | --parse | --validate | --irgen | --codegen | --emit | -S | -c ] are mutually exclusive."
 
   return 0
@@ -122,26 +147,31 @@ SUBC="$script_dir/.subc"
 
 parse_params "$@"
 
-source_file="${args[0]}"
-preprocessed_file="${source_file%.*}.i"
-assembly_file="${source_file%.*}.s"
+for source_file in "${args[@]}"; do
+  [[ "${source_file##*.}" != "c" ]] && die "ERROR: C sourcefile does not have a .c file extension."
 
-# check provided path to sourcefile appears valid
-[[ "${source_file##*.}" != "c" ]] && die "ERROR: C sourcefile does not have a .c file extension."
+  preprocessed_file="${source_file%.*}.i"
+  assembly_file="${source_file%.*}.s"
+  object_file="${source_file%.*}.o"
 
-# run C preprocessor (omit linemarkers)
-$CC -E -P $source_file -o $preprocessed_file
+  preprocessed_files+=("$preprocessed_file")
+  assembly_files+=("$assembly_file")
+  object_files+=("$object_file")
 
-# run sub-c compiler on preprocessed input
-$SUBC $preprocessed_file $phase
-#$CC -S -O -fno-asynchronous-unwind-tables -fcf-protection=none $preprocessed_file
+  # run C preprocessor (omit linemarkers)
+  $CC -E -P "$source_file" -o "$preprocessed_file"
 
-if [[ $assy_link -eq 1 ]]; then
-  # assemble only
-  output_file="${source_file%.*}.o"
-  $CC -c $assembly_file -o $output_file
-elif [[ $assy_link -eq 2 ]]; then
-  # assemble and link
-  output_file="${source_file%.*}"
-  $CC $assembly_file -o $output_file
+  # run sub-c compiler on preprocessed input
+  $SUBC "$preprocessed_file" $phase
+  #$CC -S -O -fno-asynchronous-unwind-tables -fcf-protection=none $preprocessed_file
+
+  # output object files if assembling
+  if [[ $assy_link -ge 1 ]]; then
+    $CC -c "$assembly_file" -o "$object_file"
+  fi
+done
+
+# link all object files into one executable
+if [[ $assy_link -eq 2 && ${#object_files[@]} -gt 0 ]]; then
+  $CC "${object_files[@]}" -o "$output_file"
 fi

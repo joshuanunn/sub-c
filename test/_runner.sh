@@ -93,7 +93,7 @@ for chapter in "${CHAPTERS[@]}"; do
         # Exit status test
         if [[ "$phase" == "exe" ]]; then
           # Compile executable
-          subc "$test_file"
+          subc "$test_file" -o "$binary_file"
 
           # Run executable, capture exit status code and cleanup
           output=$("$binary_file" 2>&1)
