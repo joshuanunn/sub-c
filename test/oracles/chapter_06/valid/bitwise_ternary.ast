@@ -2,7 +2,7 @@
    Ast.Function {return_type = Ast.KwInt; name = (Ast.Identifier "main");
      body =
      (Ast.Block
-        [(Ast.D (Ast.VarDecl ((Ast.Identifier "result"), None)));
+        [(Ast.D Ast.VarDecl {name = (Ast.Identifier "result"); init = None});
           (Ast.S
              (Ast.Expression
                 Ast.Conditional {

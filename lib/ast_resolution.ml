@@ -60,13 +60,13 @@ let resolve_opt_expr (e : Ast.expr option) (se : Env.senv) : Ast.expr option =
     [se] and resolving any initialiser expressions. *)
 let resolve_decl (d : Ast.decl) (se : Env.senv) : Ast.decl =
   match d with
-  | VarDecl (id, None) ->
-      let var = Env.declare_var id se in
-      VarDecl (var, None)
-  | VarDecl (id, Some expr) ->
-      let var = Env.declare_var id se in
+  | VarDecl { name; init = None } ->
+      let var = Env.declare_var name se in
+      VarDecl { name = var; init = None }
+  | VarDecl { name; init = Some expr } ->
+      let var = Env.declare_var name se in
       let init = Some (resolve_expr expr se) in
-      VarDecl (var, init)
+      VarDecl { name = var; init }
 
 (** [resolve_for_init i se] resolves a for-loop initialiser, which may be either
     a declaration or an expression. *)

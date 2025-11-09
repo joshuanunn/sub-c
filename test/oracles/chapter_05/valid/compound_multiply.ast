@@ -3,8 +3,8 @@
      body =
      (Ast.Block
         [(Ast.D
-            (Ast.VarDecl ((Ast.Identifier "to_multiply"),
-               (Some (Ast.LiteralInt 4)))));
+            Ast.VarDecl {name = (Ast.Identifier "to_multiply");
+              init = (Some (Ast.LiteralInt 4))});
           (Ast.S
              (Ast.Expression
                 (Ast.Assignment ((Ast.Var (Ast.Identifier "to_multiply")),

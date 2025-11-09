@@ -3,15 +3,14 @@
      body =
      (Ast.Block
         [(Ast.D
-            (Ast.VarDecl ((Ast.Identifier "ten"), (Some (Ast.LiteralInt 10))
-               )));
+            Ast.VarDecl {name = (Ast.Identifier "ten");
+              init = (Some (Ast.LiteralInt 10))});
           (Ast.S (Ast.Compound (Ast.Block [])));
           (Ast.D
-             (Ast.VarDecl ((Ast.Identifier "twenty"),
-                (Some Ast.Binary {op = Ast.Multiply;
-                        left = (Ast.LiteralInt 10);
-                        right = (Ast.LiteralInt 2)})
-                )));
+             Ast.VarDecl {name = (Ast.Identifier "twenty");
+               init =
+               (Some Ast.Binary {op = Ast.Multiply;
+                       left = (Ast.LiteralInt 10); right = (Ast.LiteralInt 2)})});
           (Ast.S
              (Ast.Compound
                 (Ast.Block [(Ast.S (Ast.Compound (Ast.Block [])))])));

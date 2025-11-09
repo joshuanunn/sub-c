@@ -2,15 +2,15 @@
    Ast.Function {return_type = Ast.KwInt; name = (Ast.Identifier "main");
      body =
      (Ast.Block
-        [(Ast.D (Ast.VarDecl ((Ast.Identifier "a.0"), None)));
+        [(Ast.D Ast.VarDecl {name = (Ast.Identifier "a.0"); init = None});
           (Ast.S
              (Ast.Compound
                 (Ast.Block
                    [(Ast.D
-                       (Ast.VarDecl ((Ast.Identifier "b.1"),
-                          (Some (Ast.Assignment (
-                                   (Ast.Var (Ast.Identifier "a.0")),
-                                   (Ast.LiteralInt 1))))
-                          )))
+                       Ast.VarDecl {name = (Ast.Identifier "b.1");
+                         init =
+                         (Some (Ast.Assignment (
+                                  (Ast.Var (Ast.Identifier "a.0")),
+                                  (Ast.LiteralInt 1))))})
                      ])));
           (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "a.0"))))])})

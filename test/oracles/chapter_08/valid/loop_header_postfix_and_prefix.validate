@@ -3,11 +3,11 @@
      body =
      (Ast.Block
         [(Ast.D
-            (Ast.VarDecl ((Ast.Identifier "i.0"), (Some (Ast.LiteralInt 100))
-               )));
+            Ast.VarDecl {name = (Ast.Identifier "i.0");
+              init = (Some (Ast.LiteralInt 100))});
           (Ast.D
-             (Ast.VarDecl ((Ast.Identifier "count.1"),
-                (Some (Ast.LiteralInt 0)))));
+             Ast.VarDecl {name = (Ast.Identifier "count.1");
+               init = (Some (Ast.LiteralInt 0))});
           (Ast.S
              Ast.While {
                cond =

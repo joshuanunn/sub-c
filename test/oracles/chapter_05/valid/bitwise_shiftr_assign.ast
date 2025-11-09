@@ -3,10 +3,11 @@
      body =
      (Ast.Block
         [(Ast.D
-            (Ast.VarDecl ((Ast.Identifier "var_to_shift"),
-               (Some (Ast.LiteralInt 1234)))));
+            Ast.VarDecl {name = (Ast.Identifier "var_to_shift");
+              init = (Some (Ast.LiteralInt 1234))});
           (Ast.D
-             (Ast.VarDecl ((Ast.Identifier "x"), (Some (Ast.LiteralInt 0)))));
+             Ast.VarDecl {name = (Ast.Identifier "x");
+               init = (Some (Ast.LiteralInt 0))});
           (Ast.S
              (Ast.Expression
                 (Ast.Assignment ((Ast.Var (Ast.Identifier "x")),

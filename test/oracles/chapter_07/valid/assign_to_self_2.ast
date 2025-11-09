@@ -3,15 +3,16 @@
      body =
      (Ast.Block
         [(Ast.D
-            (Ast.VarDecl ((Ast.Identifier "a"), (Some (Ast.LiteralInt 3)))));
+            Ast.VarDecl {name = (Ast.Identifier "a");
+              init = (Some (Ast.LiteralInt 3))});
           (Ast.S
              (Ast.Compound
                 (Ast.Block
                    [(Ast.D
-                       (Ast.VarDecl ((Ast.Identifier "a"),
-                          (Some (Ast.Assignment (
-                                   (Ast.Var (Ast.Identifier "a")),
-                                   (Ast.LiteralInt 4))))
-                          )))
+                       Ast.VarDecl {name = (Ast.Identifier "a");
+                         init =
+                         (Some (Ast.Assignment (
+                                  (Ast.Var (Ast.Identifier "a")),
+                                  (Ast.LiteralInt 4))))})
                      ])));
           (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "a"))))])})

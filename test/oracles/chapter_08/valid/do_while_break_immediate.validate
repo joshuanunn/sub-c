@@ -3,8 +3,8 @@
      body =
      (Ast.Block
         [(Ast.D
-            (Ast.VarDecl ((Ast.Identifier "a.0"), (Some (Ast.LiteralInt 10))
-               )));
+            Ast.VarDecl {name = (Ast.Identifier "a.0");
+              init = (Some (Ast.LiteralInt 10))});
           (Ast.S
              Ast.DoWhile {body = (Ast.Break (Some (Ast.LoopLabel "1")));
                cond =

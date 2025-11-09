@@ -3,7 +3,8 @@
      body =
      (Ast.Block
         [(Ast.D
-            (Ast.VarDecl ((Ast.Identifier "sum"), (Some (Ast.LiteralInt 0)))));
+            Ast.VarDecl {name = (Ast.Identifier "sum");
+              init = (Some (Ast.LiteralInt 0))});
           (Ast.S (Ast.Goto (Ast.Identifier "do_label")));
           (Ast.S (Ast.Return (Ast.LiteralInt 0)));
           (Ast.S
@@ -49,8 +50,8 @@
                 Ast.For {
                   init =
                   (Ast.InclDecl
-                     (Ast.VarDecl ((Ast.Identifier "i"),
-                        (Some (Ast.LiteralInt 0)))));
+                     Ast.VarDecl {name = (Ast.Identifier "i");
+                       init = (Some (Ast.LiteralInt 0))});
                   cond =
                   (Some Ast.Binary {op = Ast.LessThan;
                           left = (Ast.Var (Ast.Identifier "i"));

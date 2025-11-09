@@ -3,9 +3,11 @@
      body =
      (Ast.Block
         [(Ast.D
-            (Ast.VarDecl ((Ast.Identifier "x"), (Some (Ast.LiteralInt 10)))));
+            Ast.VarDecl {name = (Ast.Identifier "x");
+              init = (Some (Ast.LiteralInt 10))});
           (Ast.D
-             (Ast.VarDecl ((Ast.Identifier "y"), (Some (Ast.LiteralInt 0)))));
+             Ast.VarDecl {name = (Ast.Identifier "y");
+               init = (Some (Ast.LiteralInt 0))});
           (Ast.S
              (Ast.Expression
                 (Ast.Assignment ((Ast.Var (Ast.Identifier "y")),

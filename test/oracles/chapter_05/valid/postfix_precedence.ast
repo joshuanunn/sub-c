@@ -3,14 +3,15 @@
      body =
      (Ast.Block
         [(Ast.D
-            (Ast.VarDecl ((Ast.Identifier "a"), (Some (Ast.LiteralInt 1)))));
+            Ast.VarDecl {name = (Ast.Identifier "a");
+              init = (Some (Ast.LiteralInt 1))});
           (Ast.D
-             (Ast.VarDecl ((Ast.Identifier "b"),
-                (Some Ast.Unary {op = Ast.Not;
-                        exp =
-                        Ast.Unary {op = Ast.PostIncrement;
-                          exp = (Ast.Var (Ast.Identifier "a"))}})
-                )));
+             Ast.VarDecl {name = (Ast.Identifier "b");
+               init =
+               (Some Ast.Unary {op = Ast.Not;
+                       exp =
+                       Ast.Unary {op = Ast.PostIncrement;
+                         exp = (Ast.Var (Ast.Identifier "a"))}})});
           (Ast.S
              (Ast.Return
                 Ast.Binary {op = Ast.And;

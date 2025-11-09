@@ -3,14 +3,15 @@
      body =
      (Ast.Block
         [(Ast.D
-            (Ast.VarDecl ((Ast.Identifier "x.1"), (Some (Ast.LiteralInt 5)))));
+            Ast.VarDecl {name = (Ast.Identifier "x.1");
+              init = (Some (Ast.LiteralInt 5))});
           (Ast.S (Ast.Goto (Ast.GotoLabel "inner.0")));
           (Ast.S
              (Ast.Compound
                 (Ast.Block
                    [(Ast.D
-                       (Ast.VarDecl ((Ast.Identifier "x.2"),
-                          (Some (Ast.LiteralInt 0)))));
+                       Ast.VarDecl {name = (Ast.Identifier "x.2");
+                         init = (Some (Ast.LiteralInt 0))});
                      (Ast.S
                         (Ast.Label ((Ast.GotoLabel "inner.0"),
                            (Ast.Expression

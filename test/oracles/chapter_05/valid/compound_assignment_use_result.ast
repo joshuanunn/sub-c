@@ -3,15 +3,16 @@
      body =
      (Ast.Block
         [(Ast.D
-            (Ast.VarDecl ((Ast.Identifier "x"), (Some (Ast.LiteralInt 1)))));
+            Ast.VarDecl {name = (Ast.Identifier "x");
+              init = (Some (Ast.LiteralInt 1))});
           (Ast.D
-             (Ast.VarDecl ((Ast.Identifier "y"),
-                (Some (Ast.Assignment ((Ast.Var (Ast.Identifier "x")),
-                         Ast.Binary {op = Ast.Add;
-                           left = (Ast.Var (Ast.Identifier "x"));
-                           right = (Ast.LiteralInt 3)}
-                         )))
-                )));
+             Ast.VarDecl {name = (Ast.Identifier "y");
+               init =
+               (Some (Ast.Assignment ((Ast.Var (Ast.Identifier "x")),
+                        Ast.Binary {op = Ast.Add;
+                          left = (Ast.Var (Ast.Identifier "x"));
+                          right = (Ast.LiteralInt 3)}
+                        )))});
           (Ast.S
              (Ast.Return
                 Ast.Binary {op = Ast.And;

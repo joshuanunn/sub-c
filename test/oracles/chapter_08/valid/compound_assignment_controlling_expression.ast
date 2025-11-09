@@ -3,10 +3,11 @@
      body =
      (Ast.Block
         [(Ast.D
-            (Ast.VarDecl ((Ast.Identifier "i"), (Some (Ast.LiteralInt 100)))));
+            Ast.VarDecl {name = (Ast.Identifier "i");
+              init = (Some (Ast.LiteralInt 100))});
           (Ast.D
-             (Ast.VarDecl ((Ast.Identifier "sum"), (Some (Ast.LiteralInt 0))
-                )));
+             Ast.VarDecl {name = (Ast.Identifier "sum");
+               init = (Some (Ast.LiteralInt 0))});
           (Ast.S
              Ast.DoWhile {
                body =

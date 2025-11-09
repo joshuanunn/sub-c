@@ -3,15 +3,16 @@
      body =
      (Ast.Block
         [(Ast.D
-            (Ast.VarDecl ((Ast.Identifier "a"), (Some (Ast.LiteralInt 0)))));
+            Ast.VarDecl {name = (Ast.Identifier "a");
+              init = (Some (Ast.LiteralInt 0))});
           (Ast.S
              Ast.For {
                init =
                (Ast.InclDecl
-                  (Ast.VarDecl ((Ast.Identifier "i"),
-                     (Some Ast.Unary {op = Ast.Negate;
-                             exp = (Ast.LiteralInt 100)})
-                     )));
+                  Ast.VarDecl {name = (Ast.Identifier "i");
+                    init =
+                    (Some Ast.Unary {op = Ast.Negate;
+                            exp = (Ast.LiteralInt 100)})});
                cond =
                (Some Ast.Binary {op = Ast.LessOrEqual;
                        left = (Ast.Var (Ast.Identifier "i"));

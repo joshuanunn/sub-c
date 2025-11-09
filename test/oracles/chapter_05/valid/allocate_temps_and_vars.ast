@@ -3,21 +3,22 @@
      body =
      (Ast.Block
         [(Ast.D
-            (Ast.VarDecl ((Ast.Identifier "a"),
-               (Some (Ast.LiteralInt 2147483646)))));
+            Ast.VarDecl {name = (Ast.Identifier "a");
+              init = (Some (Ast.LiteralInt 2147483646))});
           (Ast.D
-             (Ast.VarDecl ((Ast.Identifier "b"), (Some (Ast.LiteralInt 0)))));
+             Ast.VarDecl {name = (Ast.Identifier "b");
+               init = (Some (Ast.LiteralInt 0))});
           (Ast.D
-             (Ast.VarDecl ((Ast.Identifier "c"),
-                (Some Ast.Binary {op = Ast.Add;
-                        left =
-                        Ast.Binary {op = Ast.Divide;
-                          left = (Ast.Var (Ast.Identifier "a"));
-                          right = (Ast.LiteralInt 6)};
-                        right =
-                        Ast.Unary {op = Ast.Not;
-                          exp = (Ast.Var (Ast.Identifier "b"))}})
-                )));
+             Ast.VarDecl {name = (Ast.Identifier "c");
+               init =
+               (Some Ast.Binary {op = Ast.Add;
+                       left =
+                       Ast.Binary {op = Ast.Divide;
+                         left = (Ast.Var (Ast.Identifier "a"));
+                         right = (Ast.LiteralInt 6)};
+                       right =
+                       Ast.Unary {op = Ast.Not;
+                         exp = (Ast.Var (Ast.Identifier "b"))}})});
           (Ast.S
              (Ast.Return
                 Ast.Binary {op = Ast.Equal;

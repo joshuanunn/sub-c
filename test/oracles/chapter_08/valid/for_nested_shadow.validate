@@ -3,19 +3,20 @@
      body =
      (Ast.Block
         [(Ast.D
-            (Ast.VarDecl ((Ast.Identifier "i.0"), (Some (Ast.LiteralInt 0)))));
+            Ast.VarDecl {name = (Ast.Identifier "i.0");
+              init = (Some (Ast.LiteralInt 0))});
           (Ast.D
-             (Ast.VarDecl ((Ast.Identifier "j.1"), (Some (Ast.LiteralInt 0))
-                )));
+             Ast.VarDecl {name = (Ast.Identifier "j.1");
+               init = (Some (Ast.LiteralInt 0))});
           (Ast.D
-             (Ast.VarDecl ((Ast.Identifier "k.2"), (Some (Ast.LiteralInt 1))
-                )));
+             Ast.VarDecl {name = (Ast.Identifier "k.2");
+               init = (Some (Ast.LiteralInt 1))});
           (Ast.S
              Ast.For {
                init =
                (Ast.InclDecl
-                  (Ast.VarDecl ((Ast.Identifier "i.3"),
-                     (Some (Ast.LiteralInt 100)))));
+                  Ast.VarDecl {name = (Ast.Identifier "i.3");
+                    init = (Some (Ast.LiteralInt 100))});
                cond =
                (Some Ast.Binary {op = Ast.GreaterThan;
                        left = (Ast.Var (Ast.Identifier "i.3"));
@@ -30,14 +31,14 @@
                (Ast.Compound
                   (Ast.Block
                      [(Ast.D
-                         (Ast.VarDecl ((Ast.Identifier "i.4"),
-                            (Some (Ast.LiteralInt 1)))));
+                         Ast.VarDecl {name = (Ast.Identifier "i.4");
+                           init = (Some (Ast.LiteralInt 1))});
                        (Ast.D
-                          (Ast.VarDecl ((Ast.Identifier "j.5"),
-                             (Some Ast.Binary {op = Ast.Add;
-                                     left = (Ast.Var (Ast.Identifier "i.4"));
-                                     right = (Ast.Var (Ast.Identifier "k.2"))})
-                             )));
+                          Ast.VarDecl {name = (Ast.Identifier "j.5");
+                            init =
+                            (Some Ast.Binary {op = Ast.Add;
+                                    left = (Ast.Var (Ast.Identifier "i.4"));
+                                    right = (Ast.Var (Ast.Identifier "k.2"))})});
                        (Ast.S
                           (Ast.Expression
                              (Ast.Assignment (

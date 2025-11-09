@@ -3,8 +3,8 @@
      body =
      (Ast.Block
         [(Ast.D
-            (Ast.VarDecl ((Ast.Identifier "to_add.0"),
-               (Some (Ast.LiteralInt 0)))));
+            Ast.VarDecl {name = (Ast.Identifier "to_add.0");
+              init = (Some (Ast.LiteralInt 0))});
           (Ast.S
              (Ast.Expression
                 (Ast.Assignment ((Ast.Var (Ast.Identifier "to_add.0")),

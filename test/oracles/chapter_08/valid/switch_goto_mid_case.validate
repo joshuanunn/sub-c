@@ -3,7 +3,8 @@
      body =
      (Ast.Block
         [(Ast.D
-            (Ast.VarDecl ((Ast.Identifier "a.1"), (Some (Ast.LiteralInt 0)))));
+            Ast.VarDecl {name = (Ast.Identifier "a.1");
+              init = (Some (Ast.LiteralInt 0))});
           (Ast.S (Ast.Goto (Ast.GotoLabel "mid_case.0")));
           (Ast.S
              Ast.Switch {cond = (Ast.LiteralInt 4);

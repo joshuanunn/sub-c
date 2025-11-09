@@ -3,12 +3,11 @@
      body =
      (Ast.Block
         [(Ast.D
-            (Ast.VarDecl ((Ast.Identifier "a"),
-               (Some Ast.Conditional {cond_exp = (Ast.LiteralInt 1);
-                       then_exp =
-                       Ast.Binary {op = Ast.Remainder;
-                         left = (Ast.LiteralInt 3);
-                         right = (Ast.LiteralInt 2)};
-                       else_exp = (Ast.LiteralInt 4)})
-               )));
+            Ast.VarDecl {name = (Ast.Identifier "a");
+              init =
+              (Some Ast.Conditional {cond_exp = (Ast.LiteralInt 1);
+                      then_exp =
+                      Ast.Binary {op = Ast.Remainder;
+                        left = (Ast.LiteralInt 3); right = (Ast.LiteralInt 2)};
+                      else_exp = (Ast.LiteralInt 4)})});
           (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "a"))))])})

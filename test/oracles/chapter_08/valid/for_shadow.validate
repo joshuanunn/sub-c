@@ -3,17 +3,17 @@
      body =
      (Ast.Block
         [(Ast.D
-            (Ast.VarDecl ((Ast.Identifier "shadow.0"),
-               (Some (Ast.LiteralInt 1)))));
+            Ast.VarDecl {name = (Ast.Identifier "shadow.0");
+              init = (Some (Ast.LiteralInt 1))});
           (Ast.D
-             (Ast.VarDecl ((Ast.Identifier "acc.1"),
-                (Some (Ast.LiteralInt 0)))));
+             Ast.VarDecl {name = (Ast.Identifier "acc.1");
+               init = (Some (Ast.LiteralInt 0))});
           (Ast.S
              Ast.For {
                init =
                (Ast.InclDecl
-                  (Ast.VarDecl ((Ast.Identifier "shadow.2"),
-                     (Some (Ast.LiteralInt 0)))));
+                  Ast.VarDecl {name = (Ast.Identifier "shadow.2");
+                    init = (Some (Ast.LiteralInt 0))});
                cond =
                (Some Ast.Binary {op = Ast.LessThan;
                        left = (Ast.Var (Ast.Identifier "shadow.2"));

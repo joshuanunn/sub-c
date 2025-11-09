@@ -3,19 +3,21 @@
      body =
      (Ast.Block
         [(Ast.D
-            (Ast.VarDecl ((Ast.Identifier "a"), (Some (Ast.LiteralInt 1)))));
+            Ast.VarDecl {name = (Ast.Identifier "a");
+              init = (Some (Ast.LiteralInt 1))});
           (Ast.D
-             (Ast.VarDecl ((Ast.Identifier "b"), (Some (Ast.LiteralInt 2)))));
+             Ast.VarDecl {name = (Ast.Identifier "b");
+               init = (Some (Ast.LiteralInt 2))});
           (Ast.D
-             (Ast.VarDecl ((Ast.Identifier "c"),
-                (Some Ast.Unary {op = Ast.PostIncrement;
-                        exp = (Ast.Var (Ast.Identifier "a"))})
-                )));
+             Ast.VarDecl {name = (Ast.Identifier "c");
+               init =
+               (Some Ast.Unary {op = Ast.PostIncrement;
+                       exp = (Ast.Var (Ast.Identifier "a"))})});
           (Ast.D
-             (Ast.VarDecl ((Ast.Identifier "d"),
-                (Some Ast.Unary {op = Ast.PostDecrement;
-                        exp = (Ast.Var (Ast.Identifier "b"))})
-                )));
+             Ast.VarDecl {name = (Ast.Identifier "d");
+               init =
+               (Some Ast.Unary {op = Ast.PostDecrement;
+                       exp = (Ast.Var (Ast.Identifier "b"))})});
           (Ast.S
              (Ast.Return
                 Ast.Binary {op = Ast.And;

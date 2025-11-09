@@ -3,13 +3,14 @@
      body =
      (Ast.Block
         [(Ast.D
-            (Ast.VarDecl ((Ast.Identifier "x.1"), (Some (Ast.LiteralInt 1)))));
+            Ast.VarDecl {name = (Ast.Identifier "x.1");
+              init = (Some (Ast.LiteralInt 1))});
           (Ast.S (Ast.Goto (Ast.GotoLabel "post_declaration.0")));
           (Ast.D
-             (Ast.VarDecl ((Ast.Identifier "i.2"),
-                (Some (Ast.Assignment ((Ast.Var (Ast.Identifier "x.1")),
-                         (Ast.LiteralInt 0))))
-                )));
+             Ast.VarDecl {name = (Ast.Identifier "i.2");
+               init =
+               (Some (Ast.Assignment ((Ast.Var (Ast.Identifier "x.1")),
+                        (Ast.LiteralInt 0))))});
           (Ast.S
              (Ast.Label ((Ast.GotoLabel "post_declaration.0"),
                 (Ast.Expression

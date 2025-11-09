@@ -3,17 +3,17 @@
      body =
      (Ast.Block
         [(Ast.D
-            (Ast.VarDecl ((Ast.Identifier "count"),
-               (Some (Ast.LiteralInt 37)))));
+            Ast.VarDecl {name = (Ast.Identifier "count");
+              init = (Some (Ast.LiteralInt 37))});
           (Ast.D
-             (Ast.VarDecl ((Ast.Identifier "iterations"),
-                (Some Ast.Binary {op = Ast.Divide;
-                        left =
-                        Ast.Binary {op = Ast.Add;
-                          left = (Ast.Var (Ast.Identifier "count"));
-                          right = (Ast.LiteralInt 4)};
-                        right = (Ast.LiteralInt 5)})
-                )));
+             Ast.VarDecl {name = (Ast.Identifier "iterations");
+               init =
+               (Some Ast.Binary {op = Ast.Divide;
+                       left =
+                       Ast.Binary {op = Ast.Add;
+                         left = (Ast.Var (Ast.Identifier "count"));
+                         right = (Ast.LiteralInt 4)};
+                       right = (Ast.LiteralInt 5)})});
           (Ast.S
              Ast.Switch {
                cond =

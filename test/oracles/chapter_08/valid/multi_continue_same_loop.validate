@@ -3,14 +3,14 @@
      body =
      (Ast.Block
         [(Ast.D
-            (Ast.VarDecl ((Ast.Identifier "x.0"), (Some (Ast.LiteralInt 10))
-               )));
+            Ast.VarDecl {name = (Ast.Identifier "x.0");
+              init = (Some (Ast.LiteralInt 10))});
           (Ast.D
-             (Ast.VarDecl ((Ast.Identifier "y.1"), (Some (Ast.LiteralInt 0))
-                )));
+             Ast.VarDecl {name = (Ast.Identifier "y.1");
+               init = (Some (Ast.LiteralInt 0))});
           (Ast.D
-             (Ast.VarDecl ((Ast.Identifier "z.2"), (Some (Ast.LiteralInt 0))
-                )));
+             Ast.VarDecl {name = (Ast.Identifier "z.2");
+               init = (Some (Ast.LiteralInt 0))});
           (Ast.S
              Ast.DoWhile {
                body =

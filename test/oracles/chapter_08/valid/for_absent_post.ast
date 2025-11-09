@@ -3,10 +3,10 @@
      body =
      (Ast.Block
         [(Ast.D
-            (Ast.VarDecl ((Ast.Identifier "a"),
-               (Some Ast.Unary {op = Ast.Negate;
-                       exp = (Ast.LiteralInt 2147483647)})
-               )));
+            Ast.VarDecl {name = (Ast.Identifier "a");
+              init =
+              (Some Ast.Unary {op = Ast.Negate;
+                      exp = (Ast.LiteralInt 2147483647)})});
           (Ast.S
              Ast.For {init = (Ast.InitExp None);
                cond =

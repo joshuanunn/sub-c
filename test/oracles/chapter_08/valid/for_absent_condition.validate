@@ -6,8 +6,8 @@
             Ast.For {
               init =
               (Ast.InclDecl
-                 (Ast.VarDecl ((Ast.Identifier "i.0"),
-                    (Some (Ast.LiteralInt 400)))));
+                 Ast.VarDecl {name = (Ast.Identifier "i.0");
+                   init = (Some (Ast.LiteralInt 400))});
               cond = None;
               post =
               (Some (Ast.Assignment ((Ast.Var (Ast.Identifier "i.0")),

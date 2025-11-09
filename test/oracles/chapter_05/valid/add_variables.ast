@@ -3,11 +3,11 @@
      body =
      (Ast.Block
         [(Ast.D
-            (Ast.VarDecl ((Ast.Identifier "first_variable"),
-               (Some (Ast.LiteralInt 1)))));
+            Ast.VarDecl {name = (Ast.Identifier "first_variable");
+              init = (Some (Ast.LiteralInt 1))});
           (Ast.D
-             (Ast.VarDecl ((Ast.Identifier "second_variable"),
-                (Some (Ast.LiteralInt 2)))));
+             Ast.VarDecl {name = (Ast.Identifier "second_variable");
+               init = (Some (Ast.LiteralInt 2))});
           (Ast.S
              (Ast.Return
                 Ast.Binary {op = Ast.Add;

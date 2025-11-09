@@ -3,7 +3,8 @@
      body =
      (Ast.Block
         [(Ast.D
-            (Ast.VarDecl ((Ast.Identifier "a"), (Some (Ast.LiteralInt 0)))));
+            Ast.VarDecl {name = (Ast.Identifier "a");
+              init = (Some (Ast.LiteralInt 0))});
           (Ast.S
              (Ast.Compound
                 (Ast.Block
@@ -18,7 +19,7 @@
                             (Ast.Return (Ast.Var (Ast.Identifier "a")))));
                          else_smt = None});
                      (Ast.D
-                        (Ast.VarDecl ((Ast.Identifier "a"),
-                           (Some (Ast.LiteralInt 4)))));
+                        Ast.VarDecl {name = (Ast.Identifier "a");
+                          init = (Some (Ast.LiteralInt 4))});
                      (Ast.S (Ast.Goto (Ast.Identifier "return_a")))])))
           ])})

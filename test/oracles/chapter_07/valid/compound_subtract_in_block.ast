@@ -3,7 +3,8 @@
      body =
      (Ast.Block
         [(Ast.D
-            (Ast.VarDecl ((Ast.Identifier "a"), (Some (Ast.LiteralInt 5)))));
+            Ast.VarDecl {name = (Ast.Identifier "a");
+              init = (Some (Ast.LiteralInt 5))});
           (Ast.S
              Ast.If {
                cond_exp =
@@ -21,8 +22,8 @@
                                  right = (Ast.LiteralInt 4)}
                                ))));
                        (Ast.D
-                          (Ast.VarDecl ((Ast.Identifier "a"),
-                             (Some (Ast.LiteralInt 5)))));
+                          Ast.VarDecl {name = (Ast.Identifier "a");
+                            init = (Some (Ast.LiteralInt 5))});
                        (Ast.S
                           Ast.If {
                             cond_exp =

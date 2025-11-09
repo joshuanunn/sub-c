@@ -3,7 +3,8 @@
      body =
      (Ast.Block
         [(Ast.D
-            (Ast.VarDecl ((Ast.Identifier "a.0"), (Some (Ast.LiteralInt 0)))));
+            Ast.VarDecl {name = (Ast.Identifier "a.0");
+              init = (Some (Ast.LiteralInt 0))});
           (Ast.S
              (Ast.Expression
                 Ast.Binary {op = Ast.Or; left = (Ast.LiteralInt 1);

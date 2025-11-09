@@ -3,8 +3,8 @@
      body =
      (Ast.Block
         [(Ast.D
-            (Ast.VarDecl ((Ast.Identifier "to_subtract"),
-               (Some (Ast.LiteralInt 10)))));
+            Ast.VarDecl {name = (Ast.Identifier "to_subtract");
+              init = (Some (Ast.LiteralInt 10))});
           (Ast.S
              (Ast.Expression
                 (Ast.Assignment ((Ast.Var (Ast.Identifier "to_subtract")),

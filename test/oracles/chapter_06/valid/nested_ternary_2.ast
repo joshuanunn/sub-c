@@ -3,23 +3,23 @@
      body =
      (Ast.Block
         [(Ast.D
-            (Ast.VarDecl ((Ast.Identifier "a"),
-               (Some Ast.Conditional {cond_exp = (Ast.LiteralInt 1);
+            Ast.VarDecl {name = (Ast.Identifier "a");
+              init =
+              (Some Ast.Conditional {cond_exp = (Ast.LiteralInt 1);
+                      then_exp =
+                      Ast.Conditional {cond_exp = (Ast.LiteralInt 2);
+                        then_exp = (Ast.LiteralInt 3);
+                        else_exp = (Ast.LiteralInt 4)};
+                      else_exp = (Ast.LiteralInt 5)})});
+          (Ast.D
+             Ast.VarDecl {name = (Ast.Identifier "b");
+               init =
+               (Some Ast.Conditional {cond_exp = (Ast.LiteralInt 0);
                        then_exp =
                        Ast.Conditional {cond_exp = (Ast.LiteralInt 2);
                          then_exp = (Ast.LiteralInt 3);
                          else_exp = (Ast.LiteralInt 4)};
-                       else_exp = (Ast.LiteralInt 5)})
-               )));
-          (Ast.D
-             (Ast.VarDecl ((Ast.Identifier "b"),
-                (Some Ast.Conditional {cond_exp = (Ast.LiteralInt 0);
-                        then_exp =
-                        Ast.Conditional {cond_exp = (Ast.LiteralInt 2);
-                          then_exp = (Ast.LiteralInt 3);
-                          else_exp = (Ast.LiteralInt 4)};
-                        else_exp = (Ast.LiteralInt 5)})
-                )));
+                       else_exp = (Ast.LiteralInt 5)})});
           (Ast.S
              (Ast.Return
                 Ast.Binary {op = Ast.Multiply;

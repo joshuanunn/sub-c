@@ -3,20 +3,22 @@
      body =
      (Ast.Block
         [(Ast.D
-            (Ast.VarDecl ((Ast.Identifier "a"), (Some (Ast.LiteralInt 3)))));
+            Ast.VarDecl {name = (Ast.Identifier "a");
+              init = (Some (Ast.LiteralInt 3))});
           (Ast.D
-             (Ast.VarDecl ((Ast.Identifier "b"), (Some (Ast.LiteralInt 0)))));
+             Ast.VarDecl {name = (Ast.Identifier "b");
+               init = (Some (Ast.LiteralInt 0))});
           (Ast.S
              Ast.Switch {cond = (Ast.Var (Ast.Identifier "a"));
                body =
                (Ast.Compound
                   (Ast.Block
                      [(Ast.D
-                         (Ast.VarDecl ((Ast.Identifier "a"),
-                            (Some (Ast.Assignment (
-                                     (Ast.Var (Ast.Identifier "b")),
-                                     (Ast.LiteralInt 5))))
-                            )));
+                         Ast.VarDecl {name = (Ast.Identifier "a");
+                           init =
+                           (Some (Ast.Assignment (
+                                    (Ast.Var (Ast.Identifier "b")),
+                                    (Ast.LiteralInt 5))))});
                        (Ast.S
                           Ast.Case {value = (Ast.LiteralInt 3);
                             body =

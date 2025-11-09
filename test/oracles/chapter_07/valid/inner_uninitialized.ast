@@ -3,9 +3,12 @@
      body =
      (Ast.Block
         [(Ast.D
-            (Ast.VarDecl ((Ast.Identifier "x"), (Some (Ast.LiteralInt 4)))));
+            Ast.VarDecl {name = (Ast.Identifier "x");
+              init = (Some (Ast.LiteralInt 4))});
           (Ast.S
              (Ast.Compound
                 (Ast.Block
-                   [(Ast.D (Ast.VarDecl ((Ast.Identifier "x"), None)))])));
+                   [(Ast.D
+                       Ast.VarDecl {name = (Ast.Identifier "x"); init = None})
+                     ])));
           (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "x"))))])})

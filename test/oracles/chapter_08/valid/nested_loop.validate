@@ -3,19 +3,19 @@
      body =
      (Ast.Block
         [(Ast.D
-            (Ast.VarDecl ((Ast.Identifier "acc.0"), (Some (Ast.LiteralInt 0))
-               )));
+            Ast.VarDecl {name = (Ast.Identifier "acc.0");
+              init = (Some (Ast.LiteralInt 0))});
           (Ast.D
-             (Ast.VarDecl ((Ast.Identifier "x.1"),
-                (Some (Ast.LiteralInt 100)))));
+             Ast.VarDecl {name = (Ast.Identifier "x.1");
+               init = (Some (Ast.LiteralInt 100))});
           (Ast.S
              Ast.While {cond = (Ast.Var (Ast.Identifier "x.1"));
                body =
                (Ast.Compound
                   (Ast.Block
                      [(Ast.D
-                         (Ast.VarDecl ((Ast.Identifier "y.2"),
-                            (Some (Ast.LiteralInt 10)))));
+                         Ast.VarDecl {name = (Ast.Identifier "y.2");
+                           init = (Some (Ast.LiteralInt 10))});
                        (Ast.S
                           (Ast.Expression
                              (Ast.Assignment (

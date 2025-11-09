@@ -3,27 +3,27 @@
      body =
      (Ast.Block
         [(Ast.D
-            (Ast.VarDecl ((Ast.Identifier "a.0"), (Some (Ast.LiteralInt 250))
-               )));
+            Ast.VarDecl {name = (Ast.Identifier "a.0");
+              init = (Some (Ast.LiteralInt 250))});
           (Ast.D
-             (Ast.VarDecl ((Ast.Identifier "b.1"),
-                (Some (Ast.LiteralInt 200)))));
+             Ast.VarDecl {name = (Ast.Identifier "b.1");
+               init = (Some (Ast.LiteralInt 200))});
           (Ast.D
-             (Ast.VarDecl ((Ast.Identifier "c.2"),
-                (Some (Ast.LiteralInt 100)))));
+             Ast.VarDecl {name = (Ast.Identifier "c.2");
+               init = (Some (Ast.LiteralInt 100))});
           (Ast.D
-             (Ast.VarDecl ((Ast.Identifier "d.3"), (Some (Ast.LiteralInt 75))
-                )));
+             Ast.VarDecl {name = (Ast.Identifier "d.3");
+               init = (Some (Ast.LiteralInt 75))});
           (Ast.D
-             (Ast.VarDecl ((Ast.Identifier "e.4"),
-                (Some Ast.Unary {op = Ast.Negate; exp = (Ast.LiteralInt 25)})
-                )));
+             Ast.VarDecl {name = (Ast.Identifier "e.4");
+               init =
+               (Some Ast.Unary {op = Ast.Negate; exp = (Ast.LiteralInt 25)})});
           (Ast.D
-             (Ast.VarDecl ((Ast.Identifier "f.5"), (Some (Ast.LiteralInt 0))
-                )));
+             Ast.VarDecl {name = (Ast.Identifier "f.5");
+               init = (Some (Ast.LiteralInt 0))});
           (Ast.D
-             (Ast.VarDecl ((Ast.Identifier "x.6"), (Some (Ast.LiteralInt 0))
-                )));
+             Ast.VarDecl {name = (Ast.Identifier "x.6");
+               init = (Some (Ast.LiteralInt 0))});
           (Ast.S
              (Ast.Expression
                 (Ast.Assignment ((Ast.Var (Ast.Identifier "x.6")),
