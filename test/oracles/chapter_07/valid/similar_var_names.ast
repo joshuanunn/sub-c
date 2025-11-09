@@ -2,37 +2,35 @@
    Ast.Function {return_type = Ast.KwInt; name = (Ast.Identifier "main");
      body =
      (Ast.Block
-        [(Ast.D (Ast.Declaration ((Ast.Identifier "a"), None)));
-          (Ast.D (Ast.Declaration ((Ast.Identifier "result"), None)));
+        [(Ast.D (Ast.VarDecl ((Ast.Identifier "a"), None)));
+          (Ast.D (Ast.VarDecl ((Ast.Identifier "result"), None)));
           (Ast.D
-             (Ast.Declaration ((Ast.Identifier "a1"),
-                (Some (Ast.LiteralInt 1)))));
+             (Ast.VarDecl ((Ast.Identifier "a1"), (Some (Ast.LiteralInt 1)))));
           (Ast.S
              (Ast.Compound
                 (Ast.Block
                    [(Ast.D
-                       (Ast.Declaration ((Ast.Identifier "a"),
+                       (Ast.VarDecl ((Ast.Identifier "a"),
                           (Some (Ast.LiteralInt 2)))));
                      (Ast.D
-                        (Ast.Declaration ((Ast.Identifier "a1"),
+                        (Ast.VarDecl ((Ast.Identifier "a1"),
                            (Some (Ast.LiteralInt 2)))));
                      (Ast.S
                         (Ast.Compound
                            (Ast.Block
                               [(Ast.D
-                                  (Ast.Declaration ((Ast.Identifier "a"),
-                                     None)));
+                                  (Ast.VarDecl ((Ast.Identifier "a"), None)));
                                 (Ast.S
                                    (Ast.Compound
                                       (Ast.Block
                                          [(Ast.D
-                                             (Ast.Declaration (
+                                             (Ast.VarDecl (
                                                 (Ast.Identifier "a"), None)));
                                            (Ast.S
                                               (Ast.Compound
                                                  (Ast.Block
                                                     [(Ast.D
-                                                        (Ast.Declaration (
+                                                        (Ast.VarDecl (
                                                            (Ast.Identifier
                                                               "a"),
                                                            None)));
@@ -40,7 +38,7 @@
                                                          (Ast.Compound
                                                             (Ast.Block
                                                                [(Ast.D
-                                                                   (Ast.Declaration (
+                                                                   (Ast.VarDecl (
                                                                     (Ast.Identifier
                                                                     "a"),
                                                                     None)));
@@ -49,7 +47,7 @@
                                                                     Ast.Compound
                                                                     (Ast.Block
                                                                     [(Ast.D
-                                                                    (Ast.Declaration (
+                                                                    (Ast.VarDecl (
                                                                     (Ast.Identifier
                                                                     "a"),
                                                                     None)));
@@ -57,7 +55,7 @@
                                                                     (Ast.Compound
                                                                     (Ast.Block
                                                                     [(Ast.D
-                                                                    (Ast.Declaration (
+                                                                    (Ast.VarDecl (
                                                                     (Ast.Identifier
                                                                     "a"),
                                                                     None)));
@@ -65,7 +63,7 @@
                                                                     (Ast.Compound
                                                                     (Ast.Block
                                                                     [(Ast.D
-                                                                    (Ast.Declaration (
+                                                                    (Ast.VarDecl (
                                                                     (Ast.Identifier
                                                                     "a"),
                                                                     None)));
@@ -73,7 +71,7 @@
                                                                     (Ast.Compound
                                                                     (Ast.Block
                                                                     [(Ast.D
-                                                                    (Ast.Declaration (
+                                                                    (Ast.VarDecl (
                                                                     (Ast.Identifier
                                                                     "a"),
                                                                     None)));
@@ -81,7 +79,7 @@
                                                                     (Ast.Compound
                                                                     (Ast.Block
                                                                     [(Ast.D
-                                                                    (Ast.Declaration (
+                                                                    (Ast.VarDecl (
                                                                     (Ast.Identifier
                                                                     "a"),
                                                                     (Some (
@@ -100,7 +98,7 @@
                                                                     (Ast.Compound
                                                                     (Ast.Block
                                                                     [(Ast.D
-                                                                    (Ast.Declaration (
+                                                                    (Ast.VarDecl (
                                                                     (Ast.Identifier
                                                                     "a"),
                                                                     None)));

@@ -3,15 +3,15 @@
      body =
      (Ast.Block
         [(Ast.D
-            (Ast.Declaration ((Ast.Identifier "sum.2"),
-               (Some (Ast.LiteralInt 0)))));
+            (Ast.VarDecl ((Ast.Identifier "sum.2"), (Some (Ast.LiteralInt 0))
+               )));
           (Ast.S
              Ast.If {cond_exp = (Ast.LiteralInt 1);
                then_smt =
                (Ast.Compound
                   (Ast.Block
                      [(Ast.D
-                         (Ast.Declaration ((Ast.Identifier "a.3"),
+                         (Ast.VarDecl ((Ast.Identifier "a.3"),
                             (Some (Ast.LiteralInt 5)))));
                        (Ast.S (Ast.Goto (Ast.GotoLabel "other_if.1")));
                        (Ast.S
@@ -44,7 +44,7 @@
                      [(Ast.S
                          (Ast.Label ((Ast.GotoLabel "other_if.1"), Ast.Null)));
                        (Ast.D
-                          (Ast.Declaration ((Ast.Identifier "a.4"),
+                          (Ast.VarDecl ((Ast.Identifier "a.4"),
                              (Some (Ast.LiteralInt 6)))));
                        (Ast.S
                           (Ast.Expression

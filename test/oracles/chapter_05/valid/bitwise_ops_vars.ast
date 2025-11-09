@@ -3,14 +3,11 @@
      body =
      (Ast.Block
         [(Ast.D
-            (Ast.Declaration ((Ast.Identifier "a"), (Some (Ast.LiteralInt 3))
-               )));
+            (Ast.VarDecl ((Ast.Identifier "a"), (Some (Ast.LiteralInt 3)))));
           (Ast.D
-             (Ast.Declaration ((Ast.Identifier "b"),
-                (Some (Ast.LiteralInt 5)))));
+             (Ast.VarDecl ((Ast.Identifier "b"), (Some (Ast.LiteralInt 5)))));
           (Ast.D
-             (Ast.Declaration ((Ast.Identifier "c"),
-                (Some (Ast.LiteralInt 8)))));
+             (Ast.VarDecl ((Ast.Identifier "c"), (Some (Ast.LiteralInt 8)))));
           (Ast.S
              (Ast.Return
                 Ast.Binary {op = Ast.BwOr;

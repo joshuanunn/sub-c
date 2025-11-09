@@ -3,7 +3,7 @@
      body =
      (Ast.Block
         [(Ast.D
-            (Ast.Declaration ((Ast.Identifier "to_subtract"),
+            (Ast.VarDecl ((Ast.Identifier "to_subtract"),
                (Some (Ast.LiteralInt 10)))));
           (Ast.S
              (Ast.Expression

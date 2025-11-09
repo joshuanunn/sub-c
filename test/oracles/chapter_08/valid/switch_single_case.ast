@@ -3,8 +3,7 @@
      body =
      (Ast.Block
         [(Ast.D
-            (Ast.Declaration ((Ast.Identifier "a"), (Some (Ast.LiteralInt 1))
-               )));
+            (Ast.VarDecl ((Ast.Identifier "a"), (Some (Ast.LiteralInt 1)))));
           (Ast.S
              Ast.Switch {cond = (Ast.Var (Ast.Identifier "a"));
                body =

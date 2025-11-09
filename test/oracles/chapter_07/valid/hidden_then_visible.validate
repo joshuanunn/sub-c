@@ -3,9 +3,8 @@
      body =
      (Ast.Block
         [(Ast.D
-            (Ast.Declaration ((Ast.Identifier "a.0"),
-               (Some (Ast.LiteralInt 2)))));
-          (Ast.D (Ast.Declaration ((Ast.Identifier "b.1"), None)));
+            (Ast.VarDecl ((Ast.Identifier "a.0"), (Some (Ast.LiteralInt 2)))));
+          (Ast.D (Ast.VarDecl ((Ast.Identifier "b.1"), None)));
           (Ast.S
              (Ast.Compound
                 (Ast.Block
@@ -16,7 +15,7 @@
                                exp = (Ast.LiteralInt 4)}
                              ))));
                      (Ast.D
-                        (Ast.Declaration ((Ast.Identifier "a.2"),
+                        (Ast.VarDecl ((Ast.Identifier "a.2"),
                            (Some (Ast.LiteralInt 7)))));
                      (Ast.S
                         (Ast.Expression

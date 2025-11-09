@@ -71,7 +71,7 @@ type stmt =
   | Null
 [@@deriving show]
 
-and decl = Declaration of ident * expr option [@@deriving show]
+and decl = VarDecl of ident * expr option [@@deriving show]
 and for_init = InclDecl of decl | InitExp of expr option [@@deriving show]
 and block_item = S of stmt | D of decl [@@deriving show]
 and block = Block of block_item list [@@deriving show]
@@ -114,8 +114,8 @@ let mk_label_stmt l s = Label (l, s)
 let mk_switch_stmt e s = Switch { cond = e; body = s; id = None }
 let mk_case_stmt e s = Case { value = e; body = s; id = None }
 let mk_default_stmt s = Default { body = s; id = None }
-let mk_decl_init_stmt i v = Declaration (i, Some v)
-let mk_decl_stmt i = Declaration (i, None)
+let mk_decl_init_stmt i v = VarDecl (i, Some v)
+let mk_decl_stmt i = VarDecl (i, None)
 let mk_stmt_block_item s = S s
 let mk_decl_block_item d = D d
 

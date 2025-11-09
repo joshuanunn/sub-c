@@ -3,7 +3,7 @@
      body =
      (Ast.Block
         [(Ast.D
-            (Ast.Declaration ((Ast.Identifier "to_divide"),
+            (Ast.VarDecl ((Ast.Identifier "to_divide"),
                (Some (Ast.LiteralInt 8)))));
           (Ast.S
              (Ast.Expression

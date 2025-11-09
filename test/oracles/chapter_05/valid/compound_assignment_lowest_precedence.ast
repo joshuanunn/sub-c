@@ -3,11 +3,9 @@
      body =
      (Ast.Block
         [(Ast.D
-            (Ast.Declaration ((Ast.Identifier "a"),
-               (Some (Ast.LiteralInt 10)))));
+            (Ast.VarDecl ((Ast.Identifier "a"), (Some (Ast.LiteralInt 10)))));
           (Ast.D
-             (Ast.Declaration ((Ast.Identifier "b"),
-                (Some (Ast.LiteralInt 12)))));
+             (Ast.VarDecl ((Ast.Identifier "b"), (Some (Ast.LiteralInt 12)))));
           (Ast.S
              (Ast.Expression
                 (Ast.Assignment ((Ast.Var (Ast.Identifier "a")),
@@ -28,8 +26,7 @@
                        right = (Ast.LiteralInt 0)}}
                    ))));
           (Ast.D
-             (Ast.Declaration ((Ast.Identifier "c"),
-                (Some (Ast.LiteralInt 14)))));
+             (Ast.VarDecl ((Ast.Identifier "c"), (Some (Ast.LiteralInt 14)))));
           (Ast.S
              (Ast.Expression
                 (Ast.Assignment ((Ast.Var (Ast.Identifier "c")),
@@ -41,8 +38,7 @@
                        right = (Ast.Var (Ast.Identifier "b"))}}
                    ))));
           (Ast.D
-             (Ast.Declaration ((Ast.Identifier "d"),
-                (Some (Ast.LiteralInt 16)))));
+             (Ast.VarDecl ((Ast.Identifier "d"), (Some (Ast.LiteralInt 16)))));
           (Ast.S
              (Ast.Expression
                 (Ast.Assignment ((Ast.Var (Ast.Identifier "d")),

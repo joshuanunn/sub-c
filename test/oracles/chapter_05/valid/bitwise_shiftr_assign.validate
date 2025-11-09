@@ -3,11 +3,11 @@
      body =
      (Ast.Block
         [(Ast.D
-            (Ast.Declaration ((Ast.Identifier "var_to_shift.0"),
+            (Ast.VarDecl ((Ast.Identifier "var_to_shift.0"),
                (Some (Ast.LiteralInt 1234)))));
           (Ast.D
-             (Ast.Declaration ((Ast.Identifier "x.1"),
-                (Some (Ast.LiteralInt 0)))));
+             (Ast.VarDecl ((Ast.Identifier "x.1"), (Some (Ast.LiteralInt 0))
+                )));
           (Ast.S
              (Ast.Expression
                 (Ast.Assignment ((Ast.Var (Ast.Identifier "x.1")),

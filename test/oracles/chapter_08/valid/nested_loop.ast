@@ -3,18 +3,17 @@
      body =
      (Ast.Block
         [(Ast.D
-            (Ast.Declaration ((Ast.Identifier "acc"),
-               (Some (Ast.LiteralInt 0)))));
+            (Ast.VarDecl ((Ast.Identifier "acc"), (Some (Ast.LiteralInt 0)))));
           (Ast.D
-             (Ast.Declaration ((Ast.Identifier "x"),
-                (Some (Ast.LiteralInt 100)))));
+             (Ast.VarDecl ((Ast.Identifier "x"), (Some (Ast.LiteralInt 100))
+                )));
           (Ast.S
              Ast.While {cond = (Ast.Var (Ast.Identifier "x"));
                body =
                (Ast.Compound
                   (Ast.Block
                      [(Ast.D
-                         (Ast.Declaration ((Ast.Identifier "y"),
+                         (Ast.VarDecl ((Ast.Identifier "y"),
                             (Some (Ast.LiteralInt 10)))));
                        (Ast.S
                           (Ast.Expression

@@ -3,7 +3,7 @@
      body =
      (Ast.Block
         [(Ast.D
-            (Ast.Declaration ((Ast.Identifier "to_shiftr.0"),
+            (Ast.VarDecl ((Ast.Identifier "to_shiftr.0"),
                (Some (Ast.LiteralInt 382574)))));
           (Ast.S
              (Ast.Expression

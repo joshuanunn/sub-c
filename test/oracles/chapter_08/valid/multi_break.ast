@@ -3,8 +3,7 @@
      body =
      (Ast.Block
         [(Ast.D
-            (Ast.Declaration ((Ast.Identifier "i"), (Some (Ast.LiteralInt 0))
-               )));
+            (Ast.VarDecl ((Ast.Identifier "i"), (Some (Ast.LiteralInt 0)))));
           (Ast.S
              Ast.While {cond = (Ast.LiteralInt 1);
                body =
@@ -27,8 +26,7 @@
                        ]));
                id = None});
           (Ast.D
-             (Ast.Declaration ((Ast.Identifier "j"),
-                (Some (Ast.LiteralInt 10)))));
+             (Ast.VarDecl ((Ast.Identifier "j"), (Some (Ast.LiteralInt 10)))));
           (Ast.S
              Ast.While {cond = (Ast.LiteralInt 1);
                body =
@@ -51,7 +49,7 @@
                        ]));
                id = None});
           (Ast.D
-             (Ast.Declaration ((Ast.Identifier "result"),
+             (Ast.VarDecl ((Ast.Identifier "result"),
                 (Some Ast.Binary {op = Ast.And;
                         left =
                         Ast.Binary {op = Ast.Equal;

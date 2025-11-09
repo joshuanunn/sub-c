@@ -3,8 +3,7 @@
      body =
      (Ast.Block
         [(Ast.D
-            (Ast.Declaration ((Ast.Identifier "x"),
-               (Some (Ast.LiteralInt 10)))));
+            (Ast.VarDecl ((Ast.Identifier "x"), (Some (Ast.LiteralInt 10)))));
           (Ast.S
              (Ast.Expression
                 Ast.Conditional {

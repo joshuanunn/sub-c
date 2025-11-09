@@ -3,8 +3,8 @@
      body =
      (Ast.Block
         [(Ast.D
-            (Ast.Declaration ((Ast.Identifier "cond"),
-               (Some (Ast.LiteralInt 10)))));
+            (Ast.VarDecl ((Ast.Identifier "cond"), (Some (Ast.LiteralInt 10))
+               )));
           (Ast.S
              Ast.Switch {cond = (Ast.Var (Ast.Identifier "cond"));
                body =
@@ -19,7 +19,7 @@
                             Ast.For {
                               init =
                               (Ast.InclDecl
-                                 (Ast.Declaration ((Ast.Identifier "i"),
+                                 (Ast.VarDecl ((Ast.Identifier "i"),
                                     (Some (Ast.LiteralInt 0)))));
                               cond =
                               (Some Ast.Binary {op = Ast.LessThan;

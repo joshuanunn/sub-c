@@ -3,7 +3,7 @@
      body =
      (Ast.Block
         [(Ast.D
-            (Ast.Declaration ((Ast.Identifier "a.0"),
+            (Ast.VarDecl ((Ast.Identifier "a.0"),
                (Some Ast.Conditional {cond_exp = (Ast.LiteralInt 1);
                        then_exp =
                        Ast.Binary {op = Ast.Remainder;

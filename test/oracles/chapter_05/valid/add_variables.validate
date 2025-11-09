@@ -3,10 +3,10 @@
      body =
      (Ast.Block
         [(Ast.D
-            (Ast.Declaration ((Ast.Identifier "first_variable.0"),
+            (Ast.VarDecl ((Ast.Identifier "first_variable.0"),
                (Some (Ast.LiteralInt 1)))));
           (Ast.D
-             (Ast.Declaration ((Ast.Identifier "second_variable.1"),
+             (Ast.VarDecl ((Ast.Identifier "second_variable.1"),
                 (Some (Ast.LiteralInt 2)))));
           (Ast.S
              (Ast.Return

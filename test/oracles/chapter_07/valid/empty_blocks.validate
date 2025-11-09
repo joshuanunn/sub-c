@@ -3,11 +3,11 @@
      body =
      (Ast.Block
         [(Ast.D
-            (Ast.Declaration ((Ast.Identifier "ten.0"),
+            (Ast.VarDecl ((Ast.Identifier "ten.0"),
                (Some (Ast.LiteralInt 10)))));
           (Ast.S (Ast.Compound (Ast.Block [])));
           (Ast.D
-             (Ast.Declaration ((Ast.Identifier "twenty.1"),
+             (Ast.VarDecl ((Ast.Identifier "twenty.1"),
                 (Some Ast.Binary {op = Ast.Multiply;
                         left = (Ast.LiteralInt 10);
                         right = (Ast.LiteralInt 2)})

@@ -3,9 +3,9 @@
      body =
      (Ast.Block
         [(Ast.D
-            (Ast.Declaration ((Ast.Identifier "a"),
-               (Some (Ast.LiteralInt 12345)))));
-          (Ast.D (Ast.Declaration ((Ast.Identifier "i"), None)));
+            (Ast.VarDecl ((Ast.Identifier "a"), (Some (Ast.LiteralInt 12345))
+               )));
+          (Ast.D (Ast.VarDecl ((Ast.Identifier "i"), None)));
           (Ast.S
              Ast.For {
                init =

@@ -3,7 +3,7 @@
      body =
      (Ast.Block
         [(Ast.D
-            (Ast.Declaration ((Ast.Identifier "to_multiply"),
+            (Ast.VarDecl ((Ast.Identifier "to_multiply"),
                (Some (Ast.LiteralInt 4)))));
           (Ast.S
              (Ast.Expression

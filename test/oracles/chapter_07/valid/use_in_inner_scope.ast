@@ -2,7 +2,7 @@
    Ast.Function {return_type = Ast.KwInt; name = (Ast.Identifier "main");
      body =
      (Ast.Block
-        [(Ast.D (Ast.Declaration ((Ast.Identifier "x"), None)));
+        [(Ast.D (Ast.VarDecl ((Ast.Identifier "x"), None)));
           (Ast.S
              (Ast.Compound
                 (Ast.Block

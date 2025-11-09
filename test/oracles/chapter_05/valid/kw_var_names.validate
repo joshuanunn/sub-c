@@ -3,10 +3,10 @@
      body =
      (Ast.Block
         [(Ast.D
-            (Ast.Declaration ((Ast.Identifier "return_val.0"),
+            (Ast.VarDecl ((Ast.Identifier "return_val.0"),
                (Some (Ast.LiteralInt 3)))));
           (Ast.D
-             (Ast.Declaration ((Ast.Identifier "void2.1"),
+             (Ast.VarDecl ((Ast.Identifier "void2.1"),
                 (Some (Ast.LiteralInt 2)))));
           (Ast.S
              (Ast.Return

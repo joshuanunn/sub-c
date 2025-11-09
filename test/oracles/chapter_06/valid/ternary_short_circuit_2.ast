@@ -3,11 +3,9 @@
      body =
      (Ast.Block
         [(Ast.D
-            (Ast.Declaration ((Ast.Identifier "a"), (Some (Ast.LiteralInt 0))
-               )));
+            (Ast.VarDecl ((Ast.Identifier "a"), (Some (Ast.LiteralInt 0)))));
           (Ast.D
-             (Ast.Declaration ((Ast.Identifier "b"),
-                (Some (Ast.LiteralInt 0)))));
+             (Ast.VarDecl ((Ast.Identifier "b"), (Some (Ast.LiteralInt 0)))));
           (Ast.S
              (Ast.Expression
                 Ast.Conditional {cond_exp = (Ast.Var (Ast.Identifier "a"));

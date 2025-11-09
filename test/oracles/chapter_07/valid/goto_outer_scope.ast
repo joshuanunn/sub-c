@@ -3,18 +3,16 @@
      body =
      (Ast.Block
         [(Ast.D
-            (Ast.Declaration ((Ast.Identifier "a"),
-               (Some (Ast.LiteralInt 10)))));
+            (Ast.VarDecl ((Ast.Identifier "a"), (Some (Ast.LiteralInt 10)))));
           (Ast.D
-             (Ast.Declaration ((Ast.Identifier "b"),
-                (Some (Ast.LiteralInt 0)))));
+             (Ast.VarDecl ((Ast.Identifier "b"), (Some (Ast.LiteralInt 0)))));
           (Ast.S
              Ast.If {cond_exp = (Ast.Var (Ast.Identifier "a"));
                then_smt =
                (Ast.Compound
                   (Ast.Block
                      [(Ast.D
-                         (Ast.Declaration ((Ast.Identifier "a"),
+                         (Ast.VarDecl ((Ast.Identifier "a"),
                             (Some (Ast.LiteralInt 1)))));
                        (Ast.S
                           (Ast.Expression

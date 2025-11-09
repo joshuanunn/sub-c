@@ -3,8 +3,7 @@
      body =
      (Ast.Block
         [(Ast.D
-            (Ast.Declaration ((Ast.Identifier "x"), (Some (Ast.LiteralInt 3))
-               )));
+            (Ast.VarDecl ((Ast.Identifier "x"), (Some (Ast.LiteralInt 3)))));
           (Ast.S
              (Ast.Return
                 Ast.Binary {op = Ast.BwLeftShift;

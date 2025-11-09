@@ -3,8 +3,7 @@
      body =
      (Ast.Block
         [(Ast.D
-            (Ast.Declaration ((Ast.Identifier "a.5"),
-               (Some (Ast.LiteralInt 1)))));
+            (Ast.VarDecl ((Ast.Identifier "a.5"), (Some (Ast.LiteralInt 1)))));
           (Ast.S
              (Ast.Label ((Ast.GotoLabel "label_if.0"),
                 Ast.If {cond_exp = (Ast.Var (Ast.Identifier "a.5"));

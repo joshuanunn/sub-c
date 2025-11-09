@@ -3,7 +3,7 @@
      body =
      (Ast.Block
         [(Ast.D
-            (Ast.Declaration ((Ast.Identifier "to_or.0"),
+            (Ast.VarDecl ((Ast.Identifier "to_or.0"),
                (Some (Ast.LiteralInt 1)))));
           (Ast.S
              (Ast.Expression

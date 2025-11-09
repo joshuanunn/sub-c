@@ -3,7 +3,7 @@
      body =
      (Ast.Block
         [(Ast.D
-            (Ast.Declaration ((Ast.Identifier "result"),
+            (Ast.VarDecl ((Ast.Identifier "result"),
                (Some (Ast.LiteralInt 0)))));
           (Ast.S (Ast.Goto (Ast.Identifier "label")));
           (Ast.S

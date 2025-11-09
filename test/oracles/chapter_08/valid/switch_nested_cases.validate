@@ -3,13 +3,13 @@
      body =
      (Ast.Block
         [(Ast.D
-            (Ast.Declaration ((Ast.Identifier "switch1.0"),
+            (Ast.VarDecl ((Ast.Identifier "switch1.0"),
                (Some (Ast.LiteralInt 0)))));
           (Ast.D
-             (Ast.Declaration ((Ast.Identifier "switch2.1"),
+             (Ast.VarDecl ((Ast.Identifier "switch2.1"),
                 (Some (Ast.LiteralInt 0)))));
           (Ast.D
-             (Ast.Declaration ((Ast.Identifier "switch3.2"),
+             (Ast.VarDecl ((Ast.Identifier "switch3.2"),
                 (Some (Ast.LiteralInt 0)))));
           (Ast.S
              Ast.Switch {cond = (Ast.LiteralInt 3);
@@ -98,7 +98,7 @@
                          Ast.For {
                            init =
                            (Ast.InclDecl
-                              (Ast.Declaration ((Ast.Identifier "i.3"),
+                              (Ast.VarDecl ((Ast.Identifier "i.3"),
                                  (Some (Ast.LiteralInt 0)))));
                            cond =
                            (Some Ast.Binary {op = Ast.LessThan;

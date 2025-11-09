@@ -6,7 +6,7 @@
             Ast.For {
               init =
               (Ast.InclDecl
-                 (Ast.Declaration ((Ast.Identifier "i"),
+                 (Ast.VarDecl ((Ast.Identifier "i"),
                     (Some (Ast.LiteralInt 400)))));
               cond = None;
               post =

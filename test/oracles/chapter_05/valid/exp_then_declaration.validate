@@ -3,7 +3,7 @@
      body =
      (Ast.Block
         [(Ast.D
-            (Ast.Declaration ((Ast.Identifier "a.0"),
+            (Ast.VarDecl ((Ast.Identifier "a.0"),
                (Some Ast.Unary {op = Ast.Negate; exp = (Ast.LiteralInt 2593)})
                )));
           (Ast.S
@@ -14,7 +14,7 @@
                      right = (Ast.LiteralInt 3)}
                    ))));
           (Ast.D
-             (Ast.Declaration ((Ast.Identifier "b.1"),
+             (Ast.VarDecl ((Ast.Identifier "b.1"),
                 (Some Ast.Unary {op = Ast.Negate;
                         exp = (Ast.Var (Ast.Identifier "a.0"))})
                 )));

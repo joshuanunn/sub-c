@@ -3,10 +3,9 @@
      body =
      (Ast.Block
         [(Ast.D
-            (Ast.Declaration ((Ast.Identifier "x.0"),
-               (Some (Ast.LiteralInt 5)))));
+            (Ast.VarDecl ((Ast.Identifier "x.0"), (Some (Ast.LiteralInt 5)))));
           (Ast.D
-             (Ast.Declaration ((Ast.Identifier "acc.1"),
+             (Ast.VarDecl ((Ast.Identifier "acc.1"),
                 (Some (Ast.LiteralInt 0)))));
           (Ast.S
              Ast.While {
@@ -18,7 +17,7 @@
                (Ast.Compound
                   (Ast.Block
                      [(Ast.D
-                         (Ast.Declaration ((Ast.Identifier "i.2"),
+                         (Ast.VarDecl ((Ast.Identifier "i.2"),
                             (Some (Ast.Var (Ast.Identifier "x.0"))))));
                        (Ast.S
                           Ast.While {

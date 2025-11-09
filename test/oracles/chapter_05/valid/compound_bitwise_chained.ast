@@ -3,35 +3,27 @@
      body =
      (Ast.Block
         [(Ast.D
-            (Ast.Declaration ((Ast.Identifier "a"),
-               (Some (Ast.LiteralInt 250)))));
+            (Ast.VarDecl ((Ast.Identifier "a"), (Some (Ast.LiteralInt 250)))));
           (Ast.D
-             (Ast.Declaration ((Ast.Identifier "b"),
-                (Some (Ast.LiteralInt 200)))));
+             (Ast.VarDecl ((Ast.Identifier "b"), (Some (Ast.LiteralInt 200))
+                )));
           (Ast.D
-             (Ast.Declaration ((Ast.Identifier "c"),
-                (Some (Ast.LiteralInt 100)))));
+             (Ast.VarDecl ((Ast.Identifier "c"), (Some (Ast.LiteralInt 100))
+                )));
           (Ast.D
-             (Ast.Declaration ((Ast.Identifier "d"),
-                (Some (Ast.LiteralInt 75)))));
+             (Ast.VarDecl ((Ast.Identifier "d"), (Some (Ast.LiteralInt 75)))));
           (Ast.D
-             (Ast.Declaration ((Ast.Identifier "e"),
-                (Some (Ast.LiteralInt 50)))));
+             (Ast.VarDecl ((Ast.Identifier "e"), (Some (Ast.LiteralInt 50)))));
           (Ast.D
-             (Ast.Declaration ((Ast.Identifier "f"),
-                (Some (Ast.LiteralInt 25)))));
+             (Ast.VarDecl ((Ast.Identifier "f"), (Some (Ast.LiteralInt 25)))));
           (Ast.D
-             (Ast.Declaration ((Ast.Identifier "g"),
-                (Some (Ast.LiteralInt 10)))));
+             (Ast.VarDecl ((Ast.Identifier "g"), (Some (Ast.LiteralInt 10)))));
           (Ast.D
-             (Ast.Declaration ((Ast.Identifier "h"),
-                (Some (Ast.LiteralInt 1)))));
+             (Ast.VarDecl ((Ast.Identifier "h"), (Some (Ast.LiteralInt 1)))));
           (Ast.D
-             (Ast.Declaration ((Ast.Identifier "j"),
-                (Some (Ast.LiteralInt 0)))));
+             (Ast.VarDecl ((Ast.Identifier "j"), (Some (Ast.LiteralInt 0)))));
           (Ast.D
-             (Ast.Declaration ((Ast.Identifier "x"),
-                (Some (Ast.LiteralInt 0)))));
+             (Ast.VarDecl ((Ast.Identifier "x"), (Some (Ast.LiteralInt 0)))));
           (Ast.S
              (Ast.Expression
                 (Ast.Assignment ((Ast.Var (Ast.Identifier "x")),

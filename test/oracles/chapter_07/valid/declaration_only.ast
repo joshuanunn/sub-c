@@ -2,12 +2,12 @@
    Ast.Function {return_type = Ast.KwInt; name = (Ast.Identifier "main");
      body =
      (Ast.Block
-        [(Ast.D (Ast.Declaration ((Ast.Identifier "a"), None)));
+        [(Ast.D (Ast.VarDecl ((Ast.Identifier "a"), None)));
           (Ast.S
              (Ast.Compound
                 (Ast.Block
                    [(Ast.D
-                       (Ast.Declaration ((Ast.Identifier "b"),
+                       (Ast.VarDecl ((Ast.Identifier "b"),
                           (Some (Ast.Assignment (
                                    (Ast.Var (Ast.Identifier "a")),
                                    (Ast.LiteralInt 1))))

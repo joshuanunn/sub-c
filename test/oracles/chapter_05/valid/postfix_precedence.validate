@@ -3,10 +3,9 @@
      body =
      (Ast.Block
         [(Ast.D
-            (Ast.Declaration ((Ast.Identifier "a.0"),
-               (Some (Ast.LiteralInt 1)))));
+            (Ast.VarDecl ((Ast.Identifier "a.0"), (Some (Ast.LiteralInt 1)))));
           (Ast.D
-             (Ast.Declaration ((Ast.Identifier "b.1"),
+             (Ast.VarDecl ((Ast.Identifier "b.1"),
                 (Some Ast.Unary {op = Ast.Not;
                         exp =
                         Ast.Unary {op = Ast.PostIncrement;

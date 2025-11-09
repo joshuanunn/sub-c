@@ -3,7 +3,7 @@
      body =
      (Ast.Block
         [(Ast.D
-            (Ast.Declaration ((Ast.Identifier "a.0"),
+            (Ast.VarDecl ((Ast.Identifier "a.0"),
                (Some Ast.Conditional {cond_exp = (Ast.LiteralInt 1);
                        then_exp =
                        Ast.Conditional {cond_exp = (Ast.LiteralInt 2);
@@ -12,7 +12,7 @@
                        else_exp = (Ast.LiteralInt 5)})
                )));
           (Ast.D
-             (Ast.Declaration ((Ast.Identifier "b.1"),
+             (Ast.VarDecl ((Ast.Identifier "b.1"),
                 (Some Ast.Conditional {cond_exp = (Ast.LiteralInt 0);
                         then_exp =
                         Ast.Conditional {cond_exp = (Ast.LiteralInt 2);

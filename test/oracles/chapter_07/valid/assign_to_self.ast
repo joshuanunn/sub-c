@@ -3,13 +3,12 @@
      body =
      (Ast.Block
         [(Ast.D
-            (Ast.Declaration ((Ast.Identifier "a"), (Some (Ast.LiteralInt 3))
-               )));
+            (Ast.VarDecl ((Ast.Identifier "a"), (Some (Ast.LiteralInt 3)))));
           (Ast.S
              (Ast.Compound
                 (Ast.Block
                    [(Ast.D
-                       (Ast.Declaration ((Ast.Identifier "a"),
+                       (Ast.VarDecl ((Ast.Identifier "a"),
                           (Some (Ast.Assignment (
                                    (Ast.Var (Ast.Identifier "a")),
                                    (Ast.LiteralInt 4))))

@@ -3,10 +3,9 @@
      body =
      (Ast.Block
         [(Ast.D
-            (Ast.Declaration ((Ast.Identifier "x.0"),
-               (Some (Ast.LiteralInt 1)))));
+            (Ast.VarDecl ((Ast.Identifier "x.0"), (Some (Ast.LiteralInt 1)))));
           (Ast.D
-             (Ast.Declaration ((Ast.Identifier "y.1"),
+             (Ast.VarDecl ((Ast.Identifier "y.1"),
                 (Some (Ast.Assignment ((Ast.Var (Ast.Identifier "x.0")),
                          Ast.Binary {op = Ast.Add;
                            left = (Ast.Var (Ast.Identifier "x.0"));

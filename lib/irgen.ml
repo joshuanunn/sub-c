@@ -311,11 +311,11 @@ let rec convert_stmt (s : Ast.stmt) (le : Env.lenv) : Ir.instruction list =
 and convert_dclr (d : Ast.decl) (le : Env.lenv) : Ir.instruction list =
   match d with
   (* No need to generate instructions for variable declaration *)
-  | Declaration (lhs, None) ->
+  | VarDecl (lhs, None) ->
       Env.insert_value lhs le;
       []
   (* Handle a declaration with initialiser as an assignment expression *)
-  | Declaration (lhs, Some rhs) ->
+  | VarDecl (lhs, Some rhs) ->
       Env.insert_value lhs le;
       let initialiser = Ast.Assignment (Ast.Var lhs, rhs) in
       let _, instructions = convert_expr initialiser le in

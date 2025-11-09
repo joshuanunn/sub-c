@@ -3,22 +3,21 @@
      body =
      (Ast.Block
         [(Ast.D
-            (Ast.Declaration ((Ast.Identifier "a"), (Some (Ast.LiteralInt 0))
-               )));
+            (Ast.VarDecl ((Ast.Identifier "a"), (Some (Ast.LiteralInt 0)))));
           (Ast.S
              Ast.If {cond_exp = (Ast.Var (Ast.Identifier "a"));
                then_smt =
                (Ast.Compound
                   (Ast.Block
                      [(Ast.D
-                         (Ast.Declaration ((Ast.Identifier "b"),
+                         (Ast.VarDecl ((Ast.Identifier "b"),
                             (Some (Ast.LiteralInt 2)))));
                        (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "b"))))]));
                else_smt =
                (Some (Ast.Compound
                         (Ast.Block
                            [(Ast.D
-                               (Ast.Declaration ((Ast.Identifier "c"),
+                               (Ast.VarDecl ((Ast.Identifier "c"),
                                   (Some (Ast.LiteralInt 3)))));
                              (Ast.S
                                 Ast.If {

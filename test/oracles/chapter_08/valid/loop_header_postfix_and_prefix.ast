@@ -3,10 +3,9 @@
      body =
      (Ast.Block
         [(Ast.D
-            (Ast.Declaration ((Ast.Identifier "i"),
-               (Some (Ast.LiteralInt 100)))));
+            (Ast.VarDecl ((Ast.Identifier "i"), (Some (Ast.LiteralInt 100)))));
           (Ast.D
-             (Ast.Declaration ((Ast.Identifier "count"),
+             (Ast.VarDecl ((Ast.Identifier "count"),
                 (Some (Ast.LiteralInt 0)))));
           (Ast.S
              Ast.While {

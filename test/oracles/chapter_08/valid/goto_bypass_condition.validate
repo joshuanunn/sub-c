@@ -3,8 +3,7 @@
      body =
      (Ast.Block
         [(Ast.D
-            (Ast.Declaration ((Ast.Identifier "i.1"),
-               (Some (Ast.LiteralInt 1)))));
+            (Ast.VarDecl ((Ast.Identifier "i.1"), (Some (Ast.LiteralInt 1)))));
           (Ast.S
              Ast.DoWhile {
                body =

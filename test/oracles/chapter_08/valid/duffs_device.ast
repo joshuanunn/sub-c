@@ -3,10 +3,10 @@
      body =
      (Ast.Block
         [(Ast.D
-            (Ast.Declaration ((Ast.Identifier "count"),
+            (Ast.VarDecl ((Ast.Identifier "count"),
                (Some (Ast.LiteralInt 37)))));
           (Ast.D
-             (Ast.Declaration ((Ast.Identifier "iterations"),
+             (Ast.VarDecl ((Ast.Identifier "iterations"),
                 (Some Ast.Binary {op = Ast.Divide;
                         left =
                         Ast.Binary {op = Ast.Add;

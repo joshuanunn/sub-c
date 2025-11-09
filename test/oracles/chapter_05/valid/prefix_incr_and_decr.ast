@@ -3,18 +3,16 @@
      body =
      (Ast.Block
         [(Ast.D
-            (Ast.Declaration ((Ast.Identifier "a"), (Some (Ast.LiteralInt 1))
-               )));
+            (Ast.VarDecl ((Ast.Identifier "a"), (Some (Ast.LiteralInt 1)))));
           (Ast.D
-             (Ast.Declaration ((Ast.Identifier "b"),
-                (Some (Ast.LiteralInt 2)))));
+             (Ast.VarDecl ((Ast.Identifier "b"), (Some (Ast.LiteralInt 2)))));
           (Ast.D
-             (Ast.Declaration ((Ast.Identifier "c"),
+             (Ast.VarDecl ((Ast.Identifier "c"),
                 (Some Ast.Unary {op = Ast.PreIncrement;
                         exp = (Ast.Var (Ast.Identifier "a"))})
                 )));
           (Ast.D
-             (Ast.Declaration ((Ast.Identifier "d"),
+             (Ast.VarDecl ((Ast.Identifier "d"),
                 (Some Ast.Unary {op = Ast.PreDecrement;
                         exp = (Ast.Var (Ast.Identifier "b"))})
                 )));

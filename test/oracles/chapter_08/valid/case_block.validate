@@ -3,11 +3,10 @@
      body =
      (Ast.Block
         [(Ast.D
-            (Ast.Declaration ((Ast.Identifier "a.0"),
-               (Some (Ast.LiteralInt 4)))));
+            (Ast.VarDecl ((Ast.Identifier "a.0"), (Some (Ast.LiteralInt 4)))));
           (Ast.D
-             (Ast.Declaration ((Ast.Identifier "b.1"),
-                (Some (Ast.LiteralInt 0)))));
+             (Ast.VarDecl ((Ast.Identifier "b.1"), (Some (Ast.LiteralInt 0))
+                )));
           (Ast.S
              Ast.Switch {cond = (Ast.LiteralInt 2);
                body =
@@ -19,8 +18,7 @@
                            (Ast.Compound
                               (Ast.Block
                                  [(Ast.D
-                                     (Ast.Declaration (
-                                        (Ast.Identifier "a.2"),
+                                     (Ast.VarDecl ((Ast.Identifier "a.2"),
                                         (Some (Ast.LiteralInt 8)))));
                                    (Ast.S
                                       (Ast.Expression

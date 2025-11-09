@@ -3,14 +3,14 @@
      body =
      (Ast.Block
         [(Ast.D
-            (Ast.Declaration ((Ast.Identifier "sum.0"),
-               (Some (Ast.LiteralInt 0)))));
-          (Ast.D (Ast.Declaration ((Ast.Identifier "counter.1"), None)));
+            (Ast.VarDecl ((Ast.Identifier "sum.0"), (Some (Ast.LiteralInt 0))
+               )));
+          (Ast.D (Ast.VarDecl ((Ast.Identifier "counter.1"), None)));
           (Ast.S
              Ast.For {
                init =
                (Ast.InclDecl
-                  (Ast.Declaration ((Ast.Identifier "i.2"),
+                  (Ast.VarDecl ((Ast.Identifier "i.2"),
                      (Some (Ast.LiteralInt 0)))));
                cond =
                (Some Ast.Binary {op = Ast.LessOrEqual;

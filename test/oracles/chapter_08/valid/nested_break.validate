@@ -3,13 +3,13 @@
      body =
      (Ast.Block
         [(Ast.D
-            (Ast.Declaration ((Ast.Identifier "ans.0"),
-               (Some (Ast.LiteralInt 0)))));
+            (Ast.VarDecl ((Ast.Identifier "ans.0"), (Some (Ast.LiteralInt 0))
+               )));
           (Ast.S
              Ast.For {
                init =
                (Ast.InclDecl
-                  (Ast.Declaration ((Ast.Identifier "i.1"),
+                  (Ast.VarDecl ((Ast.Identifier "i.1"),
                      (Some (Ast.LiteralInt 0)))));
                cond =
                (Some Ast.Binary {op = Ast.LessThan;
@@ -25,7 +25,7 @@
                Ast.For {
                  init =
                  (Ast.InclDecl
-                    (Ast.Declaration ((Ast.Identifier "j.2"),
+                    (Ast.VarDecl ((Ast.Identifier "j.2"),
                        (Some (Ast.LiteralInt 0)))));
                  cond =
                  (Some Ast.Binary {op = Ast.LessThan;

@@ -17,14 +17,13 @@
                            (Ast.Compound
                               (Ast.Block
                                  [(Ast.D
-                                     (Ast.Declaration (
-                                        (Ast.Identifier "acc.0"),
+                                     (Ast.VarDecl ((Ast.Identifier "acc.0"),
                                         (Some (Ast.LiteralInt 0)))));
                                    (Ast.S
                                       Ast.For {
                                         init =
                                         (Ast.InclDecl
-                                           (Ast.Declaration (
+                                           (Ast.VarDecl (
                                               (Ast.Identifier "i.1"),
                                               (Some (Ast.LiteralInt 0)))));
                                         cond =

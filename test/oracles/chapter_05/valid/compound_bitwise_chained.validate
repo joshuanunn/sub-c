@@ -3,35 +3,35 @@
      body =
      (Ast.Block
         [(Ast.D
-            (Ast.Declaration ((Ast.Identifier "a.0"),
-               (Some (Ast.LiteralInt 250)))));
+            (Ast.VarDecl ((Ast.Identifier "a.0"), (Some (Ast.LiteralInt 250))
+               )));
           (Ast.D
-             (Ast.Declaration ((Ast.Identifier "b.1"),
+             (Ast.VarDecl ((Ast.Identifier "b.1"),
                 (Some (Ast.LiteralInt 200)))));
           (Ast.D
-             (Ast.Declaration ((Ast.Identifier "c.2"),
+             (Ast.VarDecl ((Ast.Identifier "c.2"),
                 (Some (Ast.LiteralInt 100)))));
           (Ast.D
-             (Ast.Declaration ((Ast.Identifier "d.3"),
-                (Some (Ast.LiteralInt 75)))));
+             (Ast.VarDecl ((Ast.Identifier "d.3"), (Some (Ast.LiteralInt 75))
+                )));
           (Ast.D
-             (Ast.Declaration ((Ast.Identifier "e.4"),
-                (Some (Ast.LiteralInt 50)))));
+             (Ast.VarDecl ((Ast.Identifier "e.4"), (Some (Ast.LiteralInt 50))
+                )));
           (Ast.D
-             (Ast.Declaration ((Ast.Identifier "f.5"),
-                (Some (Ast.LiteralInt 25)))));
+             (Ast.VarDecl ((Ast.Identifier "f.5"), (Some (Ast.LiteralInt 25))
+                )));
           (Ast.D
-             (Ast.Declaration ((Ast.Identifier "g.6"),
-                (Some (Ast.LiteralInt 10)))));
+             (Ast.VarDecl ((Ast.Identifier "g.6"), (Some (Ast.LiteralInt 10))
+                )));
           (Ast.D
-             (Ast.Declaration ((Ast.Identifier "h.7"),
-                (Some (Ast.LiteralInt 1)))));
+             (Ast.VarDecl ((Ast.Identifier "h.7"), (Some (Ast.LiteralInt 1))
+                )));
           (Ast.D
-             (Ast.Declaration ((Ast.Identifier "j.8"),
-                (Some (Ast.LiteralInt 0)))));
+             (Ast.VarDecl ((Ast.Identifier "j.8"), (Some (Ast.LiteralInt 0))
+                )));
           (Ast.D
-             (Ast.Declaration ((Ast.Identifier "x.9"),
-                (Some (Ast.LiteralInt 0)))));
+             (Ast.VarDecl ((Ast.Identifier "x.9"), (Some (Ast.LiteralInt 0))
+                )));
           (Ast.S
              (Ast.Expression
                 (Ast.Assignment ((Ast.Var (Ast.Identifier "x.9")),

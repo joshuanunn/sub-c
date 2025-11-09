@@ -3,14 +3,11 @@
      body =
      (Ast.Block
         [(Ast.D
-            (Ast.Declaration ((Ast.Identifier "x"),
-               (Some (Ast.LiteralInt 10)))));
+            (Ast.VarDecl ((Ast.Identifier "x"), (Some (Ast.LiteralInt 10)))));
           (Ast.D
-             (Ast.Declaration ((Ast.Identifier "y"),
-                (Some (Ast.LiteralInt 0)))));
+             (Ast.VarDecl ((Ast.Identifier "y"), (Some (Ast.LiteralInt 0)))));
           (Ast.D
-             (Ast.Declaration ((Ast.Identifier "z"),
-                (Some (Ast.LiteralInt 0)))));
+             (Ast.VarDecl ((Ast.Identifier "z"), (Some (Ast.LiteralInt 0)))));
           (Ast.S
              Ast.DoWhile {
                body =

@@ -3,19 +3,18 @@
      body =
      (Ast.Block
         [(Ast.D
-            (Ast.Declaration ((Ast.Identifier "i.0"),
-               (Some (Ast.LiteralInt 0)))));
+            (Ast.VarDecl ((Ast.Identifier "i.0"), (Some (Ast.LiteralInt 0)))));
           (Ast.D
-             (Ast.Declaration ((Ast.Identifier "j.1"),
-                (Some (Ast.LiteralInt 0)))));
+             (Ast.VarDecl ((Ast.Identifier "j.1"), (Some (Ast.LiteralInt 0))
+                )));
           (Ast.D
-             (Ast.Declaration ((Ast.Identifier "k.2"),
-                (Some (Ast.LiteralInt 1)))));
+             (Ast.VarDecl ((Ast.Identifier "k.2"), (Some (Ast.LiteralInt 1))
+                )));
           (Ast.S
              Ast.For {
                init =
                (Ast.InclDecl
-                  (Ast.Declaration ((Ast.Identifier "i.3"),
+                  (Ast.VarDecl ((Ast.Identifier "i.3"),
                      (Some (Ast.LiteralInt 100)))));
                cond =
                (Some Ast.Binary {op = Ast.GreaterThan;
@@ -31,10 +30,10 @@
                (Ast.Compound
                   (Ast.Block
                      [(Ast.D
-                         (Ast.Declaration ((Ast.Identifier "i.4"),
+                         (Ast.VarDecl ((Ast.Identifier "i.4"),
                             (Some (Ast.LiteralInt 1)))));
                        (Ast.D
-                          (Ast.Declaration ((Ast.Identifier "j.5"),
+                          (Ast.VarDecl ((Ast.Identifier "j.5"),
                              (Some Ast.Binary {op = Ast.Add;
                                      left = (Ast.Var (Ast.Identifier "i.4"));
                                      right = (Ast.Var (Ast.Identifier "k.2"))})
