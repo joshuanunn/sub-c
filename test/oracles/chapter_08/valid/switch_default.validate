@@ -1,40 +1,43 @@
 (Ast.Program
-   Ast.Function {return_type = Ast.KwInt; name = (Ast.Identifier "main");
-     body =
-     (Ast.Block
-        [(Ast.D
-            Ast.VarDecl {name = (Ast.Identifier "a.0");
-              init = (Some (Ast.LiteralInt 0))});
-          (Ast.S
-             Ast.Switch {cond = (Ast.Var (Ast.Identifier "a.0"));
-               body =
-               (Ast.Compound
-                  (Ast.Block
-                     [(Ast.S
-                         Ast.Case {value = (Ast.LiteralInt 1);
-                           body = (Ast.Return (Ast.LiteralInt 1));
-                           id = (Some (Ast.SwitchLabel "1"))});
-                       (Ast.S
-                          Ast.Case {value = (Ast.LiteralInt 2);
-                            body = (Ast.Return (Ast.LiteralInt 9));
-                            id = (Some (Ast.SwitchLabel "1"))});
-                       (Ast.S
-                          Ast.Case {value = (Ast.LiteralInt 4);
-                            body =
-                            (Ast.Expression
-                               (Ast.Assignment (
-                                  (Ast.Var (Ast.Identifier "a.0")),
-                                  (Ast.LiteralInt 11))));
-                            id = (Some (Ast.SwitchLabel "1"))});
-                       (Ast.S (Ast.Break (Some (Ast.SwitchLabel "1"))));
-                       (Ast.S
-                          Ast.Default {
-                            body =
-                            (Ast.Expression
-                               (Ast.Assignment (
-                                  (Ast.Var (Ast.Identifier "a.0")),
-                                  (Ast.LiteralInt 22))));
-                            id = (Some (Ast.SwitchLabel "1"))})
-                       ]));
-               id = (Some (Ast.SwitchLabel "1"))});
-          (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "a.0"))))])})
+   [(Ast.FunDecl
+       { Ast.name = (Ast.Identifier "main");
+         body =
+         (Ast.Block
+            [(Ast.D
+                Ast.VarDecl {name = (Ast.Identifier "a.0");
+                  init = (Some (Ast.LiteralInt 0))});
+              (Ast.S
+                 Ast.Switch {cond = (Ast.Var (Ast.Identifier "a.0"));
+                   body =
+                   (Ast.Compound
+                      (Ast.Block
+                         [(Ast.S
+                             Ast.Case {value = (Ast.LiteralInt 1);
+                               body = (Ast.Return (Ast.LiteralInt 1));
+                               id = (Some (Ast.SwitchLabel "1"))});
+                           (Ast.S
+                              Ast.Case {value = (Ast.LiteralInt 2);
+                                body = (Ast.Return (Ast.LiteralInt 9));
+                                id = (Some (Ast.SwitchLabel "1"))});
+                           (Ast.S
+                              Ast.Case {value = (Ast.LiteralInt 4);
+                                body =
+                                (Ast.Expression
+                                   (Ast.Assignment (
+                                      (Ast.Var (Ast.Identifier "a.0")),
+                                      (Ast.LiteralInt 11))));
+                                id = (Some (Ast.SwitchLabel "1"))});
+                           (Ast.S (Ast.Break (Some (Ast.SwitchLabel "1"))));
+                           (Ast.S
+                              Ast.Default {
+                                body =
+                                (Ast.Expression
+                                   (Ast.Assignment (
+                                      (Ast.Var (Ast.Identifier "a.0")),
+                                      (Ast.LiteralInt 22))));
+                                id = (Some (Ast.SwitchLabel "1"))})
+                           ]));
+                   id = (Some (Ast.SwitchLabel "1"))});
+              (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "a.0"))))])
+         })
+     ])

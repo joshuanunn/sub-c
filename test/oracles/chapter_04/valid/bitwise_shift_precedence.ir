@@ -1,10 +1,11 @@
 (Ir.Program
-   Ir.Function {name = "main";
-     body =
-     [Ir.Binary {op = Ir.BwRightShift; src1 = (Ir.Constant 20);
-        src2 = (Ir.Constant 4); dst = (Ir.Var "tmp.0")};
-       Ir.Binary {op = Ir.BwLeftShift; src1 = (Ir.Constant 3);
-         src2 = (Ir.Constant 1); dst = (Ir.Var "tmp.1")};
-       Ir.Binary {op = Ir.LessOrEqual; src1 = (Ir.Var "tmp.0");
-         src2 = (Ir.Var "tmp.1"); dst = (Ir.Var "tmp.2")};
-       (Ir.Return (Ir.Var "tmp.2")); (Ir.Return (Ir.Constant 0))]})
+   [Ir.Function {name = "main";
+      body =
+      [Ir.Binary {op = Ir.BwRightShift; src1 = (Ir.Constant 20);
+         src2 = (Ir.Constant 4); dst = (Ir.Var "tmp.0")};
+        Ir.Binary {op = Ir.BwLeftShift; src1 = (Ir.Constant 3);
+          src2 = (Ir.Constant 1); dst = (Ir.Var "tmp.1")};
+        Ir.Binary {op = Ir.LessOrEqual; src1 = (Ir.Var "tmp.0");
+          src2 = (Ir.Var "tmp.1"); dst = (Ir.Var "tmp.2")};
+        (Ir.Return (Ir.Var "tmp.2")); (Ir.Return (Ir.Constant 0))]}
+     ])

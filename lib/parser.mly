@@ -69,11 +69,20 @@
 %%
 
 prog:
-  | func EOF { Ast.mk_prog $1 }
+  | prog_items EOF { Ast.mk_prog $1 }
+  ;
+
+prog_items:
+  | prog_items prog_item { $1 @ [$2] }
+  | { [] }
+  ;
+
+prog_item:
+  | func { Ast.mk_func_prog_item $1 }
   ;
 
 func:
-  | KW_INT identifier LPAREN KW_VOID RPAREN block { Ast.mk_func Ast.KwInt $2 $6 }
+  | KW_INT identifier LPAREN KW_VOID RPAREN block { Ast.mk_func $2 $6 }
   ;
 
 block:

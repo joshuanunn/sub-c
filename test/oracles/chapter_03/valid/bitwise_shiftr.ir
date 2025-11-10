@@ -1,6 +1,7 @@
 (Ir.Program
-   Ir.Function {name = "main";
-     body =
-     [Ir.Binary {op = Ir.BwRightShift; src1 = (Ir.Constant 1000);
-        src2 = (Ir.Constant 4); dst = (Ir.Var "tmp.0")};
-       (Ir.Return (Ir.Var "tmp.0")); (Ir.Return (Ir.Constant 0))]})
+   [Ir.Function {name = "main";
+      body =
+      [Ir.Binary {op = Ir.BwRightShift; src1 = (Ir.Constant 1000);
+         src2 = (Ir.Constant 4); dst = (Ir.Var "tmp.0")};
+        (Ir.Return (Ir.Var "tmp.0")); (Ir.Return (Ir.Constant 0))]}
+     ])

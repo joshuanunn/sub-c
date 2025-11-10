@@ -43,4 +43,4 @@ type instruction =
 type func = Function of { name : string; body : instruction list }
 [@@deriving show]
 
-type prog = Program of func [@@deriving show]
+type prog = Program of func list [@@deriving show]

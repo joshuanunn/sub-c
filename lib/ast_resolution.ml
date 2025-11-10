@@ -60,6 +60,7 @@ let resolve_opt_expr (e : Ast.expr option) (se : Env.senv) : Ast.expr option =
     [se] and resolving any initialiser expressions. *)
 let resolve_decl (d : Ast.decl) (se : Env.senv) : Ast.decl =
   match d with
+  | FunDecl _ -> failwith "TODO"
   | VarDecl { name; init = None } ->
       let var = Env.declare_var name se in
       VarDecl { name = var; init = None }
@@ -145,18 +146,15 @@ let rec resolve_stmt (s : Ast.stmt) (se : Env.senv) : Ast.stmt =
     function [f] using environment [se]. Predeclares all labels before resolving
     statements. *)
 and resolve_func (f : Ast.func) (se : Env.senv) : Ast.func =
-  match f with
-  | Function fn ->
-      Env.push_lab_scope se;
+  Env.push_lab_scope se;
 
-      (* Predeclare labels to support forward gotos *)
-      predeclare_labels fn.body se;
+  (* Predeclare labels to support forward gotos *)
+  predeclare_labels f.body se;
 
-      (* Resolve statements, declarations, variables, and gotos *)
-      let body = resolve_block fn.body se in
-
-      Env.pop_lab_scope se;
-      Function { name = fn.name; body; return_type = fn.return_type }
+  (* Resolve statements, declarations, variables, and gotos *)
+  let body = resolve_block f.body se in
+  Env.pop_lab_scope se;
+  { name = f.name; body }
 
 (** [resolve_block b se] resolves statements and declarations in block [b]. *)
 and resolve_block (b : Ast.block) (se : Env.senv) : Ast.block =
@@ -173,4 +171,12 @@ and resolve_block (b : Ast.block) (se : Env.senv) : Ast.block =
 
 (** [resolve_prog p se] resolves top-level program [p] with environment [se]. *)
 and resolve_prog (Program p : Ast.prog) (se : Env.senv) : Ast.prog =
-  Program (resolve_func p se)
+  let resolved_funcs =
+    List.map
+      (function
+        | Ast.FunDecl f -> Ast.FunDecl (resolve_func f se)
+        | Ast.VarDecl _ ->
+            failwith "Global variable declaration not yet implemented")
+      p
+  in
+  Program resolved_funcs

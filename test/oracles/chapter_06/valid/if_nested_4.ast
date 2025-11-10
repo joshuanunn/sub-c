@@ -1,29 +1,34 @@
 (Ast.Program
-   Ast.Function {return_type = Ast.KwInt; name = (Ast.Identifier "main");
-     body =
-     (Ast.Block
-        [(Ast.D
-            Ast.VarDecl {name = (Ast.Identifier "a");
-              init = (Some (Ast.LiteralInt 0))});
-          (Ast.S
-             Ast.If {
-               cond_exp =
-               Ast.Unary {op = Ast.Not; exp = (Ast.Var (Ast.Identifier "a"))};
-               then_smt =
-               Ast.If {
-                 cond_exp =
-                 Ast.Binary {op = Ast.Divide; left = (Ast.LiteralInt 3);
-                   right = (Ast.LiteralInt 4)};
-                 then_smt =
-                 (Ast.Expression
-                    (Ast.Assignment ((Ast.Var (Ast.Identifier "a")),
-                       (Ast.LiteralInt 3))));
-                 else_smt =
-                 (Some (Ast.Expression
-                          (Ast.Assignment ((Ast.Var (Ast.Identifier "a")),
-                             Ast.Binary {op = Ast.Divide;
-                               left = (Ast.LiteralInt 8);
-                               right = (Ast.LiteralInt 2)}
-                             ))))};
-               else_smt = None});
-          (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "a"))))])})
+   [(Ast.FunDecl
+       { Ast.name = (Ast.Identifier "main");
+         body =
+         (Ast.Block
+            [(Ast.D
+                Ast.VarDecl {name = (Ast.Identifier "a");
+                  init = (Some (Ast.LiteralInt 0))});
+              (Ast.S
+                 Ast.If {
+                   cond_exp =
+                   Ast.Unary {op = Ast.Not;
+                     exp = (Ast.Var (Ast.Identifier "a"))};
+                   then_smt =
+                   Ast.If {
+                     cond_exp =
+                     Ast.Binary {op = Ast.Divide; left = (Ast.LiteralInt 3);
+                       right = (Ast.LiteralInt 4)};
+                     then_smt =
+                     (Ast.Expression
+                        (Ast.Assignment ((Ast.Var (Ast.Identifier "a")),
+                           (Ast.LiteralInt 3))));
+                     else_smt =
+                     (Some (Ast.Expression
+                              (Ast.Assignment (
+                                 (Ast.Var (Ast.Identifier "a")),
+                                 Ast.Binary {op = Ast.Divide;
+                                   left = (Ast.LiteralInt 8);
+                                   right = (Ast.LiteralInt 2)}
+                                 ))))};
+                   else_smt = None});
+              (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "a"))))])
+         })
+     ])

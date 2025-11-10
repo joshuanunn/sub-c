@@ -1,20 +1,23 @@
 (Ast.Program
-   Ast.Function {return_type = Ast.KwInt; name = (Ast.Identifier "main");
-     body =
-     (Ast.Block
-        [(Ast.D
-            Ast.VarDecl {name = (Ast.Identifier "i.0");
-              init = (Some (Ast.LiteralInt 2147483642))});
-          (Ast.S
-             Ast.DoWhile {body = Ast.Null;
-               cond =
-               Ast.Binary {op = Ast.GreaterOrEqual;
-                 left =
-                 (Ast.Assignment ((Ast.Var (Ast.Identifier "i.0")),
-                    Ast.Binary {op = Ast.Subtract;
-                      left = (Ast.Var (Ast.Identifier "i.0"));
-                      right = (Ast.LiteralInt 5)}
-                    ));
-                 right = (Ast.LiteralInt 256)};
-               id = (Some (Ast.LoopLabel "1"))});
-          (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "i.0"))))])})
+   [(Ast.FunDecl
+       { Ast.name = (Ast.Identifier "main");
+         body =
+         (Ast.Block
+            [(Ast.D
+                Ast.VarDecl {name = (Ast.Identifier "i.0");
+                  init = (Some (Ast.LiteralInt 2147483642))});
+              (Ast.S
+                 Ast.DoWhile {body = Ast.Null;
+                   cond =
+                   Ast.Binary {op = Ast.GreaterOrEqual;
+                     left =
+                     (Ast.Assignment ((Ast.Var (Ast.Identifier "i.0")),
+                        Ast.Binary {op = Ast.Subtract;
+                          left = (Ast.Var (Ast.Identifier "i.0"));
+                          right = (Ast.LiteralInt 5)}
+                        ));
+                     right = (Ast.LiteralInt 256)};
+                   id = (Some (Ast.LoopLabel "1"))});
+              (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "i.0"))))])
+         })
+     ])

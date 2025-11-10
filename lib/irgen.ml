@@ -310,6 +310,7 @@ let rec convert_stmt (s : Ast.stmt) (le : Env.lenv) : Ir.instruction list =
 
 and convert_dclr (d : Ast.decl) (le : Env.lenv) : Ir.instruction list =
   match d with
+  | FunDecl _ -> failwith "TODO"
   (* No need to generate instructions for variable declaration *)
   | VarDecl { name; init = None } ->
       Env.insert_value name le;
@@ -347,21 +348,27 @@ and convert_for_post (e : Ast.expr option) (le : Env.lenv) : Ir.instruction list
   | None -> []
 
 and convert_func (f : Ast.func) (le : Env.lenv) : Ir.func =
-  match f with
-  | Function fn ->
-      let (Block block_items) = fn.body in
-      let body =
-        List.map
-          (fun node ->
-            match node with
-            | Ast.S s -> convert_stmt s le
-            | Ast.D d -> convert_dclr d le)
-          block_items
-        |> List.flatten
-      in
-      (* Append "return 0" to the function end, in case no return present *)
-      let body_safe_return = body @ [ Return (Constant 0) ] in
-      Function { name = identifier_to_string fn.name; body = body_safe_return }
+  let (Block block_items) = f.body in
+  let body =
+    List.map
+      (fun node ->
+        match node with
+        | Ast.S s -> convert_stmt s le
+        | Ast.D d -> convert_dclr d le)
+      block_items
+    |> List.flatten
+  in
+  (* Append "return 0" to the function end, in case no return present *)
+  let body_safe_return = body @ [ Return (Constant 0) ] in
+  Function { name = identifier_to_string f.name; body = body_safe_return }
 
 let convert_prog (Program p : Ast.prog) (le : Env.lenv) : Ir.prog =
-  Program (convert_func p le)
+  let resolved_funcs =
+    List.map
+      (function
+        | Ast.FunDecl f -> convert_func f le
+        | Ast.VarDecl _ ->
+            failwith "Global variable declaration not yet implemented")
+      p
+  in
+  Program resolved_funcs

@@ -1,6 +1,7 @@
 (Ir.Program
-   Ir.Function {name = "main";
-     body =
-     [Ir.Jump {target = "label2.1"}; (Ir.Return (Ir.Constant 0));
-       (Ir.Label "label1.0"); (Ir.Label "label2.1");
-       (Ir.Return (Ir.Constant 1)); (Ir.Return (Ir.Constant 0))]})
+   [Ir.Function {name = "main";
+      body =
+      [Ir.Jump {target = "label2.1"}; (Ir.Return (Ir.Constant 0));
+        (Ir.Label "label1.0"); (Ir.Label "label2.1");
+        (Ir.Return (Ir.Constant 1)); (Ir.Return (Ir.Constant 0))]}
+     ])

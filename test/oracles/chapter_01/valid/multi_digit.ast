@@ -1,3 +1,5 @@
 (Ast.Program
-   Ast.Function {return_type = Ast.KwInt; name = (Ast.Identifier "main");
-     body = (Ast.Block [(Ast.S (Ast.Return (Ast.LiteralInt 100)))])})
+   [(Ast.FunDecl
+       { Ast.name = (Ast.Identifier "main");
+         body = (Ast.Block [(Ast.S (Ast.Return (Ast.LiteralInt 100)))]) })
+     ])

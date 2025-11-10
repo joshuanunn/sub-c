@@ -1,43 +1,46 @@
 (Ast.Program
-   Ast.Function {return_type = Ast.KwInt; name = (Ast.Identifier "main");
-     body =
-     (Ast.Block
-        [(Ast.D
-            Ast.VarDecl {name = (Ast.Identifier "a.1");
-              init = (Some (Ast.LiteralInt 10))});
-          (Ast.D
-             Ast.VarDecl {name = (Ast.Identifier "b.2");
-               init = (Some (Ast.LiteralInt 0))});
-          (Ast.S
-             Ast.If {cond_exp = (Ast.Var (Ast.Identifier "a.1"));
-               then_smt =
-               (Ast.Compound
-                  (Ast.Block
-                     [(Ast.D
-                         Ast.VarDecl {name = (Ast.Identifier "a.3");
-                           init = (Some (Ast.LiteralInt 1))});
-                       (Ast.S
-                          (Ast.Expression
-                             (Ast.Assignment (
-                                (Ast.Var (Ast.Identifier "b.2")),
-                                (Ast.Var (Ast.Identifier "a.3"))))));
-                       (Ast.S (Ast.Goto (Ast.GotoLabel "end.0")))]));
-               else_smt = None});
-          (Ast.S
-             (Ast.Expression
-                (Ast.Assignment ((Ast.Var (Ast.Identifier "a.1")),
-                   (Ast.LiteralInt 9)))));
-          (Ast.S
-             (Ast.Label ((Ast.GotoLabel "end.0"),
-                (Ast.Return
-                   Ast.Binary {op = Ast.And;
-                     left =
-                     Ast.Binary {op = Ast.Equal;
-                       left = (Ast.Var (Ast.Identifier "a.1"));
-                       right = (Ast.LiteralInt 10)};
-                     right =
-                     Ast.Binary {op = Ast.Equal;
-                       left = (Ast.Var (Ast.Identifier "b.2"));
-                       right = (Ast.LiteralInt 1)}})
-                )))
-          ])})
+   [(Ast.FunDecl
+       { Ast.name = (Ast.Identifier "main");
+         body =
+         (Ast.Block
+            [(Ast.D
+                Ast.VarDecl {name = (Ast.Identifier "a.1");
+                  init = (Some (Ast.LiteralInt 10))});
+              (Ast.D
+                 Ast.VarDecl {name = (Ast.Identifier "b.2");
+                   init = (Some (Ast.LiteralInt 0))});
+              (Ast.S
+                 Ast.If {cond_exp = (Ast.Var (Ast.Identifier "a.1"));
+                   then_smt =
+                   (Ast.Compound
+                      (Ast.Block
+                         [(Ast.D
+                             Ast.VarDecl {name = (Ast.Identifier "a.3");
+                               init = (Some (Ast.LiteralInt 1))});
+                           (Ast.S
+                              (Ast.Expression
+                                 (Ast.Assignment (
+                                    (Ast.Var (Ast.Identifier "b.2")),
+                                    (Ast.Var (Ast.Identifier "a.3"))))));
+                           (Ast.S (Ast.Goto (Ast.GotoLabel "end.0")))]));
+                   else_smt = None});
+              (Ast.S
+                 (Ast.Expression
+                    (Ast.Assignment ((Ast.Var (Ast.Identifier "a.1")),
+                       (Ast.LiteralInt 9)))));
+              (Ast.S
+                 (Ast.Label ((Ast.GotoLabel "end.0"),
+                    (Ast.Return
+                       Ast.Binary {op = Ast.And;
+                         left =
+                         Ast.Binary {op = Ast.Equal;
+                           left = (Ast.Var (Ast.Identifier "a.1"));
+                           right = (Ast.LiteralInt 10)};
+                         right =
+                         Ast.Binary {op = Ast.Equal;
+                           left = (Ast.Var (Ast.Identifier "b.2"));
+                           right = (Ast.LiteralInt 1)}})
+                    )))
+              ])
+         })
+     ])

@@ -1,22 +1,25 @@
 (Ast.Program
-   Ast.Function {return_type = Ast.KwInt; name = (Ast.Identifier "main");
-     body =
-     (Ast.Block
-        [(Ast.D
-            Ast.VarDecl {name = (Ast.Identifier "a.0");
-              init =
-              (Some Ast.Unary {op = Ast.Negate; exp = (Ast.LiteralInt 1)})});
-          (Ast.S
-             Ast.If {
-               cond_exp =
-               Ast.Unary {op = Ast.PreIncrement;
-                 exp = (Ast.Var (Ast.Identifier "a.0"))};
-               then_smt = (Ast.Return (Ast.LiteralInt 0));
-               else_smt =
-               (Some Ast.If {
-                       cond_exp =
-                       Ast.Unary {op = Ast.PreIncrement;
-                         exp = (Ast.Var (Ast.Identifier "a.0"))};
-                       then_smt = (Ast.Return (Ast.LiteralInt 1));
-                       else_smt = None})});
-          (Ast.S (Ast.Return (Ast.LiteralInt 0)))])})
+   [(Ast.FunDecl
+       { Ast.name = (Ast.Identifier "main");
+         body =
+         (Ast.Block
+            [(Ast.D
+                Ast.VarDecl {name = (Ast.Identifier "a.0");
+                  init =
+                  (Some Ast.Unary {op = Ast.Negate; exp = (Ast.LiteralInt 1)})});
+              (Ast.S
+                 Ast.If {
+                   cond_exp =
+                   Ast.Unary {op = Ast.PreIncrement;
+                     exp = (Ast.Var (Ast.Identifier "a.0"))};
+                   then_smt = (Ast.Return (Ast.LiteralInt 0));
+                   else_smt =
+                   (Some Ast.If {
+                           cond_exp =
+                           Ast.Unary {op = Ast.PreIncrement;
+                             exp = (Ast.Var (Ast.Identifier "a.0"))};
+                           then_smt = (Ast.Return (Ast.LiteralInt 1));
+                           else_smt = None})});
+              (Ast.S (Ast.Return (Ast.LiteralInt 0)))])
+         })
+     ])

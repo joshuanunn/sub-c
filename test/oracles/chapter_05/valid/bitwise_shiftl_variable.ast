@@ -1,13 +1,16 @@
 (Ast.Program
-   Ast.Function {return_type = Ast.KwInt; name = (Ast.Identifier "main");
-     body =
-     (Ast.Block
-        [(Ast.D
-            Ast.VarDecl {name = (Ast.Identifier "x");
-              init = (Some (Ast.LiteralInt 3))});
-          (Ast.S
-             (Ast.Return
-                Ast.Binary {op = Ast.BwLeftShift;
-                  left = (Ast.Var (Ast.Identifier "x"));
-                  right = (Ast.LiteralInt 3)}))
-          ])})
+   [(Ast.FunDecl
+       { Ast.name = (Ast.Identifier "main");
+         body =
+         (Ast.Block
+            [(Ast.D
+                Ast.VarDecl {name = (Ast.Identifier "x");
+                  init = (Some (Ast.LiteralInt 3))});
+              (Ast.S
+                 (Ast.Return
+                    Ast.Binary {op = Ast.BwLeftShift;
+                      left = (Ast.Var (Ast.Identifier "x"));
+                      right = (Ast.LiteralInt 3)}))
+              ])
+         })
+     ])

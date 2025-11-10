@@ -1,20 +1,24 @@
 (Ast.Program
-   Ast.Function {return_type = Ast.KwInt; name = (Ast.Identifier "main");
-     body =
-     (Ast.Block
-        [(Ast.D
-            Ast.VarDecl {name = (Ast.Identifier "a");
-              init = (Some (Ast.LiteralInt 0))});
-          (Ast.D
-             Ast.VarDecl {name = (Ast.Identifier "b");
-               init = (Some (Ast.LiteralInt 0))});
-          (Ast.S
-             (Ast.Expression
-                Ast.Conditional {cond_exp = (Ast.Var (Ast.Identifier "a"));
-                  then_exp =
-                  (Ast.Assignment ((Ast.Var (Ast.Identifier "b")),
-                     (Ast.LiteralInt 1)));
-                  else_exp =
-                  (Ast.Assignment ((Ast.Var (Ast.Identifier "b")),
-                     (Ast.LiteralInt 2)))}));
-          (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "b"))))])})
+   [(Ast.FunDecl
+       { Ast.name = (Ast.Identifier "main");
+         body =
+         (Ast.Block
+            [(Ast.D
+                Ast.VarDecl {name = (Ast.Identifier "a");
+                  init = (Some (Ast.LiteralInt 0))});
+              (Ast.D
+                 Ast.VarDecl {name = (Ast.Identifier "b");
+                   init = (Some (Ast.LiteralInt 0))});
+              (Ast.S
+                 (Ast.Expression
+                    Ast.Conditional {
+                      cond_exp = (Ast.Var (Ast.Identifier "a"));
+                      then_exp =
+                      (Ast.Assignment ((Ast.Var (Ast.Identifier "b")),
+                         (Ast.LiteralInt 1)));
+                      else_exp =
+                      (Ast.Assignment ((Ast.Var (Ast.Identifier "b")),
+                         (Ast.LiteralInt 2)))}));
+              (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "b"))))])
+         })
+     ])

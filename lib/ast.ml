@@ -71,22 +71,22 @@ type stmt =
   | Null
 [@@deriving show]
 
-and decl = VarDecl of { name : ident; init : expr option } [@@deriving show]
+and decl = FunDecl of func | VarDecl of { name : ident; init : expr option }
+[@@deriving show]
+
 and for_init = InclDecl of decl | InitExp of expr option [@@deriving show]
 and block_item = S of stmt | D of decl [@@deriving show]
 and block = Block of block_item list [@@deriving show]
+and func = { name : ident; body : block } [@@deriving show]
 
-type func = Function of { return_type : typ; name : ident; body : block }
-[@@deriving show]
-
-type prog = Program of func [@@deriving show]
+type prog = Program of decl list [@@deriving show]
 
 let literal_to_int : expr -> int = function
   | LiteralInt i -> i
   | _ -> failwith "expected LiteralInt"
 
 let mk_prog f = Program f
-let mk_func return_type name b = Function { return_type; name; body = Block b }
+let mk_func name b = FunDecl { name; body = Block b }
 let mk_ident i = Identifier i
 let mk_int_expr n = LiteralInt n
 let mk_binop_expr op left right = Binary { op; left; right }
@@ -118,6 +118,7 @@ let mk_decl_init_stmt i v = VarDecl { name = i; init = Some v }
 let mk_decl_stmt i = VarDecl { name = i; init = None }
 let mk_stmt_block_item s = S s
 let mk_decl_block_item d = D d
+let mk_func_prog_item f = f
 
 (** [mk_comp_assign_expr op left right] resolves compound ops by evaluating the
     binary expression [left] [op] [right], then assigning result to [left] *)

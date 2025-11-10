@@ -1,3 +1,4 @@
 (Ast.Program
-   Ast.Function {return_type = Ast.KwInt; name = (Ast.Identifier "main");
-     body = (Ast.Block [])})
+   [(Ast.FunDecl
+       { Ast.name = (Ast.Identifier "main"); body = (Ast.Block []) })
+     ])

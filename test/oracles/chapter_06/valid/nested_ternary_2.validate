@@ -1,28 +1,31 @@
 (Ast.Program
-   Ast.Function {return_type = Ast.KwInt; name = (Ast.Identifier "main");
-     body =
-     (Ast.Block
-        [(Ast.D
-            Ast.VarDecl {name = (Ast.Identifier "a.0");
-              init =
-              (Some Ast.Conditional {cond_exp = (Ast.LiteralInt 1);
-                      then_exp =
-                      Ast.Conditional {cond_exp = (Ast.LiteralInt 2);
-                        then_exp = (Ast.LiteralInt 3);
-                        else_exp = (Ast.LiteralInt 4)};
-                      else_exp = (Ast.LiteralInt 5)})});
-          (Ast.D
-             Ast.VarDecl {name = (Ast.Identifier "b.1");
-               init =
-               (Some Ast.Conditional {cond_exp = (Ast.LiteralInt 0);
-                       then_exp =
-                       Ast.Conditional {cond_exp = (Ast.LiteralInt 2);
-                         then_exp = (Ast.LiteralInt 3);
-                         else_exp = (Ast.LiteralInt 4)};
-                       else_exp = (Ast.LiteralInt 5)})});
-          (Ast.S
-             (Ast.Return
-                Ast.Binary {op = Ast.Multiply;
-                  left = (Ast.Var (Ast.Identifier "a.0"));
-                  right = (Ast.Var (Ast.Identifier "b.1"))}))
-          ])})
+   [(Ast.FunDecl
+       { Ast.name = (Ast.Identifier "main");
+         body =
+         (Ast.Block
+            [(Ast.D
+                Ast.VarDecl {name = (Ast.Identifier "a.0");
+                  init =
+                  (Some Ast.Conditional {cond_exp = (Ast.LiteralInt 1);
+                          then_exp =
+                          Ast.Conditional {cond_exp = (Ast.LiteralInt 2);
+                            then_exp = (Ast.LiteralInt 3);
+                            else_exp = (Ast.LiteralInt 4)};
+                          else_exp = (Ast.LiteralInt 5)})});
+              (Ast.D
+                 Ast.VarDecl {name = (Ast.Identifier "b.1");
+                   init =
+                   (Some Ast.Conditional {cond_exp = (Ast.LiteralInt 0);
+                           then_exp =
+                           Ast.Conditional {cond_exp = (Ast.LiteralInt 2);
+                             then_exp = (Ast.LiteralInt 3);
+                             else_exp = (Ast.LiteralInt 4)};
+                           else_exp = (Ast.LiteralInt 5)})});
+              (Ast.S
+                 (Ast.Return
+                    Ast.Binary {op = Ast.Multiply;
+                      left = (Ast.Var (Ast.Identifier "a.0"));
+                      right = (Ast.Var (Ast.Identifier "b.1"))}))
+              ])
+         })
+     ])

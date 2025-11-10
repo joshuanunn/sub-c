@@ -1,7 +1,8 @@
 (Ir.Program
-   Ir.Function {name = "main";
-     body =
-     [Ir.Binary {op = Ir.Subtract; src1 = (Ir.Constant 4);
-        src2 = (Ir.Constant 4); dst = (Ir.Var "tmp.0")};
-       Ir.Unary {op = Ir.Not; src = (Ir.Var "tmp.0"); dst = (Ir.Var "tmp.1")};
-       (Ir.Return (Ir.Var "tmp.1")); (Ir.Return (Ir.Constant 0))]})
+   [Ir.Function {name = "main";
+      body =
+      [Ir.Binary {op = Ir.Subtract; src1 = (Ir.Constant 4);
+         src2 = (Ir.Constant 4); dst = (Ir.Var "tmp.0")};
+        Ir.Unary {op = Ir.Not; src = (Ir.Var "tmp.0"); dst = (Ir.Var "tmp.1")};
+        (Ir.Return (Ir.Var "tmp.1")); (Ir.Return (Ir.Constant 0))]}
+     ])

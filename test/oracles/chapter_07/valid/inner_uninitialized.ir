@@ -1,5 +1,6 @@
 (Ir.Program
-   Ir.Function {name = "main";
-     body =
-     [Ir.Copy {src = (Ir.Constant 4); dst = (Ir.Var "x.0")};
-       (Ir.Return (Ir.Var "x.0")); (Ir.Return (Ir.Constant 0))]})
+   [Ir.Function {name = "main";
+      body =
+      [Ir.Copy {src = (Ir.Constant 4); dst = (Ir.Var "x.0")};
+        (Ir.Return (Ir.Var "x.0")); (Ir.Return (Ir.Constant 0))]}
+     ])

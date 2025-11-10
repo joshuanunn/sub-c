@@ -1,23 +1,26 @@
 (Ast.Program
-   Ast.Function {return_type = Ast.KwInt; name = (Ast.Identifier "main");
-     body =
-     (Ast.Block
-        [(Ast.D
-            Ast.VarDecl {name = (Ast.Identifier "result.1");
-              init = (Some (Ast.LiteralInt 0))});
-          (Ast.S (Ast.Goto (Ast.GotoLabel "label.0")));
-          (Ast.S
-             Ast.While {cond = (Ast.LiteralInt 0);
-               body =
-               (Ast.Label ((Ast.GotoLabel "label.0"),
-                  (Ast.Compound
-                     (Ast.Block
-                        [(Ast.S
-                            (Ast.Expression
-                               (Ast.Assignment (
-                                  (Ast.Var (Ast.Identifier "result.1")),
-                                  (Ast.LiteralInt 1)))))
-                          ]))
-                  ));
-               id = (Some (Ast.LoopLabel "1"))});
-          (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "result.1"))))])})
+   [(Ast.FunDecl
+       { Ast.name = (Ast.Identifier "main");
+         body =
+         (Ast.Block
+            [(Ast.D
+                Ast.VarDecl {name = (Ast.Identifier "result.1");
+                  init = (Some (Ast.LiteralInt 0))});
+              (Ast.S (Ast.Goto (Ast.GotoLabel "label.0")));
+              (Ast.S
+                 Ast.While {cond = (Ast.LiteralInt 0);
+                   body =
+                   (Ast.Label ((Ast.GotoLabel "label.0"),
+                      (Ast.Compound
+                         (Ast.Block
+                            [(Ast.S
+                                (Ast.Expression
+                                   (Ast.Assignment (
+                                      (Ast.Var (Ast.Identifier "result.1")),
+                                      (Ast.LiteralInt 1)))))
+                              ]))
+                      ));
+                   id = (Some (Ast.LoopLabel "1"))});
+              (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "result.1"))))])
+         })
+     ])

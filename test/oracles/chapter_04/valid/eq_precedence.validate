@@ -1,12 +1,15 @@
 (Ast.Program
-   Ast.Function {return_type = Ast.KwInt; name = (Ast.Identifier "main");
-     body =
-     (Ast.Block
-        [(Ast.S
-            (Ast.Return
-               Ast.Binary {op = Ast.NotEqual;
-                 left =
-                 Ast.Binary {op = Ast.Equal; left = (Ast.LiteralInt 3);
-                   right = (Ast.LiteralInt 1)};
-                 right = (Ast.LiteralInt 2)}))
-          ])})
+   [(Ast.FunDecl
+       { Ast.name = (Ast.Identifier "main");
+         body =
+         (Ast.Block
+            [(Ast.S
+                (Ast.Return
+                   Ast.Binary {op = Ast.NotEqual;
+                     left =
+                     Ast.Binary {op = Ast.Equal; left = (Ast.LiteralInt 3);
+                       right = (Ast.LiteralInt 1)};
+                     right = (Ast.LiteralInt 2)}))
+              ])
+         })
+     ])

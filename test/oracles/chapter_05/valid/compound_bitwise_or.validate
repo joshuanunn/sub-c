@@ -1,15 +1,18 @@
 (Ast.Program
-   Ast.Function {return_type = Ast.KwInt; name = (Ast.Identifier "main");
-     body =
-     (Ast.Block
-        [(Ast.D
-            Ast.VarDecl {name = (Ast.Identifier "to_or.0");
-              init = (Some (Ast.LiteralInt 1))});
-          (Ast.S
-             (Ast.Expression
-                (Ast.Assignment ((Ast.Var (Ast.Identifier "to_or.0")),
-                   Ast.Binary {op = Ast.BwOr;
-                     left = (Ast.Var (Ast.Identifier "to_or.0"));
-                     right = (Ast.LiteralInt 30)}
-                   ))));
-          (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "to_or.0"))))])})
+   [(Ast.FunDecl
+       { Ast.name = (Ast.Identifier "main");
+         body =
+         (Ast.Block
+            [(Ast.D
+                Ast.VarDecl {name = (Ast.Identifier "to_or.0");
+                  init = (Some (Ast.LiteralInt 1))});
+              (Ast.S
+                 (Ast.Expression
+                    (Ast.Assignment ((Ast.Var (Ast.Identifier "to_or.0")),
+                       Ast.Binary {op = Ast.BwOr;
+                         left = (Ast.Var (Ast.Identifier "to_or.0"));
+                         right = (Ast.LiteralInt 30)}
+                       ))));
+              (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "to_or.0"))))])
+         })
+     ])

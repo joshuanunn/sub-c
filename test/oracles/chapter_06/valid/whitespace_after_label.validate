@@ -1,12 +1,15 @@
 (Ast.Program
-   Ast.Function {return_type = Ast.KwInt; name = (Ast.Identifier "main");
-     body =
-     (Ast.Block
-        [(Ast.S (Ast.Goto (Ast.GotoLabel "label2.1")));
-          (Ast.S (Ast.Return (Ast.LiteralInt 0)));
-          (Ast.S
-             (Ast.Label ((Ast.GotoLabel "label1.0"),
-                (Ast.Label ((Ast.GotoLabel "label2.1"),
-                   (Ast.Return (Ast.LiteralInt 1))))
-                )))
-          ])})
+   [(Ast.FunDecl
+       { Ast.name = (Ast.Identifier "main");
+         body =
+         (Ast.Block
+            [(Ast.S (Ast.Goto (Ast.GotoLabel "label2.1")));
+              (Ast.S (Ast.Return (Ast.LiteralInt 0)));
+              (Ast.S
+                 (Ast.Label ((Ast.GotoLabel "label1.0"),
+                    (Ast.Label ((Ast.GotoLabel "label2.1"),
+                       (Ast.Return (Ast.LiteralInt 1))))
+                    )))
+              ])
+         })
+     ])

@@ -1,34 +1,40 @@
 (Ast.Program
-   Ast.Function {return_type = Ast.KwInt; name = (Ast.Identifier "main");
-     body =
-     (Ast.Block
-        [(Ast.D
-            Ast.VarDecl {name = (Ast.Identifier "a.1");
-              init = (Some (Ast.LiteralInt 0))});
-          (Ast.S (Ast.Goto (Ast.GotoLabel "mid_case.0")));
-          (Ast.S
-             Ast.Switch {cond = (Ast.LiteralInt 4);
-               body =
-               (Ast.Compound
-                  (Ast.Block
-                     [(Ast.S
-                         Ast.Case {value = (Ast.LiteralInt 4);
-                           body =
-                           (Ast.Expression
-                              (Ast.Assignment (
-                                 (Ast.Var (Ast.Identifier "a.1")),
-                                 (Ast.LiteralInt 5))));
-                           id = (Some (Ast.SwitchLabel "1"))});
-                       (Ast.S
-                          (Ast.Label ((Ast.GotoLabel "mid_case.0"),
-                             (Ast.Expression
-                                (Ast.Assignment (
-                                   (Ast.Var (Ast.Identifier "a.1")),
-                                   Ast.Binary {op = Ast.Add;
-                                     left = (Ast.Var (Ast.Identifier "a.1"));
-                                     right = (Ast.LiteralInt 1)}
-                                   )))
-                             )));
-                       (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "a.1"))))]));
-               id = (Some (Ast.SwitchLabel "1"))});
-          (Ast.S (Ast.Return (Ast.LiteralInt 100)))])})
+   [(Ast.FunDecl
+       { Ast.name = (Ast.Identifier "main");
+         body =
+         (Ast.Block
+            [(Ast.D
+                Ast.VarDecl {name = (Ast.Identifier "a.1");
+                  init = (Some (Ast.LiteralInt 0))});
+              (Ast.S (Ast.Goto (Ast.GotoLabel "mid_case.0")));
+              (Ast.S
+                 Ast.Switch {cond = (Ast.LiteralInt 4);
+                   body =
+                   (Ast.Compound
+                      (Ast.Block
+                         [(Ast.S
+                             Ast.Case {value = (Ast.LiteralInt 4);
+                               body =
+                               (Ast.Expression
+                                  (Ast.Assignment (
+                                     (Ast.Var (Ast.Identifier "a.1")),
+                                     (Ast.LiteralInt 5))));
+                               id = (Some (Ast.SwitchLabel "1"))});
+                           (Ast.S
+                              (Ast.Label ((Ast.GotoLabel "mid_case.0"),
+                                 (Ast.Expression
+                                    (Ast.Assignment (
+                                       (Ast.Var (Ast.Identifier "a.1")),
+                                       Ast.Binary {op = Ast.Add;
+                                         left =
+                                         (Ast.Var (Ast.Identifier "a.1"));
+                                         right = (Ast.LiteralInt 1)}
+                                       )))
+                                 )));
+                           (Ast.S
+                              (Ast.Return (Ast.Var (Ast.Identifier "a.1"))))
+                           ]));
+                   id = (Some (Ast.SwitchLabel "1"))});
+              (Ast.S (Ast.Return (Ast.LiteralInt 100)))])
+         })
+     ])
