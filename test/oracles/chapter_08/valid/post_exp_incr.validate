@@ -1,38 +1,43 @@
 (Ast.Program
    [(Ast.FunDecl
-       { Ast.name = (Ast.Identifier "main");
+       { Ast.name = (Ast.Identifier "main"); params = [];
          body =
-         (Ast.Block
-            [(Ast.D
-                Ast.VarDecl {name = (Ast.Identifier "product.0");
-                  init = (Some (Ast.LiteralInt 1))});
-              (Ast.S
-                 Ast.For {
-                   init =
-                   (Ast.InclDecl
-                      Ast.VarDecl {name = (Ast.Identifier "i.1");
-                        init = (Some (Ast.LiteralInt 0))});
-                   cond =
-                   (Some Ast.Binary {op = Ast.LessThan;
-                           left = (Ast.Var (Ast.Identifier "i.1"));
-                           right = (Ast.LiteralInt 10)});
-                   post =
-                   (Some Ast.Unary {op = Ast.PostIncrement;
-                           exp = (Ast.Var (Ast.Identifier "i.1"))});
-                   body =
-                   (Ast.Compound
-                      (Ast.Block
-                         [(Ast.S
-                             (Ast.Expression
-                                (Ast.Assignment (
-                                   (Ast.Var (Ast.Identifier "product.0")),
-                                   Ast.Binary {op = Ast.Add;
-                                     left =
-                                     (Ast.Var (Ast.Identifier "product.0"));
-                                     right = (Ast.LiteralInt 2)}
-                                   ))))
-                           ]));
-                   id = (Some (Ast.LoopLabel "1"))});
-              (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "product.0"))))])
+         (Some (Ast.Block
+                  [(Ast.D
+                      (Ast.VarDecl
+                         { Ast.name = (Ast.Identifier "product.0");
+                           init = (Some (Ast.LiteralInt 1)) }));
+                    (Ast.S
+                       Ast.For {
+                         init =
+                         (Ast.InclDecl
+                            { Ast.name = (Ast.Identifier "i.1");
+                              init = (Some (Ast.LiteralInt 0)) });
+                         cond =
+                         (Some Ast.Binary {op = Ast.LessThan;
+                                 left = (Ast.Var (Ast.Identifier "i.1"));
+                                 right = (Ast.LiteralInt 10)});
+                         post =
+                         (Some Ast.Unary {op = Ast.PostIncrement;
+                                 exp = (Ast.Var (Ast.Identifier "i.1"))});
+                         body =
+                         (Ast.Compound
+                            (Ast.Block
+                               [(Ast.S
+                                   (Ast.Expression
+                                      (Ast.Assignment (
+                                         (Ast.Var
+                                            (Ast.Identifier "product.0")),
+                                         Ast.Binary {op = Ast.Add;
+                                           left =
+                                           (Ast.Var
+                                              (Ast.Identifier "product.0"));
+                                           right = (Ast.LiteralInt 2)}
+                                         ))))
+                                 ]));
+                         id = (Some (Ast.LoopLabel "1"))});
+                    (Ast.S
+                       (Ast.Return (Ast.Var (Ast.Identifier "product.0"))))
+                    ]))
          })
      ])

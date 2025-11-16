@@ -1,20 +1,23 @@
 (Ast.Program
    [(Ast.FunDecl
-       { Ast.name = (Ast.Identifier "main");
+       { Ast.name = (Ast.Identifier "main"); params = [];
          body =
-         (Ast.Block
-            [(Ast.D
-                Ast.VarDecl {name = (Ast.Identifier "to_multiply.0");
-                  init = (Some (Ast.LiteralInt 4))});
-              (Ast.S
-                 (Ast.Expression
-                    (Ast.Assignment (
-                       (Ast.Var (Ast.Identifier "to_multiply.0")),
-                       Ast.Binary {op = Ast.Multiply;
-                         left = (Ast.Var (Ast.Identifier "to_multiply.0"));
-                         right = (Ast.LiteralInt 3)}
-                       ))));
-              (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "to_multiply.0"))))
-              ])
+         (Some (Ast.Block
+                  [(Ast.D
+                      (Ast.VarDecl
+                         { Ast.name = (Ast.Identifier "to_multiply.0");
+                           init = (Some (Ast.LiteralInt 4)) }));
+                    (Ast.S
+                       (Ast.Expression
+                          (Ast.Assignment (
+                             (Ast.Var (Ast.Identifier "to_multiply.0")),
+                             Ast.Binary {op = Ast.Multiply;
+                               left =
+                               (Ast.Var (Ast.Identifier "to_multiply.0"));
+                               right = (Ast.LiteralInt 3)}
+                             ))));
+                    (Ast.S
+                       (Ast.Return (Ast.Var (Ast.Identifier "to_multiply.0"))))
+                    ]))
          })
      ])

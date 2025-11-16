@@ -25,6 +25,7 @@
 %token SEMICOLON
 %token QUESTION
 %token COLON
+%token COMMA
 %token INCREMENT
 %token DECREMENT
 %token ADD_ASSIGN
@@ -78,11 +79,37 @@ prog_items:
   ;
 
 prog_item:
-  | func { Ast.mk_func_prog_item $1 }
+  | fun_decl { Ast.mk_func_prog_item $1 }
   ;
 
-func:
-  | KW_INT identifier LPAREN KW_VOID RPAREN block { Ast.mk_func $2 $6 }
+fun_decl:
+  | KW_INT identifier LPAREN param_list_opt RPAREN block { Ast.mk_func_defn $2 $4 $6 }
+  | KW_INT identifier LPAREN param_list_opt RPAREN SEMICOLON { Ast.mk_func_decl $2 $4 }
+  ;
+
+param_list_opt:
+  | /* empty */ { [] }
+  | KW_VOID { [] }
+  | param_list { $1 }
+  ;
+
+param_list:
+  | param_decl { [$1] }
+  | param_list COMMA param_decl { $1 @ [$3] }
+  ;
+
+param_decl:
+  | KW_INT identifier { $2 }
+  ;
+
+arg_list_opt:
+  | /* empty */ { [] }
+  | arg_list { $1 }
+  ;
+
+arg_list:
+  | expr { [$1] }
+  | arg_list COMMA expr { $1 @ [$3] }
   ;
 
 block:
@@ -100,12 +127,17 @@ block_item:
   ;
 
 decl:
+  | var_decl { Ast.VarDecl $1 }
+  | fun_decl { $1 }
+  ;
+
+var_decl:
   | KW_INT identifier ASSIGN expr SEMICOLON { Ast.mk_decl_init_stmt $2 $4 }
   | KW_INT identifier SEMICOLON { Ast.mk_decl_stmt $2 }
   ;
 
 for_init:
-  | decl { Ast.mk_incl_decl $1 }
+  | var_decl { Ast.InclDecl $1 }
   | expr SEMICOLON { Ast.mk_init_exp $1 }
   | SEMICOLON { Ast.mk_empty_init_exp }
   ;
@@ -244,16 +276,17 @@ expr_02:
 
 (* Postfix operators [left associative] *)
 expr_01:
-  | atom INCREMENT { Ast.mk_unary_update_expr Ast.PostIncrement $1 }
-  | atom DECREMENT { Ast.mk_unary_update_expr Ast.PostDecrement $1 }
-  | atom { $1 }
+  | factor INCREMENT { Ast.mk_unary_update_expr Ast.PostIncrement $1 }
+  | factor DECREMENT { Ast.mk_unary_update_expr Ast.PostDecrement $1 }
+  | factor { $1 }
   ;
 
 (* Highest precedence: literals, identifiers, parentheses *)
-atom:
+factor:
   | LPAREN expr RPAREN { $2 }
   | LITERAL_INT { Ast.mk_int_expr $1 }
   | identifier { Ast.Var $1 }
+  | identifier LPAREN arg_list_opt RPAREN { Ast.mk_func_call $1 $3 }
   ;
 
 identifier:

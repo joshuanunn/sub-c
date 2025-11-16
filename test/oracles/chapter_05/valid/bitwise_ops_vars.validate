@@ -1,25 +1,28 @@
 (Ast.Program
    [(Ast.FunDecl
-       { Ast.name = (Ast.Identifier "main");
+       { Ast.name = (Ast.Identifier "main"); params = [];
          body =
-         (Ast.Block
-            [(Ast.D
-                Ast.VarDecl {name = (Ast.Identifier "a.0");
-                  init = (Some (Ast.LiteralInt 3))});
-              (Ast.D
-                 Ast.VarDecl {name = (Ast.Identifier "b.1");
-                   init = (Some (Ast.LiteralInt 5))});
-              (Ast.D
-                 Ast.VarDecl {name = (Ast.Identifier "c.2");
-                   init = (Some (Ast.LiteralInt 8))});
-              (Ast.S
-                 (Ast.Return
-                    Ast.Binary {op = Ast.BwOr;
-                      left =
-                      Ast.Binary {op = Ast.BwAnd;
-                        left = (Ast.Var (Ast.Identifier "a.0"));
-                        right = (Ast.Var (Ast.Identifier "b.1"))};
-                      right = (Ast.Var (Ast.Identifier "c.2"))}))
-              ])
+         (Some (Ast.Block
+                  [(Ast.D
+                      (Ast.VarDecl
+                         { Ast.name = (Ast.Identifier "a.0");
+                           init = (Some (Ast.LiteralInt 3)) }));
+                    (Ast.D
+                       (Ast.VarDecl
+                          { Ast.name = (Ast.Identifier "b.1");
+                            init = (Some (Ast.LiteralInt 5)) }));
+                    (Ast.D
+                       (Ast.VarDecl
+                          { Ast.name = (Ast.Identifier "c.2");
+                            init = (Some (Ast.LiteralInt 8)) }));
+                    (Ast.S
+                       (Ast.Return
+                          Ast.Binary {op = Ast.BwOr;
+                            left =
+                            Ast.Binary {op = Ast.BwAnd;
+                              left = (Ast.Var (Ast.Identifier "a.0"));
+                              right = (Ast.Var (Ast.Identifier "b.1"))};
+                            right = (Ast.Var (Ast.Identifier "c.2"))}))
+                    ]))
          })
      ])

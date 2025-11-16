@@ -1,15 +1,15 @@
 (Ast.Program
    [(Ast.FunDecl
-       { Ast.name = (Ast.Identifier "main");
+       { Ast.name = (Ast.Identifier "main"); params = [];
          body =
-         (Ast.Block
-            [(Ast.S (Ast.Goto (Ast.Identifier "label2")));
-              (Ast.S (Ast.Return (Ast.LiteralInt 0)));
-              (Ast.S
-                 (Ast.Label ((Ast.Identifier "label1"),
-                    (Ast.Label ((Ast.Identifier "label2"),
-                       (Ast.Return (Ast.LiteralInt 1))))
-                    )))
-              ])
+         (Some (Ast.Block
+                  [(Ast.S (Ast.Goto (Ast.Identifier "label2")));
+                    (Ast.S (Ast.Return (Ast.LiteralInt 0)));
+                    (Ast.S
+                       (Ast.Label ((Ast.Identifier "label1"),
+                          (Ast.Label ((Ast.Identifier "label2"),
+                             (Ast.Return (Ast.LiteralInt 1))))
+                          )))
+                    ]))
          })
      ])

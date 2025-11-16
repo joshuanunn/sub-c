@@ -1,17 +1,18 @@
 (Ast.Program
    [(Ast.FunDecl
-       { Ast.name = (Ast.Identifier "main");
+       { Ast.name = (Ast.Identifier "main"); params = [];
          body =
-         (Ast.Block
-            [(Ast.D
-                Ast.VarDecl {name = (Ast.Identifier "a");
-                  init = (Some (Ast.LiteralInt 0))});
-              (Ast.S
-                 (Ast.Expression
-                    Ast.Binary {op = Ast.Or; left = (Ast.LiteralInt 0);
-                      right =
-                      (Ast.Assignment ((Ast.Var (Ast.Identifier "a")),
-                         (Ast.LiteralInt 1)))}));
-              (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "a"))))])
+         (Some (Ast.Block
+                  [(Ast.D
+                      (Ast.VarDecl
+                         { Ast.name = (Ast.Identifier "a");
+                           init = (Some (Ast.LiteralInt 0)) }));
+                    (Ast.S
+                       (Ast.Expression
+                          Ast.Binary {op = Ast.Or; left = (Ast.LiteralInt 0);
+                            right =
+                            (Ast.Assignment ((Ast.Var (Ast.Identifier "a")),
+                               (Ast.LiteralInt 1)))}));
+                    (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "a"))))]))
          })
      ])

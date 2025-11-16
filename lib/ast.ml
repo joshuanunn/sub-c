@@ -45,6 +45,7 @@ type expr =
   | Binary of { op : binop; left : expr; right : expr }
   | Assignment of expr * expr
   | Conditional of { cond_exp : expr; then_exp : expr; else_exp : expr }
+  | FunctionCall of { name : ident; args : expr list }
 [@@deriving show]
 
 type stmt =
@@ -71,13 +72,15 @@ type stmt =
   | Null
 [@@deriving show]
 
-and decl = FunDecl of func | VarDecl of { name : ident; init : expr option }
-[@@deriving show]
-
-and for_init = InclDecl of decl | InitExp of expr option [@@deriving show]
+and decl = FunDecl of fun_decl | VarDecl of var_decl [@@deriving show]
+and for_init = InclDecl of var_decl | InitExp of expr option [@@deriving show]
 and block_item = S of stmt | D of decl [@@deriving show]
 and block = Block of block_item list [@@deriving show]
-and func = { name : ident; body : block } [@@deriving show]
+
+and fun_decl = { name : ident; params : ident list; body : block option }
+[@@deriving show]
+
+and var_decl = { name : ident; init : expr option } [@@deriving show]
 
 type prog = Program of decl list [@@deriving show]
 
@@ -86,7 +89,12 @@ let literal_to_int : expr -> int = function
   | _ -> failwith "expected LiteralInt"
 
 let mk_prog f = Program f
-let mk_func name b = FunDecl { name; body = Block b }
+
+let mk_func_defn name params body =
+  FunDecl { name; params; body = Some (Block body) }
+
+let mk_func_decl name params = FunDecl { name; params; body = None }
+let mk_func_call name args = FunctionCall { name; args }
 let mk_ident i = Identifier i
 let mk_int_expr n = LiteralInt n
 let mk_binop_expr op left right = Binary { op; left; right }
@@ -104,7 +112,6 @@ let mk_while_stmt c b = While { cond = c; body = b; id = None }
 let mk_dowhile_stmt b c = DoWhile { body = b; cond = c; id = None }
 let mk_empty_init_exp = InitExp None
 let mk_init_exp e = InitExp (Some e)
-let mk_incl_decl d = InclDecl d
 
 let mk_for_stmt i c p b =
   For { init = i; cond = c; post = p; body = b; id = None }
@@ -114,8 +121,8 @@ let mk_label_stmt l s = Label (l, s)
 let mk_switch_stmt e s = Switch { cond = e; body = s; id = None }
 let mk_case_stmt e s = Case { value = e; body = s; id = None }
 let mk_default_stmt s = Default { body = s; id = None }
-let mk_decl_init_stmt i v = VarDecl { name = i; init = Some v }
-let mk_decl_stmt i = VarDecl { name = i; init = None }
+let mk_decl_init_stmt i v = { name = i; init = Some v }
+let mk_decl_stmt i = { name = i; init = None }
 let mk_stmt_block_item s = S s
 let mk_decl_block_item d = D d
 let mk_func_prog_item f = f

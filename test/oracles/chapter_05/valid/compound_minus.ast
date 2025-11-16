@@ -1,19 +1,23 @@
 (Ast.Program
    [(Ast.FunDecl
-       { Ast.name = (Ast.Identifier "main");
+       { Ast.name = (Ast.Identifier "main"); params = [];
          body =
-         (Ast.Block
-            [(Ast.D
-                Ast.VarDecl {name = (Ast.Identifier "to_subtract");
-                  init = (Some (Ast.LiteralInt 10))});
-              (Ast.S
-                 (Ast.Expression
-                    (Ast.Assignment (
-                       (Ast.Var (Ast.Identifier "to_subtract")),
-                       Ast.Binary {op = Ast.Subtract;
-                         left = (Ast.Var (Ast.Identifier "to_subtract"));
-                         right = (Ast.LiteralInt 8)}
-                       ))));
-              (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "to_subtract"))))])
+         (Some (Ast.Block
+                  [(Ast.D
+                      (Ast.VarDecl
+                         { Ast.name = (Ast.Identifier "to_subtract");
+                           init = (Some (Ast.LiteralInt 10)) }));
+                    (Ast.S
+                       (Ast.Expression
+                          (Ast.Assignment (
+                             (Ast.Var (Ast.Identifier "to_subtract")),
+                             Ast.Binary {op = Ast.Subtract;
+                               left =
+                               (Ast.Var (Ast.Identifier "to_subtract"));
+                               right = (Ast.LiteralInt 8)}
+                             ))));
+                    (Ast.S
+                       (Ast.Return (Ast.Var (Ast.Identifier "to_subtract"))))
+                    ]))
          })
      ])

@@ -152,6 +152,7 @@ let rec convert_expr (e : Ast.expr) (le : Env.lenv) :
         cond_ins @ [ jz_cond ] @ e1_ins
         @ [ c1; j_end; Ir.Label l_e2 ]
         @ e2_ins @ [ c2; Ir.Label l_end ] )
+  | FunctionCall _ -> failwith "TODO"
 
 let rec convert_stmt (s : Ast.stmt) (le : Env.lenv) : Ir.instruction list =
   match s with
@@ -324,7 +325,16 @@ and convert_dclr (d : Ast.decl) (le : Env.lenv) : Ir.instruction list =
 
 and convert_for_init (i : Ast.for_init) (le : Env.lenv) : Ir.instruction list =
   match i with
-  | InclDecl d -> convert_dclr d le
+  (* No need to generate instructions for variable declaration *)
+  | InclDecl { name; init = None } ->
+      Env.insert_value name le;
+      []
+  (* Handle a declaration with initialiser as an assignment expression *)
+  | InclDecl { name; init = Some rhs } ->
+      Env.insert_value name le;
+      let initialiser = Ast.Assignment (Ast.Var name, rhs) in
+      let _, instructions = convert_expr initialiser le in
+      instructions
   | InitExp (Some e) ->
       let _, ins = convert_expr e le in
       ins
@@ -347,8 +357,10 @@ and convert_for_post (e : Ast.expr option) (le : Env.lenv) : Ir.instruction list
       ins
   | None -> []
 
-and convert_func (f : Ast.func) (le : Env.lenv) : Ir.func =
-  let (Block block_items) = f.body in
+and convert_func (f : Ast.fun_decl) (le : Env.lenv) : Ir.func =
+  let block_items =
+    match f.body with Some (Block items) -> items | None -> []
+  in
   let body =
     List.map
       (fun node ->

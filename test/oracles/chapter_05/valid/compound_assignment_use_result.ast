@@ -1,30 +1,34 @@
 (Ast.Program
    [(Ast.FunDecl
-       { Ast.name = (Ast.Identifier "main");
+       { Ast.name = (Ast.Identifier "main"); params = [];
          body =
-         (Ast.Block
-            [(Ast.D
-                Ast.VarDecl {name = (Ast.Identifier "x");
-                  init = (Some (Ast.LiteralInt 1))});
-              (Ast.D
-                 Ast.VarDecl {name = (Ast.Identifier "y");
-                   init =
-                   (Some (Ast.Assignment ((Ast.Var (Ast.Identifier "x")),
-                            Ast.Binary {op = Ast.Add;
+         (Some (Ast.Block
+                  [(Ast.D
+                      (Ast.VarDecl
+                         { Ast.name = (Ast.Identifier "x");
+                           init = (Some (Ast.LiteralInt 1)) }));
+                    (Ast.D
+                       (Ast.VarDecl
+                          { Ast.name = (Ast.Identifier "y");
+                            init =
+                            (Some (Ast.Assignment (
+                                     (Ast.Var (Ast.Identifier "x")),
+                                     Ast.Binary {op = Ast.Add;
+                                       left = (Ast.Var (Ast.Identifier "x"));
+                                       right = (Ast.LiteralInt 3)}
+                                     )))
+                            }));
+                    (Ast.S
+                       (Ast.Return
+                          Ast.Binary {op = Ast.And;
+                            left =
+                            Ast.Binary {op = Ast.Equal;
                               left = (Ast.Var (Ast.Identifier "x"));
-                              right = (Ast.LiteralInt 3)}
-                            )))});
-              (Ast.S
-                 (Ast.Return
-                    Ast.Binary {op = Ast.And;
-                      left =
-                      Ast.Binary {op = Ast.Equal;
-                        left = (Ast.Var (Ast.Identifier "x"));
-                        right = (Ast.LiteralInt 4)};
-                      right =
-                      Ast.Binary {op = Ast.Equal;
-                        left = (Ast.Var (Ast.Identifier "y"));
-                        right = (Ast.LiteralInt 4)}}))
-              ])
+                              right = (Ast.LiteralInt 4)};
+                            right =
+                            Ast.Binary {op = Ast.Equal;
+                              left = (Ast.Var (Ast.Identifier "y"));
+                              right = (Ast.LiteralInt 4)}}))
+                    ]))
          })
      ])

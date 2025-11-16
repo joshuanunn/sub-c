@@ -1,38 +1,43 @@
 (Ast.Program
    [(Ast.FunDecl
-       { Ast.name = (Ast.Identifier "main");
+       { Ast.name = (Ast.Identifier "main"); params = [];
          body =
-         (Ast.Block
-            [(Ast.D
-                Ast.VarDecl {name = (Ast.Identifier "i.1");
-                  init = (Some (Ast.LiteralInt 1))});
-              (Ast.S
-                 Ast.DoWhile {
-                   body =
-                   (Ast.Compound
-                      (Ast.Block
-                         [(Ast.S
-                             (Ast.Label ((Ast.GotoLabel "while_start.0"),
-                                (Ast.Expression
-                                   (Ast.Assignment (
-                                      (Ast.Var (Ast.Identifier "i.1")),
-                                      Ast.Binary {op = Ast.Add;
+         (Some (Ast.Block
+                  [(Ast.D
+                      (Ast.VarDecl
+                         { Ast.name = (Ast.Identifier "i.1");
+                           init = (Some (Ast.LiteralInt 1)) }));
+                    (Ast.S
+                       Ast.DoWhile {
+                         body =
+                         (Ast.Compound
+                            (Ast.Block
+                               [(Ast.S
+                                   (Ast.Label (
+                                      (Ast.GotoLabel "while_start.0"),
+                                      (Ast.Expression
+                                         (Ast.Assignment (
+                                            (Ast.Var (Ast.Identifier "i.1")),
+                                            Ast.Binary {op = Ast.Add;
+                                              left =
+                                              (Ast.Var (Ast.Identifier "i.1"));
+                                              right = (Ast.LiteralInt 1)}
+                                            )))
+                                      )));
+                                 (Ast.S
+                                    Ast.If {
+                                      cond_exp =
+                                      Ast.Binary {op = Ast.LessThan;
                                         left =
                                         (Ast.Var (Ast.Identifier "i.1"));
-                                        right = (Ast.LiteralInt 1)}
-                                      )))
-                                )));
-                           (Ast.S
-                              Ast.If {
-                                cond_exp =
-                                Ast.Binary {op = Ast.LessThan;
-                                  left = (Ast.Var (Ast.Identifier "i.1"));
-                                  right = (Ast.LiteralInt 10)};
-                                then_smt =
-                                (Ast.Goto (Ast.GotoLabel "while_start.0"));
-                                else_smt = None})
-                           ]));
-                   cond = (Ast.LiteralInt 0); id = (Some (Ast.LoopLabel "1"))});
-              (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "i.1"))))])
+                                        right = (Ast.LiteralInt 10)};
+                                      then_smt =
+                                      (Ast.Goto
+                                         (Ast.GotoLabel "while_start.0"));
+                                      else_smt = None})
+                                 ]));
+                         cond = (Ast.LiteralInt 0);
+                         id = (Some (Ast.LoopLabel "1"))});
+                    (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "i.1"))))]))
          })
      ])

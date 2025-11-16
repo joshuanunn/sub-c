@@ -1,45 +1,47 @@
 (Ast.Program
    [(Ast.FunDecl
-       { Ast.name = (Ast.Identifier "main");
+       { Ast.name = (Ast.Identifier "main"); params = [];
          body =
-         (Ast.Block
-            [(Ast.D
-                Ast.VarDecl {name = (Ast.Identifier "a");
-                  init = (Some (Ast.LiteralInt 0))});
-              (Ast.S
-                 Ast.Switch {
-                   cond =
-                   (Ast.Assignment ((Ast.Var (Ast.Identifier "a")),
-                      (Ast.LiteralInt 1)));
-                   body =
-                   (Ast.Compound
-                      (Ast.Block
-                         [(Ast.S
-                             Ast.Case {value = (Ast.LiteralInt 0);
-                               body = (Ast.Return (Ast.LiteralInt 10));
-                               id = None});
-                           (Ast.S
-                              Ast.Case {value = (Ast.LiteralInt 1);
-                                body =
-                                (Ast.Expression
-                                   (Ast.Assignment (
-                                      (Ast.Var (Ast.Identifier "a")),
-                                      Ast.Binary {op = Ast.Multiply;
-                                        left = (Ast.Var (Ast.Identifier "a"));
-                                        right = (Ast.LiteralInt 2)}
-                                      )));
-                                id = None});
-                           (Ast.S (Ast.Break None));
-                           (Ast.S
-                              Ast.Default {
-                                body =
-                                (Ast.Expression
-                                   (Ast.Assignment (
-                                      (Ast.Var (Ast.Identifier "a")),
-                                      (Ast.LiteralInt 99))));
-                                id = None})
-                           ]));
-                   id = None});
-              (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "a"))))])
+         (Some (Ast.Block
+                  [(Ast.D
+                      (Ast.VarDecl
+                         { Ast.name = (Ast.Identifier "a");
+                           init = (Some (Ast.LiteralInt 0)) }));
+                    (Ast.S
+                       Ast.Switch {
+                         cond =
+                         (Ast.Assignment ((Ast.Var (Ast.Identifier "a")),
+                            (Ast.LiteralInt 1)));
+                         body =
+                         (Ast.Compound
+                            (Ast.Block
+                               [(Ast.S
+                                   Ast.Case {value = (Ast.LiteralInt 0);
+                                     body = (Ast.Return (Ast.LiteralInt 10));
+                                     id = None});
+                                 (Ast.S
+                                    Ast.Case {value = (Ast.LiteralInt 1);
+                                      body =
+                                      (Ast.Expression
+                                         (Ast.Assignment (
+                                            (Ast.Var (Ast.Identifier "a")),
+                                            Ast.Binary {op = Ast.Multiply;
+                                              left =
+                                              (Ast.Var (Ast.Identifier "a"));
+                                              right = (Ast.LiteralInt 2)}
+                                            )));
+                                      id = None});
+                                 (Ast.S (Ast.Break None));
+                                 (Ast.S
+                                    Ast.Default {
+                                      body =
+                                      (Ast.Expression
+                                         (Ast.Assignment (
+                                            (Ast.Var (Ast.Identifier "a")),
+                                            (Ast.LiteralInt 99))));
+                                      id = None})
+                                 ]));
+                         id = None});
+                    (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "a"))))]))
          })
      ])

@@ -1,25 +1,29 @@
 (Ast.Program
    [(Ast.FunDecl
-       { Ast.name = (Ast.Identifier "main");
+       { Ast.name = (Ast.Identifier "main"); params = [];
          body =
-         (Ast.Block
-            [(Ast.D
-                Ast.VarDecl {name = (Ast.Identifier "a");
-                  init =
-                  (Some Ast.Unary {op = Ast.Negate;
-                          exp = (Ast.LiteralInt 2593)})});
-              (Ast.S
-                 (Ast.Expression
-                    (Ast.Assignment ((Ast.Var (Ast.Identifier "a")),
-                       Ast.Binary {op = Ast.Remainder;
-                         left = (Ast.Var (Ast.Identifier "a"));
-                         right = (Ast.LiteralInt 3)}
-                       ))));
-              (Ast.D
-                 Ast.VarDecl {name = (Ast.Identifier "b");
-                   init =
-                   (Some Ast.Unary {op = Ast.Negate;
-                           exp = (Ast.Var (Ast.Identifier "a"))})});
-              (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "b"))))])
+         (Some (Ast.Block
+                  [(Ast.D
+                      (Ast.VarDecl
+                         { Ast.name = (Ast.Identifier "a");
+                           init =
+                           (Some Ast.Unary {op = Ast.Negate;
+                                   exp = (Ast.LiteralInt 2593)})
+                           }));
+                    (Ast.S
+                       (Ast.Expression
+                          (Ast.Assignment ((Ast.Var (Ast.Identifier "a")),
+                             Ast.Binary {op = Ast.Remainder;
+                               left = (Ast.Var (Ast.Identifier "a"));
+                               right = (Ast.LiteralInt 3)}
+                             ))));
+                    (Ast.D
+                       (Ast.VarDecl
+                          { Ast.name = (Ast.Identifier "b");
+                            init =
+                            (Some Ast.Unary {op = Ast.Negate;
+                                    exp = (Ast.Var (Ast.Identifier "a"))})
+                            }));
+                    (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "b"))))]))
          })
      ])

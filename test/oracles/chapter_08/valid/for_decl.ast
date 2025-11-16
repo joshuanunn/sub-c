@@ -1,37 +1,40 @@
 (Ast.Program
    [(Ast.FunDecl
-       { Ast.name = (Ast.Identifier "main");
+       { Ast.name = (Ast.Identifier "main"); params = [];
          body =
-         (Ast.Block
-            [(Ast.D
-                Ast.VarDecl {name = (Ast.Identifier "a");
-                  init = (Some (Ast.LiteralInt 0))});
-              (Ast.S
-                 Ast.For {
-                   init =
-                   (Ast.InclDecl
-                      Ast.VarDecl {name = (Ast.Identifier "i");
-                        init =
-                        (Some Ast.Unary {op = Ast.Negate;
-                                exp = (Ast.LiteralInt 100)})});
-                   cond =
-                   (Some Ast.Binary {op = Ast.LessOrEqual;
-                           left = (Ast.Var (Ast.Identifier "i"));
-                           right = (Ast.LiteralInt 0)});
-                   post =
-                   (Some (Ast.Assignment ((Ast.Var (Ast.Identifier "i")),
-                            Ast.Binary {op = Ast.Add;
-                              left = (Ast.Var (Ast.Identifier "i"));
-                              right = (Ast.LiteralInt 1)}
-                            )));
-                   body =
-                   (Ast.Expression
-                      (Ast.Assignment ((Ast.Var (Ast.Identifier "a")),
-                         Ast.Binary {op = Ast.Add;
-                           left = (Ast.Var (Ast.Identifier "a"));
-                           right = (Ast.LiteralInt 1)}
-                         )));
-                   id = None});
-              (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "a"))))])
+         (Some (Ast.Block
+                  [(Ast.D
+                      (Ast.VarDecl
+                         { Ast.name = (Ast.Identifier "a");
+                           init = (Some (Ast.LiteralInt 0)) }));
+                    (Ast.S
+                       Ast.For {
+                         init =
+                         (Ast.InclDecl
+                            { Ast.name = (Ast.Identifier "i");
+                              init =
+                              (Some Ast.Unary {op = Ast.Negate;
+                                      exp = (Ast.LiteralInt 100)})
+                              });
+                         cond =
+                         (Some Ast.Binary {op = Ast.LessOrEqual;
+                                 left = (Ast.Var (Ast.Identifier "i"));
+                                 right = (Ast.LiteralInt 0)});
+                         post =
+                         (Some (Ast.Assignment (
+                                  (Ast.Var (Ast.Identifier "i")),
+                                  Ast.Binary {op = Ast.Add;
+                                    left = (Ast.Var (Ast.Identifier "i"));
+                                    right = (Ast.LiteralInt 1)}
+                                  )));
+                         body =
+                         (Ast.Expression
+                            (Ast.Assignment ((Ast.Var (Ast.Identifier "a")),
+                               Ast.Binary {op = Ast.Add;
+                                 left = (Ast.Var (Ast.Identifier "a"));
+                                 right = (Ast.LiteralInt 1)}
+                               )));
+                         id = None});
+                    (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "a"))))]))
          })
      ])

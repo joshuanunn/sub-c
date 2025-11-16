@@ -1,22 +1,23 @@
 (Ast.Program
    [(Ast.FunDecl
-       { Ast.name = (Ast.Identifier "main");
+       { Ast.name = (Ast.Identifier "main"); params = [];
          body =
-         (Ast.Block
-            [(Ast.D
-                Ast.VarDecl {name = (Ast.Identifier "x.0");
-                  init = (Some (Ast.LiteralInt 10))});
-              (Ast.S
-                 (Ast.Expression
-                    Ast.Conditional {
-                      cond_exp =
-                      Ast.Binary {op = Ast.Subtract;
-                        left = (Ast.Var (Ast.Identifier "x.0"));
-                        right = (Ast.LiteralInt 10)};
-                      then_exp = (Ast.LiteralInt 0);
-                      else_exp =
-                      Ast.Unary {op = Ast.PostDecrement;
-                        exp = (Ast.Var (Ast.Identifier "x.0"))}}));
-              (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "x.0"))))])
+         (Some (Ast.Block
+                  [(Ast.D
+                      (Ast.VarDecl
+                         { Ast.name = (Ast.Identifier "x.0");
+                           init = (Some (Ast.LiteralInt 10)) }));
+                    (Ast.S
+                       (Ast.Expression
+                          Ast.Conditional {
+                            cond_exp =
+                            Ast.Binary {op = Ast.Subtract;
+                              left = (Ast.Var (Ast.Identifier "x.0"));
+                              right = (Ast.LiteralInt 10)};
+                            then_exp = (Ast.LiteralInt 0);
+                            else_exp =
+                            Ast.Unary {op = Ast.PostDecrement;
+                              exp = (Ast.Var (Ast.Identifier "x.0"))}}));
+                    (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "x.0"))))]))
          })
      ])

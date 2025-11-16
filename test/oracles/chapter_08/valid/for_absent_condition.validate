@@ -1,30 +1,31 @@
 (Ast.Program
    [(Ast.FunDecl
-       { Ast.name = (Ast.Identifier "main");
+       { Ast.name = (Ast.Identifier "main"); params = [];
          body =
-         (Ast.Block
-            [(Ast.S
-                Ast.For {
-                  init =
-                  (Ast.InclDecl
-                     Ast.VarDecl {name = (Ast.Identifier "i.0");
-                       init = (Some (Ast.LiteralInt 400))});
-                  cond = None;
-                  post =
-                  (Some (Ast.Assignment ((Ast.Var (Ast.Identifier "i.0")),
-                           Ast.Binary {op = Ast.Subtract;
-                             left = (Ast.Var (Ast.Identifier "i.0"));
-                             right = (Ast.LiteralInt 100)}
-                           )));
-                  body =
-                  Ast.If {
-                    cond_exp =
-                    Ast.Binary {op = Ast.Equal;
-                      left = (Ast.Var (Ast.Identifier "i.0"));
-                      right = (Ast.LiteralInt 100)};
-                    then_smt = (Ast.Return (Ast.LiteralInt 0));
-                    else_smt = None};
-                  id = (Some (Ast.LoopLabel "1"))})
-              ])
+         (Some (Ast.Block
+                  [(Ast.S
+                      Ast.For {
+                        init =
+                        (Ast.InclDecl
+                           { Ast.name = (Ast.Identifier "i.0");
+                             init = (Some (Ast.LiteralInt 400)) });
+                        cond = None;
+                        post =
+                        (Some (Ast.Assignment (
+                                 (Ast.Var (Ast.Identifier "i.0")),
+                                 Ast.Binary {op = Ast.Subtract;
+                                   left = (Ast.Var (Ast.Identifier "i.0"));
+                                   right = (Ast.LiteralInt 100)}
+                                 )));
+                        body =
+                        Ast.If {
+                          cond_exp =
+                          Ast.Binary {op = Ast.Equal;
+                            left = (Ast.Var (Ast.Identifier "i.0"));
+                            right = (Ast.LiteralInt 100)};
+                          then_smt = (Ast.Return (Ast.LiteralInt 0));
+                          else_smt = None};
+                        id = (Some (Ast.LoopLabel "1"))})
+                    ]))
          })
      ])

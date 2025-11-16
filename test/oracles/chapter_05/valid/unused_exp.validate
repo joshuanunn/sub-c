@@ -1,12 +1,12 @@
 (Ast.Program
    [(Ast.FunDecl
-       { Ast.name = (Ast.Identifier "main");
+       { Ast.name = (Ast.Identifier "main"); params = [];
          body =
-         (Ast.Block
-            [(Ast.S
-                (Ast.Expression
-                   Ast.Binary {op = Ast.Add; left = (Ast.LiteralInt 2);
-                     right = (Ast.LiteralInt 2)}));
-              (Ast.S (Ast.Return (Ast.LiteralInt 0)))])
+         (Some (Ast.Block
+                  [(Ast.S
+                      (Ast.Expression
+                         Ast.Binary {op = Ast.Add; left = (Ast.LiteralInt 2);
+                           right = (Ast.LiteralInt 2)}));
+                    (Ast.S (Ast.Return (Ast.LiteralInt 0)))]))
          })
      ])

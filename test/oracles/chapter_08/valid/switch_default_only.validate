@@ -1,17 +1,18 @@
 (Ast.Program
    [(Ast.FunDecl
-       { Ast.name = (Ast.Identifier "main");
+       { Ast.name = (Ast.Identifier "main"); params = [];
          body =
-         (Ast.Block
-            [(Ast.D
-                Ast.VarDecl {name = (Ast.Identifier "a.0");
-                  init = (Some (Ast.LiteralInt 1))});
-              (Ast.S
-                 Ast.Switch {cond = (Ast.Var (Ast.Identifier "a.0"));
-                   body =
-                   Ast.Default {body = (Ast.Return (Ast.LiteralInt 1));
-                     id = (Some (Ast.SwitchLabel "1"))};
-                   id = (Some (Ast.SwitchLabel "1"))});
-              (Ast.S (Ast.Return (Ast.LiteralInt 0)))])
+         (Some (Ast.Block
+                  [(Ast.D
+                      (Ast.VarDecl
+                         { Ast.name = (Ast.Identifier "a.0");
+                           init = (Some (Ast.LiteralInt 1)) }));
+                    (Ast.S
+                       Ast.Switch {cond = (Ast.Var (Ast.Identifier "a.0"));
+                         body =
+                         Ast.Default {body = (Ast.Return (Ast.LiteralInt 1));
+                           id = (Some (Ast.SwitchLabel "1"))};
+                         id = (Some (Ast.SwitchLabel "1"))});
+                    (Ast.S (Ast.Return (Ast.LiteralInt 0)))]))
          })
      ])

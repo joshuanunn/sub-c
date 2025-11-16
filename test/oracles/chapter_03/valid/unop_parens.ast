@@ -1,14 +1,15 @@
 (Ast.Program
    [(Ast.FunDecl
-       { Ast.name = (Ast.Identifier "main");
+       { Ast.name = (Ast.Identifier "main"); params = [];
          body =
-         (Ast.Block
-            [(Ast.S
-                (Ast.Return
-                   Ast.Unary {op = Ast.BwNot;
-                     exp =
-                     Ast.Binary {op = Ast.Add; left = (Ast.LiteralInt 1);
-                       right = (Ast.LiteralInt 1)}}))
-              ])
+         (Some (Ast.Block
+                  [(Ast.S
+                      (Ast.Return
+                         Ast.Unary {op = Ast.BwNot;
+                           exp =
+                           Ast.Binary {op = Ast.Add;
+                             left = (Ast.LiteralInt 1);
+                             right = (Ast.LiteralInt 1)}}))
+                    ]))
          })
      ])

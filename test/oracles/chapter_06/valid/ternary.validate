@@ -1,21 +1,23 @@
 (Ast.Program
    [(Ast.FunDecl
-       { Ast.name = (Ast.Identifier "main");
+       { Ast.name = (Ast.Identifier "main"); params = [];
          body =
-         (Ast.Block
-            [(Ast.D
-                Ast.VarDecl {name = (Ast.Identifier "a.0");
-                  init = (Some (Ast.LiteralInt 0))});
-              (Ast.S
-                 (Ast.Return
-                    Ast.Conditional {
-                      cond_exp =
-                      Ast.Binary {op = Ast.GreaterThan;
-                        left = (Ast.Var (Ast.Identifier "a.0"));
-                        right =
-                        Ast.Unary {op = Ast.Negate; exp = (Ast.LiteralInt 1)}};
-                      then_exp = (Ast.LiteralInt 4);
-                      else_exp = (Ast.LiteralInt 5)}))
-              ])
+         (Some (Ast.Block
+                  [(Ast.D
+                      (Ast.VarDecl
+                         { Ast.name = (Ast.Identifier "a.0");
+                           init = (Some (Ast.LiteralInt 0)) }));
+                    (Ast.S
+                       (Ast.Return
+                          Ast.Conditional {
+                            cond_exp =
+                            Ast.Binary {op = Ast.GreaterThan;
+                              left = (Ast.Var (Ast.Identifier "a.0"));
+                              right =
+                              Ast.Unary {op = Ast.Negate;
+                                exp = (Ast.LiteralInt 1)}};
+                            then_exp = (Ast.LiteralInt 4);
+                            else_exp = (Ast.LiteralInt 5)}))
+                    ]))
          })
      ])

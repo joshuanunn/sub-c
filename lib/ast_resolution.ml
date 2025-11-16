@@ -50,6 +50,7 @@ let rec resolve_expr (e : Ast.expr) (se : Env.senv) : Ast.expr =
           then_exp = resolve_expr then_exp se;
           else_exp = resolve_expr else_exp se;
         }
+  | FunctionCall _ -> failwith "TODO"
 
 (** [resolve_opt_expr e_opt se] resolves an optional expression, returning
     [None] if the input is [None]. *)
@@ -73,7 +74,13 @@ let resolve_decl (d : Ast.decl) (se : Env.senv) : Ast.decl =
     a declaration or an expression. *)
 let resolve_for_init (i : Ast.for_init) (se : Env.senv) : Ast.for_init =
   match i with
-  | InclDecl d -> InclDecl (resolve_decl d se)
+  | InclDecl { name; init = None } ->
+      let var = Env.declare_var name se in
+      InclDecl { name = var; init = None }
+  | InclDecl { name; init = Some expr } ->
+      let var = Env.declare_var name se in
+      let init = Some (resolve_expr expr se) in
+      InclDecl { name = var; init }
   | InitExp e -> InitExp (resolve_opt_expr e se)
 
 (** [resolve_stmt s se] resolves variables and expressions in statement [s]
@@ -145,16 +152,16 @@ let rec resolve_stmt (s : Ast.stmt) (se : Env.senv) : Ast.stmt =
 (** [resolve_func f se] resolves all declarations, variables, and labels in
     function [f] using environment [se]. Predeclares all labels before resolving
     statements. *)
-and resolve_func (f : Ast.func) (se : Env.senv) : Ast.func =
+and resolve_func (f : Ast.fun_decl) (se : Env.senv) : Ast.fun_decl =
   Env.push_lab_scope se;
 
   (* Predeclare labels to support forward gotos *)
-  predeclare_labels f.body se;
+  Option.iter (fun b -> predeclare_labels b se) f.body;
 
   (* Resolve statements, declarations, variables, and gotos *)
-  let body = resolve_block f.body se in
+  let body = Option.map (fun b -> resolve_block b se) f.body in
   Env.pop_lab_scope se;
-  { name = f.name; body }
+  { name = f.name; params = f.params; body }
 
 (** [resolve_block b se] resolves statements and declarations in block [b]. *)
 and resolve_block (b : Ast.block) (se : Env.senv) : Ast.block =

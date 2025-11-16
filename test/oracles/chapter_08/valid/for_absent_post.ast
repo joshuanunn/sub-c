@@ -1,47 +1,50 @@
 (Ast.Program
    [(Ast.FunDecl
-       { Ast.name = (Ast.Identifier "main");
+       { Ast.name = (Ast.Identifier "main"); params = [];
          body =
-         (Ast.Block
-            [(Ast.D
-                Ast.VarDecl {name = (Ast.Identifier "a");
-                  init =
-                  (Some Ast.Unary {op = Ast.Negate;
-                          exp = (Ast.LiteralInt 2147483647)})});
-              (Ast.S
-                 Ast.For {init = (Ast.InitExp None);
-                   cond =
-                   (Some Ast.Binary {op = Ast.NotEqual;
-                           left =
-                           Ast.Binary {op = Ast.Remainder;
-                             left = (Ast.Var (Ast.Identifier "a"));
-                             right = (Ast.LiteralInt 5)};
-                           right = (Ast.LiteralInt 0)});
-                   post = None;
-                   body =
-                   (Ast.Compound
-                      (Ast.Block
-                         [(Ast.S
-                             (Ast.Expression
-                                (Ast.Assignment (
-                                   (Ast.Var (Ast.Identifier "a")),
-                                   Ast.Binary {op = Ast.Add;
-                                     left = (Ast.Var (Ast.Identifier "a"));
-                                     right = (Ast.LiteralInt 1)}
-                                   ))))
-                           ]));
-                   id = None});
-              (Ast.S
-                 (Ast.Return
-                    Ast.Binary {op = Ast.Or;
-                      left =
-                      Ast.Binary {op = Ast.Remainder;
-                        left = (Ast.Var (Ast.Identifier "a"));
-                        right = (Ast.LiteralInt 5)};
-                      right =
-                      Ast.Binary {op = Ast.GreaterThan;
-                        left = (Ast.Var (Ast.Identifier "a"));
-                        right = (Ast.LiteralInt 0)}}))
-              ])
+         (Some (Ast.Block
+                  [(Ast.D
+                      (Ast.VarDecl
+                         { Ast.name = (Ast.Identifier "a");
+                           init =
+                           (Some Ast.Unary {op = Ast.Negate;
+                                   exp = (Ast.LiteralInt 2147483647)})
+                           }));
+                    (Ast.S
+                       Ast.For {init = (Ast.InitExp None);
+                         cond =
+                         (Some Ast.Binary {op = Ast.NotEqual;
+                                 left =
+                                 Ast.Binary {op = Ast.Remainder;
+                                   left = (Ast.Var (Ast.Identifier "a"));
+                                   right = (Ast.LiteralInt 5)};
+                                 right = (Ast.LiteralInt 0)});
+                         post = None;
+                         body =
+                         (Ast.Compound
+                            (Ast.Block
+                               [(Ast.S
+                                   (Ast.Expression
+                                      (Ast.Assignment (
+                                         (Ast.Var (Ast.Identifier "a")),
+                                         Ast.Binary {op = Ast.Add;
+                                           left =
+                                           (Ast.Var (Ast.Identifier "a"));
+                                           right = (Ast.LiteralInt 1)}
+                                         ))))
+                                 ]));
+                         id = None});
+                    (Ast.S
+                       (Ast.Return
+                          Ast.Binary {op = Ast.Or;
+                            left =
+                            Ast.Binary {op = Ast.Remainder;
+                              left = (Ast.Var (Ast.Identifier "a"));
+                              right = (Ast.LiteralInt 5)};
+                            right =
+                            Ast.Binary {op = Ast.GreaterThan;
+                              left = (Ast.Var (Ast.Identifier "a"));
+                              right = (Ast.LiteralInt 0)}}))
+                    ]))
          })
      ])

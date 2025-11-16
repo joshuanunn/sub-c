@@ -1,98 +1,109 @@
 (Ast.Program
    [(Ast.FunDecl
-       { Ast.name = (Ast.Identifier "main");
+       { Ast.name = (Ast.Identifier "main"); params = [];
          body =
-         (Ast.Block
-            [(Ast.D
-                Ast.VarDecl {name = (Ast.Identifier "sum.5");
-                  init = (Some (Ast.LiteralInt 0))});
-              (Ast.S (Ast.Goto (Ast.GotoLabel "do_label.0")));
-              (Ast.S (Ast.Return (Ast.LiteralInt 0)));
-              (Ast.S
-                 (Ast.Label ((Ast.GotoLabel "do_label.0"),
-                    Ast.DoWhile {
-                      body =
-                      (Ast.Compound
-                         (Ast.Block
-                            [(Ast.S
-                                (Ast.Expression
-                                   (Ast.Assignment (
-                                      (Ast.Var (Ast.Identifier "sum.5")),
-                                      (Ast.LiteralInt 1)))));
-                              (Ast.S
-                                 (Ast.Goto (Ast.GotoLabel "while_label.1")))
-                              ]));
-                      cond = (Ast.LiteralInt 1);
-                      id = (Some (Ast.LoopLabel "1"))}
-                    )));
-              (Ast.S
-                 (Ast.Label ((Ast.GotoLabel "while_label.1"),
-                    Ast.While {cond = (Ast.LiteralInt 1);
-                      body =
-                      (Ast.Compound
-                         (Ast.Block
-                            [(Ast.S
-                                (Ast.Expression
-                                   (Ast.Assignment (
-                                      (Ast.Var (Ast.Identifier "sum.5")),
-                                      Ast.Binary {op = Ast.Add;
-                                        left =
-                                        (Ast.Var (Ast.Identifier "sum.5"));
-                                        right = (Ast.LiteralInt 1)}
-                                      ))));
-                              (Ast.S
-                                 (Ast.Goto (Ast.GotoLabel "break_label.2")));
-                              (Ast.S (Ast.Return (Ast.LiteralInt 0)));
-                              (Ast.S
-                                 (Ast.Label ((Ast.GotoLabel "break_label.2"),
-                                    (Ast.Break (Some (Ast.LoopLabel "2"))))))
-                              ]));
-                      id = (Some (Ast.LoopLabel "2"))}
-                    )));
-              (Ast.S Ast.Null);
-              (Ast.S (Ast.Goto (Ast.GotoLabel "for_label.3")));
-              (Ast.S (Ast.Return (Ast.LiteralInt 0)));
-              (Ast.S
-                 (Ast.Label ((Ast.GotoLabel "for_label.3"),
-                    Ast.For {
-                      init =
-                      (Ast.InclDecl
-                         Ast.VarDecl {name = (Ast.Identifier "i.6");
-                           init = (Some (Ast.LiteralInt 0))});
-                      cond =
-                      (Some Ast.Binary {op = Ast.LessThan;
-                              left = (Ast.Var (Ast.Identifier "i.6"));
-                              right = (Ast.LiteralInt 10)});
-                      post =
-                      (Some (Ast.Assignment (
-                               (Ast.Var (Ast.Identifier "i.6")),
-                               Ast.Binary {op = Ast.Add;
-                                 left = (Ast.Var (Ast.Identifier "i.6"));
-                                 right = (Ast.LiteralInt 1)}
-                               )));
-                      body =
-                      (Ast.Compound
-                         (Ast.Block
-                            [(Ast.S
-                                (Ast.Expression
-                                   (Ast.Assignment (
-                                      (Ast.Var (Ast.Identifier "sum.5")),
-                                      Ast.Binary {op = Ast.Add;
-                                        left =
-                                        (Ast.Var (Ast.Identifier "sum.5"));
-                                        right = (Ast.LiteralInt 1)}
-                                      ))));
-                              (Ast.S
-                                 (Ast.Goto (Ast.GotoLabel "continue_label.4")));
-                              (Ast.S (Ast.Return (Ast.LiteralInt 0)));
-                              (Ast.S
-                                 (Ast.Label (
-                                    (Ast.GotoLabel "continue_label.4"),
-                                    (Ast.Continue (Some (Ast.LoopLabel "3")))
-                                    )));
-                              (Ast.S (Ast.Return (Ast.LiteralInt 0)))]));
-                      id = (Some (Ast.LoopLabel "3"))}
-                    )));
-              (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "sum.5"))))])
+         (Some (Ast.Block
+                  [(Ast.D
+                      (Ast.VarDecl
+                         { Ast.name = (Ast.Identifier "sum.5");
+                           init = (Some (Ast.LiteralInt 0)) }));
+                    (Ast.S (Ast.Goto (Ast.GotoLabel "do_label.0")));
+                    (Ast.S (Ast.Return (Ast.LiteralInt 0)));
+                    (Ast.S
+                       (Ast.Label ((Ast.GotoLabel "do_label.0"),
+                          Ast.DoWhile {
+                            body =
+                            (Ast.Compound
+                               (Ast.Block
+                                  [(Ast.S
+                                      (Ast.Expression
+                                         (Ast.Assignment (
+                                            (Ast.Var (Ast.Identifier "sum.5")),
+                                            (Ast.LiteralInt 1)))));
+                                    (Ast.S
+                                       (Ast.Goto
+                                          (Ast.GotoLabel "while_label.1")))
+                                    ]));
+                            cond = (Ast.LiteralInt 1);
+                            id = (Some (Ast.LoopLabel "1"))}
+                          )));
+                    (Ast.S
+                       (Ast.Label ((Ast.GotoLabel "while_label.1"),
+                          Ast.While {cond = (Ast.LiteralInt 1);
+                            body =
+                            (Ast.Compound
+                               (Ast.Block
+                                  [(Ast.S
+                                      (Ast.Expression
+                                         (Ast.Assignment (
+                                            (Ast.Var (Ast.Identifier "sum.5")),
+                                            Ast.Binary {op = Ast.Add;
+                                              left =
+                                              (Ast.Var
+                                                 (Ast.Identifier "sum.5"));
+                                              right = (Ast.LiteralInt 1)}
+                                            ))));
+                                    (Ast.S
+                                       (Ast.Goto
+                                          (Ast.GotoLabel "break_label.2")));
+                                    (Ast.S (Ast.Return (Ast.LiteralInt 0)));
+                                    (Ast.S
+                                       (Ast.Label (
+                                          (Ast.GotoLabel "break_label.2"),
+                                          (Ast.Break
+                                             (Some (Ast.LoopLabel "2")))
+                                          )))
+                                    ]));
+                            id = (Some (Ast.LoopLabel "2"))}
+                          )));
+                    (Ast.S Ast.Null);
+                    (Ast.S (Ast.Goto (Ast.GotoLabel "for_label.3")));
+                    (Ast.S (Ast.Return (Ast.LiteralInt 0)));
+                    (Ast.S
+                       (Ast.Label ((Ast.GotoLabel "for_label.3"),
+                          Ast.For {
+                            init =
+                            (Ast.InclDecl
+                               { Ast.name = (Ast.Identifier "i.6");
+                                 init = (Some (Ast.LiteralInt 0)) });
+                            cond =
+                            (Some Ast.Binary {op = Ast.LessThan;
+                                    left = (Ast.Var (Ast.Identifier "i.6"));
+                                    right = (Ast.LiteralInt 10)});
+                            post =
+                            (Some (Ast.Assignment (
+                                     (Ast.Var (Ast.Identifier "i.6")),
+                                     Ast.Binary {op = Ast.Add;
+                                       left =
+                                       (Ast.Var (Ast.Identifier "i.6"));
+                                       right = (Ast.LiteralInt 1)}
+                                     )));
+                            body =
+                            (Ast.Compound
+                               (Ast.Block
+                                  [(Ast.S
+                                      (Ast.Expression
+                                         (Ast.Assignment (
+                                            (Ast.Var (Ast.Identifier "sum.5")),
+                                            Ast.Binary {op = Ast.Add;
+                                              left =
+                                              (Ast.Var
+                                                 (Ast.Identifier "sum.5"));
+                                              right = (Ast.LiteralInt 1)}
+                                            ))));
+                                    (Ast.S
+                                       (Ast.Goto
+                                          (Ast.GotoLabel "continue_label.4")));
+                                    (Ast.S (Ast.Return (Ast.LiteralInt 0)));
+                                    (Ast.S
+                                       (Ast.Label (
+                                          (Ast.GotoLabel "continue_label.4"),
+                                          (Ast.Continue
+                                             (Some (Ast.LoopLabel "3")))
+                                          )));
+                                    (Ast.S (Ast.Return (Ast.LiteralInt 0)))]));
+                            id = (Some (Ast.LoopLabel "3"))}
+                          )));
+                    (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "sum.5"))))]))
          })
      ])

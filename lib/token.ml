@@ -22,6 +22,7 @@ type token =
   | SEMICOLON
   | QUESTION
   | COLON
+  | COMMA
   | INCREMENT
   | DECREMENT
   | ADD_ASSIGN

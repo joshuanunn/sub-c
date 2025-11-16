@@ -1,11 +1,11 @@
 (Ast.Program
    [(Ast.FunDecl
-       { Ast.name = (Ast.Identifier "main");
+       { Ast.name = (Ast.Identifier "main"); params = [];
          body =
-         (Ast.Block
-            [(Ast.S
-                (Ast.Label ((Ast.GotoLabel "unused.0"),
-                   (Ast.Return (Ast.LiteralInt 0)))))
-              ])
+         (Some (Ast.Block
+                  [(Ast.S
+                      (Ast.Label ((Ast.GotoLabel "unused.0"),
+                         (Ast.Return (Ast.LiteralInt 0)))))
+                    ]))
          })
      ])

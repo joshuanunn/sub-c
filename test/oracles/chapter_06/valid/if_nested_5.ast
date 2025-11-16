@@ -1,28 +1,31 @@
 (Ast.Program
    [(Ast.FunDecl
-       { Ast.name = (Ast.Identifier "main");
+       { Ast.name = (Ast.Identifier "main"); params = [];
          body =
-         (Ast.Block
-            [(Ast.D
-                Ast.VarDecl {name = (Ast.Identifier "a");
-                  init = (Some (Ast.LiteralInt 0))});
-              (Ast.S
-                 Ast.If {cond_exp = (Ast.LiteralInt 0);
-                   then_smt =
-                   Ast.If {cond_exp = (Ast.LiteralInt 0);
-                     then_smt =
-                     (Ast.Expression
-                        (Ast.Assignment ((Ast.Var (Ast.Identifier "a")),
-                           (Ast.LiteralInt 3))));
-                     else_smt =
-                     (Some (Ast.Expression
+         (Some (Ast.Block
+                  [(Ast.D
+                      (Ast.VarDecl
+                         { Ast.name = (Ast.Identifier "a");
+                           init = (Some (Ast.LiteralInt 0)) }));
+                    (Ast.S
+                       Ast.If {cond_exp = (Ast.LiteralInt 0);
+                         then_smt =
+                         Ast.If {cond_exp = (Ast.LiteralInt 0);
+                           then_smt =
+                           (Ast.Expression
                               (Ast.Assignment (
                                  (Ast.Var (Ast.Identifier "a")),
-                                 (Ast.LiteralInt 4)))))};
-                   else_smt =
-                   (Some (Ast.Expression
-                            (Ast.Assignment ((Ast.Var (Ast.Identifier "a")),
-                               (Ast.LiteralInt 1)))))});
-              (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "a"))))])
+                                 (Ast.LiteralInt 3))));
+                           else_smt =
+                           (Some (Ast.Expression
+                                    (Ast.Assignment (
+                                       (Ast.Var (Ast.Identifier "a")),
+                                       (Ast.LiteralInt 4)))))};
+                         else_smt =
+                         (Some (Ast.Expression
+                                  (Ast.Assignment (
+                                     (Ast.Var (Ast.Identifier "a")),
+                                     (Ast.LiteralInt 1)))))});
+                    (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "a"))))]))
          })
      ])

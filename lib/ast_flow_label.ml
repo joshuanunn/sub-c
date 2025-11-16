@@ -139,9 +139,9 @@ and label_block (b : Ast.block) (stack : context list) : Ast.block =
   Block labelled_items
 
 (** [label_func f] labels all control statements in function [f]. *)
-let label_func (f : Ast.func) : Ast.func =
-  let body = label_block f.body [] in
-  { name = f.name; body }
+let label_func (f : Ast.fun_decl) : Ast.fun_decl =
+  let body = Option.map (fun b -> label_block b []) f.body in
+  { name = f.name; params = f.params; body }
 
 (** [label_prog p] applies labeling to the entire program [p]. *)
 let label_prog (Program p : Ast.prog) : Ast.prog =

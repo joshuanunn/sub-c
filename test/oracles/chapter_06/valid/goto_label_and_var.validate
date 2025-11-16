@@ -1,16 +1,17 @@
 (Ast.Program
    [(Ast.FunDecl
-       { Ast.name = (Ast.Identifier "main");
+       { Ast.name = (Ast.Identifier "main"); params = [];
          body =
-         (Ast.Block
-            [(Ast.D
-                Ast.VarDecl {name = (Ast.Identifier "ident.1");
-                  init = (Some (Ast.LiteralInt 5))});
-              (Ast.S (Ast.Goto (Ast.GotoLabel "ident.0")));
-              (Ast.S (Ast.Return (Ast.LiteralInt 0)));
-              (Ast.S
-                 (Ast.Label ((Ast.GotoLabel "ident.0"),
-                    (Ast.Return (Ast.Var (Ast.Identifier "ident.1"))))))
-              ])
+         (Some (Ast.Block
+                  [(Ast.D
+                      (Ast.VarDecl
+                         { Ast.name = (Ast.Identifier "ident.1");
+                           init = (Some (Ast.LiteralInt 5)) }));
+                    (Ast.S (Ast.Goto (Ast.GotoLabel "ident.0")));
+                    (Ast.S (Ast.Return (Ast.LiteralInt 0)));
+                    (Ast.S
+                       (Ast.Label ((Ast.GotoLabel "ident.0"),
+                          (Ast.Return (Ast.Var (Ast.Identifier "ident.1"))))))
+                    ]))
          })
      ])

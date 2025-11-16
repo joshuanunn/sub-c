@@ -1,23 +1,24 @@
 (Ast.Program
    [(Ast.FunDecl
-       { Ast.name = (Ast.Identifier "main");
+       { Ast.name = (Ast.Identifier "main"); params = [];
          body =
-         (Ast.Block
-            [(Ast.D
-                Ast.VarDecl {name = (Ast.Identifier "i");
-                  init = (Some (Ast.LiteralInt 2147483642))});
-              (Ast.S
-                 Ast.DoWhile {body = Ast.Null;
-                   cond =
-                   Ast.Binary {op = Ast.GreaterOrEqual;
-                     left =
-                     (Ast.Assignment ((Ast.Var (Ast.Identifier "i")),
-                        Ast.Binary {op = Ast.Subtract;
-                          left = (Ast.Var (Ast.Identifier "i"));
-                          right = (Ast.LiteralInt 5)}
-                        ));
-                     right = (Ast.LiteralInt 256)};
-                   id = None});
-              (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "i"))))])
+         (Some (Ast.Block
+                  [(Ast.D
+                      (Ast.VarDecl
+                         { Ast.name = (Ast.Identifier "i");
+                           init = (Some (Ast.LiteralInt 2147483642)) }));
+                    (Ast.S
+                       Ast.DoWhile {body = Ast.Null;
+                         cond =
+                         Ast.Binary {op = Ast.GreaterOrEqual;
+                           left =
+                           (Ast.Assignment ((Ast.Var (Ast.Identifier "i")),
+                              Ast.Binary {op = Ast.Subtract;
+                                left = (Ast.Var (Ast.Identifier "i"));
+                                right = (Ast.LiteralInt 5)}
+                              ));
+                           right = (Ast.LiteralInt 256)};
+                         id = None});
+                    (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "i"))))]))
          })
      ])

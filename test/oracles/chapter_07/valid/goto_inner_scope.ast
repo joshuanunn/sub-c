@@ -1,26 +1,30 @@
 (Ast.Program
    [(Ast.FunDecl
-       { Ast.name = (Ast.Identifier "main");
+       { Ast.name = (Ast.Identifier "main"); params = [];
          body =
-         (Ast.Block
-            [(Ast.D
-                Ast.VarDecl {name = (Ast.Identifier "x");
-                  init = (Some (Ast.LiteralInt 5))});
-              (Ast.S (Ast.Goto (Ast.Identifier "inner")));
-              (Ast.S
-                 (Ast.Compound
-                    (Ast.Block
-                       [(Ast.D
-                           Ast.VarDecl {name = (Ast.Identifier "x");
-                             init = (Some (Ast.LiteralInt 0))});
-                         (Ast.S
-                            (Ast.Label ((Ast.Identifier "inner"),
-                               (Ast.Expression
-                                  (Ast.Assignment (
-                                     (Ast.Var (Ast.Identifier "x")),
-                                     (Ast.LiteralInt 1))))
-                               )));
-                         (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "x"))))])))
-              ])
+         (Some (Ast.Block
+                  [(Ast.D
+                      (Ast.VarDecl
+                         { Ast.name = (Ast.Identifier "x");
+                           init = (Some (Ast.LiteralInt 5)) }));
+                    (Ast.S (Ast.Goto (Ast.Identifier "inner")));
+                    (Ast.S
+                       (Ast.Compound
+                          (Ast.Block
+                             [(Ast.D
+                                 (Ast.VarDecl
+                                    { Ast.name = (Ast.Identifier "x");
+                                      init = (Some (Ast.LiteralInt 0)) }));
+                               (Ast.S
+                                  (Ast.Label ((Ast.Identifier "inner"),
+                                     (Ast.Expression
+                                        (Ast.Assignment (
+                                           (Ast.Var (Ast.Identifier "x")),
+                                           (Ast.LiteralInt 1))))
+                                     )));
+                               (Ast.S
+                                  (Ast.Return (Ast.Var (Ast.Identifier "x"))))
+                               ])))
+                    ]))
          })
      ])

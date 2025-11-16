@@ -1,37 +1,42 @@
 (Ast.Program
    [(Ast.FunDecl
-       { Ast.name = (Ast.Identifier "main");
+       { Ast.name = (Ast.Identifier "main"); params = [];
          body =
-         (Ast.Block
-            [(Ast.D
-                Ast.VarDecl {name = (Ast.Identifier "a.0");
-                  init = (Some (Ast.LiteralInt 12345))});
-              (Ast.D Ast.VarDecl {name = (Ast.Identifier "i.1"); init = None});
-              (Ast.S
-                 Ast.For {
-                   init =
-                   (Ast.InitExp
-                      (Some (Ast.Assignment (
-                               (Ast.Var (Ast.Identifier "i.1")),
-                               (Ast.LiteralInt 5)))));
-                   cond =
-                   (Some Ast.Binary {op = Ast.GreaterOrEqual;
-                           left = (Ast.Var (Ast.Identifier "i.1"));
-                           right = (Ast.LiteralInt 0)});
-                   post =
-                   (Some (Ast.Assignment ((Ast.Var (Ast.Identifier "i.1")),
-                            Ast.Binary {op = Ast.Subtract;
-                              left = (Ast.Var (Ast.Identifier "i.1"));
-                              right = (Ast.LiteralInt 1)}
-                            )));
-                   body =
-                   (Ast.Expression
-                      (Ast.Assignment ((Ast.Var (Ast.Identifier "a.0")),
-                         Ast.Binary {op = Ast.Divide;
-                           left = (Ast.Var (Ast.Identifier "a.0"));
-                           right = (Ast.LiteralInt 3)}
-                         )));
-                   id = (Some (Ast.LoopLabel "1"))});
-              (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "a.0"))))])
+         (Some (Ast.Block
+                  [(Ast.D
+                      (Ast.VarDecl
+                         { Ast.name = (Ast.Identifier "a.0");
+                           init = (Some (Ast.LiteralInt 12345)) }));
+                    (Ast.D
+                       (Ast.VarDecl
+                          { Ast.name = (Ast.Identifier "i.1"); init = None }));
+                    (Ast.S
+                       Ast.For {
+                         init =
+                         (Ast.InitExp
+                            (Some (Ast.Assignment (
+                                     (Ast.Var (Ast.Identifier "i.1")),
+                                     (Ast.LiteralInt 5)))));
+                         cond =
+                         (Some Ast.Binary {op = Ast.GreaterOrEqual;
+                                 left = (Ast.Var (Ast.Identifier "i.1"));
+                                 right = (Ast.LiteralInt 0)});
+                         post =
+                         (Some (Ast.Assignment (
+                                  (Ast.Var (Ast.Identifier "i.1")),
+                                  Ast.Binary {op = Ast.Subtract;
+                                    left = (Ast.Var (Ast.Identifier "i.1"));
+                                    right = (Ast.LiteralInt 1)}
+                                  )));
+                         body =
+                         (Ast.Expression
+                            (Ast.Assignment (
+                               (Ast.Var (Ast.Identifier "a.0")),
+                               Ast.Binary {op = Ast.Divide;
+                                 left = (Ast.Var (Ast.Identifier "a.0"));
+                                 right = (Ast.LiteralInt 3)}
+                               )));
+                         id = (Some (Ast.LoopLabel "1"))});
+                    (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "a.0"))))]))
          })
      ])

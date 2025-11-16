@@ -1,115 +1,119 @@
 (Ast.Program
    [(Ast.FunDecl
-       { Ast.name = (Ast.Identifier "main");
+       { Ast.name = (Ast.Identifier "main"); params = [];
          body =
-         (Ast.Block
-            [(Ast.D Ast.VarDecl {name = (Ast.Identifier "a.0"); init = None});
-              (Ast.D
-                 Ast.VarDecl {name = (Ast.Identifier "result.1"); init = None});
-              (Ast.D
-                 Ast.VarDecl {name = (Ast.Identifier "a1.2");
-                   init = (Some (Ast.LiteralInt 1))});
-              (Ast.S
-                 (Ast.Compound
-                    (Ast.Block
-                       [(Ast.D
-                           Ast.VarDecl {name = (Ast.Identifier "a.3");
-                             init = (Some (Ast.LiteralInt 2))});
-                         (Ast.D
-                            Ast.VarDecl {name = (Ast.Identifier "a1.4");
-                              init = (Some (Ast.LiteralInt 2))});
-                         (Ast.S
-                            (Ast.Compound
-                               (Ast.Block
-                                  [(Ast.D
-                                      Ast.VarDecl {
-                                        name = (Ast.Identifier "a.5");
-                                        init = None});
-                                    (Ast.S
-                                       (Ast.Compound
-                                          (Ast.Block
-                                             [(Ast.D
-                                                 Ast.VarDecl {
-                                                   name =
-                                                   (Ast.Identifier "a.6");
-                                                   init = None});
-                                               (Ast.S
-                                                  (Ast.Compound
-                                                     (Ast.Block
-                                                        [(Ast.D
-                                                            Ast.VarDecl {
-                                                              name =
-                                                              (Ast.Identifier
-                                                                 "a.7");
-                                                              init = None});
-                                                          (Ast.S
-                                                             (Ast.Compound
-                                                                (Ast.Block
-                                                                   [(Ast.D
-                                                                    Ast.VarDecl {
-                                                                    name =
-                                                                    (
-                                                                    Ast.Identifier
+         (Some (Ast.Block
+                  [(Ast.D
+                      (Ast.VarDecl
+                         { Ast.name = (Ast.Identifier "a.0"); init = None }));
+                    (Ast.D
+                       (Ast.VarDecl
+                          { Ast.name = (Ast.Identifier "result.1");
+                            init = None }));
+                    (Ast.D
+                       (Ast.VarDecl
+                          { Ast.name = (Ast.Identifier "a1.2");
+                            init = (Some (Ast.LiteralInt 1)) }));
+                    (Ast.S
+                       (Ast.Compound
+                          (Ast.Block
+                             [(Ast.D
+                                 (Ast.VarDecl
+                                    { Ast.name = (Ast.Identifier "a.3");
+                                      init = (Some (Ast.LiteralInt 2)) }));
+                               (Ast.D
+                                  (Ast.VarDecl
+                                     { Ast.name = (Ast.Identifier "a1.4");
+                                       init = (Some (Ast.LiteralInt 2)) }));
+                               (Ast.S
+                                  (Ast.Compound
+                                     (Ast.Block
+                                        [(Ast.D
+                                            (Ast.VarDecl
+                                               { Ast.name =
+                                                 (Ast.Identifier "a.5");
+                                                 init = None }));
+                                          (Ast.S
+                                             (Ast.Compound
+                                                (Ast.Block
+                                                   [(Ast.D
+                                                       (Ast.VarDecl
+                                                          { Ast.name =
+                                                            (Ast.Identifier
+                                                               "a.6");
+                                                            init = None }));
+                                                     (Ast.S
+                                                        (Ast.Compound
+                                                           (Ast.Block
+                                                              [(Ast.D
+                                                                  (Ast.VarDecl
+                                                                    { Ast.name =
+                                                                    (Ast.Identifier
+                                                                    "a.7");
+                                                                    init =
+                                                                    None }));
+                                                                (Ast.S
+                                                                   (Ast.Compound
+                                                                    (Ast.Block
+                                                                    [(Ast.D
+                                                                    (Ast.VarDecl
+                                                                    { Ast.name =
+                                                                    (Ast.Identifier
                                                                     "a.8");
                                                                     init =
-                                                                    None});
+                                                                    None }));
                                                                     (Ast.S
                                                                     (Ast.Compound
                                                                     (Ast.Block
                                                                     [(Ast.D
-                                                                    Ast.VarDecl {
-                                                                    name =
-                                                                    (
-                                                                    Ast.Identifier
+                                                                    (Ast.VarDecl
+                                                                    { Ast.name =
+                                                                    (Ast.Identifier
                                                                     "a.9");
                                                                     init =
-                                                                    None});
+                                                                    None }));
                                                                     (Ast.S
                                                                     (Ast.Compound
                                                                     (Ast.Block
                                                                     [(Ast.D
-                                                                    Ast.VarDecl {
-                                                                    name =
-                                                                    (
-                                                                    Ast.Identifier
+                                                                    (Ast.VarDecl
+                                                                    { Ast.name =
+                                                                    (Ast.Identifier
                                                                     "a.10");
                                                                     init =
-                                                                    None});
+                                                                    None }));
                                                                     (Ast.S
                                                                     (Ast.Compound
                                                                     (Ast.Block
                                                                     [(Ast.D
-                                                                    Ast.VarDecl {
-                                                                    name =
-                                                                    (
-                                                                    Ast.Identifier
+                                                                    (Ast.VarDecl
+                                                                    { Ast.name =
+                                                                    (Ast.Identifier
                                                                     "a.11");
                                                                     init =
-                                                                    None});
+                                                                    None }));
                                                                     (Ast.S
                                                                     (Ast.Compound
                                                                     (Ast.Block
                                                                     [(Ast.D
-                                                                    Ast.VarDecl {
-                                                                    name =
-                                                                    (
-                                                                    Ast.Identifier
+                                                                    (Ast.VarDecl
+                                                                    { Ast.name =
+                                                                    (Ast.Identifier
                                                                     "a.12");
                                                                     init =
-                                                                    None});
+                                                                    None }));
                                                                     (Ast.S
                                                                     (Ast.Compound
                                                                     (Ast.Block
                                                                     [(Ast.D
-                                                                    Ast.VarDecl {
-                                                                    name =
-                                                                    (
-                                                                    Ast.Identifier
+                                                                    (Ast.VarDecl
+                                                                    { Ast.name =
+                                                                    (Ast.Identifier
                                                                     "a.13");
                                                                     init =
                                                                     (Some (
                                                                     Ast.LiteralInt
-                                                                    20))});
+                                                                    20)) }));
                                                                     (Ast.S
                                                                     (Ast.Expression
                                                                     (Ast.Assignment (
@@ -124,13 +128,12 @@
                                                                     (Ast.Compound
                                                                     (Ast.Block
                                                                     [(Ast.D
-                                                                    Ast.VarDecl {
-                                                                    name =
-                                                                    (
-                                                                    Ast.Identifier
+                                                                    (Ast.VarDecl
+                                                                    { Ast.name =
+                                                                    (Ast.Identifier
                                                                     "a.14");
                                                                     init =
-                                                                    None});
+                                                                    None }));
                                                                     (Ast.S
                                                                     (Ast.Expression
                                                                     (Ast.Assignment (
@@ -161,24 +164,26 @@
                                                                     ))))])))])))
                                                                     ])))])))])))
                                                                     ])))])))
-                                                          ])))
-                                               ])))
-                                    ])));
-                         (Ast.S
-                            (Ast.Expression
-                               (Ast.Assignment (
-                                  (Ast.Var (Ast.Identifier "result.1")),
-                                  Ast.Binary {op = Ast.Add;
-                                    left =
-                                    (Ast.Var (Ast.Identifier "result.1"));
-                                    right = (Ast.Var (Ast.Identifier "a1.4"))}
-                                  ))))
-                         ])));
-              (Ast.S
-                 (Ast.Return
-                    Ast.Binary {op = Ast.Add;
-                      left = (Ast.Var (Ast.Identifier "result.1"));
-                      right = (Ast.Var (Ast.Identifier "a1.2"))}))
-              ])
+                                                                ])))
+                                                     ])))
+                                          ])));
+                               (Ast.S
+                                  (Ast.Expression
+                                     (Ast.Assignment (
+                                        (Ast.Var (Ast.Identifier "result.1")),
+                                        Ast.Binary {op = Ast.Add;
+                                          left =
+                                          (Ast.Var
+                                             (Ast.Identifier "result.1"));
+                                          right =
+                                          (Ast.Var (Ast.Identifier "a1.4"))}
+                                        ))))
+                               ])));
+                    (Ast.S
+                       (Ast.Return
+                          Ast.Binary {op = Ast.Add;
+                            left = (Ast.Var (Ast.Identifier "result.1"));
+                            right = (Ast.Var (Ast.Identifier "a1.2"))}))
+                    ]))
          })
      ])

@@ -1,70 +1,78 @@
 (Ast.Program
    [(Ast.FunDecl
-       { Ast.name = (Ast.Identifier "main");
+       { Ast.name = (Ast.Identifier "main"); params = [];
          body =
-         (Ast.Block
-            [(Ast.S
-                Ast.Switch {cond = (Ast.LiteralInt 3);
-                  body =
-                  (Ast.Compound
-                     (Ast.Block
-                        [(Ast.S
-                            Ast.Case {value = (Ast.LiteralInt 0);
-                              body = (Ast.Return (Ast.LiteralInt 0));
-                              id = (Some (Ast.SwitchLabel "1"))});
-                          (Ast.S
-                             Ast.Case {value = (Ast.LiteralInt 3);
-                               body =
-                               (Ast.Compound
-                                  (Ast.Block
-                                     [(Ast.S
-                                         Ast.Switch {
-                                           cond = (Ast.LiteralInt 4);
-                                           body =
-                                           (Ast.Compound
-                                              (Ast.Block
-                                                 [(Ast.S
-                                                     Ast.Case {
-                                                       value =
-                                                       (Ast.LiteralInt 3);
-                                                       body =
-                                                       (Ast.Return
-                                                          (Ast.LiteralInt 0));
-                                                       id =
-                                                       (Some (Ast.SwitchLabel
+         (Some (Ast.Block
+                  [(Ast.S
+                      Ast.Switch {cond = (Ast.LiteralInt 3);
+                        body =
+                        (Ast.Compound
+                           (Ast.Block
+                              [(Ast.S
+                                  Ast.Case {value = (Ast.LiteralInt 0);
+                                    body = (Ast.Return (Ast.LiteralInt 0));
+                                    id = (Some (Ast.SwitchLabel "1"))});
+                                (Ast.S
+                                   Ast.Case {value = (Ast.LiteralInt 3);
+                                     body =
+                                     (Ast.Compound
+                                        (Ast.Block
+                                           [(Ast.S
+                                               Ast.Switch {
+                                                 cond = (Ast.LiteralInt 4);
+                                                 body =
+                                                 (Ast.Compound
+                                                    (Ast.Block
+                                                       [(Ast.S
+                                                           Ast.Case {
+                                                             value =
+                                                             (Ast.LiteralInt
+                                                                3);
+                                                             body =
+                                                             (Ast.Return
+                                                                (Ast.LiteralInt
+                                                                   0));
+                                                             id =
+                                                             (Some (Ast.SwitchLabel
+                                                                    "2"))});
+                                                         (Ast.S
+                                                            Ast.Case {
+                                                              value =
+                                                              (Ast.LiteralInt
+                                                                 4);
+                                                              body =
+                                                              (Ast.Return
+                                                                 (Ast.LiteralInt
+                                                                    1));
+                                                              id =
+                                                              (Some (
+                                                              Ast.SwitchLabel
                                                                 "2"))});
-                                                   (Ast.S
-                                                      Ast.Case {
-                                                        value =
-                                                        (Ast.LiteralInt 4);
-                                                        body =
-                                                        (Ast.Return
-                                                           (Ast.LiteralInt 1));
-                                                        id =
-                                                        (Some (Ast.SwitchLabel
-                                                                 "2"))});
-                                                   (Ast.S
-                                                      Ast.Default {
-                                                        body =
-                                                        (Ast.Return
-                                                           (Ast.LiteralInt 0));
-                                                        id =
-                                                        (Some (Ast.SwitchLabel
-                                                                 "2"))})
-                                                   ]));
-                                           id = (Some (Ast.SwitchLabel "2"))})
-                                       ]));
-                               id = (Some (Ast.SwitchLabel "1"))});
-                          (Ast.S
-                             Ast.Case {value = (Ast.LiteralInt 4);
-                               body = (Ast.Return (Ast.LiteralInt 0));
-                               id = (Some (Ast.SwitchLabel "1"))});
-                          (Ast.S
-                             Ast.Default {
-                               body = (Ast.Return (Ast.LiteralInt 0));
-                               id = (Some (Ast.SwitchLabel "1"))})
-                          ]));
-                  id = (Some (Ast.SwitchLabel "1"))})
-              ])
+                                                         (Ast.S
+                                                            Ast.Default {
+                                                              body =
+                                                              (Ast.Return
+                                                                 (Ast.LiteralInt
+                                                                    0));
+                                                              id =
+                                                              (Some (
+                                                              Ast.SwitchLabel
+                                                                "2"))})
+                                                         ]));
+                                                 id =
+                                                 (Some (Ast.SwitchLabel "2"))})
+                                             ]));
+                                     id = (Some (Ast.SwitchLabel "1"))});
+                                (Ast.S
+                                   Ast.Case {value = (Ast.LiteralInt 4);
+                                     body = (Ast.Return (Ast.LiteralInt 0));
+                                     id = (Some (Ast.SwitchLabel "1"))});
+                                (Ast.S
+                                   Ast.Default {
+                                     body = (Ast.Return (Ast.LiteralInt 0));
+                                     id = (Some (Ast.SwitchLabel "1"))})
+                                ]));
+                        id = (Some (Ast.SwitchLabel "1"))})
+                    ]))
          })
      ])

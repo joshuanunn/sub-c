@@ -45,6 +45,7 @@ rule read =
   | ";" { Token.SEMICOLON }
   | "?" { Token.QUESTION }
   | ":" { Token.COLON }
+  | "," { Token.COMMA }
   | "++" { Token.INCREMENT }
   | "--" { Token.DECREMENT }
   | "+=" { Token.ADD_ASSIGN }
