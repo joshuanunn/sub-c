@@ -1,0 +1,60 @@
+Token.KW_INT
+(Token.IDENTIFIER "fib")
+Token.LPAREN
+Token.KW_INT
+(Token.IDENTIFIER "n")
+Token.RPAREN
+Token.LBRACE
+Token.KW_IF
+Token.LPAREN
+(Token.IDENTIFIER "n")
+Token.EQ
+(Token.LITERAL_INT 0)
+Token.OR
+(Token.IDENTIFIER "n")
+Token.EQ
+(Token.LITERAL_INT 1)
+Token.RPAREN
+Token.LBRACE
+Token.KW_RETURN
+(Token.IDENTIFIER "n")
+Token.SEMICOLON
+Token.RBRACE
+Token.KW_ELSE
+Token.LBRACE
+Token.KW_RETURN
+(Token.IDENTIFIER "fib")
+Token.LPAREN
+(Token.IDENTIFIER "n")
+Token.SUB
+(Token.LITERAL_INT 1)
+Token.RPAREN
+Token.ADD
+(Token.IDENTIFIER "fib")
+Token.LPAREN
+(Token.IDENTIFIER "n")
+Token.SUB
+(Token.LITERAL_INT 2)
+Token.RPAREN
+Token.SEMICOLON
+Token.RBRACE
+Token.RBRACE
+Token.KW_INT
+(Token.IDENTIFIER "main")
+Token.LPAREN
+Token.KW_VOID
+Token.RPAREN
+Token.LBRACE
+Token.KW_INT
+(Token.IDENTIFIER "n")
+Token.ASSIGN
+(Token.LITERAL_INT 6)
+Token.SEMICOLON
+Token.KW_RETURN
+(Token.IDENTIFIER "fib")
+Token.LPAREN
+(Token.IDENTIFIER "n")
+Token.RPAREN
+Token.SEMICOLON
+Token.RBRACE
+Token.EOF

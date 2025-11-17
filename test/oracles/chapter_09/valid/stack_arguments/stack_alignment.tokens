@@ -1,0 +1,115 @@
+Token.KW_INT
+(Token.IDENTIFIER "even_arguments")
+Token.LPAREN
+Token.KW_INT
+(Token.IDENTIFIER "a")
+Token.COMMA
+Token.KW_INT
+(Token.IDENTIFIER "b")
+Token.COMMA
+Token.KW_INT
+(Token.IDENTIFIER "c")
+Token.COMMA
+Token.KW_INT
+(Token.IDENTIFIER "d")
+Token.COMMA
+Token.KW_INT
+(Token.IDENTIFIER "e")
+Token.COMMA
+Token.KW_INT
+(Token.IDENTIFIER "f")
+Token.COMMA
+Token.KW_INT
+(Token.IDENTIFIER "g")
+Token.COMMA
+Token.KW_INT
+(Token.IDENTIFIER "h")
+Token.RPAREN
+Token.SEMICOLON
+Token.KW_INT
+(Token.IDENTIFIER "odd_arguments")
+Token.LPAREN
+Token.KW_INT
+(Token.IDENTIFIER "a")
+Token.COMMA
+Token.KW_INT
+(Token.IDENTIFIER "b")
+Token.COMMA
+Token.KW_INT
+(Token.IDENTIFIER "c")
+Token.COMMA
+Token.KW_INT
+(Token.IDENTIFIER "d")
+Token.COMMA
+Token.KW_INT
+(Token.IDENTIFIER "e")
+Token.COMMA
+Token.KW_INT
+(Token.IDENTIFIER "f")
+Token.COMMA
+Token.KW_INT
+(Token.IDENTIFIER "g")
+Token.COMMA
+Token.KW_INT
+(Token.IDENTIFIER "h")
+Token.COMMA
+Token.KW_INT
+(Token.IDENTIFIER "i")
+Token.RPAREN
+Token.SEMICOLON
+Token.KW_INT
+(Token.IDENTIFIER "main")
+Token.LPAREN
+Token.KW_VOID
+Token.RPAREN
+Token.LBRACE
+Token.KW_INT
+(Token.IDENTIFIER "x")
+Token.ASSIGN
+(Token.LITERAL_INT 3)
+Token.SEMICOLON
+(Token.IDENTIFIER "even_arguments")
+Token.LPAREN
+(Token.LITERAL_INT 1)
+Token.COMMA
+(Token.LITERAL_INT 2)
+Token.COMMA
+(Token.LITERAL_INT 3)
+Token.COMMA
+(Token.LITERAL_INT 4)
+Token.COMMA
+(Token.LITERAL_INT 5)
+Token.COMMA
+(Token.LITERAL_INT 6)
+Token.COMMA
+(Token.LITERAL_INT 7)
+Token.COMMA
+(Token.LITERAL_INT 8)
+Token.RPAREN
+Token.SEMICOLON
+(Token.IDENTIFIER "odd_arguments")
+Token.LPAREN
+(Token.LITERAL_INT 1)
+Token.COMMA
+(Token.LITERAL_INT 2)
+Token.COMMA
+(Token.LITERAL_INT 3)
+Token.COMMA
+(Token.LITERAL_INT 4)
+Token.COMMA
+(Token.LITERAL_INT 5)
+Token.COMMA
+(Token.LITERAL_INT 6)
+Token.COMMA
+(Token.LITERAL_INT 7)
+Token.COMMA
+(Token.LITERAL_INT 8)
+Token.COMMA
+(Token.LITERAL_INT 9)
+Token.RPAREN
+Token.SEMICOLON
+Token.KW_RETURN
+(Token.IDENTIFIER "x")
+Token.SEMICOLON
+Token.RBRACE
+Token.EOF

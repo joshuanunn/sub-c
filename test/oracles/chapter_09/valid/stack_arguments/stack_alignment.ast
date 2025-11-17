@@ -1,0 +1,45 @@
+(Ast.Program
+   [(Ast.FunDecl
+       { Ast.name = (Ast.Identifier "even_arguments");
+         params =
+         [(Ast.Identifier "a"); (Ast.Identifier "b"); (Ast.Identifier "c");
+           (Ast.Identifier "d"); (Ast.Identifier "e"); (Ast.Identifier "f");
+           (Ast.Identifier "g"); (Ast.Identifier "h")];
+         body = None });
+     (Ast.FunDecl
+        { Ast.name = (Ast.Identifier "odd_arguments");
+          params =
+          [(Ast.Identifier "a"); (Ast.Identifier "b"); (Ast.Identifier "c");
+            (Ast.Identifier "d"); (Ast.Identifier "e"); (Ast.Identifier "f");
+            (Ast.Identifier "g"); (Ast.Identifier "h"); (Ast.Identifier "i")];
+          body = None });
+     (Ast.FunDecl
+        { Ast.name = (Ast.Identifier "main"); params = [];
+          body =
+          (Some (Ast.Block
+                   [(Ast.D
+                       (Ast.VarDecl
+                          { Ast.name = (Ast.Identifier "x");
+                            init = (Some (Ast.LiteralInt 3)) }));
+                     (Ast.S
+                        (Ast.Expression
+                           Ast.FunctionCall {
+                             name = (Ast.Identifier "even_arguments");
+                             args =
+                             [(Ast.LiteralInt 1); (Ast.LiteralInt 2);
+                               (Ast.LiteralInt 3); (Ast.LiteralInt 4);
+                               (Ast.LiteralInt 5); (Ast.LiteralInt 6);
+                               (Ast.LiteralInt 7); (Ast.LiteralInt 8)]}));
+                     (Ast.S
+                        (Ast.Expression
+                           Ast.FunctionCall {
+                             name = (Ast.Identifier "odd_arguments");
+                             args =
+                             [(Ast.LiteralInt 1); (Ast.LiteralInt 2);
+                               (Ast.LiteralInt 3); (Ast.LiteralInt 4);
+                               (Ast.LiteralInt 5); (Ast.LiteralInt 6);
+                               (Ast.LiteralInt 7); (Ast.LiteralInt 8);
+                               (Ast.LiteralInt 9)]}));
+                     (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "x"))))]))
+          })
+     ])

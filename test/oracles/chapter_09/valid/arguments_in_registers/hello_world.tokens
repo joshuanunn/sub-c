@@ -1,0 +1,85 @@
+Token.KW_INT
+(Token.IDENTIFIER "putchar")
+Token.LPAREN
+Token.KW_INT
+(Token.IDENTIFIER "c")
+Token.RPAREN
+Token.SEMICOLON
+Token.KW_INT
+(Token.IDENTIFIER "main")
+Token.LPAREN
+Token.KW_VOID
+Token.RPAREN
+Token.LBRACE
+(Token.IDENTIFIER "putchar")
+Token.LPAREN
+(Token.LITERAL_INT 72)
+Token.RPAREN
+Token.SEMICOLON
+(Token.IDENTIFIER "putchar")
+Token.LPAREN
+(Token.LITERAL_INT 101)
+Token.RPAREN
+Token.SEMICOLON
+(Token.IDENTIFIER "putchar")
+Token.LPAREN
+(Token.LITERAL_INT 108)
+Token.RPAREN
+Token.SEMICOLON
+(Token.IDENTIFIER "putchar")
+Token.LPAREN
+(Token.LITERAL_INT 108)
+Token.RPAREN
+Token.SEMICOLON
+(Token.IDENTIFIER "putchar")
+Token.LPAREN
+(Token.LITERAL_INT 111)
+Token.RPAREN
+Token.SEMICOLON
+(Token.IDENTIFIER "putchar")
+Token.LPAREN
+(Token.LITERAL_INT 44)
+Token.RPAREN
+Token.SEMICOLON
+(Token.IDENTIFIER "putchar")
+Token.LPAREN
+(Token.LITERAL_INT 32)
+Token.RPAREN
+Token.SEMICOLON
+(Token.IDENTIFIER "putchar")
+Token.LPAREN
+(Token.LITERAL_INT 87)
+Token.RPAREN
+Token.SEMICOLON
+(Token.IDENTIFIER "putchar")
+Token.LPAREN
+(Token.LITERAL_INT 111)
+Token.RPAREN
+Token.SEMICOLON
+(Token.IDENTIFIER "putchar")
+Token.LPAREN
+(Token.LITERAL_INT 114)
+Token.RPAREN
+Token.SEMICOLON
+(Token.IDENTIFIER "putchar")
+Token.LPAREN
+(Token.LITERAL_INT 108)
+Token.RPAREN
+Token.SEMICOLON
+(Token.IDENTIFIER "putchar")
+Token.LPAREN
+(Token.LITERAL_INT 100)
+Token.RPAREN
+Token.SEMICOLON
+(Token.IDENTIFIER "putchar")
+Token.LPAREN
+(Token.LITERAL_INT 33)
+Token.RPAREN
+Token.SEMICOLON
+(Token.IDENTIFIER "putchar")
+Token.LPAREN
+(Token.LITERAL_INT 10)
+Token.RPAREN
+Token.SEMICOLON
+Token.RBRACE
+Token.EOF

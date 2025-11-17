@@ -1,0 +1,70 @@
+(Ast.Program
+   [(Ast.FunDecl
+       { Ast.name = (Ast.Identifier "x");
+         params =
+         [(Ast.Identifier "a"); (Ast.Identifier "b"); (Ast.Identifier "c");
+           (Ast.Identifier "d"); (Ast.Identifier "e"); (Ast.Identifier "f")];
+         body =
+         (Some (Ast.Block
+                  [(Ast.S
+                      (Ast.Return
+                         Ast.Binary {op = Ast.And;
+                           left =
+                           Ast.Binary {op = Ast.And;
+                             left =
+                             Ast.Binary {op = Ast.And;
+                               left =
+                               Ast.Binary {op = Ast.And;
+                                 left =
+                                 Ast.Binary {op = Ast.And;
+                                   left =
+                                   Ast.Binary {op = Ast.Equal;
+                                     left = (Ast.Var (Ast.Identifier "a"));
+                                     right = (Ast.LiteralInt 1)};
+                                   right =
+                                   Ast.Binary {op = Ast.Equal;
+                                     left = (Ast.Var (Ast.Identifier "b"));
+                                     right = (Ast.LiteralInt 2)}};
+                                 right =
+                                 Ast.Binary {op = Ast.Equal;
+                                   left = (Ast.Var (Ast.Identifier "c"));
+                                   right = (Ast.LiteralInt 3)}};
+                               right =
+                               Ast.Binary {op = Ast.Equal;
+                                 left = (Ast.Var (Ast.Identifier "d"));
+                                 right = (Ast.LiteralInt 4)}};
+                             right =
+                             Ast.Binary {op = Ast.Equal;
+                               left = (Ast.Var (Ast.Identifier "e"));
+                               right = (Ast.LiteralInt 5)}};
+                           right =
+                           Ast.Binary {op = Ast.Equal;
+                             left = (Ast.Var (Ast.Identifier "f"));
+                             right = (Ast.LiteralInt 6)}}))
+                    ]))
+         });
+     (Ast.FunDecl
+        { Ast.name = (Ast.Identifier "main"); params = [];
+          body =
+          (Some (Ast.Block
+                   [(Ast.D
+                       (Ast.VarDecl
+                          { Ast.name = (Ast.Identifier "a");
+                            init = (Some (Ast.LiteralInt 4)) }));
+                     (Ast.S
+                        (Ast.Return
+                           Ast.FunctionCall {name = (Ast.Identifier "x");
+                             args =
+                             [(Ast.LiteralInt 1); (Ast.LiteralInt 2);
+                               (Ast.LiteralInt 3); (Ast.LiteralInt 4);
+                               (Ast.LiteralInt 5);
+                               Ast.Binary {op = Ast.BwRightShift;
+                                 left = (Ast.LiteralInt 24);
+                                 right =
+                                 Ast.Binary {op = Ast.Divide;
+                                   left = (Ast.Var (Ast.Identifier "a"));
+                                   right = (Ast.LiteralInt 2)}}
+                               ]}))
+                     ]))
+          })
+     ])

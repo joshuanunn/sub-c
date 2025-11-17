@@ -1,0 +1,27 @@
+Token.KW_INT
+(Token.IDENTIFIER "twice")
+Token.LPAREN
+Token.KW_INT
+(Token.IDENTIFIER "x")
+Token.RPAREN
+Token.LBRACE
+Token.KW_RETURN
+(Token.LITERAL_INT 2)
+Token.MUL
+(Token.IDENTIFIER "x")
+Token.SEMICOLON
+Token.RBRACE
+Token.KW_INT
+(Token.IDENTIFIER "main")
+Token.LPAREN
+Token.KW_VOID
+Token.RPAREN
+Token.LBRACE
+Token.KW_RETURN
+(Token.IDENTIFIER "twice")
+Token.LPAREN
+(Token.LITERAL_INT 3)
+Token.RPAREN
+Token.SEMICOLON
+Token.RBRACE
+Token.EOF

@@ -1,0 +1,21 @@
+(Ast.Program
+   [(Ast.FunDecl
+       { Ast.name = (Ast.Identifier "putchar");
+         params = [(Ast.Identifier "c")]; body = None });
+     (Ast.FunDecl
+        { Ast.name = (Ast.Identifier "incr_and_print");
+          params = [(Ast.Identifier "b")];
+          body =
+          (Some (Ast.Block
+                   [(Ast.S
+                       (Ast.Return
+                          Ast.FunctionCall {
+                            name = (Ast.Identifier "putchar");
+                            args =
+                            [Ast.Binary {op = Ast.Add;
+                               left = (Ast.Var (Ast.Identifier "b"));
+                               right = (Ast.LiteralInt 2)}
+                              ]}))
+                     ]))
+          })
+     ])

@@ -1,0 +1,24 @@
+Token.KW_INT
+(Token.IDENTIFIER "putchar")
+Token.LPAREN
+Token.KW_INT
+(Token.IDENTIFIER "c")
+Token.RPAREN
+Token.SEMICOLON
+Token.KW_INT
+(Token.IDENTIFIER "incr_and_print")
+Token.LPAREN
+Token.KW_INT
+(Token.IDENTIFIER "b")
+Token.RPAREN
+Token.LBRACE
+Token.KW_RETURN
+(Token.IDENTIFIER "putchar")
+Token.LPAREN
+(Token.IDENTIFIER "b")
+Token.ADD
+(Token.LITERAL_INT 2)
+Token.RPAREN
+Token.SEMICOLON
+Token.RBRACE
+Token.EOF

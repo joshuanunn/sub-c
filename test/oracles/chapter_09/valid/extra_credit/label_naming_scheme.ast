@@ -1,0 +1,31 @@
+(Ast.Program
+   [(Ast.FunDecl
+       { Ast.name = (Ast.Identifier "main"); params = [];
+         body =
+         (Some (Ast.Block
+                  [(Ast.S
+                      (Ast.Label ((Ast.Identifier "_label"),
+                         (Ast.Label ((Ast.Identifier "label_"),
+                            (Ast.Return (Ast.LiteralInt 0))))
+                         )))
+                    ]))
+         });
+     (Ast.FunDecl
+        { Ast.name = (Ast.Identifier "main_"); params = [];
+          body =
+          (Some (Ast.Block
+                   [(Ast.S
+                       (Ast.Label ((Ast.Identifier "label"),
+                          (Ast.Return (Ast.LiteralInt 0)))))
+                     ]))
+          });
+     (Ast.FunDecl
+        { Ast.name = (Ast.Identifier "_main"); params = [];
+          body =
+          (Some (Ast.Block
+                   [(Ast.S
+                       (Ast.Label ((Ast.Identifier "label"),
+                          (Ast.Return (Ast.LiteralInt 0)))))
+                     ]))
+          })
+     ])

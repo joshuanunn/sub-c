@@ -1,0 +1,53 @@
+Token.KW_INT
+(Token.IDENTIFIER "f")
+Token.LPAREN
+Token.KW_INT
+(Token.IDENTIFIER "a")
+Token.COMMA
+Token.KW_INT
+(Token.IDENTIFIER "b")
+Token.COMMA
+Token.KW_INT
+(Token.IDENTIFIER "c")
+Token.COMMA
+Token.KW_INT
+(Token.IDENTIFIER "d")
+Token.RPAREN
+Token.LBRACE
+Token.KW_INT
+(Token.IDENTIFIER "x")
+Token.ASSIGN
+(Token.IDENTIFIER "a")
+Token.DIV
+(Token.IDENTIFIER "b")
+Token.SEMICOLON
+Token.KW_IF
+Token.LPAREN
+(Token.IDENTIFIER "a")
+Token.EQ
+(Token.LITERAL_INT 10)
+Token.AND
+(Token.IDENTIFIER "b")
+Token.EQ
+(Token.LITERAL_INT 2)
+Token.AND
+(Token.IDENTIFIER "c")
+Token.EQ
+(Token.LITERAL_INT 100)
+Token.AND
+(Token.IDENTIFIER "d")
+Token.EQ
+(Token.LITERAL_INT 4)
+Token.AND
+(Token.IDENTIFIER "x")
+Token.EQ
+(Token.LITERAL_INT 5)
+Token.RPAREN
+Token.KW_RETURN
+(Token.LITERAL_INT 1)
+Token.SEMICOLON
+Token.KW_RETURN
+(Token.LITERAL_INT 0)
+Token.SEMICOLON
+Token.RBRACE
+Token.EOF

@@ -1,0 +1,123 @@
+Token.KW_INT
+(Token.IDENTIFIER "g")
+Token.LPAREN
+Token.KW_INT
+(Token.IDENTIFIER "w")
+Token.COMMA
+Token.KW_INT
+(Token.IDENTIFIER "x")
+Token.COMMA
+Token.KW_INT
+(Token.IDENTIFIER "y")
+Token.COMMA
+Token.KW_INT
+(Token.IDENTIFIER "z")
+Token.RPAREN
+Token.LBRACE
+Token.KW_IF
+Token.LPAREN
+(Token.IDENTIFIER "w")
+Token.EQ
+(Token.LITERAL_INT 2)
+Token.AND
+(Token.IDENTIFIER "x")
+Token.EQ
+(Token.LITERAL_INT 4)
+Token.AND
+(Token.IDENTIFIER "y")
+Token.EQ
+(Token.LITERAL_INT 6)
+Token.AND
+(Token.IDENTIFIER "z")
+Token.EQ
+(Token.LITERAL_INT 8)
+Token.RPAREN
+Token.KW_RETURN
+(Token.LITERAL_INT 1)
+Token.SEMICOLON
+Token.KW_RETURN
+(Token.LITERAL_INT 0)
+Token.SEMICOLON
+Token.RBRACE
+Token.KW_INT
+(Token.IDENTIFIER "f")
+Token.LPAREN
+Token.KW_INT
+(Token.IDENTIFIER "a")
+Token.COMMA
+Token.KW_INT
+(Token.IDENTIFIER "b")
+Token.COMMA
+Token.KW_INT
+(Token.IDENTIFIER "c")
+Token.COMMA
+Token.KW_INT
+(Token.IDENTIFIER "d")
+Token.RPAREN
+Token.LBRACE
+Token.KW_INT
+(Token.IDENTIFIER "result")
+Token.ASSIGN
+(Token.IDENTIFIER "g")
+Token.LPAREN
+(Token.IDENTIFIER "a")
+Token.MUL
+(Token.LITERAL_INT 2)
+Token.COMMA
+(Token.IDENTIFIER "b")
+Token.MUL
+(Token.LITERAL_INT 2)
+Token.COMMA
+(Token.IDENTIFIER "c")
+Token.MUL
+(Token.LITERAL_INT 2)
+Token.COMMA
+(Token.IDENTIFIER "d")
+Token.MUL
+(Token.LITERAL_INT 2)
+Token.RPAREN
+Token.SEMICOLON
+Token.KW_RETURN
+Token.LPAREN
+(Token.IDENTIFIER "result")
+Token.EQ
+(Token.LITERAL_INT 1)
+Token.AND
+(Token.IDENTIFIER "a")
+Token.EQ
+(Token.LITERAL_INT 1)
+Token.AND
+(Token.IDENTIFIER "b")
+Token.EQ
+(Token.LITERAL_INT 2)
+Token.AND
+(Token.IDENTIFIER "c")
+Token.EQ
+(Token.LITERAL_INT 3)
+Token.AND
+(Token.IDENTIFIER "d")
+Token.EQ
+(Token.LITERAL_INT 4)
+Token.RPAREN
+Token.SEMICOLON
+Token.RBRACE
+Token.KW_INT
+(Token.IDENTIFIER "main")
+Token.LPAREN
+Token.KW_VOID
+Token.RPAREN
+Token.LBRACE
+Token.KW_RETURN
+(Token.IDENTIFIER "f")
+Token.LPAREN
+(Token.LITERAL_INT 1)
+Token.COMMA
+(Token.LITERAL_INT 2)
+Token.COMMA
+(Token.LITERAL_INT 3)
+Token.COMMA
+(Token.LITERAL_INT 4)
+Token.RPAREN
+Token.SEMICOLON
+Token.RBRACE
+Token.EOF

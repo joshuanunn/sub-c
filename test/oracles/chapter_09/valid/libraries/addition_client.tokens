@@ -1,0 +1,26 @@
+Token.KW_INT
+(Token.IDENTIFIER "add")
+Token.LPAREN
+Token.KW_INT
+(Token.IDENTIFIER "x")
+Token.COMMA
+Token.KW_INT
+(Token.IDENTIFIER "y")
+Token.RPAREN
+Token.SEMICOLON
+Token.KW_INT
+(Token.IDENTIFIER "main")
+Token.LPAREN
+Token.KW_VOID
+Token.RPAREN
+Token.LBRACE
+Token.KW_RETURN
+(Token.IDENTIFIER "add")
+Token.LPAREN
+(Token.LITERAL_INT 1)
+Token.COMMA
+(Token.LITERAL_INT 2)
+Token.RPAREN
+Token.SEMICOLON
+Token.RBRACE
+Token.EOF

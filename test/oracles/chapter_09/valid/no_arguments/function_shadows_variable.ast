@@ -1,0 +1,51 @@
+(Ast.Program
+   [(Ast.FunDecl
+       { Ast.name = (Ast.Identifier "main"); params = [];
+         body =
+         (Some (Ast.Block
+                  [(Ast.D
+                      (Ast.VarDecl
+                         { Ast.name = (Ast.Identifier "foo");
+                           init = (Some (Ast.LiteralInt 3)) }));
+                    (Ast.D
+                       (Ast.VarDecl
+                          { Ast.name = (Ast.Identifier "bar");
+                            init = (Some (Ast.LiteralInt 4)) }));
+                    (Ast.S
+                       Ast.If {
+                         cond_exp =
+                         Ast.Binary {op = Ast.GreaterThan;
+                           left =
+                           Ast.Binary {op = Ast.Add;
+                             left = (Ast.Var (Ast.Identifier "foo"));
+                             right = (Ast.Var (Ast.Identifier "bar"))};
+                           right = (Ast.LiteralInt 0)};
+                         then_smt =
+                         (Ast.Compound
+                            (Ast.Block
+                               [(Ast.D
+                                   (Ast.FunDecl
+                                      { Ast.name = (Ast.Identifier "foo");
+                                        params = []; body = None }));
+                                 (Ast.S
+                                    (Ast.Expression
+                                       (Ast.Assignment (
+                                          (Ast.Var (Ast.Identifier "bar")),
+                                          Ast.FunctionCall {
+                                            name = (Ast.Identifier "foo");
+                                            args = []}
+                                          ))))
+                                 ]));
+                         else_smt = None});
+                    (Ast.S
+                       (Ast.Return
+                          Ast.Binary {op = Ast.Add;
+                            left = (Ast.Var (Ast.Identifier "foo"));
+                            right = (Ast.Var (Ast.Identifier "bar"))}))
+                    ]))
+         });
+     (Ast.FunDecl
+        { Ast.name = (Ast.Identifier "foo"); params = [];
+          body = (Some (Ast.Block [(Ast.S (Ast.Return (Ast.LiteralInt 8)))]))
+          })
+     ])

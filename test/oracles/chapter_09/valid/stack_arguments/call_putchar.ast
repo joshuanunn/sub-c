@@ -1,0 +1,39 @@
+(Ast.Program
+   [(Ast.FunDecl
+       { Ast.name = (Ast.Identifier "putchar");
+         params = [(Ast.Identifier "c")]; body = None });
+     (Ast.FunDecl
+        { Ast.name = (Ast.Identifier "foo");
+          params =
+          [(Ast.Identifier "a"); (Ast.Identifier "b"); (Ast.Identifier "c");
+            (Ast.Identifier "d"); (Ast.Identifier "e"); (Ast.Identifier "f");
+            (Ast.Identifier "g"); (Ast.Identifier "h")];
+          body =
+          (Some (Ast.Block
+                   [(Ast.S
+                       (Ast.Expression
+                          Ast.FunctionCall {
+                            name = (Ast.Identifier "putchar");
+                            args = [(Ast.Var (Ast.Identifier "h"))]}));
+                     (Ast.S
+                        (Ast.Return
+                           Ast.Binary {op = Ast.Add;
+                             left = (Ast.Var (Ast.Identifier "a"));
+                             right = (Ast.Var (Ast.Identifier "g"))}))
+                     ]))
+          });
+     (Ast.FunDecl
+        { Ast.name = (Ast.Identifier "main"); params = [];
+          body =
+          (Some (Ast.Block
+                   [(Ast.S
+                       (Ast.Return
+                          Ast.FunctionCall {name = (Ast.Identifier "foo");
+                            args =
+                            [(Ast.LiteralInt 1); (Ast.LiteralInt 2);
+                              (Ast.LiteralInt 3); (Ast.LiteralInt 4);
+                              (Ast.LiteralInt 5); (Ast.LiteralInt 6);
+                              (Ast.LiteralInt 7); (Ast.LiteralInt 65)]}))
+                     ]))
+          })
+     ])

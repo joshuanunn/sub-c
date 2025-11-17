@@ -1,0 +1,117 @@
+Token.KW_INT
+(Token.IDENTIFIER "fib")
+Token.LPAREN
+Token.KW_INT
+(Token.IDENTIFIER "a")
+Token.RPAREN
+Token.SEMICOLON
+Token.KW_INT
+(Token.IDENTIFIER "multiply_many_args")
+Token.LPAREN
+Token.KW_INT
+(Token.IDENTIFIER "a")
+Token.COMMA
+Token.KW_INT
+(Token.IDENTIFIER "b")
+Token.COMMA
+Token.KW_INT
+(Token.IDENTIFIER "c")
+Token.COMMA
+Token.KW_INT
+(Token.IDENTIFIER "d")
+Token.COMMA
+Token.KW_INT
+(Token.IDENTIFIER "e")
+Token.COMMA
+Token.KW_INT
+(Token.IDENTIFIER "f")
+Token.COMMA
+Token.KW_INT
+(Token.IDENTIFIER "g")
+Token.COMMA
+Token.KW_INT
+(Token.IDENTIFIER "h")
+Token.RPAREN
+Token.SEMICOLON
+Token.KW_INT
+(Token.IDENTIFIER "main")
+Token.LPAREN
+Token.KW_VOID
+Token.RPAREN
+Token.LBRACE
+Token.KW_INT
+(Token.IDENTIFIER "x")
+Token.ASSIGN
+(Token.IDENTIFIER "fib")
+Token.LPAREN
+(Token.LITERAL_INT 4)
+Token.RPAREN
+Token.SEMICOLON
+Token.KW_INT
+(Token.IDENTIFIER "seven")
+Token.ASSIGN
+(Token.LITERAL_INT 7)
+Token.SEMICOLON
+Token.KW_INT
+(Token.IDENTIFIER "eight")
+Token.ASSIGN
+(Token.IDENTIFIER "fib")
+Token.LPAREN
+(Token.LITERAL_INT 6)
+Token.RPAREN
+Token.SEMICOLON
+Token.KW_INT
+(Token.IDENTIFIER "y")
+Token.ASSIGN
+(Token.IDENTIFIER "multiply_many_args")
+Token.LPAREN
+(Token.IDENTIFIER "x")
+Token.COMMA
+(Token.LITERAL_INT 2)
+Token.COMMA
+(Token.LITERAL_INT 3)
+Token.COMMA
+(Token.LITERAL_INT 4)
+Token.COMMA
+(Token.LITERAL_INT 5)
+Token.COMMA
+(Token.LITERAL_INT 6)
+Token.COMMA
+(Token.IDENTIFIER "seven")
+Token.COMMA
+(Token.IDENTIFIER "eight")
+Token.RPAREN
+Token.SEMICOLON
+Token.KW_IF
+Token.LPAREN
+(Token.IDENTIFIER "x")
+Token.NE
+(Token.LITERAL_INT 3)
+Token.RPAREN
+Token.LBRACE
+Token.KW_RETURN
+(Token.LITERAL_INT 1)
+Token.SEMICOLON
+Token.RBRACE
+Token.KW_IF
+Token.LPAREN
+(Token.IDENTIFIER "y")
+Token.NE
+(Token.LITERAL_INT 589680)
+Token.RPAREN
+Token.LBRACE
+Token.KW_RETURN
+(Token.LITERAL_INT 2)
+Token.SEMICOLON
+Token.RBRACE
+Token.KW_RETURN
+(Token.IDENTIFIER "x")
+Token.ADD
+Token.LPAREN
+(Token.IDENTIFIER "y")
+Token.MOD
+(Token.LITERAL_INT 256)
+Token.RPAREN
+Token.SEMICOLON
+Token.RBRACE
+Token.EOF

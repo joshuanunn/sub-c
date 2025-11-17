@@ -1,0 +1,31 @@
+(Ast.Program
+   [(Ast.FunDecl
+       { Ast.name = (Ast.Identifier "f");
+         params =
+         [(Ast.Identifier "reg1"); (Ast.Identifier "reg2");
+           (Ast.Identifier "reg3"); (Ast.Identifier "reg4");
+           (Ast.Identifier "reg5"); (Ast.Identifier "reg6");
+           (Ast.Identifier "stack1"); (Ast.Identifier "stack2");
+           (Ast.Identifier "stack3")];
+         body = None });
+     (Ast.FunDecl
+        { Ast.name = (Ast.Identifier "main"); params = [];
+          body =
+          (Some (Ast.Block
+                   [(Ast.S
+                       (Ast.Return
+                          Ast.FunctionCall {name = (Ast.Identifier "f");
+                            args =
+                            [(Ast.LiteralInt 1); (Ast.LiteralInt 2);
+                              (Ast.LiteralInt 3); (Ast.LiteralInt 4);
+                              (Ast.LiteralInt 5); (Ast.LiteralInt 6);
+                              Ast.Unary {op = Ast.Negate;
+                                exp = (Ast.LiteralInt 1)};
+                              Ast.Unary {op = Ast.Negate;
+                                exp = (Ast.LiteralInt 2)};
+                              Ast.Unary {op = Ast.Negate;
+                                exp = (Ast.LiteralInt 3)}
+                              ]}))
+                     ]))
+          })
+     ])

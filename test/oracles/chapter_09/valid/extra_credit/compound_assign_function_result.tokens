@@ -1,0 +1,32 @@
+Token.KW_INT
+(Token.IDENTIFIER "foo")
+Token.LPAREN
+Token.KW_VOID
+Token.RPAREN
+Token.LBRACE
+Token.KW_RETURN
+(Token.LITERAL_INT 2)
+Token.SEMICOLON
+Token.RBRACE
+Token.KW_INT
+(Token.IDENTIFIER "main")
+Token.LPAREN
+Token.KW_VOID
+Token.RPAREN
+Token.LBRACE
+Token.KW_INT
+(Token.IDENTIFIER "x")
+Token.ASSIGN
+(Token.LITERAL_INT 3)
+Token.SEMICOLON
+(Token.IDENTIFIER "x")
+Token.SUB_ASSIGN
+(Token.IDENTIFIER "foo")
+Token.LPAREN
+Token.RPAREN
+Token.SEMICOLON
+Token.KW_RETURN
+(Token.IDENTIFIER "x")
+Token.SEMICOLON
+Token.RBRACE
+Token.EOF
