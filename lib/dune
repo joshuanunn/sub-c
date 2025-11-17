@@ -3,8 +3,8 @@
  (modules
   io
   env
-  token
   lexer
+  lexer_pp
   parser
   ast
   ast_resolution
@@ -20,7 +20,6 @@
   (pps ppx_deriving.show)))
 
 (menhir
- (modules parser)
- (flags --external-tokens Token))
+ (modules parser))
 
 (ocamllex lexer)

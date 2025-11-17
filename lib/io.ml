@@ -18,8 +18,8 @@ let run_lexer lexbuf =
   let rec loop () =
     try
       let tok = Lexer.read lexbuf in
-      print_endline (Token.show_token tok);
-      if tok != Token.EOF then loop ()
+      print_endline (Lexer_pp.show_token tok);
+      if tok != Parser.EOF then loop ()
     with Lexer.Lexing_error msg ->
       let pos = lexbuf.Lexing.lex_curr_p in
       Printf.eprintf "Lexing error at line %d, column %d: %s\n"
