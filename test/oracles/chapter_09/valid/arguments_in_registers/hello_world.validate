@@ -1,0 +1,81 @@
+(Ast.Program
+   [(Ast.FunDecl
+       { Ast.name = (Ast.Identifier "putchar");
+         params = [(Ast.Identifier "c.0")]; body = None });
+     (Ast.FunDecl
+        { Ast.name = (Ast.Identifier "main"); params = [];
+          body =
+          (Some (Ast.Block
+                   [(Ast.S
+                       (Ast.Expression
+                          Ast.FunctionCall {
+                            name = (Ast.Identifier "putchar");
+                            args = [(Ast.LiteralInt 72)]}));
+                     (Ast.S
+                        (Ast.Expression
+                           Ast.FunctionCall {
+                             name = (Ast.Identifier "putchar");
+                             args = [(Ast.LiteralInt 101)]}));
+                     (Ast.S
+                        (Ast.Expression
+                           Ast.FunctionCall {
+                             name = (Ast.Identifier "putchar");
+                             args = [(Ast.LiteralInt 108)]}));
+                     (Ast.S
+                        (Ast.Expression
+                           Ast.FunctionCall {
+                             name = (Ast.Identifier "putchar");
+                             args = [(Ast.LiteralInt 108)]}));
+                     (Ast.S
+                        (Ast.Expression
+                           Ast.FunctionCall {
+                             name = (Ast.Identifier "putchar");
+                             args = [(Ast.LiteralInt 111)]}));
+                     (Ast.S
+                        (Ast.Expression
+                           Ast.FunctionCall {
+                             name = (Ast.Identifier "putchar");
+                             args = [(Ast.LiteralInt 44)]}));
+                     (Ast.S
+                        (Ast.Expression
+                           Ast.FunctionCall {
+                             name = (Ast.Identifier "putchar");
+                             args = [(Ast.LiteralInt 32)]}));
+                     (Ast.S
+                        (Ast.Expression
+                           Ast.FunctionCall {
+                             name = (Ast.Identifier "putchar");
+                             args = [(Ast.LiteralInt 87)]}));
+                     (Ast.S
+                        (Ast.Expression
+                           Ast.FunctionCall {
+                             name = (Ast.Identifier "putchar");
+                             args = [(Ast.LiteralInt 111)]}));
+                     (Ast.S
+                        (Ast.Expression
+                           Ast.FunctionCall {
+                             name = (Ast.Identifier "putchar");
+                             args = [(Ast.LiteralInt 114)]}));
+                     (Ast.S
+                        (Ast.Expression
+                           Ast.FunctionCall {
+                             name = (Ast.Identifier "putchar");
+                             args = [(Ast.LiteralInt 108)]}));
+                     (Ast.S
+                        (Ast.Expression
+                           Ast.FunctionCall {
+                             name = (Ast.Identifier "putchar");
+                             args = [(Ast.LiteralInt 100)]}));
+                     (Ast.S
+                        (Ast.Expression
+                           Ast.FunctionCall {
+                             name = (Ast.Identifier "putchar");
+                             args = [(Ast.LiteralInt 33)]}));
+                     (Ast.S
+                        (Ast.Expression
+                           Ast.FunctionCall {
+                             name = (Ast.Identifier "putchar");
+                             args = [(Ast.LiteralInt 10)]}))
+                     ]))
+          })
+     ])

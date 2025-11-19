@@ -1,0 +1,106 @@
+(Ast.Program
+   [(Ast.FunDecl
+       { Ast.name = (Ast.Identifier "f");
+         params =
+         [(Ast.Identifier "reg1.0"); (Ast.Identifier "reg2.1");
+           (Ast.Identifier "reg3.2"); (Ast.Identifier "reg4.3");
+           (Ast.Identifier "reg5.4"); (Ast.Identifier "reg6.5");
+           (Ast.Identifier "stack1.6"); (Ast.Identifier "stack2.7");
+           (Ast.Identifier "stack3.8")];
+         body =
+         (Some (Ast.Block
+                  [(Ast.D
+                      (Ast.VarDecl
+                         { Ast.name = (Ast.Identifier "x.9");
+                           init = (Some (Ast.LiteralInt 10)) }));
+                    (Ast.S
+                       Ast.If {
+                         cond_exp =
+                         Ast.Binary {op = Ast.And;
+                           left =
+                           Ast.Binary {op = Ast.And;
+                             left =
+                             Ast.Binary {op = Ast.And;
+                               left =
+                               Ast.Binary {op = Ast.And;
+                                 left =
+                                 Ast.Binary {op = Ast.And;
+                                   left =
+                                   Ast.Binary {op = Ast.And;
+                                     left =
+                                     Ast.Binary {op = Ast.And;
+                                       left =
+                                       Ast.Binary {op = Ast.And;
+                                         left =
+                                         Ast.Binary {op = Ast.And;
+                                           left =
+                                           Ast.Binary {op = Ast.Equal;
+                                             left =
+                                             (Ast.Var
+                                                (Ast.Identifier "reg1.0"));
+                                             right = (Ast.LiteralInt 1)};
+                                           right =
+                                           Ast.Binary {op = Ast.Equal;
+                                             left =
+                                             (Ast.Var
+                                                (Ast.Identifier "reg2.1"));
+                                             right = (Ast.LiteralInt 2)}};
+                                         right =
+                                         Ast.Binary {op = Ast.Equal;
+                                           left =
+                                           (Ast.Var (Ast.Identifier "reg3.2"));
+                                           right = (Ast.LiteralInt 3)}};
+                                       right =
+                                       Ast.Binary {op = Ast.Equal;
+                                         left =
+                                         (Ast.Var (Ast.Identifier "reg4.3"));
+                                         right = (Ast.LiteralInt 4)}};
+                                     right =
+                                     Ast.Binary {op = Ast.Equal;
+                                       left =
+                                       (Ast.Var (Ast.Identifier "reg5.4"));
+                                       right = (Ast.LiteralInt 5)}};
+                                   right =
+                                   Ast.Binary {op = Ast.Equal;
+                                     left =
+                                     (Ast.Var (Ast.Identifier "reg6.5"));
+                                     right = (Ast.LiteralInt 6)}};
+                                 right =
+                                 Ast.Binary {op = Ast.Equal;
+                                   left =
+                                   (Ast.Var (Ast.Identifier "stack1.6"));
+                                   right =
+                                   Ast.Unary {op = Ast.Negate;
+                                     exp = (Ast.LiteralInt 1)}}};
+                               right =
+                               Ast.Binary {op = Ast.Equal;
+                                 left = (Ast.Var (Ast.Identifier "stack2.7"));
+                                 right =
+                                 Ast.Unary {op = Ast.Negate;
+                                   exp = (Ast.LiteralInt 2)}}};
+                             right =
+                             Ast.Binary {op = Ast.Equal;
+                               left = (Ast.Var (Ast.Identifier "stack3.8"));
+                               right =
+                               Ast.Unary {op = Ast.Negate;
+                                 exp = (Ast.LiteralInt 3)}}};
+                           right =
+                           Ast.Binary {op = Ast.Equal;
+                             left = (Ast.Var (Ast.Identifier "x.9"));
+                             right = (Ast.LiteralInt 10)}};
+                         then_smt =
+                         (Ast.Compound
+                            (Ast.Block
+                               [(Ast.S
+                                   (Ast.Expression
+                                      (Ast.Assignment (
+                                         (Ast.Var (Ast.Identifier "stack2.7")),
+                                         (Ast.LiteralInt 100)))));
+                                 (Ast.S
+                                    (Ast.Return
+                                       (Ast.Var (Ast.Identifier "stack2.7"))))
+                                 ]));
+                         else_smt = None});
+                    (Ast.S (Ast.Return (Ast.LiteralInt 0)))]))
+         })
+     ])

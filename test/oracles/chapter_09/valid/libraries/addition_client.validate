@@ -1,0 +1,16 @@
+(Ast.Program
+   [(Ast.FunDecl
+       { Ast.name = (Ast.Identifier "add");
+         params = [(Ast.Identifier "x.0"); (Ast.Identifier "y.1")];
+         body = None });
+     (Ast.FunDecl
+        { Ast.name = (Ast.Identifier "main"); params = [];
+          body =
+          (Some (Ast.Block
+                   [(Ast.S
+                       (Ast.Return
+                          Ast.FunctionCall {name = (Ast.Identifier "add");
+                            args = [(Ast.LiteralInt 1); (Ast.LiteralInt 2)]}))
+                     ]))
+          })
+     ])

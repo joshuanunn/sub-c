@@ -1,0 +1,32 @@
+(Ast.Program
+   [(Ast.FunDecl
+       { Ast.name = (Ast.Identifier "sub");
+         params = [(Ast.Identifier "a.0"); (Ast.Identifier "b.1")];
+         body =
+         (Some (Ast.Block
+                  [(Ast.S
+                      (Ast.Return
+                         Ast.Binary {op = Ast.Subtract;
+                           left = (Ast.Var (Ast.Identifier "a.0"));
+                           right = (Ast.Var (Ast.Identifier "b.1"))}))
+                    ]))
+         });
+     (Ast.FunDecl
+        { Ast.name = (Ast.Identifier "main"); params = [];
+          body =
+          (Some (Ast.Block
+                   [(Ast.D
+                       (Ast.VarDecl
+                          { Ast.name = (Ast.Identifier "sum.2");
+                            init =
+                            (Some Ast.FunctionCall {
+                                    name = (Ast.Identifier "sub");
+                                    args =
+                                    [Ast.Binary {op = Ast.Add;
+                                       left = (Ast.LiteralInt 1);
+                                       right = (Ast.LiteralInt 2)};
+                                      (Ast.LiteralInt 1)]})
+                            }));
+                     (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "sum.2"))))]))
+          })
+     ])
