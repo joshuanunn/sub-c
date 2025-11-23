@@ -1,0 +1,19 @@
+(Ir.Program
+   [Ir.Function {name = "foo";
+      params = ["a.1"; "b.2"; "c.3"; "d.4"; "e.5"; "f.6"; "g.7"; "h.8"];
+      body =
+      [Ir.FunCall {fun_name = "putchar"; args = [(Ir.Var "h.8")];
+         dst = (Ir.Var "tmp.0")};
+        Ir.Binary {op = Ir.Add; src1 = (Ir.Var "a.1"); src2 = (Ir.Var "g.7");
+          dst = (Ir.Var "tmp.1")};
+        (Ir.Return (Ir.Var "tmp.1")); (Ir.Return (Ir.Constant 0))]};
+     Ir.Function {name = "main"; params = [];
+       body =
+       [Ir.FunCall {fun_name = "foo";
+          args =
+          [(Ir.Constant 1); (Ir.Constant 2); (Ir.Constant 3);
+            (Ir.Constant 4); (Ir.Constant 5); (Ir.Constant 6);
+            (Ir.Constant 7); (Ir.Constant 65)];
+          dst = (Ir.Var "tmp.2")};
+         (Ir.Return (Ir.Var "tmp.2")); (Ir.Return (Ir.Constant 0))]}
+     ])

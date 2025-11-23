@@ -1,5 +1,5 @@
 (Ir.Program
-   [Ir.Function {name = "main";
+   [Ir.Function {name = "main"; params = [];
       body =
       [Ir.Copy {src = (Ir.Constant 5); dst = (Ir.Var "to_mod.0")};
         Ir.Binary {op = Ir.Remainder; src1 = (Ir.Var "to_mod.0");

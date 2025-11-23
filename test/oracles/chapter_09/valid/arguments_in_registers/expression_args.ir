@@ -1,0 +1,15 @@
+(Ir.Program
+   [Ir.Function {name = "sub"; params = ["a.0"; "b.1"];
+      body =
+      [Ir.Binary {op = Ir.Subtract; src1 = (Ir.Var "a.0");
+         src2 = (Ir.Var "b.1"); dst = (Ir.Var "tmp.0")};
+        (Ir.Return (Ir.Var "tmp.0")); (Ir.Return (Ir.Constant 0))]};
+     Ir.Function {name = "main"; params = [];
+       body =
+       [Ir.Binary {op = Ir.Add; src1 = (Ir.Constant 1);
+          src2 = (Ir.Constant 2); dst = (Ir.Var "tmp.1")};
+         Ir.FunCall {fun_name = "sub";
+           args = [(Ir.Var "tmp.1"); (Ir.Constant 1)]; dst = (Ir.Var "tmp.2")};
+         Ir.Copy {src = (Ir.Var "tmp.2"); dst = (Ir.Var "sum.2")};
+         (Ir.Return (Ir.Var "sum.2")); (Ir.Return (Ir.Constant 0))]}
+     ])

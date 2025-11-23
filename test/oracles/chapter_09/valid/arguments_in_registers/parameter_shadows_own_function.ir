@@ -1,0 +1,12 @@
+(Ir.Program
+   [Ir.Function {name = "a"; params = ["a.0"];
+      body =
+      [Ir.Binary {op = Ir.Multiply; src1 = (Ir.Var "a.0");
+         src2 = (Ir.Constant 2); dst = (Ir.Var "tmp.0")};
+        (Ir.Return (Ir.Var "tmp.0")); (Ir.Return (Ir.Constant 0))]};
+     Ir.Function {name = "main"; params = [];
+       body =
+       [Ir.FunCall {fun_name = "a"; args = [(Ir.Constant 1)];
+          dst = (Ir.Var "tmp.1")};
+         (Ir.Return (Ir.Var "tmp.1")); (Ir.Return (Ir.Constant 0))]}
+     ])

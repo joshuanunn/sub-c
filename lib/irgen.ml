@@ -152,7 +152,16 @@ let rec convert_expr (e : Ast.expr) (le : Env.lenv) :
         cond_ins @ [ jz_cond ] @ e1_ins
         @ [ c1; j_end; Ir.Label l_e2 ]
         @ e2_ins @ [ c2; Ir.Label l_end ] )
-  | FunctionCall _ -> failwith "TODO"
+  | FunctionCall { name : Ast.ident; args : Ast.expr list } ->
+      let fun_name = identifier_to_string name in
+      let arg_vals, arg_ins =
+        List.split (List.map (fun e -> convert_expr e le) args)
+      in
+      let arg_instructions = List.concat arg_ins in
+      (* TODO: need to handle dst properly (e.g. void) *)
+      let dst = Ir.Var (Env.declare_value "tmp" le) in
+      let instruction = Ir.FunCall { fun_name; args = arg_vals; dst } in
+      (dst, arg_instructions @ [ instruction ])
 
 let rec convert_stmt (s : Ast.stmt) (le : Env.lenv) : Ir.instruction list =
   match s with
@@ -311,7 +320,8 @@ let rec convert_stmt (s : Ast.stmt) (le : Env.lenv) : Ir.instruction list =
 
 and convert_dclr (d : Ast.decl) (le : Env.lenv) : Ir.instruction list =
   match d with
-  | FunDecl _ -> failwith "TODO"
+  (* Function declarations without body are discarded *)
+  | FunDecl _ -> []
   (* No need to generate instructions for variable declaration *)
   | VarDecl { name; init = None } ->
       Env.insert_value name le;
@@ -358,27 +368,38 @@ and convert_for_post (e : Ast.expr option) (le : Env.lenv) : Ir.instruction list
   | None -> []
 
 and convert_func (f : Ast.fun_decl) (le : Env.lenv) : Ir.func =
-  let block_items =
-    match f.body with Some (Block items) -> items | None -> []
-  in
-  let body =
-    List.map
-      (fun node ->
-        match node with
-        | Ast.S s -> convert_stmt s le
-        | Ast.D d -> convert_dclr d le)
-      block_items
-    |> List.flatten
-  in
-  (* Append "return 0" to the function end, in case no return present *)
-  let body_safe_return = body @ [ Return (Constant 0) ] in
-  Function { name = identifier_to_string f.name; body = body_safe_return }
+  match f.body with
+  | None ->
+      failwith
+        ("convert_func called on function declaration: "
+        ^ identifier_to_string f.name)
+  | Some (Block items) ->
+      let body =
+        List.map
+          (fun node ->
+            match node with
+            | Ast.S s -> convert_stmt s le
+            | Ast.D d -> convert_dclr d le)
+          items
+        |> List.flatten
+      in
+      (* Append "return 0" to the function end, in case no return present *)
+      let body_safe_return = body @ [ Return (Constant 0) ] in
+      Function
+        {
+          name = identifier_to_string f.name;
+          params = List.map identifier_to_string f.params;
+          body = body_safe_return;
+        }
 
 let convert_prog (Program p : Ast.prog) (le : Env.lenv) : Ir.prog =
   let resolved_funcs =
-    List.map
+    List.filter_map
       (function
-        | Ast.FunDecl f -> convert_func f le
+        | Ast.FunDecl f -> (
+            match f.body with
+            | Some _ -> Some (convert_func f le) (* process func definitions *)
+            | None -> None (* ignore func declarations *))
         | Ast.VarDecl _ ->
             failwith "Global variable declaration not yet implemented")
       p

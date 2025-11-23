@@ -1,0 +1,18 @@
+(Ir.Program
+   [Ir.Function {name = "main"; params = [];
+      body =
+      [Ir.Copy {src = (Ir.Constant 3); dst = (Ir.Var "x.17")};
+        Ir.FunCall {fun_name = "even_arguments";
+          args =
+          [(Ir.Constant 1); (Ir.Constant 2); (Ir.Constant 3);
+            (Ir.Constant 4); (Ir.Constant 5); (Ir.Constant 6);
+            (Ir.Constant 7); (Ir.Constant 8)];
+          dst = (Ir.Var "tmp.0")};
+        Ir.FunCall {fun_name = "odd_arguments";
+          args =
+          [(Ir.Constant 1); (Ir.Constant 2); (Ir.Constant 3);
+            (Ir.Constant 4); (Ir.Constant 5); (Ir.Constant 6);
+            (Ir.Constant 7); (Ir.Constant 8); (Ir.Constant 9)];
+          dst = (Ir.Var "tmp.1")};
+        (Ir.Return (Ir.Var "x.17")); (Ir.Return (Ir.Constant 0))]}
+     ])

@@ -1,5 +1,5 @@
 (Ir.Program
-   [Ir.Function {name = "main";
+   [Ir.Function {name = "main"; params = [];
       body =
       [Ir.JumpIfZero {condition = (Ir.Constant 0); target = "and.fl.2"};
         Ir.Binary {op = Ir.Divide; src1 = (Ir.Constant 1);

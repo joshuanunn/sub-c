@@ -38,9 +38,11 @@ type instruction =
   | JumpIfZero of { condition : value; target : string }
   | JumpIfNotZero of { condition : value; target : string }
   | Label of string
+  | FunCall of { fun_name : string; args : value list; dst : value }
 [@@deriving show]
 
-type func = Function of { name : string; body : instruction list }
+type func =
+  | Function of { name : string; params : string list; body : instruction list }
 [@@deriving show]
 
 type prog = Program of func list [@@deriving show]

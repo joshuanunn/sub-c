@@ -1,0 +1,9 @@
+(Ir.Program
+   [Ir.Function {name = "incr_and_print"; params = ["b.1"];
+      body =
+      [Ir.Binary {op = Ir.Add; src1 = (Ir.Var "b.1"); src2 = (Ir.Constant 2);
+         dst = (Ir.Var "tmp.0")};
+        Ir.FunCall {fun_name = "putchar"; args = [(Ir.Var "tmp.0")];
+          dst = (Ir.Var "tmp.1")};
+        (Ir.Return (Ir.Var "tmp.1")); (Ir.Return (Ir.Constant 0))]}
+     ])
