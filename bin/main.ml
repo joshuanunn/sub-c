@@ -15,15 +15,16 @@ let () =
   (* Initialise new environments *)
   let s_env = Subc.Env.make_senv () in
   let l_env = Subc.Env.make_lenv () in
+  let t_env = Subc.Env.make_tenv () in
   Subc.Io.with_input_file source_path (fun lexbuf ->
       match phase with
       | 1 -> Subc.Io.run_lexer lexbuf
       | 2 -> Subc.Io.run_parser lexbuf
-      | 3 -> Subc.Io.run_validator lexbuf s_env
-      | 4 -> Subc.Io.run_irgen lexbuf s_env l_env
-      | 5 -> Subc.Io.run_codegen lexbuf s_env l_env
-      | 6 -> Subc.Io.run_emit lexbuf s_env l_env
-      | 7 -> Subc.Io.run_exe lexbuf target_path s_env l_env
+      | 3 -> Subc.Io.run_validator lexbuf s_env t_env
+      | 4 -> Subc.Io.run_irgen lexbuf s_env l_env t_env
+      | 5 -> Subc.Io.run_codegen lexbuf s_env l_env t_env
+      | 6 -> Subc.Io.run_emit lexbuf s_env l_env t_env
+      | 7 -> Subc.Io.run_exe lexbuf target_path s_env l_env t_env
       | _ ->
           prerr_endline
             "Unknown phase. Supported: 1=lex, 2=parse, 3=validate, 4=irgen, \

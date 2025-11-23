@@ -177,3 +177,64 @@ let resolve_lab (id : Ast.ident) (se : senv) : Ast.ident =
         | None -> find rest)
   in
   find se.label_stack
+
+(** ------------------------------------------------------------------------
+    Type environment (tenv)
+    ------------------------------------------------------------------------
+    Handles type checking of identifiers at the AST level. This should be used
+    after the resolution pass has resolved scoping, to ensure identifiers have
+    unique names before typing. *)
+
+type type_entry = { c_type : Type.ctype; defined : bool }
+type tenv = { mutable typed_idents : (string, type_entry) Hashtbl.t }
+
+(** Create a new type environment with a single global scope *)
+let make_tenv () : tenv = { typed_idents = Hashtbl.create 16 }
+
+(** Add a variable into type environment. *)
+let typecheck_var_decl (id : Ast.ident) (te : tenv) : Ast.ident =
+  let var_name = get_identifier_name id in
+
+  (* As variables already have unique names from the AST resolution pass, then
+    no need to check if they exist in the type environment. We just add them. *)
+  Hashtbl.add te.typed_idents var_name { c_type = Type.Int; defined = true };
+  id
+
+(** Add a function into type environment. Raises if a function has been defined
+    before or if function definition does not match a previous entry. *)
+let typecheck_fun_decl (id : Ast.ident) (params : Ast.ident list)
+    (is_def : bool) (te : tenv) : Ast.ident =
+  let fun_name = get_identifier_name id in
+  let fun_type = Type.FunType { param_count = List.length params } in
+
+  (match Hashtbl.find_opt te.typed_idents fun_name with
+  | None ->
+      Hashtbl.add te.typed_idents fun_name
+        { c_type = fun_type; defined = is_def }
+  | Some { c_type; defined } ->
+      if c_type <> fun_type then failwith "incompatible function declarations"
+      else if is_def && defined then failwith "function defined more than once"
+      else
+        Hashtbl.add te.typed_idents fun_name
+          { c_type = fun_type; defined = is_def });
+  id
+
+(** Assert a variable has been typechecked and has been used correctly. *)
+let typecheck_assert_var (id : Ast.ident) (te : tenv) : Ast.ident =
+  let var_name = get_identifier_name id in
+  (match Hashtbl.find_opt te.typed_idents var_name with
+  | None -> failwith "variable has not been typechecked"
+  | Some { c_type; _ } ->
+      if c_type <> Type.Int then failwith "function name used as variable");
+  id
+
+(** Assert a function has been typechecked and has been used correctly. *)
+let typecheck_assert_fun (id : Ast.ident) (argc : int) (te : tenv) : Ast.ident =
+  let fun_name = get_identifier_name id in
+  (match Hashtbl.find_opt te.typed_idents fun_name with
+  | None -> failwith "function has not been typechecked"
+  | Some { c_type = Type.FunType p; _ } ->
+      if p.param_count <> argc then
+        failwith "function called with the wrong number of arguments"
+  | Some _ -> failwith "variable used as function name");
+  id

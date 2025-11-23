@@ -6,9 +6,11 @@
   lexer
   lexer_pp
   parser
+  type
   ast
   ast_resolution
   ast_flow_label
+  ast_type_check
   irgen
   ir
   codegen
