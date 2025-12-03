@@ -388,7 +388,14 @@ and convert_func (f : Ast.fun_decl) (le : Env.lenv) : Ir.func =
       Function
         {
           name = identifier_to_string f.name;
-          params = List.map identifier_to_string f.params;
+          params =
+            List.map
+              (fun name ->
+                let param_name = identifier_to_string name in
+                (* Add function parameter declarations to lenv *)
+                Env.insert_value name le;
+                param_name)
+              f.params;
           body = body_safe_return;
         }
 
