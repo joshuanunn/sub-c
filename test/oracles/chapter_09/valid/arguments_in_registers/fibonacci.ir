@@ -25,11 +25,34 @@
         Ir.Binary {op = Ir.Add; src1 = (Ir.Var "tmp.8");
           src2 = (Ir.Var "tmp.10"); dst = (Ir.Var "tmp.11")};
         (Ir.Return (Ir.Var "tmp.11")); (Ir.Label "if.en.5");
-        (Ir.Return (Ir.Constant 0))]};
+        (Ir.Return (Ir.Constant 0))];
+      frame =
+      Env.lenv {
+        counter = 12;
+        offset = -36;
+        stack slots = {
+          tmp.0  -> -4,
+          tmp.1  -> -8,
+          tmp.2  -> -12,
+          tmp.7  -> -16,
+          tmp.8  -> -20,
+          tmp.9  -> -24,
+          tmp.10 -> -28,
+          tmp.11 -> -32,
+          n.0    -> -36,
+        }}};
      Ir.Function {name = "main"; params = [];
        body =
        [Ir.Copy {src = (Ir.Constant 6); dst = (Ir.Var "n.1")};
          Ir.FunCall {fun_name = "fib"; args = [(Ir.Var "n.1")];
-           dst = (Ir.Var "tmp.12")};
-         (Ir.Return (Ir.Var "tmp.12")); (Ir.Return (Ir.Constant 0))]}
+           dst = (Ir.Var "tmp.0")};
+         (Ir.Return (Ir.Var "tmp.0")); (Ir.Return (Ir.Constant 0))];
+       frame =
+       Env.lenv {
+         counter = 1;
+         offset = -8;
+         stack slots = {
+           n.1   -> -4,
+           tmp.0 -> -8,
+         }}}
      ])

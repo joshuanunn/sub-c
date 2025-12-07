@@ -3,10 +3,26 @@
       body =
       [Ir.FunCall {fun_name = "foo";
          args = [(Ir.Constant 2); (Ir.Constant 1)]; dst = (Ir.Var "tmp.0")};
-        (Ir.Return (Ir.Var "tmp.0")); (Ir.Return (Ir.Constant 0))]};
+        (Ir.Return (Ir.Var "tmp.0")); (Ir.Return (Ir.Constant 0))];
+      frame =
+      Env.lenv {
+        counter = 1;
+        offset = -4;
+        stack slots = {
+          tmp.0 -> -4,
+        }}};
      Ir.Function {name = "foo"; params = ["x.2"; "y.3"];
        body =
        [Ir.Binary {op = Ir.Subtract; src1 = (Ir.Var "x.2");
-          src2 = (Ir.Var "y.3"); dst = (Ir.Var "tmp.1")};
-         (Ir.Return (Ir.Var "tmp.1")); (Ir.Return (Ir.Constant 0))]}
+          src2 = (Ir.Var "y.3"); dst = (Ir.Var "tmp.0")};
+         (Ir.Return (Ir.Var "tmp.0")); (Ir.Return (Ir.Constant 0))];
+       frame =
+       Env.lenv {
+         counter = 1;
+         offset = -12;
+         stack slots = {
+           tmp.0 -> -4,
+           x.2   -> -8,
+           y.3   -> -12,
+         }}}
      ])

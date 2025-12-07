@@ -29,5 +29,25 @@
           dst = (Ir.Var "tmp.12")};
         Ir.FunCall {fun_name = "putchar"; args = [(Ir.Constant 10)];
           dst = (Ir.Var "tmp.13")};
-        (Ir.Return (Ir.Constant 0))]}
+        (Ir.Return (Ir.Constant 0))];
+      frame =
+      Env.lenv {
+        counter = 14;
+        offset = -56;
+        stack slots = {
+          tmp.0  -> -4,
+          tmp.1  -> -8,
+          tmp.2  -> -12,
+          tmp.3  -> -16,
+          tmp.4  -> -20,
+          tmp.5  -> -24,
+          tmp.6  -> -28,
+          tmp.7  -> -32,
+          tmp.8  -> -36,
+          tmp.9  -> -40,
+          tmp.10 -> -44,
+          tmp.11 -> -48,
+          tmp.12 -> -52,
+          tmp.13 -> -56,
+        }}}
      ])

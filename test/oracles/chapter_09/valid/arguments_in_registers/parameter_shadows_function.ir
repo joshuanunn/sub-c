@@ -1,8 +1,20 @@
 (Ir.Program
    [Ir.Function {name = "a"; params = [];
-      body = [(Ir.Return (Ir.Constant 1)); (Ir.Return (Ir.Constant 0))]};
+      body = [(Ir.Return (Ir.Constant 1)); (Ir.Return (Ir.Constant 0))];
+      frame = Env.lenv {
+                counter = 0;
+                offset = 0;
+                stack slots = {
+                }}};
      Ir.Function {name = "b"; params = ["a.0"];
-       body = [(Ir.Return (Ir.Var "a.0")); (Ir.Return (Ir.Constant 0))]};
+       body = [(Ir.Return (Ir.Var "a.0")); (Ir.Return (Ir.Constant 0))];
+       frame =
+       Env.lenv {
+         counter = 0;
+         offset = -4;
+         stack slots = {
+           a.0 -> -4,
+         }}};
      Ir.Function {name = "main"; params = [];
        body =
        [Ir.FunCall {fun_name = "a"; args = []; dst = (Ir.Var "tmp.0")};
@@ -10,5 +22,14 @@
            dst = (Ir.Var "tmp.1")};
          Ir.Binary {op = Ir.Add; src1 = (Ir.Var "tmp.0");
            src2 = (Ir.Var "tmp.1"); dst = (Ir.Var "tmp.2")};
-         (Ir.Return (Ir.Var "tmp.2")); (Ir.Return (Ir.Constant 0))]}
+         (Ir.Return (Ir.Var "tmp.2")); (Ir.Return (Ir.Constant 0))];
+       frame =
+       Env.lenv {
+         counter = 3;
+         offset = -12;
+         stack slots = {
+           tmp.0 -> -4,
+           tmp.1 -> -8,
+           tmp.2 -> -12,
+         }}}
      ])
