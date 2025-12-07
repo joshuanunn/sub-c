@@ -15,5 +15,12 @@
         (Ir.Label "label_return.3"); (Ir.Return (Ir.Var "a.5"));
         (Ir.Label "label_empty.4");
         Ir.Copy {src = (Ir.Constant 100); dst = (Ir.Var "a.5")};
-        Ir.Jump {target = "label_goto.1"}; (Ir.Return (Ir.Constant 0))]}
+        Ir.Jump {target = "label_goto.1"}; (Ir.Return (Ir.Constant 0))];
+      frame =
+      Env.lenv {
+        counter = 3;
+        offset = -4;
+        stack slots = {
+          a.5 -> -4,
+        }}}
      ])

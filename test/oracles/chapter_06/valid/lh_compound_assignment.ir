@@ -15,5 +15,16 @@
         (Ir.Label "cond.en.2");
         Ir.Binary {op = Ir.Equal; src1 = (Ir.Var "x.0");
           src2 = (Ir.Constant 4); dst = (Ir.Var "tmp.5")};
-        (Ir.Return (Ir.Var "tmp.5")); (Ir.Return (Ir.Constant 0))]}
+        (Ir.Return (Ir.Var "tmp.5")); (Ir.Return (Ir.Constant 0))];
+      frame =
+      Env.lenv {
+        counter = 6;
+        offset = -20;
+        stack slots = {
+          x.0   -> -4,
+          tmp.0 -> -8,
+          tmp.1 -> -12,
+          tmp.4 -> -16,
+          tmp.5 -> -20,
+        }}}
      ])

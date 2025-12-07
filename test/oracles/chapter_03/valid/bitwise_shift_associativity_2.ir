@@ -5,5 +5,13 @@
          src2 = (Ir.Constant 2); dst = (Ir.Var "tmp.0")};
         Ir.Binary {op = Ir.BwLeftShift; src1 = (Ir.Var "tmp.0");
           src2 = (Ir.Constant 1); dst = (Ir.Var "tmp.1")};
-        (Ir.Return (Ir.Var "tmp.1")); (Ir.Return (Ir.Constant 0))]}
+        (Ir.Return (Ir.Var "tmp.1")); (Ir.Return (Ir.Constant 0))];
+      frame =
+      Env.lenv {
+        counter = 2;
+        offset = -8;
+        stack slots = {
+          tmp.0 -> -4,
+          tmp.1 -> -8,
+        }}}
      ])

@@ -3,5 +3,10 @@
       body =
       [Ir.Jump {target = "_main.0"}; (Ir.Return (Ir.Constant 0));
         (Ir.Label "_main.0"); (Ir.Return (Ir.Constant 1));
-        (Ir.Return (Ir.Constant 0))]}
+        (Ir.Return (Ir.Constant 0))];
+      frame = Env.lenv {
+                counter = 0;
+                offset = 0;
+                stack slots = {
+                }}}
      ])

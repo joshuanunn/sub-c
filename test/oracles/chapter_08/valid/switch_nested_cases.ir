@@ -73,5 +73,25 @@
         Ir.Jump {target = "and.en.16"}; (Ir.Label "and.fl.15");
         Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "tmp.14")};
         (Ir.Label "and.en.16"); (Ir.Return (Ir.Var "tmp.14"));
-        (Ir.Return (Ir.Constant 0))]}
+        (Ir.Return (Ir.Constant 0))];
+      frame =
+      Env.lenv {
+        counter = 17;
+        offset = -56;
+        stack slots = {
+          switch1.0 -> -4,
+          switch2.1 -> -8,
+          switch3.2 -> -12,
+          tmp.0     -> -16,
+          tmp.1     -> -20,
+          tmp.2     -> -24,
+          tmp.4     -> -28,
+          tmp.5     -> -32,
+          tmp.8     -> -36,
+          i.3       -> -40,
+          tmp.9     -> -44,
+          tmp.10    -> -48,
+          tmp.11    -> -52,
+          tmp.14    -> -56,
+        }}}
      ])

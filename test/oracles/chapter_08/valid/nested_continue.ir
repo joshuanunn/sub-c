@@ -27,5 +27,20 @@
           src2 = (Ir.Constant 1); dst = (Ir.Var "tmp.6")};
         Ir.Copy {src = (Ir.Var "tmp.6"); dst = (Ir.Var "x.0")};
         Ir.Jump {target = "loop.ct.1"}; (Ir.Label "loop.br.1");
-        (Ir.Return (Ir.Var "acc.1")); (Ir.Return (Ir.Constant 0))]}
+        (Ir.Return (Ir.Var "acc.1")); (Ir.Return (Ir.Constant 0))];
+      frame =
+      Env.lenv {
+        counter = 7;
+        offset = -36;
+        stack slots = {
+          x.0   -> -4,
+          acc.1 -> -8,
+          tmp.0 -> -12,
+          i.2   -> -16,
+          tmp.1 -> -20,
+          tmp.2 -> -24,
+          tmp.3 -> -28,
+          tmp.5 -> -32,
+          tmp.6 -> -36,
+        }}}
      ])

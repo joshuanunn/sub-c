@@ -9,5 +9,15 @@
           src2 = (Ir.Var "tmp.1"); dst = (Ir.Var "tmp.2")};
         Ir.Binary {op = Ir.Add; src1 = (Ir.Var "tmp.0");
           src2 = (Ir.Var "tmp.2"); dst = (Ir.Var "tmp.3")};
-        (Ir.Return (Ir.Var "tmp.3")); (Ir.Return (Ir.Constant 0))]}
+        (Ir.Return (Ir.Var "tmp.3")); (Ir.Return (Ir.Constant 0))];
+      frame =
+      Env.lenv {
+        counter = 4;
+        offset = -16;
+        stack slots = {
+          tmp.0 -> -4,
+          tmp.1 -> -8,
+          tmp.2 -> -12,
+          tmp.3 -> -16,
+        }}}
      ])

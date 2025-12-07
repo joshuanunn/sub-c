@@ -2,7 +2,7 @@
 main:
     pushq       %rbp
     movq        %rsp, %rbp
-    subq        $4, %rsp
+    subq        $16, %rsp
     movl        $0, -4(%rbp)
     jmp         .Llabel.0
 .Lloop.ct.1:

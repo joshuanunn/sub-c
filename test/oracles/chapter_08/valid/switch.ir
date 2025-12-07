@@ -22,5 +22,15 @@
         (Ir.Return (Ir.Constant 1)); (Ir.Label "swit.cs.1.3");
         (Ir.Return (Ir.Constant 3)); (Ir.Label "swit.cs.1.5");
         (Ir.Return (Ir.Constant 5)); (Ir.Label "swit.br.1");
-        (Ir.Return (Ir.Constant 0))]}
+        (Ir.Return (Ir.Constant 0))];
+      frame =
+      Env.lenv {
+        counter = 4;
+        offset = -16;
+        stack slots = {
+          tmp.0 -> -4,
+          tmp.1 -> -8,
+          tmp.2 -> -12,
+          tmp.3 -> -16,
+        }}}
      ])

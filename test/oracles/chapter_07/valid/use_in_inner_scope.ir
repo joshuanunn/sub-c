@@ -2,5 +2,12 @@
    [Ir.Function {name = "main"; params = [];
       body =
       [Ir.Copy {src = (Ir.Constant 3); dst = (Ir.Var "x.0")};
-        (Ir.Return (Ir.Var "x.0")); (Ir.Return (Ir.Constant 0))]}
+        (Ir.Return (Ir.Var "x.0")); (Ir.Return (Ir.Constant 0))];
+      frame =
+      Env.lenv {
+        counter = 0;
+        offset = -4;
+        stack slots = {
+          x.0 -> -4,
+        }}}
      ])

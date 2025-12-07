@@ -1,4 +1,9 @@
 (Ir.Program
    [Ir.Function {name = "main"; params = [];
-      body = [(Ir.Return (Ir.Constant 0))]}
+      body = [(Ir.Return (Ir.Constant 0))];
+      frame = Env.lenv {
+                counter = 0;
+                offset = 0;
+                stack slots = {
+                }}}
      ])

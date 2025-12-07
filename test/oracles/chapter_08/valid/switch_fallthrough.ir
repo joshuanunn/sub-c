@@ -35,5 +35,20 @@
           src2 = (Ir.Constant 4); dst = (Ir.Var "tmp.7")};
         Ir.Copy {src = (Ir.Var "tmp.7"); dst = (Ir.Var "c.2")};
         (Ir.Label "swit.br.1"); (Ir.Return (Ir.Var "c.2"));
-        (Ir.Return (Ir.Constant 0))]}
+        (Ir.Return (Ir.Constant 0))];
+      frame =
+      Env.lenv {
+        counter = 8;
+        offset = -36;
+        stack slots = {
+          a.0   -> -4,
+          b.1   -> -8,
+          c.2   -> -12,
+          tmp.0 -> -16,
+          tmp.3 -> -20,
+          tmp.4 -> -24,
+          tmp.5 -> -28,
+          tmp.6 -> -32,
+          tmp.7 -> -36,
+        }}}
      ])

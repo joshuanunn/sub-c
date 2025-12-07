@@ -10,5 +10,14 @@
           src2 = (Ir.Constant 256); dst = (Ir.Var "tmp.1")};
         Ir.JumpIfNotZero {condition = (Ir.Var "tmp.1"); target = "loop.st.1"};
         (Ir.Label "loop.br.1"); (Ir.Return (Ir.Var "i.0"));
-        (Ir.Return (Ir.Constant 0))]}
+        (Ir.Return (Ir.Constant 0))];
+      frame =
+      Env.lenv {
+        counter = 2;
+        offset = -12;
+        stack slots = {
+          i.0   -> -4,
+          tmp.0 -> -8,
+          tmp.1 -> -12,
+        }}}
      ])

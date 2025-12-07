@@ -4,5 +4,12 @@
       [Ir.Copy {src = (Ir.Constant 5); dst = (Ir.Var "ident.1")};
         Ir.Jump {target = "ident.0"}; (Ir.Return (Ir.Constant 0));
         (Ir.Label "ident.0"); (Ir.Return (Ir.Var "ident.1"));
-        (Ir.Return (Ir.Constant 0))]}
+        (Ir.Return (Ir.Constant 0))];
+      frame =
+      Env.lenv {
+        counter = 0;
+        offset = -4;
+        stack slots = {
+          ident.1 -> -4,
+        }}}
      ])

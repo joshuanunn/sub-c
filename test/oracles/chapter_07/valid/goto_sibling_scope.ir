@@ -21,5 +21,16 @@
         Ir.Jump {target = "first_if.0"};
         Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "sum.2")};
         (Ir.Label "if.en.2"); (Ir.Return (Ir.Var "sum.2"));
-        (Ir.Return (Ir.Constant 0))]}
+        (Ir.Return (Ir.Constant 0))];
+      frame =
+      Env.lenv {
+        counter = 4;
+        offset = -20;
+        stack slots = {
+          sum.2 -> -4,
+          a.3   -> -8,
+          tmp.1 -> -12,
+          a.4   -> -16,
+          tmp.3 -> -20,
+        }}}
      ])

@@ -6,5 +6,12 @@
         Ir.Jump {target = "if.en.0"}; (Ir.Label "if.el.1");
         Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "x.0")};
         (Ir.Label "if.en.0"); (Ir.Return (Ir.Var "x.0"));
-        (Ir.Return (Ir.Constant 0))]}
+        (Ir.Return (Ir.Constant 0))];
+      frame =
+      Env.lenv {
+        counter = 2;
+        offset = -4;
+        stack slots = {
+          x.0 -> -4,
+        }}}
      ])

@@ -2,7 +2,7 @@
 main:
     pushq       %rbp
     movq        %rsp, %rbp
-    subq        $4, %rsp
+    subq        $16, %rsp
     movl        $1, -4(%rbp)
 .Llabel_if.0:
     cmpl        $0, -4(%rbp)

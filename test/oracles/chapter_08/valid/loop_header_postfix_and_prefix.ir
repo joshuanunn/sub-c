@@ -30,5 +30,18 @@
           src2 = (Ir.Constant 99); dst = (Ir.Var "tmp.5")};
         Ir.JumpIfZero {condition = (Ir.Var "tmp.5"); target = "if.en.6"};
         (Ir.Return (Ir.Constant 0)); (Ir.Label "if.en.6");
-        (Ir.Return (Ir.Constant 1)); (Ir.Return (Ir.Constant 0))]}
+        (Ir.Return (Ir.Constant 1)); (Ir.Return (Ir.Constant 0))];
+      frame =
+      Env.lenv {
+        counter = 7;
+        offset = -28;
+        stack slots = {
+          i.0     -> -4,
+          count.1 -> -8,
+          tmp.0   -> -12,
+          tmp.1   -> -16,
+          tmp.2   -> -20,
+          tmp.4   -> -24,
+          tmp.5   -> -28,
+        }}}
      ])

@@ -4,5 +4,13 @@
       [Ir.Copy {src = (Ir.Constant 3); dst = (Ir.Var "a.0")};
         Ir.Copy {src = (Ir.Constant 4); dst = (Ir.Var "a.1")};
         Ir.Copy {src = (Ir.Var "a.1"); dst = (Ir.Var "a.1")};
-        (Ir.Return (Ir.Var "a.0")); (Ir.Return (Ir.Constant 0))]}
+        (Ir.Return (Ir.Var "a.0")); (Ir.Return (Ir.Constant 0))];
+      frame =
+      Env.lenv {
+        counter = 0;
+        offset = -8;
+        stack slots = {
+          a.0 -> -4,
+          a.1 -> -8,
+        }}}
      ])

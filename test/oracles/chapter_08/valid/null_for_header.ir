@@ -12,5 +12,14 @@
         Ir.Jump {target = "loop.br.1"}; (Ir.Label "if.en.2");
         (Ir.Label "loop.ct.1"); Ir.Jump {target = "loop.st.1"};
         (Ir.Label "loop.br.1"); (Ir.Return (Ir.Var "a.0"));
-        (Ir.Return (Ir.Constant 0))]}
+        (Ir.Return (Ir.Constant 0))];
+      frame =
+      Env.lenv {
+        counter = 3;
+        offset = -12;
+        stack slots = {
+          a.0   -> -4,
+          tmp.0 -> -8,
+          tmp.1 -> -12,
+        }}}
      ])

@@ -5,5 +5,13 @@
         Ir.Binary {op = Ir.BwOr; src1 = (Ir.Var "to_or.0");
           src2 = (Ir.Constant 30); dst = (Ir.Var "tmp.0")};
         Ir.Copy {src = (Ir.Var "tmp.0"); dst = (Ir.Var "to_or.0")};
-        (Ir.Return (Ir.Var "to_or.0")); (Ir.Return (Ir.Constant 0))]}
+        (Ir.Return (Ir.Var "to_or.0")); (Ir.Return (Ir.Constant 0))];
+      frame =
+      Env.lenv {
+        counter = 1;
+        offset = -8;
+        stack slots = {
+          to_or.0 -> -4,
+          tmp.0   -> -8,
+        }}}
      ])

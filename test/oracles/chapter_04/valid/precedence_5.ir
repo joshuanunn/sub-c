@@ -17,5 +17,17 @@
         (Ir.Label "and.en.6");
         Ir.Binary {op = Ir.Add; src1 = (Ir.Var "tmp.4");
           src2 = (Ir.Constant 1); dst = (Ir.Var "tmp.7")};
-        (Ir.Return (Ir.Var "tmp.7")); (Ir.Return (Ir.Constant 0))]}
+        (Ir.Return (Ir.Var "tmp.7")); (Ir.Return (Ir.Constant 0))];
+      frame =
+      Env.lenv {
+        counter = 8;
+        offset = -24;
+        stack slots = {
+          tmp.0 -> -4,
+          tmp.1 -> -8,
+          tmp.2 -> -12,
+          tmp.3 -> -16,
+          tmp.4 -> -20,
+          tmp.7 -> -24,
+        }}}
      ])

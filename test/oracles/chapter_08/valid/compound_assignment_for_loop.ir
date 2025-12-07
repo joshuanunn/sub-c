@@ -22,5 +22,19 @@
           dst = (Ir.Var "tmp.5")};
         Ir.Binary {op = Ir.Equal; src1 = (Ir.Var "i.0");
           src2 = (Ir.Var "tmp.5"); dst = (Ir.Var "tmp.6")};
-        (Ir.Return (Ir.Var "tmp.6")); (Ir.Return (Ir.Constant 0))]}
+        (Ir.Return (Ir.Var "tmp.6")); (Ir.Return (Ir.Constant 0))];
+      frame =
+      Env.lenv {
+        counter = 7;
+        offset = -32;
+        stack slots = {
+          i.0   -> -4,
+          tmp.0 -> -8,
+          tmp.1 -> -12,
+          tmp.2 -> -16,
+          tmp.3 -> -20,
+          tmp.4 -> -24,
+          tmp.5 -> -28,
+          tmp.6 -> -32,
+        }}}
      ])

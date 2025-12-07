@@ -2,7 +2,7 @@
 main:
     pushq       %rbp
     movq        %rsp, %rbp
-    subq        $20, %rsp
+    subq        $32, %rsp
     movl        $0, -4(%rbp)
     cmpl        $0, -4(%rbp)
     je          .Lif.el.1

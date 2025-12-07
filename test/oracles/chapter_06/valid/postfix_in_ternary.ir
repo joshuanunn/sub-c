@@ -12,5 +12,15 @@
           src2 = (Ir.Constant 1); dst = (Ir.Var "x.0")};
         Ir.Copy {src = (Ir.Var "tmp.4"); dst = (Ir.Var "tmp.0")};
         (Ir.Label "cond.en.2"); (Ir.Return (Ir.Var "x.0"));
-        (Ir.Return (Ir.Constant 0))]}
+        (Ir.Return (Ir.Constant 0))];
+      frame =
+      Env.lenv {
+        counter = 5;
+        offset = -16;
+        stack slots = {
+          x.0   -> -4,
+          tmp.0 -> -8,
+          tmp.1 -> -12,
+          tmp.4 -> -16,
+        }}}
      ])

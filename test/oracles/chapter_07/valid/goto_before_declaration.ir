@@ -8,5 +8,14 @@
         (Ir.Label "return_a.0"); (Ir.Return (Ir.Var "a.1"));
         (Ir.Label "if.en.1");
         Ir.Copy {src = (Ir.Constant 4); dst = (Ir.Var "a.2")};
-        Ir.Jump {target = "return_a.0"}; (Ir.Return (Ir.Constant 0))]}
+        Ir.Jump {target = "return_a.0"}; (Ir.Return (Ir.Constant 0))];
+      frame =
+      Env.lenv {
+        counter = 2;
+        offset = -12;
+        stack slots = {
+          a.1   -> -4,
+          tmp.0 -> -8,
+          a.2   -> -12,
+        }}}
      ])

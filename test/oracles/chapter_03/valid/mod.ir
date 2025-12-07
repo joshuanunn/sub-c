@@ -3,5 +3,12 @@
       body =
       [Ir.Binary {op = Ir.Remainder; src1 = (Ir.Constant 4);
          src2 = (Ir.Constant 2); dst = (Ir.Var "tmp.0")};
-        (Ir.Return (Ir.Var "tmp.0")); (Ir.Return (Ir.Constant 0))]}
+        (Ir.Return (Ir.Var "tmp.0")); (Ir.Return (Ir.Constant 0))];
+      frame =
+      Env.lenv {
+        counter = 1;
+        offset = -4;
+        stack slots = {
+          tmp.0 -> -4,
+        }}}
      ])

@@ -2,7 +2,7 @@
 main:
     pushq       %rbp
     movq        %rsp, %rbp
-    subq        $36, %rsp
+    subq        $48, %rsp
     movl        $2, -4(%rbp)
     movl        $4, -12(%rbp)
     negl        -12(%rbp)

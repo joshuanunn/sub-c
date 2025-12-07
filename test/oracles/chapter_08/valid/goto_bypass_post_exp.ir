@@ -17,5 +17,16 @@
         Ir.Jump {target = "lbl.0"}; (Ir.Label "loop.ct.1");
         Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "i.2")};
         Ir.Jump {target = "loop.st.1"}; (Ir.Label "loop.br.1");
-        (Ir.Return (Ir.Var "sum.1")); (Ir.Return (Ir.Constant 0))]}
+        (Ir.Return (Ir.Var "sum.1")); (Ir.Return (Ir.Constant 0))];
+      frame =
+      Env.lenv {
+        counter = 4;
+        offset = -20;
+        stack slots = {
+          sum.1 -> -4,
+          i.2   -> -8,
+          tmp.0 -> -12,
+          tmp.1 -> -16,
+          tmp.2 -> -20,
+        }}}
      ])
