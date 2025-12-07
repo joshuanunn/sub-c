@@ -1,3 +1,5 @@
+type size = Byte | Long | Quad
+
 let emit_cc (o : Asm.cond_code) : string =
   match o with
   | E -> "e"
@@ -7,18 +9,43 @@ let emit_cc (o : Asm.cond_code) : string =
   | L -> "l"
   | LE -> "le"
 
-let emit_op (o : Asm.operand) : string =
+let emit_op (s : size) (o : Asm.operand) : string =
+  let reg64 = function
+    | Asm.AX -> "%rax"
+    | Asm.CX -> "%rcx"
+    | Asm.DX -> "%rdx"
+    | Asm.DI -> "%rdi"
+    | Asm.SI -> "%rsi"
+    | Asm.R8 -> "%r8"
+    | Asm.R9 -> "%r9"
+    | Asm.R10 -> "%r10"
+    | Asm.R11 -> "%r11"
+  in
+  let reg32 = function
+    | Asm.AX -> "%eax"
+    | Asm.CX -> "%ecx"
+    | Asm.DX -> "%edx"
+    | Asm.DI -> "%edi"
+    | Asm.SI -> "%esi"
+    | Asm.R8 -> "%r8d"
+    | Asm.R9 -> "%r9d"
+    | Asm.R10 -> "%r10d"
+    | Asm.R11 -> "%r11d"
+  in
+  let reg8 = function
+    | Asm.AX -> "%al"
+    | Asm.CX -> "%cl"
+    | Asm.DX -> "%dl"
+    | Asm.DI -> "%dil"
+    | Asm.SI -> "%sil"
+    | Asm.R8 -> "%r8b"
+    | Asm.R9 -> "%r9b"
+    | Asm.R10 -> "%r10b"
+    | Asm.R11 -> "%r11b"
+  in
   match o with
-  | Reg AL -> "%al"
-  | Reg CL -> "%cl"
-  | Reg DL -> "%dl"
-  | Reg AX -> "%eax"
-  | Reg CX -> "%ecx"
-  | Reg DX -> "%edx"
-  | Reg R10 -> "%r10d"
-  | Reg R10B -> "%r10b"
-  | Reg R11 -> "%r11d"
-  | Reg R11B -> "%r11b"
+  | Reg r -> (
+      match s with Byte -> reg8 r | Long -> reg32 r | Quad -> reg64 r)
   | Stack i -> Printf.sprintf "%d(%%rbp)" i
   | Imm i -> Printf.sprintf "$%d" i
   | Pseudo s -> failwith ("Pseudo operand " ^ s ^ " has not been lowered")
@@ -45,7 +72,7 @@ let format_function (f : string) : string = Printf.sprintf "%s:" f
 let emit_instruction (i : Asm.instruction) : string list =
   match i with
   | Mov (src, dst) ->
-      let ops = Printf.sprintf "%s, %s" (emit_op src) (emit_op dst) in
+      let ops = Printf.sprintf "%s, %s" (emit_op Long src) (emit_op Long dst) in
       [ format_instruction "movl" ops ]
   | Ret ->
       [
@@ -53,20 +80,21 @@ let emit_instruction (i : Asm.instruction) : string list =
         format_instruction "popq" "%rbp";
         format_instruction "ret" "";
       ]
-  | Unary { op; dst } -> [ format_instruction (emit_unary_op op) (emit_op dst) ]
+  | Unary { op; dst } ->
+      [ format_instruction (emit_unary_op op) (emit_op Long dst) ]
   | Binary { op; src; dst } ->
-      let ops = Printf.sprintf "%s, %s" (emit_op src) (emit_op dst) in
+      let ops = Printf.sprintf "%s, %s" (emit_op Long src) (emit_op Long dst) in
       [ format_instruction (emit_binary_op op) ops ]
   | Cmp (op1, op2) ->
-      let ops = Printf.sprintf "%s, %s" (emit_op op1) (emit_op op2) in
+      let ops = Printf.sprintf "%s, %s" (emit_op Long op1) (emit_op Long op2) in
       [ format_instruction "cmpl" ops ]
-  | Idiv o -> [ format_instruction "idivl" (emit_op o) ]
+  | Idiv o -> [ format_instruction "idivl" (emit_op Long o) ]
   | Cdq -> [ format_instruction "cdq" "" ]
   | Shl (src, dst) ->
-      let ops = Printf.sprintf "%s, %s" (emit_op src) (emit_op dst) in
+      let ops = Printf.sprintf "%s, %s" (emit_op Byte src) (emit_op Long dst) in
       [ format_instruction "shll" ops ]
   | Sar (src, dst) ->
-      let ops = Printf.sprintf "%s, %s" (emit_op src) (emit_op dst) in
+      let ops = Printf.sprintf "%s, %s" (emit_op Byte src) (emit_op Long dst) in
       [ format_instruction "sarl" ops ]
   | Jmp l ->
       let ops = Printf.sprintf ".L%s" l in
@@ -77,12 +105,19 @@ let emit_instruction (i : Asm.instruction) : string list =
       [ format_instruction ins ops ]
   | SetCC (c, o) ->
       let ins = Printf.sprintf "set%s" (emit_cc c) in
-      let ops = Printf.sprintf "%s" (emit_op o) in
+      let ops = Printf.sprintf "%s" (emit_op Byte o) in
       [ format_instruction ins ops ]
   | Label l -> [ format_label l ]
   | AllocateStack n ->
       let ops = Printf.sprintf "$%d, %%rsp" n in
       [ format_instruction "subq" ops ]
+  | DeallocateStack n ->
+      let ops = Printf.sprintf "$%d, %%rsp" n in
+      [ format_instruction "addq" ops ]
+  | Push o ->
+      let ops = Printf.sprintf "%s" (emit_op Quad o) in
+      [ format_instruction "pushq" ops ]
+  | Call l -> [ format_instruction "call" (l ^ "@PLT") ]
 
 let emit_func (f : Asm.func) : string list =
   match f with
@@ -104,4 +139,7 @@ let emit_prog (Asm.Program p) : string =
   let footer =
     [ format_instruction ".section" ".note.GNU-stack,\"\",@progbits\n" ]
   in
-  String.concat "\n" (emit_func p @ footer)
+  let emit_funcs =
+    List.map (function f -> String.concat "\n" (emit_func f)) p
+  in
+  String.concat "\n" (emit_funcs @ footer)

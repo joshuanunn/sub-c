@@ -367,13 +367,15 @@ and convert_for_post (e : Ast.expr option) (le : Env.lenv) : Ir.instruction list
       ins
   | None -> []
 
-and convert_func (f : Ast.fun_decl) (le : Env.lenv) : Ir.func =
+and convert_func (f : Ast.fun_decl) : Ir.func =
   match f.body with
   | None ->
       failwith
         ("convert_func called on function declaration: "
         ^ identifier_to_string f.name)
   | Some (Block items) ->
+      (* Create a new environment for the function to track frame contents *)
+      let le = Env.make_lenv () in
       let body =
         List.map
           (fun node ->
@@ -397,15 +399,16 @@ and convert_func (f : Ast.fun_decl) (le : Env.lenv) : Ir.func =
                 param_name)
               f.params;
           body = body_safe_return;
+          frame = le;
         }
 
-let convert_prog (Program p : Ast.prog) (le : Env.lenv) : Ir.prog =
+let convert_prog (Program p : Ast.prog) : Ir.prog =
   let resolved_funcs =
     List.filter_map
       (function
         | Ast.FunDecl f -> (
             match f.body with
-            | Some _ -> Some (convert_func f le) (* process func definitions *)
+            | Some _ -> Some (convert_func f) (* process func definitions *)
             | None -> None (* ignore func declarations *))
         | Ast.VarDecl _ ->
             failwith "Global variable declaration not yet implemented")

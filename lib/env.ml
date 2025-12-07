@@ -18,6 +18,33 @@ type lenv = {
       (** Map from variable names to stack offsets *)
 }
 
+let pp_lenv fmt (le : lenv) =
+  (* Convert and sort entries by offset *)
+  let entries =
+    Hashtbl.fold
+      (fun name offset acc -> (offset, name) :: acc)
+      le.stack_offsets []
+    |> List.sort (fun (o1, _) (o2, _) -> compare o2 o1)
+  in
+  let max_name_len =
+    List.fold_left (fun m (_, name) -> max m (String.length name)) 0 entries
+  in
+  Format.fprintf fmt "@[<v>";
+  Format.fprintf fmt "Env.lenv {@;<2 2>@[<v>";
+  Format.fprintf fmt "counter = %d;@," le.counter;
+  Format.fprintf fmt "offset = %d;@," le.offset;
+  Format.fprintf fmt "@[<v>stack slots = {@,";
+  List.iter
+    (fun (offset, name) ->
+      Format.fprintf fmt "  %-*s -> %d,@," max_name_len name offset)
+    entries;
+  Format.fprintf fmt "}}@]";
+  Format.fprintf fmt "@]";
+  Format.fprintf fmt "@]" (* close outer box *)
+
+(** Pretty printer for lenv, as not fully supported by ppx_deriving show. *)
+let show_lenv le = Format.asprintf "%a" pp_lenv le
+
 (** Create a new, empty local environment *)
 let make_lenv () : lenv =
   { counter = 0; offset = 0; stack_offsets = Hashtbl.create 16 }

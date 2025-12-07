@@ -1,6 +1,4 @@
-type reg = AL | CL | DL | AX | CX | DX | R10B | R11B | R10 | R11
-[@@deriving show]
-
+type reg = AX | CX | DX | DI | SI | R8 | R9 | R10 | R11 [@@deriving show]
 type cond_code = E | NE | G | GE | L | LE [@@deriving show]
 
 type operand = Imm of int | Reg of reg | Pseudo of string | Stack of int
@@ -25,10 +23,18 @@ type instruction =
   | SetCC of cond_code * operand
   | Label of string
   | AllocateStack of int
+  | DeallocateStack of int
+  | Push of operand
+  | Call of string
   | Ret
 [@@deriving show]
 
-type func = Function of { name : string; instructions : instruction list }
+type func =
+  | Function of {
+      name : string;
+      instructions : instruction list;
+      frame : Env.lenv;
+    }
 [@@deriving show]
 
-type prog = Program of func [@@deriving show]
+type prog = Program of func list [@@deriving show]

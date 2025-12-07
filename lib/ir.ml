@@ -42,7 +42,12 @@ type instruction =
 [@@deriving show]
 
 type func =
-  | Function of { name : string; params : string list; body : instruction list }
+  | Function of {
+      name : string;
+      params : string list;
+      body : instruction list;
+      frame : Env.lenv;
+    }
 [@@deriving show]
 
 type prog = Program of func list [@@deriving show]
