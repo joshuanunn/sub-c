@@ -1,10 +1,23 @@
 (Ir.Program
    [Ir.Function {name = "three"; params = [];
-      body = [(Ir.Return (Ir.Constant 3)); (Ir.Return (Ir.Constant 0))]};
+      body = [(Ir.Return (Ir.Constant 3)); (Ir.Return (Ir.Constant 0))];
+      frame = Env.lenv {
+                counter = 0;
+                offset = 0;
+                stack slots = {
+                }}};
      Ir.Function {name = "main"; params = [];
        body =
        [Ir.FunCall {fun_name = "three"; args = []; dst = (Ir.Var "tmp.0")};
          Ir.Unary {op = Ir.Not; src = (Ir.Var "tmp.0");
            dst = (Ir.Var "tmp.1")};
-         (Ir.Return (Ir.Var "tmp.1")); (Ir.Return (Ir.Constant 0))]}
+         (Ir.Return (Ir.Var "tmp.1")); (Ir.Return (Ir.Constant 0))];
+       frame =
+       Env.lenv {
+         counter = 2;
+         offset = -8;
+         stack slots = {
+           tmp.0 -> -4,
+           tmp.1 -> -8,
+         }}}
      ])

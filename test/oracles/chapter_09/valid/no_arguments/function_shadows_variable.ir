@@ -13,7 +13,24 @@
         (Ir.Label "if.en.2");
         Ir.Binary {op = Ir.Add; src1 = (Ir.Var "foo.0");
           src2 = (Ir.Var "bar.1"); dst = (Ir.Var "tmp.4")};
-        (Ir.Return (Ir.Var "tmp.4")); (Ir.Return (Ir.Constant 0))]};
+        (Ir.Return (Ir.Var "tmp.4")); (Ir.Return (Ir.Constant 0))];
+      frame =
+      Env.lenv {
+        counter = 5;
+        offset = -24;
+        stack slots = {
+          foo.0 -> -4,
+          bar.1 -> -8,
+          tmp.0 -> -12,
+          tmp.1 -> -16,
+          tmp.3 -> -20,
+          tmp.4 -> -24,
+        }}};
      Ir.Function {name = "foo"; params = [];
-       body = [(Ir.Return (Ir.Constant 8)); (Ir.Return (Ir.Constant 0))]}
+       body = [(Ir.Return (Ir.Constant 8)); (Ir.Return (Ir.Constant 0))];
+       frame = Env.lenv {
+                 counter = 0;
+                 offset = 0;
+                 stack slots = {
+                 }}}
      ])
