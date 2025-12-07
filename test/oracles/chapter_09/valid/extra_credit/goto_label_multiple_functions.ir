@@ -3,11 +3,23 @@
       body =
       [Ir.Jump {target = "label.0"}; (Ir.Return (Ir.Constant 0));
         (Ir.Label "label.0"); (Ir.Return (Ir.Constant 5));
-        (Ir.Return (Ir.Constant 0))]};
+        (Ir.Return (Ir.Constant 0))];
+      frame = Env.lenv {
+                counter = 0;
+                offset = 0;
+                stack slots = {
+                }}};
      Ir.Function {name = "main"; params = [];
        body =
        [Ir.Jump {target = "label.1"}; (Ir.Return (Ir.Constant 0));
          (Ir.Label "label.1");
          Ir.FunCall {fun_name = "foo"; args = []; dst = (Ir.Var "tmp.0")};
-         (Ir.Return (Ir.Var "tmp.0")); (Ir.Return (Ir.Constant 0))]}
+         (Ir.Return (Ir.Var "tmp.0")); (Ir.Return (Ir.Constant 0))];
+       frame =
+       Env.lenv {
+         counter = 1;
+         offset = -4;
+         stack slots = {
+           tmp.0 -> -4,
+         }}}
      ])
