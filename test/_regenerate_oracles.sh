@@ -50,8 +50,18 @@ for chapter in "${CHAPTERS[@]}"; do
         exe_file="${test_file%.c}"
         subc "$test_file" -o "$exe_file"
         if [[ -x "$exe_file" ]]; then
-          "$exe_file"
-          echo $? > "$oracle_path"
+          # Capture stdout
+          program_stdout="$("$exe_file" 2>&1)"
+          program_status=$?
+
+          # Always write exit status oracle
+          echo "$program_status" > "$oracle_path"
+
+          # Write stdout oracle only if non-empty
+          if [[ -n "$program_stdout" ]]; then
+            stdout_oracle="${oracle_path%.exit_status}.stdout"
+            printf "%s" "$program_stdout" > "$stdout_oracle"
+          fi
           rm -f "$exe_file"
         else
           echo "Executable not found: $exe_file" >&2

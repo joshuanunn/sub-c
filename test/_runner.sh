@@ -95,12 +95,13 @@ for chapter in "${CHAPTERS[@]}"; do
           # Compile executable
           subc "$test_file" -o "$binary_file"
 
-          # Run executable, capture exit status code and cleanup
-          output=$("$binary_file" 2>&1)
-          status=$?
+          # Capture stdout and exit status
+          program_stdout="$("$binary_file" 2>&1)"
+          program_status=$?
           rm -f "$binary_file"
 
-          read -r line < $oracle_file
+          # Compare exit status
+          read -r line < "$oracle_file"
           if [[ "$line" =~ ^-?[0-9]+$ ]]; then
             expected_status=$((line))
           else
@@ -108,14 +109,38 @@ for chapter in "${CHAPTERS[@]}"; do
             exit 1
           fi
 
-          if [ $status -eq $expected_status ]; then
+          # Exit status mismatch?
+          if [[ $program_status -ne $expected_status ]]; then
+            echo "FAIL: $rel_path ($phase)"
+            echo "  subc exited with status $program_status, expected $expected_status"
+            ((failed++))
+            ((total++))
+            continue
+          fi
+
+          # Compare stdout if stdout oracle exists
+          stdout_oracle="${oracle_file%.exit_status}.stdout"
+          if [[ -f "$stdout_oracle" ]]; then
+            expected_stdout=$(<"$stdout_oracle")
+
+            if diff -u <(echo "$expected_stdout") <(echo "$program_stdout") >/dev/null; then
+              echo "PASS: $rel_path ($phase)"
+              ((passed++))
+            else
+              echo "FAIL: $rel_path ($phase)"
+              echo "  stdout mismatch:"
+              diff -u <(echo "$expected_stdout") <(echo "$program_stdout") || true
+              ((failed++))
+            fi
+
+          else
+            # No stdout oracle, so ignore stdout
             echo "PASS: $rel_path ($phase)"
             ((passed++))
-          else
-            echo "FAIL: $rel_path ($phase)"
-            echo "  subc exited with status $status, expected $expected_status"
-            ((failed++))
           fi
+
+          ((total++))
+          continue
         fi
 
         # Lexer, parser, codegen and emit tests
