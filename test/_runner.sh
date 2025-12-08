@@ -163,6 +163,105 @@ for chapter in "${CHAPTERS[@]}"; do
     done < <(find "$chapter_dir" -type f -name '*.c')
   fi
 
+  # === Run library interoperability tests ===
+
+  libdir="$TEST_DIR/$chapter/libraries"
+
+  if [[ -d "$libdir" ]]; then
+    # Search for any <LIB>.c file that has a matching <LIB>_client.c
+    for lib in "$libdir"/*.c; do
+      [[ "$lib" =~ _client\.c$ ]] && continue  # skip client files
+
+      base=$(basename "$lib" .c)
+      client="$libdir/${base}_client.c"
+
+      [[ -f "$client" ]] || continue
+
+      rel_path="$chapter/libraries/${base}"
+
+      # Oracle paths (always based on client)
+      exit_oracle="$ORACLE_DIR/$chapter/libraries/${base}_client.exit_status"
+      stdout_oracle="${exit_oracle%.exit_status}.stdout"
+
+      if [[ ! -f "$exit_oracle" ]]; then
+        echo "SKIP: $rel_path (libraries)"
+        ((skipped++))
+        continue
+      fi
+
+      read -r expected_status < "$exit_oracle"
+      [[ "$expected_status" =~ ^-?[0-9]+$ ]] || {
+        echo "Error: $exit_oracle does not contain a valid integer"
+        exit 1
+      }
+
+      # CASE A: subc compiler builds library, system compiler builds client
+
+      subc_lib_o="$libdir/${base}.o"
+      sys_client_o="$libdir/${base}_client.o"
+
+      subc "$lib" -c
+      cc   "$client" -c -o "$sys_client_o"
+      cc   "$subc_lib_o" "$sys_client_o" -o "$libdir/a.out"
+
+      program_stdout="$("$libdir/a.out" 2>&1)"
+      program_status=$?
+      rm -f "$subc_lib_o" "$sys_client_o" "$libdir/a.out"
+
+      interop_fail=0
+      [[ "$program_status" -ne "$expected_status" ]] && interop_fail=1
+
+      if [[ -f "$stdout_oracle" ]]; then
+        expected_stdout=$(<"$stdout_oracle")
+        if ! diff -u <(echo "$expected_stdout") <(echo "$program_stdout") >/dev/null; then
+          interop_fail=1
+        fi
+      fi
+
+      if [[ "$interop_fail" -eq 1 ]]; then
+        echo "FAIL: $rel_path (interop A: subc lib)"
+        ((failed++))
+      else
+        echo "PASS: $rel_path (interop A: subc lib)"
+        ((passed++))
+      fi
+      ((total++))
+
+      # CASE B: system compiler builds library, subc compiler builds client
+
+      sys_lib_o="$libdir/${base}.o"
+      subc_client_o="$libdir/${base}_client.o"
+
+      cc   "$lib" -c -o "$sys_lib_o"
+      subc "$client" -c
+      cc "$sys_lib_o" "$subc_client_o" -o "$libdir/a.out"
+
+      program_stdout="$("$libdir/a.out" 2>&1)"
+      program_status=$?
+      rm -f "$sys_lib_o" "$subc_client_o" "$libdir/a.out"
+
+      interop_fail=0
+      [[ "$program_status" -ne "$expected_status" ]] && interop_fail=1
+
+      if [[ -f "$stdout_oracle" ]]; then
+        expected_stdout=$(<"$stdout_oracle")
+        if ! diff -u <(echo "$expected_stdout") <(echo "$program_stdout") >/dev/null; then
+          interop_fail=1
+        fi
+      fi
+
+      if [[ "$interop_fail" -eq 1 ]]; then
+        echo "FAIL: $rel_path (interop B: subc client)"
+        ((failed++))
+      else
+        echo "PASS: $rel_path (interop B: subc client)"
+        ((passed++))
+      fi
+      ((total++))
+
+    done
+  fi
+
   # === Run invalid lex tests ===
 
   chapter_dir="$TEST_DIR/$chapter/invalid_lex"
