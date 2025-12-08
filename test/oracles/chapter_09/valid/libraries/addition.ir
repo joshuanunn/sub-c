@@ -1,7 +1,0 @@
-(Ir.Program
-   [Ir.Function {name = "add"; params = ["x.0"; "y.1"];
-      body =
-      [Ir.Binary {op = Ir.Add; src1 = (Ir.Var "x.0"); src2 = (Ir.Var "y.1");
-         dst = (Ir.Var "tmp.0")};
-        (Ir.Return (Ir.Var "tmp.0")); (Ir.Return (Ir.Constant 0))]}
-     ])
