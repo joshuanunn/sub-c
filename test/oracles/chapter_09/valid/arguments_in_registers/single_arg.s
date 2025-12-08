@@ -1,0 +1,35 @@
+    .globl      twice
+twice:
+    pushq       %rbp
+    movq        %rsp, %rbp
+    subq        $16, %rsp
+    movl        %edi, -8(%rbp)
+    movl        $2, -4(%rbp)
+    movl        -4(%rbp), %r11d
+    imull       -8(%rbp), %r11d
+    movl        %r11d, -4(%rbp)
+    movl        -4(%rbp), %eax
+    movq        %rbp, %rsp
+    popq        %rbp
+    ret         
+    movl        $0, %eax
+    movq        %rbp, %rsp
+    popq        %rbp
+    ret         
+    .globl      main
+main:
+    pushq       %rbp
+    movq        %rsp, %rbp
+    subq        $16, %rsp
+    movl        $3, %edi
+    call        twice@PLT
+    movl        %eax, -4(%rbp)
+    movl        -4(%rbp), %eax
+    movq        %rbp, %rsp
+    popq        %rbp
+    ret         
+    movl        $0, %eax
+    movq        %rbp, %rsp
+    popq        %rbp
+    ret         
+    .section    .note.GNU-stack,"",@progbits

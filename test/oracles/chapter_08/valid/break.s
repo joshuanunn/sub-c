@@ -2,7 +2,7 @@
 main:
     pushq       %rbp
     movq        %rsp, %rbp
-    subq        $44, %rsp
+    subq        $48, %rsp
     movl        $10, -4(%rbp)
     movl        $20, -8(%rbp)
     movl        $20, -12(%rbp)

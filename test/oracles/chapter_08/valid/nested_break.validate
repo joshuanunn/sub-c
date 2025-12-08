@@ -1,63 +1,72 @@
 (Ast.Program
-   Ast.Function {return_type = Ast.KwInt; name = (Ast.Identifier "main");
-     body =
-     (Ast.Block
-        [(Ast.D
-            (Ast.Declaration ((Ast.Identifier "ans.0"),
-               (Some (Ast.LiteralInt 0)))));
-          (Ast.S
-             Ast.For {
-               init =
-               (Ast.InclDecl
-                  (Ast.Declaration ((Ast.Identifier "i.1"),
-                     (Some (Ast.LiteralInt 0)))));
-               cond =
-               (Some Ast.Binary {op = Ast.LessThan;
-                       left = (Ast.Var (Ast.Identifier "i.1"));
-                       right = (Ast.LiteralInt 10)});
-               post =
-               (Some (Ast.Assignment ((Ast.Var (Ast.Identifier "i.1")),
-                        Ast.Binary {op = Ast.Add;
-                          left = (Ast.Var (Ast.Identifier "i.1"));
-                          right = (Ast.LiteralInt 1)}
-                        )));
-               body =
-               Ast.For {
-                 init =
-                 (Ast.InclDecl
-                    (Ast.Declaration ((Ast.Identifier "j.2"),
-                       (Some (Ast.LiteralInt 0)))));
-                 cond =
-                 (Some Ast.Binary {op = Ast.LessThan;
-                         left = (Ast.Var (Ast.Identifier "j.2"));
-                         right = (Ast.LiteralInt 10)});
-                 post =
-                 (Some (Ast.Assignment ((Ast.Var (Ast.Identifier "j.2")),
-                          Ast.Binary {op = Ast.Add;
-                            left = (Ast.Var (Ast.Identifier "j.2"));
-                            right = (Ast.LiteralInt 1)}
-                          )));
-                 body =
-                 Ast.If {
-                   cond_exp =
-                   Ast.Binary {op = Ast.Equal;
-                     left =
-                     Ast.Binary {op = Ast.Multiply;
-                       left =
-                       Ast.Binary {op = Ast.Divide;
-                         left = (Ast.Var (Ast.Identifier "i.1"));
-                         right = (Ast.LiteralInt 2)};
-                       right = (Ast.LiteralInt 2)};
-                     right = (Ast.Var (Ast.Identifier "i.1"))};
-                   then_smt = (Ast.Break (Some (Ast.LoopLabel "2")));
-                   else_smt =
-                   (Some (Ast.Expression
-                            (Ast.Assignment (
-                               (Ast.Var (Ast.Identifier "ans.0")),
-                               Ast.Binary {op = Ast.Add;
-                                 left = (Ast.Var (Ast.Identifier "ans.0"));
-                                 right = (Ast.Var (Ast.Identifier "i.1"))}
-                               ))))};
-                 id = (Some (Ast.LoopLabel "2"))};
-               id = (Some (Ast.LoopLabel "1"))});
-          (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "ans.0"))))])})
+   [(Ast.FunDecl
+       { Ast.name = (Ast.Identifier "main"); params = [];
+         body =
+         (Some (Ast.Block
+                  [(Ast.D
+                      (Ast.VarDecl
+                         { Ast.name = (Ast.Identifier "ans.0");
+                           init = (Some (Ast.LiteralInt 0)) }));
+                    (Ast.S
+                       Ast.For {
+                         init =
+                         (Ast.InclDecl
+                            { Ast.name = (Ast.Identifier "i.1");
+                              init = (Some (Ast.LiteralInt 0)) });
+                         cond =
+                         (Some Ast.Binary {op = Ast.LessThan;
+                                 left = (Ast.Var (Ast.Identifier "i.1"));
+                                 right = (Ast.LiteralInt 10)});
+                         post =
+                         (Some (Ast.Assignment (
+                                  (Ast.Var (Ast.Identifier "i.1")),
+                                  Ast.Binary {op = Ast.Add;
+                                    left = (Ast.Var (Ast.Identifier "i.1"));
+                                    right = (Ast.LiteralInt 1)}
+                                  )));
+                         body =
+                         Ast.For {
+                           init =
+                           (Ast.InclDecl
+                              { Ast.name = (Ast.Identifier "j.2");
+                                init = (Some (Ast.LiteralInt 0)) });
+                           cond =
+                           (Some Ast.Binary {op = Ast.LessThan;
+                                   left = (Ast.Var (Ast.Identifier "j.2"));
+                                   right = (Ast.LiteralInt 10)});
+                           post =
+                           (Some (Ast.Assignment (
+                                    (Ast.Var (Ast.Identifier "j.2")),
+                                    Ast.Binary {op = Ast.Add;
+                                      left = (Ast.Var (Ast.Identifier "j.2"));
+                                      right = (Ast.LiteralInt 1)}
+                                    )));
+                           body =
+                           Ast.If {
+                             cond_exp =
+                             Ast.Binary {op = Ast.Equal;
+                               left =
+                               Ast.Binary {op = Ast.Multiply;
+                                 left =
+                                 Ast.Binary {op = Ast.Divide;
+                                   left = (Ast.Var (Ast.Identifier "i.1"));
+                                   right = (Ast.LiteralInt 2)};
+                                 right = (Ast.LiteralInt 2)};
+                               right = (Ast.Var (Ast.Identifier "i.1"))};
+                             then_smt =
+                             (Ast.Break (Some (Ast.LoopLabel "2")));
+                             else_smt =
+                             (Some (Ast.Expression
+                                      (Ast.Assignment (
+                                         (Ast.Var (Ast.Identifier "ans.0")),
+                                         Ast.Binary {op = Ast.Add;
+                                           left =
+                                           (Ast.Var (Ast.Identifier "ans.0"));
+                                           right =
+                                           (Ast.Var (Ast.Identifier "i.1"))}
+                                         ))))};
+                           id = (Some (Ast.LoopLabel "2"))};
+                         id = (Some (Ast.LoopLabel "1"))});
+                    (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "ans.0"))))]))
+         })
+     ])

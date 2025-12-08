@@ -1,23 +1,28 @@
 (Ast.Program
-   Ast.Function {return_type = Ast.KwInt; name = (Ast.Identifier "main");
-     body =
-     (Ast.Block
-        [(Ast.D
-            (Ast.Declaration ((Ast.Identifier "result"),
-               (Some (Ast.LiteralInt 0)))));
-          (Ast.S (Ast.Goto (Ast.Identifier "label")));
-          (Ast.S
-             Ast.While {cond = (Ast.LiteralInt 0);
-               body =
-               (Ast.Label ((Ast.Identifier "label"),
-                  (Ast.Compound
-                     (Ast.Block
-                        [(Ast.S
-                            (Ast.Expression
-                               (Ast.Assignment (
-                                  (Ast.Var (Ast.Identifier "result")),
-                                  (Ast.LiteralInt 1)))))
-                          ]))
-                  ));
-               id = None});
-          (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "result"))))])})
+   [(Ast.FunDecl
+       { Ast.name = (Ast.Identifier "main"); params = [];
+         body =
+         (Some (Ast.Block
+                  [(Ast.D
+                      (Ast.VarDecl
+                         { Ast.name = (Ast.Identifier "result");
+                           init = (Some (Ast.LiteralInt 0)) }));
+                    (Ast.S (Ast.Goto (Ast.Identifier "label")));
+                    (Ast.S
+                       Ast.While {cond = (Ast.LiteralInt 0);
+                         body =
+                         (Ast.Label ((Ast.Identifier "label"),
+                            (Ast.Compound
+                               (Ast.Block
+                                  [(Ast.S
+                                      (Ast.Expression
+                                         (Ast.Assignment (
+                                            (Ast.Var
+                                               (Ast.Identifier "result")),
+                                            (Ast.LiteralInt 1)))))
+                                    ]))
+                            ));
+                         id = None});
+                    (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "result"))))]))
+         })
+     ])

@@ -1,47 +1,62 @@
 (Ast.Program
-   Ast.Function {return_type = Ast.KwInt; name = (Ast.Identifier "main");
-     body =
-     (Ast.Block
-        [(Ast.D
-            (Ast.Declaration ((Ast.Identifier "a"), (Some (Ast.LiteralInt 0))
-               )));
-          (Ast.S
-             Ast.If {cond_exp = (Ast.Var (Ast.Identifier "a"));
-               then_smt =
-               (Ast.Compound
-                  (Ast.Block
-                     [(Ast.D
-                         (Ast.Declaration ((Ast.Identifier "b"),
-                            (Some (Ast.LiteralInt 2)))));
-                       (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "b"))))]));
-               else_smt =
-               (Some (Ast.Compound
-                        (Ast.Block
-                           [(Ast.D
-                               (Ast.Declaration ((Ast.Identifier "c"),
-                                  (Some (Ast.LiteralInt 3)))));
-                             (Ast.S
-                                Ast.If {
-                                  cond_exp =
-                                  Ast.Binary {op = Ast.LessThan;
-                                    left = (Ast.Var (Ast.Identifier "a"));
-                                    right = (Ast.Var (Ast.Identifier "c"))};
-                                  then_smt =
-                                  (Ast.Compound
-                                     (Ast.Block
-                                        [(Ast.S
-                                            (Ast.Return
-                                               Ast.Unary {op = Ast.Not;
-                                                 exp =
-                                                 (Ast.Var
-                                                    (Ast.Identifier "a"))}))
-                                          ]));
-                                  else_smt =
-                                  (Some (Ast.Compound
-                                           (Ast.Block
-                                              [(Ast.S
-                                                  (Ast.Return
-                                                     (Ast.LiteralInt 5)))
-                                                ])))})
-                             ])))});
-          (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "a"))))])})
+   [(Ast.FunDecl
+       { Ast.name = (Ast.Identifier "main"); params = [];
+         body =
+         (Some (Ast.Block
+                  [(Ast.D
+                      (Ast.VarDecl
+                         { Ast.name = (Ast.Identifier "a");
+                           init = (Some (Ast.LiteralInt 0)) }));
+                    (Ast.S
+                       Ast.If {cond_exp = (Ast.Var (Ast.Identifier "a"));
+                         then_smt =
+                         (Ast.Compound
+                            (Ast.Block
+                               [(Ast.D
+                                   (Ast.VarDecl
+                                      { Ast.name = (Ast.Identifier "b");
+                                        init = (Some (Ast.LiteralInt 2)) }));
+                                 (Ast.S
+                                    (Ast.Return
+                                       (Ast.Var (Ast.Identifier "b"))))
+                                 ]));
+                         else_smt =
+                         (Some (Ast.Compound
+                                  (Ast.Block
+                                     [(Ast.D
+                                         (Ast.VarDecl
+                                            { Ast.name = (Ast.Identifier "c");
+                                              init =
+                                              (Some (Ast.LiteralInt 3)) }));
+                                       (Ast.S
+                                          Ast.If {
+                                            cond_exp =
+                                            Ast.Binary {op = Ast.LessThan;
+                                              left =
+                                              (Ast.Var (Ast.Identifier "a"));
+                                              right =
+                                              (Ast.Var (Ast.Identifier "c"))};
+                                            then_smt =
+                                            (Ast.Compound
+                                               (Ast.Block
+                                                  [(Ast.S
+                                                      (Ast.Return
+                                                         Ast.Unary {
+                                                           op = Ast.Not;
+                                                           exp =
+                                                           (Ast.Var
+                                                              (Ast.Identifier
+                                                                 "a"))}))
+                                                    ]));
+                                            else_smt =
+                                            (Some (Ast.Compound
+                                                     (Ast.Block
+                                                        [(Ast.S
+                                                            (Ast.Return
+                                                               (Ast.LiteralInt
+                                                                  5)))
+                                                          ])))})
+                                       ])))});
+                    (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "a"))))]))
+         })
+     ])

@@ -1,10 +1,13 @@
 (Ast.Program
-   Ast.Function {return_type = Ast.KwInt; name = (Ast.Identifier "main");
-     body =
-     (Ast.Block
-        [(Ast.S (Ast.Goto (Ast.GotoLabel "main.0")));
-          (Ast.S (Ast.Return (Ast.LiteralInt 5)));
-          (Ast.S
-             (Ast.Label ((Ast.GotoLabel "main.0"),
-                (Ast.Return (Ast.LiteralInt 0)))))
-          ])})
+   [(Ast.FunDecl
+       { Ast.name = (Ast.Identifier "main"); params = [];
+         body =
+         (Some (Ast.Block
+                  [(Ast.S (Ast.Goto (Ast.GotoLabel "main.0")));
+                    (Ast.S (Ast.Return (Ast.LiteralInt 5)));
+                    (Ast.S
+                       (Ast.Label ((Ast.GotoLabel "main.0"),
+                          (Ast.Return (Ast.LiteralInt 0)))))
+                    ]))
+         })
+     ])

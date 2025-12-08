@@ -2,7 +2,7 @@
 main:
     pushq       %rbp
     movq        %rsp, %rbp
-    subq        $44, %rsp
+    subq        $48, %rsp
     movl        $0, -4(%rbp)
     movl        $0, -12(%rbp)
 .Lloop.st.1:

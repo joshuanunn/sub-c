@@ -1,9 +1,18 @@
 (Ir.Program
-   Ir.Function {name = "main";
-     body =
-     [Ir.Copy {src = (Ir.Constant 5); dst = (Ir.Var "x.1")};
-       Ir.Jump {target = "inner.0"};
-       Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "x.2")};
-       (Ir.Label "inner.0");
-       Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "x.2")};
-       (Ir.Return (Ir.Var "x.2")); (Ir.Return (Ir.Constant 0))]})
+   [Ir.Function {name = "main"; params = [];
+      body =
+      [Ir.Copy {src = (Ir.Constant 5); dst = (Ir.Var "x.1")};
+        Ir.Jump {target = "inner.0"};
+        Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "x.2")};
+        (Ir.Label "inner.0");
+        Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "x.2")};
+        (Ir.Return (Ir.Var "x.2")); (Ir.Return (Ir.Constant 0))];
+      frame =
+      Env.lenv {
+        counter = 0;
+        offset = -8;
+        stack slots = {
+          x.1 -> -4,
+          x.2 -> -8,
+        }}}
+     ])

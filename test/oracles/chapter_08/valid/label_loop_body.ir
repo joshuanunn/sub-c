@@ -1,10 +1,18 @@
 (Ir.Program
-   Ir.Function {name = "main";
-     body =
-     [Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "result.1")};
-       Ir.Jump {target = "label.0"}; (Ir.Label "loop.ct.1");
-       Ir.JumpIfZero {condition = (Ir.Constant 0); target = "loop.br.1"};
-       (Ir.Label "label.0");
-       Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "result.1")};
-       Ir.Jump {target = "loop.ct.1"}; (Ir.Label "loop.br.1");
-       (Ir.Return (Ir.Var "result.1")); (Ir.Return (Ir.Constant 0))]})
+   [Ir.Function {name = "main"; params = [];
+      body =
+      [Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "result.1")};
+        Ir.Jump {target = "label.0"}; (Ir.Label "loop.ct.1");
+        Ir.JumpIfZero {condition = (Ir.Constant 0); target = "loop.br.1"};
+        (Ir.Label "label.0");
+        Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "result.1")};
+        Ir.Jump {target = "loop.ct.1"}; (Ir.Label "loop.br.1");
+        (Ir.Return (Ir.Var "result.1")); (Ir.Return (Ir.Constant 0))];
+      frame =
+      Env.lenv {
+        counter = 0;
+        offset = -4;
+        stack slots = {
+          result.1 -> -4,
+        }}}
+     ])

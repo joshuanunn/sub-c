@@ -1,24 +1,36 @@
 (Ir.Program
-   Ir.Function {name = "main";
-     body =
-     [Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "sum.2")};
-       Ir.JumpIfZero {condition = (Ir.Constant 1); target = "if.en.0"};
-       Ir.Copy {src = (Ir.Constant 5); dst = (Ir.Var "a.3")};
-       Ir.Jump {target = "other_if.1"};
-       Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "sum.2")};
-       (Ir.Label "first_if.0");
-       Ir.Copy {src = (Ir.Constant 5); dst = (Ir.Var "a.3")};
-       Ir.Binary {op = Ir.Add; src1 = (Ir.Var "sum.2");
-         src2 = (Ir.Var "a.3"); dst = (Ir.Var "tmp.1")};
-       Ir.Copy {src = (Ir.Var "tmp.1"); dst = (Ir.Var "sum.2")};
-       (Ir.Label "if.en.0");
-       Ir.JumpIfZero {condition = (Ir.Constant 0); target = "if.en.2"};
-       (Ir.Label "other_if.1");
-       Ir.Copy {src = (Ir.Constant 6); dst = (Ir.Var "a.4")};
-       Ir.Binary {op = Ir.Add; src1 = (Ir.Var "sum.2");
-         src2 = (Ir.Var "a.4"); dst = (Ir.Var "tmp.3")};
-       Ir.Copy {src = (Ir.Var "tmp.3"); dst = (Ir.Var "sum.2")};
-       Ir.Jump {target = "first_if.0"};
-       Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "sum.2")};
-       (Ir.Label "if.en.2"); (Ir.Return (Ir.Var "sum.2"));
-       (Ir.Return (Ir.Constant 0))]})
+   [Ir.Function {name = "main"; params = [];
+      body =
+      [Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "sum.2")};
+        Ir.JumpIfZero {condition = (Ir.Constant 1); target = "if.en.0"};
+        Ir.Copy {src = (Ir.Constant 5); dst = (Ir.Var "a.3")};
+        Ir.Jump {target = "other_if.1"};
+        Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "sum.2")};
+        (Ir.Label "first_if.0");
+        Ir.Copy {src = (Ir.Constant 5); dst = (Ir.Var "a.3")};
+        Ir.Binary {op = Ir.Add; src1 = (Ir.Var "sum.2");
+          src2 = (Ir.Var "a.3"); dst = (Ir.Var "tmp.1")};
+        Ir.Copy {src = (Ir.Var "tmp.1"); dst = (Ir.Var "sum.2")};
+        (Ir.Label "if.en.0");
+        Ir.JumpIfZero {condition = (Ir.Constant 0); target = "if.en.2"};
+        (Ir.Label "other_if.1");
+        Ir.Copy {src = (Ir.Constant 6); dst = (Ir.Var "a.4")};
+        Ir.Binary {op = Ir.Add; src1 = (Ir.Var "sum.2");
+          src2 = (Ir.Var "a.4"); dst = (Ir.Var "tmp.3")};
+        Ir.Copy {src = (Ir.Var "tmp.3"); dst = (Ir.Var "sum.2")};
+        Ir.Jump {target = "first_if.0"};
+        Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "sum.2")};
+        (Ir.Label "if.en.2"); (Ir.Return (Ir.Var "sum.2"));
+        (Ir.Return (Ir.Constant 0))];
+      frame =
+      Env.lenv {
+        counter = 4;
+        offset = -20;
+        stack slots = {
+          sum.2 -> -4,
+          a.3   -> -8,
+          tmp.1 -> -12,
+          a.4   -> -16,
+          tmp.3 -> -20,
+        }}}
+     ])

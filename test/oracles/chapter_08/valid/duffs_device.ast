@@ -1,131 +1,164 @@
 (Ast.Program
-   Ast.Function {return_type = Ast.KwInt; name = (Ast.Identifier "main");
-     body =
-     (Ast.Block
-        [(Ast.D
-            (Ast.Declaration ((Ast.Identifier "count"),
-               (Some (Ast.LiteralInt 37)))));
-          (Ast.D
-             (Ast.Declaration ((Ast.Identifier "iterations"),
-                (Some Ast.Binary {op = Ast.Divide;
-                        left =
-                        Ast.Binary {op = Ast.Add;
-                          left = (Ast.Var (Ast.Identifier "count"));
-                          right = (Ast.LiteralInt 4)};
-                        right = (Ast.LiteralInt 5)})
-                )));
-          (Ast.S
-             Ast.Switch {
-               cond =
-               Ast.Binary {op = Ast.Remainder;
-                 left = (Ast.Var (Ast.Identifier "count"));
-                 right = (Ast.LiteralInt 5)};
-               body =
-               (Ast.Compound
-                  (Ast.Block
-                     [(Ast.S
-                         Ast.Case {value = (Ast.LiteralInt 0);
-                           body =
-                           Ast.DoWhile {
-                             body =
-                             (Ast.Compound
-                                (Ast.Block
-                                   [(Ast.S
-                                       (Ast.Expression
-                                          (Ast.Assignment (
-                                             (Ast.Var
-                                                (Ast.Identifier "count")),
-                                             Ast.Binary {op = Ast.Subtract;
-                                               left =
-                                               (Ast.Var
-                                                  (Ast.Identifier "count"));
-                                               right = (Ast.LiteralInt 1)}
-                                             ))));
-                                     (Ast.S
-                                        Ast.Case {value = (Ast.LiteralInt 4);
-                                          body =
-                                          (Ast.Expression
-                                             (Ast.Assignment (
-                                                (Ast.Var
-                                                   (Ast.Identifier "count")),
-                                                Ast.Binary {
-                                                  op = Ast.Subtract;
-                                                  left =
-                                                  (Ast.Var
-                                                     (Ast.Identifier "count"));
-                                                  right = (Ast.LiteralInt 1)}
-                                                )));
-                                          id = None});
-                                     (Ast.S
-                                        Ast.Case {value = (Ast.LiteralInt 3);
-                                          body =
-                                          (Ast.Expression
-                                             (Ast.Assignment (
-                                                (Ast.Var
-                                                   (Ast.Identifier "count")),
-                                                Ast.Binary {
-                                                  op = Ast.Subtract;
-                                                  left =
-                                                  (Ast.Var
-                                                     (Ast.Identifier "count"));
-                                                  right = (Ast.LiteralInt 1)}
-                                                )));
-                                          id = None});
-                                     (Ast.S
-                                        Ast.Case {value = (Ast.LiteralInt 2);
-                                          body =
-                                          (Ast.Expression
-                                             (Ast.Assignment (
-                                                (Ast.Var
-                                                   (Ast.Identifier "count")),
-                                                Ast.Binary {
-                                                  op = Ast.Subtract;
-                                                  left =
-                                                  (Ast.Var
-                                                     (Ast.Identifier "count"));
-                                                  right = (Ast.LiteralInt 1)}
-                                                )));
-                                          id = None});
-                                     (Ast.S
-                                        Ast.Case {value = (Ast.LiteralInt 1);
-                                          body =
-                                          (Ast.Expression
-                                             (Ast.Assignment (
-                                                (Ast.Var
-                                                   (Ast.Identifier "count")),
-                                                Ast.Binary {
-                                                  op = Ast.Subtract;
-                                                  left =
-                                                  (Ast.Var
-                                                     (Ast.Identifier "count"));
-                                                  right = (Ast.LiteralInt 1)}
-                                                )));
-                                          id = None})
-                                     ]));
-                             cond =
-                             Ast.Binary {op = Ast.GreaterThan;
-                               left =
-                               (Ast.Assignment (
-                                  (Ast.Var (Ast.Identifier "iterations")),
-                                  Ast.Binary {op = Ast.Subtract;
+   [(Ast.FunDecl
+       { Ast.name = (Ast.Identifier "main"); params = [];
+         body =
+         (Some (Ast.Block
+                  [(Ast.D
+                      (Ast.VarDecl
+                         { Ast.name = (Ast.Identifier "count");
+                           init = (Some (Ast.LiteralInt 37)) }));
+                    (Ast.D
+                       (Ast.VarDecl
+                          { Ast.name = (Ast.Identifier "iterations");
+                            init =
+                            (Some Ast.Binary {op = Ast.Divide;
                                     left =
-                                    (Ast.Var (Ast.Identifier "iterations"));
-                                    right = (Ast.LiteralInt 1)}
-                                  ));
-                               right = (Ast.LiteralInt 0)};
-                             id = None};
-                           id = None})
-                       ]));
-               id = None});
-          (Ast.S
-             (Ast.Return
-                Ast.Binary {op = Ast.And;
-                  left =
-                  Ast.Binary {op = Ast.Equal;
-                    left = (Ast.Var (Ast.Identifier "count"));
-                    right = (Ast.LiteralInt 0)};
-                  right =
-                  Ast.Binary {op = Ast.Equal;
-                    left = (Ast.Var (Ast.Identifier "iterations"));
-                    right = (Ast.LiteralInt 0)}}))
-          ])})
+                                    Ast.Binary {op = Ast.Add;
+                                      left =
+                                      (Ast.Var (Ast.Identifier "count"));
+                                      right = (Ast.LiteralInt 4)};
+                                    right = (Ast.LiteralInt 5)})
+                            }));
+                    (Ast.S
+                       Ast.Switch {
+                         cond =
+                         Ast.Binary {op = Ast.Remainder;
+                           left = (Ast.Var (Ast.Identifier "count"));
+                           right = (Ast.LiteralInt 5)};
+                         body =
+                         (Ast.Compound
+                            (Ast.Block
+                               [(Ast.S
+                                   Ast.Case {value = (Ast.LiteralInt 0);
+                                     body =
+                                     Ast.DoWhile {
+                                       body =
+                                       (Ast.Compound
+                                          (Ast.Block
+                                             [(Ast.S
+                                                 (Ast.Expression
+                                                    (Ast.Assignment (
+                                                       (Ast.Var
+                                                          (Ast.Identifier
+                                                             "count")),
+                                                       Ast.Binary {
+                                                         op = Ast.Subtract;
+                                                         left =
+                                                         (Ast.Var
+                                                            (Ast.Identifier
+                                                               "count"));
+                                                         right =
+                                                         (Ast.LiteralInt 1)}
+                                                       ))));
+                                               (Ast.S
+                                                  Ast.Case {
+                                                    value =
+                                                    (Ast.LiteralInt 4);
+                                                    body =
+                                                    (Ast.Expression
+                                                       (Ast.Assignment (
+                                                          (Ast.Var
+                                                             (Ast.Identifier
+                                                                "count")),
+                                                          Ast.Binary {
+                                                            op = Ast.Subtract;
+                                                            left =
+                                                            (Ast.Var
+                                                               (Ast.Identifier
+                                                                  "count"));
+                                                            right =
+                                                            (Ast.LiteralInt 1)}
+                                                          )));
+                                                    id = None});
+                                               (Ast.S
+                                                  Ast.Case {
+                                                    value =
+                                                    (Ast.LiteralInt 3);
+                                                    body =
+                                                    (Ast.Expression
+                                                       (Ast.Assignment (
+                                                          (Ast.Var
+                                                             (Ast.Identifier
+                                                                "count")),
+                                                          Ast.Binary {
+                                                            op = Ast.Subtract;
+                                                            left =
+                                                            (Ast.Var
+                                                               (Ast.Identifier
+                                                                  "count"));
+                                                            right =
+                                                            (Ast.LiteralInt 1)}
+                                                          )));
+                                                    id = None});
+                                               (Ast.S
+                                                  Ast.Case {
+                                                    value =
+                                                    (Ast.LiteralInt 2);
+                                                    body =
+                                                    (Ast.Expression
+                                                       (Ast.Assignment (
+                                                          (Ast.Var
+                                                             (Ast.Identifier
+                                                                "count")),
+                                                          Ast.Binary {
+                                                            op = Ast.Subtract;
+                                                            left =
+                                                            (Ast.Var
+                                                               (Ast.Identifier
+                                                                  "count"));
+                                                            right =
+                                                            (Ast.LiteralInt 1)}
+                                                          )));
+                                                    id = None});
+                                               (Ast.S
+                                                  Ast.Case {
+                                                    value =
+                                                    (Ast.LiteralInt 1);
+                                                    body =
+                                                    (Ast.Expression
+                                                       (Ast.Assignment (
+                                                          (Ast.Var
+                                                             (Ast.Identifier
+                                                                "count")),
+                                                          Ast.Binary {
+                                                            op = Ast.Subtract;
+                                                            left =
+                                                            (Ast.Var
+                                                               (Ast.Identifier
+                                                                  "count"));
+                                                            right =
+                                                            (Ast.LiteralInt 1)}
+                                                          )));
+                                                    id = None})
+                                               ]));
+                                       cond =
+                                       Ast.Binary {op = Ast.GreaterThan;
+                                         left =
+                                         (Ast.Assignment (
+                                            (Ast.Var
+                                               (Ast.Identifier "iterations")),
+                                            Ast.Binary {op = Ast.Subtract;
+                                              left =
+                                              (Ast.Var
+                                                 (Ast.Identifier "iterations"));
+                                              right = (Ast.LiteralInt 1)}
+                                            ));
+                                         right = (Ast.LiteralInt 0)};
+                                       id = None};
+                                     id = None})
+                                 ]));
+                         id = None});
+                    (Ast.S
+                       (Ast.Return
+                          Ast.Binary {op = Ast.And;
+                            left =
+                            Ast.Binary {op = Ast.Equal;
+                              left = (Ast.Var (Ast.Identifier "count"));
+                              right = (Ast.LiteralInt 0)};
+                            right =
+                            Ast.Binary {op = Ast.Equal;
+                              left = (Ast.Var (Ast.Identifier "iterations"));
+                              right = (Ast.LiteralInt 0)}}))
+                    ]))
+         })
+     ])

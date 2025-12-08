@@ -2,7 +2,7 @@
 main:
     pushq       %rbp
     movq        %rsp, %rbp
-    subq        $8, %rsp
+    subq        $16, %rsp
     movl        $5, -4(%rbp)
     jmp         .Linner.0
     movl        $0, -8(%rbp)

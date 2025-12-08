@@ -3,12 +3,14 @@
  (modules
   io
   env
-  token
   lexer
+  lexer_pp
   parser
+  type
   ast
   ast_resolution
   ast_flow_label
+  ast_type_check
   irgen
   ir
   codegen
@@ -20,7 +22,6 @@
   (pps ppx_deriving.show)))
 
 (menhir
- (modules parser)
- (flags --external-tokens Token))
+ (modules parser))
 
 (ocamllex lexer)

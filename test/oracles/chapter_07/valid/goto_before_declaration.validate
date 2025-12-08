@@ -1,25 +1,33 @@
 (Ast.Program
-   Ast.Function {return_type = Ast.KwInt; name = (Ast.Identifier "main");
-     body =
-     (Ast.Block
-        [(Ast.D
-            (Ast.Declaration ((Ast.Identifier "a.1"),
-               (Some (Ast.LiteralInt 0)))));
-          (Ast.S
-             (Ast.Compound
-                (Ast.Block
-                   [(Ast.S
-                       Ast.If {
-                         cond_exp =
-                         Ast.Binary {op = Ast.NotEqual;
-                           left = (Ast.Var (Ast.Identifier "a.1"));
-                           right = (Ast.LiteralInt 0)};
-                         then_smt =
-                         (Ast.Label ((Ast.GotoLabel "return_a.0"),
-                            (Ast.Return (Ast.Var (Ast.Identifier "a.1")))));
-                         else_smt = None});
-                     (Ast.D
-                        (Ast.Declaration ((Ast.Identifier "a.2"),
-                           (Some (Ast.LiteralInt 4)))));
-                     (Ast.S (Ast.Goto (Ast.GotoLabel "return_a.0")))])))
-          ])})
+   [(Ast.FunDecl
+       { Ast.name = (Ast.Identifier "main"); params = [];
+         body =
+         (Some (Ast.Block
+                  [(Ast.D
+                      (Ast.VarDecl
+                         { Ast.name = (Ast.Identifier "a.1");
+                           init = (Some (Ast.LiteralInt 0)) }));
+                    (Ast.S
+                       (Ast.Compound
+                          (Ast.Block
+                             [(Ast.S
+                                 Ast.If {
+                                   cond_exp =
+                                   Ast.Binary {op = Ast.NotEqual;
+                                     left = (Ast.Var (Ast.Identifier "a.1"));
+                                     right = (Ast.LiteralInt 0)};
+                                   then_smt =
+                                   (Ast.Label ((Ast.GotoLabel "return_a.0"),
+                                      (Ast.Return
+                                         (Ast.Var (Ast.Identifier "a.1")))
+                                      ));
+                                   else_smt = None});
+                               (Ast.D
+                                  (Ast.VarDecl
+                                     { Ast.name = (Ast.Identifier "a.2");
+                                       init = (Some (Ast.LiteralInt 4)) }));
+                               (Ast.S (Ast.Goto (Ast.GotoLabel "return_a.0")))
+                               ])))
+                    ]))
+         })
+     ])

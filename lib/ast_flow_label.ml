@@ -139,11 +139,18 @@ and label_block (b : Ast.block) (stack : context list) : Ast.block =
   Block labelled_items
 
 (** [label_func f] labels all control statements in function [f]. *)
-let label_func (f : Ast.func) : Ast.func =
-  match f with
-  | Function fn ->
-      let body = label_block fn.body [] in
-      Function { name = fn.name; body; return_type = fn.return_type }
+let label_func (f : Ast.fun_decl) : Ast.fun_decl =
+  let body = Option.map (fun b -> label_block b []) f.body in
+  { name = f.name; params = f.params; body }
 
 (** [label_prog p] applies labeling to the entire program [p]. *)
-let label_prog (Program p : Ast.prog) : Ast.prog = Program (label_func p)
+let label_prog (Program p : Ast.prog) : Ast.prog =
+  let labelled_funcs =
+    List.map
+      (function
+        | Ast.FunDecl f -> Ast.FunDecl (label_func f)
+        | Ast.VarDecl _ ->
+            failwith "Global variable declaration not yet implemented")
+      p
+  in
+  Program labelled_funcs

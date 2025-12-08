@@ -1,6 +1,15 @@
 (Ir.Program
-   Ir.Function {name = "main";
-     body =
-     [Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "a.0")};
-       Ir.Copy {src = (Ir.Var "a.0"); dst = (Ir.Var "b.1")};
-       (Ir.Return (Ir.Var "a.0")); (Ir.Return (Ir.Constant 0))]})
+   [Ir.Function {name = "main"; params = [];
+      body =
+      [Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "a.0")};
+        Ir.Copy {src = (Ir.Var "a.0"); dst = (Ir.Var "b.1")};
+        (Ir.Return (Ir.Var "a.0")); (Ir.Return (Ir.Constant 0))];
+      frame =
+      Env.lenv {
+        counter = 0;
+        offset = -8;
+        stack slots = {
+          a.0 -> -4,
+          b.1 -> -8,
+        }}}
+     ])

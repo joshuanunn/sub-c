@@ -1,0 +1,27 @@
+(Ast.Program
+   [(Ast.FunDecl
+       { Ast.name = (Ast.Identifier "foo");
+         params = [(Ast.Identifier "a"); (Ast.Identifier "b")]; body = None });
+     (Ast.FunDecl
+        { Ast.name = (Ast.Identifier "main"); params = [];
+          body =
+          (Some (Ast.Block
+                   [(Ast.S
+                       (Ast.Return
+                          Ast.FunctionCall {name = (Ast.Identifier "foo");
+                            args = [(Ast.LiteralInt 2); (Ast.LiteralInt 1)]}))
+                     ]))
+          });
+     (Ast.FunDecl
+        { Ast.name = (Ast.Identifier "foo");
+          params = [(Ast.Identifier "x"); (Ast.Identifier "y")];
+          body =
+          (Some (Ast.Block
+                   [(Ast.S
+                       (Ast.Return
+                          Ast.Binary {op = Ast.Subtract;
+                            left = (Ast.Var (Ast.Identifier "x"));
+                            right = (Ast.Var (Ast.Identifier "y"))}))
+                     ]))
+          })
+     ])

@@ -95,12 +95,13 @@ for chapter in "${CHAPTERS[@]}"; do
           # Compile executable
           subc "$test_file" -o "$binary_file"
 
-          # Run executable, capture exit status code and cleanup
-          output=$("$binary_file" 2>&1)
-          status=$?
+          # Capture stdout and exit status
+          program_stdout="$("$binary_file" 2>&1)"
+          program_status=$?
           rm -f "$binary_file"
 
-          read -r line < $oracle_file
+          # Compare exit status
+          read -r line < "$oracle_file"
           if [[ "$line" =~ ^-?[0-9]+$ ]]; then
             expected_status=$((line))
           else
@@ -108,14 +109,38 @@ for chapter in "${CHAPTERS[@]}"; do
             exit 1
           fi
 
-          if [ $status -eq $expected_status ]; then
+          # Exit status mismatch?
+          if [[ $program_status -ne $expected_status ]]; then
+            echo "FAIL: $rel_path ($phase)"
+            echo "  subc exited with status $program_status, expected $expected_status"
+            ((failed++))
+            ((total++))
+            continue
+          fi
+
+          # Compare stdout if stdout oracle exists
+          stdout_oracle="${oracle_file%.exit_status}.stdout"
+          if [[ -f "$stdout_oracle" ]]; then
+            expected_stdout=$(<"$stdout_oracle")
+
+            if diff -u <(echo "$expected_stdout") <(echo "$program_stdout") >/dev/null; then
+              echo "PASS: $rel_path ($phase)"
+              ((passed++))
+            else
+              echo "FAIL: $rel_path ($phase)"
+              echo "  stdout mismatch:"
+              diff -u <(echo "$expected_stdout") <(echo "$program_stdout") || true
+              ((failed++))
+            fi
+
+          else
+            # No stdout oracle, so ignore stdout
             echo "PASS: $rel_path ($phase)"
             ((passed++))
-          else
-            echo "FAIL: $rel_path ($phase)"
-            echo "  subc exited with status $status, expected $expected_status"
-            ((failed++))
           fi
+
+          ((total++))
+          continue
         fi
 
         # Lexer, parser, codegen and emit tests
@@ -136,6 +161,124 @@ for chapter in "${CHAPTERS[@]}"; do
         ((total++))
       done
     done < <(find "$chapter_dir" -type f -name '*.c')
+  fi
+
+  # === Run library interoperability tests ===
+
+  libdir="$TEST_DIR/$chapter/libraries"
+
+  if [[ -d "$libdir" ]]; then
+    for lib in "$libdir"/*; do
+
+      # Skip client files (must match <BASE>_client.c)
+      [[ "$lib" =~ _client\.c$ ]] && continue
+
+      # Only accept .c or .s library sources
+      case "$lib" in
+        *.c) base=$(basename "$lib" .c) ;;
+        *.s) base=$(basename "$lib" .s) ;;
+        *) continue ;;
+      esac
+
+      client="$libdir/${base}_client.c"
+      [[ -f "$client" ]] || continue
+
+      rel_path="$chapter/libraries/$base"
+
+      exit_oracle="$ORACLE_DIR/$chapter/libraries/${base}_client.exit_status"
+      stdout_oracle="${exit_oracle%.exit_status}.stdout"
+
+      if [[ ! -f "$exit_oracle" ]]; then
+        echo "SKIP: $rel_path (libraries)"
+        ((skipped++))
+        continue
+      fi
+
+      read -r expected_status < "$exit_oracle"
+      [[ "$expected_status" =~ ^-?[0-9]+$ ]] || {
+        echo "Error: $exit_oracle does not contain a valid integer"
+        exit 1
+      }
+
+      # CASE A: subc compiler builds library, system compiler builds client
+
+      subc_lib_o="$libdir/${base}.o"
+      sys_client_o="$libdir/${base}_client.o"
+
+      # Build the library
+      if [[ "$lib" == *.c ]]; then
+        subc "$lib" -c
+      else
+        cc -c "$lib" -o "$subc_lib_o"
+      fi
+
+      # System compiler builds client
+      cc "$client" -c -o "$sys_client_o"
+
+      # Link and run
+      cc "$subc_lib_o" "$sys_client_o" -o "$libdir/a.out"
+
+      program_stdout="$("$libdir/a.out" 2>&1)"
+      program_status=$?
+      rm -f "$subc_lib_o" "$sys_client_o" "$libdir/a.out"
+
+      interop_fail=0
+      [[ "$program_status" -ne "$expected_status" ]] && interop_fail=1
+
+      if [[ -f "$stdout_oracle" ]]; then
+        expected_stdout=$(<"$stdout_oracle")
+        diff -u <(echo "$expected_stdout") <(echo "$program_stdout") >/dev/null || interop_fail=1
+      fi
+
+      if [[ "$interop_fail" -eq 1 ]]; then
+        echo "FAIL: $rel_path (interop A: subc lib)"
+        ((failed++))
+      else
+        echo "PASS: $rel_path (interop A: subc lib)"
+        ((passed++))
+      fi
+      ((total++))
+
+      # CASE B: system compiler builds library, subc compiler builds client
+
+      sys_lib_o="$libdir/${base}.o"
+      subc_client_o="$libdir/${base}_client.o"
+
+      # System compiler builds library:
+      if [[ "$lib" == *.c ]]; then
+        cc -c "$lib" -o "$sys_lib_o"
+      else
+        cc -c "$lib" -o "$sys_lib_o"
+      fi
+
+      # subc compiler builds client
+      subc "$client" -c
+
+      # Link and run
+      cc "$sys_lib_o" "$subc_client_o" -o "$libdir/a.out"
+
+      program_stdout="$("$libdir/a.out" 2>&1)"
+      program_status=$?
+      rm -f "$sys_lib_o" "$subc_client_o" "$libdir/a.out"
+
+      interop_fail=0
+      [[ "$program_status" -ne "$expected_status" ]] && interop_fail=1
+
+      if [[ -f "$stdout_oracle" ]]; then
+        expected_stdout=$(<"$stdout_oracle")
+        diff -u <(echo "$expected_stdout") <(echo "$program_stdout") >/dev/null || interop_fail=1
+      fi
+
+      if [[ "$interop_fail" -eq 1 ]]; then
+        echo "FAIL: $rel_path (interop B: subc client)"
+        ((failed++))
+      else
+        echo "PASS: $rel_path (interop B: subc client)"
+        ((passed++))
+      fi
+      ((total++))
+
+    done
   fi
 
   # === Run invalid lex tests ===

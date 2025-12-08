@@ -1,9 +1,19 @@
 (Ir.Program
-   Ir.Function {name = "main";
-     body =
-     [Ir.Copy {src = (Ir.Constant 1234); dst = (Ir.Var "var_to_shift.0")};
-       Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "x.1")};
-       Ir.Binary {op = Ir.BwRightShift; src1 = (Ir.Var "var_to_shift.0");
-         src2 = (Ir.Constant 4); dst = (Ir.Var "tmp.0")};
-       Ir.Copy {src = (Ir.Var "tmp.0"); dst = (Ir.Var "x.1")};
-       (Ir.Return (Ir.Var "x.1")); (Ir.Return (Ir.Constant 0))]})
+   [Ir.Function {name = "main"; params = [];
+      body =
+      [Ir.Copy {src = (Ir.Constant 1234); dst = (Ir.Var "var_to_shift.0")};
+        Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "x.1")};
+        Ir.Binary {op = Ir.BwRightShift; src1 = (Ir.Var "var_to_shift.0");
+          src2 = (Ir.Constant 4); dst = (Ir.Var "tmp.0")};
+        Ir.Copy {src = (Ir.Var "tmp.0"); dst = (Ir.Var "x.1")};
+        (Ir.Return (Ir.Var "x.1")); (Ir.Return (Ir.Constant 0))];
+      frame =
+      Env.lenv {
+        counter = 1;
+        offset = -12;
+        stack slots = {
+          var_to_shift.0 -> -4,
+          x.1            -> -8,
+          tmp.0          -> -12,
+        }}}
+     ])

@@ -1,0 +1,80 @@
+(Ast.Program
+   [(Ast.FunDecl
+       { Ast.name = (Ast.Identifier "lots_of_args");
+         params =
+         [(Ast.Identifier "a"); (Ast.Identifier "b"); (Ast.Identifier "c");
+           (Ast.Identifier "d"); (Ast.Identifier "e"); (Ast.Identifier "f");
+           (Ast.Identifier "g"); (Ast.Identifier "h"); (Ast.Identifier "i");
+           (Ast.Identifier "j"); (Ast.Identifier "k"); (Ast.Identifier "l");
+           (Ast.Identifier "m"); (Ast.Identifier "n"); (Ast.Identifier "o")];
+         body =
+         (Some (Ast.Block
+                  [(Ast.S
+                      (Ast.Return
+                         Ast.Binary {op = Ast.Add;
+                           left = (Ast.Var (Ast.Identifier "l"));
+                           right = (Ast.Var (Ast.Identifier "o"))}))
+                    ]))
+         });
+     (Ast.FunDecl
+        { Ast.name = (Ast.Identifier "main"); params = [];
+          body =
+          (Some (Ast.Block
+                   [(Ast.D
+                       (Ast.VarDecl
+                          { Ast.name = (Ast.Identifier "ret");
+                            init = (Some (Ast.LiteralInt 0)) }));
+                     (Ast.S
+                        Ast.For {
+                          init =
+                          (Ast.InclDecl
+                             { Ast.name = (Ast.Identifier "i");
+                               init = (Some (Ast.LiteralInt 0)) });
+                          cond =
+                          (Some Ast.Binary {op = Ast.LessThan;
+                                  left = (Ast.Var (Ast.Identifier "i"));
+                                  right = (Ast.LiteralInt 10000000)});
+                          post =
+                          (Some (Ast.Assignment (
+                                   (Ast.Var (Ast.Identifier "i")),
+                                   Ast.Binary {op = Ast.Add;
+                                     left = (Ast.Var (Ast.Identifier "i"));
+                                     right = (Ast.LiteralInt 1)}
+                                   )));
+                          body =
+                          (Ast.Compound
+                             (Ast.Block
+                                [(Ast.S
+                                    (Ast.Expression
+                                       (Ast.Assignment (
+                                          (Ast.Var (Ast.Identifier "ret")),
+                                          Ast.FunctionCall {
+                                            name =
+                                            (Ast.Identifier "lots_of_args");
+                                            args =
+                                            [(Ast.LiteralInt 1);
+                                              (Ast.LiteralInt 2);
+                                              (Ast.LiteralInt 3);
+                                              (Ast.LiteralInt 4);
+                                              (Ast.LiteralInt 5);
+                                              (Ast.LiteralInt 6);
+                                              (Ast.LiteralInt 7);
+                                              (Ast.LiteralInt 8);
+                                              (Ast.LiteralInt 9);
+                                              (Ast.LiteralInt 10);
+                                              (Ast.LiteralInt 11);
+                                              (Ast.Var (Ast.Identifier "ret"));
+                                              (Ast.LiteralInt 13);
+                                              (Ast.LiteralInt 14);
+                                              (Ast.LiteralInt 15)]}
+                                          ))))
+                                  ]));
+                          id = None});
+                     (Ast.S
+                        (Ast.Return
+                           Ast.Binary {op = Ast.Equal;
+                             left = (Ast.Var (Ast.Identifier "ret"));
+                             right = (Ast.LiteralInt 150000000)}))
+                     ]))
+          })
+     ])

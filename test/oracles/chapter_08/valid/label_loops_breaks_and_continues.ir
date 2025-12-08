@@ -1,36 +1,49 @@
 (Ir.Program
-   Ir.Function {name = "main";
-     body =
-     [Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "sum.5")};
-       Ir.Jump {target = "do_label.0"}; (Ir.Return (Ir.Constant 0));
-       (Ir.Label "do_label.0"); (Ir.Label "loop.st.1");
-       Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "sum.5")};
-       Ir.Jump {target = "while_label.1"}; (Ir.Label "loop.ct.1");
-       Ir.JumpIfNotZero {condition = (Ir.Constant 1); target = "loop.st.1"};
-       (Ir.Label "loop.br.1"); (Ir.Label "while_label.1");
-       (Ir.Label "loop.ct.2");
-       Ir.JumpIfZero {condition = (Ir.Constant 1); target = "loop.br.2"};
-       Ir.Binary {op = Ir.Add; src1 = (Ir.Var "sum.5");
-         src2 = (Ir.Constant 1); dst = (Ir.Var "tmp.0")};
-       Ir.Copy {src = (Ir.Var "tmp.0"); dst = (Ir.Var "sum.5")};
-       Ir.Jump {target = "break_label.2"}; (Ir.Return (Ir.Constant 0));
-       (Ir.Label "break_label.2"); Ir.Jump {target = "loop.br.2"};
-       Ir.Jump {target = "loop.ct.2"}; (Ir.Label "loop.br.2");
-       Ir.Jump {target = "for_label.3"}; (Ir.Return (Ir.Constant 0));
-       (Ir.Label "for_label.3");
-       Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "i.6")};
-       (Ir.Label "loop.st.3");
-       Ir.Binary {op = Ir.LessThan; src1 = (Ir.Var "i.6");
-         src2 = (Ir.Constant 10); dst = (Ir.Var "tmp.1")};
-       Ir.JumpIfZero {condition = (Ir.Var "tmp.1"); target = "loop.br.3"};
-       Ir.Binary {op = Ir.Add; src1 = (Ir.Var "sum.5");
-         src2 = (Ir.Constant 1); dst = (Ir.Var "tmp.2")};
-       Ir.Copy {src = (Ir.Var "tmp.2"); dst = (Ir.Var "sum.5")};
-       Ir.Jump {target = "continue_label.4"}; (Ir.Return (Ir.Constant 0));
-       (Ir.Label "continue_label.4"); Ir.Jump {target = "loop.ct.3"};
-       (Ir.Return (Ir.Constant 0)); (Ir.Label "loop.ct.3");
-       Ir.Binary {op = Ir.Add; src1 = (Ir.Var "i.6"); src2 = (Ir.Constant 1);
-         dst = (Ir.Var "tmp.3")};
-       Ir.Copy {src = (Ir.Var "tmp.3"); dst = (Ir.Var "i.6")};
-       Ir.Jump {target = "loop.st.3"}; (Ir.Label "loop.br.3");
-       (Ir.Return (Ir.Var "sum.5")); (Ir.Return (Ir.Constant 0))]})
+   [Ir.Function {name = "main"; params = [];
+      body =
+      [Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "sum.5")};
+        Ir.Jump {target = "do_label.0"}; (Ir.Return (Ir.Constant 0));
+        (Ir.Label "do_label.0"); (Ir.Label "loop.st.1");
+        Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "sum.5")};
+        Ir.Jump {target = "while_label.1"}; (Ir.Label "loop.ct.1");
+        Ir.JumpIfNotZero {condition = (Ir.Constant 1); target = "loop.st.1"};
+        (Ir.Label "loop.br.1"); (Ir.Label "while_label.1");
+        (Ir.Label "loop.ct.2");
+        Ir.JumpIfZero {condition = (Ir.Constant 1); target = "loop.br.2"};
+        Ir.Binary {op = Ir.Add; src1 = (Ir.Var "sum.5");
+          src2 = (Ir.Constant 1); dst = (Ir.Var "tmp.0")};
+        Ir.Copy {src = (Ir.Var "tmp.0"); dst = (Ir.Var "sum.5")};
+        Ir.Jump {target = "break_label.2"}; (Ir.Return (Ir.Constant 0));
+        (Ir.Label "break_label.2"); Ir.Jump {target = "loop.br.2"};
+        Ir.Jump {target = "loop.ct.2"}; (Ir.Label "loop.br.2");
+        Ir.Jump {target = "for_label.3"}; (Ir.Return (Ir.Constant 0));
+        (Ir.Label "for_label.3");
+        Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "i.6")};
+        (Ir.Label "loop.st.3");
+        Ir.Binary {op = Ir.LessThan; src1 = (Ir.Var "i.6");
+          src2 = (Ir.Constant 10); dst = (Ir.Var "tmp.1")};
+        Ir.JumpIfZero {condition = (Ir.Var "tmp.1"); target = "loop.br.3"};
+        Ir.Binary {op = Ir.Add; src1 = (Ir.Var "sum.5");
+          src2 = (Ir.Constant 1); dst = (Ir.Var "tmp.2")};
+        Ir.Copy {src = (Ir.Var "tmp.2"); dst = (Ir.Var "sum.5")};
+        Ir.Jump {target = "continue_label.4"}; (Ir.Return (Ir.Constant 0));
+        (Ir.Label "continue_label.4"); Ir.Jump {target = "loop.ct.3"};
+        (Ir.Return (Ir.Constant 0)); (Ir.Label "loop.ct.3");
+        Ir.Binary {op = Ir.Add; src1 = (Ir.Var "i.6");
+          src2 = (Ir.Constant 1); dst = (Ir.Var "tmp.3")};
+        Ir.Copy {src = (Ir.Var "tmp.3"); dst = (Ir.Var "i.6")};
+        Ir.Jump {target = "loop.st.3"}; (Ir.Label "loop.br.3");
+        (Ir.Return (Ir.Var "sum.5")); (Ir.Return (Ir.Constant 0))];
+      frame =
+      Env.lenv {
+        counter = 4;
+        offset = -24;
+        stack slots = {
+          sum.5 -> -4,
+          tmp.0 -> -8,
+          i.6   -> -12,
+          tmp.1 -> -16,
+          tmp.2 -> -20,
+          tmp.3 -> -24,
+        }}}
+     ])

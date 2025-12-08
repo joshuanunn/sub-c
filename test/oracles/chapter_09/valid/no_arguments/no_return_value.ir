@@ -1,0 +1,24 @@
+(Ir.Program
+   [Ir.Function {name = "foo"; params = [];
+      body =
+      [Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "x.0")};
+        (Ir.Return (Ir.Constant 0))];
+      frame =
+      Env.lenv {
+        counter = 0;
+        offset = -4;
+        stack slots = {
+          x.0 -> -4,
+        }}};
+     Ir.Function {name = "main"; params = [];
+       body =
+       [Ir.FunCall {fun_name = "foo"; args = []; dst = (Ir.Var "tmp.0")};
+         (Ir.Return (Ir.Constant 3)); (Ir.Return (Ir.Constant 0))];
+       frame =
+       Env.lenv {
+         counter = 1;
+         offset = -4;
+         stack slots = {
+           tmp.0 -> -4,
+         }}}
+     ])

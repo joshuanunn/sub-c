@@ -1,7 +1,17 @@
 (Ir.Program
-   Ir.Function {name = "main";
-     body =
-     [Ir.Unary {op = Ir.Negate; src = (Ir.Constant 1); dst = (Ir.Var "tmp.0")};
-       Ir.Binary {op = Ir.LessOrEqual; src1 = (Ir.Constant 1);
-         src2 = (Ir.Var "tmp.0"); dst = (Ir.Var "tmp.1")};
-       (Ir.Return (Ir.Var "tmp.1")); (Ir.Return (Ir.Constant 0))]})
+   [Ir.Function {name = "main"; params = [];
+      body =
+      [Ir.Unary {op = Ir.Negate; src = (Ir.Constant 1);
+         dst = (Ir.Var "tmp.0")};
+        Ir.Binary {op = Ir.LessOrEqual; src1 = (Ir.Constant 1);
+          src2 = (Ir.Var "tmp.0"); dst = (Ir.Var "tmp.1")};
+        (Ir.Return (Ir.Var "tmp.1")); (Ir.Return (Ir.Constant 0))];
+      frame =
+      Env.lenv {
+        counter = 2;
+        offset = -8;
+        stack slots = {
+          tmp.0 -> -4,
+          tmp.1 -> -8,
+        }}}
+     ])

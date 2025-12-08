@@ -1,31 +1,48 @@
 (Ir.Program
-   Ir.Function {name = "main";
-     body =
-     [Ir.Binary {op = Ir.Equal; src1 = (Ir.Constant 4);
-        src2 = (Ir.Constant 0); dst = (Ir.Var "tmp.0")};
-       Ir.JumpIfNotZero {condition = (Ir.Var "tmp.0"); target = "swit.cs.1.0"};
-       Ir.Binary {op = Ir.Equal; src1 = (Ir.Constant 4);
-         src2 = (Ir.Constant 4); dst = (Ir.Var "tmp.1")};
-       Ir.JumpIfNotZero {condition = (Ir.Var "tmp.1"); target = "swit.cs.1.4"};
-       Ir.Jump {target = "swit.br.1"}; (Ir.Label "swit.cs.1.0");
-       (Ir.Return (Ir.Constant 0)); (Ir.Label "swit.cs.1.4");
-       Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "acc.0")};
-       Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "i.1")};
-       (Ir.Label "loop.st.2");
-       Ir.Binary {op = Ir.LessThan; src1 = (Ir.Var "i.1");
-         src2 = (Ir.Constant 10); dst = (Ir.Var "tmp.2")};
-       Ir.JumpIfZero {condition = (Ir.Var "tmp.2"); target = "loop.br.2"};
-       Ir.Binary {op = Ir.Remainder; src1 = (Ir.Var "i.1");
-         src2 = (Ir.Constant 2); dst = (Ir.Var "tmp.3")};
-       Ir.JumpIfZero {condition = (Ir.Var "tmp.3"); target = "if.en.4"};
-       Ir.Jump {target = "loop.ct.2"}; (Ir.Label "if.en.4");
-       Ir.Binary {op = Ir.Add; src1 = (Ir.Var "acc.0");
-         src2 = (Ir.Constant 1); dst = (Ir.Var "tmp.5")};
-       Ir.Copy {src = (Ir.Var "tmp.5"); dst = (Ir.Var "acc.0")};
-       (Ir.Label "loop.ct.2");
-       Ir.Binary {op = Ir.Add; src1 = (Ir.Var "i.1"); src2 = (Ir.Constant 1);
-         dst = (Ir.Var "tmp.6")};
-       Ir.Copy {src = (Ir.Var "tmp.6"); dst = (Ir.Var "i.1")};
-       Ir.Jump {target = "loop.st.2"}; (Ir.Label "loop.br.2");
-       (Ir.Return (Ir.Var "acc.0")); (Ir.Label "swit.br.1");
-       (Ir.Return (Ir.Constant 0)); (Ir.Return (Ir.Constant 0))]})
+   [Ir.Function {name = "main"; params = [];
+      body =
+      [Ir.Binary {op = Ir.Equal; src1 = (Ir.Constant 4);
+         src2 = (Ir.Constant 0); dst = (Ir.Var "tmp.0")};
+        Ir.JumpIfNotZero {condition = (Ir.Var "tmp.0");
+          target = "swit.cs.1.0"};
+        Ir.Binary {op = Ir.Equal; src1 = (Ir.Constant 4);
+          src2 = (Ir.Constant 4); dst = (Ir.Var "tmp.1")};
+        Ir.JumpIfNotZero {condition = (Ir.Var "tmp.1");
+          target = "swit.cs.1.4"};
+        Ir.Jump {target = "swit.br.1"}; (Ir.Label "swit.cs.1.0");
+        (Ir.Return (Ir.Constant 0)); (Ir.Label "swit.cs.1.4");
+        Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "acc.0")};
+        Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "i.1")};
+        (Ir.Label "loop.st.2");
+        Ir.Binary {op = Ir.LessThan; src1 = (Ir.Var "i.1");
+          src2 = (Ir.Constant 10); dst = (Ir.Var "tmp.2")};
+        Ir.JumpIfZero {condition = (Ir.Var "tmp.2"); target = "loop.br.2"};
+        Ir.Binary {op = Ir.Remainder; src1 = (Ir.Var "i.1");
+          src2 = (Ir.Constant 2); dst = (Ir.Var "tmp.3")};
+        Ir.JumpIfZero {condition = (Ir.Var "tmp.3"); target = "if.en.4"};
+        Ir.Jump {target = "loop.ct.2"}; (Ir.Label "if.en.4");
+        Ir.Binary {op = Ir.Add; src1 = (Ir.Var "acc.0");
+          src2 = (Ir.Constant 1); dst = (Ir.Var "tmp.5")};
+        Ir.Copy {src = (Ir.Var "tmp.5"); dst = (Ir.Var "acc.0")};
+        (Ir.Label "loop.ct.2");
+        Ir.Binary {op = Ir.Add; src1 = (Ir.Var "i.1");
+          src2 = (Ir.Constant 1); dst = (Ir.Var "tmp.6")};
+        Ir.Copy {src = (Ir.Var "tmp.6"); dst = (Ir.Var "i.1")};
+        Ir.Jump {target = "loop.st.2"}; (Ir.Label "loop.br.2");
+        (Ir.Return (Ir.Var "acc.0")); (Ir.Label "swit.br.1");
+        (Ir.Return (Ir.Constant 0)); (Ir.Return (Ir.Constant 0))];
+      frame =
+      Env.lenv {
+        counter = 7;
+        offset = -32;
+        stack slots = {
+          tmp.0 -> -4,
+          tmp.1 -> -8,
+          acc.0 -> -12,
+          i.1   -> -16,
+          tmp.2 -> -20,
+          tmp.3 -> -24,
+          tmp.5 -> -28,
+          tmp.6 -> -32,
+        }}}
+     ])

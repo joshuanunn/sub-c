@@ -2,7 +2,7 @@
 main:
     pushq       %rbp
     movq        %rsp, %rbp
-    subq        $24, %rsp
+    subq        $32, %rsp
     movl        $0, -4(%rbp)
     jmp         .Ldo_label.0
     movl        $0, %eax

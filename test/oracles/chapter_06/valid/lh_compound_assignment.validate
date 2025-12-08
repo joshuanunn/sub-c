@@ -1,29 +1,35 @@
 (Ast.Program
-   Ast.Function {return_type = Ast.KwInt; name = (Ast.Identifier "main");
-     body =
-     (Ast.Block
-        [(Ast.D
-            (Ast.Declaration ((Ast.Identifier "x.0"),
-               (Some (Ast.LiteralInt 10)))));
-          (Ast.S
-             (Ast.Expression
-                Ast.Conditional {
-                  cond_exp =
-                  (Ast.Assignment ((Ast.Var (Ast.Identifier "x.0")),
-                     Ast.Binary {op = Ast.Subtract;
-                       left = (Ast.Var (Ast.Identifier "x.0"));
-                       right = (Ast.LiteralInt 1)}
-                     ));
-                  then_exp =
-                  (Ast.Assignment ((Ast.Var (Ast.Identifier "x.0")),
-                     Ast.Binary {op = Ast.Divide;
-                       left = (Ast.Var (Ast.Identifier "x.0"));
-                       right = (Ast.LiteralInt 2)}
-                     ));
-                  else_exp = (Ast.LiteralInt 0)}));
-          (Ast.S
-             (Ast.Return
-                Ast.Binary {op = Ast.Equal;
-                  left = (Ast.Var (Ast.Identifier "x.0"));
-                  right = (Ast.LiteralInt 4)}))
-          ])})
+   [(Ast.FunDecl
+       { Ast.name = (Ast.Identifier "main"); params = [];
+         body =
+         (Some (Ast.Block
+                  [(Ast.D
+                      (Ast.VarDecl
+                         { Ast.name = (Ast.Identifier "x.0");
+                           init = (Some (Ast.LiteralInt 10)) }));
+                    (Ast.S
+                       (Ast.Expression
+                          Ast.Conditional {
+                            cond_exp =
+                            (Ast.Assignment (
+                               (Ast.Var (Ast.Identifier "x.0")),
+                               Ast.Binary {op = Ast.Subtract;
+                                 left = (Ast.Var (Ast.Identifier "x.0"));
+                                 right = (Ast.LiteralInt 1)}
+                               ));
+                            then_exp =
+                            (Ast.Assignment (
+                               (Ast.Var (Ast.Identifier "x.0")),
+                               Ast.Binary {op = Ast.Divide;
+                                 left = (Ast.Var (Ast.Identifier "x.0"));
+                                 right = (Ast.LiteralInt 2)}
+                               ));
+                            else_exp = (Ast.LiteralInt 0)}));
+                    (Ast.S
+                       (Ast.Return
+                          Ast.Binary {op = Ast.Equal;
+                            left = (Ast.Var (Ast.Identifier "x.0"));
+                            right = (Ast.LiteralInt 4)}))
+                    ]))
+         })
+     ])

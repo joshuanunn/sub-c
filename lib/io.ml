@@ -18,8 +18,8 @@ let run_lexer lexbuf =
   let rec loop () =
     try
       let tok = Lexer.read lexbuf in
-      print_endline (Token.show_token tok);
-      if tok != Token.EOF then loop ()
+      print_endline (Lexer_pp.show_token tok);
+      if tok != Parser.EOF then loop ()
     with Lexer.Lexing_error msg ->
       let pos = lexbuf.Lexing.lex_curr_p in
       Printf.eprintf "Lexing error at line %d, column %d: %s\n"
@@ -40,11 +40,12 @@ let run_parser lexbuf =
       (pos.Lexing.pos_cnum - pos.Lexing.pos_bol);
     exit 1
 
-let run_validator lexbuf s_env =
+let run_validator lexbuf s_env t_env =
   try
     let ast = Parser.prog Lexer.read lexbuf in
     let ast = Ast_resolution.resolve_prog ast s_env in
     let ast = Ast_flow_label.label_prog ast in
+    let ast = Ast_type_check.type_prog ast t_env in
     print_endline (Ast.show_prog ast)
   with
   | Parser.Error ->
@@ -56,12 +57,13 @@ let run_validator lexbuf s_env =
       prerr_endline ("Semantic analysis error: " ^ Printexc.to_string e);
       exit 1
 
-let run_irgen lexbuf s_env l_env =
+let run_irgen lexbuf s_env t_env =
   try
     let ast = Parser.prog Lexer.read lexbuf in
     let ast = Ast_resolution.resolve_prog ast s_env in
     let ast = Ast_flow_label.label_prog ast in
-    let ir = Irgen.convert_prog ast l_env in
+    let ast = Ast_type_check.type_prog ast t_env in
+    let ir = Irgen.convert_prog ast in
     print_endline (Ir.show_prog ir)
   with
   | Parser.Error ->
@@ -73,15 +75,16 @@ let run_irgen lexbuf s_env l_env =
       prerr_endline ("IR generation error: " ^ Printexc.to_string e);
       exit 1
 
-let run_codegen lexbuf s_env l_env =
+let run_codegen lexbuf s_env t_env =
   try
     let ast = Parser.prog Lexer.read lexbuf in
     let ast = Ast_resolution.resolve_prog ast s_env in
     let ast = Ast_flow_label.label_prog ast in
-    let ir = Irgen.convert_prog ast l_env in
+    let ast = Ast_type_check.type_prog ast t_env in
+    let ir = Irgen.convert_prog ast in
     let asm = Codegen.compile_prog ir in
-    let asm = Codegen_lower.lower_prog asm l_env in
-    let asm = Codegen_fixup.fixup_prog asm l_env in
+    let asm = Codegen_lower.lower_prog asm in
+    let asm = Codegen_fixup.fixup_prog asm in
     print_endline (Asm.show_prog asm)
   with
   | Parser.Error ->
@@ -93,15 +96,16 @@ let run_codegen lexbuf s_env l_env =
       prerr_endline ("Code generation error: " ^ Printexc.to_string e);
       exit 1
 
-let run_emit lexbuf s_env l_env =
+let run_emit lexbuf s_env t_env =
   try
     let ast = Parser.prog Lexer.read lexbuf in
     let ast = Ast_resolution.resolve_prog ast s_env in
     let ast = Ast_flow_label.label_prog ast in
-    let ir = Irgen.convert_prog ast l_env in
+    let ast = Ast_type_check.type_prog ast t_env in
+    let ir = Irgen.convert_prog ast in
     let asm = Codegen.compile_prog ir in
-    let asm = Codegen_lower.lower_prog asm l_env in
-    let asm = Codegen_fixup.fixup_prog asm l_env in
+    let asm = Codegen_lower.lower_prog asm in
+    let asm = Codegen_fixup.fixup_prog asm in
     print_string (Emit.emit_prog asm)
   with
   | Parser.Error ->
@@ -113,15 +117,16 @@ let run_emit lexbuf s_env l_env =
       prerr_endline ("Code generation error: " ^ Printexc.to_string e);
       exit 1
 
-let run_exe lexbuf output_path s_env l_env =
+let run_exe lexbuf output_path s_env t_env =
   try
     let ast = Parser.prog Lexer.read lexbuf in
     let ast = Ast_resolution.resolve_prog ast s_env in
     let ast = Ast_flow_label.label_prog ast in
-    let ir = Irgen.convert_prog ast l_env in
+    let ast = Ast_type_check.type_prog ast t_env in
+    let ir = Irgen.convert_prog ast in
     let asm = Codegen.compile_prog ir in
-    let asm = Codegen_lower.lower_prog asm l_env in
-    let asm = Codegen_fixup.fixup_prog asm l_env in
+    let asm = Codegen_lower.lower_prog asm in
+    let asm = Codegen_fixup.fixup_prog asm in
     let asm_text = Emit.emit_prog asm in
     let oc = open_out output_path in
     Fun.protect

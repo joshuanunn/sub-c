@@ -1,6 +1,6 @@
-(** [predeclare_labels block se] traverses a block of statements to predeclare
-    all labels in the environment [se]. This is needed so that forward gotos can
-    be resolved. *)
+(** [predeclare_labels block se] traverses a block of statements and predeclares
+    all labels in the environment [se]. This ensures forward GOTO statements can
+    be resolved before statement resolution. *)
 let rec predeclare_labels (block : Ast.block) (se : Env.senv) : unit =
   let (Ast.Block items) = block in
   List.iter
@@ -10,8 +10,8 @@ let rec predeclare_labels (block : Ast.block) (se : Env.senv) : unit =
       | Ast.S stmt -> predeclare_stmt_labels stmt se)
     items
 
-(** [predeclare_stmt_labels stmt se] traverses a statement to predeclare any
-    labels it defines, and recurses into inner statements. *)
+(** [predeclare_stmt_labels stmt se] traverses a statement [stmt] to predeclare
+    any labels it defines, recursively handling nested statements. *)
 and predeclare_stmt_labels (stmt : Ast.stmt) (se : Env.senv) : unit =
   match stmt with
   | Label (id, inner) ->
@@ -30,8 +30,9 @@ and predeclare_stmt_labels (stmt : Ast.stmt) (se : Env.senv) : unit =
       predeclare_stmt_labels body se
   | Break _ | Continue _ | Goto _ | Return _ | Expression _ | Null -> ()
 
-(** [resolve_expr e se] resolves variables in expression [e] using the
-    environment [se]. *)
+(** [resolve_expr e se] resolves variable and function identifiers in expression
+    [e] using environment [se], returning a new AST expression with identifiers
+    replaced by their unique scoped names. *)
 let rec resolve_expr (e : Ast.expr) (se : Env.senv) : Ast.expr =
   match e with
   | LiteralInt i -> LiteralInt i
@@ -50,34 +51,35 @@ let rec resolve_expr (e : Ast.expr) (se : Env.senv) : Ast.expr =
           then_exp = resolve_expr then_exp se;
           else_exp = resolve_expr else_exp se;
         }
+  | FunctionCall { name; args } ->
+      let name' = Env.resolve_fun name se in
+      let args' = List.map (fun e -> resolve_expr e se) args in
+      FunctionCall { name = name'; args = args' }
 
-(** [resolve_opt_expr e_opt se] resolves an optional expression, returning
-    [None] if the input is [None]. *)
+(** [resolve_opt_expr e_opt se] resolves an optional expression [e_opt] using
+    environment [se], returning [Some resolved_expr] or [None] if input is
+    [None]. *)
 let resolve_opt_expr (e : Ast.expr option) (se : Env.senv) : Ast.expr option =
   match e with Some exp -> Some (resolve_expr exp se) | None -> None
 
-(** [resolve_decl d se] resolves a declaration [d] by declaring the variable in
-    [se] and resolving any initialiser expressions. *)
-let resolve_decl (d : Ast.decl) (se : Env.senv) : Ast.decl =
-  match d with
-  | Declaration (id, None) ->
-      let var = Env.declare_var id se in
-      Declaration (var, None)
-  | Declaration (id, Some expr) ->
-      let var = Env.declare_var id se in
-      let init = Some (resolve_expr expr se) in
-      Declaration (var, init)
-
-(** [resolve_for_init i se] resolves a for-loop initialiser, which may be either
-    a declaration or an expression. *)
+(** [resolve_for_init i se] resolves a for-loop initializer [i] in environment
+    [se]. Handles both variable declarations and expression initializers,
+    returning a new [Ast.for_init] with declared variables resolved. *)
 let resolve_for_init (i : Ast.for_init) (se : Env.senv) : Ast.for_init =
   match i with
-  | InclDecl d -> InclDecl (resolve_decl d se)
+  | InclDecl { name; init = None } ->
+      let var = Env.declare_var name se in
+      InclDecl { name = var; init = None }
+  | InclDecl { name; init = Some expr } ->
+      let var = Env.declare_var name se in
+      let init = Some (resolve_expr expr se) in
+      InclDecl { name = var; init }
   | InitExp e -> InitExp (resolve_opt_expr e se)
 
-(** [resolve_stmt s se] resolves variables and expressions in statement [s]
-    within the environment [se]. Handles scoping for compound statements and
-    for-loops. *)
+(** [resolve_stmt s se] resolves all expressions, variables, and labels in
+    statement [s] using environment [se]. Handles scoping rules for compound
+    statements and for-loops, and replaces identifiers with their unique scoped
+    names. *)
 let rec resolve_stmt (s : Ast.stmt) (se : Env.senv) : Ast.stmt =
   match s with
   | Return expr -> Return (resolve_expr expr se)
@@ -98,9 +100,9 @@ let rec resolve_stmt (s : Ast.stmt) (se : Env.senv) : Ast.stmt =
         }
   | Compound b ->
       (* Push new scope for compound statement *)
-      Env.push_var_scope se;
+      Env.push_ident_scope se;
       let result = Ast.Compound (resolve_block b se) in
-      Env.pop_var_scope se;
+      Env.pop_ident_scope se;
       result
   | Break id -> Break id
   | Continue id -> Continue id
@@ -110,13 +112,13 @@ let rec resolve_stmt (s : Ast.stmt) (se : Env.senv) : Ast.stmt =
       DoWhile { body = resolve_stmt body se; cond = resolve_expr cond se; id }
   | For { init; cond; post; body; id } ->
       (* For-loop introduces a new scope *)
-      Env.push_var_scope se;
+      Env.push_ident_scope se;
       let init = resolve_for_init init se in
       let cond = resolve_opt_expr cond se in
       let post = resolve_opt_expr post se in
       let body = resolve_stmt body se in
       let result = Ast.For { init; cond; post; body; id } in
-      Env.pop_var_scope se;
+      Env.pop_ident_scope se;
       result
   | Switch { cond; body; id } ->
       let cond' = resolve_expr cond se in
@@ -141,24 +143,50 @@ let rec resolve_stmt (s : Ast.stmt) (se : Env.senv) : Ast.stmt =
       Label (resolved_id, resolve_stmt s se)
   | Null -> Null
 
-(** [resolve_func f se] resolves all declarations, variables, and labels in
+(** [resolve_decl d se] resolves a declaration [d] using environment [se],
+    declaring the function or variable in the current scope and resolving any
+    initialiser expressions. Local function definitions are not allowed. *)
+and resolve_decl (d : Ast.decl) (se : Env.senv) : Ast.decl =
+  match d with
+  | FunDecl { name; params; body = None } ->
+      let name' = Env.declare_fun name se in
+      (* Push new scope for function parameter declaration *)
+      Env.push_ident_scope se;
+      let params' = List.map (fun e -> Env.declare_var e se) params in
+      Env.pop_ident_scope se;
+      FunDecl { name = name'; params = params'; body = None }
+  | FunDecl { body = Some _; _ } ->
+      failwith "local function definitions are not allowed"
+  | VarDecl { name; init = None } ->
+      let var = Env.declare_var name se in
+      VarDecl { name = var; init = None }
+  | VarDecl { name; init = Some expr } ->
+      let var = Env.declare_var name se in
+      let init = Some (resolve_expr expr se) in
+      VarDecl { name = var; init }
+
+(** [resolve_func f se] resolves all identifiers, variables, and labels in
     function [f] using environment [se]. Predeclares all labels before resolving
-    statements. *)
-and resolve_func (f : Ast.func) (se : Env.senv) : Ast.func =
-  match f with
-  | Function fn ->
-      Env.push_lab_scope se;
+    statements to support forward GOTOs. *)
+and resolve_func (f : Ast.fun_decl) (se : Env.senv) : Ast.fun_decl =
+  Env.push_label_scope se;
 
-      (* Predeclare labels to support forward gotos *)
-      predeclare_labels fn.body se;
+  (* Push new scope for function parameter declaration *)
+  Env.push_ident_scope se;
+  let params' = List.map (fun p -> Env.declare_var p se) f.params in
 
-      (* Resolve statements, declarations, variables, and gotos *)
-      let body = resolve_block fn.body se in
+  (* Predeclare labels to support forward gotos *)
+  Option.iter (fun b -> predeclare_labels b se) f.body;
 
-      Env.pop_lab_scope se;
-      Function { name = fn.name; body; return_type = fn.return_type }
+  (* Resolve statements, declarations, variables, and gotos *)
+  let body' = Option.map (fun b -> resolve_block b se) f.body in
 
-(** [resolve_block b se] resolves statements and declarations in block [b]. *)
+  Env.pop_ident_scope se;
+  Env.pop_label_scope se;
+  { name = f.name; params = params'; body = body' }
+
+(** [resolve_block b se] resolves all statements and declarations in block [b]
+    using environment [se], returning a new resolved block. *)
 and resolve_block (b : Ast.block) (se : Env.senv) : Ast.block =
   let (Block item_list) = b in
   let resolved_items =
@@ -171,6 +199,24 @@ and resolve_block (b : Ast.block) (se : Env.senv) : Ast.block =
   in
   Block resolved_items
 
-(** [resolve_prog p se] resolves top-level program [p] with environment [se]. *)
+(** [resolve_prog p se] resolves a top-level program [p] with environment [se].
+    Predeclares all top-level functions before resolving their bodies. *)
 and resolve_prog (Program p : Ast.prog) (se : Env.senv) : Ast.prog =
-  Program (resolve_func p se)
+  (* PASS 1: Pre-declare names of all top-level functions *)
+  List.iter
+    (function
+      | Ast.FunDecl f -> ignore (Env.declare_fun f.name se)
+      | Ast.VarDecl _ ->
+          failwith "Global variable declaration not yet implemented")
+    p;
+
+  (* PASS 2: Resolve bodies now names are known *)
+  let resolved_funcs =
+    List.map
+      (function
+        | Ast.FunDecl f -> Ast.FunDecl (resolve_func f se)
+        | Ast.VarDecl _ ->
+            failwith "Global variable declaration not yet implemented")
+      p
+  in
+  Program resolved_funcs

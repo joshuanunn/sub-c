@@ -2,7 +2,7 @@
 main:
     pushq       %rbp
     movq        %rsp, %rbp
-    subq        $8, %rsp
+    subq        $16, %rsp
     movl        $1, %r11d
     cmpl        $0, %r11d
     jne         .Lor.tr.1

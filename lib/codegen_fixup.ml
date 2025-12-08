@@ -51,36 +51,35 @@ let fixup_instruction (i : Asm.instruction) : Asm.instruction list =
   | Idiv (Imm c) -> [ Mov (Imm c, Reg R10); Idiv (Reg R10) ]
   (* cmp cannot operate on constant values *)
   | Cmp (s, Imm d) -> [ Mov (Imm d, Reg R11); Cmp (s, Reg R11) ]
-  (* set can only operate on 8-bit named registers *)
-  | SetCC (cc, Reg AX) -> setcc_low_byte_fix cc AX AL
-  | SetCC (cc, Reg DX) -> setcc_low_byte_fix cc DX DL
-  | SetCC (cc, Reg R10) -> setcc_low_byte_fix cc R10 R10B
-  | SetCC (cc, Reg R11) -> setcc_low_byte_fix cc R11 R11B
   | _ -> [ i ]
 
-(** [fixup_func f le] rewrites any invalid instructions in the function [f] by
+(** [fixup_func f] rewrites any invalid instructions in the function [f] by
     applying [fixup_instruction] to each instruction. It also prepends a stack
-    allocation instruction based on the environment [le], if necessary. This may
+    allocation instruction based on the function frame, if necessary. This may
     expand a single instruction into multiple valid ones. *)
-let fixup_func (f : Asm.func) (le : Env.lenv) : Asm.func =
+let fixup_func (f : Asm.func) : Asm.func =
   match f with
   | Function fn ->
       let fixed_func_instrs =
         fn.instructions
         |> List.concat_map (fun instr -> fixup_instruction instr)
       in
+      (* Align function stack size to nearest 16 bytes *)
+      let stack_size = -fn.frame.offset in
+      let aligned_size = (stack_size + 15) / 16 * 16 in
       let stack_alloc_instrs =
-        if le.offset <> 0 then [ Asm.AllocateStack (-le.offset) ] else []
+        if fn.frame.offset <> 0 then [ Asm.AllocateStack aligned_size ] else []
       in
       Function
         {
           name = fn.name;
           instructions = stack_alloc_instrs @ fixed_func_instrs;
+          frame = fn.frame;
         }
 
-(** [fixup_prog p le] rewrites the assembly program [p] by fixing up any invalid
+(** [fixup_prog p] rewrites the assembly program [p] by fixing up any invalid
     instructions in each function and prepending stack allocation based on the
-    environment [le]. This ensures the resulting program only contains valid
-    x86-64 instructions. *)
-let fixup_prog (Asm.Program p) (le : Env.lenv) : Asm.prog =
-  Program (fixup_func p le)
+    funtion frame. *)
+let fixup_prog (Asm.Program p) : Asm.prog =
+  let fixed_funcs = List.map fixup_func p in
+  Program fixed_funcs

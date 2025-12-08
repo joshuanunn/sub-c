@@ -1,15 +1,20 @@
 (Ast.Program
-   Ast.Function {return_type = Ast.KwInt; name = (Ast.Identifier "main");
-     body =
-     (Ast.Block
-        [(Ast.D
-            (Ast.Declaration ((Ast.Identifier "to_mod"),
-               (Some (Ast.LiteralInt 5)))));
-          (Ast.S
-             (Ast.Expression
-                (Ast.Assignment ((Ast.Var (Ast.Identifier "to_mod")),
-                   Ast.Binary {op = Ast.Remainder;
-                     left = (Ast.Var (Ast.Identifier "to_mod"));
-                     right = (Ast.LiteralInt 3)}
-                   ))));
-          (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "to_mod"))))])})
+   [(Ast.FunDecl
+       { Ast.name = (Ast.Identifier "main"); params = [];
+         body =
+         (Some (Ast.Block
+                  [(Ast.D
+                      (Ast.VarDecl
+                         { Ast.name = (Ast.Identifier "to_mod");
+                           init = (Some (Ast.LiteralInt 5)) }));
+                    (Ast.S
+                       (Ast.Expression
+                          (Ast.Assignment (
+                             (Ast.Var (Ast.Identifier "to_mod")),
+                             Ast.Binary {op = Ast.Remainder;
+                               left = (Ast.Var (Ast.Identifier "to_mod"));
+                               right = (Ast.LiteralInt 3)}
+                             ))));
+                    (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "to_mod"))))]))
+         })
+     ])

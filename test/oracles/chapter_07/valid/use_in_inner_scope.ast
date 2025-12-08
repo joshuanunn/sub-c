@@ -1,18 +1,26 @@
 (Ast.Program
-   Ast.Function {return_type = Ast.KwInt; name = (Ast.Identifier "main");
-     body =
-     (Ast.Block
-        [(Ast.D (Ast.Declaration ((Ast.Identifier "x"), None)));
-          (Ast.S
-             (Ast.Compound
-                (Ast.Block
-                   [(Ast.S
-                       (Ast.Expression
-                          (Ast.Assignment ((Ast.Var (Ast.Identifier "x")),
-                             (Ast.LiteralInt 3)))))
-                     ])));
-          (Ast.S
-             (Ast.Compound
-                (Ast.Block
-                   [(Ast.S (Ast.Return (Ast.Var (Ast.Identifier "x"))))])))
-          ])})
+   [(Ast.FunDecl
+       { Ast.name = (Ast.Identifier "main"); params = [];
+         body =
+         (Some (Ast.Block
+                  [(Ast.D
+                      (Ast.VarDecl
+                         { Ast.name = (Ast.Identifier "x"); init = None }));
+                    (Ast.S
+                       (Ast.Compound
+                          (Ast.Block
+                             [(Ast.S
+                                 (Ast.Expression
+                                    (Ast.Assignment (
+                                       (Ast.Var (Ast.Identifier "x")),
+                                       (Ast.LiteralInt 3)))))
+                               ])));
+                    (Ast.S
+                       (Ast.Compound
+                          (Ast.Block
+                             [(Ast.S
+                                 (Ast.Return (Ast.Var (Ast.Identifier "x"))))
+                               ])))
+                    ]))
+         })
+     ])

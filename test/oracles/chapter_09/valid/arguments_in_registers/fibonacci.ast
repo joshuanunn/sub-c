@@ -1,0 +1,69 @@
+(Ast.Program
+   [(Ast.FunDecl
+       { Ast.name = (Ast.Identifier "fib"); params = [(Ast.Identifier "n")];
+         body =
+         (Some (Ast.Block
+                  [(Ast.S
+                      Ast.If {
+                        cond_exp =
+                        Ast.Binary {op = Ast.Or;
+                          left =
+                          Ast.Binary {op = Ast.Equal;
+                            left = (Ast.Var (Ast.Identifier "n"));
+                            right = (Ast.LiteralInt 0)};
+                          right =
+                          Ast.Binary {op = Ast.Equal;
+                            left = (Ast.Var (Ast.Identifier "n"));
+                            right = (Ast.LiteralInt 1)}};
+                        then_smt =
+                        (Ast.Compound
+                           (Ast.Block
+                              [(Ast.S
+                                  (Ast.Return (Ast.Var (Ast.Identifier "n"))))
+                                ]));
+                        else_smt =
+                        (Some (Ast.Compound
+                                 (Ast.Block
+                                    [(Ast.S
+                                        (Ast.Return
+                                           Ast.Binary {op = Ast.Add;
+                                             left =
+                                             Ast.FunctionCall {
+                                               name = (Ast.Identifier "fib");
+                                               args =
+                                               [Ast.Binary {
+                                                  op = Ast.Subtract;
+                                                  left =
+                                                  (Ast.Var
+                                                     (Ast.Identifier "n"));
+                                                  right = (Ast.LiteralInt 1)}
+                                                 ]};
+                                             right =
+                                             Ast.FunctionCall {
+                                               name = (Ast.Identifier "fib");
+                                               args =
+                                               [Ast.Binary {
+                                                  op = Ast.Subtract;
+                                                  left =
+                                                  (Ast.Var
+                                                     (Ast.Identifier "n"));
+                                                  right = (Ast.LiteralInt 2)}
+                                                 ]}}))
+                                      ])))})
+                    ]))
+         });
+     (Ast.FunDecl
+        { Ast.name = (Ast.Identifier "main"); params = [];
+          body =
+          (Some (Ast.Block
+                   [(Ast.D
+                       (Ast.VarDecl
+                          { Ast.name = (Ast.Identifier "n");
+                            init = (Some (Ast.LiteralInt 6)) }));
+                     (Ast.S
+                        (Ast.Return
+                           Ast.FunctionCall {name = (Ast.Identifier "fib");
+                             args = [(Ast.Var (Ast.Identifier "n"))]}))
+                     ]))
+          })
+     ])

@@ -1,0 +1,26 @@
+(Asm.Program
+   [Asm.Function {name = "foo";
+      instructions =
+      [(Asm.AllocateStack 16); (Asm.Mov ((Asm.Imm 1), (Asm.Stack -4)));
+        (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX))); Asm.Ret];
+      frame =
+      Env.lenv {
+        counter = 0;
+        offset = -4;
+        stack slots = {
+          x.0 -> -4,
+        }}};
+     Asm.Function {name = "main";
+       instructions =
+       [(Asm.AllocateStack 16); (Asm.Call "foo");
+         (Asm.Mov ((Asm.Reg Asm.AX), (Asm.Stack -4)));
+         (Asm.Mov ((Asm.Imm 3), (Asm.Reg Asm.AX))); Asm.Ret;
+         (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX))); Asm.Ret];
+       frame =
+       Env.lenv {
+         counter = 1;
+         offset = -4;
+         stack slots = {
+           tmp.0 -> -4,
+         }}}
+     ])

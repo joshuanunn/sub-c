@@ -1,0 +1,42 @@
+(Ir.Program
+   [Ir.Function {name = "bar"; params = [];
+      body = [(Ir.Return (Ir.Constant 9)); (Ir.Return (Ir.Constant 0))];
+      frame = Env.lenv {
+                counter = 0;
+                offset = 0;
+                stack slots = {
+                }}};
+     Ir.Function {name = "foo"; params = [];
+       body =
+       [Ir.FunCall {fun_name = "bar"; args = []; dst = (Ir.Var "tmp.0")};
+         Ir.Binary {op = Ir.Multiply; src1 = (Ir.Constant 2);
+           src2 = (Ir.Var "tmp.0"); dst = (Ir.Var "tmp.1")};
+         (Ir.Return (Ir.Var "tmp.1")); (Ir.Return (Ir.Constant 0))];
+       frame =
+       Env.lenv {
+         counter = 2;
+         offset = -8;
+         stack slots = {
+           tmp.0 -> -4,
+           tmp.1 -> -8,
+         }}};
+     Ir.Function {name = "main"; params = [];
+       body =
+       [Ir.FunCall {fun_name = "foo"; args = []; dst = (Ir.Var "tmp.0")};
+         Ir.FunCall {fun_name = "bar"; args = []; dst = (Ir.Var "tmp.1")};
+         Ir.Binary {op = Ir.Divide; src1 = (Ir.Var "tmp.1");
+           src2 = (Ir.Constant 3); dst = (Ir.Var "tmp.2")};
+         Ir.Binary {op = Ir.Add; src1 = (Ir.Var "tmp.0");
+           src2 = (Ir.Var "tmp.2"); dst = (Ir.Var "tmp.3")};
+         (Ir.Return (Ir.Var "tmp.3")); (Ir.Return (Ir.Constant 0))];
+       frame =
+       Env.lenv {
+         counter = 4;
+         offset = -16;
+         stack slots = {
+           tmp.0 -> -4,
+           tmp.1 -> -8,
+           tmp.2 -> -12,
+           tmp.3 -> -16,
+         }}}
+     ])

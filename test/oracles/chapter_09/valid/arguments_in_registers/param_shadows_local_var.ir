@@ -1,0 +1,29 @@
+(Ir.Program
+   [Ir.Function {name = "main"; params = [];
+      body =
+      [Ir.Copy {src = (Ir.Constant 10); dst = (Ir.Var "a.0")};
+        Ir.FunCall {fun_name = "f"; args = [(Ir.Var "a.0")];
+          dst = (Ir.Var "tmp.0")};
+        (Ir.Return (Ir.Var "tmp.0")); (Ir.Return (Ir.Constant 0))];
+      frame =
+      Env.lenv {
+        counter = 1;
+        offset = -8;
+        stack slots = {
+          a.0   -> -4,
+          tmp.0 -> -8,
+        }}};
+     Ir.Function {name = "f"; params = ["a.2"];
+       body =
+       [Ir.Binary {op = Ir.Multiply; src1 = (Ir.Var "a.2");
+          src2 = (Ir.Constant 2); dst = (Ir.Var "tmp.0")};
+         (Ir.Return (Ir.Var "tmp.0")); (Ir.Return (Ir.Constant 0))];
+       frame =
+       Env.lenv {
+         counter = 1;
+         offset = -8;
+         stack slots = {
+           tmp.0 -> -4,
+           a.2   -> -8,
+         }}}
+     ])

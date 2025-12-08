@@ -1,16 +1,27 @@
 (Ir.Program
-   Ir.Function {name = "main";
-     body =
-     [Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "a.1")};
-       Ir.Jump {target = "mid_case.0"};
-       Ir.Binary {op = Ir.Equal; src1 = (Ir.Constant 4);
-         src2 = (Ir.Constant 4); dst = (Ir.Var "tmp.0")};
-       Ir.JumpIfNotZero {condition = (Ir.Var "tmp.0"); target = "swit.cs.1.4"};
-       Ir.Jump {target = "swit.br.1"}; (Ir.Label "swit.cs.1.4");
-       Ir.Copy {src = (Ir.Constant 5); dst = (Ir.Var "a.1")};
-       (Ir.Label "mid_case.0");
-       Ir.Binary {op = Ir.Add; src1 = (Ir.Var "a.1"); src2 = (Ir.Constant 1);
-         dst = (Ir.Var "tmp.1")};
-       Ir.Copy {src = (Ir.Var "tmp.1"); dst = (Ir.Var "a.1")};
-       (Ir.Return (Ir.Var "a.1")); (Ir.Label "swit.br.1");
-       (Ir.Return (Ir.Constant 100)); (Ir.Return (Ir.Constant 0))]})
+   [Ir.Function {name = "main"; params = [];
+      body =
+      [Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "a.1")};
+        Ir.Jump {target = "mid_case.0"};
+        Ir.Binary {op = Ir.Equal; src1 = (Ir.Constant 4);
+          src2 = (Ir.Constant 4); dst = (Ir.Var "tmp.0")};
+        Ir.JumpIfNotZero {condition = (Ir.Var "tmp.0");
+          target = "swit.cs.1.4"};
+        Ir.Jump {target = "swit.br.1"}; (Ir.Label "swit.cs.1.4");
+        Ir.Copy {src = (Ir.Constant 5); dst = (Ir.Var "a.1")};
+        (Ir.Label "mid_case.0");
+        Ir.Binary {op = Ir.Add; src1 = (Ir.Var "a.1");
+          src2 = (Ir.Constant 1); dst = (Ir.Var "tmp.1")};
+        Ir.Copy {src = (Ir.Var "tmp.1"); dst = (Ir.Var "a.1")};
+        (Ir.Return (Ir.Var "a.1")); (Ir.Label "swit.br.1");
+        (Ir.Return (Ir.Constant 100)); (Ir.Return (Ir.Constant 0))];
+      frame =
+      Env.lenv {
+        counter = 2;
+        offset = -12;
+        stack slots = {
+          a.1   -> -4,
+          tmp.0 -> -8,
+          tmp.1 -> -12,
+        }}}
+     ])

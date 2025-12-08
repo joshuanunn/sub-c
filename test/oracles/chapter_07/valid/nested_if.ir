@@ -1,17 +1,29 @@
 (Ir.Program
-   Ir.Function {name = "main";
-     body =
-     [Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "a.0")};
-       Ir.JumpIfZero {condition = (Ir.Var "a.0"); target = "if.el.1"};
-       Ir.Copy {src = (Ir.Constant 2); dst = (Ir.Var "b.2")};
-       (Ir.Return (Ir.Var "b.2")); Ir.Jump {target = "if.en.0"};
-       (Ir.Label "if.el.1");
-       Ir.Copy {src = (Ir.Constant 3); dst = (Ir.Var "c.1")};
-       Ir.Binary {op = Ir.LessThan; src1 = (Ir.Var "a.0");
-         src2 = (Ir.Var "c.1"); dst = (Ir.Var "tmp.2")};
-       Ir.JumpIfZero {condition = (Ir.Var "tmp.2"); target = "if.el.4"};
-       Ir.Unary {op = Ir.Not; src = (Ir.Var "a.0"); dst = (Ir.Var "tmp.5")};
-       (Ir.Return (Ir.Var "tmp.5")); Ir.Jump {target = "if.en.3"};
-       (Ir.Label "if.el.4"); (Ir.Return (Ir.Constant 5));
-       (Ir.Label "if.en.3"); (Ir.Label "if.en.0");
-       (Ir.Return (Ir.Var "a.0")); (Ir.Return (Ir.Constant 0))]})
+   [Ir.Function {name = "main"; params = [];
+      body =
+      [Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "a.0")};
+        Ir.JumpIfZero {condition = (Ir.Var "a.0"); target = "if.el.1"};
+        Ir.Copy {src = (Ir.Constant 2); dst = (Ir.Var "b.2")};
+        (Ir.Return (Ir.Var "b.2")); Ir.Jump {target = "if.en.0"};
+        (Ir.Label "if.el.1");
+        Ir.Copy {src = (Ir.Constant 3); dst = (Ir.Var "c.1")};
+        Ir.Binary {op = Ir.LessThan; src1 = (Ir.Var "a.0");
+          src2 = (Ir.Var "c.1"); dst = (Ir.Var "tmp.2")};
+        Ir.JumpIfZero {condition = (Ir.Var "tmp.2"); target = "if.el.4"};
+        Ir.Unary {op = Ir.Not; src = (Ir.Var "a.0"); dst = (Ir.Var "tmp.5")};
+        (Ir.Return (Ir.Var "tmp.5")); Ir.Jump {target = "if.en.3"};
+        (Ir.Label "if.el.4"); (Ir.Return (Ir.Constant 5));
+        (Ir.Label "if.en.3"); (Ir.Label "if.en.0");
+        (Ir.Return (Ir.Var "a.0")); (Ir.Return (Ir.Constant 0))];
+      frame =
+      Env.lenv {
+        counter = 6;
+        offset = -20;
+        stack slots = {
+          a.0   -> -4,
+          b.2   -> -8,
+          c.1   -> -12,
+          tmp.2 -> -16,
+          tmp.5 -> -20,
+        }}}
+     ])

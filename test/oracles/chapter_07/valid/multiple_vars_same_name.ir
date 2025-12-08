@@ -1,11 +1,22 @@
 (Ir.Program
-   Ir.Function {name = "main";
-     body =
-     [Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "a.0")};
-       Ir.Copy {src = (Ir.Constant 4); dst = (Ir.Var "b.1")};
-       Ir.Copy {src = (Ir.Var "b.1"); dst = (Ir.Var "a.0")};
-       Ir.Copy {src = (Ir.Constant 2); dst = (Ir.Var "b.2")};
-       Ir.Binary {op = Ir.Subtract; src1 = (Ir.Var "a.0");
-         src2 = (Ir.Var "b.2"); dst = (Ir.Var "tmp.0")};
-       Ir.Copy {src = (Ir.Var "tmp.0"); dst = (Ir.Var "a.0")};
-       (Ir.Return (Ir.Var "a.0")); (Ir.Return (Ir.Constant 0))]})
+   [Ir.Function {name = "main"; params = [];
+      body =
+      [Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "a.0")};
+        Ir.Copy {src = (Ir.Constant 4); dst = (Ir.Var "b.1")};
+        Ir.Copy {src = (Ir.Var "b.1"); dst = (Ir.Var "a.0")};
+        Ir.Copy {src = (Ir.Constant 2); dst = (Ir.Var "b.2")};
+        Ir.Binary {op = Ir.Subtract; src1 = (Ir.Var "a.0");
+          src2 = (Ir.Var "b.2"); dst = (Ir.Var "tmp.0")};
+        Ir.Copy {src = (Ir.Var "tmp.0"); dst = (Ir.Var "a.0")};
+        (Ir.Return (Ir.Var "a.0")); (Ir.Return (Ir.Constant 0))];
+      frame =
+      Env.lenv {
+        counter = 1;
+        offset = -16;
+        stack slots = {
+          a.0   -> -4,
+          b.1   -> -8,
+          b.2   -> -12,
+          tmp.0 -> -16,
+        }}}
+     ])

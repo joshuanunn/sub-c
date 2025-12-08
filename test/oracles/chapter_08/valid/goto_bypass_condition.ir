@@ -1,16 +1,26 @@
 (Ir.Program
-   Ir.Function {name = "main";
-     body =
-     [Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "i.1")};
-       (Ir.Label "loop.st.1"); (Ir.Label "while_start.0");
-       Ir.Binary {op = Ir.Add; src1 = (Ir.Var "i.1"); src2 = (Ir.Constant 1);
-         dst = (Ir.Var "tmp.0")};
-       Ir.Copy {src = (Ir.Var "tmp.0"); dst = (Ir.Var "i.1")};
-       Ir.Binary {op = Ir.LessThan; src1 = (Ir.Var "i.1");
-         src2 = (Ir.Constant 10); dst = (Ir.Var "tmp.1")};
-       Ir.JumpIfZero {condition = (Ir.Var "tmp.1"); target = "if.en.2"};
-       Ir.Jump {target = "while_start.0"}; (Ir.Label "if.en.2");
-       (Ir.Label "loop.ct.1");
-       Ir.JumpIfNotZero {condition = (Ir.Constant 0); target = "loop.st.1"};
-       (Ir.Label "loop.br.1"); (Ir.Return (Ir.Var "i.1"));
-       (Ir.Return (Ir.Constant 0))]})
+   [Ir.Function {name = "main"; params = [];
+      body =
+      [Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "i.1")};
+        (Ir.Label "loop.st.1"); (Ir.Label "while_start.0");
+        Ir.Binary {op = Ir.Add; src1 = (Ir.Var "i.1");
+          src2 = (Ir.Constant 1); dst = (Ir.Var "tmp.0")};
+        Ir.Copy {src = (Ir.Var "tmp.0"); dst = (Ir.Var "i.1")};
+        Ir.Binary {op = Ir.LessThan; src1 = (Ir.Var "i.1");
+          src2 = (Ir.Constant 10); dst = (Ir.Var "tmp.1")};
+        Ir.JumpIfZero {condition = (Ir.Var "tmp.1"); target = "if.en.2"};
+        Ir.Jump {target = "while_start.0"}; (Ir.Label "if.en.2");
+        (Ir.Label "loop.ct.1");
+        Ir.JumpIfNotZero {condition = (Ir.Constant 0); target = "loop.st.1"};
+        (Ir.Label "loop.br.1"); (Ir.Return (Ir.Var "i.1"));
+        (Ir.Return (Ir.Constant 0))];
+      frame =
+      Env.lenv {
+        counter = 3;
+        offset = -12;
+        stack slots = {
+          i.1   -> -4,
+          tmp.0 -> -8,
+          tmp.1 -> -12,
+        }}}
+     ])

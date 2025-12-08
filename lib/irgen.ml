@@ -152,6 +152,16 @@ let rec convert_expr (e : Ast.expr) (le : Env.lenv) :
         cond_ins @ [ jz_cond ] @ e1_ins
         @ [ c1; j_end; Ir.Label l_e2 ]
         @ e2_ins @ [ c2; Ir.Label l_end ] )
+  | FunctionCall { name : Ast.ident; args : Ast.expr list } ->
+      let fun_name = identifier_to_string name in
+      let arg_vals, arg_ins =
+        List.split (List.map (fun e -> convert_expr e le) args)
+      in
+      let arg_instructions = List.concat arg_ins in
+      (* TODO: need to handle dst properly (e.g. void) *)
+      let dst = Ir.Var (Env.declare_value "tmp" le) in
+      let instruction = Ir.FunCall { fun_name; args = arg_vals; dst } in
+      (dst, arg_instructions @ [ instruction ])
 
 let rec convert_stmt (s : Ast.stmt) (le : Env.lenv) : Ir.instruction list =
   match s with
@@ -310,20 +320,31 @@ let rec convert_stmt (s : Ast.stmt) (le : Env.lenv) : Ir.instruction list =
 
 and convert_dclr (d : Ast.decl) (le : Env.lenv) : Ir.instruction list =
   match d with
+  (* Function declarations without body are discarded *)
+  | FunDecl _ -> []
   (* No need to generate instructions for variable declaration *)
-  | Declaration (lhs, None) ->
-      Env.insert_value lhs le;
+  | VarDecl { name; init = None } ->
+      Env.insert_value name le;
       []
   (* Handle a declaration with initialiser as an assignment expression *)
-  | Declaration (lhs, Some rhs) ->
-      Env.insert_value lhs le;
-      let initialiser = Ast.Assignment (Ast.Var lhs, rhs) in
+  | VarDecl { name; init = Some rhs } ->
+      Env.insert_value name le;
+      let initialiser = Ast.Assignment (Ast.Var name, rhs) in
       let _, instructions = convert_expr initialiser le in
       instructions
 
 and convert_for_init (i : Ast.for_init) (le : Env.lenv) : Ir.instruction list =
   match i with
-  | InclDecl d -> convert_dclr d le
+  (* No need to generate instructions for variable declaration *)
+  | InclDecl { name; init = None } ->
+      Env.insert_value name le;
+      []
+  (* Handle a declaration with initialiser as an assignment expression *)
+  | InclDecl { name; init = Some rhs } ->
+      Env.insert_value name le;
+      let initialiser = Ast.Assignment (Ast.Var name, rhs) in
+      let _, instructions = convert_expr initialiser le in
+      instructions
   | InitExp (Some e) ->
       let _, ins = convert_expr e le in
       ins
@@ -346,22 +367,51 @@ and convert_for_post (e : Ast.expr option) (le : Env.lenv) : Ir.instruction list
       ins
   | None -> []
 
-and convert_func (f : Ast.func) (le : Env.lenv) : Ir.func =
-  match f with
-  | Function fn ->
-      let (Block block_items) = fn.body in
+and convert_func (f : Ast.fun_decl) : Ir.func =
+  match f.body with
+  | None ->
+      failwith
+        ("convert_func called on function declaration: "
+        ^ identifier_to_string f.name)
+  | Some (Block items) ->
+      (* Create a new environment for the function to track frame contents *)
+      let le = Env.make_lenv () in
       let body =
         List.map
           (fun node ->
             match node with
             | Ast.S s -> convert_stmt s le
             | Ast.D d -> convert_dclr d le)
-          block_items
+          items
         |> List.flatten
       in
       (* Append "return 0" to the function end, in case no return present *)
       let body_safe_return = body @ [ Return (Constant 0) ] in
-      Function { name = identifier_to_string fn.name; body = body_safe_return }
+      Function
+        {
+          name = identifier_to_string f.name;
+          params =
+            List.map
+              (fun name ->
+                let param_name = identifier_to_string name in
+                (* Add function parameter declarations to lenv *)
+                Env.insert_value name le;
+                param_name)
+              f.params;
+          body = body_safe_return;
+          frame = le;
+        }
 
-let convert_prog (Program p : Ast.prog) (le : Env.lenv) : Ir.prog =
-  Program (convert_func p le)
+let convert_prog (Program p : Ast.prog) : Ir.prog =
+  let resolved_funcs =
+    List.filter_map
+      (function
+        | Ast.FunDecl f -> (
+            match f.body with
+            | Some _ -> Some (convert_func f) (* process func definitions *)
+            | None -> None (* ignore func declarations *))
+        | Ast.VarDecl _ ->
+            failwith "Global variable declaration not yet implemented")
+      p
+  in
+  Program resolved_funcs

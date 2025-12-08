@@ -1,26 +1,40 @@
 (Ir.Program
-   Ir.Function {name = "main";
-     body =
-     [Ir.Copy {src = (Ir.Constant 100); dst = (Ir.Var "i.0")};
-       Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "sum.1")};
-       (Ir.Label "loop.st.1");
-       Ir.Binary {op = Ir.Add; src1 = (Ir.Var "sum.1");
-         src2 = (Ir.Constant 2); dst = (Ir.Var "tmp.0")};
-       Ir.Copy {src = (Ir.Var "tmp.0"); dst = (Ir.Var "sum.1")};
-       (Ir.Label "loop.ct.1");
-       Ir.Binary {op = Ir.Subtract; src1 = (Ir.Var "i.0");
-         src2 = (Ir.Constant 1); dst = (Ir.Var "tmp.1")};
-       Ir.Copy {src = (Ir.Var "tmp.1"); dst = (Ir.Var "i.0")};
-       Ir.JumpIfNotZero {condition = (Ir.Var "i.0"); target = "loop.st.1"};
-       (Ir.Label "loop.br.1");
-       Ir.Binary {op = Ir.Equal; src1 = (Ir.Var "i.0");
-         src2 = (Ir.Constant 0); dst = (Ir.Var "tmp.2")};
-       Ir.JumpIfZero {condition = (Ir.Var "tmp.2"); target = "and.fl.5"};
-       Ir.Binary {op = Ir.Equal; src1 = (Ir.Var "sum.1");
-         src2 = (Ir.Constant 200); dst = (Ir.Var "tmp.3")};
-       Ir.JumpIfZero {condition = (Ir.Var "tmp.3"); target = "and.fl.5"};
-       Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "tmp.4")};
-       Ir.Jump {target = "and.en.6"}; (Ir.Label "and.fl.5");
-       Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "tmp.4")};
-       (Ir.Label "and.en.6"); (Ir.Return (Ir.Var "tmp.4"));
-       (Ir.Return (Ir.Constant 0))]})
+   [Ir.Function {name = "main"; params = [];
+      body =
+      [Ir.Copy {src = (Ir.Constant 100); dst = (Ir.Var "i.0")};
+        Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "sum.1")};
+        (Ir.Label "loop.st.1");
+        Ir.Binary {op = Ir.Add; src1 = (Ir.Var "sum.1");
+          src2 = (Ir.Constant 2); dst = (Ir.Var "tmp.0")};
+        Ir.Copy {src = (Ir.Var "tmp.0"); dst = (Ir.Var "sum.1")};
+        (Ir.Label "loop.ct.1");
+        Ir.Binary {op = Ir.Subtract; src1 = (Ir.Var "i.0");
+          src2 = (Ir.Constant 1); dst = (Ir.Var "tmp.1")};
+        Ir.Copy {src = (Ir.Var "tmp.1"); dst = (Ir.Var "i.0")};
+        Ir.JumpIfNotZero {condition = (Ir.Var "i.0"); target = "loop.st.1"};
+        (Ir.Label "loop.br.1");
+        Ir.Binary {op = Ir.Equal; src1 = (Ir.Var "i.0");
+          src2 = (Ir.Constant 0); dst = (Ir.Var "tmp.2")};
+        Ir.JumpIfZero {condition = (Ir.Var "tmp.2"); target = "and.fl.5"};
+        Ir.Binary {op = Ir.Equal; src1 = (Ir.Var "sum.1");
+          src2 = (Ir.Constant 200); dst = (Ir.Var "tmp.3")};
+        Ir.JumpIfZero {condition = (Ir.Var "tmp.3"); target = "and.fl.5"};
+        Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "tmp.4")};
+        Ir.Jump {target = "and.en.6"}; (Ir.Label "and.fl.5");
+        Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "tmp.4")};
+        (Ir.Label "and.en.6"); (Ir.Return (Ir.Var "tmp.4"));
+        (Ir.Return (Ir.Constant 0))];
+      frame =
+      Env.lenv {
+        counter = 7;
+        offset = -28;
+        stack slots = {
+          i.0   -> -4,
+          sum.1 -> -8,
+          tmp.0 -> -12,
+          tmp.1 -> -16,
+          tmp.2 -> -20,
+          tmp.3 -> -24,
+          tmp.4 -> -28,
+        }}}
+     ])

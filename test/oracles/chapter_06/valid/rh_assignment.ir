@@ -1,13 +1,23 @@
 (Ir.Program
-   Ir.Function {name = "main";
-     body =
-     [Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "flag.0")};
-       Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "a.1")};
-       Ir.JumpIfZero {condition = (Ir.Var "flag.0"); target = "cond.el.2"};
-       Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "a.1")};
-       Ir.Copy {src = (Ir.Var "a.1"); dst = (Ir.Var "tmp.0")};
-       Ir.Jump {target = "cond.en.1"}; (Ir.Label "cond.el.2");
-       Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "a.1")};
-       Ir.Copy {src = (Ir.Var "a.1"); dst = (Ir.Var "tmp.0")};
-       (Ir.Label "cond.en.1"); (Ir.Return (Ir.Var "a.1"));
-       (Ir.Return (Ir.Constant 0))]})
+   [Ir.Function {name = "main"; params = [];
+      body =
+      [Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "flag.0")};
+        Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "a.1")};
+        Ir.JumpIfZero {condition = (Ir.Var "flag.0"); target = "cond.el.2"};
+        Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "a.1")};
+        Ir.Copy {src = (Ir.Var "a.1"); dst = (Ir.Var "tmp.0")};
+        Ir.Jump {target = "cond.en.1"}; (Ir.Label "cond.el.2");
+        Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "a.1")};
+        Ir.Copy {src = (Ir.Var "a.1"); dst = (Ir.Var "tmp.0")};
+        (Ir.Label "cond.en.1"); (Ir.Return (Ir.Var "a.1"));
+        (Ir.Return (Ir.Constant 0))];
+      frame =
+      Env.lenv {
+        counter = 3;
+        offset = -12;
+        stack slots = {
+          flag.0 -> -4,
+          a.1    -> -8,
+          tmp.0  -> -12,
+        }}}
+     ])

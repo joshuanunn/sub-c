@@ -1,0 +1,53 @@
+(Ir.Program
+   [Ir.Function {name = "main"; params = [];
+      body =
+      [Ir.FunCall {fun_name = "putchar"; args = [(Ir.Constant 72)];
+         dst = (Ir.Var "tmp.0")};
+        Ir.FunCall {fun_name = "putchar"; args = [(Ir.Constant 101)];
+          dst = (Ir.Var "tmp.1")};
+        Ir.FunCall {fun_name = "putchar"; args = [(Ir.Constant 108)];
+          dst = (Ir.Var "tmp.2")};
+        Ir.FunCall {fun_name = "putchar"; args = [(Ir.Constant 108)];
+          dst = (Ir.Var "tmp.3")};
+        Ir.FunCall {fun_name = "putchar"; args = [(Ir.Constant 111)];
+          dst = (Ir.Var "tmp.4")};
+        Ir.FunCall {fun_name = "putchar"; args = [(Ir.Constant 44)];
+          dst = (Ir.Var "tmp.5")};
+        Ir.FunCall {fun_name = "putchar"; args = [(Ir.Constant 32)];
+          dst = (Ir.Var "tmp.6")};
+        Ir.FunCall {fun_name = "putchar"; args = [(Ir.Constant 87)];
+          dst = (Ir.Var "tmp.7")};
+        Ir.FunCall {fun_name = "putchar"; args = [(Ir.Constant 111)];
+          dst = (Ir.Var "tmp.8")};
+        Ir.FunCall {fun_name = "putchar"; args = [(Ir.Constant 114)];
+          dst = (Ir.Var "tmp.9")};
+        Ir.FunCall {fun_name = "putchar"; args = [(Ir.Constant 108)];
+          dst = (Ir.Var "tmp.10")};
+        Ir.FunCall {fun_name = "putchar"; args = [(Ir.Constant 100)];
+          dst = (Ir.Var "tmp.11")};
+        Ir.FunCall {fun_name = "putchar"; args = [(Ir.Constant 33)];
+          dst = (Ir.Var "tmp.12")};
+        Ir.FunCall {fun_name = "putchar"; args = [(Ir.Constant 10)];
+          dst = (Ir.Var "tmp.13")};
+        (Ir.Return (Ir.Constant 0))];
+      frame =
+      Env.lenv {
+        counter = 14;
+        offset = -56;
+        stack slots = {
+          tmp.0  -> -4,
+          tmp.1  -> -8,
+          tmp.2  -> -12,
+          tmp.3  -> -16,
+          tmp.4  -> -20,
+          tmp.5  -> -24,
+          tmp.6  -> -28,
+          tmp.7  -> -32,
+          tmp.8  -> -36,
+          tmp.9  -> -40,
+          tmp.10 -> -44,
+          tmp.11 -> -48,
+          tmp.12 -> -52,
+          tmp.13 -> -56,
+        }}}
+     ])

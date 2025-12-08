@@ -1,32 +1,38 @@
 (Ast.Program
-   Ast.Function {return_type = Ast.KwInt; name = (Ast.Identifier "main");
-     body =
-     (Ast.Block
-        [(Ast.D
-            (Ast.Declaration ((Ast.Identifier "x.0"),
-               (Some (Ast.LiteralInt 10)))));
-          (Ast.D
-             (Ast.Declaration ((Ast.Identifier "y.1"),
-                (Some (Ast.LiteralInt 0)))));
-          (Ast.S
-             (Ast.Expression
-                (Ast.Assignment ((Ast.Var (Ast.Identifier "y.1")),
-                   Ast.Conditional {
-                     cond_exp =
-                     (Ast.Assignment ((Ast.Var (Ast.Identifier "x.0")),
-                        (Ast.LiteralInt 5)));
-                     then_exp = (Ast.Var (Ast.Identifier "x.0"));
-                     else_exp = (Ast.LiteralInt 2)}
-                   ))));
-          (Ast.S
-             (Ast.Return
-                Ast.Binary {op = Ast.And;
-                  left =
-                  Ast.Binary {op = Ast.Equal;
-                    left = (Ast.Var (Ast.Identifier "x.0"));
-                    right = (Ast.LiteralInt 5)};
-                  right =
-                  Ast.Binary {op = Ast.Equal;
-                    left = (Ast.Var (Ast.Identifier "y.1"));
-                    right = (Ast.LiteralInt 5)}}))
-          ])})
+   [(Ast.FunDecl
+       { Ast.name = (Ast.Identifier "main"); params = [];
+         body =
+         (Some (Ast.Block
+                  [(Ast.D
+                      (Ast.VarDecl
+                         { Ast.name = (Ast.Identifier "x.0");
+                           init = (Some (Ast.LiteralInt 10)) }));
+                    (Ast.D
+                       (Ast.VarDecl
+                          { Ast.name = (Ast.Identifier "y.1");
+                            init = (Some (Ast.LiteralInt 0)) }));
+                    (Ast.S
+                       (Ast.Expression
+                          (Ast.Assignment ((Ast.Var (Ast.Identifier "y.1")),
+                             Ast.Conditional {
+                               cond_exp =
+                               (Ast.Assignment (
+                                  (Ast.Var (Ast.Identifier "x.0")),
+                                  (Ast.LiteralInt 5)));
+                               then_exp = (Ast.Var (Ast.Identifier "x.0"));
+                               else_exp = (Ast.LiteralInt 2)}
+                             ))));
+                    (Ast.S
+                       (Ast.Return
+                          Ast.Binary {op = Ast.And;
+                            left =
+                            Ast.Binary {op = Ast.Equal;
+                              left = (Ast.Var (Ast.Identifier "x.0"));
+                              right = (Ast.LiteralInt 5)};
+                            right =
+                            Ast.Binary {op = Ast.Equal;
+                              left = (Ast.Var (Ast.Identifier "y.1"));
+                              right = (Ast.LiteralInt 5)}}))
+                    ]))
+         })
+     ])

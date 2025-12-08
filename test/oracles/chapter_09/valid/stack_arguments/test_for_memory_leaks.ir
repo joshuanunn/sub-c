@@ -1,0 +1,69 @@
+(Ir.Program
+   [Ir.Function {name = "lots_of_args";
+      params =
+      ["a.0"; "b.1"; "c.2"; "d.3"; "e.4"; "f.5"; "g.6"; "h.7"; "i.8"; "j.9";
+        "k.10"; "l.11"; "m.12"; "n.13"; "o.14"];
+      body =
+      [Ir.Binary {op = Ir.Add; src1 = (Ir.Var "l.11");
+         src2 = (Ir.Var "o.14"); dst = (Ir.Var "tmp.0")};
+        (Ir.Return (Ir.Var "tmp.0")); (Ir.Return (Ir.Constant 0))];
+      frame =
+      Env.lenv {
+        counter = 1;
+        offset = -64;
+        stack slots = {
+          tmp.0 -> -4,
+          a.0   -> -8,
+          b.1   -> -12,
+          c.2   -> -16,
+          d.3   -> -20,
+          e.4   -> -24,
+          f.5   -> -28,
+          g.6   -> -32,
+          h.7   -> -36,
+          i.8   -> -40,
+          j.9   -> -44,
+          k.10  -> -48,
+          l.11  -> -52,
+          m.12  -> -56,
+          n.13  -> -60,
+          o.14  -> -64,
+        }}};
+     Ir.Function {name = "main"; params = [];
+       body =
+       [Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "ret.15")};
+         Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "i.16")};
+         (Ir.Label "loop.st.1");
+         Ir.Binary {op = Ir.LessThan; src1 = (Ir.Var "i.16");
+           src2 = (Ir.Constant 10000000); dst = (Ir.Var "tmp.0")};
+         Ir.JumpIfZero {condition = (Ir.Var "tmp.0"); target = "loop.br.1"};
+         Ir.FunCall {fun_name = "lots_of_args";
+           args =
+           [(Ir.Constant 1); (Ir.Constant 2); (Ir.Constant 3);
+             (Ir.Constant 4); (Ir.Constant 5); (Ir.Constant 6);
+             (Ir.Constant 7); (Ir.Constant 8); (Ir.Constant 9);
+             (Ir.Constant 10); (Ir.Constant 11); (Ir.Var "ret.15");
+             (Ir.Constant 13); (Ir.Constant 14); (Ir.Constant 15)];
+           dst = (Ir.Var "tmp.1")};
+         Ir.Copy {src = (Ir.Var "tmp.1"); dst = (Ir.Var "ret.15")};
+         (Ir.Label "loop.ct.1");
+         Ir.Binary {op = Ir.Add; src1 = (Ir.Var "i.16");
+           src2 = (Ir.Constant 1); dst = (Ir.Var "tmp.2")};
+         Ir.Copy {src = (Ir.Var "tmp.2"); dst = (Ir.Var "i.16")};
+         Ir.Jump {target = "loop.st.1"}; (Ir.Label "loop.br.1");
+         Ir.Binary {op = Ir.Equal; src1 = (Ir.Var "ret.15");
+           src2 = (Ir.Constant 150000000); dst = (Ir.Var "tmp.3")};
+         (Ir.Return (Ir.Var "tmp.3")); (Ir.Return (Ir.Constant 0))];
+       frame =
+       Env.lenv {
+         counter = 4;
+         offset = -24;
+         stack slots = {
+           ret.15 -> -4,
+           i.16   -> -8,
+           tmp.0  -> -12,
+           tmp.1  -> -16,
+           tmp.2  -> -20,
+           tmp.3  -> -24,
+         }}}
+     ])
