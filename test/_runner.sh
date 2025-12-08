@@ -168,18 +168,23 @@ for chapter in "${CHAPTERS[@]}"; do
   libdir="$TEST_DIR/$chapter/libraries"
 
   if [[ -d "$libdir" ]]; then
-    # Search for any <LIB>.c file that has a matching <LIB>_client.c
-    for lib in "$libdir"/*.c; do
-      [[ "$lib" =~ _client\.c$ ]] && continue  # skip client files
+    for lib in "$libdir"/*; do
 
-      base=$(basename "$lib" .c)
+      # Skip client files (must match <BASE>_client.c)
+      [[ "$lib" =~ _client\.c$ ]] && continue
+
+      # Only accept .c or .s library sources
+      case "$lib" in
+        *.c) base=$(basename "$lib" .c) ;;
+        *.s) base=$(basename "$lib" .s) ;;
+        *) continue ;;
+      esac
+
       client="$libdir/${base}_client.c"
-
       [[ -f "$client" ]] || continue
 
-      rel_path="$chapter/libraries/${base}"
+      rel_path="$chapter/libraries/$base"
 
-      # Oracle paths (always based on client)
       exit_oracle="$ORACLE_DIR/$chapter/libraries/${base}_client.exit_status"
       stdout_oracle="${exit_oracle%.exit_status}.stdout"
 
@@ -200,9 +205,18 @@ for chapter in "${CHAPTERS[@]}"; do
       subc_lib_o="$libdir/${base}.o"
       sys_client_o="$libdir/${base}_client.o"
 
-      subc "$lib" -c
-      cc   "$client" -c -o "$sys_client_o"
-      cc   "$subc_lib_o" "$sys_client_o" -o "$libdir/a.out"
+      # Build the library
+      if [[ "$lib" == *.c ]]; then
+        subc "$lib" -c
+      else
+        cc -c "$lib" -o "$subc_lib_o"
+      fi
+
+      # System compiler builds client
+      cc "$client" -c -o "$sys_client_o"
+
+      # Link and run
+      cc "$subc_lib_o" "$sys_client_o" -o "$libdir/a.out"
 
       program_stdout="$("$libdir/a.out" 2>&1)"
       program_status=$?
@@ -213,9 +227,7 @@ for chapter in "${CHAPTERS[@]}"; do
 
       if [[ -f "$stdout_oracle" ]]; then
         expected_stdout=$(<"$stdout_oracle")
-        if ! diff -u <(echo "$expected_stdout") <(echo "$program_stdout") >/dev/null; then
-          interop_fail=1
-        fi
+        diff -u <(echo "$expected_stdout") <(echo "$program_stdout") >/dev/null || interop_fail=1
       fi
 
       if [[ "$interop_fail" -eq 1 ]]; then
@@ -232,8 +244,17 @@ for chapter in "${CHAPTERS[@]}"; do
       sys_lib_o="$libdir/${base}.o"
       subc_client_o="$libdir/${base}_client.o"
 
-      cc   "$lib" -c -o "$sys_lib_o"
+      # System compiler builds library:
+      if [[ "$lib" == *.c ]]; then
+        cc -c "$lib" -o "$sys_lib_o"
+      else
+        cc -c "$lib" -o "$sys_lib_o"
+      fi
+
+      # subc compiler builds client
       subc "$client" -c
+
+      # Link and run
       cc "$sys_lib_o" "$subc_client_o" -o "$libdir/a.out"
 
       program_stdout="$("$libdir/a.out" 2>&1)"
@@ -245,9 +266,7 @@ for chapter in "${CHAPTERS[@]}"; do
 
       if [[ -f "$stdout_oracle" ]]; then
         expected_stdout=$(<"$stdout_oracle")
-        if ! diff -u <(echo "$expected_stdout") <(echo "$program_stdout") >/dev/null; then
-          interop_fail=1
-        fi
+        diff -u <(echo "$expected_stdout") <(echo "$program_stdout") >/dev/null || interop_fail=1
       fi
 
       if [[ "$interop_fail" -eq 1 ]]; then

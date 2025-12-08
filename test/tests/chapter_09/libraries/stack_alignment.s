@@ -1,4 +1,3 @@
-    # generated from templates/stack_alignment_check.s.jinja
     .text
     .globl even_arguments
 even_arguments:
