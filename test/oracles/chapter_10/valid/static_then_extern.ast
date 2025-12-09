@@ -1,0 +1,14 @@
+(Ast.Program
+   [(Ast.VarDecl
+       { Ast.name = (Ast.Identifier "foo"); init = (Some (Ast.LiteralInt 3));
+         storage = (Some Ast.Static) });
+     (Ast.FunDecl
+        { Ast.name = (Ast.Identifier "main"); params = [];
+          body =
+          (Some (Ast.Block
+                   [(Ast.S (Ast.Return (Ast.Var (Ast.Identifier "foo"))))]));
+          storage = None });
+     (Ast.VarDecl
+        { Ast.name = (Ast.Identifier "foo"); init = None;
+          storage = (Some Ast.Extern) })
+     ])

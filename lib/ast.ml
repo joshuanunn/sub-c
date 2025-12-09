@@ -1,4 +1,8 @@
-type typ = KwInt | KwVoid [@@deriving show]
+type storage_class = Static | Extern [@@deriving show]
+type typ = Int [@@deriving show]
+
+type specifier = SpecType of typ | SpecStorage of storage_class
+[@@deriving show]
 
 type ident =
   | Identifier of string
@@ -77,10 +81,20 @@ and for_init = InclDecl of var_decl | InitExp of expr option [@@deriving show]
 and block_item = S of stmt | D of decl [@@deriving show]
 and block = Block of block_item list [@@deriving show]
 
-and fun_decl = { name : ident; params : ident list; body : block option }
+and fun_decl = {
+  name : ident;
+  params : ident list;
+  body : block option;
+  storage : storage_class option;
+}
 [@@deriving show]
 
-and var_decl = { name : ident; init : expr option } [@@deriving show]
+and var_decl = {
+  name : ident;
+  init : expr option;
+  storage : storage_class option;
+}
+[@@deriving show]
 
 type prog = Program of decl list [@@deriving show]
 
@@ -88,12 +102,41 @@ let literal_to_int : expr -> int = function
   | LiteralInt i -> i
   | _ -> failwith "expected LiteralInt"
 
+type decl_specs = { spec_type : typ; spec_storage : storage_class option }
+[@@deriving show]
+
+let extract_specifiers (sl : specifier list) : decl_specs =
+  let typ_opt = ref None in
+  let storage_class_opt = ref None in
+
+  List.iter
+    (function
+      | SpecType t -> begin
+          match !typ_opt with
+          | None -> typ_opt := Some t
+          | Some _ -> failwith "Invalid type specifier"
+        end
+      | SpecStorage s -> begin
+          match !storage_class_opt with
+          | None -> storage_class_opt := Some s
+          | Some _ -> failwith "Invalid storage class"
+        end)
+    sl;
+
+  match !typ_opt with
+  | None -> failwith "No type specifier"
+  | Some t -> { spec_type = t; spec_storage = !storage_class_opt }
+
 let mk_prog f = Program f
 
-let mk_func_defn name params body =
-  FunDecl { name; params; body = Some (Block body) }
+let mk_func_defn specs name params body =
+  let ds = extract_specifiers specs in
+  FunDecl { name; params; body = Some (Block body); storage = ds.spec_storage }
 
-let mk_func_decl name params = FunDecl { name; params; body = None }
+let mk_func_decl specs name params =
+  let ds = extract_specifiers specs in
+  FunDecl { name; params; body = None; storage = ds.spec_storage }
+
 let mk_func_call name args = FunctionCall { name; args }
 let mk_ident i = Identifier i
 let mk_int_expr n = LiteralInt n
@@ -121,11 +164,17 @@ let mk_label_stmt l s = Label (l, s)
 let mk_switch_stmt e s = Switch { cond = e; body = s; id = None }
 let mk_case_stmt e s = Case { value = e; body = s; id = None }
 let mk_default_stmt s = Default { body = s; id = None }
-let mk_decl_init_stmt i v = { name = i; init = Some v }
-let mk_decl_stmt i = { name = i; init = None }
+
+let mk_decl_init_stmt specs i v =
+  let ds = extract_specifiers specs in
+  { name = i; init = Some v; storage = ds.spec_storage }
+
+let mk_decl_stmt specs i =
+  let ds = extract_specifiers specs in
+  { name = i; init = None; storage = ds.spec_storage }
+
 let mk_stmt_block_item s = S s
 let mk_decl_block_item d = D d
-let mk_func_prog_item f = f
 
 (** [mk_comp_assign_expr op left right] resolves compound ops by evaluating the
     binary expression [left] [op] [right], then assigning result to [left] *)

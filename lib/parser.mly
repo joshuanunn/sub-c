@@ -4,6 +4,8 @@
 
 %token <string> IDENTIFIER
 %token <int> LITERAL_INT
+%token KW_STATIC
+%token KW_EXTERN
 %token KW_INT
 %token KW_VOID
 %token KW_RETURN
@@ -70,21 +72,23 @@
 %%
 
 prog:
-  | prog_items EOF { Ast.mk_prog $1 }
+  | decl_list EOF { Ast.mk_prog $1 }
   ;
 
-prog_items:
-  | prog_items prog_item { $1 @ [$2] }
+decl_list:
+  | decl_list decl { $1 @ [$2] }
   | { [] }
   ;
 
-prog_item:
-  | fun_decl { Ast.mk_func_prog_item $1 }
+specifier_list:
+  | specifier_list specifier { $1 @ [$2] }
+  | specifier { [$1] }
   ;
 
-fun_decl:
-  | KW_INT identifier LPAREN param_list_opt RPAREN block { Ast.mk_func_defn $2 $4 $6 }
-  | KW_INT identifier LPAREN param_list_opt RPAREN SEMICOLON { Ast.mk_func_decl $2 $4 }
+specifier:
+  | KW_INT { Ast.SpecType Ast.Int }
+  | KW_STATIC { Ast.SpecStorage Ast.Static }
+  | KW_EXTERN { Ast.SpecStorage Ast.Extern }
   ;
 
 param_list_opt:
@@ -132,8 +136,13 @@ decl:
   ;
 
 var_decl:
-  | KW_INT identifier ASSIGN expr SEMICOLON { Ast.mk_decl_init_stmt $2 $4 }
-  | KW_INT identifier SEMICOLON { Ast.mk_decl_stmt $2 }
+  | specifier_list identifier ASSIGN expr SEMICOLON { Ast.mk_decl_init_stmt $1 $2 $4 }
+  | specifier_list identifier SEMICOLON { Ast.mk_decl_stmt $1 $2 }
+  ;
+
+fun_decl:
+  | specifier_list identifier LPAREN param_list_opt RPAREN block { Ast.mk_func_defn $1 $2 $4 $6 }
+  | specifier_list identifier LPAREN param_list_opt RPAREN SEMICOLON { Ast.mk_func_decl $1 $2 $4 }
   ;
 
 for_init:

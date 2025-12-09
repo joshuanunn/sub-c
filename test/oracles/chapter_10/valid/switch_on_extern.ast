@@ -1,0 +1,54 @@
+(Ast.Program
+   [(Ast.FunDecl
+       { Ast.name = (Ast.Identifier "update_x"); params = []; body = None;
+         storage = None });
+     (Ast.FunDecl
+        { Ast.name = (Ast.Identifier "main"); params = [];
+          body =
+          (Some (Ast.Block
+                   [(Ast.S
+                       (Ast.Expression
+                          Ast.FunctionCall {
+                            name = (Ast.Identifier "update_x"); args = []}));
+                     (Ast.D
+                        (Ast.VarDecl
+                           { Ast.name = (Ast.Identifier "x"); init = None;
+                             storage = (Some Ast.Extern) }));
+                     (Ast.S
+                        Ast.Switch {cond = (Ast.Var (Ast.Identifier "x"));
+                          body =
+                          (Ast.Compound
+                             (Ast.Block
+                                [(Ast.S
+                                    Ast.Case {value = (Ast.LiteralInt 0);
+                                      body = (Ast.Return (Ast.LiteralInt 1));
+                                      id = None});
+                                  (Ast.S
+                                     Ast.Case {value = (Ast.LiteralInt 1);
+                                       body = (Ast.Return (Ast.LiteralInt 2));
+                                       id = None});
+                                  (Ast.S
+                                     Ast.Case {value = (Ast.LiteralInt 4);
+                                       body = (Ast.Return (Ast.LiteralInt 0));
+                                       id = None});
+                                  (Ast.S
+                                     Ast.Default {
+                                       body = (Ast.Return (Ast.LiteralInt 4));
+                                       id = None})
+                                  ]));
+                          id = None})
+                     ]));
+          storage = None });
+     (Ast.VarDecl
+        { Ast.name = (Ast.Identifier "x"); init = None; storage = None });
+     (Ast.FunDecl
+        { Ast.name = (Ast.Identifier "update_x"); params = [];
+          body =
+          (Some (Ast.Block
+                   [(Ast.S
+                       (Ast.Expression
+                          (Ast.Assignment ((Ast.Var (Ast.Identifier "x")),
+                             (Ast.LiteralInt 4)))));
+                     (Ast.S (Ast.Return (Ast.LiteralInt 0)))]));
+          storage = None })
+     ])

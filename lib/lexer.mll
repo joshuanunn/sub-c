@@ -24,6 +24,8 @@ rule read =
   parse
   | whitespace { read lexbuf }
   | newline { line_number lexbuf; read lexbuf }
+  | "static" { Parser.KW_STATIC }
+  | "extern" { Parser.KW_EXTERN }
   | "int" { Parser.KW_INT }
   | "void" { Parser.KW_VOID }
   | "return" { Parser.KW_RETURN }
