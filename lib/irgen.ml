@@ -85,7 +85,7 @@ let rec convert_expr (e : Ast.expr) (le : Env.lenv) :
           (src, [ ins_adjust_var ])
       (* Post-update unary ops: adjust variable and return original value *)
       | PostIncrement | PostDecrement ->
-          let tmp = Ir.Var (Env.declare_value "tmp" le) in
+          let tmp = Ir.Var (Env.declare_value le "tmp") in
           let ins_copy_tmp = Ir.Copy { src; dst = tmp } in
           let ins_adjust_var =
             Ir.Binary
@@ -94,15 +94,15 @@ let rec convert_expr (e : Ast.expr) (le : Env.lenv) :
           (tmp, [ ins_copy_tmp ] @ [ ins_adjust_var ])
       (* Everything else *)
       | _ ->
-          let tmp = Ir.Var (Env.declare_value "tmp" le) in
+          let tmp = Ir.Var (Env.declare_value le "tmp") in
           let instruction = Ir.Unary { op = convert_unop op; src; dst = tmp } in
           (tmp, src_instructions @ [ instruction ]))
   | Binary { op = And; left : Ast.expr; right : Ast.expr } ->
       let lhs, lhs_ins = convert_expr left le in
       let rhs, rhs_ins = convert_expr right le in
-      let dst = Ir.Var (Env.declare_value "tmp" le) in
-      let lbs = Env.declare_label "and.fl" le in
-      let lbe = Env.declare_label "and.en" le in
+      let dst = Ir.Var (Env.declare_value le "tmp") in
+      let lbs = Env.declare_label le "and.fl" in
+      let lbe = Env.declare_label le "and.en" in
       let jzl = Ir.JumpIfZero { condition = lhs; target = lbs } in
       let jzr = Ir.JumpIfZero { condition = rhs; target = lbs } in
       let c1 = Ir.Copy { src = Constant 1; dst } in
@@ -114,9 +114,9 @@ let rec convert_expr (e : Ast.expr) (le : Env.lenv) :
   | Binary { op = Or; left : Ast.expr; right : Ast.expr } ->
       let lhs, lhs_ins = convert_expr left le in
       let rhs, rhs_ins = convert_expr right le in
-      let dst = Ir.Var (Env.declare_value "tmp" le) in
-      let lbs = Env.declare_label "or.tr" le in
-      let lbe = Env.declare_label "or.en" le in
+      let dst = Ir.Var (Env.declare_value le "tmp") in
+      let lbs = Env.declare_label le "or.tr" in
+      let lbe = Env.declare_label le "or.en" in
       let jzl = Ir.JumpIfNotZero { condition = lhs; target = lbs } in
       let jzr = Ir.JumpIfNotZero { condition = rhs; target = lbs } in
       let c0 = Ir.Copy { src = Constant 0; dst } in
@@ -129,7 +129,7 @@ let rec convert_expr (e : Ast.expr) (le : Env.lenv) :
       let op = convert_binop op in
       let src1, src1_instructions = convert_expr left le in
       let src2, src2_instructions = convert_expr right le in
-      let dst = Ir.Var (Env.declare_value "tmp" le) in
+      let dst = Ir.Var (Env.declare_value le "tmp") in
       let instruction = Ir.Binary { op; src1; src2; dst } in
       (dst, src1_instructions @ src2_instructions @ [ instruction ])
   | Assignment (lhs, rhs) ->
@@ -138,10 +138,10 @@ let rec convert_expr (e : Ast.expr) (le : Env.lenv) :
       let ins_copy_result = Ir.Copy { src = result; dst = var } in
       (var, ins_eval_result @ [ ins_copy_result ])
   | Conditional { cond_exp; then_exp; else_exp } ->
-      let result = Ir.Var (Env.declare_value "tmp" le) in
+      let result = Ir.Var (Env.declare_value le "tmp") in
       let cond, cond_ins = convert_expr cond_exp le in
-      let l_end = Env.declare_label "cond.en" le in
-      let l_e2 = Env.declare_label "cond.el" le in
+      let l_end = Env.declare_label le "cond.en" in
+      let l_e2 = Env.declare_label le "cond.el" in
       let jz_cond = Ir.JumpIfZero { condition = cond; target = l_e2 } in
       let v1, e1_ins = convert_expr then_exp le in
       let c1 = Ir.Copy { src = v1; dst = result } in
@@ -159,7 +159,7 @@ let rec convert_expr (e : Ast.expr) (le : Env.lenv) :
       in
       let arg_instructions = List.concat arg_ins in
       (* TODO: need to handle dst properly (e.g. void) *)
-      let dst = Ir.Var (Env.declare_value "tmp" le) in
+      let dst = Ir.Var (Env.declare_value le "tmp") in
       let instruction = Ir.FunCall { fun_name; args = arg_vals; dst } in
       (dst, arg_instructions @ [ instruction ])
 
@@ -173,14 +173,14 @@ let rec convert_stmt (s : Ast.stmt) (le : Env.lenv) : Ir.instruction list =
       instructions
   | If { cond_exp; then_smt; else_smt = None } ->
       let cond, cond_ins = convert_expr cond_exp le in
-      let l_end = Env.declare_label "if.en" le in
+      let l_end = Env.declare_label le "if.en" in
       let jz_cond = Ir.JumpIfZero { condition = cond; target = l_end } in
       let then_ins = convert_stmt then_smt le in
       cond_ins @ [ jz_cond ] @ then_ins @ [ Ir.Label l_end ]
   | If { cond_exp; then_smt; else_smt = Some s } ->
       let cond, cond_ins = convert_expr cond_exp le in
-      let l_end = Env.declare_label "if.en" le in
-      let l_else = Env.declare_label "if.el" le in
+      let l_end = Env.declare_label le "if.en" in
+      let l_else = Env.declare_label le "if.el" in
       let jz_cond = Ir.JumpIfZero { condition = cond; target = l_else } in
       let then_ins = convert_stmt then_smt le in
       let j_end = Ir.Jump { target = l_end } in
@@ -268,7 +268,7 @@ let rec convert_stmt (s : Ast.stmt) (le : Env.lenv) : Ir.instruction list =
           let dispatch_ins =
             List.concat_map
               (fun (v, lbl) ->
-                let tmp = Ir.Var (Env.declare_value "tmp" le) in
+                let tmp = Ir.Var (Env.declare_value le "tmp") in
                 [
                   Ir.Binary
                     {
@@ -323,12 +323,12 @@ and convert_dclr (d : Ast.decl) (le : Env.lenv) : Ir.instruction list =
   (* Function declarations without body are discarded *)
   | FunDecl _ -> []
   (* No need to generate instructions for variable declaration *)
-  | VarDecl { name; init = None } ->
-      Env.insert_value name le;
+  | VarDecl { name; init = None; _ } ->
+      Env.insert_value le name;
       []
   (* Handle a declaration with initialiser as an assignment expression *)
-  | VarDecl { name; init = Some rhs } ->
-      Env.insert_value name le;
+  | VarDecl { name; init = Some rhs; _ } ->
+      Env.insert_value le name;
       let initialiser = Ast.Assignment (Ast.Var name, rhs) in
       let _, instructions = convert_expr initialiser le in
       instructions
@@ -336,12 +336,12 @@ and convert_dclr (d : Ast.decl) (le : Env.lenv) : Ir.instruction list =
 and convert_for_init (i : Ast.for_init) (le : Env.lenv) : Ir.instruction list =
   match i with
   (* No need to generate instructions for variable declaration *)
-  | InclDecl { name; init = None } ->
-      Env.insert_value name le;
+  | InclDecl { name; init = None; _ } ->
+      Env.insert_value le name;
       []
   (* Handle a declaration with initialiser as an assignment expression *)
-  | InclDecl { name; init = Some rhs } ->
-      Env.insert_value name le;
+  | InclDecl { name; init = Some rhs; _ } ->
+      Env.insert_value le name;
       let initialiser = Ast.Assignment (Ast.Var name, rhs) in
       let _, instructions = convert_expr initialiser le in
       instructions
@@ -395,7 +395,7 @@ and convert_func (f : Ast.fun_decl) : Ir.func =
               (fun name ->
                 let param_name = identifier_to_string name in
                 (* Add function parameter declarations to lenv *)
-                Env.insert_value name le;
+                Env.insert_value le name;
                 param_name)
               f.params;
           body = body_safe_return;

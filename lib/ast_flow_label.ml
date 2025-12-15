@@ -141,7 +141,7 @@ and label_block (b : Ast.block) (stack : context list) : Ast.block =
 (** [label_func f] labels all control statements in function [f]. *)
 let label_func (f : Ast.fun_decl) : Ast.fun_decl =
   let body = Option.map (fun b -> label_block b []) f.body in
-  { name = f.name; params = f.params; body }
+  { name = f.name; params = f.params; body; storage = f.storage }
 
 (** [label_prog p] applies labeling to the entire program [p]. *)
 let label_prog (Program p : Ast.prog) : Ast.prog =
@@ -149,8 +149,7 @@ let label_prog (Program p : Ast.prog) : Ast.prog =
     List.map
       (function
         | Ast.FunDecl f -> Ast.FunDecl (label_func f)
-        | Ast.VarDecl _ ->
-            failwith "Global variable declaration not yet implemented")
+        | Ast.VarDecl v -> Ast.VarDecl v)
       p
   in
   Program labelled_funcs

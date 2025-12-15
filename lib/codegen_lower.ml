@@ -2,7 +2,7 @@
     operand, using the variable-to-offset mapping in the function frame [le].
     All other operands are returned unchanged. *)
 let lower_operand (o : Asm.operand) (le : Env.lenv) : Asm.operand =
-  match o with Pseudo v -> Stack (Env.get_value_offset v le) | _ -> o
+  match o with Pseudo v -> Stack (Env.get_value_offset le v) | _ -> o
 
 (** [lower_instruction i le] lowers any pseudo-registers in the instruction [i],
     replacing them with stack operands using the function frame [le]. *)
