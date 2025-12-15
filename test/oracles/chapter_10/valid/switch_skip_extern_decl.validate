@@ -1,0 +1,61 @@
+(Ast.Program
+   [(Ast.FunDecl
+       { Ast.name = (Ast.Identifier "main"); params = [];
+         body =
+         (Some (Ast.Block
+                  [(Ast.D
+                      (Ast.VarDecl
+                         { Ast.name = (Ast.Identifier "a.0");
+                           init = (Some (Ast.LiteralInt 10)); storage = None
+                           }));
+                    (Ast.S
+                       Ast.Switch {cond = (Ast.Var (Ast.Identifier "a.0"));
+                         body =
+                         (Ast.Compound
+                            (Ast.Block
+                               [(Ast.S
+                                   Ast.Case {value = (Ast.LiteralInt 1);
+                                     body = (Ast.Return (Ast.LiteralInt 1));
+                                     id = (Some (Ast.SwitchLabel "1"))});
+                                 (Ast.D
+                                    (Ast.VarDecl
+                                       { Ast.name = (Ast.Identifier "x");
+                                         init = None;
+                                         storage = (Some Ast.Extern) }));
+                                 (Ast.S
+                                    Ast.Case {value = (Ast.LiteralInt 2);
+                                      body = (Ast.Return (Ast.LiteralInt 2));
+                                      id = (Some (Ast.SwitchLabel "1"))});
+                                 (Ast.S
+                                    Ast.Case {value = (Ast.LiteralInt 10);
+                                      body =
+                                      Ast.If {
+                                        cond_exp =
+                                        Ast.Binary {op = Ast.Equal;
+                                          left =
+                                          Ast.Binary {op = Ast.Multiply;
+                                            left =
+                                            (Ast.Var (Ast.Identifier "x"));
+                                            right = (Ast.LiteralInt 2)};
+                                          right = (Ast.LiteralInt 30)};
+                                        then_smt =
+                                        (Ast.Compound
+                                           (Ast.Block
+                                              [(Ast.S
+                                                  (Ast.Return
+                                                     (Ast.LiteralInt 0)))
+                                                ]));
+                                        else_smt = None};
+                                      id = (Some (Ast.SwitchLabel "1"))});
+                                 (Ast.S
+                                    Ast.Default {
+                                      body = (Ast.Return (Ast.LiteralInt 5));
+                                      id = (Some (Ast.SwitchLabel "1"))})
+                                 ]));
+                         id = (Some (Ast.SwitchLabel "1"))});
+                    (Ast.S (Ast.Return (Ast.LiteralInt 6)))]));
+         storage = None });
+     (Ast.VarDecl
+        { Ast.name = (Ast.Identifier "x"); init = (Some (Ast.LiteralInt 15));
+          storage = None })
+     ])

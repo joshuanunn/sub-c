@@ -1,0 +1,52 @@
+(Ast.Program
+   [(Ast.VarDecl
+       { Ast.name = (Ast.Identifier "a"); init = (Some (Ast.LiteralInt 5));
+         storage = None });
+     (Ast.FunDecl
+        { Ast.name = (Ast.Identifier "return_a"); params = [];
+          body =
+          (Some (Ast.Block
+                   [(Ast.S (Ast.Return (Ast.Var (Ast.Identifier "a"))))]));
+          storage = None });
+     (Ast.FunDecl
+        { Ast.name = (Ast.Identifier "main"); params = [];
+          body =
+          (Some (Ast.Block
+                   [(Ast.D
+                       (Ast.VarDecl
+                          { Ast.name = (Ast.Identifier "a.0");
+                            init = (Some (Ast.LiteralInt 3)); storage = None
+                            }));
+                     (Ast.S
+                        (Ast.Compound
+                           (Ast.Block
+                              [(Ast.D
+                                  (Ast.VarDecl
+                                     { Ast.name = (Ast.Identifier "a");
+                                       init = None;
+                                       storage = (Some Ast.Extern) }));
+                                (Ast.S
+                                   Ast.If {
+                                     cond_exp =
+                                     Ast.Binary {op = Ast.NotEqual;
+                                       left = (Ast.Var (Ast.Identifier "a"));
+                                       right = (Ast.LiteralInt 5)};
+                                     then_smt =
+                                     (Ast.Return (Ast.LiteralInt 1));
+                                     else_smt = None});
+                                (Ast.S
+                                   (Ast.Expression
+                                      (Ast.Assignment (
+                                         (Ast.Var (Ast.Identifier "a")),
+                                         (Ast.LiteralInt 4)))))
+                                ])));
+                     (Ast.S
+                        (Ast.Return
+                           Ast.Binary {op = Ast.Add;
+                             left = (Ast.Var (Ast.Identifier "a.0"));
+                             right =
+                             Ast.FunctionCall {
+                               name = (Ast.Identifier "return_a"); args = []}}))
+                     ]));
+          storage = None })
+     ])
