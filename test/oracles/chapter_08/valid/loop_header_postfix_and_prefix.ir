@@ -1,5 +1,5 @@
 (Ir.Program
-   [Ir.Function {name = "main"; params = [];
+   [Ir.Function {name = "main"; global = true; params = [];
       body =
       [Ir.Copy {src = (Ir.Constant 100); dst = (Ir.Var "i.0")};
         Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "count.1")};

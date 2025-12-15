@@ -1,5 +1,6 @@
 (Ir.Program
-   [Ir.Function {name = "g"; params = ["w.0"; "x.1"; "y.2"; "z.3"];
+   [Ir.Function {name = "g"; global = true;
+      params = ["w.0"; "x.1"; "y.2"; "z.3"];
       body =
       [Ir.Binary {op = Ir.Equal; src1 = (Ir.Var "w.0");
          src2 = (Ir.Constant 2); dst = (Ir.Var "tmp.0")};
@@ -47,7 +48,8 @@
           y.2    -> -40,
           z.3    -> -44,
         }}};
-     Ir.Function {name = "f"; params = ["a.4"; "b.5"; "c.6"; "d.7"];
+     Ir.Function {name = "f"; global = true;
+       params = ["a.4"; "b.5"; "c.6"; "d.7"];
        body =
        [Ir.Binary {op = Ir.Multiply; src1 = (Ir.Var "a.4");
           src2 = (Ir.Constant 2); dst = (Ir.Var "tmp.0")};
@@ -123,7 +125,7 @@
            c.6      -> -72,
            d.7      -> -76,
          }}};
-     Ir.Function {name = "main"; params = [];
+     Ir.Function {name = "main"; global = true; params = [];
        body =
        [Ir.FunCall {fun_name = "f";
           args =

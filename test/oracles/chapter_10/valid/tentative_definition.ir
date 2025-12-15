@@ -1,0 +1,28 @@
+(Ir.Program
+   [Ir.Function {name = "main"; global = true; params = [];
+      body =
+      [Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "i.0")};
+        (Ir.Label "loop.st.1");
+        Ir.Binary {op = Ir.LessThan; src1 = (Ir.Var "i.0");
+          src2 = (Ir.Constant 5); dst = (Ir.Var "tmp.0")};
+        Ir.JumpIfZero {condition = (Ir.Var "tmp.0"); target = "loop.br.1"};
+        Ir.Binary {op = Ir.Add; src1 = (Ir.Var "foo");
+          src2 = (Ir.Constant 1); dst = (Ir.Var "tmp.1")};
+        Ir.Copy {src = (Ir.Var "tmp.1"); dst = (Ir.Var "foo")};
+        (Ir.Label "loop.ct.1");
+        Ir.Binary {op = Ir.Add; src1 = (Ir.Var "i.0");
+          src2 = (Ir.Constant 1); dst = (Ir.Var "tmp.2")};
+        Ir.Copy {src = (Ir.Var "tmp.2"); dst = (Ir.Var "i.0")};
+        Ir.Jump {target = "loop.st.1"}; (Ir.Label "loop.br.1");
+        (Ir.Return (Ir.Var "foo")); (Ir.Return (Ir.Constant 0))];
+      frame =
+      Env.lenv {
+        counter = 3;
+        offset = -16;
+        stack slots = {
+          i.0   -> -4,
+          tmp.0 -> -8,
+          tmp.1 -> -12,
+          tmp.2 -> -16,
+        }}};
+     Ir.StaticVariable {name = "foo"; global = true; init = 0}])

@@ -1,5 +1,5 @@
 (Ir.Program
-   [Ir.Function {name = "main"; params = [];
+   [Ir.Function {name = "main"; global = true; params = [];
       body =
       [Ir.Binary {op = Ir.BwAnd; src1 = (Ir.Constant 3);
          src2 = (Ir.Constant 5); dst = (Ir.Var "tmp.0")};

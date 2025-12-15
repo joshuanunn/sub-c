@@ -1,0 +1,28 @@
+(Ir.Program
+   [Ir.Function {name = "main"; global = true; params = [];
+      body =
+      [Ir.Binary {op = Ir.Equal; src1 = (Ir.Var "a"); src2 = (Ir.Constant 1);
+         dst = (Ir.Var "tmp.0")};
+        Ir.JumpIfNotZero {condition = (Ir.Var "tmp.0");
+          target = "swit.cs.1.1"};
+        Ir.Binary {op = Ir.Equal; src1 = (Ir.Var "a");
+          src2 = (Ir.Constant 3); dst = (Ir.Var "tmp.1")};
+        Ir.JumpIfNotZero {condition = (Ir.Var "tmp.1");
+          target = "swit.cs.1.3"};
+        Ir.Jump {target = "swit.br.1"}; (Ir.Label "swit.cs.1.1");
+        Ir.Copy {src = (Ir.Constant 10); dst = (Ir.Var "x.0")};
+        Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "x.0")};
+        (Ir.Label "swit.cs.1.3"); (Ir.Return (Ir.Var "x.0"));
+        (Ir.Label "swit.br.1"); (Ir.Return (Ir.Constant 0));
+        (Ir.Return (Ir.Constant 0))];
+      frame =
+      Env.lenv {
+        counter = 2;
+        offset = -12;
+        stack slots = {
+          tmp.0 -> -4,
+          tmp.1 -> -8,
+          x.0   -> -12,
+        }}};
+     Ir.StaticVariable {name = "x.0"; global = false; init = 10};
+     Ir.StaticVariable {name = "a"; global = true; init = 3}])

@@ -1,5 +1,5 @@
 (Ir.Program
-   [Ir.Function {name = "main"; params = [];
+   [Ir.Function {name = "main"; global = true; params = [];
       body =
       [Ir.FunCall {fun_name = "foo"; args = []; dst = (Ir.Var "tmp.0")};
         (Ir.Return (Ir.Var "tmp.0")); (Ir.Return (Ir.Constant 0))];
@@ -10,7 +10,7 @@
         stack slots = {
           tmp.0 -> -4,
         }}};
-     Ir.Function {name = "foo"; params = [];
+     Ir.Function {name = "foo"; global = true; params = [];
        body = [(Ir.Return (Ir.Constant 3)); (Ir.Return (Ir.Constant 0))];
        frame = Env.lenv {
                  counter = 0;

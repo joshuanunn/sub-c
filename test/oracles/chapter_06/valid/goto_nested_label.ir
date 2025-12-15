@@ -1,5 +1,5 @@
 (Ir.Program
-   [Ir.Function {name = "main"; params = [];
+   [Ir.Function {name = "main"; global = true; params = [];
       body =
       [Ir.Jump {target = "labelB.1"}; (Ir.Label "labelA.0");
         (Ir.Label "labelB.1"); (Ir.Return (Ir.Constant 5));

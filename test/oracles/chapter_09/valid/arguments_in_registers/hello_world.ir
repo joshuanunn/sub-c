@@ -1,5 +1,5 @@
 (Ir.Program
-   [Ir.Function {name = "main"; params = [];
+   [Ir.Function {name = "main"; global = true; params = [];
       body =
       [Ir.FunCall {fun_name = "putchar"; args = [(Ir.Constant 72)];
          dst = (Ir.Var "tmp.0")};

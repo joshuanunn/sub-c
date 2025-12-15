@@ -1,5 +1,5 @@
 (Ir.Program
-   [Ir.Function {name = "main"; params = [];
+   [Ir.Function {name = "main"; global = true; params = [];
       body =
       [Ir.JumpIfZero {condition = (Ir.Constant 0); target = "and.fl.1"};
         Ir.JumpIfZero {condition = (Ir.Constant 1); target = "and.fl.1"};

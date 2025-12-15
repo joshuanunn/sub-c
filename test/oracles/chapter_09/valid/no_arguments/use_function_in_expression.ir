@@ -1,12 +1,12 @@
 (Ir.Program
-   [Ir.Function {name = "bar"; params = [];
+   [Ir.Function {name = "bar"; global = true; params = [];
       body = [(Ir.Return (Ir.Constant 9)); (Ir.Return (Ir.Constant 0))];
       frame = Env.lenv {
                 counter = 0;
                 offset = 0;
                 stack slots = {
                 }}};
-     Ir.Function {name = "foo"; params = [];
+     Ir.Function {name = "foo"; global = true; params = [];
        body =
        [Ir.FunCall {fun_name = "bar"; args = []; dst = (Ir.Var "tmp.0")};
          Ir.Binary {op = Ir.Multiply; src1 = (Ir.Constant 2);
@@ -20,7 +20,7 @@
            tmp.0 -> -4,
            tmp.1 -> -8,
          }}};
-     Ir.Function {name = "main"; params = [];
+     Ir.Function {name = "main"; global = true; params = [];
        body =
        [Ir.FunCall {fun_name = "foo"; args = []; dst = (Ir.Var "tmp.0")};
          Ir.FunCall {fun_name = "bar"; args = []; dst = (Ir.Var "tmp.1")};

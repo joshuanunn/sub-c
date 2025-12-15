@@ -1,0 +1,19 @@
+(Ir.Program
+   [Ir.Function {name = "main"; global = true; params = [];
+      body =
+      [Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "outer.0")};
+        Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "foo.1")};
+        Ir.JumpIfZero {condition = (Ir.Var "outer.0"); target = "if.en.0"};
+        (Ir.Return (Ir.Var "foo")); (Ir.Label "if.en.0");
+        (Ir.Return (Ir.Constant 0)); (Ir.Return (Ir.Constant 0))];
+      frame =
+      Env.lenv {
+        counter = 1;
+        offset = -16;
+        stack slots = {
+          outer.0 -> -4,
+          foo.1   -> -8,
+          foo     -> -12,
+          foo     -> -16,
+        }}};
+     Ir.StaticVariable {name = "foo"; global = true; init = 3}])

@@ -1,5 +1,5 @@
 (Ir.Program
-   [Ir.Function {name = "foo";
+   [Ir.Function {name = "foo"; global = true;
       params = ["a.0"; "b.1"; "c.2"; "d.3"; "e.4"; "f.5"; "g.6"; "h.7"];
       body =
       [Ir.Binary {op = Ir.Equal; src1 = (Ir.Var "a.0");
@@ -90,7 +90,7 @@
           g.6    -> -88,
           h.7    -> -92,
         }}};
-     Ir.Function {name = "main"; params = [];
+     Ir.Function {name = "main"; global = true; params = [];
        body =
        [Ir.FunCall {fun_name = "foo";
           args =
