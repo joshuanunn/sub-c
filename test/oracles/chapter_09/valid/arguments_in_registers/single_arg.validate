@@ -9,8 +9,8 @@
                          Ast.Binary {op = Ast.Multiply;
                            left = (Ast.LiteralInt 2);
                            right = (Ast.Var (Ast.Identifier "x.0"))}))
-                    ]))
-         });
+                    ]));
+         storage = None });
      (Ast.FunDecl
         { Ast.name = (Ast.Identifier "main"); params = [];
           body =
@@ -19,6 +19,6 @@
                        (Ast.Return
                           Ast.FunctionCall {name = (Ast.Identifier "twice");
                             args = [(Ast.LiteralInt 3)]}))
-                     ]))
-          })
+                     ]));
+          storage = None })
      ])

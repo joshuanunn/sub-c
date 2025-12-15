@@ -1,6 +1,6 @@
 (Ast.Program
    [(Ast.FunDecl
        { Ast.name = (Ast.Identifier "main"); params = [];
-         body = (Some (Ast.Block [(Ast.S (Ast.Return (Ast.LiteralInt 0)))]))
-         })
+         body = (Some (Ast.Block [(Ast.S (Ast.Return (Ast.LiteralInt 0)))]));
+         storage = None })
      ])

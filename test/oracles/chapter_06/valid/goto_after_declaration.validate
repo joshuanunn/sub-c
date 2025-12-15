@@ -6,7 +6,7 @@
                   [(Ast.D
                       (Ast.VarDecl
                          { Ast.name = (Ast.Identifier "x.1");
-                           init = (Some (Ast.LiteralInt 1)) }));
+                           init = (Some (Ast.LiteralInt 1)); storage = None }));
                     (Ast.S (Ast.Goto (Ast.GotoLabel "post_declaration.0")));
                     (Ast.D
                        (Ast.VarDecl
@@ -14,8 +14,8 @@
                             init =
                             (Some (Ast.Assignment (
                                      (Ast.Var (Ast.Identifier "x.1")),
-                                     (Ast.LiteralInt 0))))
-                            }));
+                                     (Ast.LiteralInt 0))));
+                            storage = None }));
                     (Ast.S
                        (Ast.Label ((Ast.GotoLabel "post_declaration.0"),
                           (Ast.Expression
@@ -34,6 +34,6 @@
                             Ast.Binary {op = Ast.Equal;
                               left = (Ast.Var (Ast.Identifier "i.2"));
                               right = (Ast.LiteralInt 5)}}))
-                    ]))
-         })
+                    ]));
+         storage = None })
      ])

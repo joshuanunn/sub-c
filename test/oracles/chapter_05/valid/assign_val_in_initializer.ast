@@ -9,8 +9,8 @@
                            init =
                            (Some (Ast.Assignment (
                                     (Ast.Var (Ast.Identifier "a")),
-                                    (Ast.LiteralInt 5))))
-                           }));
-                    (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "a"))))]))
-         })
+                                    (Ast.LiteralInt 5))));
+                           storage = None }));
+                    (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "a"))))]));
+         storage = None })
      ])

@@ -6,6 +6,6 @@
                   [(Ast.S
                       (Ast.Return
                          Ast.Unary {op = Ast.Negate; exp = (Ast.LiteralInt 5)}))
-                    ]))
-         })
+                    ]));
+         storage = None })
      ])

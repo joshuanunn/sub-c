@@ -6,7 +6,7 @@
                   [(Ast.D
                       (Ast.VarDecl
                          { Ast.name = (Ast.Identifier "i");
-                           init = (Some (Ast.LiteralInt 0)) }));
+                           init = (Some (Ast.LiteralInt 0)); storage = None }));
                     (Ast.S (Ast.Goto (Ast.Identifier "target")));
                     (Ast.S
                        Ast.For {
@@ -37,6 +37,6 @@
                               else_smt = None}
                             ));
                          id = None});
-                    (Ast.S (Ast.Return (Ast.LiteralInt 0)))]))
-         })
+                    (Ast.S (Ast.Return (Ast.LiteralInt 0)))]));
+         storage = None })
      ])

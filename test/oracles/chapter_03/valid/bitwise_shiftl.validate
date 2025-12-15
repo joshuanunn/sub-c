@@ -8,6 +8,6 @@
                          Ast.Binary {op = Ast.BwLeftShift;
                            left = (Ast.LiteralInt 35);
                            right = (Ast.LiteralInt 2)}))
-                    ]))
-         })
+                    ]));
+         storage = None })
      ])

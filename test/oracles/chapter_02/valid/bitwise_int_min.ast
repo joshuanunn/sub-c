@@ -9,6 +9,6 @@
                            exp =
                            Ast.Unary {op = Ast.Negate;
                              exp = (Ast.LiteralInt 2147483647)}}))
-                    ]))
-         })
+                    ]));
+         storage = None })
      ])

@@ -7,6 +7,6 @@
                       (Ast.Return
                          Ast.Binary {op = Ast.Or; left = (Ast.LiteralInt 0);
                            right = (Ast.LiteralInt 0)}))
-                    ]))
-         })
+                    ]));
+         storage = None })
      ])

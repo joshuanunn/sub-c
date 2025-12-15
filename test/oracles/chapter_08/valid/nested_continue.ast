@@ -6,11 +6,12 @@
                   [(Ast.D
                       (Ast.VarDecl
                          { Ast.name = (Ast.Identifier "x");
-                           init = (Some (Ast.LiteralInt 5)) }));
+                           init = (Some (Ast.LiteralInt 5)); storage = None }));
                     (Ast.D
                        (Ast.VarDecl
                           { Ast.name = (Ast.Identifier "acc");
-                            init = (Some (Ast.LiteralInt 0)) }));
+                            init = (Some (Ast.LiteralInt 0)); storage = None
+                            }));
                     (Ast.S
                        Ast.While {
                          cond =
@@ -24,8 +25,8 @@
                                    (Ast.VarDecl
                                       { Ast.name = (Ast.Identifier "i");
                                         init =
-                                        (Some (Ast.Var (Ast.Identifier "x")))
-                                        }));
+                                        (Some (Ast.Var (Ast.Identifier "x")));
+                                        storage = None }));
                                  (Ast.S
                                     Ast.While {
                                       cond =
@@ -90,6 +91,6 @@
                                           ))))
                                  ]));
                          id = None});
-                    (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "acc"))))]))
-         })
+                    (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "acc"))))]));
+         storage = None })
      ])

@@ -2,7 +2,7 @@
    [(Ast.FunDecl
        { Ast.name = (Ast.Identifier "foo");
          params = [(Ast.Identifier "a.0"); (Ast.Identifier "b.1")];
-         body = None });
+         body = None; storage = None });
      (Ast.FunDecl
         { Ast.name = (Ast.Identifier "main"); params = [];
           body =
@@ -11,8 +11,8 @@
                        (Ast.Return
                           Ast.FunctionCall {name = (Ast.Identifier "foo");
                             args = [(Ast.LiteralInt 2); (Ast.LiteralInt 1)]}))
-                     ]))
-          });
+                     ]));
+          storage = None });
      (Ast.FunDecl
         { Ast.name = (Ast.Identifier "foo");
           params = [(Ast.Identifier "x.2"); (Ast.Identifier "y.3")];
@@ -23,6 +23,6 @@
                           Ast.Binary {op = Ast.Subtract;
                             left = (Ast.Var (Ast.Identifier "x.2"));
                             right = (Ast.Var (Ast.Identifier "y.3"))}))
-                     ]))
-          })
+                     ]));
+          storage = None })
      ])

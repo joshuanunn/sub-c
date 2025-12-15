@@ -6,11 +6,13 @@
                   [(Ast.D
                       (Ast.VarDecl
                          { Ast.name = (Ast.Identifier "i");
-                           init = (Some (Ast.LiteralInt 100)) }));
+                           init = (Some (Ast.LiteralInt 100)); storage = None
+                           }));
                     (Ast.D
                        (Ast.VarDecl
                           { Ast.name = (Ast.Identifier "sum");
-                            init = (Some (Ast.LiteralInt 0)) }));
+                            init = (Some (Ast.LiteralInt 0)); storage = None
+                            }));
                     (Ast.S
                        Ast.DoWhile {
                          body =
@@ -39,6 +41,6 @@
                             Ast.Binary {op = Ast.Equal;
                               left = (Ast.Var (Ast.Identifier "sum"));
                               right = (Ast.LiteralInt 200)}}))
-                    ]))
-         })
+                    ]));
+         storage = None })
      ])

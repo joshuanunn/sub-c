@@ -8,8 +8,8 @@
                          { Ast.name = (Ast.Identifier "a");
                            init =
                            (Some Ast.Unary {op = Ast.Negate;
-                                   exp = (Ast.LiteralInt 1)})
-                           }));
+                                   exp = (Ast.LiteralInt 1)});
+                           storage = None }));
                     (Ast.S
                        Ast.If {
                          cond_exp =
@@ -23,6 +23,6 @@
                                    exp = (Ast.Var (Ast.Identifier "a"))};
                                  then_smt = (Ast.Return (Ast.LiteralInt 1));
                                  else_smt = None})});
-                    (Ast.S (Ast.Return (Ast.LiteralInt 0)))]))
-         })
+                    (Ast.S (Ast.Return (Ast.LiteralInt 0)))]));
+         storage = None })
      ])

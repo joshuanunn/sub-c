@@ -11,6 +11,6 @@
                            Ast.Binary {op = Ast.GreaterOrEqual;
                              left = (Ast.LiteralInt 2);
                              right = (Ast.LiteralInt 0)}}))
-                    ]))
-         })
+                    ]));
+         storage = None })
      ])

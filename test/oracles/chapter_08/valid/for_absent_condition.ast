@@ -8,7 +8,8 @@
                         init =
                         (Ast.InclDecl
                            { Ast.name = (Ast.Identifier "i");
-                             init = (Some (Ast.LiteralInt 400)) });
+                             init = (Some (Ast.LiteralInt 400));
+                             storage = None });
                         cond = None;
                         post =
                         (Some (Ast.Assignment (
@@ -26,6 +27,6 @@
                           then_smt = (Ast.Return (Ast.LiteralInt 0));
                           else_smt = None};
                         id = None})
-                    ]))
-         })
+                    ]));
+         storage = None })
      ])

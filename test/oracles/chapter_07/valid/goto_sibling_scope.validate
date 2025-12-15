@@ -6,7 +6,7 @@
                   [(Ast.D
                       (Ast.VarDecl
                          { Ast.name = (Ast.Identifier "sum.2");
-                           init = (Some (Ast.LiteralInt 0)) }));
+                           init = (Some (Ast.LiteralInt 0)); storage = None }));
                     (Ast.S
                        Ast.If {cond_exp = (Ast.LiteralInt 1);
                          then_smt =
@@ -15,7 +15,8 @@
                                [(Ast.D
                                    (Ast.VarDecl
                                       { Ast.name = (Ast.Identifier "a.3");
-                                        init = (Some (Ast.LiteralInt 5)) }));
+                                        init = (Some (Ast.LiteralInt 5));
+                                        storage = None }));
                                  (Ast.S
                                     (Ast.Goto (Ast.GotoLabel "other_if.1")));
                                  (Ast.S
@@ -53,7 +54,8 @@
                                  (Ast.D
                                     (Ast.VarDecl
                                        { Ast.name = (Ast.Identifier "a.4");
-                                         init = (Some (Ast.LiteralInt 6)) }));
+                                         init = (Some (Ast.LiteralInt 6));
+                                         storage = None }));
                                  (Ast.S
                                     (Ast.Expression
                                        (Ast.Assignment (
@@ -73,6 +75,6 @@
                                           (Ast.LiteralInt 0)))))
                                  ]));
                          else_smt = None});
-                    (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "sum.2"))))]))
-         })
+                    (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "sum.2"))))]));
+         storage = None })
      ])

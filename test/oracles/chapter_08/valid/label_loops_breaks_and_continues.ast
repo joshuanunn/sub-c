@@ -6,7 +6,7 @@
                   [(Ast.D
                       (Ast.VarDecl
                          { Ast.name = (Ast.Identifier "sum");
-                           init = (Some (Ast.LiteralInt 0)) }));
+                           init = (Some (Ast.LiteralInt 0)); storage = None }));
                     (Ast.S (Ast.Goto (Ast.Identifier "do_label")));
                     (Ast.S (Ast.Return (Ast.LiteralInt 0)));
                     (Ast.S
@@ -61,7 +61,8 @@
                             init =
                             (Ast.InclDecl
                                { Ast.name = (Ast.Identifier "i");
-                                 init = (Some (Ast.LiteralInt 0)) });
+                                 init = (Some (Ast.LiteralInt 0));
+                                 storage = None });
                             cond =
                             (Some Ast.Binary {op = Ast.LessThan;
                                     left = (Ast.Var (Ast.Identifier "i"));
@@ -96,6 +97,6 @@
                                     (Ast.S (Ast.Return (Ast.LiteralInt 0)))]));
                             id = None}
                           )));
-                    (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "sum"))))]))
-         })
+                    (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "sum"))))]));
+         storage = None })
      ])

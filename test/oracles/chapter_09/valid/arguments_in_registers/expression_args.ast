@@ -9,8 +9,8 @@
                          Ast.Binary {op = Ast.Subtract;
                            left = (Ast.Var (Ast.Identifier "a"));
                            right = (Ast.Var (Ast.Identifier "b"))}))
-                    ]))
-         });
+                    ]));
+         storage = None });
      (Ast.FunDecl
         { Ast.name = (Ast.Identifier "main"); params = [];
           body =
@@ -25,8 +25,8 @@
                                     [Ast.Binary {op = Ast.Add;
                                        left = (Ast.LiteralInt 1);
                                        right = (Ast.LiteralInt 2)};
-                                      (Ast.LiteralInt 1)]})
-                            }));
-                     (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "sum"))))]))
-          })
+                                      (Ast.LiteralInt 1)]});
+                            storage = None }));
+                     (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "sum"))))]));
+          storage = None })
      ])

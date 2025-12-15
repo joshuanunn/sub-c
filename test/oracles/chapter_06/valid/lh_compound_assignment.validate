@@ -6,7 +6,8 @@
                   [(Ast.D
                       (Ast.VarDecl
                          { Ast.name = (Ast.Identifier "x.0");
-                           init = (Some (Ast.LiteralInt 10)) }));
+                           init = (Some (Ast.LiteralInt 10)); storage = None
+                           }));
                     (Ast.S
                        (Ast.Expression
                           Ast.Conditional {
@@ -30,6 +31,6 @@
                           Ast.Binary {op = Ast.Equal;
                             left = (Ast.Var (Ast.Identifier "x.0"));
                             right = (Ast.LiteralInt 4)}))
-                    ]))
-         })
+                    ]));
+         storage = None })
      ])

@@ -9,6 +9,6 @@
                            exp =
                            Ast.Unary {op = Ast.BwNot;
                              exp = (Ast.LiteralInt 0)}}))
-                    ]))
-         })
+                    ]));
+         storage = None })
      ])

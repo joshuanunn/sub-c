@@ -6,7 +6,7 @@
                   [(Ast.D
                       (Ast.VarDecl
                          { Ast.name = (Ast.Identifier "to_divide.0");
-                           init = (Some (Ast.LiteralInt 8)) }));
+                           init = (Some (Ast.LiteralInt 8)); storage = None }));
                     (Ast.S
                        (Ast.Expression
                           (Ast.Assignment (
@@ -18,6 +18,6 @@
                              ))));
                     (Ast.S
                        (Ast.Return (Ast.Var (Ast.Identifier "to_divide.0"))))
-                    ]))
-         })
+                    ]));
+         storage = None })
      ])

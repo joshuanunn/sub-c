@@ -6,11 +6,12 @@
                   [(Ast.D
                       (Ast.VarDecl
                          { Ast.name = (Ast.Identifier "a.0");
-                           init = (Some (Ast.LiteralInt 0)) }));
+                           init = (Some (Ast.LiteralInt 0)); storage = None }));
                     (Ast.D
                        (Ast.VarDecl
                           { Ast.name = (Ast.Identifier "b.1");
-                            init = (Some (Ast.LiteralInt 0)) }));
+                            init = (Some (Ast.LiteralInt 0)); storage = None
+                            }));
                     (Ast.S
                        Ast.If {cond_exp = (Ast.Var (Ast.Identifier "a.0"));
                          then_smt =
@@ -40,6 +41,6 @@
                           Ast.Binary {op = Ast.Add;
                             left = (Ast.Var (Ast.Identifier "a.0"));
                             right = (Ast.Var (Ast.Identifier "b.1"))}))
-                    ]))
-         })
+                    ]));
+         storage = None })
      ])

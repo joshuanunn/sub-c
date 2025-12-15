@@ -5,13 +5,13 @@
          (Some (Ast.Block
                   [(Ast.D
                       (Ast.VarDecl
-                         { Ast.name = (Ast.Identifier "var0.0"); init = None
-                           }));
+                         { Ast.name = (Ast.Identifier "var0.0"); init = None;
+                           storage = None }));
                     (Ast.S
                        (Ast.Expression
                           (Ast.Assignment (
                              (Ast.Var (Ast.Identifier "var0.0")),
                              (Ast.LiteralInt 2)))));
-                    (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "var0.0"))))]))
-         })
+                    (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "var0.0"))))]));
+         storage = None })
      ])

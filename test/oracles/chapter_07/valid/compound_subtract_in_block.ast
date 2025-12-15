@@ -6,7 +6,7 @@
                   [(Ast.D
                       (Ast.VarDecl
                          { Ast.name = (Ast.Identifier "a");
-                           init = (Some (Ast.LiteralInt 5)) }));
+                           init = (Some (Ast.LiteralInt 5)); storage = None }));
                     (Ast.S
                        Ast.If {
                          cond_exp =
@@ -28,7 +28,8 @@
                                  (Ast.D
                                     (Ast.VarDecl
                                        { Ast.name = (Ast.Identifier "a");
-                                         init = (Some (Ast.LiteralInt 5)) }));
+                                         init = (Some (Ast.LiteralInt 5));
+                                         storage = None }));
                                  (Ast.S
                                     Ast.If {
                                       cond_exp =
@@ -56,6 +57,6 @@
                                       else_smt = None})
                                  ]));
                          else_smt = None});
-                    (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "a"))))]))
-         })
+                    (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "a"))))]));
+         storage = None })
      ])

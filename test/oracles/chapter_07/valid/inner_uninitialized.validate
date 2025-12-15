@@ -6,15 +6,15 @@
                   [(Ast.D
                       (Ast.VarDecl
                          { Ast.name = (Ast.Identifier "x.0");
-                           init = (Some (Ast.LiteralInt 4)) }));
+                           init = (Some (Ast.LiteralInt 4)); storage = None }));
                     (Ast.S
                        (Ast.Compound
                           (Ast.Block
                              [(Ast.D
                                  (Ast.VarDecl
                                     { Ast.name = (Ast.Identifier "x.1");
-                                      init = None }))
+                                      init = None; storage = None }))
                                ])));
-                    (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "x.0"))))]))
-         })
+                    (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "x.0"))))]));
+         storage = None })
      ])

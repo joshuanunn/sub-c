@@ -5,26 +5,30 @@
          (Some (Ast.Block
                   [(Ast.D
                       (Ast.VarDecl
-                         { Ast.name = (Ast.Identifier "a.0"); init = None }));
+                         { Ast.name = (Ast.Identifier "a.0"); init = None;
+                           storage = None }));
                     (Ast.D
                        (Ast.VarDecl
                           { Ast.name = (Ast.Identifier "result.1");
-                            init = None }));
+                            init = None; storage = None }));
                     (Ast.D
                        (Ast.VarDecl
                           { Ast.name = (Ast.Identifier "a1.2");
-                            init = (Some (Ast.LiteralInt 1)) }));
+                            init = (Some (Ast.LiteralInt 1)); storage = None
+                            }));
                     (Ast.S
                        (Ast.Compound
                           (Ast.Block
                              [(Ast.D
                                  (Ast.VarDecl
                                     { Ast.name = (Ast.Identifier "a.3");
-                                      init = (Some (Ast.LiteralInt 2)) }));
+                                      init = (Some (Ast.LiteralInt 2));
+                                      storage = None }));
                                (Ast.D
                                   (Ast.VarDecl
                                      { Ast.name = (Ast.Identifier "a1.4");
-                                       init = (Some (Ast.LiteralInt 2)) }));
+                                       init = (Some (Ast.LiteralInt 2));
+                                       storage = None }));
                                (Ast.S
                                   (Ast.Compound
                                      (Ast.Block
@@ -32,7 +36,8 @@
                                             (Ast.VarDecl
                                                { Ast.name =
                                                  (Ast.Identifier "a.5");
-                                                 init = None }));
+                                                 init = None; storage = None
+                                                 }));
                                           (Ast.S
                                              (Ast.Compound
                                                 (Ast.Block
@@ -41,7 +46,8 @@
                                                           { Ast.name =
                                                             (Ast.Identifier
                                                                "a.6");
-                                                            init = None }));
+                                                            init = None;
+                                                            storage = None }));
                                                      (Ast.S
                                                         (Ast.Compound
                                                            (Ast.Block
@@ -51,6 +57,8 @@
                                                                     (Ast.Identifier
                                                                     "a.7");
                                                                     init =
+                                                                    None;
+                                                                    storage =
                                                                     None }));
                                                                 (Ast.S
                                                                    (Ast.Compound
@@ -61,6 +69,8 @@
                                                                     (Ast.Identifier
                                                                     "a.8");
                                                                     init =
+                                                                    None;
+                                                                    storage =
                                                                     None }));
                                                                     (Ast.S
                                                                     (Ast.Compound
@@ -71,6 +81,8 @@
                                                                     (Ast.Identifier
                                                                     "a.9");
                                                                     init =
+                                                                    None;
+                                                                    storage =
                                                                     None }));
                                                                     (Ast.S
                                                                     (Ast.Compound
@@ -81,6 +93,8 @@
                                                                     (Ast.Identifier
                                                                     "a.10");
                                                                     init =
+                                                                    None;
+                                                                    storage =
                                                                     None }));
                                                                     (Ast.S
                                                                     (Ast.Compound
@@ -91,6 +105,8 @@
                                                                     (Ast.Identifier
                                                                     "a.11");
                                                                     init =
+                                                                    None;
+                                                                    storage =
                                                                     None }));
                                                                     (Ast.S
                                                                     (Ast.Compound
@@ -101,6 +117,8 @@
                                                                     (Ast.Identifier
                                                                     "a.12");
                                                                     init =
+                                                                    None;
+                                                                    storage =
                                                                     None }));
                                                                     (Ast.S
                                                                     (Ast.Compound
@@ -113,7 +131,9 @@
                                                                     init =
                                                                     (Some (
                                                                     Ast.LiteralInt
-                                                                    20)) }));
+                                                                    20));
+                                                                    storage =
+                                                                    None }));
                                                                     (Ast.S
                                                                     (Ast.Expression
                                                                     (Ast.Assignment (
@@ -133,6 +153,8 @@
                                                                     (Ast.Identifier
                                                                     "a.14");
                                                                     init =
+                                                                    None;
+                                                                    storage =
                                                                     None }));
                                                                     (Ast.S
                                                                     (Ast.Expression
@@ -184,6 +206,6 @@
                           Ast.Binary {op = Ast.Add;
                             left = (Ast.Var (Ast.Identifier "result.1"));
                             right = (Ast.Var (Ast.Identifier "a1.2"))}))
-                    ]))
-         })
+                    ]));
+         storage = None })
      ])

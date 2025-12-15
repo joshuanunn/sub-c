@@ -8,8 +8,8 @@
                          Ast.Binary {op = Ast.Multiply;
                            left = (Ast.Var (Ast.Identifier "a.0"));
                            right = (Ast.LiteralInt 2)}))
-                    ]))
-         });
+                    ]));
+         storage = None });
      (Ast.FunDecl
         { Ast.name = (Ast.Identifier "main"); params = [];
           body =
@@ -18,6 +18,6 @@
                        (Ast.Return
                           Ast.FunctionCall {name = (Ast.Identifier "a");
                             args = [(Ast.LiteralInt 1)]}))
-                     ]))
-          })
+                     ]));
+          storage = None })
      ])

@@ -6,11 +6,13 @@
                   [(Ast.D
                       (Ast.VarDecl
                          { Ast.name = (Ast.Identifier "var_to_shift.0");
-                           init = (Some (Ast.LiteralInt 1234)) }));
+                           init = (Some (Ast.LiteralInt 1234));
+                           storage = None }));
                     (Ast.D
                        (Ast.VarDecl
                           { Ast.name = (Ast.Identifier "x.1");
-                            init = (Some (Ast.LiteralInt 0)) }));
+                            init = (Some (Ast.LiteralInt 0)); storage = None
+                            }));
                     (Ast.S
                        (Ast.Expression
                           (Ast.Assignment ((Ast.Var (Ast.Identifier "x.1")),
@@ -19,6 +21,6 @@
                                (Ast.Var (Ast.Identifier "var_to_shift.0"));
                                right = (Ast.LiteralInt 4)}
                              ))));
-                    (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "x.1"))))]))
-         })
+                    (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "x.1"))))]));
+         storage = None })
      ])

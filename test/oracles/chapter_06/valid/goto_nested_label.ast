@@ -9,6 +9,6 @@
                           (Ast.Label ((Ast.Identifier "labelB"),
                              (Ast.Return (Ast.LiteralInt 5))))
                           )));
-                    (Ast.S (Ast.Return (Ast.LiteralInt 0)))]))
-         })
+                    (Ast.S (Ast.Return (Ast.LiteralInt 0)))]));
+         storage = None })
      ])

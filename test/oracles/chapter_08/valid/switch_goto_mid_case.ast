@@ -6,7 +6,7 @@
                   [(Ast.D
                       (Ast.VarDecl
                          { Ast.name = (Ast.Identifier "a");
-                           init = (Some (Ast.LiteralInt 0)) }));
+                           init = (Some (Ast.LiteralInt 0)); storage = None }));
                     (Ast.S (Ast.Goto (Ast.Identifier "mid_case")));
                     (Ast.S
                        Ast.Switch {cond = (Ast.LiteralInt 4);
@@ -37,6 +37,6 @@
                                        (Ast.Var (Ast.Identifier "a"))))
                                  ]));
                          id = None});
-                    (Ast.S (Ast.Return (Ast.LiteralInt 100)))]))
-         })
+                    (Ast.S (Ast.Return (Ast.LiteralInt 100)))]));
+         storage = None })
      ])

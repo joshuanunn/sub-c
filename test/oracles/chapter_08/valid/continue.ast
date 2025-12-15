@@ -6,17 +6,18 @@
                   [(Ast.D
                       (Ast.VarDecl
                          { Ast.name = (Ast.Identifier "sum");
-                           init = (Some (Ast.LiteralInt 0)) }));
+                           init = (Some (Ast.LiteralInt 0)); storage = None }));
                     (Ast.D
                        (Ast.VarDecl
                           { Ast.name = (Ast.Identifier "counter");
-                            init = None }));
+                            init = None; storage = None }));
                     (Ast.S
                        Ast.For {
                          init =
                          (Ast.InclDecl
                             { Ast.name = (Ast.Identifier "i");
-                              init = (Some (Ast.LiteralInt 0)) });
+                              init = (Some (Ast.LiteralInt 0));
+                              storage = None });
                          cond =
                          (Some Ast.Binary {op = Ast.LessOrEqual;
                                  left = (Ast.Var (Ast.Identifier "i"));
@@ -70,6 +71,6 @@
                             Ast.Binary {op = Ast.Equal;
                               left = (Ast.Var (Ast.Identifier "counter"));
                               right = (Ast.LiteralInt 10)}}))
-                    ]))
-         })
+                    ]));
+         storage = None })
      ])

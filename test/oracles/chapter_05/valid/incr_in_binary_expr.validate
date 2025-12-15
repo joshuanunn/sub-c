@@ -6,7 +6,7 @@
                   [(Ast.D
                       (Ast.VarDecl
                          { Ast.name = (Ast.Identifier "a.0");
-                           init = (Some (Ast.LiteralInt 2)) }));
+                           init = (Some (Ast.LiteralInt 2)); storage = None }));
                     (Ast.D
                        (Ast.VarDecl
                           { Ast.name = (Ast.Identifier "b.1");
@@ -15,8 +15,8 @@
                                     left = (Ast.LiteralInt 3);
                                     right =
                                     Ast.Unary {op = Ast.PostIncrement;
-                                      exp = (Ast.Var (Ast.Identifier "a.0"))}})
-                            }));
+                                      exp = (Ast.Var (Ast.Identifier "a.0"))}});
+                            storage = None }));
                     (Ast.D
                        (Ast.VarDecl
                           { Ast.name = (Ast.Identifier "c.2");
@@ -25,8 +25,8 @@
                                     left = (Ast.LiteralInt 4);
                                     right =
                                     Ast.Unary {op = Ast.PreIncrement;
-                                      exp = (Ast.Var (Ast.Identifier "b.1"))}})
-                            }));
+                                      exp = (Ast.Var (Ast.Identifier "b.1"))}});
+                            storage = None }));
                     (Ast.S
                        (Ast.Return
                           Ast.Binary {op = Ast.And;
@@ -44,6 +44,6 @@
                             Ast.Binary {op = Ast.Equal;
                               left = (Ast.Var (Ast.Identifier "c.2"));
                               right = (Ast.LiteralInt 10)}}))
-                    ]))
-         })
+                    ]));
+         storage = None })
      ])

@@ -6,9 +6,9 @@
                   [(Ast.D
                       (Ast.VarDecl
                          { Ast.name = (Ast.Identifier "x.0");
-                           init = (Some (Ast.LiteralInt 1)) }))
-                    ]))
-         });
+                           init = (Some (Ast.LiteralInt 1)); storage = None }))
+                    ]));
+         storage = None });
      (Ast.FunDecl
         { Ast.name = (Ast.Identifier "main"); params = [];
           body =
@@ -17,6 +17,6 @@
                        (Ast.Expression
                           Ast.FunctionCall {name = (Ast.Identifier "foo");
                             args = []}));
-                     (Ast.S (Ast.Return (Ast.LiteralInt 3)))]))
-          })
+                     (Ast.S (Ast.Return (Ast.LiteralInt 3)))]));
+          storage = None })
      ])

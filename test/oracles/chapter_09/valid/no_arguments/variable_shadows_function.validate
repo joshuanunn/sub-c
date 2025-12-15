@@ -6,14 +6,14 @@
                   [(Ast.D
                       (Ast.FunDecl
                          { Ast.name = (Ast.Identifier "foo"); params = [];
-                           body = None }));
+                           body = None; storage = None }));
                     (Ast.D
                        (Ast.VarDecl
                           { Ast.name = (Ast.Identifier "x.0");
                             init =
                             (Some Ast.FunctionCall {
-                                    name = (Ast.Identifier "foo"); args = []})
-                            }));
+                                    name = (Ast.Identifier "foo"); args = []});
+                            storage = None }));
                     (Ast.S
                        Ast.If {
                          cond_exp =
@@ -26,7 +26,8 @@
                                [(Ast.D
                                    (Ast.VarDecl
                                       { Ast.name = (Ast.Identifier "foo.1");
-                                        init = (Some (Ast.LiteralInt 3)) }));
+                                        init = (Some (Ast.LiteralInt 3));
+                                        storage = None }));
                                  (Ast.S
                                     (Ast.Expression
                                        (Ast.Assignment (
@@ -39,10 +40,10 @@
                                           ))))
                                  ]));
                          else_smt = None});
-                    (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "x.0"))))]))
-         });
+                    (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "x.0"))))]));
+         storage = None });
      (Ast.FunDecl
         { Ast.name = (Ast.Identifier "foo"); params = [];
-          body = (Some (Ast.Block [(Ast.S (Ast.Return (Ast.LiteralInt 4)))]))
-          })
+          body = (Some (Ast.Block [(Ast.S (Ast.Return (Ast.LiteralInt 4)))]));
+          storage = None })
      ])

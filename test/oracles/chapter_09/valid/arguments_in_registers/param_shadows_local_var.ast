@@ -6,17 +6,19 @@
                   [(Ast.D
                       (Ast.VarDecl
                          { Ast.name = (Ast.Identifier "a");
-                           init = (Some (Ast.LiteralInt 10)) }));
+                           init = (Some (Ast.LiteralInt 10)); storage = None
+                           }));
                     (Ast.D
                        (Ast.FunDecl
                           { Ast.name = (Ast.Identifier "f");
-                            params = [(Ast.Identifier "a")]; body = None }));
+                            params = [(Ast.Identifier "a")]; body = None;
+                            storage = None }));
                     (Ast.S
                        (Ast.Return
                           Ast.FunctionCall {name = (Ast.Identifier "f");
                             args = [(Ast.Var (Ast.Identifier "a"))]}))
-                    ]))
-         });
+                    ]));
+         storage = None });
      (Ast.FunDecl
         { Ast.name = (Ast.Identifier "f"); params = [(Ast.Identifier "a")];
           body =
@@ -26,6 +28,6 @@
                           Ast.Binary {op = Ast.Multiply;
                             left = (Ast.Var (Ast.Identifier "a"));
                             right = (Ast.LiteralInt 2)}))
-                     ]))
-          })
+                     ]));
+          storage = None })
      ])

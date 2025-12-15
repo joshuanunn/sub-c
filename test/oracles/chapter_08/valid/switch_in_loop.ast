@@ -6,17 +6,19 @@
                   [(Ast.D
                       (Ast.VarDecl
                          { Ast.name = (Ast.Identifier "acc");
-                           init = (Some (Ast.LiteralInt 0)) }));
+                           init = (Some (Ast.LiteralInt 0)); storage = None }));
                     (Ast.D
                        (Ast.VarDecl
                           { Ast.name = (Ast.Identifier "ctr");
-                            init = (Some (Ast.LiteralInt 0)) }));
+                            init = (Some (Ast.LiteralInt 0)); storage = None
+                            }));
                     (Ast.S
                        Ast.For {
                          init =
                          (Ast.InclDecl
                             { Ast.name = (Ast.Identifier "i");
-                              init = (Some (Ast.LiteralInt 0)) });
+                              init = (Some (Ast.LiteralInt 0));
+                              storage = None });
                          cond =
                          (Some Ast.Binary {op = Ast.LessThan;
                                  left = (Ast.Var (Ast.Identifier "i"));
@@ -131,6 +133,6 @@
                             Ast.Binary {op = Ast.Equal;
                               left = (Ast.Var (Ast.Identifier "acc"));
                               right = (Ast.LiteralInt 31)}}))
-                    ]))
-         })
+                    ]));
+         storage = None })
      ])

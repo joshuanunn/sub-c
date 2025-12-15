@@ -50,8 +50,8 @@
                                                   right = (Ast.LiteralInt 2)}
                                                  ]}}))
                                       ])))})
-                    ]))
-         });
+                    ]));
+         storage = None });
      (Ast.FunDecl
         { Ast.name = (Ast.Identifier "main"); params = [];
           body =
@@ -59,11 +59,12 @@
                    [(Ast.D
                        (Ast.VarDecl
                           { Ast.name = (Ast.Identifier "n");
-                            init = (Some (Ast.LiteralInt 6)) }));
+                            init = (Some (Ast.LiteralInt 6)); storage = None
+                            }));
                      (Ast.S
                         (Ast.Return
                            Ast.FunctionCall {name = (Ast.Identifier "fib");
                              args = [(Ast.Var (Ast.Identifier "n"))]}))
-                     ]))
-          })
+                     ]));
+          storage = None })
      ])

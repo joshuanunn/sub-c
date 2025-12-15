@@ -6,7 +6,7 @@
                   [(Ast.D
                       (Ast.VarDecl
                          { Ast.name = (Ast.Identifier "to_mod");
-                           init = (Some (Ast.LiteralInt 5)) }));
+                           init = (Some (Ast.LiteralInt 5)); storage = None }));
                     (Ast.S
                        (Ast.Expression
                           (Ast.Assignment (
@@ -15,6 +15,6 @@
                                left = (Ast.Var (Ast.Identifier "to_mod"));
                                right = (Ast.LiteralInt 3)}
                              ))));
-                    (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "to_mod"))))]))
-         })
+                    (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "to_mod"))))]));
+         storage = None })
      ])

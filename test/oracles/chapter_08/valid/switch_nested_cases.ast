@@ -6,15 +6,17 @@
                   [(Ast.D
                       (Ast.VarDecl
                          { Ast.name = (Ast.Identifier "switch1");
-                           init = (Some (Ast.LiteralInt 0)) }));
+                           init = (Some (Ast.LiteralInt 0)); storage = None }));
                     (Ast.D
                        (Ast.VarDecl
                           { Ast.name = (Ast.Identifier "switch2");
-                            init = (Some (Ast.LiteralInt 0)) }));
+                            init = (Some (Ast.LiteralInt 0)); storage = None
+                            }));
                     (Ast.D
                        (Ast.VarDecl
                           { Ast.name = (Ast.Identifier "switch3");
-                            init = (Some (Ast.LiteralInt 0)) }));
+                            init = (Some (Ast.LiteralInt 0)); storage = None
+                            }));
                     (Ast.S
                        Ast.Switch {cond = (Ast.LiteralInt 3);
                          body =
@@ -105,7 +107,8 @@
                                      init =
                                      (Ast.InclDecl
                                         { Ast.name = (Ast.Identifier "i");
-                                          init = (Some (Ast.LiteralInt 0)) });
+                                          init = (Some (Ast.LiteralInt 0));
+                                          storage = None });
                                      cond =
                                      (Some Ast.Binary {op = Ast.LessThan;
                                              left =
@@ -159,6 +162,6 @@
                               left = (Ast.Var (Ast.Identifier "switch1"));
                               right = (Ast.Var (Ast.Identifier "switch2"))};
                             right = (Ast.Var (Ast.Identifier "switch3"))}))
-                    ]))
-         })
+                    ]));
+         storage = None })
      ])

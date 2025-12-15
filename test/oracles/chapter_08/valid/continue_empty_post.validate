@@ -6,13 +6,14 @@
                   [(Ast.D
                       (Ast.VarDecl
                          { Ast.name = (Ast.Identifier "sum.0");
-                           init = (Some (Ast.LiteralInt 0)) }));
+                           init = (Some (Ast.LiteralInt 0)); storage = None }));
                     (Ast.S
                        Ast.For {
                          init =
                          (Ast.InclDecl
                             { Ast.name = (Ast.Identifier "i.1");
-                              init = (Some (Ast.LiteralInt 0)) });
+                              init = (Some (Ast.LiteralInt 0));
+                              storage = None });
                          cond =
                          (Some Ast.Binary {op = Ast.LessThan;
                                  left = (Ast.Var (Ast.Identifier "i.1"));
@@ -53,6 +54,6 @@
                                           ))))
                                  ]));
                          id = (Some (Ast.LoopLabel "1"))});
-                    (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "sum.0"))))]))
-         })
+                    (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "sum.0"))))]));
+         storage = None })
      ])

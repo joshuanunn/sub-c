@@ -20,6 +20,6 @@
                            Ast.Binary {op = Ast.Or;
                              left = (Ast.LiteralInt 5);
                              right = (Ast.LiteralInt 5)}}))
-                    ]))
-         })
+                    ]));
+         storage = None })
      ])

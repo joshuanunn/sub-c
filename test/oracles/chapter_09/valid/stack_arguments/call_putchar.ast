@@ -1,7 +1,7 @@
 (Ast.Program
    [(Ast.FunDecl
        { Ast.name = (Ast.Identifier "putchar");
-         params = [(Ast.Identifier "c")]; body = None });
+         params = [(Ast.Identifier "c")]; body = None; storage = None });
      (Ast.FunDecl
         { Ast.name = (Ast.Identifier "foo");
           params =
@@ -20,8 +20,8 @@
                            Ast.Binary {op = Ast.Add;
                              left = (Ast.Var (Ast.Identifier "a"));
                              right = (Ast.Var (Ast.Identifier "g"))}))
-                     ]))
-          });
+                     ]));
+          storage = None });
      (Ast.FunDecl
         { Ast.name = (Ast.Identifier "main"); params = [];
           body =
@@ -34,6 +34,6 @@
                               (Ast.LiteralInt 3); (Ast.LiteralInt 4);
                               (Ast.LiteralInt 5); (Ast.LiteralInt 6);
                               (Ast.LiteralInt 7); (Ast.LiteralInt 65)]}))
-                     ]))
-          })
+                     ]));
+          storage = None })
      ])

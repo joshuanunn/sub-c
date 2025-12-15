@@ -8,8 +8,8 @@
                          { Ast.name = (Ast.Identifier "a");
                            init =
                            (Some Ast.Unary {op = Ast.Negate;
-                                   exp = (Ast.LiteralInt 2593)})
-                           }));
+                                   exp = (Ast.LiteralInt 2593)});
+                           storage = None }));
                     (Ast.S
                        (Ast.Expression
                           (Ast.Assignment ((Ast.Var (Ast.Identifier "a")),
@@ -22,8 +22,8 @@
                           { Ast.name = (Ast.Identifier "b");
                             init =
                             (Some Ast.Unary {op = Ast.Negate;
-                                    exp = (Ast.Var (Ast.Identifier "a"))})
-                            }));
-                    (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "b"))))]))
-         })
+                                    exp = (Ast.Var (Ast.Identifier "a"))});
+                            storage = None }));
+                    (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "b"))))]));
+         storage = None })
      ])

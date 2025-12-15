@@ -6,11 +6,11 @@
                   [(Ast.D
                       (Ast.VarDecl
                          { Ast.name = (Ast.Identifier "a.0");
-                           init = (Some (Ast.LiteralInt 4)) }));
+                           init = (Some (Ast.LiteralInt 4)); storage = None }));
                     (Ast.S
                        Ast.Switch {cond = (Ast.Var (Ast.Identifier "a.0"));
                          body = (Ast.Return (Ast.LiteralInt 0));
                          id = (Some (Ast.SwitchLabel "1"))});
-                    (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "a.0"))))]))
-         })
+                    (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "a.0"))))]));
+         storage = None })
      ])

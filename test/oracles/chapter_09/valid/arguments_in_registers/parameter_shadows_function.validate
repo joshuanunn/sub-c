@@ -1,14 +1,14 @@
 (Ast.Program
    [(Ast.FunDecl
        { Ast.name = (Ast.Identifier "a"); params = [];
-         body = (Some (Ast.Block [(Ast.S (Ast.Return (Ast.LiteralInt 1)))]))
-         });
+         body = (Some (Ast.Block [(Ast.S (Ast.Return (Ast.LiteralInt 1)))]));
+         storage = None });
      (Ast.FunDecl
         { Ast.name = (Ast.Identifier "b"); params = [(Ast.Identifier "a.0")];
           body =
           (Some (Ast.Block
-                   [(Ast.S (Ast.Return (Ast.Var (Ast.Identifier "a.0"))))]))
-          });
+                   [(Ast.S (Ast.Return (Ast.Var (Ast.Identifier "a.0"))))]));
+          storage = None });
      (Ast.FunDecl
         { Ast.name = (Ast.Identifier "main"); params = [];
           body =
@@ -22,6 +22,6 @@
                             right =
                             Ast.FunctionCall {name = (Ast.Identifier "b");
                               args = [(Ast.LiteralInt 2)]}}))
-                     ]))
-          })
+                     ]));
+          storage = None })
      ])

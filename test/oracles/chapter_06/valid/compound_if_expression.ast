@@ -6,7 +6,7 @@
                   [(Ast.D
                       (Ast.VarDecl
                          { Ast.name = (Ast.Identifier "a");
-                           init = (Some (Ast.LiteralInt 0)) }));
+                           init = (Some (Ast.LiteralInt 0)); storage = None }));
                     (Ast.S
                        Ast.If {
                          cond_exp =
@@ -18,6 +18,6 @@
                          then_smt =
                          (Ast.Return (Ast.Var (Ast.Identifier "a")));
                          else_smt = None});
-                    (Ast.S (Ast.Return (Ast.LiteralInt 10)))]))
-         })
+                    (Ast.S (Ast.Return (Ast.LiteralInt 10)))]));
+         storage = None })
      ])

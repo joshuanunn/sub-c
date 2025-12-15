@@ -6,11 +6,12 @@
                   [(Ast.D
                       (Ast.VarDecl
                          { Ast.name = (Ast.Identifier "a.0");
-                           init = (Some (Ast.LiteralInt 4)) }));
+                           init = (Some (Ast.LiteralInt 4)); storage = None }));
                     (Ast.D
                        (Ast.VarDecl
                           { Ast.name = (Ast.Identifier "b.1");
-                            init = (Some (Ast.LiteralInt 0)) }));
+                            init = (Some (Ast.LiteralInt 0)); storage = None
+                            }));
                     (Ast.S
                        Ast.Switch {cond = (Ast.LiteralInt 2);
                          body =
@@ -26,8 +27,8 @@
                                                   { Ast.name =
                                                     (Ast.Identifier "a.2");
                                                     init =
-                                                    (Some (Ast.LiteralInt 8))
-                                                    }));
+                                                    (Some (Ast.LiteralInt 8));
+                                                    storage = None }));
                                              (Ast.S
                                                 (Ast.Expression
                                                    (Ast.Assignment (
@@ -53,6 +54,6 @@
                             Ast.Binary {op = Ast.Equal;
                               left = (Ast.Var (Ast.Identifier "b.1"));
                               right = (Ast.LiteralInt 8)}}))
-                    ]))
-         })
+                    ]));
+         storage = None })
      ])

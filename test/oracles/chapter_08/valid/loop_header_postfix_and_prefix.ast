@@ -6,11 +6,13 @@
                   [(Ast.D
                       (Ast.VarDecl
                          { Ast.name = (Ast.Identifier "i");
-                           init = (Some (Ast.LiteralInt 100)) }));
+                           init = (Some (Ast.LiteralInt 100)); storage = None
+                           }));
                     (Ast.D
                        (Ast.VarDecl
                           { Ast.name = (Ast.Identifier "count");
-                            init = (Some (Ast.LiteralInt 0)) }));
+                            init = (Some (Ast.LiteralInt 0)); storage = None
+                            }));
                     (Ast.S
                        Ast.While {
                          cond =
@@ -56,6 +58,6 @@
                            right = (Ast.LiteralInt 99)};
                          then_smt = (Ast.Return (Ast.LiteralInt 0));
                          else_smt = None});
-                    (Ast.S (Ast.Return (Ast.LiteralInt 1)))]))
-         })
+                    (Ast.S (Ast.Return (Ast.LiteralInt 1)))]));
+         storage = None })
      ])

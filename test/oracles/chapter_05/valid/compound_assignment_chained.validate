@@ -6,34 +6,40 @@
                   [(Ast.D
                       (Ast.VarDecl
                          { Ast.name = (Ast.Identifier "a.0");
-                           init = (Some (Ast.LiteralInt 250)) }));
+                           init = (Some (Ast.LiteralInt 250)); storage = None
+                           }));
                     (Ast.D
                        (Ast.VarDecl
                           { Ast.name = (Ast.Identifier "b.1");
-                            init = (Some (Ast.LiteralInt 200)) }));
+                            init = (Some (Ast.LiteralInt 200));
+                            storage = None }));
                     (Ast.D
                        (Ast.VarDecl
                           { Ast.name = (Ast.Identifier "c.2");
-                            init = (Some (Ast.LiteralInt 100)) }));
+                            init = (Some (Ast.LiteralInt 100));
+                            storage = None }));
                     (Ast.D
                        (Ast.VarDecl
                           { Ast.name = (Ast.Identifier "d.3");
-                            init = (Some (Ast.LiteralInt 75)) }));
+                            init = (Some (Ast.LiteralInt 75)); storage = None
+                            }));
                     (Ast.D
                        (Ast.VarDecl
                           { Ast.name = (Ast.Identifier "e.4");
                             init =
                             (Some Ast.Unary {op = Ast.Negate;
-                                    exp = (Ast.LiteralInt 25)})
-                            }));
+                                    exp = (Ast.LiteralInt 25)});
+                            storage = None }));
                     (Ast.D
                        (Ast.VarDecl
                           { Ast.name = (Ast.Identifier "f.5");
-                            init = (Some (Ast.LiteralInt 0)) }));
+                            init = (Some (Ast.LiteralInt 0)); storage = None
+                            }));
                     (Ast.D
                        (Ast.VarDecl
                           { Ast.name = (Ast.Identifier "x.6");
-                            init = (Some (Ast.LiteralInt 0)) }));
+                            init = (Some (Ast.LiteralInt 0)); storage = None
+                            }));
                     (Ast.S
                        (Ast.Expression
                           (Ast.Assignment ((Ast.Var (Ast.Identifier "x.6")),
@@ -138,6 +144,6 @@
                             Ast.Binary {op = Ast.Equal;
                               left = (Ast.Var (Ast.Identifier "x.6"));
                               right = (Ast.LiteralInt 2250)}}))
-                    ]))
-         })
+                    ]));
+         storage = None })
      ])

@@ -6,7 +6,7 @@
                   [(Ast.D
                       (Ast.VarDecl
                          { Ast.name = (Ast.Identifier "i.0");
-                           init = (Some (Ast.LiteralInt 1)) }));
+                           init = (Some (Ast.LiteralInt 1)); storage = None }));
                     (Ast.S
                        Ast.For {
                          init =
@@ -41,6 +41,6 @@
                             right =
                             Ast.Unary {op = Ast.Negate;
                               exp = (Ast.LiteralInt 103)}}))
-                    ]))
-         })
+                    ]));
+         storage = None })
      ])
