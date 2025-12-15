@@ -41,13 +41,15 @@ type instruction =
   | FunCall of { fun_name : string; args : value list; dst : value }
 [@@deriving show]
 
-type func =
+type top_level =
   | Function of {
       name : string;
+      global : bool;
       params : string list;
       body : instruction list;
       frame : Env.lenv;
     }
+  | StaticVariable of { name : string; global : bool; init : int }
 [@@deriving show]
 
-type prog = Program of func list [@@deriving show]
+type prog = Program of top_level list [@@deriving show]

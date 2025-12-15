@@ -63,7 +63,7 @@ let run_irgen lexbuf s_env t_env =
     let ast = Ast_resolution.resolve_prog ast s_env in
     let ast = Ast_flow_label.label_prog ast in
     Ast_type_check.type_prog ast t_env;
-    let ir = Irgen.convert_prog ast in
+    let ir = Irgen.convert_prog ast t_env in
     print_endline (Ir.show_prog ir)
   with
   | Parser.Error ->
@@ -81,7 +81,7 @@ let run_codegen lexbuf s_env t_env =
     let ast = Ast_resolution.resolve_prog ast s_env in
     let ast = Ast_flow_label.label_prog ast in
     Ast_type_check.type_prog ast t_env;
-    let ir = Irgen.convert_prog ast in
+    let ir = Irgen.convert_prog ast t_env in
     let asm = Codegen.compile_prog ir in
     let asm = Codegen_lower.lower_prog asm in
     let asm = Codegen_fixup.fixup_prog asm in
@@ -102,7 +102,7 @@ let run_emit lexbuf s_env t_env =
     let ast = Ast_resolution.resolve_prog ast s_env in
     let ast = Ast_flow_label.label_prog ast in
     Ast_type_check.type_prog ast t_env;
-    let ir = Irgen.convert_prog ast in
+    let ir = Irgen.convert_prog ast t_env in
     let asm = Codegen.compile_prog ir in
     let asm = Codegen_lower.lower_prog asm in
     let asm = Codegen_fixup.fixup_prog asm in
@@ -123,7 +123,7 @@ let run_exe lexbuf output_path s_env t_env =
     let ast = Ast_resolution.resolve_prog ast s_env in
     let ast = Ast_flow_label.label_prog ast in
     Ast_type_check.type_prog ast t_env;
-    let ir = Irgen.convert_prog ast in
+    let ir = Irgen.convert_prog ast t_env in
     let asm = Codegen.compile_prog ir in
     let asm = Codegen_lower.lower_prog asm in
     let asm = Codegen_fixup.fixup_prog asm in

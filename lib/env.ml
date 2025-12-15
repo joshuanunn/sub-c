@@ -304,3 +304,23 @@ let assert_fun (te : tenv) (id : Ast.ident) (argc : int) : unit =
       if p.param_count <> argc then
         failwith "function called with the wrong number of arguments"
   | Some _ -> failwith "variable used as function name"
+
+(** Determine whether a function has external linkage. Looks up the function
+    [id] in the type environment and returns [true] if the function has external
+    linkage (i.e. should be emitted as a global symbol), or [false] if it has
+    internal linkage (declared [static]).*)
+let fun_is_global (te : tenv) (id : Ast.ident) : bool =
+  match find te id with
+  | Some { attrs = FunAttr { global; _ }; _ } -> global
+  | _ -> failwith "internal error: function not found in type environment"
+
+(** Collect all static variables recorded in the type environment. Returns a
+    list of triples [(name, init, global)] for each identifier with
+    [StaticAttr]. Entries with other attributes are ignored. *)
+let static_vars (te : tenv) : (string * initial_value * bool) list =
+  Hashtbl.fold
+    (fun name entry acc ->
+      match entry.attrs with
+      | StaticAttr { init; global } -> (name, init, global) :: acc
+      | _ -> acc)
+    te.typed_idents []

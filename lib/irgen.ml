@@ -367,7 +367,7 @@ and convert_for_post (e : Ast.expr option) (le : Env.lenv) : Ir.instruction list
       ins
   | None -> []
 
-and convert_func (f : Ast.fun_decl) : Ir.func =
+and convert_func (f : Ast.fun_decl) (te : Env.tenv) : Ir.top_level =
   match f.body with
   | None ->
       failwith
@@ -387,9 +387,11 @@ and convert_func (f : Ast.fun_decl) : Ir.func =
       in
       (* Append "return 0" to the function end, in case no return present *)
       let body_safe_return = body @ [ Return (Constant 0) ] in
+      let global = Env.fun_is_global te f.name in
       Function
         {
           name = identifier_to_string f.name;
+          global;
           params =
             List.map
               (fun name ->
@@ -402,16 +404,28 @@ and convert_func (f : Ast.fun_decl) : Ir.func =
           frame = le;
         }
 
-let convert_prog (Program p : Ast.prog) : Ir.prog =
-  let resolved_funcs =
+let convert_symbols (te : Env.tenv) : Ir.top_level list =
+  Env.static_vars te
+  |> List.filter_map (fun (name, init, global) ->
+      match init with
+      | Env.Initial i -> Some (Ir.StaticVariable { name; global; init = i })
+      | Env.Tentative -> Some (Ir.StaticVariable { name; global; init = 0 })
+      | Env.NoInitialiser -> None)
+
+let convert_prog (Program p : Ast.prog) (te : Env.tenv) : Ir.prog =
+  (* AST pass: convert top-level function definitions into IR functions *)
+  let ir_funcs =
     List.filter_map
       (function
         | Ast.FunDecl f -> (
             match f.body with
-            | Some _ -> Some (convert_func f) (* process func definitions *)
+            | Some _ -> Some (convert_func f te) (* process func definitions *)
             | None -> None (* ignore func declarations *))
-        | Ast.VarDecl _ ->
-            failwith "Global variable declaration not yet implemented")
+        | Ast.VarDecl _ -> None) (* top-level vars handled by symbol table *)
       p
   in
-  Program resolved_funcs
+
+  (* Symbol-table pass: emit static var definitions from the type environment *)
+  let ir_statics = convert_symbols te in
+
+  Program (ir_funcs @ ir_statics)
