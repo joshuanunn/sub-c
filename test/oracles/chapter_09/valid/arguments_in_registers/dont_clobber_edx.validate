@@ -42,8 +42,8 @@
                            Ast.Binary {op = Ast.Equal;
                              left = (Ast.Var (Ast.Identifier "f.5"));
                              right = (Ast.LiteralInt 6)}}))
-                    ]))
-         });
+                    ]));
+         storage = None });
      (Ast.FunDecl
         { Ast.name = (Ast.Identifier "main"); params = [];
           body =
@@ -51,7 +51,8 @@
                    [(Ast.D
                        (Ast.VarDecl
                           { Ast.name = (Ast.Identifier "a.6");
-                            init = (Some (Ast.LiteralInt 4)) }));
+                            init = (Some (Ast.LiteralInt 4)); storage = None
+                            }));
                      (Ast.S
                         (Ast.Return
                            Ast.FunctionCall {name = (Ast.Identifier "x");
@@ -63,6 +64,6 @@
                                  left = (Ast.LiteralInt 24);
                                  right = (Ast.Var (Ast.Identifier "a.6"))}
                                ]}))
-                     ]))
-          })
+                     ]));
+          storage = None })
      ])

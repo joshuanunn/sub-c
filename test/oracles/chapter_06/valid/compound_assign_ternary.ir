@@ -1,5 +1,5 @@
 (Ir.Program
-   [Ir.Function {name = "main"; params = [];
+   [Ir.Function {name = "main"; global = true; params = [];
       body =
       [Ir.Copy {src = (Ir.Constant 4); dst = (Ir.Var "a.0")};
         Ir.JumpIfZero {condition = (Ir.Constant 1); target = "cond.el.2"};

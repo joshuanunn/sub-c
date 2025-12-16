@@ -1,5 +1,5 @@
 (Asm.Program
-   [Asm.Function {name = "main";
+   [Asm.Function {name = "main"; global = true;
       instructions =
       [(Asm.AllocateStack 144); (Asm.Mov ((Asm.Imm 250), (Asm.Stack -4)));
         (Asm.Mov ((Asm.Imm 200), (Asm.Stack -8)));

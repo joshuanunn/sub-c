@@ -1,5 +1,5 @@
 (Asm.Program
-   [Asm.Function {name = "lots_of_args";
+   [Asm.Function {name = "lots_of_args"; global = true;
       instructions =
       [(Asm.AllocateStack 64); (Asm.Mov ((Asm.Reg Asm.DI), (Asm.Stack -8)));
         (Asm.Mov ((Asm.Reg Asm.SI), (Asm.Stack -12)));
@@ -54,7 +54,7 @@
           n.13  -> -60,
           o.14  -> -64,
         }}};
-     Asm.Function {name = "main";
+     Asm.Function {name = "main"; global = true;
        instructions =
        [(Asm.AllocateStack 32); (Asm.Mov ((Asm.Imm 0), (Asm.Stack -4)));
          (Asm.Mov ((Asm.Imm 0), (Asm.Stack -8))); (Asm.Label "loop.st.1");

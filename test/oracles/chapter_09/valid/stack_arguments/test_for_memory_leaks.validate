@@ -17,8 +17,8 @@
                          Ast.Binary {op = Ast.Add;
                            left = (Ast.Var (Ast.Identifier "l.11"));
                            right = (Ast.Var (Ast.Identifier "o.14"))}))
-                    ]))
-         });
+                    ]));
+         storage = None });
      (Ast.FunDecl
         { Ast.name = (Ast.Identifier "main"); params = [];
           body =
@@ -26,13 +26,15 @@
                    [(Ast.D
                        (Ast.VarDecl
                           { Ast.name = (Ast.Identifier "ret.15");
-                            init = (Some (Ast.LiteralInt 0)) }));
+                            init = (Some (Ast.LiteralInt 0)); storage = None
+                            }));
                      (Ast.S
                         Ast.For {
                           init =
                           (Ast.InclDecl
                              { Ast.name = (Ast.Identifier "i.16");
-                               init = (Some (Ast.LiteralInt 0)) });
+                               init = (Some (Ast.LiteralInt 0));
+                               storage = None });
                           cond =
                           (Some Ast.Binary {op = Ast.LessThan;
                                   left = (Ast.Var (Ast.Identifier "i.16"));
@@ -79,6 +81,6 @@
                            Ast.Binary {op = Ast.Equal;
                              left = (Ast.Var (Ast.Identifier "ret.15"));
                              right = (Ast.LiteralInt 150000000)}))
-                     ]))
-          })
+                     ]));
+          storage = None })
      ])

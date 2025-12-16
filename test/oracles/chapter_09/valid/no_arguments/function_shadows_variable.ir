@@ -1,5 +1,5 @@
 (Ir.Program
-   [Ir.Function {name = "main"; params = [];
+   [Ir.Function {name = "main"; global = true; params = [];
       body =
       [Ir.Copy {src = (Ir.Constant 3); dst = (Ir.Var "foo.0")};
         Ir.Copy {src = (Ir.Constant 4); dst = (Ir.Var "bar.1")};
@@ -26,7 +26,7 @@
           tmp.3 -> -20,
           tmp.4 -> -24,
         }}};
-     Ir.Function {name = "foo"; params = [];
+     Ir.Function {name = "foo"; global = true; params = [];
        body = [(Ir.Return (Ir.Constant 8)); (Ir.Return (Ir.Constant 0))];
        frame = Env.lenv {
                  counter = 0;

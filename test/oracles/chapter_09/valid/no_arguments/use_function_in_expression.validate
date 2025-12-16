@@ -1,8 +1,8 @@
 (Ast.Program
    [(Ast.FunDecl
        { Ast.name = (Ast.Identifier "bar"); params = [];
-         body = (Some (Ast.Block [(Ast.S (Ast.Return (Ast.LiteralInt 9)))]))
-         });
+         body = (Some (Ast.Block [(Ast.S (Ast.Return (Ast.LiteralInt 9)))]));
+         storage = None });
      (Ast.FunDecl
         { Ast.name = (Ast.Identifier "foo"); params = [];
           body =
@@ -14,8 +14,8 @@
                             right =
                             Ast.FunctionCall {name = (Ast.Identifier "bar");
                               args = []}}))
-                     ]))
-          });
+                     ]));
+          storage = None });
      (Ast.FunDecl
         { Ast.name = (Ast.Identifier "main"); params = [];
           body =
@@ -32,6 +32,6 @@
                               Ast.FunctionCall {
                                 name = (Ast.Identifier "bar"); args = []};
                               right = (Ast.LiteralInt 3)}}))
-                     ]))
-          })
+                     ]));
+          storage = None })
      ])

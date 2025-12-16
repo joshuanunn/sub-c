@@ -4,6 +4,6 @@
          body =
          (Some (Ast.Block
                   [(Ast.S (Ast.Return (Ast.LiteralInt 0))); (Ast.S Ast.Null);
-                    (Ast.S Ast.Null)]))
-         })
+                    (Ast.S Ast.Null)]));
+         storage = None })
      ])

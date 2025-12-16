@@ -6,13 +6,14 @@
                   [(Ast.D
                       (Ast.VarDecl
                          { Ast.name = (Ast.Identifier "a");
-                           init = (Some (Ast.LiteralInt 10)) }));
+                           init = (Some (Ast.LiteralInt 10)); storage = None
+                           }));
                     (Ast.S
                        Ast.DoWhile {body = (Ast.Break None);
                          cond =
                          (Ast.Assignment ((Ast.Var (Ast.Identifier "a")),
                             (Ast.LiteralInt 1)));
                          id = None});
-                    (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "a"))))]))
-         })
+                    (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "a"))))]));
+         storage = None })
      ])

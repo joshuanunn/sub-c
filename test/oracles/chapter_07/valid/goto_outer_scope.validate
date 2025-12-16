@@ -6,11 +6,13 @@
                   [(Ast.D
                       (Ast.VarDecl
                          { Ast.name = (Ast.Identifier "a.1");
-                           init = (Some (Ast.LiteralInt 10)) }));
+                           init = (Some (Ast.LiteralInt 10)); storage = None
+                           }));
                     (Ast.D
                        (Ast.VarDecl
                           { Ast.name = (Ast.Identifier "b.2");
-                            init = (Some (Ast.LiteralInt 0)) }));
+                            init = (Some (Ast.LiteralInt 0)); storage = None
+                            }));
                     (Ast.S
                        Ast.If {cond_exp = (Ast.Var (Ast.Identifier "a.1"));
                          then_smt =
@@ -19,7 +21,8 @@
                                [(Ast.D
                                    (Ast.VarDecl
                                       { Ast.name = (Ast.Identifier "a.3");
-                                        init = (Some (Ast.LiteralInt 1)) }));
+                                        init = (Some (Ast.LiteralInt 1));
+                                        storage = None }));
                                  (Ast.S
                                     (Ast.Expression
                                        (Ast.Assignment (
@@ -44,6 +47,6 @@
                                  left = (Ast.Var (Ast.Identifier "b.2"));
                                  right = (Ast.LiteralInt 1)}})
                           )))
-                    ]))
-         })
+                    ]));
+         storage = None })
      ])

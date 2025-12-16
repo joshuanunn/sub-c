@@ -1,0 +1,69 @@
+(Ast.Program
+   [(Ast.VarDecl
+       { Ast.name = (Ast.Identifier "x"); init = (Some (Ast.LiteralInt 1));
+         storage = None });
+     (Ast.VarDecl
+        { Ast.name = (Ast.Identifier "y"); init = (Some (Ast.LiteralInt 0));
+          storage = None });
+     (Ast.FunDecl
+        { Ast.name = (Ast.Identifier "main"); params = [];
+          body =
+          (Some (Ast.Block
+                   [(Ast.S
+                       (Ast.Expression
+                          (Ast.Assignment ((Ast.Var (Ast.Identifier "y")),
+                             Ast.Unary {op = Ast.Negate;
+                               exp = (Ast.LiteralInt 1)}
+                             ))));
+                     (Ast.S
+                        (Ast.Expression
+                           (Ast.Assignment ((Ast.Var (Ast.Identifier "x")),
+                              Ast.Binary {op = Ast.BwOr;
+                                left =
+                                Ast.Binary {op = Ast.BwLeftShift;
+                                  left = (Ast.Var (Ast.Identifier "x"));
+                                  right = (Ast.LiteralInt 1)};
+                                right = (Ast.LiteralInt 1)}
+                              ))));
+                     (Ast.S
+                        Ast.If {
+                          cond_exp =
+                          Ast.Binary {op = Ast.NotEqual;
+                            left = (Ast.Var (Ast.Identifier "x"));
+                            right = (Ast.LiteralInt 3)};
+                          then_smt =
+                          (Ast.Compound
+                             (Ast.Block
+                                [(Ast.S (Ast.Return (Ast.LiteralInt 1)))]));
+                          else_smt = None});
+                     (Ast.S
+                        (Ast.Expression
+                           (Ast.Assignment ((Ast.Var (Ast.Identifier "y")),
+                              Ast.Binary {op = Ast.BwRightShift;
+                                left =
+                                Ast.Binary {op = Ast.BwXor;
+                                  left =
+                                  Ast.Binary {op = Ast.BwAnd;
+                                    left = (Ast.Var (Ast.Identifier "y"));
+                                    right =
+                                    Ast.Unary {op = Ast.Negate;
+                                      exp = (Ast.LiteralInt 5)}};
+                                  right = (Ast.LiteralInt 12)};
+                                right = (Ast.LiteralInt 2)}
+                              ))));
+                     (Ast.S
+                        Ast.If {
+                          cond_exp =
+                          Ast.Binary {op = Ast.NotEqual;
+                            left = (Ast.Var (Ast.Identifier "y"));
+                            right =
+                            Ast.Unary {op = Ast.Negate;
+                              exp = (Ast.LiteralInt 3)}};
+                          then_smt =
+                          (Ast.Compound
+                             (Ast.Block
+                                [(Ast.S (Ast.Return (Ast.LiteralInt 2)))]));
+                          else_smt = None});
+                     (Ast.S (Ast.Return (Ast.LiteralInt 0)))]));
+          storage = None })
+     ])

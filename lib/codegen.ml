@@ -247,14 +247,17 @@ let compile_instruction (s : Ir.instruction) : Asm.instruction list =
       pad_stack @ pass_register_args @ pass_stack_args @ emit_call
       @ dealloc_stack @ ret_value
 
-let compile_func (f : Ir.func) : Asm.func =
+let compile_func (f : Ir.top_level) : Asm.top_level =
   match f with
   | Function fn ->
       let args_ins = copy_args_to_stack fn.params in
       let body_ins = List.map compile_instruction fn.body |> List.flatten in
       let instructions = args_ins @ body_ins in
       (* let stack_size = 4 * List.length fn.params in *)
-      Function { name = fn.name; instructions; frame = fn.frame }
+      Function
+        { name = fn.name; global = fn.global; instructions; frame = fn.frame }
+  | StaticVariable { name; global; init } ->
+      StaticVariable { name; global; init }
 
 let compile_prog (Program p : Ir.prog) : Asm.prog =
   let compiled_funcs = List.map (function f -> compile_func f) p in

@@ -1,6 +1,7 @@
 (Ast.Program
    [(Ast.FunDecl
-       { Ast.name = (Ast.Identifier "foo"); params = []; body = None });
+       { Ast.name = (Ast.Identifier "foo"); params = []; body = None;
+         storage = None });
      (Ast.FunDecl
         { Ast.name = (Ast.Identifier "main"); params = [];
           body =
@@ -9,10 +10,10 @@
                        (Ast.Return
                           Ast.FunctionCall {name = (Ast.Identifier "foo");
                             args = []}))
-                     ]))
-          });
+                     ]));
+          storage = None });
      (Ast.FunDecl
         { Ast.name = (Ast.Identifier "foo"); params = [];
-          body = (Some (Ast.Block [(Ast.S (Ast.Return (Ast.LiteralInt 3)))]))
-          })
+          body = (Some (Ast.Block [(Ast.S (Ast.Return (Ast.LiteralInt 3)))]));
+          storage = None })
      ])

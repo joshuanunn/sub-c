@@ -1,5 +1,5 @@
 (Asm.Program
-   [Asm.Function {name = "main";
+   [Asm.Function {name = "main"; global = true;
       instructions =
       [(Asm.AllocateStack 64); (Asm.Mov ((Asm.Imm 72), (Asm.Reg Asm.DI)));
         (Asm.Call "putchar"); (Asm.Mov ((Asm.Reg Asm.AX), (Asm.Stack -4)));

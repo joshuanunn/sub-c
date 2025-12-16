@@ -14,8 +14,8 @@
                                      cond_exp = (Ast.LiteralInt 2);
                                      then_exp = (Ast.LiteralInt 3);
                                      else_exp = (Ast.LiteralInt 4)};
-                                   else_exp = (Ast.LiteralInt 5)})
-                           }));
+                                   else_exp = (Ast.LiteralInt 5)});
+                           storage = None }));
                     (Ast.D
                        (Ast.VarDecl
                           { Ast.name = (Ast.Identifier "b.1");
@@ -27,13 +27,13 @@
                                       cond_exp = (Ast.LiteralInt 2);
                                       then_exp = (Ast.LiteralInt 3);
                                       else_exp = (Ast.LiteralInt 4)};
-                                    else_exp = (Ast.LiteralInt 5)})
-                            }));
+                                    else_exp = (Ast.LiteralInt 5)});
+                            storage = None }));
                     (Ast.S
                        (Ast.Return
                           Ast.Binary {op = Ast.Multiply;
                             left = (Ast.Var (Ast.Identifier "a.0"));
                             right = (Ast.Var (Ast.Identifier "b.1"))}))
-                    ]))
-         })
+                    ]));
+         storage = None })
      ])

@@ -6,7 +6,7 @@
                   [(Ast.D
                       (Ast.VarDecl
                          { Ast.name = (Ast.Identifier "result.0");
-                           init = None }));
+                           init = None; storage = None }));
                     (Ast.S
                        (Ast.Expression
                           Ast.Conditional {
@@ -23,6 +23,6 @@
                                (Ast.Var (Ast.Identifier "result.0")),
                                (Ast.LiteralInt 5)))}));
                     (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "result.0"))))
-                    ]))
-         })
+                    ]));
+         storage = None })
      ])

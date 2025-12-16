@@ -8,8 +8,8 @@
                          { Ast.name = (Ast.Identifier "a.0");
                            init =
                            (Some Ast.Unary {op = Ast.Negate;
-                                   exp = (Ast.LiteralInt 2147483647)})
-                           }));
+                                   exp = (Ast.LiteralInt 2147483647)});
+                           storage = None }));
                     (Ast.S
                        Ast.For {init = (Ast.InitExp None);
                          cond =
@@ -45,6 +45,6 @@
                             Ast.Binary {op = Ast.GreaterThan;
                               left = (Ast.Var (Ast.Identifier "a.0"));
                               right = (Ast.LiteralInt 0)}}))
-                    ]))
-         })
+                    ]));
+         storage = None })
      ])

@@ -6,11 +6,12 @@
                   [(Ast.D
                       (Ast.VarDecl
                          { Ast.name = (Ast.Identifier "a");
-                           init = (Some (Ast.LiteralInt 1)) }));
+                           init = (Some (Ast.LiteralInt 1)); storage = None }));
                     (Ast.D
                        (Ast.VarDecl
                           { Ast.name = (Ast.Identifier "b");
-                            init = (Some (Ast.LiteralInt 2)) }));
+                            init = (Some (Ast.LiteralInt 2)); storage = None
+                            }));
                     (Ast.D
                        (Ast.VarDecl
                           { Ast.name = (Ast.Identifier "c");
@@ -18,8 +19,8 @@
                             (Some Ast.Unary {op = Ast.Negate;
                                     exp =
                                     Ast.Unary {op = Ast.PreIncrement;
-                                      exp = (Ast.Var (Ast.Identifier "a"))}})
-                            }));
+                                      exp = (Ast.Var (Ast.Identifier "a"))}});
+                            storage = None }));
                     (Ast.D
                        (Ast.VarDecl
                           { Ast.name = (Ast.Identifier "d");
@@ -27,8 +28,8 @@
                             (Some Ast.Unary {op = Ast.Not;
                                     exp =
                                     Ast.Unary {op = Ast.PostDecrement;
-                                      exp = (Ast.Var (Ast.Identifier "b"))}})
-                            }));
+                                      exp = (Ast.Var (Ast.Identifier "b"))}});
+                            storage = None }));
                     (Ast.S
                        (Ast.Return
                           Ast.Binary {op = Ast.And;
@@ -54,6 +55,6 @@
                             Ast.Binary {op = Ast.Equal;
                               left = (Ast.Var (Ast.Identifier "d"));
                               right = (Ast.LiteralInt 0)}}))
-                    ]))
-         })
+                    ]));
+         storage = None })
      ])

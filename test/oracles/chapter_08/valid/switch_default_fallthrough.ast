@@ -6,7 +6,7 @@
                   [(Ast.D
                       (Ast.VarDecl
                          { Ast.name = (Ast.Identifier "a");
-                           init = (Some (Ast.LiteralInt 5)) }));
+                           init = (Some (Ast.LiteralInt 5)); storage = None }));
                     (Ast.S
                        Ast.Switch {cond = (Ast.LiteralInt 0);
                          body =
@@ -33,6 +33,6 @@
                           Ast.Binary {op = Ast.Add;
                             left = (Ast.Var (Ast.Identifier "a"));
                             right = (Ast.LiteralInt 1)}))
-                    ]))
-         })
+                    ]));
+         storage = None })
      ])

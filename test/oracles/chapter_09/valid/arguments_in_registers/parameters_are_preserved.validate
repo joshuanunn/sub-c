@@ -32,8 +32,8 @@
                             right = (Ast.LiteralInt 8)}};
                         then_smt = (Ast.Return (Ast.LiteralInt 1));
                         else_smt = None});
-                    (Ast.S (Ast.Return (Ast.LiteralInt 0)))]))
-         });
+                    (Ast.S (Ast.Return (Ast.LiteralInt 0)))]));
+         storage = None });
      (Ast.FunDecl
         { Ast.name = (Ast.Identifier "f");
           params =
@@ -64,8 +64,8 @@
                                         left =
                                         (Ast.Var (Ast.Identifier "d.7"));
                                         right = (Ast.LiteralInt 2)}
-                                      ]})
-                            }));
+                                      ]});
+                            storage = None }));
                      (Ast.S
                         (Ast.Return
                            Ast.Binary {op = Ast.And;
@@ -96,8 +96,8 @@
                              Ast.Binary {op = Ast.Equal;
                                left = (Ast.Var (Ast.Identifier "d.7"));
                                right = (Ast.LiteralInt 4)}}))
-                     ]))
-          });
+                     ]));
+          storage = None });
      (Ast.FunDecl
         { Ast.name = (Ast.Identifier "main"); params = [];
           body =
@@ -108,6 +108,6 @@
                             args =
                             [(Ast.LiteralInt 1); (Ast.LiteralInt 2);
                               (Ast.LiteralInt 3); (Ast.LiteralInt 4)]}))
-                     ]))
-          })
+                     ]));
+          storage = None })
      ])

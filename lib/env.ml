@@ -4,6 +4,9 @@ let get_identifier_name = function
   | Ast.Identifier name -> name
   | _ -> failwith "expected Identifier"
 
+(** Extract the string name from a resolved AST identifier. *)
+let ident_name (id : Ast.ident) : string = get_identifier_name id
+
 (** ------------------------------------------------------------------------
     Local environment (lenv)
     ------------------------------------------------------------------------
@@ -54,7 +57,7 @@ let make_lenv () : lenv =
     - Allocates 4 bytes on the stack (decreases offset)
     - Stores the mapping in [stack_offsets]
     - Returns the unique name *)
-let declare_value (name : string) (le : lenv) : string =
+let declare_value (le : lenv) (name : string) : string =
   let eid = name ^ "." ^ string_of_int le.counter in
   let new_offset = le.offset - 4 in
   Hashtbl.add le.stack_offsets eid new_offset;
@@ -63,7 +66,7 @@ let declare_value (name : string) (le : lenv) : string =
   eid
 
 (** Insert a user-declared variable into the stack offset table. *)
-let insert_value (id : Ast.ident) (le : lenv) : unit =
+let insert_value (le : lenv) (id : Ast.ident) : unit =
   let name = get_identifier_name id in
   let new_offset = le.offset - 4 in
   Hashtbl.add le.stack_offsets name new_offset;
@@ -71,13 +74,13 @@ let insert_value (id : Ast.ident) (le : lenv) : unit =
   ()
 
 (** Declare a unique label name for control-flow constructs *)
-let declare_label (name : string) (le : lenv) : string =
+let declare_label (le : lenv) (name : string) : string =
   let eid = name ^ "." ^ string_of_int le.counter in
   le.counter <- le.counter + 1;
   eid
 
 (** Look up the stack offset for a given variable name. Raises if not found. *)
-let get_value_offset (name : string) (le : lenv) : int =
+let get_value_offset (le : lenv) (name : string) : int =
   Hashtbl.find le.stack_offsets name
 
 (** ------------------------------------------------------------------------
@@ -87,9 +90,14 @@ let get_value_offset (name : string) (le : lenv) : int =
     entry in [ident_stack] and [label_stack] represents one lexical scope. New
     blocks or functions push a new scope; leaving them pops it. *)
 
+type ident_entry = {
+  unique : string;
+  has_linkage : bool; (* extern or static(file-scope) *)
+}
+
 type senv = {
   mutable counter : int;  (** Unique counter for generating names *)
-  mutable ident_stack : (string, string * bool) Hashtbl.t list;
+  mutable ident_stack : (string, ident_entry) Hashtbl.t list;
   mutable label_stack : (string, string) Hashtbl.t list;
 }
 
@@ -121,9 +129,15 @@ let pop_label_scope (se : senv) =
   | [] -> failwith "no label scope to pop"
   | _ :: rest -> se.label_stack <- rest
 
+(** Look up an identifier in the current (innermost) scope only. *)
+let find_in_current_scope (se : senv) (id : Ast.ident) =
+  match se.ident_stack with
+  | scope :: _ -> Hashtbl.find_opt scope (ident_name id)
+  | [] -> None
+
 (** Declare a new variable in the current scope. Generates a unique name (e.g.
     "x.3"). Raises if the variable already exists in the same scope. *)
-let declare_var (id : Ast.ident) (se : senv) : Ast.ident =
+let declare_var (se : senv) (id : Ast.ident) : Ast.ident =
   let name = get_identifier_name id in
   let has_linkage = false in
   match se.ident_stack with
@@ -133,54 +147,69 @@ let declare_var (id : Ast.ident) (se : senv) : Ast.ident =
         failwith ("variable " ^ name ^ " already declared in current scope");
       let unique = name ^ "." ^ string_of_int se.counter in
       se.counter <- se.counter + 1;
-      Hashtbl.add top_scope name (unique, has_linkage);
+      Hashtbl.add top_scope name { unique; has_linkage };
       Identifier unique
+
+(** Declare a new file scope variable. These always have linkage (true). *)
+let declare_var_fscope (se : senv) (id : Ast.ident) : Ast.ident =
+  let name = get_identifier_name id in
+  let has_linkage = true in
+  let entry = { unique = name; has_linkage } in
+  match se.ident_stack with
+  | [] -> failwith "declare_var_fscope: no scope"
+  | top_scope :: _ ->
+      (match Hashtbl.find_opt top_scope name with
+      | Some prev when not prev.has_linkage ->
+          failwith ("conflicting file-scope declaration of " ^ name)
+      | _ -> ());
+      Hashtbl.replace top_scope name entry;
+      Ast.Identifier name
 
 (** Declare a new function in the current scope. Functions have linkage (true).
     Raises if a function with the same name already exists in the current scope
     and does not have linkage. *)
-let declare_fun (id : Ast.ident) (se : senv) : Ast.ident =
+let declare_fun (se : senv) (id : Ast.ident) : Ast.ident =
   let name = get_identifier_name id in
   let has_linkage = true in
   match se.ident_stack with
   | [] -> failwith "declare fun: no active scope"
   | top_scope :: _ -> (
       match Hashtbl.find_opt top_scope name with
-      | Some (_, false) ->
+      | Some { has_linkage = false; _ } ->
           failwith ("function " ^ name ^ " already declared in current scope")
       | Some _ | None ->
-          Hashtbl.add top_scope name (name, has_linkage);
+          Hashtbl.add top_scope name { unique = name; has_linkage };
           Identifier name)
 
 (** Resolve a variable by searching from innermost to outermost scope. Raises if
     the variable is not found. *)
-let resolve_var (id : Ast.ident) (se : senv) : Ast.ident =
+let resolve_var (se : senv) (id : Ast.ident) : Ast.ident =
   let name = get_identifier_name id in
   let rec find = function
     | [] -> failwith ("variable " ^ name ^ " is not defined")
     | scope :: rest -> (
         match Hashtbl.find_opt scope name with
-        | Some (unique, _) -> Ast.Identifier unique
+        | Some { unique; _ } -> Ast.Identifier unique
         | None -> find rest)
   in
   find se.ident_stack
 
 (** Resolve a function by searching from innermost to outermost scope. Raises if
     the function is not found. *)
-let resolve_fun (id : Ast.ident) (se : senv) : Ast.ident =
+let resolve_fun (se : senv) (id : Ast.ident) : Ast.ident =
   let name = get_identifier_name id in
   let rec find = function
     | [] -> failwith ("function " ^ name ^ " is not defined")
     | scope :: rest -> (
         match Hashtbl.find_opt scope name with
-        | Some (unique, _) -> Ast.Identifier unique
+        | Some { unique; _ } -> Ast.Identifier unique
         | None -> find rest)
   in
   find se.ident_stack
 
 (** Declare a label in the current scope. Labels must be unique within the same
     scope. *)
-let declare_lab (id : Ast.ident) (se : senv) : Ast.ident =
+let declare_lab (se : senv) (id : Ast.ident) : Ast.ident =
   let name = get_identifier_name id in
   match se.label_stack with
   | [] -> failwith "declare lab: no active scope"
@@ -194,7 +223,7 @@ let declare_lab (id : Ast.ident) (se : senv) : Ast.ident =
 
 (** Resolve a label by searching outward through the label stack. Raises if the
     label is not found. *)
-let resolve_lab (id : Ast.ident) (se : senv) : Ast.ident =
+let resolve_lab (se : senv) (id : Ast.ident) : Ast.ident =
   let name = get_identifier_name id in
   let rec find = function
     | [] -> failwith ("label " ^ name ^ " is not defined")
@@ -208,60 +237,97 @@ let resolve_lab (id : Ast.ident) (se : senv) : Ast.ident =
 (** ------------------------------------------------------------------------
     Type environment (tenv)
     ------------------------------------------------------------------------
-    Handles type checking of identifiers at the AST level. This should be used
-    after the resolution pass has resolved scoping, to ensure identifiers have
-    unique names before typing. *)
+    Records type and storage information for resolved identifiers.
 
-type type_entry = { c_type : Type.ctype; defined : bool }
+    This environment is populated during the type-checking pass, after name
+    resolution has ensured that all identifiers are uniquely scoped. It is used
+    to validate variable and function usage and to enforce C’s rules around
+    linkage, storage duration, and definitions. *)
+
+(** Initial value information for objects with static storage duration. *)
+type initial_value =
+  | Tentative  (** Tentative definition (no initialiser seen yet) *)
+  | Initial of int  (** Explicit constant initialiser *)
+  | NoInitialiser  (** Declared without initialiser (e.g. extern) *)
+
+(** Attributes associated with a typed identifier. *)
+type identifier_attrs =
+  | FunAttr of {
+      defined : bool;  (** Whether a function body has been seen *)
+      global : bool;  (** Whether the function has external linkage *)
+    }
+  | StaticAttr of {
+      init : initial_value;  (** Static object initialiser state *)
+      global : bool;  (** Whether the object has external linkage *)
+    }
+  | LocalAttr  (** Automatic storage duration (block-scope variable) *)
+
+type type_entry = {
+  c_type : Type.ctype;  (** The C type of the identifier *)
+  attrs : identifier_attrs;  (** Storage, linkage, and definition metadata *)
+}
+
 type tenv = { mutable typed_idents : (string, type_entry) Hashtbl.t }
+(** Type environment mapping resolved identifier names to type entries. *)
 
-(** Create a new type environment with a single global scope *)
+(** Create a new type environment with an empty global scope *)
 let make_tenv () : tenv = { typed_idents = Hashtbl.create 16 }
 
-(** Add a variable into type environment. *)
-let typecheck_var_decl (id : Ast.ident) (te : tenv) : Ast.ident =
-  let var_name = get_identifier_name id in
+(** Look up a typed identifier in the environment. *)
+let find (te : tenv) (id : Ast.ident) : type_entry option =
+  Hashtbl.find_opt te.typed_idents (ident_name id)
 
-  (* As variables already have unique names from the AST resolution pass, then
-    no need to check if they exist in the type environment. We just add them. *)
-  Hashtbl.add te.typed_idents var_name { c_type = Type.Int; defined = true };
-  id
+(** Add a new typed identifier to the environment. Assumes the identifier has
+    not already been declared. *)
+let add (te : tenv) (id : Ast.ident) (entry : type_entry) : unit =
+  Hashtbl.add te.typed_idents (ident_name id) entry
 
-(** Add a function into type environment. Raises if a function has been defined
-    before or if function definition does not match a previous entry. *)
-let typecheck_fun_decl (id : Ast.ident) (params : Ast.ident list)
-    (is_def : bool) (te : tenv) : Ast.ident =
-  let fun_name = get_identifier_name id in
-  let fun_type = Type.FunType { param_count = List.length params } in
+(** Insert or update a typed identifier in the environment. *)
+let replace (te : tenv) (id : Ast.ident) (entry : type_entry) : unit =
+  Hashtbl.replace te.typed_idents (ident_name id) entry
 
-  (match Hashtbl.find_opt te.typed_idents fun_name with
-  | None ->
-      Hashtbl.add te.typed_idents fun_name
-        { c_type = fun_type; defined = is_def }
-  | Some { c_type; defined } ->
-      if c_type <> fun_type then failwith "incompatible function declarations"
-      else if is_def && defined then failwith "function defined more than once"
-      else
-        Hashtbl.add te.typed_idents fun_name
-          { c_type = fun_type; defined = is_def });
-  id
-
-(** Assert a variable has been typechecked and has been used correctly. *)
-let typecheck_assert_var (id : Ast.ident) (te : tenv) : Ast.ident =
-  let var_name = get_identifier_name id in
-  (match Hashtbl.find_opt te.typed_idents var_name with
+(** Assert that an identifier refers to a variable of integer type. Raises if
+    the identifier is undeclared or refers to a function. *)
+let assert_var (te : tenv) (id : Ast.ident) : unit =
+  match find te id with
   | None -> failwith "variable has not been typechecked"
-  | Some { c_type; _ } ->
-      if c_type <> Type.Int then failwith "function name used as variable");
-  id
+  | Some { c_type = Type.Int; _ } -> ()
+  | Some _ -> failwith "function name used as variable"
 
-(** Assert a function has been typechecked and has been used correctly. *)
-let typecheck_assert_fun (id : Ast.ident) (argc : int) (te : tenv) : Ast.ident =
-  let fun_name = get_identifier_name id in
-  (match Hashtbl.find_opt te.typed_idents fun_name with
+(** Assert that an identifier refers to a function with the given arity. Raises
+    if the identifier is undeclared, refers to a variable, or is called with the
+    wrong number of arguments. *)
+let assert_fun (te : tenv) (id : Ast.ident) (argc : int) : unit =
+  match find te id with
   | None -> failwith "function has not been typechecked"
   | Some { c_type = Type.FunType p; _ } ->
       if p.param_count <> argc then
         failwith "function called with the wrong number of arguments"
-  | Some _ -> failwith "variable used as function name");
-  id
+  | Some _ -> failwith "variable used as function name"
+
+(** Determine whether a function has external linkage. Looks up the function
+    [id] in the type environment and returns [true] if the function has external
+    linkage (i.e. should be emitted as a global symbol), or [false] if it has
+    internal linkage (declared [static]).*)
+let fun_is_global (te : tenv) (id : Ast.ident) : bool =
+  match find te id with
+  | Some { attrs = FunAttr { global; _ }; _ } -> global
+  | _ -> failwith "internal error: function not found in type environment"
+
+(** Collect all static variables recorded in the type environment. Returns a
+    list of triples [(name, init, global)] for each identifier with
+    [StaticAttr]. Entries with other attributes are ignored. *)
+let static_vars (te : tenv) : (string * initial_value * bool) list =
+  Hashtbl.fold
+    (fun name entry acc ->
+      match entry.attrs with
+      | StaticAttr { init; global } -> (name, init, global) :: acc
+      | _ -> acc)
+    te.typed_idents []
+
+(** Return [true] if the identifier has static storage duration. *)
+let is_static (te : tenv) (id : Ast.ident) : bool =
+  match find te id with Some { attrs = StaticAttr _; _ } -> true | _ -> false
+
+let is_static_name (te : tenv) (name : string) : bool =
+  is_static te (Ast.Identifier name)

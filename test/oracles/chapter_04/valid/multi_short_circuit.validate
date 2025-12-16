@@ -13,6 +13,6 @@
                              Ast.Binary {op = Ast.Divide;
                                left = (Ast.LiteralInt 1);
                                right = (Ast.LiteralInt 0)}}}))
-                    ]))
-         })
+                    ]));
+         storage = None })
      ])

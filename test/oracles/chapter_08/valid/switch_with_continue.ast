@@ -22,8 +22,8 @@
                                                   { Ast.name =
                                                     (Ast.Identifier "acc");
                                                     init =
-                                                    (Some (Ast.LiteralInt 0))
-                                                    }));
+                                                    (Some (Ast.LiteralInt 0));
+                                                    storage = None }));
                                              (Ast.S
                                                 Ast.For {
                                                   init =
@@ -32,8 +32,8 @@
                                                        (Ast.Identifier "i");
                                                        init =
                                                        (Some (Ast.LiteralInt
-                                                                0))
-                                                       });
+                                                                0));
+                                                       storage = None });
                                                   cond =
                                                   (Some Ast.Binary {
                                                           op = Ast.LessThan;
@@ -107,6 +107,6 @@
                                      id = None})
                                 ]));
                         id = None});
-                    (Ast.S (Ast.Return (Ast.LiteralInt 0)))]))
-         })
+                    (Ast.S (Ast.Return (Ast.LiteralInt 0)))]));
+         storage = None })
      ])

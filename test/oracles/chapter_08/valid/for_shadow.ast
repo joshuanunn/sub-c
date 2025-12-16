@@ -6,17 +6,19 @@
                   [(Ast.D
                       (Ast.VarDecl
                          { Ast.name = (Ast.Identifier "shadow");
-                           init = (Some (Ast.LiteralInt 1)) }));
+                           init = (Some (Ast.LiteralInt 1)); storage = None }));
                     (Ast.D
                        (Ast.VarDecl
                           { Ast.name = (Ast.Identifier "acc");
-                            init = (Some (Ast.LiteralInt 0)) }));
+                            init = (Some (Ast.LiteralInt 0)); storage = None
+                            }));
                     (Ast.S
                        Ast.For {
                          init =
                          (Ast.InclDecl
                             { Ast.name = (Ast.Identifier "shadow");
-                              init = (Some (Ast.LiteralInt 0)) });
+                              init = (Some (Ast.LiteralInt 0));
+                              storage = None });
                          cond =
                          (Some Ast.Binary {op = Ast.LessThan;
                                  left = (Ast.Var (Ast.Identifier "shadow"));
@@ -55,6 +57,6 @@
                             Ast.Binary {op = Ast.Equal;
                               left = (Ast.Var (Ast.Identifier "shadow"));
                               right = (Ast.LiteralInt 1)}}))
-                    ]))
-         })
+                    ]));
+         storage = None })
      ])

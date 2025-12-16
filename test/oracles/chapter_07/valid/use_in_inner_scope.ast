@@ -5,7 +5,8 @@
          (Some (Ast.Block
                   [(Ast.D
                       (Ast.VarDecl
-                         { Ast.name = (Ast.Identifier "x"); init = None }));
+                         { Ast.name = (Ast.Identifier "x"); init = None;
+                           storage = None }));
                     (Ast.S
                        (Ast.Compound
                           (Ast.Block
@@ -21,6 +22,6 @@
                              [(Ast.S
                                  (Ast.Return (Ast.Var (Ast.Identifier "x"))))
                                ])))
-                    ]))
-         })
+                    ]));
+         storage = None })
      ])

@@ -1,0 +1,122 @@
+(Ast.Program
+   [(Ast.FunDecl
+       { Ast.name = (Ast.Identifier "f"); params = [];
+         body =
+         (Some (Ast.Block
+                  [(Ast.D
+                      (Ast.VarDecl
+                         { Ast.name = (Ast.Identifier "i.0");
+                           init = (Some (Ast.LiteralInt 0));
+                           storage = (Some Ast.Static) }));
+                    (Ast.D
+                       (Ast.VarDecl
+                          { Ast.name = (Ast.Identifier "j.1");
+                            init = (Some (Ast.LiteralInt 0));
+                            storage = (Some Ast.Static) }));
+                    (Ast.D
+                       (Ast.VarDecl
+                          { Ast.name = (Ast.Identifier "k.2");
+                            init = (Some (Ast.LiteralInt 1));
+                            storage = (Some Ast.Static) }));
+                    (Ast.D
+                       (Ast.VarDecl
+                          { Ast.name = (Ast.Identifier "l.3");
+                            init = (Some (Ast.LiteralInt 48));
+                            storage = (Some Ast.Static) }));
+                    (Ast.S
+                       (Ast.Expression
+                          (Ast.Assignment ((Ast.Var (Ast.Identifier "i.0")),
+                             Ast.Binary {op = Ast.Add;
+                               left = (Ast.Var (Ast.Identifier "i.0"));
+                               right = (Ast.LiteralInt 1)}
+                             ))));
+                    (Ast.S
+                       (Ast.Expression
+                          (Ast.Assignment ((Ast.Var (Ast.Identifier "j.1")),
+                             Ast.Binary {op = Ast.Subtract;
+                               left = (Ast.Var (Ast.Identifier "j.1"));
+                               right = (Ast.Var (Ast.Identifier "i.0"))}
+                             ))));
+                    (Ast.S
+                       (Ast.Expression
+                          (Ast.Assignment ((Ast.Var (Ast.Identifier "k.2")),
+                             Ast.Binary {op = Ast.Multiply;
+                               left = (Ast.Var (Ast.Identifier "k.2"));
+                               right = (Ast.Var (Ast.Identifier "j.1"))}
+                             ))));
+                    (Ast.S
+                       (Ast.Expression
+                          (Ast.Assignment ((Ast.Var (Ast.Identifier "l.3")),
+                             Ast.Binary {op = Ast.Divide;
+                               left = (Ast.Var (Ast.Identifier "l.3"));
+                               right = (Ast.LiteralInt 2)}
+                             ))));
+                    (Ast.S
+                       Ast.If {
+                         cond_exp =
+                         Ast.Binary {op = Ast.NotEqual;
+                           left = (Ast.Var (Ast.Identifier "i.0"));
+                           right = (Ast.LiteralInt 3)};
+                         then_smt =
+                         (Ast.Compound
+                            (Ast.Block
+                               [(Ast.S (Ast.Return (Ast.LiteralInt 1)))]));
+                         else_smt = None});
+                    (Ast.S
+                       Ast.If {
+                         cond_exp =
+                         Ast.Binary {op = Ast.NotEqual;
+                           left = (Ast.Var (Ast.Identifier "j.1"));
+                           right =
+                           Ast.Unary {op = Ast.Negate;
+                             exp = (Ast.LiteralInt 6)}};
+                         then_smt =
+                         (Ast.Compound
+                            (Ast.Block
+                               [(Ast.S (Ast.Return (Ast.LiteralInt 2)))]));
+                         else_smt = None});
+                    (Ast.S
+                       Ast.If {
+                         cond_exp =
+                         Ast.Binary {op = Ast.NotEqual;
+                           left = (Ast.Var (Ast.Identifier "k.2"));
+                           right =
+                           Ast.Unary {op = Ast.Negate;
+                             exp = (Ast.LiteralInt 18)}};
+                         then_smt =
+                         (Ast.Compound
+                            (Ast.Block
+                               [(Ast.S (Ast.Return (Ast.LiteralInt 3)))]));
+                         else_smt = None});
+                    (Ast.S
+                       Ast.If {
+                         cond_exp =
+                         Ast.Binary {op = Ast.NotEqual;
+                           left = (Ast.Var (Ast.Identifier "l.3"));
+                           right = (Ast.LiteralInt 6)};
+                         then_smt =
+                         (Ast.Compound
+                            (Ast.Block
+                               [(Ast.S (Ast.Return (Ast.LiteralInt 4)))]));
+                         else_smt = None});
+                    (Ast.S (Ast.Return (Ast.LiteralInt 0)))]));
+         storage = None });
+     (Ast.FunDecl
+        { Ast.name = (Ast.Identifier "main"); params = [];
+          body =
+          (Some (Ast.Block
+                   [(Ast.S
+                       (Ast.Expression
+                          Ast.FunctionCall {name = (Ast.Identifier "f");
+                            args = []}));
+                     (Ast.S
+                        (Ast.Expression
+                           Ast.FunctionCall {name = (Ast.Identifier "f");
+                             args = []}));
+                     (Ast.S
+                        (Ast.Return
+                           Ast.FunctionCall {name = (Ast.Identifier "f");
+                             args = []}))
+                     ]));
+          storage = None })
+     ])

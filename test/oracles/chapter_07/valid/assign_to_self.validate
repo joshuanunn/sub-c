@@ -6,7 +6,7 @@
                   [(Ast.D
                       (Ast.VarDecl
                          { Ast.name = (Ast.Identifier "a.0");
-                           init = (Some (Ast.LiteralInt 3)) }));
+                           init = (Some (Ast.LiteralInt 3)); storage = None }));
                     (Ast.S
                        (Ast.Compound
                           (Ast.Block
@@ -17,12 +17,12 @@
                                       (Some (Ast.Assignment (
                                                (Ast.Var
                                                   (Ast.Identifier "a.1")),
-                                               (Ast.LiteralInt 4))))
-                                      }));
+                                               (Ast.LiteralInt 4))));
+                                      storage = None }));
                                (Ast.S
                                   (Ast.Return
                                      (Ast.Var (Ast.Identifier "a.1"))))
                                ])))
-                    ]))
-         })
+                    ]));
+         storage = None })
      ])

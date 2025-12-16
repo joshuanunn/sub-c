@@ -14,6 +14,6 @@
                           right = (Ast.LiteralInt 4)};
                         then_smt = (Ast.Return (Ast.LiteralInt 5));
                         else_smt = None})
-                    ]))
-         })
+                    ]));
+         storage = None })
      ])

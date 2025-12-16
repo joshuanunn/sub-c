@@ -1,5 +1,5 @@
 (Ir.Program
-   [Ir.Function {name = "main"; params = [];
+   [Ir.Function {name = "main"; global = true; params = [];
       body =
       [Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "i.1")};
         (Ir.Label "loop.st.1"); (Ir.Label "while_start.0");

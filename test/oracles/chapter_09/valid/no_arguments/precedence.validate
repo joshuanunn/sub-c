@@ -1,8 +1,8 @@
 (Ast.Program
    [(Ast.FunDecl
        { Ast.name = (Ast.Identifier "three"); params = [];
-         body = (Some (Ast.Block [(Ast.S (Ast.Return (Ast.LiteralInt 3)))]))
-         });
+         body = (Some (Ast.Block [(Ast.S (Ast.Return (Ast.LiteralInt 3)))]));
+         storage = None });
      (Ast.FunDecl
         { Ast.name = (Ast.Identifier "main"); params = [];
           body =
@@ -13,6 +13,6 @@
                             exp =
                             Ast.FunctionCall {
                               name = (Ast.Identifier "three"); args = []}}))
-                     ]))
-          })
+                     ]));
+          storage = None })
      ])

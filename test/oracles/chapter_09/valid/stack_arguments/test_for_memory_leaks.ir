@@ -1,5 +1,5 @@
 (Ir.Program
-   [Ir.Function {name = "lots_of_args";
+   [Ir.Function {name = "lots_of_args"; global = true;
       params =
       ["a.0"; "b.1"; "c.2"; "d.3"; "e.4"; "f.5"; "g.6"; "h.7"; "i.8"; "j.9";
         "k.10"; "l.11"; "m.12"; "n.13"; "o.14"];
@@ -29,7 +29,7 @@
           n.13  -> -60,
           o.14  -> -64,
         }}};
-     Ir.Function {name = "main"; params = [];
+     Ir.Function {name = "main"; global = true; params = [];
        body =
        [Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "ret.15")};
          Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "i.16")};

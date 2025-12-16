@@ -26,6 +26,6 @@
                                      id = (Some (Ast.SwitchLabel "1"))})
                                 ]));
                         id = (Some (Ast.SwitchLabel "1"))})
-                    ]))
-         })
+                    ]));
+         storage = None })
      ])

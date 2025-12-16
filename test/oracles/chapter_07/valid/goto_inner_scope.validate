@@ -6,7 +6,7 @@
                   [(Ast.D
                       (Ast.VarDecl
                          { Ast.name = (Ast.Identifier "x.1");
-                           init = (Some (Ast.LiteralInt 5)) }));
+                           init = (Some (Ast.LiteralInt 5)); storage = None }));
                     (Ast.S (Ast.Goto (Ast.GotoLabel "inner.0")));
                     (Ast.S
                        (Ast.Compound
@@ -14,7 +14,8 @@
                              [(Ast.D
                                  (Ast.VarDecl
                                     { Ast.name = (Ast.Identifier "x.2");
-                                      init = (Some (Ast.LiteralInt 0)) }));
+                                      init = (Some (Ast.LiteralInt 0));
+                                      storage = None }));
                                (Ast.S
                                   (Ast.Label ((Ast.GotoLabel "inner.0"),
                                      (Ast.Expression
@@ -26,6 +27,6 @@
                                   (Ast.Return
                                      (Ast.Var (Ast.Identifier "x.2"))))
                                ])))
-                    ]))
-         })
+                    ]));
+         storage = None })
      ])

@@ -1,6 +1,8 @@
-let binary_mem_mem_fix (op : Asm.binary_operator) (s : int) (d : int) :
-    Asm.instruction list =
-  [ Mov (Stack s, Reg R10); Binary { op; src = Reg R10; dst = Stack d } ]
+let is_mem_operand = function Asm.Stack _ | Asm.Data _ -> true | _ -> false
+
+let binary_mem_mem_fix (op : Asm.binary_operator) (src : Asm.operand)
+    (dst : Asm.operand) : Asm.instruction list =
+  [ Mov (src, Reg R10); Binary { op; src = Reg R10; dst } ]
 
 let setcc_low_byte_fix (cc : Asm.cond_code) (hi : Asm.reg) (lo : Asm.reg) :
     Asm.instruction list =
@@ -18,30 +20,24 @@ let setcc_low_byte_fix (cc : Asm.cond_code) (hi : Asm.reg) (lo : Asm.reg) :
 let fixup_instruction (i : Asm.instruction) : Asm.instruction list =
   match i with
   (* mov cannot use memory addresses as both source and destination *)
-  | Mov (Stack s, Stack d) -> [ Mov (Stack s, Reg R10); Mov (Reg R10, Stack d) ]
+  | Mov (src, dst) when is_mem_operand src && is_mem_operand dst ->
+      [ Mov (src, Reg R10); Mov (Reg R10, dst) ]
   (* cmp cannot use memory addresses as both source and destination *)
-  | Cmp (Stack s, Stack d) -> [ Mov (Stack s, Reg R10); Cmp (Reg R10, Stack d) ]
-  (* binary ops that cannot use memory addresses as both src and dest *)
-  | Binary { op = Add; src = Stack s; dst = Stack d } ->
-      binary_mem_mem_fix Add s d
-  | Binary { op = Sub; src = Stack s; dst = Stack d } ->
-      binary_mem_mem_fix Sub s d
-  | Binary { op = BwAnd; src = Stack s; dst = Stack d } ->
-      binary_mem_mem_fix BwAnd s d
-  | Binary { op = BwXor; src = Stack s; dst = Stack d } ->
-      binary_mem_mem_fix BwXor s d
-  | Binary { op = BwOr; src = Stack s; dst = Stack d } ->
-      binary_mem_mem_fix BwOr s d
+  | Cmp (src, dst) when is_mem_operand src && is_mem_operand dst ->
+      [ Mov (src, Reg R10); Cmp (Reg R10, dst) ]
   (* mul cannot have memory address or constant as destination *)
   | Binary { op = Mult; src; dst } -> (
       match dst with
-      | Stack _ | Imm _ ->
+      | Stack _ | Data _ | Imm _ ->
           [
             Mov (dst, Reg R11);
             Binary { op = Mult; src; dst = Reg R11 };
             Mov (Reg R11, dst);
           ]
       | _ -> [ i ])
+  (* other binary ops that cannot use memory addresses as both src and dest *)
+  | Binary { op; src; dst } when is_mem_operand src && is_mem_operand dst ->
+      binary_mem_mem_fix op src dst
   (* binary ops that cannot operate on constant values *)
   | Binary { op = Add; src; dst = Imm d } ->
       [ Mov (Imm d, Reg R11); Binary { op = Add; src; dst = Reg R11 } ]
@@ -57,7 +53,7 @@ let fixup_instruction (i : Asm.instruction) : Asm.instruction list =
     applying [fixup_instruction] to each instruction. It also prepends a stack
     allocation instruction based on the function frame, if necessary. This may
     expand a single instruction into multiple valid ones. *)
-let fixup_func (f : Asm.func) : Asm.func =
+let fixup_func (f : Asm.top_level) : Asm.top_level =
   match f with
   | Function fn ->
       let fixed_func_instrs =
@@ -73,9 +69,11 @@ let fixup_func (f : Asm.func) : Asm.func =
       Function
         {
           name = fn.name;
+          global = fn.global;
           instructions = stack_alloc_instrs @ fixed_func_instrs;
           frame = fn.frame;
         }
+  | StaticVariable v -> StaticVariable v
 
 (** [fixup_prog p] rewrites the assembly program [p] by fixing up any invalid
     instructions in each function and prepending stack allocation based on the

@@ -11,6 +11,6 @@
                              left = (Ast.LiteralInt 6);
                              right = (Ast.LiteralInt 3)};
                            right = (Ast.LiteralInt 2)}))
-                    ]))
-         })
+                    ]));
+         storage = None })
      ])

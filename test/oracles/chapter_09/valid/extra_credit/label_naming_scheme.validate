@@ -8,8 +8,8 @@
                          (Ast.Label ((Ast.GotoLabel "label_.1"),
                             (Ast.Return (Ast.LiteralInt 0))))
                          )))
-                    ]))
-         });
+                    ]));
+         storage = None });
      (Ast.FunDecl
         { Ast.name = (Ast.Identifier "main_"); params = [];
           body =
@@ -17,8 +17,8 @@
                    [(Ast.S
                        (Ast.Label ((Ast.GotoLabel "label.2"),
                           (Ast.Return (Ast.LiteralInt 0)))))
-                     ]))
-          });
+                     ]));
+          storage = None });
      (Ast.FunDecl
         { Ast.name = (Ast.Identifier "_main"); params = [];
           body =
@@ -26,6 +26,6 @@
                    [(Ast.S
                        (Ast.Label ((Ast.GotoLabel "label.3"),
                           (Ast.Return (Ast.LiteralInt 0)))))
-                     ]))
-          })
+                     ]));
+          storage = None })
      ])

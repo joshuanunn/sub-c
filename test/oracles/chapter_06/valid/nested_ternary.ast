@@ -6,15 +6,17 @@
                   [(Ast.D
                       (Ast.VarDecl
                          { Ast.name = (Ast.Identifier "a");
-                           init = (Some (Ast.LiteralInt 1)) }));
+                           init = (Some (Ast.LiteralInt 1)); storage = None }));
                     (Ast.D
                        (Ast.VarDecl
                           { Ast.name = (Ast.Identifier "b");
-                            init = (Some (Ast.LiteralInt 2)) }));
+                            init = (Some (Ast.LiteralInt 2)); storage = None
+                            }));
                     (Ast.D
                        (Ast.VarDecl
                           { Ast.name = (Ast.Identifier "flag");
-                            init = (Some (Ast.LiteralInt 0)) }));
+                            init = (Some (Ast.LiteralInt 0)); storage = None
+                            }));
                     (Ast.S
                        (Ast.Return
                           Ast.Conditional {
@@ -28,6 +30,6 @@
                               cond_exp = (Ast.Var (Ast.Identifier "flag"));
                               then_exp = (Ast.LiteralInt 6);
                               else_exp = (Ast.LiteralInt 7)}}))
-                    ]))
-         })
+                    ]));
+         storage = None })
      ])

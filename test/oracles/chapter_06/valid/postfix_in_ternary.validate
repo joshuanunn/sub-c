@@ -6,7 +6,8 @@
                   [(Ast.D
                       (Ast.VarDecl
                          { Ast.name = (Ast.Identifier "x.0");
-                           init = (Some (Ast.LiteralInt 10)) }));
+                           init = (Some (Ast.LiteralInt 10)); storage = None
+                           }));
                     (Ast.S
                        (Ast.Expression
                           Ast.Conditional {
@@ -18,6 +19,6 @@
                             else_exp =
                             Ast.Unary {op = Ast.PostDecrement;
                               exp = (Ast.Var (Ast.Identifier "x.0"))}}));
-                    (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "x.0"))))]))
-         })
+                    (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "x.0"))))]));
+         storage = None })
      ])

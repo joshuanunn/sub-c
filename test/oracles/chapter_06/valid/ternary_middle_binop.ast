@@ -13,8 +13,8 @@
                                    Ast.Binary {op = Ast.Remainder;
                                      left = (Ast.LiteralInt 3);
                                      right = (Ast.LiteralInt 2)};
-                                   else_exp = (Ast.LiteralInt 4)})
-                           }));
-                    (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "a"))))]))
-         })
+                                   else_exp = (Ast.LiteralInt 4)});
+                           storage = None }));
+                    (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "a"))))]));
+         storage = None })
      ])

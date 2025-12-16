@@ -6,6 +6,6 @@
                   [(Ast.S
                       (Ast.Label ((Ast.Identifier "unused"),
                          (Ast.Return (Ast.LiteralInt 0)))))
-                    ]))
-         })
+                    ]));
+         storage = None })
      ])

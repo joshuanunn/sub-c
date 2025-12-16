@@ -1,5 +1,5 @@
 (Asm.Program
-   [Asm.Function {name = "a";
+   [Asm.Function {name = "a"; global = true;
       instructions =
       [(Asm.AllocateStack 16); (Asm.Mov ((Asm.Reg Asm.DI), (Asm.Stack -8)));
         (Asm.Mov ((Asm.Stack -8), (Asm.Reg Asm.R10)));
@@ -17,7 +17,7 @@
           tmp.0 -> -4,
           a.0   -> -8,
         }}};
-     Asm.Function {name = "main";
+     Asm.Function {name = "main"; global = true;
        instructions =
        [(Asm.AllocateStack 16); (Asm.Mov ((Asm.Imm 1), (Asm.Reg Asm.DI)));
          (Asm.Call "a"); (Asm.Mov ((Asm.Reg Asm.AX), (Asm.Stack -4)));

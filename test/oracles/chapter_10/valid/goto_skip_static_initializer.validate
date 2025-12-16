@@ -1,0 +1,17 @@
+(Ast.Program
+   [(Ast.FunDecl
+       { Ast.name = (Ast.Identifier "main"); params = [];
+         body =
+         (Some (Ast.Block
+                  [(Ast.S (Ast.Goto (Ast.GotoLabel "end.0")));
+                    (Ast.D
+                       (Ast.VarDecl
+                          { Ast.name = (Ast.Identifier "x.1");
+                            init = (Some (Ast.LiteralInt 10));
+                            storage = (Some Ast.Static) }));
+                    (Ast.S
+                       (Ast.Label ((Ast.GotoLabel "end.0"),
+                          (Ast.Return (Ast.Var (Ast.Identifier "x.1"))))))
+                    ]));
+         storage = None })
+     ])

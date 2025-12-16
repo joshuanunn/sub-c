@@ -5,8 +5,8 @@
          (Some (Ast.Block
                   [(Ast.D
                       (Ast.VarDecl
-                         { Ast.name = (Ast.Identifier "result"); init = None
-                           }));
+                         { Ast.name = (Ast.Identifier "result"); init = None;
+                           storage = None }));
                     (Ast.S
                        (Ast.Expression
                           Ast.Conditional {
@@ -22,6 +22,6 @@
                             (Ast.Assignment (
                                (Ast.Var (Ast.Identifier "result")),
                                (Ast.LiteralInt 5)))}));
-                    (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "result"))))]))
-         })
+                    (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "result"))))]));
+         storage = None })
      ])

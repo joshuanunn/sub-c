@@ -6,7 +6,7 @@
                   [(Ast.D
                       (Ast.VarDecl
                          { Ast.name = (Ast.Identifier "to_xor.0");
-                           init = (Some (Ast.LiteralInt 7)) }));
+                           init = (Some (Ast.LiteralInt 7)); storage = None }));
                     (Ast.S
                        (Ast.Expression
                           (Ast.Assignment (
@@ -16,6 +16,6 @@
                                right = (Ast.LiteralInt 5)}
                              ))));
                     (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "to_xor.0"))))
-                    ]))
-         })
+                    ]));
+         storage = None })
      ])

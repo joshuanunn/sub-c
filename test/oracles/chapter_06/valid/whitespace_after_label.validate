@@ -10,6 +10,6 @@
                           (Ast.Label ((Ast.GotoLabel "label2.1"),
                              (Ast.Return (Ast.LiteralInt 1))))
                           )))
-                    ]))
-         })
+                    ]));
+         storage = None })
      ])

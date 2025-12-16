@@ -10,6 +10,6 @@
                            Ast.Unary {op = Ast.Negate;
                              exp = (Ast.LiteralInt 12)};
                            right = (Ast.LiteralInt 5)}))
-                    ]))
-         })
+                    ]));
+         storage = None })
      ])

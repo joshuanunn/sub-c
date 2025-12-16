@@ -1,43 +1,53 @@
-(** [lower_operand o le] replaces a pseudo operand with a concrete stack
-    operand, using the variable-to-offset mapping in the function frame [le].
-    All other operands are returned unchanged. *)
-let lower_operand (o : Asm.operand) (le : Env.lenv) : Asm.operand =
-  match o with Pseudo v -> Stack (Env.get_value_offset v le) | _ -> o
+(** Resolve a pseudo operand to either a data-section reference (for static
+    storage) or a stack slot (for automatic storage), leaving other operands
+    unchanged. *)
+let lower_operand (o : Asm.operand) (te : Env.tenv) (le : Env.lenv) :
+    Asm.operand =
+  match o with
+  (* Pseudo v -> Stack (Env.get_value_offset le v) *)
+  | Pseudo v ->
+      if Env.is_static_name te v then Asm.Data v
+      else Asm.Stack (Env.get_value_offset le v)
+  | _ -> o
 
-(** [lower_instruction i le] lowers any pseudo-registers in the instruction [i],
-    replacing them with stack operands using the function frame [le]. *)
-let lower_instruction (i : Asm.instruction) (le : Env.lenv) : Asm.instruction =
+(** Lowers any pseudo-registers in the instruction [i], replacing them with
+    stack operands or data-section references. *)
+let lower_instruction (i : Asm.instruction) (te : Env.tenv) (le : Env.lenv) :
+    Asm.instruction =
   match i with
-  | Mov (src, dst) -> Mov (lower_operand src le, lower_operand dst le)
-  | Unary { op; dst } -> Unary { op; dst = lower_operand dst le }
+  | Mov (src, dst) -> Mov (lower_operand src te le, lower_operand dst te le)
+  | Unary { op; dst } -> Unary { op; dst = lower_operand dst te le }
   | Binary { op; src; dst } ->
-      Binary { op; src = lower_operand src le; dst = lower_operand dst le }
-  | Cmp (op1, op2) -> Cmp (lower_operand op1 le, lower_operand op2 le)
-  | Shl (src, dst) -> Shl (lower_operand src le, lower_operand dst le)
-  | Sar (src, dst) -> Sar (lower_operand src le, lower_operand dst le)
-  | SetCC (cc, op) -> SetCC (cc, lower_operand op le)
-  | Idiv dst -> Idiv (lower_operand dst le)
-  | Push src -> Push (lower_operand src le)
+      Binary
+        { op; src = lower_operand src te le; dst = lower_operand dst te le }
+  | Cmp (op1, op2) -> Cmp (lower_operand op1 te le, lower_operand op2 te le)
+  | Shl (src, dst) -> Shl (lower_operand src te le, lower_operand dst te le)
+  | Sar (src, dst) -> Sar (lower_operand src te le, lower_operand dst te le)
+  | SetCC (cc, op) -> SetCC (cc, lower_operand op te le)
+  | Idiv dst -> Idiv (lower_operand dst te le)
+  | Push src -> Push (lower_operand src te le)
   | _ -> i
 
-(** [lower_func f] lowers all pseudo operands in the function [f], producing a
-    new function where all variables have been resolved to stack locations. *)
-let lower_func (f : Asm.func) : Asm.func =
+(** Lowers all pseudo operands in the function [f], where all variables have
+    been resolved to stack locations or data-section references. *)
+let lower_func (f : Asm.top_level) (te : Env.tenv) : Asm.top_level =
   match f with
   | Function fn ->
       let lowered_instructions =
         fn.instructions
-        |> List.map (fun instr -> lower_instruction instr fn.frame)
+        |> List.map (fun instr -> lower_instruction instr te fn.frame)
       in
       Function
         {
           name = fn.name;
+          global = fn.global;
           instructions = lowered_instructions;
           frame = fn.frame;
         }
+  | StaticVariable v -> StaticVariable v
 
-(** [lower_prog p] lowers all pseudo operands in the program [p], returning a
-    new program with pseudo registers replaced with stack-based addressing. *)
-let lower_prog (Asm.Program p) : Asm.prog =
-  let lowered_funcs = List.map lower_func p in
+(** Lowers all pseudo operands in the program [p], with pseudo registers
+    replaced with stack-based addressing or data-section references. *)
+let lower_prog (Asm.Program p) (te : Env.tenv) : Asm.prog =
+  let lowered_funcs = List.map (fun func -> lower_func func te) p in
   Program lowered_funcs

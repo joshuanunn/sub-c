@@ -1,4 +1,5 @@
     .globl      twice
+    .text       
 twice:
     pushq       %rbp
     movq        %rsp, %rbp
@@ -17,6 +18,7 @@ twice:
     popq        %rbp
     ret         
     .globl      main
+    .text       
 main:
     pushq       %rbp
     movq        %rsp, %rbp

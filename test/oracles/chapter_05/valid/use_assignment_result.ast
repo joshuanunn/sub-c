@@ -6,17 +6,18 @@
                   [(Ast.D
                       (Ast.VarDecl
                          { Ast.name = (Ast.Identifier "a");
-                           init = (Some (Ast.LiteralInt 1)) }));
+                           init = (Some (Ast.LiteralInt 1)); storage = None }));
                     (Ast.D
                        (Ast.VarDecl
                           { Ast.name = (Ast.Identifier "b");
-                            init = (Some (Ast.LiteralInt 2)) }));
+                            init = (Some (Ast.LiteralInt 2)); storage = None
+                            }));
                     (Ast.S
                        (Ast.Return
                           (Ast.Assignment ((Ast.Var (Ast.Identifier "a")),
                              (Ast.Assignment ((Ast.Var (Ast.Identifier "b")),
                                 (Ast.LiteralInt 4)))
                              ))))
-                    ]))
-         })
+                    ]));
+         storage = None })
      ])

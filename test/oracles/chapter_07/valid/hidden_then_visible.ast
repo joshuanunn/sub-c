@@ -6,10 +6,11 @@
                   [(Ast.D
                       (Ast.VarDecl
                          { Ast.name = (Ast.Identifier "a");
-                           init = (Some (Ast.LiteralInt 2)) }));
+                           init = (Some (Ast.LiteralInt 2)); storage = None }));
                     (Ast.D
                        (Ast.VarDecl
-                          { Ast.name = (Ast.Identifier "b"); init = None }));
+                          { Ast.name = (Ast.Identifier "b"); init = None;
+                            storage = None }));
                     (Ast.S
                        (Ast.Compound
                           (Ast.Block
@@ -23,7 +24,8 @@
                                (Ast.D
                                   (Ast.VarDecl
                                      { Ast.name = (Ast.Identifier "a");
-                                       init = (Some (Ast.LiteralInt 7)) }));
+                                       init = (Some (Ast.LiteralInt 7));
+                                       storage = None }));
                                (Ast.S
                                   (Ast.Expression
                                      (Ast.Assignment (
@@ -47,6 +49,6 @@
                               right =
                               Ast.Unary {op = Ast.Negate;
                                 exp = (Ast.LiteralInt 4)}}}))
-                    ]))
-         })
+                    ]));
+         storage = None })
      ])

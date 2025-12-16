@@ -58,8 +58,8 @@
                            Ast.Binary {op = Ast.Equal;
                              left = (Ast.Var (Ast.Identifier "h.7"));
                              right = (Ast.LiteralInt 8)}}))
-                    ]))
-         });
+                    ]));
+         storage = None });
      (Ast.FunDecl
         { Ast.name = (Ast.Identifier "main"); params = [];
           body =
@@ -72,6 +72,6 @@
                               (Ast.LiteralInt 3); (Ast.LiteralInt 4);
                               (Ast.LiteralInt 5); (Ast.LiteralInt 6);
                               (Ast.LiteralInt 7); (Ast.LiteralInt 8)]}))
-                     ]))
-          })
+                     ]));
+          storage = None })
      ])

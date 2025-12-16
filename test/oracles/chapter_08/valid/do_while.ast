@@ -6,7 +6,7 @@
                   [(Ast.D
                       (Ast.VarDecl
                          { Ast.name = (Ast.Identifier "a");
-                           init = (Some (Ast.LiteralInt 1)) }));
+                           init = (Some (Ast.LiteralInt 1)); storage = None }));
                     (Ast.S
                        Ast.DoWhile {
                          body =
@@ -27,6 +27,6 @@
                            left = (Ast.Var (Ast.Identifier "a"));
                            right = (Ast.LiteralInt 11)};
                          id = None});
-                    (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "a"))))]))
-         })
+                    (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "a"))))]));
+         storage = None })
      ])

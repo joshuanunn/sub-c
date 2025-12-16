@@ -1,8 +1,8 @@
 (Ast.Program
    [(Ast.FunDecl
        { Ast.name = (Ast.Identifier "foo"); params = [];
-         body = (Some (Ast.Block [(Ast.S (Ast.Return (Ast.LiteralInt 2)))]))
-         });
+         body = (Some (Ast.Block [(Ast.S (Ast.Return (Ast.LiteralInt 2)))]));
+         storage = None });
      (Ast.FunDecl
         { Ast.name = (Ast.Identifier "main"); params = [];
           body =
@@ -10,7 +10,8 @@
                    [(Ast.D
                        (Ast.VarDecl
                           { Ast.name = (Ast.Identifier "x");
-                            init = (Some (Ast.LiteralInt 3)) }));
+                            init = (Some (Ast.LiteralInt 3)); storage = None
+                            }));
                      (Ast.S
                         (Ast.Expression
                            (Ast.Assignment ((Ast.Var (Ast.Identifier "x")),
@@ -20,6 +21,6 @@
                                 Ast.FunctionCall {
                                   name = (Ast.Identifier "foo"); args = []}}
                               ))));
-                     (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "x"))))]))
-          })
+                     (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "x"))))]));
+          storage = None })
      ])

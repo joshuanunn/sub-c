@@ -6,21 +6,24 @@
                   [(Ast.D
                       (Ast.VarDecl
                          { Ast.name = (Ast.Identifier "i.0");
-                           init = (Some (Ast.LiteralInt 0)) }));
+                           init = (Some (Ast.LiteralInt 0)); storage = None }));
                     (Ast.D
                        (Ast.VarDecl
                           { Ast.name = (Ast.Identifier "j.1");
-                            init = (Some (Ast.LiteralInt 0)) }));
+                            init = (Some (Ast.LiteralInt 0)); storage = None
+                            }));
                     (Ast.D
                        (Ast.VarDecl
                           { Ast.name = (Ast.Identifier "k.2");
-                            init = (Some (Ast.LiteralInt 1)) }));
+                            init = (Some (Ast.LiteralInt 1)); storage = None
+                            }));
                     (Ast.S
                        Ast.For {
                          init =
                          (Ast.InclDecl
                             { Ast.name = (Ast.Identifier "i.3");
-                              init = (Some (Ast.LiteralInt 100)) });
+                              init = (Some (Ast.LiteralInt 100));
+                              storage = None });
                          cond =
                          (Some Ast.Binary {op = Ast.GreaterThan;
                                  left = (Ast.Var (Ast.Identifier "i.3"));
@@ -38,7 +41,8 @@
                                [(Ast.D
                                    (Ast.VarDecl
                                       { Ast.name = (Ast.Identifier "i.4");
-                                        init = (Some (Ast.LiteralInt 1)) }));
+                                        init = (Some (Ast.LiteralInt 1));
+                                        storage = None }));
                                  (Ast.D
                                     (Ast.VarDecl
                                        { Ast.name = (Ast.Identifier "j.5");
@@ -49,8 +53,8 @@
                                                     (Ast.Identifier "i.4"));
                                                  right =
                                                  (Ast.Var
-                                                    (Ast.Identifier "k.2"))})
-                                         }));
+                                                    (Ast.Identifier "k.2"))});
+                                         storage = None }));
                                  (Ast.S
                                     (Ast.Expression
                                        (Ast.Assignment (
@@ -75,6 +79,6 @@
                             Ast.Binary {op = Ast.Equal;
                               left = (Ast.Var (Ast.Identifier "j.1"));
                               right = (Ast.LiteralInt 0)}}))
-                    ]))
-         })
+                    ]));
+         storage = None })
      ])

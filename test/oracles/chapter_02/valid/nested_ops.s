@@ -1,4 +1,5 @@
     .globl      main
+    .text       
 main:
     pushq       %rbp
     movq        %rsp, %rbp

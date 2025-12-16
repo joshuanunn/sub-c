@@ -6,7 +6,7 @@
                   [(Ast.D
                       (Ast.VarDecl
                          { Ast.name = (Ast.Identifier "a.5");
-                           init = (Some (Ast.LiteralInt 1)) }));
+                           init = (Some (Ast.LiteralInt 1)); storage = None }));
                     (Ast.S
                        (Ast.Label ((Ast.GotoLabel "label_if.0"),
                           Ast.If {
@@ -40,6 +40,6 @@
                        (Ast.Expression
                           (Ast.Assignment ((Ast.Var (Ast.Identifier "a.5")),
                              (Ast.LiteralInt 100)))));
-                    (Ast.S (Ast.Goto (Ast.GotoLabel "label_goto.1")))]))
-         })
+                    (Ast.S (Ast.Goto (Ast.GotoLabel "label_goto.1")))]));
+         storage = None })
      ])

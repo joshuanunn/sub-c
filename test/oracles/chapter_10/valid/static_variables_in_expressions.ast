@@ -1,0 +1,33 @@
+(Ast.Program
+   [(Ast.FunDecl
+       { Ast.name = (Ast.Identifier "main"); params = [];
+         body =
+         (Some (Ast.Block
+                  [(Ast.D
+                      (Ast.VarDecl
+                         { Ast.name = (Ast.Identifier "i");
+                           init = (Some (Ast.LiteralInt 2));
+                           storage = (Some Ast.Static) }));
+                    (Ast.D
+                       (Ast.VarDecl
+                          { Ast.name = (Ast.Identifier "j");
+                            init = (Some (Ast.LiteralInt 3));
+                            storage = (Some Ast.Static) }));
+                    (Ast.D
+                       (Ast.VarDecl
+                          { Ast.name = (Ast.Identifier "cmp");
+                            init =
+                            (Some Ast.Binary {op = Ast.LessThan;
+                                    left = (Ast.Var (Ast.Identifier "i"));
+                                    right = (Ast.Var (Ast.Identifier "j"))});
+                            storage = None }));
+                    (Ast.S
+                       Ast.If {
+                         cond_exp =
+                         Ast.Unary {op = Ast.Not;
+                           exp = (Ast.Var (Ast.Identifier "cmp"))};
+                         then_smt = (Ast.Return (Ast.LiteralInt 1));
+                         else_smt = None});
+                    (Ast.S (Ast.Return (Ast.LiteralInt 0)))]));
+         storage = None })
+     ])

@@ -6,7 +6,7 @@ script_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd -P)
 
 TEST_DIR="$script_dir/tests"
 ORACLE_DIR="$script_dir/oracles"
-PHASES=("lex" "parse" "irgen" "codegen" "emit" "exe")
+PHASES=("lex" "parse" "validate" "irgen" "codegen" "emit" "exe")
 
 # Parse commandline options
 
@@ -26,7 +26,7 @@ while [[ $# -gt 0 ]]; do
       ;;
     *)
       echo "Unknown argument: $1"
-      echo "Usage: $0 [--chapter 1] [--phase lex|parse|irgen|codegen|emit|exe]"
+      echo "Usage: $0 [--chapter 1] [--phase lex|parse|validate|irgen|codegen|emit|exe]"
       exit 1
       ;;
   esac
@@ -67,6 +67,8 @@ for chapter in "${CHAPTERS[@]}"; do
           ext="tokens"
         elif [[ "$phase" == "parse" ]]; then
           ext="ast"
+        elif [[ "$phase" == "validate" ]]; then
+          ext="validate"
         elif [[ "$phase" == "irgen" ]]; then
           ext="ir"
         elif [[ "$phase" == "codegen" ]]; then
@@ -143,8 +145,8 @@ for chapter in "${CHAPTERS[@]}"; do
           continue
         fi
 
-        # Lexer, parser, codegen and emit tests
-        if [[ "$phase" == "lex" || "$phase" == "parse" || "$phase" == "irgen" || "$phase" == "codegen" || "$phase" == "emit" ]]; then
+        # Lexer, parser, validation, codegen and emit tests
+        if [[ "$phase" == "lex" || "$phase" == "parse" || "$phase" == "validate" || "$phase" == "irgen" || "$phase" == "codegen" || "$phase" == "emit" ]]; then
             output=$(subc "$test_file" --"$phase" 2>&1)
             expected=$(<"$oracle_file")
 
@@ -320,6 +322,37 @@ for chapter in "${CHAPTERS[@]}"; do
     while read -r test_file; do
 
       phase="parse"
+      if [[ -n "$phase_filter" && "$phase_filter" != "$phase" ]]; then
+        continue
+      fi
+
+      rel_path="${test_file#$TEST_DIR/}"
+
+      # Run executable, capture exit status code and cleanup
+      output=$(subc "$test_file" --"$phase" 2>&1)
+      status=$?
+
+      if [ $status -ne 0 ]; then
+        echo "PASS: $rel_path ($phase)"
+        ((passed++))
+      else
+        echo "FAIL: $rel_path ($phase)"
+        echo "  subc exited with a zero status"
+        ((failed++))
+      fi
+
+      ((total++))
+    done < <(find "$chapter_dir" -type f -name '*.c')
+  fi
+
+  # === Run invalid validation tests ===
+
+  chapter_dir="$TEST_DIR/$chapter/invalid_validate"
+  if [[ -d "$chapter_dir" ]]; then
+
+    while read -r test_file; do
+
+      phase="validate"
       if [[ -n "$phase_filter" && "$phase_filter" != "$phase" ]]; then
         continue
       fi

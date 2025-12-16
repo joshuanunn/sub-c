@@ -6,7 +6,7 @@
                   [(Ast.D
                       (Ast.VarDecl
                          { Ast.name = (Ast.Identifier "result");
-                           init = (Some (Ast.LiteralInt 0)) }));
+                           init = (Some (Ast.LiteralInt 0)); storage = None }));
                     (Ast.S (Ast.Goto (Ast.Identifier "label")));
                     (Ast.S
                        Ast.While {cond = (Ast.LiteralInt 0);
@@ -23,6 +23,6 @@
                                     ]))
                             ));
                          id = None});
-                    (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "result"))))]))
-         })
+                    (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "result"))))]));
+         storage = None })
      ])

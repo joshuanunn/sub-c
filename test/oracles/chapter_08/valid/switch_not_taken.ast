@@ -6,7 +6,7 @@
                   [(Ast.D
                       (Ast.VarDecl
                          { Ast.name = (Ast.Identifier "a");
-                           init = (Some (Ast.LiteralInt 1)) }));
+                           init = (Some (Ast.LiteralInt 1)); storage = None }));
                     (Ast.S
                        Ast.Switch {cond = (Ast.Var (Ast.Identifier "a"));
                          body =
@@ -26,6 +26,6 @@
                                       id = None})
                                  ]));
                          id = None});
-                    (Ast.S (Ast.Return (Ast.LiteralInt 1)))]))
-         })
+                    (Ast.S (Ast.Return (Ast.LiteralInt 1)))]));
+         storage = None })
      ])

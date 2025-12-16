@@ -8,6 +8,6 @@
                     (Ast.S
                        (Ast.Label ((Ast.Identifier "main"),
                           (Ast.Return (Ast.LiteralInt 0)))))
-                    ]))
-         })
+                    ]));
+         storage = None })
      ])

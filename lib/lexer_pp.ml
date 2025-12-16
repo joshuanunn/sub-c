@@ -1,6 +1,8 @@
 let show_token = function
   | Parser.IDENTIFIER s -> "IDENTIFIER(" ^ s ^ ")"
   | Parser.LITERAL_INT i -> "LITERAL_INT(" ^ string_of_int i ^ ")"
+  | Parser.KW_STATIC -> "KW_STATIC"
+  | Parser.KW_EXTERN -> "KW_EXTERN"
   | Parser.KW_INT -> "KW_INT"
   | Parser.KW_VOID -> "KW_VOID"
   | Parser.KW_RETURN -> "KW_RETURN"

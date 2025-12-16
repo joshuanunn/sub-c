@@ -1,7 +1,7 @@
 (Ast.Program
    [(Ast.FunDecl
        { Ast.name = (Ast.Identifier "putchar");
-         params = [(Ast.Identifier "c")]; body = None });
+         params = [(Ast.Identifier "c")]; body = None; storage = None });
      (Ast.FunDecl
         { Ast.name = (Ast.Identifier "main"); params = [];
           body =
@@ -76,6 +76,6 @@
                            Ast.FunctionCall {
                              name = (Ast.Identifier "putchar");
                              args = [(Ast.LiteralInt 10)]}))
-                     ]))
-          })
+                     ]));
+          storage = None })
      ])

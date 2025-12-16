@@ -1,5 +1,5 @@
 (Ir.Program
-   [Ir.Function {name = "fib"; params = ["n.0"];
+   [Ir.Function {name = "fib"; global = true; params = ["n.0"];
       body =
       [Ir.Binary {op = Ir.Equal; src1 = (Ir.Var "n.0");
          src2 = (Ir.Constant 0); dst = (Ir.Var "tmp.0")};
@@ -41,7 +41,7 @@
           tmp.11 -> -32,
           n.0    -> -36,
         }}};
-     Ir.Function {name = "main"; params = [];
+     Ir.Function {name = "main"; global = true; params = [];
        body =
        [Ir.Copy {src = (Ir.Constant 6); dst = (Ir.Var "n.1")};
          Ir.FunCall {fun_name = "fib"; args = [(Ir.Var "n.1")];

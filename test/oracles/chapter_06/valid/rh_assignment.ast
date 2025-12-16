@@ -6,11 +6,12 @@
                   [(Ast.D
                       (Ast.VarDecl
                          { Ast.name = (Ast.Identifier "flag");
-                           init = (Some (Ast.LiteralInt 1)) }));
+                           init = (Some (Ast.LiteralInt 1)); storage = None }));
                     (Ast.D
                        (Ast.VarDecl
                           { Ast.name = (Ast.Identifier "a");
-                            init = (Some (Ast.LiteralInt 0)) }));
+                            init = (Some (Ast.LiteralInt 0)); storage = None
+                            }));
                     (Ast.S
                        (Ast.Expression
                           Ast.Conditional {
@@ -21,6 +22,6 @@
                             else_exp =
                             (Ast.Assignment ((Ast.Var (Ast.Identifier "a")),
                                (Ast.LiteralInt 0)))}));
-                    (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "a"))))]))
-         })
+                    (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "a"))))]));
+         storage = None })
      ])

@@ -6,13 +6,14 @@
                   [(Ast.D
                       (Ast.VarDecl
                          { Ast.name = (Ast.Identifier "sum.1");
-                           init = (Some (Ast.LiteralInt 0)) }));
+                           init = (Some (Ast.LiteralInt 0)); storage = None }));
                     (Ast.S
                        Ast.For {
                          init =
                          (Ast.InclDecl
                             { Ast.name = (Ast.Identifier "i.2");
-                              init = (Some (Ast.LiteralInt 0)) });
+                              init = (Some (Ast.LiteralInt 0));
+                              storage = None });
                          cond = None;
                          post =
                          (Some (Ast.Assignment (
@@ -54,6 +55,6 @@
                                       else_smt = None});
                                  (Ast.S (Ast.Goto (Ast.GotoLabel "lbl.0")))]));
                          id = (Some (Ast.LoopLabel "1"))});
-                    (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "sum.1"))))]))
-         })
+                    (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "sum.1"))))]));
+         storage = None })
      ])

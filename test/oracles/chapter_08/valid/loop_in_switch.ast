@@ -6,7 +6,8 @@
                   [(Ast.D
                       (Ast.VarDecl
                          { Ast.name = (Ast.Identifier "cond");
-                           init = (Some (Ast.LiteralInt 10)) }));
+                           init = (Some (Ast.LiteralInt 10)); storage = None
+                           }));
                     (Ast.S
                        Ast.Switch {cond = (Ast.Var (Ast.Identifier "cond"));
                          body =
@@ -23,8 +24,8 @@
                                         init =
                                         (Ast.InclDecl
                                            { Ast.name = (Ast.Identifier "i");
-                                             init = (Some (Ast.LiteralInt 0))
-                                             });
+                                             init = (Some (Ast.LiteralInt 0));
+                                             storage = None });
                                         cond =
                                         (Some Ast.Binary {op = Ast.LessThan;
                                                 left =
@@ -82,6 +83,6 @@
                                       id = None})
                                  ]));
                          id = None});
-                    (Ast.S (Ast.Return (Ast.LiteralInt 3)))]))
-         })
+                    (Ast.S (Ast.Return (Ast.LiteralInt 3)))]));
+         storage = None })
      ])

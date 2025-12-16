@@ -5,15 +5,16 @@
          (Some (Ast.Block
                   [(Ast.D
                       (Ast.VarDecl
-                         { Ast.name = (Ast.Identifier "a"); init = None }));
+                         { Ast.name = (Ast.Identifier "a"); init = None;
+                           storage = None }));
                     (Ast.D
                        (Ast.VarDecl
                           { Ast.name = (Ast.Identifier "b");
                             init =
                             (Some (Ast.Assignment (
                                      (Ast.Var (Ast.Identifier "a")),
-                                     (Ast.LiteralInt 0))))
-                            }));
-                    (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "b"))))]))
-         })
+                                     (Ast.LiteralInt 0))));
+                            storage = None }));
+                    (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "b"))))]));
+         storage = None })
      ])

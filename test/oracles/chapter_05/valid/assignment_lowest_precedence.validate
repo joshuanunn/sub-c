@@ -5,7 +5,8 @@
          (Some (Ast.Block
                   [(Ast.D
                       (Ast.VarDecl
-                         { Ast.name = (Ast.Identifier "a.0"); init = None }));
+                         { Ast.name = (Ast.Identifier "a.0"); init = None;
+                           storage = None }));
                     (Ast.S
                        (Ast.Expression
                           (Ast.Assignment ((Ast.Var (Ast.Identifier "a.0")),
@@ -13,6 +14,6 @@
                                left = (Ast.LiteralInt 0);
                                right = (Ast.LiteralInt 5)}
                              ))));
-                    (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "a.0"))))]))
-         })
+                    (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "a.0"))))]));
+         storage = None })
      ])

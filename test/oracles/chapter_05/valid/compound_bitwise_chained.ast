@@ -6,43 +6,53 @@
                   [(Ast.D
                       (Ast.VarDecl
                          { Ast.name = (Ast.Identifier "a");
-                           init = (Some (Ast.LiteralInt 250)) }));
+                           init = (Some (Ast.LiteralInt 250)); storage = None
+                           }));
                     (Ast.D
                        (Ast.VarDecl
                           { Ast.name = (Ast.Identifier "b");
-                            init = (Some (Ast.LiteralInt 200)) }));
+                            init = (Some (Ast.LiteralInt 200));
+                            storage = None }));
                     (Ast.D
                        (Ast.VarDecl
                           { Ast.name = (Ast.Identifier "c");
-                            init = (Some (Ast.LiteralInt 100)) }));
+                            init = (Some (Ast.LiteralInt 100));
+                            storage = None }));
                     (Ast.D
                        (Ast.VarDecl
                           { Ast.name = (Ast.Identifier "d");
-                            init = (Some (Ast.LiteralInt 75)) }));
+                            init = (Some (Ast.LiteralInt 75)); storage = None
+                            }));
                     (Ast.D
                        (Ast.VarDecl
                           { Ast.name = (Ast.Identifier "e");
-                            init = (Some (Ast.LiteralInt 50)) }));
+                            init = (Some (Ast.LiteralInt 50)); storage = None
+                            }));
                     (Ast.D
                        (Ast.VarDecl
                           { Ast.name = (Ast.Identifier "f");
-                            init = (Some (Ast.LiteralInt 25)) }));
+                            init = (Some (Ast.LiteralInt 25)); storage = None
+                            }));
                     (Ast.D
                        (Ast.VarDecl
                           { Ast.name = (Ast.Identifier "g");
-                            init = (Some (Ast.LiteralInt 10)) }));
+                            init = (Some (Ast.LiteralInt 10)); storage = None
+                            }));
                     (Ast.D
                        (Ast.VarDecl
                           { Ast.name = (Ast.Identifier "h");
-                            init = (Some (Ast.LiteralInt 1)) }));
+                            init = (Some (Ast.LiteralInt 1)); storage = None
+                            }));
                     (Ast.D
                        (Ast.VarDecl
                           { Ast.name = (Ast.Identifier "j");
-                            init = (Some (Ast.LiteralInt 0)) }));
+                            init = (Some (Ast.LiteralInt 0)); storage = None
+                            }));
                     (Ast.D
                        (Ast.VarDecl
                           { Ast.name = (Ast.Identifier "x");
-                            init = (Some (Ast.LiteralInt 0)) }));
+                            init = (Some (Ast.LiteralInt 0)); storage = None
+                            }));
                     (Ast.S
                        (Ast.Expression
                           (Ast.Assignment ((Ast.Var (Ast.Identifier "x")),
@@ -184,6 +194,6 @@
                             Ast.Binary {op = Ast.Equal;
                               left = (Ast.Var (Ast.Identifier "x"));
                               right = (Ast.LiteralInt 40)}}))
-                    ]))
-         })
+                    ]));
+         storage = None })
      ])

@@ -6,7 +6,8 @@
                   [(Ast.D
                       (Ast.VarDecl
                          { Ast.name = (Ast.Identifier "count.0");
-                           init = (Some (Ast.LiteralInt 37)) }));
+                           init = (Some (Ast.LiteralInt 37)); storage = None
+                           }));
                     (Ast.D
                        (Ast.VarDecl
                           { Ast.name = (Ast.Identifier "iterations.1");
@@ -17,8 +18,8 @@
                                       left =
                                       (Ast.Var (Ast.Identifier "count.0"));
                                       right = (Ast.LiteralInt 4)};
-                                    right = (Ast.LiteralInt 5)})
-                            }));
+                                    right = (Ast.LiteralInt 5)});
+                            storage = None }));
                     (Ast.S
                        Ast.Switch {
                          cond =
@@ -169,6 +170,6 @@
                               left =
                               (Ast.Var (Ast.Identifier "iterations.1"));
                               right = (Ast.LiteralInt 0)}}))
-                    ]))
-         })
+                    ]));
+         storage = None })
      ])
