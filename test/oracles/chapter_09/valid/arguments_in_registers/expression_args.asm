@@ -1,5 +1,5 @@
 (Asm.Program
-   [Asm.Function {name = "sub";
+   [Asm.Function {name = "sub"; global = true;
       instructions =
       [(Asm.AllocateStack 16); (Asm.Mov ((Asm.Reg Asm.DI), (Asm.Stack -8)));
         (Asm.Mov ((Asm.Reg Asm.SI), (Asm.Stack -12)));
@@ -19,7 +19,7 @@
           a.0   -> -8,
           b.1   -> -12,
         }}};
-     Asm.Function {name = "main";
+     Asm.Function {name = "main"; global = true;
        instructions =
        [(Asm.AllocateStack 16); (Asm.Mov ((Asm.Imm 1), (Asm.Stack -8)));
          Asm.Binary {op = Asm.Add; src = (Asm.Imm 2); dst = (Asm.Stack -8)};

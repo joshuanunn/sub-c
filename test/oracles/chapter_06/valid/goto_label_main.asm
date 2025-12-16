@@ -1,5 +1,5 @@
 (Asm.Program
-   [Asm.Function {name = "main";
+   [Asm.Function {name = "main"; global = true;
       instructions =
       [(Asm.Jmp "main.0"); (Asm.Mov ((Asm.Imm 5), (Asm.Reg Asm.AX)));
         Asm.Ret; (Asm.Label "main.0");
