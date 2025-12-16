@@ -48,7 +48,7 @@ let emit_op (s : size) (o : Asm.operand) : string =
       match s with Byte -> reg8 r | Long -> reg32 r | Quad -> reg64 r)
   | Stack i -> Printf.sprintf "%d(%%rbp)" i
   | Imm i -> Printf.sprintf "$%d" i
-  | Data _ -> failwith "TODO"
+  | Data s -> Printf.sprintf "%s(%%rip)" s
   | Pseudo s -> failwith ("Pseudo operand " ^ s ^ " has not been lowered")
 
 let emit_unary_op (o : Asm.unary_operator) : string =
@@ -120,28 +120,51 @@ let emit_instruction (i : Asm.instruction) : string list =
       [ format_instruction "pushq" ops ]
   | Call l -> [ format_instruction "call" (l ^ "@PLT") ]
 
-let emit_func (f : Asm.top_level) : string list =
+let emit_top_level (f : Asm.top_level) : string list =
   match f with
-  | Function fn ->
+  | Function { name; global; instructions; _ } ->
+      let global_directive =
+        if global then [ format_instruction ".globl" name ] else []
+      in
       let prologue =
         [
-          format_instruction ".globl" fn.name;
-          format_function fn.name;
+          format_instruction ".text" "";
+          format_function name;
           format_instruction "pushq" "%rbp";
           format_instruction "movq" "%rsp, %rbp";
         ]
       in
-      let instructions =
-        fn.instructions |> List.concat_map (fun instr -> emit_instruction instr)
+      let ins =
+        instructions |> List.concat_map (fun instr -> emit_instruction instr)
       in
-      prologue @ instructions
-  | _ -> failwith "TODO"
+      global_directive @ prologue @ ins
+  | StaticVariable { name; global; init } -> (
+      let global_directive =
+        if global then [ format_instruction ".globl" name ] else []
+      in
+      match init with
+      | 0 ->
+          global_directive
+          @ [
+              format_instruction ".bss" "";
+              format_instruction ".align" "4";
+              format_function name;
+              format_instruction ".zero" "4";
+            ]
+      | i ->
+          global_directive
+          @ [
+              format_instruction ".data" "";
+              format_instruction ".align" "4";
+              format_function name;
+              format_instruction ".long" (string_of_int i);
+            ])
 
 let emit_prog (Asm.Program p) : string =
   let footer =
     [ format_instruction ".section" ".note.GNU-stack,\"\",@progbits\n" ]
   in
   let emit_funcs =
-    List.map (function f -> String.concat "\n" (emit_func f)) p
+    List.map (function f -> String.concat "\n" (emit_top_level f)) p
   in
   String.concat "\n" (emit_funcs @ footer)
