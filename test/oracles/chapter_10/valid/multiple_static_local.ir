@@ -1,33 +1,29 @@
 (Ir.Program
    [Ir.Function {name = "foo"; global = true; params = [];
       body =
-      [Ir.Copy {src = (Ir.Constant 3); dst = (Ir.Var "a.0")};
-        Ir.Binary {op = Ir.Multiply; src1 = (Ir.Var "a.0");
-          src2 = (Ir.Constant 2); dst = (Ir.Var "tmp.0")};
+      [Ir.Binary {op = Ir.Multiply; src1 = (Ir.Var "a.0");
+         src2 = (Ir.Constant 2); dst = (Ir.Var "tmp.0")};
         Ir.Copy {src = (Ir.Var "tmp.0"); dst = (Ir.Var "a.0")};
         (Ir.Return (Ir.Var "a.0")); (Ir.Return (Ir.Constant 0))];
       frame =
       Env.lenv {
         counter = 1;
-        offset = -8;
+        offset = -4;
         stack slots = {
-          a.0   -> -4,
-          tmp.0 -> -8,
+          tmp.0 -> -4,
         }}};
      Ir.Function {name = "bar"; global = true; params = [];
        body =
-       [Ir.Copy {src = (Ir.Constant 4); dst = (Ir.Var "a.1")};
-         Ir.Binary {op = Ir.Add; src1 = (Ir.Var "a.1");
-           src2 = (Ir.Constant 1); dst = (Ir.Var "tmp.0")};
+       [Ir.Binary {op = Ir.Add; src1 = (Ir.Var "a.1");
+          src2 = (Ir.Constant 1); dst = (Ir.Var "tmp.0")};
          Ir.Copy {src = (Ir.Var "tmp.0"); dst = (Ir.Var "a.1")};
          (Ir.Return (Ir.Var "a.1")); (Ir.Return (Ir.Constant 0))];
        frame =
        Env.lenv {
          counter = 1;
-         offset = -8;
+         offset = -4;
          stack slots = {
-           a.1   -> -4,
-           tmp.0 -> -8,
+           tmp.0 -> -4,
          }}};
      Ir.Function {name = "main"; global = true; params = [];
        body =

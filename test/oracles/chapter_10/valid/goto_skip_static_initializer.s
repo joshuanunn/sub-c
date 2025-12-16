@@ -3,9 +3,7 @@
 main:
     pushq       %rbp
     movq        %rsp, %rbp
-    subq        $16, %rsp
     jmp         .Lend.0
-    movl        $10, x.1(%rip)
 .Lend.0:
     movl        x.1(%rip), %eax
     movq        %rbp, %rsp

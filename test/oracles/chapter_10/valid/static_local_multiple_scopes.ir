@@ -1,13 +1,11 @@
 (Ir.Program
    [Ir.Function {name = "print_letters"; global = true; params = [];
       body =
-      [Ir.Copy {src = (Ir.Constant 65); dst = (Ir.Var "i.1")};
-        Ir.FunCall {fun_name = "putchar"; args = [(Ir.Var "i.1")];
-          dst = (Ir.Var "tmp.0")};
+      [Ir.FunCall {fun_name = "putchar"; args = [(Ir.Var "i.1")];
+         dst = (Ir.Var "tmp.0")};
         Ir.Binary {op = Ir.Add; src1 = (Ir.Var "i.1");
           src2 = (Ir.Constant 1); dst = (Ir.Var "tmp.1")};
         Ir.Copy {src = (Ir.Var "tmp.1"); dst = (Ir.Var "i.1")};
-        Ir.Copy {src = (Ir.Constant 97); dst = (Ir.Var "i.2")};
         Ir.FunCall {fun_name = "putchar"; args = [(Ir.Var "i.2")];
           dst = (Ir.Var "tmp.2")};
         Ir.Binary {op = Ir.Add; src1 = (Ir.Var "i.2");
@@ -19,15 +17,13 @@
       frame =
       Env.lenv {
         counter = 5;
-        offset = -28;
+        offset = -20;
         stack slots = {
-          i.1   -> -4,
-          tmp.0 -> -8,
-          tmp.1 -> -12,
-          i.2   -> -16,
-          tmp.2 -> -20,
-          tmp.3 -> -24,
-          tmp.4 -> -28,
+          tmp.0 -> -4,
+          tmp.1 -> -8,
+          tmp.2 -> -12,
+          tmp.3 -> -16,
+          tmp.4 -> -20,
         }}};
      Ir.Function {name = "main"; global = true; params = [];
        body =

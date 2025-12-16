@@ -8,10 +8,9 @@
       frame =
       Env.lenv {
         counter = 1;
-        offset = -8;
+        offset = -4;
         stack slots = {
-          x.0   -> -4,
-          tmp.0 -> -8,
+          tmp.0 -> -4,
         }}};
      Ir.Function {name = "main"; global = true; params = [];
        body =

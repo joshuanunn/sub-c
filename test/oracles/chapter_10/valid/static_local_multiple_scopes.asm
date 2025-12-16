@@ -1,38 +1,35 @@
 (Asm.Program
    [Asm.Function {name = "print_letters"; global = true;
       instructions =
-      [(Asm.AllocateStack 32); (Asm.Mov ((Asm.Imm 65), (Asm.Data "i.1")));
+      [(Asm.AllocateStack 32);
         (Asm.Mov ((Asm.Data "i.1"), (Asm.Reg Asm.DI))); (Asm.Call "putchar");
-        (Asm.Mov ((Asm.Reg Asm.AX), (Asm.Stack -8)));
+        (Asm.Mov ((Asm.Reg Asm.AX), (Asm.Stack -4)));
         (Asm.Mov ((Asm.Data "i.1"), (Asm.Reg Asm.R10)));
-        (Asm.Mov ((Asm.Reg Asm.R10), (Asm.Stack -12)));
-        Asm.Binary {op = Asm.Add; src = (Asm.Imm 1); dst = (Asm.Stack -12)};
-        (Asm.Mov ((Asm.Stack -12), (Asm.Reg Asm.R10)));
+        (Asm.Mov ((Asm.Reg Asm.R10), (Asm.Stack -8)));
+        Asm.Binary {op = Asm.Add; src = (Asm.Imm 1); dst = (Asm.Stack -8)};
+        (Asm.Mov ((Asm.Stack -8), (Asm.Reg Asm.R10)));
         (Asm.Mov ((Asm.Reg Asm.R10), (Asm.Data "i.1")));
-        (Asm.Mov ((Asm.Imm 97), (Asm.Data "i.2")));
         (Asm.Mov ((Asm.Data "i.2"), (Asm.Reg Asm.DI))); (Asm.Call "putchar");
-        (Asm.Mov ((Asm.Reg Asm.AX), (Asm.Stack -20)));
+        (Asm.Mov ((Asm.Reg Asm.AX), (Asm.Stack -12)));
         (Asm.Mov ((Asm.Data "i.2"), (Asm.Reg Asm.R10)));
-        (Asm.Mov ((Asm.Reg Asm.R10), (Asm.Stack -24)));
-        Asm.Binary {op = Asm.Add; src = (Asm.Imm 1); dst = (Asm.Stack -24)};
-        (Asm.Mov ((Asm.Stack -24), (Asm.Reg Asm.R10)));
+        (Asm.Mov ((Asm.Reg Asm.R10), (Asm.Stack -16)));
+        Asm.Binary {op = Asm.Add; src = (Asm.Imm 1); dst = (Asm.Stack -16)};
+        (Asm.Mov ((Asm.Stack -16), (Asm.Reg Asm.R10)));
         (Asm.Mov ((Asm.Reg Asm.R10), (Asm.Data "i.2")));
         (Asm.Mov ((Asm.Imm 10), (Asm.Reg Asm.DI))); (Asm.Call "putchar");
-        (Asm.Mov ((Asm.Reg Asm.AX), (Asm.Stack -28)));
+        (Asm.Mov ((Asm.Reg Asm.AX), (Asm.Stack -20)));
         (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX))); Asm.Ret;
         (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX))); Asm.Ret];
       frame =
       Env.lenv {
         counter = 5;
-        offset = -28;
+        offset = -20;
         stack slots = {
-          i.1   -> -4,
-          tmp.0 -> -8,
-          tmp.1 -> -12,
-          i.2   -> -16,
-          tmp.2 -> -20,
-          tmp.3 -> -24,
-          tmp.4 -> -28,
+          tmp.0 -> -4,
+          tmp.1 -> -8,
+          tmp.2 -> -12,
+          tmp.3 -> -16,
+          tmp.4 -> -20,
         }}};
      Asm.Function {name = "main"; global = true;
        instructions =

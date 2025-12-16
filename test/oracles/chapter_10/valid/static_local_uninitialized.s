@@ -5,9 +5,9 @@ foo:
     movq        %rsp, %rbp
     subq        $16, %rsp
     movl        x.0(%rip), %r10d
-    movl        %r10d, -8(%rbp)
-    addl        $1, -8(%rbp)
-    movl        -8(%rbp), %r10d
+    movl        %r10d, -4(%rbp)
+    addl        $1, -4(%rbp)
+    movl        -4(%rbp), %r10d
     movl        %r10d, x.0(%rip)
     movl        x.0(%rip), %eax
     movq        %rbp, %rsp

@@ -1,12 +1,8 @@
 (Ir.Program
    [Ir.Function {name = "f"; global = true; params = [];
       body =
-      [Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "i.0")};
-        Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "j.1")};
-        Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "k.2")};
-        Ir.Copy {src = (Ir.Constant 48); dst = (Ir.Var "l.3")};
-        Ir.Binary {op = Ir.Add; src1 = (Ir.Var "i.0");
-          src2 = (Ir.Constant 1); dst = (Ir.Var "tmp.0")};
+      [Ir.Binary {op = Ir.Add; src1 = (Ir.Var "i.0"); src2 = (Ir.Constant 1);
+         dst = (Ir.Var "tmp.0")};
         Ir.Copy {src = (Ir.Var "tmp.0"); dst = (Ir.Var "i.0")};
         Ir.Binary {op = Ir.Subtract; src1 = (Ir.Var "j.1");
           src2 = (Ir.Var "i.0"); dst = (Ir.Var "tmp.1")};
@@ -41,22 +37,18 @@
       frame =
       Env.lenv {
         counter = 14;
-        offset = -56;
+        offset = -40;
         stack slots = {
-          i.0    -> -4,
-          j.1    -> -8,
-          k.2    -> -12,
-          l.3    -> -16,
-          tmp.0  -> -20,
-          tmp.1  -> -24,
-          tmp.2  -> -28,
-          tmp.3  -> -32,
-          tmp.4  -> -36,
-          tmp.6  -> -40,
-          tmp.7  -> -44,
-          tmp.9  -> -48,
-          tmp.10 -> -52,
-          tmp.12 -> -56,
+          tmp.0  -> -4,
+          tmp.1  -> -8,
+          tmp.2  -> -12,
+          tmp.3  -> -16,
+          tmp.4  -> -20,
+          tmp.6  -> -24,
+          tmp.7  -> -28,
+          tmp.9  -> -32,
+          tmp.10 -> -36,
+          tmp.12 -> -40,
         }}};
      Ir.Function {name = "main"; global = true; params = [];
        body =

@@ -3,19 +3,17 @@
 main:
     pushq       %rbp
     movq        %rsp, %rbp
-    subq        $32, %rsp
-    movl        $2, i.0(%rip)
-    movl        $3, j.1(%rip)
+    subq        $16, %rsp
     movl        j.1(%rip), %r10d
     cmpl        %r10d, i.0(%rip)
-    movl        $0, -16(%rbp)
-    setl        -16(%rbp)
-    movl        -16(%rbp), %r10d
-    movl        %r10d, -12(%rbp)
+    movl        $0, -8(%rbp)
+    setl        -8(%rbp)
+    movl        -8(%rbp), %r10d
+    movl        %r10d, -4(%rbp)
+    cmpl        $0, -4(%rbp)
+    movl        $0, -12(%rbp)
+    sete        -12(%rbp)
     cmpl        $0, -12(%rbp)
-    movl        $0, -20(%rbp)
-    sete        -20(%rbp)
-    cmpl        $0, -20(%rbp)
     je          .Lif.en.2
     movl        $1, %eax
     movq        %rbp, %rsp

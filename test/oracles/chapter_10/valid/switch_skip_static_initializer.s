@@ -16,7 +16,6 @@ main:
     jne         .Lswit.cs.1.3
     jmp         .Lswit.br.1
 .Lswit.cs.1.1:
-    movl        $10, x.0(%rip)
     movl        $0, x.0(%rip)
 .Lswit.cs.1.3:
     movl        x.0(%rip), %eax

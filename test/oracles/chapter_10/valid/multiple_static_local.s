@@ -4,13 +4,12 @@ foo:
     pushq       %rbp
     movq        %rsp, %rbp
     subq        $16, %rsp
-    movl        $3, a.0(%rip)
     movl        a.0(%rip), %r10d
-    movl        %r10d, -8(%rbp)
-    movl        -8(%rbp), %r11d
+    movl        %r10d, -4(%rbp)
+    movl        -4(%rbp), %r11d
     imull       $2, %r11d
-    movl        %r11d, -8(%rbp)
-    movl        -8(%rbp), %r10d
+    movl        %r11d, -4(%rbp)
+    movl        -4(%rbp), %r10d
     movl        %r10d, a.0(%rip)
     movl        a.0(%rip), %eax
     movq        %rbp, %rsp
@@ -26,11 +25,10 @@ bar:
     pushq       %rbp
     movq        %rsp, %rbp
     subq        $16, %rsp
-    movl        $4, a.1(%rip)
     movl        a.1(%rip), %r10d
-    movl        %r10d, -8(%rbp)
-    addl        $1, -8(%rbp)
-    movl        -8(%rbp), %r10d
+    movl        %r10d, -4(%rbp)
+    addl        $1, -4(%rbp)
+    movl        -4(%rbp), %r10d
     movl        %r10d, a.1(%rip)
     movl        a.1(%rip), %eax
     movq        %rbp, %rsp

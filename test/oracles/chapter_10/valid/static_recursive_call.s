@@ -4,25 +4,24 @@ print_alphabet:
     pushq       %rbp
     movq        %rsp, %rbp
     subq        $32, %rsp
-    movl        $0, count.1(%rip)
     movl        count.1(%rip), %r10d
-    movl        %r10d, -8(%rbp)
-    addl        $65, -8(%rbp)
-    movl        -8(%rbp), %edi
+    movl        %r10d, -4(%rbp)
+    addl        $65, -4(%rbp)
+    movl        -4(%rbp), %edi
     call        putchar@PLT
-    movl        %eax, -12(%rbp)
+    movl        %eax, -8(%rbp)
     movl        count.1(%rip), %r10d
-    movl        %r10d, -16(%rbp)
-    addl        $1, -16(%rbp)
-    movl        -16(%rbp), %r10d
+    movl        %r10d, -12(%rbp)
+    addl        $1, -12(%rbp)
+    movl        -12(%rbp), %r10d
     movl        %r10d, count.1(%rip)
     cmpl        $26, count.1(%rip)
-    movl        $0, -20(%rbp)
-    setl        -20(%rbp)
-    cmpl        $0, -20(%rbp)
+    movl        $0, -16(%rbp)
+    setl        -16(%rbp)
+    cmpl        $0, -16(%rbp)
     je          .Lif.en.4
     call        print_alphabet@PLT
-    movl        %eax, -24(%rbp)
+    movl        %eax, -20(%rbp)
 .Lif.en.4:
     movl        count.1(%rip), %eax
     movq        %rbp, %rsp

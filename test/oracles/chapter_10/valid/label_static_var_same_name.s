@@ -3,8 +3,6 @@
 main:
     pushq       %rbp
     movq        %rsp, %rbp
-    subq        $16, %rsp
-    movl        $5, x.1(%rip)
     jmp         .Lx.0
     movl        $0, x.1(%rip)
 .Lx.0:
