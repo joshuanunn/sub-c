@@ -322,12 +322,16 @@ and convert_dclr (d : Ast.decl) (le : Env.lenv) : Ir.instruction list =
   match d with
   (* Function declarations without body are discarded *)
   | FunDecl _ -> []
+  (* Don't generate instructions for statics as these are handled in Env.tenv *)
+  | VarDecl { storage = Some Static; _ } -> []
+  (* Don't generate instructions for externs *)
+  | VarDecl { storage = Some Extern; _ } -> []
   (* No need to generate instructions for variable declaration *)
-  | VarDecl { name; init = None; _ } ->
+  | VarDecl { storage = _; name; init = None; _ } ->
       Env.insert_value le name;
       []
   (* Handle a declaration with initialiser as an assignment expression *)
-  | VarDecl { name; init = Some rhs; _ } ->
+  | VarDecl { storage = _; name; init = Some rhs; _ } ->
       Env.insert_value le name;
       let initialiser = Ast.Assignment (Ast.Var name, rhs) in
       let _, instructions = convert_expr initialiser le in
