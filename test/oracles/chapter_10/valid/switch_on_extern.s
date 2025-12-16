@@ -3,23 +3,23 @@
 main:
     pushq       %rbp
     movq        %rsp, %rbp
-    subq        $32, %rsp
+    subq        $16, %rsp
     call        update_x@PLT
     movl        %eax, -4(%rbp)
     cmpl        $0, x(%rip)
+    movl        $0, -8(%rbp)
+    sete        -8(%rbp)
+    cmpl        $0, -8(%rbp)
+    jne         .Lswit.cs.1.0
+    cmpl        $1, x(%rip)
     movl        $0, -12(%rbp)
     sete        -12(%rbp)
     cmpl        $0, -12(%rbp)
-    jne         .Lswit.cs.1.0
-    cmpl        $1, x(%rip)
+    jne         .Lswit.cs.1.1
+    cmpl        $4, x(%rip)
     movl        $0, -16(%rbp)
     sete        -16(%rbp)
     cmpl        $0, -16(%rbp)
-    jne         .Lswit.cs.1.1
-    cmpl        $4, x(%rip)
-    movl        $0, -20(%rbp)
-    sete        -20(%rbp)
-    cmpl        $0, -20(%rbp)
     jne         .Lswit.cs.1.4
     jmp         .Lswit.df.1
 .Lswit.cs.1.0:

@@ -12,11 +12,10 @@
       frame =
       Env.lenv {
         counter = 2;
-        offset = -12;
+        offset = -8;
         stack slots = {
-          i               -> -4,
-          update_global.0 -> -8,
-          new_val.1       -> -12,
+          update_global.0 -> -4,
+          new_val.1       -> -8,
         }}};
      Ir.Function {name = "main"; global = true; params = [];
        body =

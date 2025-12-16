@@ -1,14 +1,13 @@
 (Asm.Program
    [Asm.Function {name = "update_static_or_global"; global = true;
       instructions =
-      [(Asm.AllocateStack 16); (Asm.Mov ((Asm.Reg Asm.DI), (Asm.Stack -8)));
-        (Asm.Mov ((Asm.Reg Asm.SI), (Asm.Stack -12)));
-        (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -8)));
+      [(Asm.AllocateStack 16); (Asm.Mov ((Asm.Reg Asm.DI), (Asm.Stack -4)));
+        (Asm.Mov ((Asm.Reg Asm.SI), (Asm.Stack -8)));
+        (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -4)));
         (Asm.JmpCC (Asm.E, "if.el.1"));
-        (Asm.Mov ((Asm.Stack -12), (Asm.Reg Asm.R10)));
+        (Asm.Mov ((Asm.Stack -8), (Asm.Reg Asm.R10)));
         (Asm.Mov ((Asm.Reg Asm.R10), (Asm.Data "i"))); (Asm.Jmp "if.en.0");
-        (Asm.Label "if.el.1");
-        (Asm.Mov ((Asm.Stack -12), (Asm.Reg Asm.R10)));
+        (Asm.Label "if.el.1"); (Asm.Mov ((Asm.Stack -8), (Asm.Reg Asm.R10)));
         (Asm.Mov ((Asm.Reg Asm.R10), (Asm.Data "i.2")));
         (Asm.Label "if.en.0");
         (Asm.Mov ((Asm.Data "i.2"), (Asm.Reg Asm.AX))); Asm.Ret;
@@ -16,11 +15,10 @@
       frame =
       Env.lenv {
         counter = 2;
-        offset = -12;
+        offset = -8;
         stack slots = {
-          i               -> -4,
-          update_global.0 -> -8,
-          new_val.1       -> -12,
+          update_global.0 -> -4,
+          new_val.1       -> -8,
         }}};
      Asm.Function {name = "main"; global = true;
        instructions =

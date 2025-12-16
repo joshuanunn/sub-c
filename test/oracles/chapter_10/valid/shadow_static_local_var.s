@@ -4,15 +4,15 @@ update_static_or_global:
     pushq       %rbp
     movq        %rsp, %rbp
     subq        $16, %rsp
-    movl        %edi, -8(%rbp)
-    movl        %esi, -12(%rbp)
-    cmpl        $0, -8(%rbp)
+    movl        %edi, -4(%rbp)
+    movl        %esi, -8(%rbp)
+    cmpl        $0, -4(%rbp)
     je          .Lif.el.1
-    movl        -12(%rbp), %r10d
+    movl        -8(%rbp), %r10d
     movl        %r10d, i(%rip)
     jmp         .Lif.en.0
 .Lif.el.1:
-    movl        -12(%rbp), %r10d
+    movl        -8(%rbp), %r10d
     movl        %r10d, i.2(%rip)
 .Lif.en.0:
     movl        i.2(%rip), %eax

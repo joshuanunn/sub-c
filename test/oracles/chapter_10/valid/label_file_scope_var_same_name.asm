@@ -9,9 +9,8 @@
       frame =
       Env.lenv {
         counter = 0;
-        offset = -8;
+        offset = -4;
         stack slots = {
           x.1 -> -4,
-          x   -> -8,
         }}};
      Asm.StaticVariable {name = "x"; global = true; init = 0}])

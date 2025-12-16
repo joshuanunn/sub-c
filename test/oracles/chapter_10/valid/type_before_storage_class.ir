@@ -15,10 +15,9 @@
        frame =
        Env.lenv {
          counter = 2;
-         offset = -12;
+         offset = -8;
          stack slots = {
-           bar   -> -4,
-           tmp.0 -> -8,
-           tmp.1 -> -12,
+           tmp.0 -> -4,
+           tmp.1 -> -8,
          }}};
      Ir.StaticVariable {name = "bar"; global = false; init = 4}])

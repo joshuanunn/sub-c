@@ -33,14 +33,14 @@ main:
     ret         
 .Lswit.cs.1.10:
     movl        x(%rip), %r10d
-    movl        %r10d, -24(%rbp)
-    movl        -24(%rbp), %r11d
+    movl        %r10d, -20(%rbp)
+    movl        -20(%rbp), %r11d
     imull       $2, %r11d
-    movl        %r11d, -24(%rbp)
-    cmpl        $30, -24(%rbp)
-    movl        $0, -28(%rbp)
-    sete        -28(%rbp)
-    cmpl        $0, -28(%rbp)
+    movl        %r11d, -20(%rbp)
+    cmpl        $30, -20(%rbp)
+    movl        $0, -24(%rbp)
+    sete        -24(%rbp)
+    cmpl        $0, -24(%rbp)
     je          .Lif.en.5
     movl        $0, %eax
     movq        %rbp, %rsp
