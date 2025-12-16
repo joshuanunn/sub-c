@@ -1,4 +1,5 @@
     .globl      lots_of_args
+    .text       
 lots_of_args:
     pushq       %rbp
     movq        %rsp, %rbp
@@ -40,6 +41,7 @@ lots_of_args:
     popq        %rbp
     ret         
     .globl      main
+    .text       
 main:
     pushq       %rbp
     movq        %rsp, %rbp

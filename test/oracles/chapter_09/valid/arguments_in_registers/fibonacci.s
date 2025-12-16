@@ -1,4 +1,5 @@
     .globl      fib
+    .text       
 fib:
     pushq       %rbp
     movq        %rsp, %rbp
@@ -53,6 +54,7 @@ fib:
     popq        %rbp
     ret         
     .globl      main
+    .text       
 main:
     pushq       %rbp
     movq        %rsp, %rbp

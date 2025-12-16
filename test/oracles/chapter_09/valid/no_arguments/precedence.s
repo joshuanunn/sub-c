@@ -1,4 +1,5 @@
     .globl      three
+    .text       
 three:
     pushq       %rbp
     movq        %rsp, %rbp
@@ -11,6 +12,7 @@ three:
     popq        %rbp
     ret         
     .globl      main
+    .text       
 main:
     pushq       %rbp
     movq        %rsp, %rbp
