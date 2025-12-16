@@ -83,7 +83,7 @@ let run_codegen lexbuf s_env t_env =
     Ast_type_check.type_prog ast t_env;
     let ir = Irgen.convert_prog ast t_env in
     let asm = Codegen.compile_prog ir in
-    let asm = Codegen_lower.lower_prog asm in
+    let asm = Codegen_lower.lower_prog asm t_env in
     let asm = Codegen_fixup.fixup_prog asm in
     print_endline (Asm.show_prog asm)
   with
@@ -104,7 +104,7 @@ let run_emit lexbuf s_env t_env =
     Ast_type_check.type_prog ast t_env;
     let ir = Irgen.convert_prog ast t_env in
     let asm = Codegen.compile_prog ir in
-    let asm = Codegen_lower.lower_prog asm in
+    let asm = Codegen_lower.lower_prog asm t_env in
     let asm = Codegen_fixup.fixup_prog asm in
     print_string (Emit.emit_prog asm)
   with
@@ -125,7 +125,7 @@ let run_exe lexbuf output_path s_env t_env =
     Ast_type_check.type_prog ast t_env;
     let ir = Irgen.convert_prog ast t_env in
     let asm = Codegen.compile_prog ir in
-    let asm = Codegen_lower.lower_prog asm in
+    let asm = Codegen_lower.lower_prog asm t_env in
     let asm = Codegen_fixup.fixup_prog asm in
     let asm_text = Emit.emit_prog asm in
     let oc = open_out output_path in

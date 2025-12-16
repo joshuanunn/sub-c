@@ -48,6 +48,7 @@ let emit_op (s : size) (o : Asm.operand) : string =
       match s with Byte -> reg8 r | Long -> reg32 r | Quad -> reg64 r)
   | Stack i -> Printf.sprintf "%d(%%rbp)" i
   | Imm i -> Printf.sprintf "$%d" i
+  | Data _ -> failwith "TODO"
   | Pseudo s -> failwith ("Pseudo operand " ^ s ^ " has not been lowered")
 
 let emit_unary_op (o : Asm.unary_operator) : string =
@@ -119,7 +120,7 @@ let emit_instruction (i : Asm.instruction) : string list =
       [ format_instruction "pushq" ops ]
   | Call l -> [ format_instruction "call" (l ^ "@PLT") ]
 
-let emit_func (f : Asm.func) : string list =
+let emit_func (f : Asm.top_level) : string list =
   match f with
   | Function fn ->
       let prologue =
@@ -134,6 +135,7 @@ let emit_func (f : Asm.func) : string list =
         fn.instructions |> List.concat_map (fun instr -> emit_instruction instr)
       in
       prologue @ instructions
+  | _ -> failwith "TODO"
 
 let emit_prog (Asm.Program p) : string =
   let footer =

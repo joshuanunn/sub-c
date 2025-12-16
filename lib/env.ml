@@ -324,3 +324,10 @@ let static_vars (te : tenv) : (string * initial_value * bool) list =
       | StaticAttr { init; global } -> (name, init, global) :: acc
       | _ -> acc)
     te.typed_idents []
+
+(** Return [true] if the identifier has static storage duration. *)
+let is_static (te : tenv) (id : Ast.ident) : bool =
+  match find te id with Some { attrs = StaticAttr _; _ } -> true | _ -> false
+
+let is_static_name (te : tenv) (name : string) : bool =
+  is_static te (Ast.Identifier name)
