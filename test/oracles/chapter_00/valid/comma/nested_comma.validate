@@ -1,0 +1,24 @@
+(Ast.Program
+   [(Ast.FunDecl
+       { Ast.name = (Ast.Identifier "main"); params = [];
+         body =
+         (Some (Ast.Block
+                  [(Ast.D
+                      (Ast.VarDecl
+                         { Ast.name = (Ast.Identifier "x.0"); init = None;
+                           storage = None }));
+                    (Ast.S
+                       (Ast.Expression
+                          (Ast.Assignment ((Ast.Var (Ast.Identifier "x.0")),
+                             (Ast.Comma (
+                                (Ast.Comma (
+                                   (Ast.Comma ((Ast.LiteralInt 1),
+                                      (Ast.LiteralInt 2))),
+                                   (Ast.Comma ((Ast.LiteralInt 3),
+                                      (Ast.LiteralInt 4)))
+                                   )),
+                                (Ast.LiteralInt 5)))
+                             ))));
+                    (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "x.0"))))]));
+         storage = None })
+     ])

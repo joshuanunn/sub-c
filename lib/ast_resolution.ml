@@ -55,6 +55,10 @@ let rec resolve_expr (e : Ast.expr) (se : Env.senv) : Ast.expr =
       let name' = Env.resolve_fun se name in
       let args' = List.map (fun e -> resolve_expr e se) args in
       FunctionCall { name = name'; args = args' }
+  | Comma (left, right) ->
+      let left' = resolve_expr left se in
+      let right' = resolve_expr right se in
+      Comma (left', right')
 
 (** [resolve_opt_expr e_opt se] resolves an optional expression [e_opt] using
     environment [se], returning [Some resolved_expr] or [None] if input is

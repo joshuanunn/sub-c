@@ -1,0 +1,63 @@
+(Ast.Program
+   [(Ast.FunDecl
+       { Ast.name = (Ast.Identifier "main"); params = [];
+         body =
+         (Some (Ast.Block
+                  [(Ast.D
+                      (Ast.VarDecl
+                         { Ast.name = (Ast.Identifier "i"); init = None;
+                           storage = None }));
+                    (Ast.D
+                       (Ast.VarDecl
+                          { Ast.name = (Ast.Identifier "j"); init = None;
+                            storage = None }));
+                    (Ast.D
+                       (Ast.VarDecl
+                          { Ast.name = (Ast.Identifier "sum"); init = None;
+                            storage = None }));
+                    (Ast.S
+                       (Ast.Expression
+                          (Ast.Assignment ((Ast.Var (Ast.Identifier "sum")),
+                             (Ast.LiteralInt 0)))));
+                    (Ast.S
+                       (Ast.Expression
+                          (Ast.Assignment ((Ast.Var (Ast.Identifier "j")),
+                             (Ast.LiteralInt 0)))));
+                    (Ast.S
+                       Ast.For {
+                         init =
+                         (Ast.InitExp
+                            (Some (Ast.Assignment (
+                                     (Ast.Var (Ast.Identifier "i")),
+                                     (Ast.LiteralInt 0)))));
+                         cond =
+                         (Some Ast.Binary {op = Ast.LessThan;
+                                 left = (Ast.Var (Ast.Identifier "i"));
+                                 right = (Ast.LiteralInt 5)});
+                         post =
+                         (Some (Ast.Comma (
+                                  (Ast.Assignment (
+                                     (Ast.Var (Ast.Identifier "i")),
+                                     Ast.Binary {op = Ast.Add;
+                                       left = (Ast.Var (Ast.Identifier "i"));
+                                       right = (Ast.LiteralInt 1)}
+                                     )),
+                                  (Ast.Assignment (
+                                     (Ast.Var (Ast.Identifier "j")),
+                                     Ast.Binary {op = Ast.Add;
+                                       left = (Ast.Var (Ast.Identifier "j"));
+                                       right = (Ast.LiteralInt 2)}
+                                     ))
+                                  )));
+                         body =
+                         (Ast.Expression
+                            (Ast.Assignment (
+                               (Ast.Var (Ast.Identifier "sum")),
+                               Ast.Binary {op = Ast.Add;
+                                 left = (Ast.Var (Ast.Identifier "sum"));
+                                 right = (Ast.Var (Ast.Identifier "j"))}
+                               )));
+                         id = None});
+                    (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "sum"))))]));
+         storage = None })
+     ])

@@ -162,6 +162,12 @@ let rec convert_expr (e : Ast.expr) (le : Env.lenv) :
       let dst = Ir.Var (Env.declare_value le "tmp") in
       let instruction = Ir.FunCall { fun_name; args = arg_vals; dst } in
       (dst, arg_instructions @ [ instruction ])
+  | Comma (left, right) ->
+      (* Evaluate left, but discard value *)
+      let _, src1_instructions = convert_expr left le in
+      (* Evaluate right, and return value *)
+      let src2, src2_instructions = convert_expr right le in
+      (src2, src1_instructions @ src2_instructions)
 
 let rec convert_stmt (s : Ast.stmt) (le : Env.lenv) : Ir.instruction list =
   match s with

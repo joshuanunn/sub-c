@@ -1,0 +1,45 @@
+(Ast.Program
+   [(Ast.FunDecl
+       { Ast.name = (Ast.Identifier "main"); params = [];
+         body =
+         (Some (Ast.Block
+                  [(Ast.D
+                      (Ast.VarDecl
+                         { Ast.name = (Ast.Identifier "x"); init = None;
+                           storage = None }));
+                    (Ast.D
+                       (Ast.VarDecl
+                          { Ast.name = (Ast.Identifier "y"); init = None;
+                            storage = None }));
+                    (Ast.S
+                       (Ast.Expression
+                          (Ast.Assignment ((Ast.Var (Ast.Identifier "x")),
+                             (Ast.LiteralInt 1)))));
+                    (Ast.S
+                       (Ast.Expression
+                          (Ast.Assignment ((Ast.Var (Ast.Identifier "y")),
+                             (Ast.LiteralInt 2)))));
+                    (Ast.S
+                       (Ast.Return
+                          (Ast.Comma (
+                             (Ast.Comma (
+                                (Ast.Assignment (
+                                   (Ast.Var (Ast.Identifier "x")),
+                                   Ast.Binary {op = Ast.Add;
+                                     left = (Ast.Var (Ast.Identifier "x"));
+                                     right = (Ast.LiteralInt 1)}
+                                   )),
+                                (Ast.Assignment (
+                                   (Ast.Var (Ast.Identifier "y")),
+                                   Ast.Binary {op = Ast.Multiply;
+                                     left = (Ast.Var (Ast.Identifier "y"));
+                                     right = (Ast.LiteralInt 3)}
+                                   ))
+                                )),
+                             Ast.Binary {op = Ast.Add;
+                               left = (Ast.Var (Ast.Identifier "x"));
+                               right = (Ast.Var (Ast.Identifier "y"))}
+                             ))))
+                    ]));
+         storage = None })
+     ])

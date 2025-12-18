@@ -1,0 +1,61 @@
+(Ast.Program
+   [(Ast.FunDecl
+       { Ast.name = (Ast.Identifier "main"); params = [];
+         body =
+         (Some (Ast.Block
+                  [(Ast.D
+                      (Ast.VarDecl
+                         { Ast.name = (Ast.Identifier "i.0"); init = None;
+                           storage = None }));
+                    (Ast.D
+                       (Ast.VarDecl
+                          { Ast.name = (Ast.Identifier "limit.1");
+                            init = None; storage = None }));
+                    (Ast.D
+                       (Ast.VarDecl
+                          { Ast.name = (Ast.Identifier "count.2");
+                            init = None; storage = None }));
+                    (Ast.S
+                       (Ast.Expression
+                          (Ast.Assignment ((Ast.Var (Ast.Identifier "i.0")),
+                             (Ast.LiteralInt 0)))));
+                    (Ast.S
+                       (Ast.Expression
+                          (Ast.Assignment (
+                             (Ast.Var (Ast.Identifier "limit.1")),
+                             (Ast.LiteralInt 3)))));
+                    (Ast.S
+                       (Ast.Expression
+                          (Ast.Assignment (
+                             (Ast.Var (Ast.Identifier "count.2")),
+                             (Ast.LiteralInt 0)))));
+                    (Ast.S
+                       Ast.For {init = (Ast.InitExp None);
+                         cond =
+                         (Some (Ast.Comma (
+                                  (Ast.Assignment (
+                                     (Ast.Var (Ast.Identifier "i.0")),
+                                     Ast.Binary {op = Ast.Add;
+                                       left =
+                                       (Ast.Var (Ast.Identifier "i.0"));
+                                       right = (Ast.LiteralInt 1)}
+                                     )),
+                                  Ast.Binary {op = Ast.LessOrEqual;
+                                    left = (Ast.Var (Ast.Identifier "i.0"));
+                                    right =
+                                    (Ast.Var (Ast.Identifier "limit.1"))}
+                                  )));
+                         post = None;
+                         body =
+                         (Ast.Expression
+                            (Ast.Assignment (
+                               (Ast.Var (Ast.Identifier "count.2")),
+                               Ast.Binary {op = Ast.Add;
+                                 left = (Ast.Var (Ast.Identifier "count.2"));
+                                 right = (Ast.LiteralInt 1)}
+                               )));
+                         id = (Some (Ast.LoopLabel "1"))});
+                    (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "count.2"))))
+                    ]));
+         storage = None })
+     ])

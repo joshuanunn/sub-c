@@ -9,7 +9,7 @@ ORACLE_DIR="$script_dir/oracles"
 
 # List of chapter directories to process (chapter_01 - chapter_20)
 CHAPTERS=()
-for i in $(seq -f "%02g" 1 20); do
+for i in $(seq -f "%02g" 0 20); do
   CHAPTERS+=("chapter_$i")
 done
 

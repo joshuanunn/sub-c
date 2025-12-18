@@ -50,6 +50,7 @@ type expr =
   | Assignment of expr * expr
   | Conditional of { cond_exp : expr; then_exp : expr; else_exp : expr }
   | FunctionCall of { name : ident; args : expr list }
+  | Comma of expr * expr
 [@@deriving show]
 
 type stmt =
@@ -147,6 +148,7 @@ let mk_assign_expr left right = Assignment (Var left, right)
 let mk_cond_expr cond_exp then_exp else_exp =
   Conditional { cond_exp; then_exp; else_exp }
 
+let mk_comma_expr left right = Comma (left, right)
 let mk_return_stmt s = Return s
 let mk_expr_stmt s = Expression s
 let mk_if_stmt i t e = If { cond_exp = i; then_smt = t; else_smt = e }

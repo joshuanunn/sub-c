@@ -1,0 +1,48 @@
+(Ast.Program
+   [(Ast.FunDecl
+       { Ast.name = (Ast.Identifier "main"); params = [];
+         body =
+         (Some (Ast.Block
+                  [(Ast.D
+                      (Ast.VarDecl
+                         { Ast.name = (Ast.Identifier "i.0"); init = None;
+                           storage = None }));
+                    (Ast.D
+                       (Ast.VarDecl
+                          { Ast.name = (Ast.Identifier "sum.1"); init = None;
+                            storage = None }));
+                    (Ast.S
+                       (Ast.Expression
+                          (Ast.Assignment ((Ast.Var (Ast.Identifier "i.0")),
+                             (Ast.LiteralInt 0)))));
+                    (Ast.S
+                       (Ast.Expression
+                          (Ast.Assignment (
+                             (Ast.Var (Ast.Identifier "sum.1")),
+                             (Ast.LiteralInt 0)))));
+                    (Ast.S
+                       Ast.While {
+                         cond =
+                         (Ast.Comma (
+                            (Ast.Assignment (
+                               (Ast.Var (Ast.Identifier "i.0")),
+                               Ast.Binary {op = Ast.Add;
+                                 left = (Ast.Var (Ast.Identifier "i.0"));
+                                 right = (Ast.LiteralInt 1)}
+                               )),
+                            Ast.Binary {op = Ast.LessOrEqual;
+                              left = (Ast.Var (Ast.Identifier "i.0"));
+                              right = (Ast.LiteralInt 5)}
+                            ));
+                         body =
+                         (Ast.Expression
+                            (Ast.Assignment (
+                               (Ast.Var (Ast.Identifier "sum.1")),
+                               Ast.Binary {op = Ast.Add;
+                                 left = (Ast.Var (Ast.Identifier "sum.1"));
+                                 right = (Ast.Var (Ast.Identifier "i.0"))}
+                               )));
+                         id = (Some (Ast.LoopLabel "1"))});
+                    (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "sum.1"))))]));
+         storage = None })
+     ])

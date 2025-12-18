@@ -1,0 +1,17 @@
+(Ir.Program
+   [Ir.Function {name = "main"; global = true; params = [];
+      body =
+      [Ir.FunCall {fun_name = "putchar"; args = [(Ir.Constant 66)];
+         dst = (Ir.Var "tmp.0")};
+        Ir.FunCall {fun_name = "putchar"; args = [(Ir.Constant 10)];
+          dst = (Ir.Var "tmp.1")};
+        (Ir.Return (Ir.Constant 0)); (Ir.Return (Ir.Constant 0))];
+      frame =
+      Env.lenv {
+        counter = 2;
+        offset = -8;
+        stack slots = {
+          tmp.0 -> -4,
+          tmp.1 -> -8,
+        }}}
+     ])

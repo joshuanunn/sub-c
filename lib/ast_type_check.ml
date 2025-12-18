@@ -160,6 +160,9 @@ and type_expr (e : Ast.expr) (te : Env.tenv) : unit =
   | FunctionCall { name; args } ->
       Env.assert_fun te name (List.length args);
       List.iter (fun e -> type_expr e te) args
+  | Comma (left, right) ->
+      type_expr left te;
+      type_expr right te
 
 (** Type check an optional expression, if present. *)
 and type_opt_expr (e : Ast.expr option) (te : Env.tenv) : unit =

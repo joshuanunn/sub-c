@@ -33,7 +33,7 @@ while [[ $# -gt 0 ]]; do
 done
 
 CHAPTERS=()
-for i in $(seq -f "%02g" 1 20); do
+for i in $(seq -f "%02g" 0 20); do
   chap="chapter_$i"
   if [[ -n "$chapter_filter" && "$chapter_filter" != "$chap" ]]; then
     continue
