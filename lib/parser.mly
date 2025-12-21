@@ -112,8 +112,8 @@ arg_list_opt:
   ;
 
 arg_list:
-  | expr { [$1] }
-  | arg_list COMMA expr { $1 @ [$3] }
+  | assignment_expr { [$1] }
+  | arg_list COMMA assignment_expr { $1 @ [$3] }
   ;
 
 block:
@@ -173,29 +173,25 @@ stmt:
   | SEMICOLON { Ast.Null }
   ;
 
-(* Lowest precedence: top-level expression *)
-expr:
-  | expr_15 { $1 }
-  ;
-
 (* Comma operator [left associative] *)
-expr_15:
-  | expr_14 { $1 }
+expr:
+  | expr COMMA assignment_expr { Ast.mk_comma_expr $1 $3 }
+  | assignment_expr { $1 }
   ;
 
 (* Assignment operators [right associative] *)
-expr_14:
-  | identifier ASSIGN expr_14 { Ast.mk_assign_expr $1 $3 }
-  | identifier ADD_ASSIGN expr_14 { Ast.mk_comp_assign_expr Ast.Add $1 $3 }
-  | identifier SUB_ASSIGN expr_14 { Ast.mk_comp_assign_expr Ast.Subtract $1 $3 }
-  | identifier MUL_ASSIGN expr_14 { Ast.mk_comp_assign_expr Ast.Multiply $1 $3 }
-  | identifier DIV_ASSIGN expr_14 { Ast.mk_comp_assign_expr Ast.Divide $1 $3 }
-  | identifier MOD_ASSIGN expr_14 { Ast.mk_comp_assign_expr Ast.Remainder $1 $3 }
-  | identifier LSHIFT_ASSIGN expr_14 { Ast.mk_comp_assign_expr Ast.BwLeftShift $1 $3 }
-  | identifier RSHIFT_ASSIGN expr_14 { Ast.mk_comp_assign_expr Ast.BwRightShift $1 $3 }
-  | identifier BW_AND_ASSIGN expr_14 { Ast.mk_comp_assign_expr Ast.BwAnd $1 $3 }
-  | identifier BW_XOR_ASSIGN expr_14 { Ast.mk_comp_assign_expr Ast.BwXor $1 $3 }
-  | identifier BW_OR_ASSIGN expr_14 { Ast.mk_comp_assign_expr Ast.BwOr $1 $3 }
+assignment_expr:
+  | identifier ASSIGN assignment_expr { Ast.mk_assign_expr $1 $3 }
+  | identifier ADD_ASSIGN assignment_expr { Ast.mk_comp_assign_expr Ast.Add $1 $3 }
+  | identifier SUB_ASSIGN assignment_expr { Ast.mk_comp_assign_expr Ast.Subtract $1 $3 }
+  | identifier MUL_ASSIGN assignment_expr { Ast.mk_comp_assign_expr Ast.Multiply $1 $3 }
+  | identifier DIV_ASSIGN assignment_expr { Ast.mk_comp_assign_expr Ast.Divide $1 $3 }
+  | identifier MOD_ASSIGN assignment_expr { Ast.mk_comp_assign_expr Ast.Remainder $1 $3 }
+  | identifier LSHIFT_ASSIGN assignment_expr { Ast.mk_comp_assign_expr Ast.BwLeftShift $1 $3 }
+  | identifier RSHIFT_ASSIGN assignment_expr { Ast.mk_comp_assign_expr Ast.BwRightShift $1 $3 }
+  | identifier BW_AND_ASSIGN assignment_expr { Ast.mk_comp_assign_expr Ast.BwAnd $1 $3 }
+  | identifier BW_XOR_ASSIGN assignment_expr { Ast.mk_comp_assign_expr Ast.BwXor $1 $3 }
+  | identifier BW_OR_ASSIGN assignment_expr { Ast.mk_comp_assign_expr Ast.BwOr $1 $3 }
   | expr_13 { $1 }
   ;
 
