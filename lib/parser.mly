@@ -106,16 +106,6 @@ param_decl:
   | KW_INT identifier { $2 }
   ;
 
-arg_list_opt:
-  | /* empty */ { [] }
-  | arg_list { $1 }
-  ;
-
-arg_list:
-  | assignment_expr { [$1] }
-  | arg_list COMMA assignment_expr { $1 @ [$3] }
-  ;
-
 block:
   | LBRACE block_items RBRACE { $2 }
   ;
@@ -175,125 +165,139 @@ stmt:
 
 (* Comma operator [left associative] *)
 expr:
-  | expr COMMA assignment_expr { Ast.mk_comma_expr $1 $3 }
   | assignment_expr { $1 }
+  | expr COMMA assignment_expr { Ast.mk_comma_expr $1 $3 }
   ;
 
 (* Assignment operators [right associative] *)
 assignment_expr:
-  | identifier ASSIGN assignment_expr { Ast.mk_assign_expr $1 $3 }
-  | identifier ADD_ASSIGN assignment_expr { Ast.mk_comp_assign_expr Ast.Add $1 $3 }
-  | identifier SUB_ASSIGN assignment_expr { Ast.mk_comp_assign_expr Ast.Subtract $1 $3 }
-  | identifier MUL_ASSIGN assignment_expr { Ast.mk_comp_assign_expr Ast.Multiply $1 $3 }
-  | identifier DIV_ASSIGN assignment_expr { Ast.mk_comp_assign_expr Ast.Divide $1 $3 }
-  | identifier MOD_ASSIGN assignment_expr { Ast.mk_comp_assign_expr Ast.Remainder $1 $3 }
-  | identifier LSHIFT_ASSIGN assignment_expr { Ast.mk_comp_assign_expr Ast.BwLeftShift $1 $3 }
-  | identifier RSHIFT_ASSIGN assignment_expr { Ast.mk_comp_assign_expr Ast.BwRightShift $1 $3 }
-  | identifier BW_AND_ASSIGN assignment_expr { Ast.mk_comp_assign_expr Ast.BwAnd $1 $3 }
-  | identifier BW_XOR_ASSIGN assignment_expr { Ast.mk_comp_assign_expr Ast.BwXor $1 $3 }
-  | identifier BW_OR_ASSIGN assignment_expr { Ast.mk_comp_assign_expr Ast.BwOr $1 $3 }
-  | expr_13 { $1 }
+  | conditional_expr { $1 }
+  | unary_expr ASSIGN assignment_expr { Ast.mk_assign_expr $1 $3 }
+  | unary_expr MUL_ASSIGN assignment_expr { Ast.mk_comp_assign_expr Ast.Multiply $1 $3 }
+  | unary_expr DIV_ASSIGN assignment_expr { Ast.mk_comp_assign_expr Ast.Divide $1 $3 }
+  | unary_expr MOD_ASSIGN assignment_expr { Ast.mk_comp_assign_expr Ast.Remainder $1 $3 }
+  | unary_expr ADD_ASSIGN assignment_expr { Ast.mk_comp_assign_expr Ast.Add $1 $3 }
+  | unary_expr SUB_ASSIGN assignment_expr { Ast.mk_comp_assign_expr Ast.Subtract $1 $3 }
+  | unary_expr LSHIFT_ASSIGN assignment_expr { Ast.mk_comp_assign_expr Ast.BwLeftShift $1 $3 }
+  | unary_expr RSHIFT_ASSIGN assignment_expr { Ast.mk_comp_assign_expr Ast.BwRightShift $1 $3 }
+  | unary_expr BW_AND_ASSIGN assignment_expr { Ast.mk_comp_assign_expr Ast.BwAnd $1 $3 }
+  | unary_expr BW_XOR_ASSIGN assignment_expr { Ast.mk_comp_assign_expr Ast.BwXor $1 $3 }
+  | unary_expr BW_OR_ASSIGN assignment_expr { Ast.mk_comp_assign_expr Ast.BwOr $1 $3 }
   ;
 
 (* Ternary operators [right associative] *)
-expr_13:
-  | expr_12 QUESTION expr COLON expr_13 { Ast.mk_cond_expr $1 $3 $5 }
-  | expr_12 { $1 }
+conditional_expr:
+  | logical_or_expr { $1 }
+  | logical_or_expr QUESTION expr COLON conditional_expr { Ast.mk_cond_expr $1 $3 $5 }
   ;
 
 (* Logical OR operator [left associative] *)
-expr_12:
-  | expr_12 OR expr_11 { Ast.mk_binop_expr Ast.Or $1 $3 }
-  | expr_11 { $1 }
+logical_or_expr:
+  | logical_and_expr { $1 }
+  | logical_or_expr OR logical_and_expr { Ast.mk_binop_expr Ast.Or $1 $3 }
   ;
 
 (* Logical AND operator [left associative] *)
-expr_11:
-  | expr_11 AND expr_10 { Ast.mk_binop_expr Ast.And $1 $3 }
-  | expr_10 { $1 }
+logical_and_expr:
+  | inclusive_or_expr { $1 }
+  | logical_and_expr AND inclusive_or_expr { Ast.mk_binop_expr Ast.And $1 $3 }
   ;
 
 (* Bitwise OR operator [left associative] *)
-expr_10:
-  | expr_10 BW_OR expr_09 { Ast.mk_binop_expr Ast.BwOr $1 $3 }
-  | expr_09 { $1 }
+inclusive_or_expr:
+  | exclusive_or_expr { $1 }
+  | inclusive_or_expr BW_OR exclusive_or_expr { Ast.mk_binop_expr Ast.BwOr $1 $3 }
   ;
 
 (* Bitwise XOR operator [left associative] *)
-expr_09:
-  | expr_09 BW_XOR expr_08 { Ast.mk_binop_expr Ast.BwXor $1 $3 }
-  | expr_08 { $1 }
+exclusive_or_expr:
+  | and_expr { $1 }
+  | exclusive_or_expr BW_XOR and_expr { Ast.mk_binop_expr Ast.BwXor $1 $3 }
   ;
 
 (* Bitwise AND operator [left associative] *)
-expr_08:
-  | expr_08 BW_AND expr_07 { Ast.mk_binop_expr Ast.BwAnd $1 $3 }
-  | expr_07 { $1 }
+and_expr:
+  | equality_expr { $1 }
+  | and_expr BW_AND equality_expr { Ast.mk_binop_expr Ast.BwAnd $1 $3 }
   ;
 
 (* Relational equality operators [left associative] *)
-expr_07:
-  | expr_07 EQ expr_06 { Ast.mk_binop_expr Ast.Equal $1 $3 }
-  | expr_07 NE expr_06 { Ast.mk_binop_expr Ast.NotEqual $1 $3 }
-  | expr_06 { $1 }
+equality_expr:
+  | relational_expr { $1 }
+  | equality_expr EQ relational_expr { Ast.mk_binop_expr Ast.Equal $1 $3 }
+  | equality_expr NE relational_expr { Ast.mk_binop_expr Ast.NotEqual $1 $3 }
   ;
 
 (* Relational operators [left associative] *)
-expr_06:
-  | expr_06 LE expr_05 { Ast.mk_binop_expr Ast.LessOrEqual $1 $3 }
-  | expr_06 GE expr_05 { Ast.mk_binop_expr Ast.GreaterOrEqual $1 $3 }
-  | expr_06 LT expr_05 { Ast.mk_binop_expr Ast.LessThan $1 $3 }
-  | expr_06 GT expr_05 { Ast.mk_binop_expr Ast.GreaterThan $1 $3 }
-  | expr_05 { $1 }
+relational_expr:
+  | shift_expr { $1 }
+  | relational_expr LT shift_expr { Ast.mk_binop_expr Ast.LessThan $1 $3 }
+  | relational_expr GT shift_expr { Ast.mk_binop_expr Ast.GreaterThan $1 $3 }
+  | relational_expr LE shift_expr { Ast.mk_binop_expr Ast.LessOrEqual $1 $3 }
+  | relational_expr GE shift_expr { Ast.mk_binop_expr Ast.GreaterOrEqual $1 $3 }
   ;
 
 (* Bitwise shift operators [left associative] *)
-expr_05:
-  | expr_05 BW_LSHIFT expr_04 { Ast.mk_binop_expr Ast.BwLeftShift $1 $3 }
-  | expr_05 BW_RSHIFT expr_04 { Ast.mk_binop_expr Ast.BwRightShift $1 $3 }
-  | expr_04 { $1 }
+shift_expr:
+  | additive_expr { $1 }
+  | shift_expr BW_LSHIFT additive_expr { Ast.mk_binop_expr Ast.BwLeftShift $1 $3 }
+  | shift_expr BW_RSHIFT additive_expr { Ast.mk_binop_expr Ast.BwRightShift $1 $3 }
   ;
 
 (* Additive binary operators [left associative] *)
-expr_04:
-  | expr_04 ADD expr_03 { Ast.mk_binop_expr Ast.Add $1 $3 }
-  | expr_04 SUB expr_03 { Ast.mk_binop_expr Ast.Subtract $1 $3 }
-  | expr_03 { $1 }
+additive_expr:
+  | multiplicative_expr { $1 }
+  | additive_expr ADD multiplicative_expr { Ast.mk_binop_expr Ast.Add $1 $3 }
+  | additive_expr SUB multiplicative_expr { Ast.mk_binop_expr Ast.Subtract $1 $3 }
   ;
 
 (* Multiplicative binary operators [left associative] *)
-expr_03:
-  | expr_03 MUL expr_02 { Ast.mk_binop_expr Ast.Multiply $1 $3 }
-  | expr_03 DIV expr_02 { Ast.mk_binop_expr Ast.Divide $1 $3 }
-  | expr_03 MOD expr_02 { Ast.mk_binop_expr Ast.Remainder $1 $3 }
-  | expr_02 { $1 }
+multiplicative_expr:
+  | unary_expr { $1 }
+  | multiplicative_expr MUL unary_expr { Ast.mk_binop_expr Ast.Multiply $1 $3 }
+  | multiplicative_expr DIV unary_expr { Ast.mk_binop_expr Ast.Divide $1 $3 }
+  | multiplicative_expr MOD unary_expr { Ast.mk_binop_expr Ast.Remainder $1 $3 }
   ;
 
 (* Unary operators [right associative] *)
-expr_02:
-  | INCREMENT expr_02 { Ast.mk_unary_update_expr Ast.PreIncrement $2 }
-  | DECREMENT expr_02 { Ast.mk_unary_update_expr Ast.PreDecrement $2 }
-  | SUB expr_02 { Ast.mk_unop_expr Ast.Negate $2 }
-  | NOT expr_02 { Ast.mk_unop_expr Ast.Not $2 }
-  | BW_NOT expr_02 { Ast.mk_unop_expr Ast.BwNot $2 }
-  | expr_01 { $1 }
+unary_expr:
+  | postfix_expr { $1 }
+  | INCREMENT unary_expr { Ast.mk_unary_update_expr Ast.PreIncrement $2 }
+  | DECREMENT unary_expr { Ast.mk_unary_update_expr Ast.PreDecrement $2 }
+  | SUB unary_expr { Ast.mk_unop_expr Ast.Negate $2 }
+  | NOT unary_expr { Ast.mk_unop_expr Ast.Not $2 }
+  | BW_NOT unary_expr { Ast.mk_unop_expr Ast.BwNot $2 }
+  ;
+
+arg_expr_list_opt:
+  | /* empty */ { [] }
+  | arg_expr_list { $1 }
+  ;
+
+arg_expr_list:
+  | assignment_expr { [$1] }
+  | arg_expr_list COMMA assignment_expr { $1 @ [$3] }
   ;
 
 (* Postfix operators [left associative] *)
-expr_01:
-  | factor INCREMENT { Ast.mk_unary_update_expr Ast.PostIncrement $1 }
-  | factor DECREMENT { Ast.mk_unary_update_expr Ast.PostDecrement $1 }
-  | factor { $1 }
+postfix_expr:
+  | primary_expr { $1 }
+  | postfix_expr LPAREN arg_expr_list_opt RPAREN { Ast.mk_func_call $1 $3 }
+  | postfix_expr INCREMENT { Ast.mk_unary_update_expr Ast.PostIncrement $1 }
+  | postfix_expr DECREMENT { Ast.mk_unary_update_expr Ast.PostDecrement $1 }
   ;
 
-(* Highest precedence: literals, identifiers, parentheses *)
-factor:
-  | LPAREN expr RPAREN { $2 }
-  | LITERAL_INT { Ast.mk_int_expr $1 }
+(* Literals, identifiers, parentheses *)
+primary_expr:
   | identifier { Ast.Var $1 }
-  | identifier LPAREN arg_list_opt RPAREN { Ast.mk_func_call $1 $3 }
+  | constant { $1 }
+  | LPAREN expr RPAREN { $2 }
   ;
 
 identifier:
   | IDENTIFIER { Ast.mk_ident $1 }
+  ;
+
+constant:
+  | LITERAL_INT { Ast.mk_int_expr $1 }
   ;

@@ -101,7 +101,7 @@ type prog = Program of decl list [@@deriving show]
 
 let literal_to_int : expr -> int = function
   | LiteralInt i -> i
-  | _ -> failwith "expected LiteralInt"
+  | _ -> failwith "Expected LiteralInt"
 
 type decl_specs = { spec_type : typ; spec_storage : storage_class option }
 [@@deriving show]
@@ -138,12 +138,20 @@ let mk_func_decl specs name params =
   let ds = extract_specifiers specs in
   FunDecl { name; params; body = None; storage = ds.spec_storage }
 
-let mk_func_call name args = FunctionCall { name; args }
+let mk_func_call e args =
+  match e with
+  | Var name -> FunctionCall { name; args }
+  | _ -> failwith "Called object is not a function"
+
 let mk_ident i = Identifier i
 let mk_int_expr n = LiteralInt n
 let mk_binop_expr op left right = Binary { op; left; right }
 let mk_unop_expr op exp = Unary { op; exp }
-let mk_assign_expr left right = Assignment (Var left, right)
+
+let mk_assign_expr left right =
+  match left with
+  | Var _ -> Assignment (left, right)
+  | _ -> failwith "Can only assign to a variable"
 
 let mk_cond_expr cond_exp then_exp else_exp =
   Conditional { cond_exp; then_exp; else_exp }
@@ -181,11 +189,13 @@ let mk_decl_block_item d = D d
 (** [mk_comp_assign_expr op left right] resolves compound ops by evaluating the
     binary expression [left] [op] [right], then assigning result to [left] *)
 let mk_comp_assign_expr op left right =
-  let var = Var left in
-  let result = mk_binop_expr op var right in
-  Assignment (var, result)
+  match left with
+  | Var _ ->
+      let result = mk_binop_expr op left right in
+      Assignment (left, result)
+  | _ -> failwith "Can only compound assign to a variable"
 
 let mk_unary_update_expr (op : unop) (exp : expr) =
   match exp with
   | Var _ -> mk_unop_expr op exp
-  | _ -> failwith "unary increment/decrement can only be applied to variables"
+  | _ -> failwith "Unary increment/decrement can only be applied to variables"
