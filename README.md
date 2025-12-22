@@ -92,13 +92,11 @@ A line must be drawn somewhere, and it is therefore unlikely that the following 
 
 ```mermaid
 flowchart TB
-    classDef tight padding:1px;
-
-    A["C source code"]:::tight
-    B["Preprocessed source code"]:::tight
-    C["x86-64 assembly code"]:::tight
-    D["Object files"]:::tight
-    E["Executable"]:::tight
+    A["C source code"]
+    B["Preprocessed source code"]
+    C["x86-64 assembly code"]
+    D["Object files"]
+    E["Executable"]
 
     A -- "Preprocessor" --> B
     B -- "Sub-C Compiler" --> C
