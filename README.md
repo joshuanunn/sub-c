@@ -92,7 +92,7 @@ A line must be drawn somewhere, and it is therefore unlikely that the following 
 
 ```mermaid
 flowchart TB
-    classDef tight padding:5px;
+    classDef tight padding:1px;
 
     A["C source code"]:::tight
     B["Preprocessed source code"]:::tight
