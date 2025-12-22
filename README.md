@@ -91,7 +91,7 @@ A line must be drawn somewhere, and it is therefore unlikely that the following 
 ## Compilation Overview
 
 ```mermaid
-flowchart LR
+flowchart TB
     A["C source"]
     B["Preprocessed source"]
     C["x86-64 asm"] 
