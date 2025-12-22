@@ -92,19 +92,18 @@ A line must be drawn somewhere, and it is therefore unlikely that the following 
 
 ```mermaid
 flowchart LR
-    A["C source code"]
-    B["Preprocessor"]
-    C["Preprocessed C source"]
-    D["sub-c compiler"]
-    E["x86-64 Assembly"]
-    F["System assembler"]
-    G["Object files"]
-    H["System linker"]
-    I["Executable"]
+    A["C source"]
+    B["Preprocessed source"]
+    C["x86-64 asm"] 
+    D["Object files"] 
+    E["Executable"]
 
-    A --> B --> C --> D --> E --> F --> G --> H --> I
+    A -- "Preprocessor" --> B
+    B -- "Sub-C Compiler" --> C
+    C -- "Assembler" --> D
+    D -- "Linker" --> E
 
-    style D fill:#e6f3ff,stroke:#0366d6,stroke-width:2px
+    style C fill:#e6f3ff,stroke:#0366d6,stroke-width:2px
 ```
 
 ## License
