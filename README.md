@@ -88,6 +88,22 @@ A line must be drawn somewhere, and it is therefore unlikely that the following 
 - `typedef`
 - Type qualifiers like `const`
 
+## Compilation Overview
+
+```mermaid
+flowchart TD
+    A[C source code<br/>(text)]
+    B[Preprocessor]
+    C[Preprocessed C source<br/>(text)]
+    D[Compiler (sub-c)]
+    E[Assembly code<br/>(x86-64)]
+    F[Assembler]
+    G[Object files<br/>(binary)]
+    H[Linker]
+    I[Executable<br/>(binary)]
+
+    A --> B --> C --> D --> E --> F --> G --> H --> I
+
 ## License
 
 This software is released under the MIT license [MIT](LICENSE).
