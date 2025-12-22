@@ -107,7 +107,7 @@ flowchart TB
     C -- "Assembler" --> D
     D -- "Linker" --> E
 
-    linkStyle 1 stroke-width:3px,stroke:#0366d6
+    linkStyle 1 stroke-width:4px,stroke:#ed7118
 ```
 
 ## License
