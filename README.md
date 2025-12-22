@@ -92,17 +92,19 @@ A line must be drawn somewhere, and it is therefore unlikely that the following 
 
 ```mermaid
 flowchart TD
-    A[C source code<br/>(text)]
-    B[Preprocessor]
-    C[Preprocessed C source<br/>(text)]
-    D[Compiler (sub-c)]
-    E[Assembly code<br/>(x86-64)]
-    F[Assembler]
-    G[Object files<br/>(binary)]
-    H[Linker]
-    I[Executable<br/>(binary)]
+    A["C source code"]
+    B["Preprocessor"]
+    C["Preprocessed C source"]
+    D["sub-c compiler"]
+    E["x86-64 Assembly"]
+    F["System assembler"]
+    G["Object files"]
+    H["System linker"]
+    I["Executable"]
 
     A --> B --> C --> D --> E --> F --> G --> H --> I
+
+    style D fill:#e6f3ff,stroke:#0366d6,stroke-width:2px
 
 ## License
 
