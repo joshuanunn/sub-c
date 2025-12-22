@@ -91,6 +91,10 @@ A line must be drawn somewhere, and it is therefore unlikely that the following 
 ## Compilation Overview
 
 ```mermaid
+---
+config:
+  theme: 'forest'
+---
 flowchart TB
     A["C source code"]
     B["Preprocessed source code"]
