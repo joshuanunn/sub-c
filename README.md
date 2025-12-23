@@ -8,32 +8,26 @@ A compiler for a large subset of the C programming language, implemented in OCam
 - Integer constants
 - Unary operators: `-`, `~`
 - Binary arithmetic operators: `+`, `-`, `*`, `/`, `%`
-- Logical operators:
-  - `&&`, `||`, `!`
-- Bitwise operators:
-  - `&`, `|`, `^`, `<<`, `>>`
-- Relational operators:
-  - `==`, `!=`, `<`, `<=`, `>`, `>=`
-- Conditional expressions (`a ? b : c`)
+- Logical operators: `&&`, `||`, `!`
+- Bitwise operators: `&`, `|`, `^`, `<<`, `>>`
+- Relational operators: `==`, `!=`, `<`, `<=`, `>`, `>=`
+- Conditional expressions: `a ? b : c`
 - Comma operator
 
 ### Statements & Control Flow
 - `return`
 - `if` / `else`
 - Compound statements (`{ ... }`)
-- Loops:
-  - `while`
-  - `do … while`
-  - `for`
+- Loops: `for`, `while`, `do … while`
 - `break` and `continue`
 - `switch`, `case` and `default`
 - `goto` and labelled statements
 
 ### Variables & Scope
 - Local variable declarations
-- Assignment (`=`)
-- Compound assignment (`+=`, `-=`, `*=`, `/=`, `%=`)
-- Bitwise compound assignment (`&=`, `|=`, `^=`, `<<=`, `>>=`)
+- Assignment: `=`
+- Compound assignment: `+=`, `-=`, `*=`, `/=`, `%=`
+- Bitwise compound assignment: `&=`, `|=`, `^=`, `<<=`, `>>=`
 - Lexical scoping rules
 - Semantic analysis for:
   - Undeclared variables
@@ -61,7 +55,7 @@ A compiler for a large subset of the C programming language, implemented in OCam
 - `long` integers
 - Unsigned integer types
 - Floating-point (`double`)
-- Pointers (`*`, `&`)
+- Pointers: `*`, `&`
 - Arrays and pointer arithmetic
 - Characters and strings
 - `void`, `sizeof`, and dynamic memory allocation
