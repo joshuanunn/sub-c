@@ -7,8 +7,7 @@ A compiler for a large subset of the C programming language, implemented in OCam
 ### Expressions & Operators
 - Integer constants
 - Unary operators:
-  - Arithmetic negation (`-`)
-  - Bitwise complement (`~`)
+  - `-`, `~`
 - Binary arithmetic operators:
   - `+`, `-`, `*`, `/`, `%`
 - Logical operators:
