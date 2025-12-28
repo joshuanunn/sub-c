@@ -79,7 +79,7 @@ A line must be drawn somewhere, and it is therefore unlikely that the following 
 - `typedef`
 - Type qualifiers like `const`
 
-## Build and Installation of Sub-C
+## Build and Installation
 
 ### Requirements
 
@@ -89,7 +89,7 @@ A line must be drawn somewhere, and it is therefore unlikely that the following 
 - make
 - GNU compiler suite (for C preprocessor and linker)
 
-For example, all requirements could be installed on an Ubuntu distro using `sudo apt install opam` and `sudo apt install build-essential`.
+On Ubuntu, all requirements can be installed with `sudo apt install opam build-essential`
 
 ### Setup
 
@@ -104,7 +104,7 @@ opam install . --deps-only
 make
 ```
 
-### Verify
+### Testing
 
 Check that the compiler executable works using `subc --help` or run the full regression test suite using `make test`.
 
