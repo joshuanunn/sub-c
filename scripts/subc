@@ -16,20 +16,32 @@ script_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd -P)
 
 usage() {
   cat <<EOF
-Usage: $(basename "${BASH_SOURCE[0]}") [-h] [-d] [-o] [--lex|--parse|--irgen|--codegen|--emit|-S|-c] sourcefile(s)
+Usage: $(basename "${BASH_SOURCE[0]}") [options] sourcefile(s)
 Sub-C compiler driver.
-Available options:
- -h, --help      Print this help and exit
- -d, --debug     Print script debug info
- -o              Specify output filename for generated executable
-     --lex       [ stdout ] Run -> lexer
-     --parse     [ stdout ] Run -> parser
-     --validate  [ stdout ] Run -> semantic analysis
-     --irgen     [ stdout ] Run -> IR generation
-     --codegen   [ stdout ] Run -> code generation
-     --emit      [ stdout ] Run -> code emission
- -S              [  file  ] Output asm to file (do not run assembler or linker)
- -c              [  file  ] Output object file (do not run linker)
+
+Stages [mutually exclusive]:
+     --lex                Stop after lexing; write to stdout
+     --parse              Stop after parsing; write to stdout
+     --validate           Stop after semantic analysis; write to stdout
+     --irgen              Stop after IR generation; write to stdout
+     --codegen            Stop after code generation; write to stdout
+     --emit               Emit assembly to stdout
+
+Optimisations [stackable]:
+ -O, --opt-all            Enable all
+     --opt-folding        Enable constant folding
+     --opt-propagation    Enable copy propagation
+     --opt-unreachable    Enable unreachable code elimination
+     --opt-deadstores     Enable dead store elimination
+
+Output:
+ -S                       Emit assembly only (no assembler, no linker)
+ -c                       Emit object file (no linker)
+ -o <file>                Emit executable binary to <file> (default: a.out)
+
+Help:
+ -h, --help               Print this help and exit
+ -d, --debug              Print script debug info
 EOF
   exit
 }
@@ -71,54 +83,40 @@ parse_params() {
   assy_link=2
   modes=0
 
+  # optimisation bitmask defaults
+  OPT_NONE=0
+  OPT_FOLDING=1
+  OPT_PROPAGATION=2
+  OPT_UNREACHABLE=4
+  OPT_DEADSTORES=8
+  OPT_ALL=$((OPT_FOLDING | OPT_PROPAGATION | OPT_UNREACHABLE | OPT_DEADSTORES))
+  opt_flags=$OPT_NONE
+
   args=()
 
   while [[ $# -gt 0 ]]; do
     case "${1-}" in
     -h | --help) usage ;;
     -d | --debug) set -x ;;
-    --lex)
-      ((modes + 1))
-      phase=1
-      assy_link=0
-      ;;
-    --parse)
-      ((modes + 1))
-      phase=2
-      assy_link=0
-      ;;
-    --validate)
-      ((modes + 1))
-      phase=3
-      assy_link=0
-      ;;
-    --irgen)
-      ((modes + 1))
-      phase=4
-      assy_link=0
-      ;;
-    --codegen)
-      ((modes + 1))
-      phase=5
-      assy_link=0
-      ;;
-    --emit)
-      ((modes + 1))
-      phase=6
-      assy_link=0
-      ;;  
-    -S)
-      ((modes + 1))
-      phase=7
-      assy_link=0
-      keep_asm=1
-      ;;
-    -c)
-      ((modes + 1))
-      phase=7
-      assy_link=1
-      keep_obj=1
-      ;;
+
+    # Compilation stages [mutually exclusive]
+    --lex)       ((modes+=1)); phase=1; assy_link=0 ;;
+    --parse)     ((modes+=1)); phase=2; assy_link=0 ;;
+    --validate)  ((modes+=1)); phase=3; assy_link=0 ;;
+    --irgen)     ((modes+=1)); phase=4; assy_link=0 ;;
+    --codegen)   ((modes+=1)); phase=5; assy_link=0 ;;
+    --emit)      ((modes+=1)); phase=6; assy_link=0 ;;
+
+    # Optimisations [stackable]
+    -O | --opt-all)     opt_flags=$OPT_ALL ;;
+    --opt-folding)      ((opt_flags |= OPT_FOLDING)) ;;
+    --opt-propagation)  ((opt_flags |= OPT_PROPAGATION)) ;;
+    --opt-unreachable)  ((opt_flags |= OPT_UNREACHABLE)) ;;
+    --opt-deadstores)   ((opt_flags |= OPT_DEADSTORES)) ;;
+
+    # Output modes
+    -S) ((modes+=1)); phase=7; assy_link=0; keep_asm=1 ;;
+    -c) ((modes+=1)); phase=7; assy_link=1; keep_obj=1 ;;
     -o)
       shift
       [[ $# -eq 0 ]] && die "ERROR: missing filename after -o"
@@ -162,7 +160,7 @@ for source_file in "${args[@]}"; do
   $CC -E -P "$source_file" -o "$preprocessed_file"
 
   # run sub-c compiler on preprocessed input
-  $SUBC "$preprocessed_file" $phase
+  $SUBC "$preprocessed_file" $phase $opt_flags
   #$CC -S -O -fno-asynchronous-unwind-tables -fcf-protection=none $preprocessed_file
 
   # output object files if assembling

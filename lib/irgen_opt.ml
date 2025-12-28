@@ -1,0 +1,107 @@
+type opts = {
+  folding : bool;
+  propagation : bool;
+  unreachable : bool;
+  deadstores : bool;
+}
+
+let unpack_opts flags =
+  {
+    folding = flags land 1 <> 0;
+    propagation = flags land 2 <> 0;
+    unreachable = flags land 4 <> 0;
+    deadstores = flags land 8 <> 0;
+  }
+
+let int_of_bool (b : bool) : int = if b then 1 else 0
+
+let fold_unop (op : Ir.unary_operator) (n : int) : int option =
+  match op with
+  | Negate -> Some (-n)
+  | BwNot -> Some (lnot n)
+  | Not -> Some (int_of_bool (n = 0))
+  | PreIncrement | PreDecrement | PostIncrement | PostDecrement -> None
+
+let fold_binop (op : Ir.binary_operator) (n1 : int) (n2 : int) : int option =
+  match op with
+  | Add -> Some (n1 + n2)
+  | Subtract -> Some (n1 - n2)
+  | Multiply -> Some (n1 * n2)
+  | Divide -> if n2 = 0 then None else Some (n1 / n2)
+  | Remainder -> if n2 = 0 then None else Some (n1 mod n2)
+  | BwLeftShift -> Some (Int.shift_left n1 n2)
+  | BwRightShift -> Some (Int.shift_right n1 n2)
+  | BwAnd -> Some (n1 land n2)
+  | BwXor -> Some (n1 lxor n2)
+  | BwOr -> Some (n1 lor n2)
+  | Equal -> Some (int_of_bool (n1 = n2))
+  | NotEqual -> Some (int_of_bool (n1 <> n2))
+  | LessOrEqual -> Some (int_of_bool (n1 <= n2))
+  | GreaterOrEqual -> Some (int_of_bool (n1 >= n2))
+  | LessThan -> Some (int_of_bool (n1 < n2))
+  | GreaterThan -> Some (int_of_bool (n1 > n2))
+
+let constant_folding (i : Ir.instruction) : Ir.instruction option =
+  match i with
+  | Unary { op; src = Constant n; dst } -> (
+      match fold_unop op n with
+      | Some v -> Some (Copy { src = Constant v; dst })
+      | None -> Some i)
+  | Binary { op; src1 = Constant n1; src2 = Constant n2; dst } -> (
+      match fold_binop op n1 n2 with
+      | Some v -> Some (Copy { src = Constant v; dst })
+      | None -> Some i)
+  | JumpIfZero { condition = Constant 0; target } -> Some (Jump { target })
+  | JumpIfZero { condition = Constant _; _ } -> None
+  | JumpIfNotZero { condition = Constant 0; _ } -> None
+  | JumpIfNotZero { condition = Constant _; target } -> Some (Jump { target })
+  | ins -> Some ins
+
+let optimise (body : Ir.instruction list) (o : opts) : Ir.instruction list =
+  let rec loop body =
+    if body = [] then body
+    else
+      let body_opt =
+        if o.folding then List.filter_map constant_folding body else body
+      in
+
+      (* let cfg = make_control_flow_graph body_after_folding in
+
+      let cfg =
+        if o.unreachable then
+          unreachable_code_elimination cfg
+        else
+          cfg
+      in
+
+      let cfg =
+        if o.propagation then
+          copy_propagation cfg
+        else
+          cfg
+      in
+
+      let cfg =
+        if o.deadstores then
+          dead_store_elimination cfg
+        else
+          cfg
+      in
+
+      let optimised_body = cfg_to_instructions cfg in*)
+      if body_opt = body || body_opt = [] then body_opt else loop body_opt
+  in
+  loop body
+
+let optimise_func (f : Ir.top_level) (o : opts) : Ir.top_level =
+  (* only optimise function bodies *)
+  match f with
+  | Function { name; global; params; body; frame } ->
+      let body_opt = optimise body o in
+      Function { name; global; params; body = body_opt; frame }
+  | StaticVariable { name; global; init } ->
+      StaticVariable { name; global; init }
+
+let optimise_prog (Program p : Ir.prog) (o : opts) : Ir.prog =
+  let compiled_funcs = List.map (function f -> optimise_func f o) p in
+  Ir.Program compiled_funcs

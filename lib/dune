@@ -12,6 +12,7 @@
   ast_flow_label
   ast_type_check
   irgen
+  irgen_opt
   ir
   codegen
   codegen_lower

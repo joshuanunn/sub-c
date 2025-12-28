@@ -95,7 +95,7 @@ for chapter in "${CHAPTERS[@]}"; do
         # Exit status test
         if [[ "$phase" == "exe" ]]; then
           # Compile executable
-          subc "$test_file" -o "$binary_file"
+          subc "$test_file" -O -o "$binary_file"
 
           # Capture stdout and exit status
           program_stdout="$("$binary_file" 2>&1)"
@@ -147,7 +147,7 @@ for chapter in "${CHAPTERS[@]}"; do
 
         # Lexer, parser, validation, codegen and emit tests
         if [[ "$phase" == "lex" || "$phase" == "parse" || "$phase" == "validate" || "$phase" == "irgen" || "$phase" == "codegen" || "$phase" == "emit" ]]; then
-            output=$(subc "$test_file" --"$phase" 2>&1)
+            output=$(subc "$test_file" --"$phase" -O 2>&1)
             expected=$(<"$oracle_file")
 
             if diff -u <(echo "$expected") <(echo "$output") > /dev/null; then
@@ -209,7 +209,7 @@ for chapter in "${CHAPTERS[@]}"; do
 
       # Build the library
       if [[ "$lib" == *.c ]]; then
-        subc "$lib" -c
+        subc "$lib" -c -O
       else
         cc -c "$lib" -o "$subc_lib_o"
       fi
@@ -254,7 +254,7 @@ for chapter in "${CHAPTERS[@]}"; do
       fi
 
       # subc compiler builds client
-      subc "$client" -c
+      subc "$client" -c -O
 
       # Link and run
       cc "$sys_lib_o" "$subc_client_o" -o "$libdir/a.out"
@@ -298,7 +298,7 @@ for chapter in "${CHAPTERS[@]}"; do
       rel_path="${test_file#$TEST_DIR/}"
 
       # Run executable, capture exit status code and cleanup
-      output=$(subc "$test_file" --"$phase" 2>&1)
+      output=$(subc "$test_file" --"$phase" -O 2>&1)
       status=$?
 
       if [ $status -ne 0 ]; then
@@ -329,7 +329,7 @@ for chapter in "${CHAPTERS[@]}"; do
       rel_path="${test_file#$TEST_DIR/}"
 
       # Run executable, capture exit status code and cleanup
-      output=$(subc "$test_file" --"$phase" 2>&1)
+      output=$(subc "$test_file" --"$phase" -O 2>&1)
       status=$?
 
       if [ $status -ne 0 ]; then
@@ -360,7 +360,7 @@ for chapter in "${CHAPTERS[@]}"; do
       rel_path="${test_file#$TEST_DIR/}"
 
       # Run executable, capture exit status code and cleanup
-      output=$(subc "$test_file" --"$phase" 2>&1)
+      output=$(subc "$test_file" --"$phase" -O 2>&1)
       status=$?
 
       if [ $status -ne 0 ]; then
