@@ -49,7 +49,7 @@ A compiler for a large subset of the C programming language, implemented in OCam
   - Storage duration
 - Code generation for global data
 
-## Not Yet Implemented (In Progress)
+## In Progress Features
 
 ### Types Beyond `int`
 - `long` integers
@@ -78,6 +78,35 @@ A line must be drawn somewhere, and it is therefore unlikely that the following 
 - Variable-length argument lists
 - `typedef`
 - Type qualifiers like `const`
+
+## Build and Installation of Sub-C
+
+### Requirements
+
+- Linux environment (WSL is fine)
+- opam (>= 2.0)
+- OCaml (via opam, >= 4.14)
+- make
+- GNU compiler suite (for C preprocessor and linker)
+
+For example, all requirements could be installed on an Ubuntu distro using `sudo apt install opam` and `sudo apt install build-essential`.
+
+### Setup
+
+It's recommended to create a new opam local switch in the project directory, which will install all required dependencies in an isolated environment:
+
+```bash
+git clone https://github.com/joshuanunn/sub-c.git
+cd sub-c
+opam switch create . -y
+eval $(opam env)
+opam install . --deps-only
+make
+```
+
+### Verify
+
+Check that the compiler executable works using `subc --help` or run the full regression test suite using `make test`.
 
 ## Compilation Overview
 
