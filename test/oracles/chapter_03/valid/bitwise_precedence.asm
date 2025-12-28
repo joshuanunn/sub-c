@@ -1,10 +1,8 @@
 (Asm.Program
    [Asm.Function {name = "main"; global = true;
       instructions =
-      [(Asm.AllocateStack 32); (Asm.Mov ((Asm.Imm 80), (Asm.Stack -4)));
-        (Asm.Sar ((Asm.Imm 2), (Asm.Stack -4)));
-        (Asm.Mov ((Asm.Imm 7), (Asm.Stack -8)));
-        (Asm.Shl ((Asm.Imm 1), (Asm.Stack -8)));
+      [(Asm.AllocateStack 32); (Asm.Mov ((Asm.Imm 20), (Asm.Stack -4)));
+        (Asm.Mov ((Asm.Imm 14), (Asm.Stack -8)));
         (Asm.Mov ((Asm.Imm 5), (Asm.Stack -12)));
         (Asm.Mov ((Asm.Stack -8), (Asm.Reg Asm.R10)));
         Asm.Binary {op = Asm.BwAnd; src = (Asm.Reg Asm.R10);

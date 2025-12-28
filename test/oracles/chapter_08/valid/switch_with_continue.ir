@@ -1,12 +1,10 @@
 (Ir.Program
    [Ir.Function {name = "main"; global = true; params = [];
       body =
-      [Ir.Binary {op = Ir.Equal; src1 = (Ir.Constant 4);
-         src2 = (Ir.Constant 0); dst = (Ir.Var "tmp.0")};
+      [Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "tmp.0")};
         Ir.JumpIfNotZero {condition = (Ir.Var "tmp.0");
           target = "swit.cs.1.0"};
-        Ir.Binary {op = Ir.Equal; src1 = (Ir.Constant 4);
-          src2 = (Ir.Constant 4); dst = (Ir.Var "tmp.1")};
+        Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "tmp.1")};
         Ir.JumpIfNotZero {condition = (Ir.Var "tmp.1");
           target = "swit.cs.1.4"};
         Ir.Jump {target = "swit.br.1"}; (Ir.Label "swit.cs.1.0");

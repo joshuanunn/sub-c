@@ -34,8 +34,7 @@
         (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -20)));
         (Asm.JmpCC (Asm.E, "if.en.5"));
         (Asm.Mov ((Asm.Imm 1), (Asm.Reg Asm.AX))); Asm.Ret;
-        (Asm.Label "if.en.5"); (Asm.Mov ((Asm.Imm 6), (Asm.Stack -24)));
-        Asm.Unary {op = Asm.Neg; dst = (Asm.Stack -24)};
+        (Asm.Label "if.en.5"); (Asm.Mov ((Asm.Imm -6), (Asm.Stack -24)));
         (Asm.Mov ((Asm.Stack -24), (Asm.Reg Asm.R10)));
         (Asm.Cmp ((Asm.Reg Asm.R10), (Asm.Data "j.1")));
         (Asm.Mov ((Asm.Imm 0), (Asm.Stack -28)));
@@ -43,8 +42,7 @@
         (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -28)));
         (Asm.JmpCC (Asm.E, "if.en.8"));
         (Asm.Mov ((Asm.Imm 2), (Asm.Reg Asm.AX))); Asm.Ret;
-        (Asm.Label "if.en.8"); (Asm.Mov ((Asm.Imm 18), (Asm.Stack -32)));
-        Asm.Unary {op = Asm.Neg; dst = (Asm.Stack -32)};
+        (Asm.Label "if.en.8"); (Asm.Mov ((Asm.Imm -18), (Asm.Stack -32)));
         (Asm.Mov ((Asm.Stack -32), (Asm.Reg Asm.R10)));
         (Asm.Cmp ((Asm.Reg Asm.R10), (Asm.Data "k.2")));
         (Asm.Mov ((Asm.Imm 0), (Asm.Stack -36)));

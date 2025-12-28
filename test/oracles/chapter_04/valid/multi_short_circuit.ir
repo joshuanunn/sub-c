@@ -1,8 +1,7 @@
 (Ir.Program
    [Ir.Function {name = "main"; global = true; params = [];
       body =
-      [Ir.JumpIfNotZero {condition = (Ir.Constant 0); target = "or.tr.5"};
-        Ir.JumpIfZero {condition = (Ir.Constant 0); target = "and.fl.2"};
+      [Ir.Jump {target = "and.fl.2"};
         Ir.Binary {op = Ir.Divide; src1 = (Ir.Constant 1);
           src2 = (Ir.Constant 0); dst = (Ir.Var "tmp.0")};
         Ir.JumpIfZero {condition = (Ir.Var "tmp.0"); target = "and.fl.2"};

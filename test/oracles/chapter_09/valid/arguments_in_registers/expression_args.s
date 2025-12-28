@@ -24,8 +24,7 @@ main:
     pushq       %rbp
     movq        %rsp, %rbp
     subq        $16, %rsp
-    movl        $1, -8(%rbp)
-    addl        $2, -8(%rbp)
+    movl        $3, -8(%rbp)
     movl        -8(%rbp), %edi
     movl        $1, %esi
     call        sub@PLT

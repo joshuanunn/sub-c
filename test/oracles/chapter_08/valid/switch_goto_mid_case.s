@@ -6,10 +6,7 @@ main:
     subq        $16, %rsp
     movl        $0, -4(%rbp)
     jmp         .Lmid_case.0
-    movl        $4, %r11d
-    cmpl        $4, %r11d
-    movl        $0, -8(%rbp)
-    sete        -8(%rbp)
+    movl        $1, -8(%rbp)
     cmpl        $0, -8(%rbp)
     jne         .Lswit.cs.1.4
     jmp         .Lswit.br.1

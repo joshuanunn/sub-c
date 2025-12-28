@@ -4,17 +4,14 @@ main:
     pushq       %rbp
     movq        %rsp, %rbp
     subq        $32, %rsp
-    movl        $2, -4(%rbp)
-    notl        -4(%rbp)
-    movl        $2, -8(%rbp)
-    negl        -8(%rbp)
+    movl        $-3, -4(%rbp)
+    movl        $-2, -8(%rbp)
     movl        -4(%rbp), %r10d
     movl        %r10d, -12(%rbp)
     movl        -12(%rbp), %r11d
     imull       -8(%rbp), %r11d
     movl        %r11d, -12(%rbp)
-    movl        $1, -16(%rbp)
-    addl        $5, -16(%rbp)
+    movl        $6, -16(%rbp)
     movl        -16(%rbp), %r10d
     cmpl        %r10d, -12(%rbp)
     movl        $0, -20(%rbp)

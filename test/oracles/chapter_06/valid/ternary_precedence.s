@@ -7,9 +7,6 @@ main:
     movl        $10, -4(%rbp)
     cmpl        $0, -4(%rbp)
     jne         .Lor.tr.2
-    movl        $0, %r11d
-    cmpl        $0, %r11d
-    jne         .Lor.tr.2
     movl        $0, -12(%rbp)
     jmp         .Lor.en.3
 .Lor.tr.2:

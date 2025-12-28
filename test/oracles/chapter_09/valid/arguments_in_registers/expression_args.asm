@@ -21,8 +21,7 @@
         }}};
      Asm.Function {name = "main"; global = true;
        instructions =
-       [(Asm.AllocateStack 16); (Asm.Mov ((Asm.Imm 1), (Asm.Stack -8)));
-         Asm.Binary {op = Asm.Add; src = (Asm.Imm 2); dst = (Asm.Stack -8)};
+       [(Asm.AllocateStack 16); (Asm.Mov ((Asm.Imm 3), (Asm.Stack -8)));
          (Asm.Mov ((Asm.Stack -8), (Asm.Reg Asm.DI)));
          (Asm.Mov ((Asm.Imm 1), (Asm.Reg Asm.SI))); (Asm.Call "sub");
          (Asm.Mov ((Asm.Reg Asm.AX), (Asm.Stack -12)));

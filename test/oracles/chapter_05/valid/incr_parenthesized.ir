@@ -24,8 +24,7 @@
         Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "tmp.5")};
         (Ir.Label "and.en.7");
         Ir.JumpIfZero {condition = (Ir.Var "tmp.5"); target = "and.fl.11"};
-        Ir.Unary {op = Ir.Negate; src = (Ir.Constant 2);
-          dst = (Ir.Var "tmp.8")};
+        Ir.Copy {src = (Ir.Constant -2); dst = (Ir.Var "tmp.8")};
         Ir.Binary {op = Ir.Equal; src1 = (Ir.Var "c.2");
           src2 = (Ir.Var "tmp.8"); dst = (Ir.Var "tmp.9")};
         Ir.JumpIfZero {condition = (Ir.Var "tmp.9"); target = "and.fl.11"};

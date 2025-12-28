@@ -4,8 +4,7 @@ main:
     pushq       %rbp
     movq        %rsp, %rbp
     subq        $16, %rsp
-    movl        $3, -4(%rbp)
-    addl        $4, -4(%rbp)
+    movl        $7, -4(%rbp)
     movl        $2, -8(%rbp)
     movl        -8(%rbp), %r11d
     imull       -4(%rbp), %r11d

@@ -5,12 +5,8 @@ main:
     movq        %rsp, %rbp
     subq        $16, %rsp
     movl        $0, -4(%rbp)
-    movl        $0, %r11d
-    cmpl        $0, %r11d
-    je          .Lif.el.1
-    movl        $0, %r11d
-    cmpl        $0, %r11d
-    je          .Lif.el.3
+    jmp         .Lif.el.1
+    jmp         .Lif.el.3
     movl        $3, -4(%rbp)
     jmp         .Lif.en.2
 .Lif.el.3:

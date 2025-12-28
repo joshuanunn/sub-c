@@ -5,14 +5,12 @@
         (Asm.Mov ((Asm.Imm 200), (Asm.Stack -8)));
         (Asm.Mov ((Asm.Imm 100), (Asm.Stack -12)));
         (Asm.Mov ((Asm.Imm 75), (Asm.Stack -16)));
-        (Asm.Mov ((Asm.Imm 25), (Asm.Stack -24)));
-        Asm.Unary {op = Asm.Neg; dst = (Asm.Stack -24)};
+        (Asm.Mov ((Asm.Imm -25), (Asm.Stack -24)));
         (Asm.Mov ((Asm.Stack -24), (Asm.Reg Asm.R10)));
         (Asm.Mov ((Asm.Reg Asm.R10), (Asm.Stack -20)));
         (Asm.Mov ((Asm.Imm 0), (Asm.Stack -28)));
         (Asm.Mov ((Asm.Imm 0), (Asm.Stack -32)));
-        (Asm.Mov ((Asm.Imm 7), (Asm.Stack -36)));
-        Asm.Unary {op = Asm.Neg; dst = (Asm.Stack -36)};
+        (Asm.Mov ((Asm.Imm -7), (Asm.Stack -36)));
         (Asm.Mov ((Asm.Stack -36), (Asm.Reg Asm.R10)));
         (Asm.Mov ((Asm.Reg Asm.R10), (Asm.Stack -28)));
         (Asm.Mov ((Asm.Stack -20), (Asm.Reg Asm.AX))); Asm.Cdq;
@@ -63,8 +61,7 @@
         (Asm.Label "and.fl.10"); (Asm.Mov ((Asm.Imm 0), (Asm.Stack -68)));
         (Asm.Label "and.en.11"); (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -68)));
         (Asm.JmpCC (Asm.E, "and.fl.15"));
-        (Asm.Mov ((Asm.Imm 1800), (Asm.Stack -72)));
-        Asm.Unary {op = Asm.Neg; dst = (Asm.Stack -72)};
+        (Asm.Mov ((Asm.Imm -1800), (Asm.Stack -72)));
         (Asm.Mov ((Asm.Stack -72), (Asm.Reg Asm.R10)));
         (Asm.Cmp ((Asm.Reg Asm.R10), (Asm.Stack -12)));
         (Asm.Mov ((Asm.Imm 0), (Asm.Stack -76)));
@@ -75,8 +72,7 @@
         (Asm.Label "and.fl.15"); (Asm.Mov ((Asm.Imm 0), (Asm.Stack -80)));
         (Asm.Label "and.en.16"); (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -80)));
         (Asm.JmpCC (Asm.E, "and.fl.20"));
-        (Asm.Mov ((Asm.Imm 18), (Asm.Stack -84)));
-        Asm.Unary {op = Asm.Neg; dst = (Asm.Stack -84)};
+        (Asm.Mov ((Asm.Imm -18), (Asm.Stack -84)));
         (Asm.Mov ((Asm.Stack -84), (Asm.Reg Asm.R10)));
         (Asm.Cmp ((Asm.Reg Asm.R10), (Asm.Stack -16)));
         (Asm.Mov ((Asm.Imm 0), (Asm.Stack -88)));
@@ -87,8 +83,7 @@
         (Asm.Label "and.fl.20"); (Asm.Mov ((Asm.Imm 0), (Asm.Stack -92)));
         (Asm.Label "and.en.21"); (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -92)));
         (Asm.JmpCC (Asm.E, "and.fl.25"));
-        (Asm.Mov ((Asm.Imm 4), (Asm.Stack -96)));
-        Asm.Unary {op = Asm.Neg; dst = (Asm.Stack -96)};
+        (Asm.Mov ((Asm.Imm -4), (Asm.Stack -96)));
         (Asm.Mov ((Asm.Stack -96), (Asm.Reg Asm.R10)));
         (Asm.Cmp ((Asm.Reg Asm.R10), (Asm.Stack -20)));
         (Asm.Mov ((Asm.Imm 0), (Asm.Stack -100)));
@@ -99,8 +94,7 @@
         (Asm.Label "and.fl.25"); (Asm.Mov ((Asm.Imm 0), (Asm.Stack -104)));
         (Asm.Label "and.en.26"); (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -104)));
         (Asm.JmpCC (Asm.E, "and.fl.30"));
-        (Asm.Mov ((Asm.Imm 7), (Asm.Stack -108)));
-        Asm.Unary {op = Asm.Neg; dst = (Asm.Stack -108)};
+        (Asm.Mov ((Asm.Imm -7), (Asm.Stack -108)));
         (Asm.Mov ((Asm.Stack -108), (Asm.Reg Asm.R10)));
         (Asm.Cmp ((Asm.Reg Asm.R10), (Asm.Stack -28)));
         (Asm.Mov ((Asm.Imm 0), (Asm.Stack -112)));

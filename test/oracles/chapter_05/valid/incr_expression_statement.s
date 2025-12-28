@@ -20,8 +20,7 @@ main:
     sete        -20(%rbp)
     cmpl        $0, -20(%rbp)
     je          .Land.fl.6
-    movl        $2, -24(%rbp)
-    negl        -24(%rbp)
+    movl        $-2, -24(%rbp)
     movl        -24(%rbp), %r10d
     cmpl        %r10d, -8(%rbp)
     movl        $0, -28(%rbp)

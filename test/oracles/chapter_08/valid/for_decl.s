@@ -5,8 +5,7 @@ main:
     movq        %rsp, %rbp
     subq        $32, %rsp
     movl        $0, -4(%rbp)
-    movl        $100, -12(%rbp)
-    negl        -12(%rbp)
+    movl        $-100, -12(%rbp)
     movl        -12(%rbp), %r10d
     movl        %r10d, -8(%rbp)
 .Lloop.st.1:

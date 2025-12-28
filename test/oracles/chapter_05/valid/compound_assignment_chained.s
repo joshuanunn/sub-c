@@ -8,14 +8,12 @@ main:
     movl        $200, -8(%rbp)
     movl        $100, -12(%rbp)
     movl        $75, -16(%rbp)
-    movl        $25, -24(%rbp)
-    negl        -24(%rbp)
+    movl        $-25, -24(%rbp)
     movl        -24(%rbp), %r10d
     movl        %r10d, -20(%rbp)
     movl        $0, -28(%rbp)
     movl        $0, -32(%rbp)
-    movl        $7, -36(%rbp)
-    negl        -36(%rbp)
+    movl        $-7, -36(%rbp)
     movl        -36(%rbp), %r10d
     movl        %r10d, -28(%rbp)
     movl        -20(%rbp), %eax
@@ -68,8 +66,7 @@ main:
 .Land.en.11:
     cmpl        $0, -68(%rbp)
     je          .Land.fl.15
-    movl        $1800, -72(%rbp)
-    negl        -72(%rbp)
+    movl        $-1800, -72(%rbp)
     movl        -72(%rbp), %r10d
     cmpl        %r10d, -12(%rbp)
     movl        $0, -76(%rbp)
@@ -83,8 +80,7 @@ main:
 .Land.en.16:
     cmpl        $0, -80(%rbp)
     je          .Land.fl.20
-    movl        $18, -84(%rbp)
-    negl        -84(%rbp)
+    movl        $-18, -84(%rbp)
     movl        -84(%rbp), %r10d
     cmpl        %r10d, -16(%rbp)
     movl        $0, -88(%rbp)
@@ -98,8 +94,7 @@ main:
 .Land.en.21:
     cmpl        $0, -92(%rbp)
     je          .Land.fl.25
-    movl        $4, -96(%rbp)
-    negl        -96(%rbp)
+    movl        $-4, -96(%rbp)
     movl        -96(%rbp), %r10d
     cmpl        %r10d, -20(%rbp)
     movl        $0, -100(%rbp)
@@ -113,8 +108,7 @@ main:
 .Land.en.26:
     cmpl        $0, -104(%rbp)
     je          .Land.fl.30
-    movl        $7, -108(%rbp)
-    negl        -108(%rbp)
+    movl        $-7, -108(%rbp)
     movl        -108(%rbp), %r10d
     cmpl        %r10d, -28(%rbp)
     movl        $0, -112(%rbp)

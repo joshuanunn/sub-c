@@ -6,9 +6,6 @@ main:
     subq        $48, %rsp
     movl        $0, -4(%rbp)
 .Lloop.ct.1:
-    movl        $1, %r11d
-    cmpl        $0, %r11d
-    je          .Lloop.br.1
     movl        -4(%rbp), %r10d
     movl        %r10d, -8(%rbp)
     addl        $1, -8(%rbp)
@@ -25,9 +22,6 @@ main:
 .Lloop.br.1:
     movl        $10, -16(%rbp)
 .Lloop.ct.2:
-    movl        $1, %r11d
-    cmpl        $0, %r11d
-    je          .Lloop.br.2
     movl        -16(%rbp), %r10d
     movl        %r10d, -20(%rbp)
     subl        $1, -20(%rbp)
@@ -42,8 +36,7 @@ main:
 .Lif.en.5:
     jmp         .Lloop.ct.2
 .Lloop.br.2:
-    movl        $1, -32(%rbp)
-    negl        -32(%rbp)
+    movl        $-1, -32(%rbp)
     movl        -32(%rbp), %r10d
     cmpl        %r10d, -16(%rbp)
     movl        $0, -36(%rbp)

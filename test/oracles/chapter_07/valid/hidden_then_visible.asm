@@ -2,8 +2,7 @@
    [Asm.Function {name = "main"; global = true;
       instructions =
       [(Asm.AllocateStack 48); (Asm.Mov ((Asm.Imm 2), (Asm.Stack -4)));
-        (Asm.Mov ((Asm.Imm 4), (Asm.Stack -12)));
-        Asm.Unary {op = Asm.Neg; dst = (Asm.Stack -12)};
+        (Asm.Mov ((Asm.Imm -4), (Asm.Stack -12)));
         (Asm.Mov ((Asm.Stack -12), (Asm.Reg Asm.R10)));
         (Asm.Mov ((Asm.Reg Asm.R10), (Asm.Stack -4)));
         (Asm.Mov ((Asm.Imm 7), (Asm.Stack -16)));
@@ -17,8 +16,7 @@
         (Asm.SetCC (Asm.E, (Asm.Stack -24)));
         (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -24)));
         (Asm.JmpCC (Asm.E, "and.fl.6"));
-        (Asm.Mov ((Asm.Imm 4), (Asm.Stack -28)));
-        Asm.Unary {op = Asm.Neg; dst = (Asm.Stack -28)};
+        (Asm.Mov ((Asm.Imm -4), (Asm.Stack -28)));
         (Asm.Mov ((Asm.Stack -28), (Asm.Reg Asm.R10)));
         (Asm.Cmp ((Asm.Reg Asm.R10), (Asm.Stack -4)));
         (Asm.Mov ((Asm.Imm 0), (Asm.Stack -32)));

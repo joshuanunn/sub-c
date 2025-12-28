@@ -4,12 +4,7 @@ main:
     pushq       %rbp
     movq        %rsp, %rbp
     subq        $32, %rsp
-    movl        $0, %r11d
-    cmpl        $0, %r11d
-    je          .Land.fl.1
-    movl        $1, %r11d
-    cmpl        $0, %r11d
-    je          .Land.fl.1
+    jmp         .Land.fl.1
     movl        $1, -4(%rbp)
     jmp         .Land.en.2
 .Land.fl.1:
@@ -18,12 +13,8 @@ main:
     movl        -4(%rbp), %r10d
     movl        %r10d, -8(%rbp)
     notl        -8(%rbp)
-    movl        $4, %r11d
-    cmpl        $0, %r11d
-    jne         .Lor.tr.5
-    movl        $3, %r11d
-    cmpl        $0, %r11d
-    jne         .Lor.tr.5
+    jmp         .Lor.tr.5
+    jmp         .Lor.tr.5
     movl        $0, -12(%rbp)
     jmp         .Lor.en.6
 .Lor.tr.5:

@@ -28,8 +28,7 @@ decr_j:
     pushq       %rbp
     movq        %rsp, %rbp
     subq        $16, %rsp
-    movl        $1, -4(%rbp)
-    negl        -4(%rbp)
+    movl        $-1, -4(%rbp)
     movl        -4(%rbp), %r10d
     cmpl        %r10d, j(%rip)
     movl        $0, -8(%rbp)
@@ -88,8 +87,7 @@ main:
 .Lcond.el.9:
     movl        $0, -20(%rbp)
 .Lcond.en.8:
-    movl        $2, -28(%rbp)
-    negl        -28(%rbp)
+    movl        $-2, -28(%rbp)
     movl        -28(%rbp), %r10d
     cmpl        %r10d, j(%rip)
     movl        $0, -32(%rbp)

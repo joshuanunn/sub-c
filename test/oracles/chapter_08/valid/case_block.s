@@ -6,10 +6,7 @@ main:
     subq        $32, %rsp
     movl        $4, -4(%rbp)
     movl        $0, -8(%rbp)
-    movl        $2, %r11d
-    cmpl        $2, %r11d
-    movl        $0, -12(%rbp)
-    sete        -12(%rbp)
+    movl        $1, -12(%rbp)
     cmpl        $0, -12(%rbp)
     jne         .Lswit.cs.1.2
     jmp         .Lswit.br.1

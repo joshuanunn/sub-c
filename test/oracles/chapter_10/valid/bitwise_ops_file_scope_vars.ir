@@ -1,8 +1,7 @@
 (Ir.Program
    [Ir.Function {name = "main"; global = true; params = [];
       body =
-      [Ir.Unary {op = Ir.Negate; src = (Ir.Constant 1);
-         dst = (Ir.Var "tmp.0")};
+      [Ir.Copy {src = (Ir.Constant -1); dst = (Ir.Var "tmp.0")};
         Ir.Copy {src = (Ir.Var "tmp.0"); dst = (Ir.Var "y")};
         Ir.Binary {op = Ir.BwLeftShift; src1 = (Ir.Var "x");
           src2 = (Ir.Constant 1); dst = (Ir.Var "tmp.1")};
@@ -13,8 +12,7 @@
           src2 = (Ir.Constant 3); dst = (Ir.Var "tmp.3")};
         Ir.JumpIfZero {condition = (Ir.Var "tmp.3"); target = "if.en.4"};
         (Ir.Return (Ir.Constant 1)); (Ir.Label "if.en.4");
-        Ir.Unary {op = Ir.Negate; src = (Ir.Constant 5);
-          dst = (Ir.Var "tmp.5")};
+        Ir.Copy {src = (Ir.Constant -5); dst = (Ir.Var "tmp.5")};
         Ir.Binary {op = Ir.BwAnd; src1 = (Ir.Var "y");
           src2 = (Ir.Var "tmp.5"); dst = (Ir.Var "tmp.6")};
         Ir.Binary {op = Ir.BwXor; src1 = (Ir.Var "tmp.6");
@@ -22,8 +20,7 @@
         Ir.Binary {op = Ir.BwRightShift; src1 = (Ir.Var "tmp.7");
           src2 = (Ir.Constant 2); dst = (Ir.Var "tmp.8")};
         Ir.Copy {src = (Ir.Var "tmp.8"); dst = (Ir.Var "y")};
-        Ir.Unary {op = Ir.Negate; src = (Ir.Constant 3);
-          dst = (Ir.Var "tmp.9")};
+        Ir.Copy {src = (Ir.Constant -3); dst = (Ir.Var "tmp.9")};
         Ir.Binary {op = Ir.NotEqual; src1 = (Ir.Var "y");
           src2 = (Ir.Var "tmp.9"); dst = (Ir.Var "tmp.10")};
         Ir.JumpIfZero {condition = (Ir.Var "tmp.10"); target = "if.en.11"};

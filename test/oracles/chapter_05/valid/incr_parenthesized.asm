@@ -31,8 +31,7 @@
         (Asm.Label "and.fl.6"); (Asm.Mov ((Asm.Imm 0), (Asm.Stack -40)));
         (Asm.Label "and.en.7"); (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -40)));
         (Asm.JmpCC (Asm.E, "and.fl.11"));
-        (Asm.Mov ((Asm.Imm 2), (Asm.Stack -44)));
-        Asm.Unary {op = Asm.Neg; dst = (Asm.Stack -44)};
+        (Asm.Mov ((Asm.Imm -2), (Asm.Stack -44)));
         (Asm.Mov ((Asm.Stack -44), (Asm.Reg Asm.R10)));
         (Asm.Cmp ((Asm.Reg Asm.R10), (Asm.Stack -12)));
         (Asm.Mov ((Asm.Imm 0), (Asm.Stack -48)));

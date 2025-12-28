@@ -5,9 +5,6 @@ main:
     movq        %rsp, %rbp
     subq        $16, %rsp
     movl        $0, -4(%rbp)
-    movl        $0, %r11d
-    cmpl        $0, %r11d
-    jne         .Lor.tr.1
     movl        $1, -4(%rbp)
     cmpl        $0, -4(%rbp)
     jne         .Lor.tr.1

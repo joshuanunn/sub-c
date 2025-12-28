@@ -3,9 +3,6 @@
       instructions =
       [(Asm.AllocateStack 96); (Asm.Mov ((Asm.Imm 11), (Asm.Stack -4)));
         (Asm.Mov ((Asm.Imm 12), (Asm.Stack -8)));
-        (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.R11)));
-        (Asm.Cmp ((Asm.Imm 0), (Asm.Reg Asm.R11)));
-        (Asm.JmpCC (Asm.NE, "or.tr.1"));
         (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -8)));
         (Asm.JmpCC (Asm.NE, "or.tr.1"));
         (Asm.Mov ((Asm.Imm 0), (Asm.Stack -12))); (Asm.Jmp "or.en.2");
@@ -18,10 +15,7 @@
         (Asm.Mov ((Asm.Stack -16), (Asm.Reg Asm.R10)));
         (Asm.Mov ((Asm.Reg Asm.R10), (Asm.Stack -4)));
         (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -4)));
-        (Asm.JmpCC (Asm.NE, "or.tr.5"));
-        (Asm.Mov ((Asm.Imm 1), (Asm.Reg Asm.R11)));
-        (Asm.Cmp ((Asm.Imm 0), (Asm.Reg Asm.R11)));
-        (Asm.JmpCC (Asm.NE, "or.tr.5"));
+        (Asm.JmpCC (Asm.NE, "or.tr.5")); (Asm.Jmp "or.tr.5");
         (Asm.Mov ((Asm.Imm 0), (Asm.Stack -20))); (Asm.Jmp "or.en.6");
         (Asm.Label "or.tr.5"); (Asm.Mov ((Asm.Imm 1), (Asm.Stack -20)));
         (Asm.Label "or.en.6"); (Asm.Mov ((Asm.Stack -8), (Asm.Reg Asm.R10)));

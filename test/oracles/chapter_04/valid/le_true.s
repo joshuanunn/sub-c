@@ -4,14 +4,8 @@ main:
     pushq       %rbp
     movq        %rsp, %rbp
     subq        $16, %rsp
-    movl        $0, %r11d
-    cmpl        $2, %r11d
-    movl        $0, -4(%rbp)
-    setle       -4(%rbp)
-    movl        $0, %r11d
-    cmpl        $0, %r11d
-    movl        $0, -8(%rbp)
-    setle       -8(%rbp)
+    movl        $1, -4(%rbp)
+    movl        $1, -8(%rbp)
     movl        -4(%rbp), %r10d
     movl        %r10d, -12(%rbp)
     movl        -8(%rbp), %r10d

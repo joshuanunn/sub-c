@@ -5,8 +5,7 @@ main:
     movq        %rsp, %rbp
     subq        $16, %rsp
     movl        $0, -4(%rbp)
-    movl        $1, -12(%rbp)
-    negl        -12(%rbp)
+    movl        $-1, -12(%rbp)
     movl        -12(%rbp), %r10d
     cmpl        %r10d, -4(%rbp)
     movl        $0, -16(%rbp)

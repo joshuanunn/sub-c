@@ -5,8 +5,7 @@ main:
     movq        %rsp, %rbp
     subq        $32, %rsp
     movl        $1, -4(%rbp)
-    movl        $1, -8(%rbp)
-    negl        -8(%rbp)
+    movl        $-1, -8(%rbp)
     movl        -4(%rbp), %r10d
     movl        %r10d, -12(%rbp)
     movl        -12(%rbp), %r11d
@@ -15,8 +14,7 @@ main:
     movl        -12(%rbp), %r10d
     movl        %r10d, -4(%rbp)
 .Lloop.st.1:
-    movl        $100, -16(%rbp)
-    negl        -16(%rbp)
+    movl        $-100, -16(%rbp)
     movl        -16(%rbp), %r10d
     cmpl        %r10d, -4(%rbp)
     movl        $0, -20(%rbp)
@@ -31,8 +29,7 @@ main:
     movl        %r10d, -4(%rbp)
     jmp         .Lloop.st.1
 .Lloop.br.1:
-    movl        $103, -28(%rbp)
-    negl        -28(%rbp)
+    movl        $-103, -28(%rbp)
     movl        -28(%rbp), %r10d
     cmpl        %r10d, -4(%rbp)
     movl        $0, -32(%rbp)

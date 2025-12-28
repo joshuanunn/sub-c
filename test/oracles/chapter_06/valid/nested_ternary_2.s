@@ -4,12 +4,6 @@ main:
     pushq       %rbp
     movq        %rsp, %rbp
     subq        $32, %rsp
-    movl        $1, %r11d
-    cmpl        $0, %r11d
-    je          .Lcond.el.2
-    movl        $2, %r11d
-    cmpl        $0, %r11d
-    je          .Lcond.el.5
     movl        $3, -12(%rbp)
     jmp         .Lcond.en.4
 .Lcond.el.5:
@@ -23,12 +17,7 @@ main:
 .Lcond.en.1:
     movl        -8(%rbp), %r10d
     movl        %r10d, -4(%rbp)
-    movl        $0, %r11d
-    cmpl        $0, %r11d
-    je          .Lcond.el.8
-    movl        $2, %r11d
-    cmpl        $0, %r11d
-    je          .Lcond.el.11
+    jmp         .Lcond.el.8
     movl        $3, -24(%rbp)
     jmp         .Lcond.en.10
 .Lcond.el.11:

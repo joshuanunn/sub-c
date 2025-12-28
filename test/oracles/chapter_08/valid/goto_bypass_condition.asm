@@ -14,9 +14,7 @@
         (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -12)));
         (Asm.JmpCC (Asm.E, "if.en.2")); (Asm.Jmp "while_start.0");
         (Asm.Label "if.en.2"); (Asm.Label "loop.ct.1");
-        (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.R11)));
-        (Asm.Cmp ((Asm.Imm 0), (Asm.Reg Asm.R11)));
-        (Asm.JmpCC (Asm.NE, "loop.st.1")); (Asm.Label "loop.br.1");
+        (Asm.Label "loop.br.1");
         (Asm.Mov ((Asm.Stack -4), (Asm.Reg Asm.AX))); Asm.Ret;
         (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX))); Asm.Ret];
       frame =

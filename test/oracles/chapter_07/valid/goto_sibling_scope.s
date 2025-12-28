@@ -5,9 +5,6 @@ main:
     movq        %rsp, %rbp
     subq        $32, %rsp
     movl        $0, -4(%rbp)
-    movl        $1, %r11d
-    cmpl        $0, %r11d
-    je          .Lif.en.0
     movl        $5, -8(%rbp)
     jmp         .Lother_if.1
     movl        $0, -4(%rbp)
@@ -20,9 +17,7 @@ main:
     movl        -12(%rbp), %r10d
     movl        %r10d, -4(%rbp)
 .Lif.en.0:
-    movl        $0, %r11d
-    cmpl        $0, %r11d
-    je          .Lif.en.2
+    jmp         .Lif.en.2
 .Lother_if.1:
     movl        $6, -16(%rbp)
     movl        -4(%rbp), %r10d

@@ -17,14 +17,12 @@
           src2 = (Ir.Constant 3); dst = (Ir.Var "tmp.4")};
         Ir.JumpIfZero {condition = (Ir.Var "tmp.4"); target = "if.en.5"};
         (Ir.Return (Ir.Constant 1)); (Ir.Label "if.en.5");
-        Ir.Unary {op = Ir.Negate; src = (Ir.Constant 6);
-          dst = (Ir.Var "tmp.6")};
+        Ir.Copy {src = (Ir.Constant -6); dst = (Ir.Var "tmp.6")};
         Ir.Binary {op = Ir.NotEqual; src1 = (Ir.Var "j.1");
           src2 = (Ir.Var "tmp.6"); dst = (Ir.Var "tmp.7")};
         Ir.JumpIfZero {condition = (Ir.Var "tmp.7"); target = "if.en.8"};
         (Ir.Return (Ir.Constant 2)); (Ir.Label "if.en.8");
-        Ir.Unary {op = Ir.Negate; src = (Ir.Constant 18);
-          dst = (Ir.Var "tmp.9")};
+        Ir.Copy {src = (Ir.Constant -18); dst = (Ir.Var "tmp.9")};
         Ir.Binary {op = Ir.NotEqual; src1 = (Ir.Var "k.2");
           src2 = (Ir.Var "tmp.9"); dst = (Ir.Var "tmp.10")};
         Ir.JumpIfZero {condition = (Ir.Var "tmp.10"); target = "if.en.11"};

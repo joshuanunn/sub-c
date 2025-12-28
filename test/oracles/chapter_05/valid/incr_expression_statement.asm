@@ -17,8 +17,7 @@
         (Asm.SetCC (Asm.E, (Asm.Stack -20)));
         (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -20)));
         (Asm.JmpCC (Asm.E, "and.fl.6"));
-        (Asm.Mov ((Asm.Imm 2), (Asm.Stack -24)));
-        Asm.Unary {op = Asm.Neg; dst = (Asm.Stack -24)};
+        (Asm.Mov ((Asm.Imm -2), (Asm.Stack -24)));
         (Asm.Mov ((Asm.Stack -24), (Asm.Reg Asm.R10)));
         (Asm.Cmp ((Asm.Reg Asm.R10), (Asm.Stack -8)));
         (Asm.Mov ((Asm.Imm 0), (Asm.Stack -28)));

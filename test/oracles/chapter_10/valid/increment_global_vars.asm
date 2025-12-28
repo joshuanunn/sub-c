@@ -22,8 +22,7 @@
         }}};
      Asm.Function {name = "decr_j"; global = true;
        instructions =
-       [(Asm.AllocateStack 16); (Asm.Mov ((Asm.Imm 1), (Asm.Stack -4)));
-         Asm.Unary {op = Asm.Neg; dst = (Asm.Stack -4)};
+       [(Asm.AllocateStack 16); (Asm.Mov ((Asm.Imm -1), (Asm.Stack -4)));
          (Asm.Mov ((Asm.Stack -4), (Asm.Reg Asm.R10)));
          (Asm.Cmp ((Asm.Reg Asm.R10), (Asm.Data "j")));
          (Asm.Mov ((Asm.Imm 0), (Asm.Stack -8)));
@@ -72,8 +71,7 @@
          (Asm.Mov ((Asm.Reg Asm.R10), (Asm.Stack -20)));
          (Asm.Jmp "cond.en.8"); (Asm.Label "cond.el.9");
          (Asm.Mov ((Asm.Imm 0), (Asm.Stack -20))); (Asm.Label "cond.en.8");
-         (Asm.Mov ((Asm.Imm 2), (Asm.Stack -28)));
-         Asm.Unary {op = Asm.Neg; dst = (Asm.Stack -28)};
+         (Asm.Mov ((Asm.Imm -2), (Asm.Stack -28)));
          (Asm.Mov ((Asm.Stack -28), (Asm.Reg Asm.R10)));
          (Asm.Cmp ((Asm.Reg Asm.R10), (Asm.Data "j")));
          (Asm.Mov ((Asm.Imm 0), (Asm.Stack -32)));

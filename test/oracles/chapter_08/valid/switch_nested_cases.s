@@ -7,22 +7,13 @@ main:
     movl        $0, -4(%rbp)
     movl        $0, -8(%rbp)
     movl        $0, -12(%rbp)
-    movl        $3, %r11d
-    cmpl        $0, %r11d
     movl        $0, -16(%rbp)
-    sete        -16(%rbp)
     cmpl        $0, -16(%rbp)
     jne         .Lswit.cs.1.0
-    movl        $3, %r11d
-    cmpl        $1, %r11d
     movl        $0, -20(%rbp)
-    sete        -20(%rbp)
     cmpl        $0, -20(%rbp)
     jne         .Lswit.cs.1.1
-    movl        $3, %r11d
-    cmpl        $3, %r11d
-    movl        $0, -24(%rbp)
-    sete        -24(%rbp)
+    movl        $1, -24(%rbp)
     cmpl        $0, -24(%rbp)
     jne         .Lswit.cs.1.3
     jmp         .Lswit.df.1
@@ -32,9 +23,7 @@ main:
     popq        %rbp
     ret         
 .Lswit.cs.1.1:
-    movl        $0, %r11d
-    cmpl        $0, %r11d
-    je          .Lif.en.3
+    jmp         .Lif.en.3
 .Lswit.cs.1.3:
     movl        $1, -4(%rbp)
     jmp         .Lswit.br.1
@@ -45,16 +34,10 @@ main:
     popq        %rbp
     ret         
 .Lswit.br.1:
-    movl        $4, %r11d
-    cmpl        $0, %r11d
     movl        $0, -28(%rbp)
-    sete        -28(%rbp)
     cmpl        $0, -28(%rbp)
     jne         .Lswit.cs.2.0
-    movl        $4, %r11d
-    cmpl        $4, %r11d
-    movl        $0, -32(%rbp)
-    sete        -32(%rbp)
+    movl        $1, -32(%rbp)
     cmpl        $0, -32(%rbp)
     jne         .Lswit.cs.2.4
     jmp         .Lswit.df.2
@@ -63,9 +46,6 @@ main:
     movq        %rbp, %rsp
     popq        %rbp
     ret         
-    movl        $1, %r11d
-    cmpl        $0, %r11d
-    je          .Lif.el.7
     movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp
@@ -82,10 +62,7 @@ main:
     popq        %rbp
     ret         
 .Lswit.br.2:
-    movl        $5, %r11d
-    cmpl        $5, %r11d
-    movl        $0, -36(%rbp)
-    sete        -36(%rbp)
+    movl        $1, -36(%rbp)
     cmpl        $0, -36(%rbp)
     jne         .Lswit.cs.3.5
     jmp         .Lswit.df.3

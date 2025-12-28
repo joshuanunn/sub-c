@@ -2,7 +2,6 @@
    [Ir.Function {name = "main"; global = true; params = [];
       body =
       [Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "a.0")};
-        Ir.JumpIfNotZero {condition = (Ir.Constant 0); target = "or.tr.1"};
         Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "a.0")};
         Ir.JumpIfNotZero {condition = (Ir.Var "a.0"); target = "or.tr.1"};
         Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "tmp.0")};

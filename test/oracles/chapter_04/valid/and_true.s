@@ -4,11 +4,7 @@ main:
     pushq       %rbp
     movq        %rsp, %rbp
     subq        $16, %rsp
-    movl        $1, %r11d
-    cmpl        $0, %r11d
-    je          .Land.fl.2
-    movl        $1, -4(%rbp)
-    negl        -4(%rbp)
+    movl        $-1, -4(%rbp)
     cmpl        $0, -4(%rbp)
     je          .Land.fl.2
     movl        $1, -8(%rbp)

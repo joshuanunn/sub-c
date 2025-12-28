@@ -1,9 +1,7 @@
 (Asm.Program
    [Asm.Function {name = "main"; global = true;
       instructions =
-      [(Asm.AllocateStack 16); (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.R11)));
-        (Asm.Cmp ((Asm.Imm 0), (Asm.Reg Asm.R11)));
-        (Asm.JmpCC (Asm.E, "and.fl.2"));
+      [(Asm.AllocateStack 16); (Asm.Jmp "and.fl.2");
         (Asm.Mov ((Asm.Imm 1), (Asm.Reg Asm.AX))); Asm.Cdq;
         (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.R10)));
         (Asm.Idiv (Asm.Reg Asm.R10));

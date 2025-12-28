@@ -5,9 +5,6 @@ main:
     movq        %rsp, %rbp
     subq        $16, %rsp
     movl        $4, -4(%rbp)
-    movl        $1, %r11d
-    cmpl        $0, %r11d
-    je          .Lcond.el.2
     movl        $2, -8(%rbp)
     jmp         .Lcond.en.1
 .Lcond.el.2:

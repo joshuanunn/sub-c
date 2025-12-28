@@ -1,8 +1,7 @@
 (Ir.Program
    [Ir.Function {name = "main"; global = true; params = [];
       body =
-      [Ir.JumpIfNotZero {condition = (Ir.Constant 0); target = "or.tr.1"};
-        Ir.JumpIfNotZero {condition = (Ir.Constant 5); target = "or.tr.1"};
+      [Ir.Jump {target = "or.tr.1"};
         Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "tmp.0")};
         Ir.Jump {target = "or.en.2"}; (Ir.Label "or.tr.1");
         Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "tmp.0")};

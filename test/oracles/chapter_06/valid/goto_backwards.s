@@ -3,9 +3,7 @@
 main:
     pushq       %rbp
     movq        %rsp, %rbp
-    movl        $0, %r11d
-    cmpl        $0, %r11d
-    je          .Lif.en.0
+    jmp         .Lif.en.0
 .Llabel.0:
     movl        $5, %eax
     movq        %rbp, %rsp

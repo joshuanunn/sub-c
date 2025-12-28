@@ -6,9 +6,6 @@ main:
     subq        $96, %rsp
     movl        $11, -4(%rbp)
     movl        $12, -8(%rbp)
-    movl        $0, %r11d
-    cmpl        $0, %r11d
-    jne         .Lor.tr.1
     cmpl        $0, -8(%rbp)
     jne         .Lor.tr.1
     movl        $0, -12(%rbp)
@@ -24,9 +21,7 @@ main:
     movl        %r10d, -4(%rbp)
     cmpl        $0, -4(%rbp)
     jne         .Lor.tr.5
-    movl        $1, %r11d
-    cmpl        $0, %r11d
-    jne         .Lor.tr.5
+    jmp         .Lor.tr.5
     movl        $0, -20(%rbp)
     jmp         .Lor.en.6
 .Lor.tr.5:

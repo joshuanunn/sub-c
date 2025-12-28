@@ -4,15 +4,8 @@ main:
     pushq       %rbp
     movq        %rsp, %rbp
     subq        $16, %rsp
-    movl        $1, %r11d
-    cmpl        $0, %r11d
-    jne         .Lor.tr.4
-    movl        $0, %r11d
-    cmpl        $0, %r11d
-    je          .Land.fl.1
-    movl        $2, %r11d
-    cmpl        $0, %r11d
-    je          .Land.fl.1
+    jmp         .Lor.tr.4
+    jmp         .Land.fl.1
     movl        $1, -4(%rbp)
     jmp         .Land.en.2
 .Land.fl.1:

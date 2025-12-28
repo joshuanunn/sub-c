@@ -4,8 +4,7 @@ main:
     pushq       %rbp
     movq        %rsp, %rbp
     subq        $16, %rsp
-    movl        $1, -12(%rbp)
-    xorl        $1, -12(%rbp)
+    movl        $0, -12(%rbp)
     cmpl        $0, -12(%rbp)
     je          .Lcond.el.3
     movl        $4, -4(%rbp)

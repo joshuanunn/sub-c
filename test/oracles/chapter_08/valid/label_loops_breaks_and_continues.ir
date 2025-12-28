@@ -6,10 +6,8 @@
         (Ir.Label "do_label.0"); (Ir.Label "loop.st.1");
         Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "sum.5")};
         Ir.Jump {target = "while_label.1"}; (Ir.Label "loop.ct.1");
-        Ir.JumpIfNotZero {condition = (Ir.Constant 1); target = "loop.st.1"};
-        (Ir.Label "loop.br.1"); (Ir.Label "while_label.1");
-        (Ir.Label "loop.ct.2");
-        Ir.JumpIfZero {condition = (Ir.Constant 1); target = "loop.br.2"};
+        Ir.Jump {target = "loop.st.1"}; (Ir.Label "loop.br.1");
+        (Ir.Label "while_label.1"); (Ir.Label "loop.ct.2");
         Ir.Binary {op = Ir.Add; src1 = (Ir.Var "sum.5");
           src2 = (Ir.Constant 1); dst = (Ir.Var "tmp.0")};
         Ir.Copy {src = (Ir.Var "tmp.0"); dst = (Ir.Var "sum.5")};

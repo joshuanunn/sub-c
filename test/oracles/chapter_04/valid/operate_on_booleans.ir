@@ -1,16 +1,14 @@
 (Ir.Program
    [Ir.Function {name = "main"; global = true; params = [];
       body =
-      [Ir.JumpIfZero {condition = (Ir.Constant 0); target = "and.fl.1"};
-        Ir.JumpIfZero {condition = (Ir.Constant 1); target = "and.fl.1"};
+      [Ir.Jump {target = "and.fl.1"};
         Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "tmp.0")};
         Ir.Jump {target = "and.en.2"}; (Ir.Label "and.fl.1");
         Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "tmp.0")};
         (Ir.Label "and.en.2");
         Ir.Unary {op = Ir.BwNot; src = (Ir.Var "tmp.0");
           dst = (Ir.Var "tmp.3")};
-        Ir.JumpIfNotZero {condition = (Ir.Constant 4); target = "or.tr.5"};
-        Ir.JumpIfNotZero {condition = (Ir.Constant 3); target = "or.tr.5"};
+        Ir.Jump {target = "or.tr.5"}; Ir.Jump {target = "or.tr.5"};
         Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "tmp.4")};
         Ir.Jump {target = "or.en.6"}; (Ir.Label "or.tr.5");
         Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "tmp.4")};

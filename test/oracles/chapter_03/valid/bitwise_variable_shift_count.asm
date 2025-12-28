@@ -1,15 +1,11 @@
 (Asm.Program
    [Asm.Function {name = "main"; global = true;
       instructions =
-      [(Asm.AllocateStack 32); (Asm.Mov ((Asm.Imm 2), (Asm.Stack -4)));
-        (Asm.Mov ((Asm.Stack -4), (Asm.Reg Asm.R11)));
-        Asm.Binary {op = Asm.Mult; src = (Asm.Imm 2); dst = (Asm.Reg Asm.R11)};
-        (Asm.Mov ((Asm.Reg Asm.R11), (Asm.Stack -4)));
+      [(Asm.AllocateStack 32); (Asm.Mov ((Asm.Imm 4), (Asm.Stack -4)));
         (Asm.Mov ((Asm.Imm 4), (Asm.Stack -8)));
         (Asm.Mov ((Asm.Stack -4), (Asm.Reg Asm.CX)));
         (Asm.Shl ((Asm.Reg Asm.CX), (Asm.Stack -8)));
-        (Asm.Mov ((Asm.Imm 1), (Asm.Stack -12)));
-        Asm.Binary {op = Asm.Add; src = (Asm.Imm 2); dst = (Asm.Stack -12)};
+        (Asm.Mov ((Asm.Imm 3), (Asm.Stack -12)));
         (Asm.Mov ((Asm.Imm 100), (Asm.Stack -16)));
         (Asm.Mov ((Asm.Stack -12), (Asm.Reg Asm.CX)));
         (Asm.Sar ((Asm.Reg Asm.CX), (Asm.Stack -16)));

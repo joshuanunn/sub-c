@@ -4,16 +4,10 @@ main:
     pushq       %rbp
     movq        %rsp, %rbp
     subq        $32, %rsp
-    movl        $4, %r11d
-    cmpl        $0, %r11d
     movl        $0, -4(%rbp)
-    sete        -4(%rbp)
     cmpl        $0, -4(%rbp)
     jne         .Lswit.cs.1.0
-    movl        $4, %r11d
-    cmpl        $4, %r11d
-    movl        $0, -8(%rbp)
-    sete        -8(%rbp)
+    movl        $1, -8(%rbp)
     cmpl        $0, -8(%rbp)
     jne         .Lswit.cs.1.4
     jmp         .Lswit.br.1

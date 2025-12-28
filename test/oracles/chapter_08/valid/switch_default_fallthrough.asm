@@ -2,10 +2,7 @@
    [Asm.Function {name = "main"; global = true;
       instructions =
       [(Asm.AllocateStack 16); (Asm.Mov ((Asm.Imm 5), (Asm.Stack -4)));
-        (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.R11)));
-        (Asm.Cmp ((Asm.Imm 1), (Asm.Reg Asm.R11)));
         (Asm.Mov ((Asm.Imm 0), (Asm.Stack -8)));
-        (Asm.SetCC (Asm.E, (Asm.Stack -8)));
         (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -8)));
         (Asm.JmpCC (Asm.NE, "swit.cs.1.1")); (Asm.Jmp "swit.df.1");
         (Asm.Label "swit.df.1"); (Asm.Mov ((Asm.Imm 0), (Asm.Stack -4)));

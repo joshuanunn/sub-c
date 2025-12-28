@@ -37,8 +37,7 @@ main:
 .Land.en.7:
     cmpl        $0, -40(%rbp)
     je          .Land.fl.11
-    movl        $2, -44(%rbp)
-    negl        -44(%rbp)
+    movl        $-2, -44(%rbp)
     movl        -44(%rbp), %r10d
     cmpl        %r10d, -12(%rbp)
     movl        $0, -48(%rbp)

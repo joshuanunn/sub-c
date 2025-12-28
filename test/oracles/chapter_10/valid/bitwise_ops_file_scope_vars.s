@@ -4,8 +4,7 @@ main:
     pushq       %rbp
     movq        %rsp, %rbp
     subq        $48, %rsp
-    movl        $1, -4(%rbp)
-    negl        -4(%rbp)
+    movl        $-1, -4(%rbp)
     movl        -4(%rbp), %r10d
     movl        %r10d, y(%rip)
     movl        x(%rip), %r10d
@@ -26,8 +25,7 @@ main:
     popq        %rbp
     ret         
 .Lif.en.4:
-    movl        $5, -20(%rbp)
-    negl        -20(%rbp)
+    movl        $-5, -20(%rbp)
     movl        y(%rip), %r10d
     movl        %r10d, -24(%rbp)
     movl        -20(%rbp), %r10d
@@ -40,8 +38,7 @@ main:
     sarl        $2, -32(%rbp)
     movl        -32(%rbp), %r10d
     movl        %r10d, y(%rip)
-    movl        $3, -36(%rbp)
-    negl        -36(%rbp)
+    movl        $-3, -36(%rbp)
     movl        -36(%rbp), %r10d
     cmpl        %r10d, y(%rip)
     movl        $0, -40(%rbp)

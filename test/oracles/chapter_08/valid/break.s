@@ -6,8 +6,7 @@ main:
     subq        $48, %rsp
     movl        $10, -4(%rbp)
     movl        $20, -8(%rbp)
-    movl        $20, -12(%rbp)
-    negl        -12(%rbp)
+    movl        $-20, -12(%rbp)
     movl        -12(%rbp), %r10d
     movl        %r10d, -8(%rbp)
 .Lloop.st.1:
@@ -41,8 +40,7 @@ main:
     sete        -32(%rbp)
     cmpl        $0, -32(%rbp)
     je          .Land.fl.10
-    movl        $11, -36(%rbp)
-    negl        -36(%rbp)
+    movl        $-11, -36(%rbp)
     movl        -36(%rbp), %r10d
     cmpl        %r10d, -8(%rbp)
     movl        $0, -40(%rbp)

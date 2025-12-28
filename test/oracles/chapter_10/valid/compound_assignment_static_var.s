@@ -39,8 +39,7 @@ f:
     popq        %rbp
     ret         
 .Lif.en.5:
-    movl        $6, -24(%rbp)
-    negl        -24(%rbp)
+    movl        $-6, -24(%rbp)
     movl        -24(%rbp), %r10d
     cmpl        %r10d, j.1(%rip)
     movl        $0, -28(%rbp)
@@ -52,8 +51,7 @@ f:
     popq        %rbp
     ret         
 .Lif.en.8:
-    movl        $18, -32(%rbp)
-    negl        -32(%rbp)
+    movl        $-18, -32(%rbp)
     movl        -32(%rbp), %r10d
     cmpl        %r10d, k.2(%rip)
     movl        $0, -36(%rbp)

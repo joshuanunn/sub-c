@@ -3,8 +3,7 @@
       body =
       [Ir.Copy {src = (Ir.Constant 4); dst = (Ir.Var "a.0")};
         Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "b.1")};
-        Ir.Binary {op = Ir.Equal; src1 = (Ir.Constant 2);
-          src2 = (Ir.Constant 2); dst = (Ir.Var "tmp.0")};
+        Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "tmp.0")};
         Ir.JumpIfNotZero {condition = (Ir.Var "tmp.0");
           target = "swit.cs.1.2"};
         Ir.Jump {target = "swit.br.1"}; (Ir.Label "swit.cs.1.2");

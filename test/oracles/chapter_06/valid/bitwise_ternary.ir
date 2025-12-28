@@ -1,8 +1,7 @@
 (Ir.Program
    [Ir.Function {name = "main"; global = true; params = [];
       body =
-      [Ir.Binary {op = Ir.BwXor; src1 = (Ir.Constant 1);
-         src2 = (Ir.Constant 1); dst = (Ir.Var "tmp.1")};
+      [Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "tmp.1")};
         Ir.JumpIfZero {condition = (Ir.Var "tmp.1"); target = "cond.el.3"};
         Ir.Copy {src = (Ir.Constant 4); dst = (Ir.Var "result.0")};
         Ir.Copy {src = (Ir.Var "result.0"); dst = (Ir.Var "tmp.0")};

@@ -15,9 +15,7 @@ main:
 .Lif.en.0:
 .Llabel_goto.1:
     jmp         .Llabel_return.3
-    movl        $0, %r11d
-    cmpl        $0, %r11d
-    je          .Lif.en.2
+    jmp         .Lif.en.2
 .Llabel_expression.2:
     movl        $0, -4(%rbp)
 .Lif.en.2:

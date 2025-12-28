@@ -1,9 +1,7 @@
 (Ir.Program
    [Ir.Function {name = "main"; global = true; params = [];
       body =
-      [Ir.JumpIfZero {condition = (Ir.Constant 1); target = "cond.el.2"};
-        Ir.JumpIfZero {condition = (Ir.Constant 2); target = "cond.el.5"};
-        Ir.Copy {src = (Ir.Constant 3); dst = (Ir.Var "tmp.3")};
+      [Ir.Copy {src = (Ir.Constant 3); dst = (Ir.Var "tmp.3")};
         Ir.Jump {target = "cond.en.4"}; (Ir.Label "cond.el.5");
         Ir.Copy {src = (Ir.Constant 4); dst = (Ir.Var "tmp.3")};
         (Ir.Label "cond.en.4");
@@ -12,8 +10,7 @@
         Ir.Copy {src = (Ir.Constant 5); dst = (Ir.Var "tmp.0")};
         (Ir.Label "cond.en.1");
         Ir.Copy {src = (Ir.Var "tmp.0"); dst = (Ir.Var "a.0")};
-        Ir.JumpIfZero {condition = (Ir.Constant 0); target = "cond.el.8"};
-        Ir.JumpIfZero {condition = (Ir.Constant 2); target = "cond.el.11"};
+        Ir.Jump {target = "cond.el.8"};
         Ir.Copy {src = (Ir.Constant 3); dst = (Ir.Var "tmp.9")};
         Ir.Jump {target = "cond.en.10"}; (Ir.Label "cond.el.11");
         Ir.Copy {src = (Ir.Constant 4); dst = (Ir.Var "tmp.9")};

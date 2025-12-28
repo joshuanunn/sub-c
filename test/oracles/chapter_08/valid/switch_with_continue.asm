@@ -1,16 +1,10 @@
 (Asm.Program
    [Asm.Function {name = "main"; global = true;
       instructions =
-      [(Asm.AllocateStack 32); (Asm.Mov ((Asm.Imm 4), (Asm.Reg Asm.R11)));
-        (Asm.Cmp ((Asm.Imm 0), (Asm.Reg Asm.R11)));
-        (Asm.Mov ((Asm.Imm 0), (Asm.Stack -4)));
-        (Asm.SetCC (Asm.E, (Asm.Stack -4)));
+      [(Asm.AllocateStack 32); (Asm.Mov ((Asm.Imm 0), (Asm.Stack -4)));
         (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -4)));
         (Asm.JmpCC (Asm.NE, "swit.cs.1.0"));
-        (Asm.Mov ((Asm.Imm 4), (Asm.Reg Asm.R11)));
-        (Asm.Cmp ((Asm.Imm 4), (Asm.Reg Asm.R11)));
-        (Asm.Mov ((Asm.Imm 0), (Asm.Stack -8)));
-        (Asm.SetCC (Asm.E, (Asm.Stack -8)));
+        (Asm.Mov ((Asm.Imm 1), (Asm.Stack -8)));
         (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -8)));
         (Asm.JmpCC (Asm.NE, "swit.cs.1.4")); (Asm.Jmp "swit.br.1");
         (Asm.Label "swit.cs.1.0"); (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX)));

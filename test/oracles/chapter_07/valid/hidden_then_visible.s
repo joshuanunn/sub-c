@@ -5,8 +5,7 @@ main:
     movq        %rsp, %rbp
     subq        $48, %rsp
     movl        $2, -4(%rbp)
-    movl        $4, -12(%rbp)
-    negl        -12(%rbp)
+    movl        $-4, -12(%rbp)
     movl        -12(%rbp), %r10d
     movl        %r10d, -4(%rbp)
     movl        $7, -16(%rbp)
@@ -20,8 +19,7 @@ main:
     sete        -24(%rbp)
     cmpl        $0, -24(%rbp)
     je          .Land.fl.6
-    movl        $4, -28(%rbp)
-    negl        -28(%rbp)
+    movl        $-4, -28(%rbp)
     movl        -28(%rbp), %r10d
     cmpl        %r10d, -4(%rbp)
     movl        $0, -32(%rbp)

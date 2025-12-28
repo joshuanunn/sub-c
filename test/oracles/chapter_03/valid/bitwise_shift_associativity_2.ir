@@ -1,8 +1,7 @@
 (Ir.Program
    [Ir.Function {name = "main"; global = true; params = [];
       body =
-      [Ir.Binary {op = Ir.BwRightShift; src1 = (Ir.Constant 33);
-         src2 = (Ir.Constant 2); dst = (Ir.Var "tmp.0")};
+      [Ir.Copy {src = (Ir.Constant 8); dst = (Ir.Var "tmp.0")};
         Ir.Binary {op = Ir.BwLeftShift; src1 = (Ir.Var "tmp.0");
           src2 = (Ir.Constant 1); dst = (Ir.Var "tmp.1")};
         (Ir.Return (Ir.Var "tmp.1")); (Ir.Return (Ir.Constant 0))];

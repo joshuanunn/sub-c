@@ -15,15 +15,10 @@ main:
     movl        $1, -4(%rbp)
     jmp         .Lwhile_label.1
 .Lloop.ct.1:
-    movl        $1, %r11d
-    cmpl        $0, %r11d
-    jne         .Lloop.st.1
+    jmp         .Lloop.st.1
 .Lloop.br.1:
 .Lwhile_label.1:
 .Lloop.ct.2:
-    movl        $1, %r11d
-    cmpl        $0, %r11d
-    je          .Lloop.br.2
     movl        -4(%rbp), %r10d
     movl        %r10d, -8(%rbp)
     addl        $1, -8(%rbp)

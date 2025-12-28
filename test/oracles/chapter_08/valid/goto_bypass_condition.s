@@ -20,9 +20,6 @@ main:
     jmp         .Lwhile_start.0
 .Lif.en.2:
 .Lloop.ct.1:
-    movl        $0, %r11d
-    cmpl        $0, %r11d
-    jne         .Lloop.st.1
 .Lloop.br.1:
     movl        -4(%rbp), %eax
     movq        %rbp, %rsp

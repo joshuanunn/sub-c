@@ -3,10 +3,7 @@
       instructions =
       [(Asm.AllocateStack 32); (Asm.Mov ((Asm.Imm 4), (Asm.Stack -4)));
         (Asm.Mov ((Asm.Imm 0), (Asm.Stack -8)));
-        (Asm.Mov ((Asm.Imm 2), (Asm.Reg Asm.R11)));
-        (Asm.Cmp ((Asm.Imm 2), (Asm.Reg Asm.R11)));
-        (Asm.Mov ((Asm.Imm 0), (Asm.Stack -12)));
-        (Asm.SetCC (Asm.E, (Asm.Stack -12)));
+        (Asm.Mov ((Asm.Imm 1), (Asm.Stack -12)));
         (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -12)));
         (Asm.JmpCC (Asm.NE, "swit.cs.1.2")); (Asm.Jmp "swit.br.1");
         (Asm.Label "swit.cs.1.2"); (Asm.Mov ((Asm.Imm 8), (Asm.Stack -16)));
