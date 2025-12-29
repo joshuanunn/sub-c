@@ -15,17 +15,17 @@ main:
     movl        $0, -12(%rbp)
     sete        -12(%rbp)
     cmpl        $0, -12(%rbp)
-    je          .Land.fl.3
+    je          .Lmain.and.fl.3
     cmpl        $5, -8(%rbp)
     movl        $0, -16(%rbp)
     sete        -16(%rbp)
     cmpl        $0, -16(%rbp)
-    je          .Land.fl.3
+    je          .Lmain.and.fl.3
     movl        $1, -20(%rbp)
-    jmp         .Land.en.4
-.Land.fl.3:
+    jmp         .Lmain.and.en.4
+.Lmain.and.fl.3:
     movl        $0, -20(%rbp)
-.Land.en.4:
+.Lmain.and.en.4:
     movl        -20(%rbp), %eax
     movq        %rbp, %rsp
     popq        %rbp

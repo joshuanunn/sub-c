@@ -9,7 +9,7 @@ main:
     movl        $0, -8(%rbp)
     setg        -8(%rbp)
     cmpl        $0, -8(%rbp)
-    je          .Lif.en.1
+    je          .Lmain.if.en.1
     movl        -4(%rbp), %r10d
     movl        %r10d, -12(%rbp)
     subl        $4, -12(%rbp)
@@ -20,14 +20,14 @@ main:
     movl        $0, -20(%rbp)
     setg        -20(%rbp)
     cmpl        $0, -20(%rbp)
-    je          .Lif.en.4
+    je          .Lmain.if.en.4
     movl        -16(%rbp), %r10d
     movl        %r10d, -24(%rbp)
     subl        $4, -24(%rbp)
     movl        -24(%rbp), %r10d
     movl        %r10d, -16(%rbp)
-.Lif.en.4:
-.Lif.en.1:
+.Lmain.if.en.4:
+.Lmain.if.en.1:
     movl        -4(%rbp), %eax
     movq        %rbp, %rsp
     popq        %rbp

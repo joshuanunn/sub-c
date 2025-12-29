@@ -4,19 +4,19 @@ main:
     pushq       %rbp
     movq        %rsp, %rbp
     subq        $16, %rsp
-    jmp         .Lcond.el.2
+    jmp         .Lmain.cond.el.2
     movl        $1, -4(%rbp)
-    jmp         .Lcond.en.1
-.Lcond.el.2:
-    jmp         .Lor.tr.4
+    jmp         .Lmain.cond.en.1
+.Lmain.cond.el.2:
+    jmp         .Lmain.or.tr.4
     movl        $0, -8(%rbp)
-    jmp         .Lor.en.5
-.Lor.tr.4:
+    jmp         .Lmain.or.en.5
+.Lmain.or.tr.4:
     movl        $1, -8(%rbp)
-.Lor.en.5:
+.Lmain.or.en.5:
     movl        -8(%rbp), %r10d
     movl        %r10d, -4(%rbp)
-.Lcond.en.1:
+.Lmain.cond.en.1:
     movl        -4(%rbp), %eax
     movq        %rbp, %rsp
     popq        %rbp

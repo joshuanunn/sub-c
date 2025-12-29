@@ -12,13 +12,14 @@
         (Asm.Mov ((Asm.Imm 0), (Asm.Stack -12)));
         (Asm.SetCC (Asm.L, (Asm.Stack -12)));
         (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -12)));
-        (Asm.JmpCC (Asm.E, "if.en.2")); (Asm.Jmp "while_start.0");
-        (Asm.Label "if.en.2"); (Asm.Label "loop.ct.1");
+        (Asm.JmpCC (Asm.E, "main.if.en.2")); (Asm.Jmp "while_start.0");
+        (Asm.Label "main.if.en.2"); (Asm.Label "loop.ct.1");
         (Asm.Label "loop.br.1");
         (Asm.Mov ((Asm.Stack -4), (Asm.Reg Asm.AX))); Asm.Ret;
         (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX))); Asm.Ret];
       frame =
       Env.lenv {
+        namespace = "main";
         counter = 3;
         offset = -12;
         stack slots = {

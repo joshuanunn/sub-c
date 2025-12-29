@@ -16,8 +16,8 @@ main:
     addl        %r10d, -12(%rbp)
     movl        -12(%rbp), %r10d
     movl        %r10d, -4(%rbp)
-.Lif.en.0:
-    jmp         .Lif.en.2
+.Lmain.if.en.0:
+    jmp         .Lmain.if.en.2
 .Lother_if.1:
     movl        $6, -16(%rbp)
     movl        -4(%rbp), %r10d
@@ -28,7 +28,7 @@ main:
     movl        %r10d, -4(%rbp)
     jmp         .Lfirst_if.0
     movl        $0, -4(%rbp)
-.Lif.en.2:
+.Lmain.if.en.2:
     movl        -4(%rbp), %eax
     movq        %rbp, %rsp
     popq        %rbp

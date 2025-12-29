@@ -21,13 +21,14 @@
           src2 = (Ir.Constant 2); dst = (Ir.Var "tmp.3")};
         Ir.Binary {op = Ir.Equal; src1 = (Ir.Var "tmp.3");
           src2 = (Ir.Constant 30); dst = (Ir.Var "tmp.4")};
-        Ir.JumpIfZero {condition = (Ir.Var "tmp.4"); target = "if.en.5"};
-        (Ir.Return (Ir.Constant 0)); (Ir.Label "if.en.5");
+        Ir.JumpIfZero {condition = (Ir.Var "tmp.4"); target = "main.if.en.5"};
+        (Ir.Return (Ir.Constant 0)); (Ir.Label "main.if.en.5");
         (Ir.Label "swit.df.1"); (Ir.Return (Ir.Constant 5));
         (Ir.Label "swit.br.1"); (Ir.Return (Ir.Constant 6));
         (Ir.Return (Ir.Constant 0))];
       frame =
       Env.lenv {
+        namespace = "main";
         counter = 6;
         offset = -24;
         stack slots = {

@@ -9,12 +9,12 @@ main:
     movl        $0, -8(%rbp)
     sete        -8(%rbp)
     cmpl        $0, -8(%rbp)
-    je          .Lif.en.2
+    je          .Lmain.if.en.2
     movl        $5, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         
-.Lif.en.2:
+.Lmain.if.en.2:
     movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp

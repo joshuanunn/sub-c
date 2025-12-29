@@ -3,7 +3,6 @@
 bar:
     pushq       %rbp
     movq        %rsp, %rbp
-    subq        $32, %rsp
     movl        $9, %eax
     movq        %rbp, %rsp
     popq        %rbp
@@ -17,7 +16,7 @@ bar:
 foo:
     pushq       %rbp
     movq        %rsp, %rbp
-    subq        $32, %rsp
+    subq        $16, %rsp
     call        bar@PLT
     movl        %eax, -4(%rbp)
     movl        $2, -8(%rbp)
@@ -37,21 +36,21 @@ foo:
 main:
     pushq       %rbp
     movq        %rsp, %rbp
-    subq        $32, %rsp
+    subq        $16, %rsp
     call        foo@PLT
-    movl        %eax, -12(%rbp)
+    movl        %eax, -4(%rbp)
     call        bar@PLT
-    movl        %eax, -16(%rbp)
-    movl        -16(%rbp), %eax
+    movl        %eax, -8(%rbp)
+    movl        -8(%rbp), %eax
     cdq         
     movl        $3, %r10d
     idivl       %r10d
-    movl        %eax, -20(%rbp)
+    movl        %eax, -12(%rbp)
+    movl        -4(%rbp), %r10d
+    movl        %r10d, -16(%rbp)
     movl        -12(%rbp), %r10d
-    movl        %r10d, -24(%rbp)
-    movl        -20(%rbp), %r10d
-    addl        %r10d, -24(%rbp)
-    movl        -24(%rbp), %eax
+    addl        %r10d, -16(%rbp)
+    movl        -16(%rbp), %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         

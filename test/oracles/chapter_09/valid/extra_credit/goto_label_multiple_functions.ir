@@ -6,10 +6,10 @@
         (Ir.Return (Ir.Constant 0))];
       frame =
       Env.lenv {
-        counter = 1;
-        offset = -4;
+        namespace = "foo";
+        counter = 0;
+        offset = 0;
         stack slots = {
-          tmp.0 -> -4,
         }}};
      Ir.Function {name = "main"; global = true; params = [];
        body =
@@ -19,6 +19,7 @@
          (Ir.Return (Ir.Var "tmp.0")); (Ir.Return (Ir.Constant 0))];
        frame =
        Env.lenv {
+         namespace = "main";
          counter = 1;
          offset = -4;
          stack slots = {

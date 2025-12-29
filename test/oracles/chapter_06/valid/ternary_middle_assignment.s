@@ -9,14 +9,14 @@ main:
     movl        $0, -12(%rbp)
     setne       -12(%rbp)
     cmpl        $0, -12(%rbp)
-    je          .Lcond.el.3
+    je          .Lmain.cond.el.3
     movl        $2, -4(%rbp)
     movl        -4(%rbp), %r10d
     movl        %r10d, -8(%rbp)
-    jmp         .Lcond.en.2
-.Lcond.el.3:
+    jmp         .Lmain.cond.en.2
+.Lmain.cond.el.3:
     movl        $0, -8(%rbp)
-.Lcond.en.2:
+.Lmain.cond.en.2:
     movl        -4(%rbp), %eax
     movq        %rbp, %rsp
     popq        %rbp

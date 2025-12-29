@@ -3,14 +3,15 @@
       body =
       [Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "a.0")};
         Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "a.0")};
-        Ir.JumpIfNotZero {condition = (Ir.Var "a.0"); target = "or.tr.1"};
+        Ir.JumpIfNotZero {condition = (Ir.Var "a.0"); target = "main.or.tr.1"};
         Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "tmp.0")};
-        Ir.Jump {target = "or.en.2"}; (Ir.Label "or.tr.1");
+        Ir.Jump {target = "main.or.en.2"}; (Ir.Label "main.or.tr.1");
         Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "tmp.0")};
-        (Ir.Label "or.en.2"); (Ir.Return (Ir.Var "a.0"));
+        (Ir.Label "main.or.en.2"); (Ir.Return (Ir.Var "a.0"));
         (Ir.Return (Ir.Constant 0))];
       frame =
       Env.lenv {
+        namespace = "main";
         counter = 3;
         offset = -8;
         stack slots = {

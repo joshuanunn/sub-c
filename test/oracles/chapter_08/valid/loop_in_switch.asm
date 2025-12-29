@@ -29,8 +29,8 @@
         (Asm.Mov ((Asm.Imm 0), (Asm.Stack -28)));
         (Asm.SetCC (Asm.E, (Asm.Stack -28)));
         (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -28)));
-        (Asm.JmpCC (Asm.E, "if.en.5")); (Asm.Jmp "loop.br.2");
-        (Asm.Label "if.en.5"); (Asm.Label "loop.ct.2");
+        (Asm.JmpCC (Asm.E, "main.if.en.5")); (Asm.Jmp "loop.br.2");
+        (Asm.Label "main.if.en.5"); (Asm.Label "loop.ct.2");
         (Asm.Mov ((Asm.Stack -16), (Asm.Reg Asm.R10)));
         (Asm.Mov ((Asm.Reg Asm.R10), (Asm.Stack -32)));
         Asm.Binary {op = Asm.Add; src = (Asm.Imm 1); dst = (Asm.Stack -32)};
@@ -44,6 +44,7 @@
         (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX))); Asm.Ret];
       frame =
       Env.lenv {
+        namespace = "main";
         counter = 7;
         offset = -32;
         stack slots = {

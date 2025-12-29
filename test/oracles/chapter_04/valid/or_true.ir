@@ -1,27 +1,28 @@
 (Ir.Program
    [Ir.Function {name = "main"; global = true; params = [];
       body =
-      [Ir.Jump {target = "or.tr.1"};
+      [Ir.Jump {target = "main.or.tr.1"};
         Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "tmp.0")};
-        Ir.Jump {target = "or.en.2"}; (Ir.Label "or.tr.1");
+        Ir.Jump {target = "main.or.en.2"}; (Ir.Label "main.or.tr.1");
         Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "tmp.0")};
-        (Ir.Label "or.en.2"); Ir.Jump {target = "or.tr.4"};
+        (Ir.Label "main.or.en.2"); Ir.Jump {target = "main.or.tr.4"};
         Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "tmp.3")};
-        Ir.Jump {target = "or.en.5"}; (Ir.Label "or.tr.4");
+        Ir.Jump {target = "main.or.en.5"}; (Ir.Label "main.or.tr.4");
         Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "tmp.3")};
-        (Ir.Label "or.en.5");
+        (Ir.Label "main.or.en.5");
         Ir.Binary {op = Ir.Add; src1 = (Ir.Var "tmp.0");
           src2 = (Ir.Var "tmp.3"); dst = (Ir.Var "tmp.6")};
-        Ir.Jump {target = "or.tr.8"}; Ir.Jump {target = "or.tr.8"};
+        Ir.Jump {target = "main.or.tr.8"}; Ir.Jump {target = "main.or.tr.8"};
         Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "tmp.7")};
-        Ir.Jump {target = "or.en.9"}; (Ir.Label "or.tr.8");
+        Ir.Jump {target = "main.or.en.9"}; (Ir.Label "main.or.tr.8");
         Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "tmp.7")};
-        (Ir.Label "or.en.9");
+        (Ir.Label "main.or.en.9");
         Ir.Binary {op = Ir.Add; src1 = (Ir.Var "tmp.6");
           src2 = (Ir.Var "tmp.7"); dst = (Ir.Var "tmp.10")};
         (Ir.Return (Ir.Var "tmp.10")); (Ir.Return (Ir.Constant 0))];
       frame =
       Env.lenv {
+        namespace = "main";
         counter = 11;
         offset = -20;
         stack slots = {

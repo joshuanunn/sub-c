@@ -34,17 +34,17 @@ main:
     movl        $0, -32(%rbp)
     sete        -32(%rbp)
     cmpl        $0, -32(%rbp)
-    je          .Lif.el.6
+    je          .Lmain.if.el.6
     jmp         .Lloop.br.2
-    jmp         .Lif.en.5
-.Lif.el.6:
+    jmp         .Lmain.if.en.5
+.Lmain.if.el.6:
     movl        -4(%rbp), %r10d
     movl        %r10d, -36(%rbp)
     movl        -8(%rbp), %r10d
     addl        %r10d, -36(%rbp)
     movl        -36(%rbp), %r10d
     movl        %r10d, -4(%rbp)
-.Lif.en.5:
+.Lmain.if.en.5:
 .Lloop.ct.2:
     movl        -16(%rbp), %r10d
     movl        %r10d, -40(%rbp)

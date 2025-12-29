@@ -4,16 +4,17 @@
       [Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "a.0")};
         Ir.Binary {op = Ir.Add; src1 = (Ir.Var "a.0");
           src2 = (Ir.Constant 1); dst = (Ir.Var "a.0")};
-        Ir.JumpIfZero {condition = (Ir.Var "a.0"); target = "cond.el.2"};
+        Ir.JumpIfZero {condition = (Ir.Var "a.0"); target = "main.cond.el.2"};
         Ir.Binary {op = Ir.Add; src1 = (Ir.Var "a.0");
           src2 = (Ir.Constant 1); dst = (Ir.Var "a.0")};
         Ir.Copy {src = (Ir.Var "a.0"); dst = (Ir.Var "tmp.0")};
-        Ir.Jump {target = "cond.en.1"}; (Ir.Label "cond.el.2");
+        Ir.Jump {target = "main.cond.en.1"}; (Ir.Label "main.cond.el.2");
         Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "tmp.0")};
-        (Ir.Label "cond.en.1"); (Ir.Return (Ir.Var "tmp.0"));
+        (Ir.Label "main.cond.en.1"); (Ir.Return (Ir.Var "tmp.0"));
         (Ir.Return (Ir.Constant 0))];
       frame =
       Env.lenv {
+        namespace = "main";
         counter = 3;
         offset = -8;
         stack slots = {

@@ -3,7 +3,7 @@
 print_letters:
     pushq       %rbp
     movq        %rsp, %rbp
-    subq        $48, %rsp
+    subq        $32, %rsp
     movl        i.1(%rip), %edi
     call        putchar@PLT
     movl        %eax, -4(%rbp)
@@ -36,22 +36,22 @@ print_letters:
 main:
     pushq       %rbp
     movq        %rsp, %rbp
-    subq        $48, %rsp
-    movl        $0, -24(%rbp)
+    subq        $16, %rsp
+    movl        $0, -4(%rbp)
 .Lloop.st.1:
-    cmpl        $26, -24(%rbp)
-    movl        $0, -28(%rbp)
-    setl        -28(%rbp)
-    cmpl        $0, -28(%rbp)
+    cmpl        $26, -4(%rbp)
+    movl        $0, -8(%rbp)
+    setl        -8(%rbp)
+    cmpl        $0, -8(%rbp)
     je          .Lloop.br.1
     call        print_letters@PLT
-    movl        %eax, -32(%rbp)
+    movl        %eax, -12(%rbp)
 .Lloop.ct.1:
-    movl        -24(%rbp), %r10d
-    movl        %r10d, -36(%rbp)
-    addl        $1, -36(%rbp)
-    movl        -36(%rbp), %r10d
-    movl        %r10d, -24(%rbp)
+    movl        -4(%rbp), %r10d
+    movl        %r10d, -16(%rbp)
+    addl        $1, -16(%rbp)
+    movl        -16(%rbp), %r10d
+    movl        %r10d, -4(%rbp)
     jmp         .Lloop.st.1
 .Lloop.br.1:
     movl        $0, %eax

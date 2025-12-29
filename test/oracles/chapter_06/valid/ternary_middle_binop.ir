@@ -3,13 +3,14 @@
       body =
       [Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "tmp.3")};
         Ir.Copy {src = (Ir.Var "tmp.3"); dst = (Ir.Var "tmp.0")};
-        Ir.Jump {target = "cond.en.1"}; (Ir.Label "cond.el.2");
+        Ir.Jump {target = "main.cond.en.1"}; (Ir.Label "main.cond.el.2");
         Ir.Copy {src = (Ir.Constant 4); dst = (Ir.Var "tmp.0")};
-        (Ir.Label "cond.en.1");
+        (Ir.Label "main.cond.en.1");
         Ir.Copy {src = (Ir.Var "tmp.0"); dst = (Ir.Var "a.0")};
         (Ir.Return (Ir.Var "a.0")); (Ir.Return (Ir.Constant 0))];
       frame =
       Env.lenv {
+        namespace = "main";
         counter = 4;
         offset = -12;
         stack slots = {

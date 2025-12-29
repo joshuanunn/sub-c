@@ -6,21 +6,21 @@ main:
     subq        $32, %rsp
     movl        $0, -4(%rbp)
     cmpl        $0, -4(%rbp)
-    je          .Lif.el.1
+    je          .Lmain.if.el.1
     movl        $2, -8(%rbp)
     movl        -8(%rbp), %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         
-    jmp         .Lif.en.0
-.Lif.el.1:
+    jmp         .Lmain.if.en.0
+.Lmain.if.el.1:
     movl        $3, -12(%rbp)
     movl        -12(%rbp), %r10d
     cmpl        %r10d, -4(%rbp)
     movl        $0, -16(%rbp)
     setl        -16(%rbp)
     cmpl        $0, -16(%rbp)
-    je          .Lif.el.4
+    je          .Lmain.if.el.4
     cmpl        $0, -4(%rbp)
     movl        $0, -20(%rbp)
     sete        -20(%rbp)
@@ -28,14 +28,14 @@ main:
     movq        %rbp, %rsp
     popq        %rbp
     ret         
-    jmp         .Lif.en.3
-.Lif.el.4:
+    jmp         .Lmain.if.en.3
+.Lmain.if.el.4:
     movl        $5, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         
-.Lif.en.3:
-.Lif.en.0:
+.Lmain.if.en.3:
+.Lmain.if.en.0:
     movl        -4(%rbp), %eax
     movq        %rbp, %rsp
     popq        %rbp

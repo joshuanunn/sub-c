@@ -5,11 +5,12 @@
         (Asm.Mov ((Asm.Imm 9), (Asm.Stack -8)));
         (Asm.Mov ((Asm.Imm 0), (Asm.Stack -12)));
         (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -4)));
-        (Asm.JmpCC (Asm.E, "cond.el.2"));
+        (Asm.JmpCC (Asm.E, "main.cond.el.2"));
         (Asm.Mov ((Asm.Stack -8), (Asm.Reg Asm.R10)));
         (Asm.Mov ((Asm.Reg Asm.R10), (Asm.Stack -16)));
-        (Asm.Jmp "cond.en.1"); (Asm.Label "cond.el.2");
-        (Asm.Mov ((Asm.Imm 7), (Asm.Stack -16))); (Asm.Label "cond.en.1");
+        (Asm.Jmp "main.cond.en.1"); (Asm.Label "main.cond.el.2");
+        (Asm.Mov ((Asm.Imm 7), (Asm.Stack -16)));
+        (Asm.Label "main.cond.en.1");
         (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -16)));
         (Asm.Mov ((Asm.Imm 0), (Asm.Stack -20)));
         (Asm.SetCC (Asm.E, (Asm.Stack -20)));
@@ -44,6 +45,7 @@
         (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX))); Asm.Ret];
       frame =
       Env.lenv {
+        namespace = "main";
         counter = 8;
         offset = -36;
         stack slots = {

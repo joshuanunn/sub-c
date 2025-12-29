@@ -7,57 +7,44 @@
         (Ir.Return (Ir.Var "a.0")); (Ir.Return (Ir.Constant 0))];
       frame =
       Env.lenv {
-        counter = 9;
-        offset = -36;
+        namespace = "foo";
+        counter = 1;
+        offset = -4;
         stack slots = {
           tmp.0 -> -4,
-          tmp.1 -> -8,
-          tmp.2 -> -12,
-          tmp.3 -> -16,
-          tmp.4 -> -20,
-          tmp.5 -> -24,
-          tmp.6 -> -28,
-          tmp.7 -> -32,
-          tmp.8 -> -36,
         }}};
      Ir.Function {name = "bar"; global = true; params = [];
        body =
        [Ir.Binary {op = Ir.Add; src1 = (Ir.Var "a.1");
-          src2 = (Ir.Constant 1); dst = (Ir.Var "tmp.1")};
-         Ir.Copy {src = (Ir.Var "tmp.1"); dst = (Ir.Var "a.1")};
+          src2 = (Ir.Constant 1); dst = (Ir.Var "tmp.0")};
+         Ir.Copy {src = (Ir.Var "tmp.0"); dst = (Ir.Var "a.1")};
          (Ir.Return (Ir.Var "a.1")); (Ir.Return (Ir.Constant 0))];
        frame =
        Env.lenv {
-         counter = 9;
-         offset = -36;
+         namespace = "bar";
+         counter = 1;
+         offset = -4;
          stack slots = {
            tmp.0 -> -4,
-           tmp.1 -> -8,
-           tmp.2 -> -12,
-           tmp.3 -> -16,
-           tmp.4 -> -20,
-           tmp.5 -> -24,
-           tmp.6 -> -28,
-           tmp.7 -> -32,
-           tmp.8 -> -36,
          }}};
      Ir.Function {name = "main"; global = true; params = [];
        body =
-       [Ir.FunCall {fun_name = "foo"; args = []; dst = (Ir.Var "tmp.2")};
-         Ir.FunCall {fun_name = "bar"; args = []; dst = (Ir.Var "tmp.3")};
+       [Ir.FunCall {fun_name = "foo"; args = []; dst = (Ir.Var "tmp.0")};
+         Ir.FunCall {fun_name = "bar"; args = []; dst = (Ir.Var "tmp.1")};
+         Ir.Binary {op = Ir.Add; src1 = (Ir.Var "tmp.0");
+           src2 = (Ir.Var "tmp.1"); dst = (Ir.Var "tmp.2")};
+         Ir.FunCall {fun_name = "foo"; args = []; dst = (Ir.Var "tmp.3")};
          Ir.Binary {op = Ir.Add; src1 = (Ir.Var "tmp.2");
            src2 = (Ir.Var "tmp.3"); dst = (Ir.Var "tmp.4")};
-         Ir.FunCall {fun_name = "foo"; args = []; dst = (Ir.Var "tmp.5")};
+         Ir.FunCall {fun_name = "bar"; args = []; dst = (Ir.Var "tmp.5")};
          Ir.Binary {op = Ir.Add; src1 = (Ir.Var "tmp.4");
            src2 = (Ir.Var "tmp.5"); dst = (Ir.Var "tmp.6")};
-         Ir.FunCall {fun_name = "bar"; args = []; dst = (Ir.Var "tmp.7")};
-         Ir.Binary {op = Ir.Add; src1 = (Ir.Var "tmp.6");
-           src2 = (Ir.Var "tmp.7"); dst = (Ir.Var "tmp.8")};
-         (Ir.Return (Ir.Var "tmp.8")); (Ir.Return (Ir.Constant 0))];
+         (Ir.Return (Ir.Var "tmp.6")); (Ir.Return (Ir.Constant 0))];
        frame =
        Env.lenv {
-         counter = 9;
-         offset = -36;
+         namespace = "main";
+         counter = 7;
+         offset = -28;
          stack slots = {
            tmp.0 -> -4,
            tmp.1 -> -8,
@@ -66,8 +53,6 @@
            tmp.4 -> -20,
            tmp.5 -> -24,
            tmp.6 -> -28,
-           tmp.7 -> -32,
-           tmp.8 -> -36,
          }}};
      Ir.StaticVariable {name = "a.1"; global = false; init = 4};
      Ir.StaticVariable {name = "a.0"; global = false; init = 3}])

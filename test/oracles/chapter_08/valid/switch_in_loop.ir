@@ -45,17 +45,20 @@
         Ir.Jump {target = "loop.st.1"}; (Ir.Label "loop.br.1");
         Ir.Binary {op = Ir.Equal; src1 = (Ir.Var "ctr.1");
           src2 = (Ir.Constant 10); dst = (Ir.Var "tmp.9")};
-        Ir.JumpIfZero {condition = (Ir.Var "tmp.9"); target = "and.fl.12"};
+        Ir.JumpIfZero {condition = (Ir.Var "tmp.9");
+          target = "main.and.fl.12"};
         Ir.Binary {op = Ir.Equal; src1 = (Ir.Var "acc.0");
           src2 = (Ir.Constant 31); dst = (Ir.Var "tmp.10")};
-        Ir.JumpIfZero {condition = (Ir.Var "tmp.10"); target = "and.fl.12"};
+        Ir.JumpIfZero {condition = (Ir.Var "tmp.10");
+          target = "main.and.fl.12"};
         Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "tmp.11")};
-        Ir.Jump {target = "and.en.13"}; (Ir.Label "and.fl.12");
+        Ir.Jump {target = "main.and.en.13"}; (Ir.Label "main.and.fl.12");
         Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "tmp.11")};
-        (Ir.Label "and.en.13"); (Ir.Return (Ir.Var "tmp.11"));
+        (Ir.Label "main.and.en.13"); (Ir.Return (Ir.Var "tmp.11"));
         (Ir.Return (Ir.Constant 0))];
       frame =
       Env.lenv {
+        namespace = "main";
         counter = 14;
         offset = -60;
         stack slots = {

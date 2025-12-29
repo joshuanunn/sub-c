@@ -5,9 +5,11 @@
         Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "x.1")};
         (Ir.Label "x.0"); (Ir.Return (Ir.Var "x.1"));
         (Ir.Return (Ir.Constant 0))];
-      frame = Env.lenv {
-                counter = 0;
-                offset = 0;
-                stack slots = {
-                }}};
+      frame =
+      Env.lenv {
+        namespace = "main";
+        counter = 0;
+        offset = 0;
+        stack slots = {
+        }}};
      Ir.StaticVariable {name = "x.1"; global = false; init = 5}])

@@ -8,13 +8,13 @@ main:
     movl        $9, -8(%rbp)
     movl        $0, -12(%rbp)
     cmpl        $0, -4(%rbp)
-    je          .Lcond.el.2
+    je          .Lmain.cond.el.2
     movl        -8(%rbp), %r10d
     movl        %r10d, -16(%rbp)
-    jmp         .Lcond.en.1
-.Lcond.el.2:
+    jmp         .Lmain.cond.en.1
+.Lmain.cond.el.2:
     movl        $7, -16(%rbp)
-.Lcond.en.1:
+.Lmain.cond.en.1:
     cmpl        $0, -16(%rbp)
     movl        $0, -20(%rbp)
     sete        -20(%rbp)

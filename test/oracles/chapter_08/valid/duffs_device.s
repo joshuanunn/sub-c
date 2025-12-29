@@ -94,17 +94,17 @@ main:
     movl        $0, -72(%rbp)
     sete        -72(%rbp)
     cmpl        $0, -72(%rbp)
-    je          .Land.fl.18
+    je          .Lmain.and.fl.18
     cmpl        $0, -8(%rbp)
     movl        $0, -76(%rbp)
     sete        -76(%rbp)
     cmpl        $0, -76(%rbp)
-    je          .Land.fl.18
+    je          .Lmain.and.fl.18
     movl        $1, -80(%rbp)
-    jmp         .Land.en.19
-.Land.fl.18:
+    jmp         .Lmain.and.en.19
+.Lmain.and.fl.18:
     movl        $0, -80(%rbp)
-.Land.en.19:
+.Lmain.and.en.19:
     movl        -80(%rbp), %eax
     movq        %rbp, %rsp
     popq        %rbp

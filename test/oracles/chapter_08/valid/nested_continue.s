@@ -31,9 +31,9 @@ main:
     idivl       %r10d
     movl        %edx, -28(%rbp)
     cmpl        $0, -28(%rbp)
-    je          .Lif.en.4
+    je          .Lmain.if.en.4
     jmp         .Lloop.ct.2
-.Lif.en.4:
+.Lmain.if.en.4:
     movl        -8(%rbp), %r10d
     movl        %r10d, -32(%rbp)
     addl        $1, -32(%rbp)

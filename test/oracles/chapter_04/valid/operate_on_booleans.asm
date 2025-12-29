@@ -1,17 +1,17 @@
 (Asm.Program
    [Asm.Function {name = "main"; global = true;
       instructions =
-      [(Asm.AllocateStack 32); (Asm.Jmp "and.fl.1");
-        (Asm.Mov ((Asm.Imm 1), (Asm.Stack -4))); (Asm.Jmp "and.en.2");
-        (Asm.Label "and.fl.1"); (Asm.Mov ((Asm.Imm 0), (Asm.Stack -4)));
-        (Asm.Label "and.en.2");
+      [(Asm.AllocateStack 32); (Asm.Jmp "main.and.fl.1");
+        (Asm.Mov ((Asm.Imm 1), (Asm.Stack -4))); (Asm.Jmp "main.and.en.2");
+        (Asm.Label "main.and.fl.1"); (Asm.Mov ((Asm.Imm 0), (Asm.Stack -4)));
+        (Asm.Label "main.and.en.2");
         (Asm.Mov ((Asm.Stack -4), (Asm.Reg Asm.R10)));
         (Asm.Mov ((Asm.Reg Asm.R10), (Asm.Stack -8)));
         Asm.Unary {op = Asm.BwNot; dst = (Asm.Stack -8)};
-        (Asm.Jmp "or.tr.5"); (Asm.Jmp "or.tr.5");
-        (Asm.Mov ((Asm.Imm 0), (Asm.Stack -12))); (Asm.Jmp "or.en.6");
-        (Asm.Label "or.tr.5"); (Asm.Mov ((Asm.Imm 1), (Asm.Stack -12)));
-        (Asm.Label "or.en.6");
+        (Asm.Jmp "main.or.tr.5"); (Asm.Jmp "main.or.tr.5");
+        (Asm.Mov ((Asm.Imm 0), (Asm.Stack -12))); (Asm.Jmp "main.or.en.6");
+        (Asm.Label "main.or.tr.5"); (Asm.Mov ((Asm.Imm 1), (Asm.Stack -12)));
+        (Asm.Label "main.or.en.6");
         (Asm.Mov ((Asm.Stack -12), (Asm.Reg Asm.R10)));
         (Asm.Mov ((Asm.Reg Asm.R10), (Asm.Stack -16)));
         Asm.Unary {op = Asm.Neg; dst = (Asm.Stack -16)};
@@ -24,6 +24,7 @@
         (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX))); Asm.Ret];
       frame =
       Env.lenv {
+        namespace = "main";
         counter = 9;
         offset = -20;
         stack slots = {

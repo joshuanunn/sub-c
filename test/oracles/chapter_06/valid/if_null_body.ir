@@ -2,13 +2,14 @@
    [Ir.Function {name = "main"; global = true; params = [];
       body =
       [Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "x.0")};
-        Ir.Jump {target = "if.el.1"}; Ir.Jump {target = "if.en.0"};
-        (Ir.Label "if.el.1");
+        Ir.Jump {target = "main.if.el.1"}; Ir.Jump {target = "main.if.en.0"};
+        (Ir.Label "main.if.el.1");
         Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "x.0")};
-        (Ir.Label "if.en.0"); (Ir.Return (Ir.Var "x.0"));
+        (Ir.Label "main.if.en.0"); (Ir.Return (Ir.Var "x.0"));
         (Ir.Return (Ir.Constant 0))];
       frame =
       Env.lenv {
+        namespace = "main";
         counter = 2;
         offset = -4;
         stack slots = {

@@ -16,37 +16,35 @@
         (Asm.Mov ((Asm.Imm 0), (Asm.Stack -16)));
         (Asm.SetCC (Asm.L, (Asm.Stack -16)));
         (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -16)));
-        (Asm.JmpCC (Asm.E, "if.en.4")); (Asm.Call "print_alphabet");
-        (Asm.Mov ((Asm.Reg Asm.AX), (Asm.Stack -20))); (Asm.Label "if.en.4");
+        (Asm.JmpCC (Asm.E, "print_alphabet.if.en.4"));
+        (Asm.Call "print_alphabet");
+        (Asm.Mov ((Asm.Reg Asm.AX), (Asm.Stack -20)));
+        (Asm.Label "print_alphabet.if.en.4");
         (Asm.Mov ((Asm.Data "count.1"), (Asm.Reg Asm.AX))); Asm.Ret;
         (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX))); Asm.Ret];
       frame =
       Env.lenv {
-        counter = 7;
-        offset = -24;
+        namespace = "print_alphabet";
+        counter = 6;
+        offset = -20;
         stack slots = {
           tmp.0 -> -4,
           tmp.1 -> -8,
           tmp.2 -> -12,
           tmp.3 -> -16,
           tmp.5 -> -20,
-          tmp.6 -> -24,
         }}};
      Asm.Function {name = "main"; global = true;
        instructions =
-       [(Asm.AllocateStack 32); (Asm.Call "print_alphabet");
-         (Asm.Mov ((Asm.Reg Asm.AX), (Asm.Stack -24)));
+       [(Asm.AllocateStack 16); (Asm.Call "print_alphabet");
+         (Asm.Mov ((Asm.Reg Asm.AX), (Asm.Stack -4)));
          (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX))); Asm.Ret];
        frame =
        Env.lenv {
-         counter = 7;
-         offset = -24;
+         namespace = "main";
+         counter = 1;
+         offset = -4;
          stack slots = {
            tmp.0 -> -4,
-           tmp.1 -> -8,
-           tmp.2 -> -12,
-           tmp.3 -> -16,
-           tmp.5 -> -20,
-           tmp.6 -> -24,
          }}};
      Asm.StaticVariable {name = "count.1"; global = false; init = 0}])

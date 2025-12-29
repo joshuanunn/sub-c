@@ -5,10 +5,10 @@ main:
     movq        %rsp, %rbp
     subq        $16, %rsp
     movl        $0, -4(%rbp)
-    jmp         .Lor.en.2
-.Lor.tr.1:
+    jmp         .Lmain.or.en.2
+.Lmain.or.tr.1:
     movl        $1, -4(%rbp)
-.Lor.en.2:
+.Lmain.or.en.2:
     movl        -4(%rbp), %eax
     movq        %rbp, %rsp
     popq        %rbp

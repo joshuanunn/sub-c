@@ -19,12 +19,12 @@ main:
     movl        $0, -16(%rbp)
     setne       -16(%rbp)
     cmpl        $0, -16(%rbp)
-    je          .Lif.en.4
+    je          .Lmain.if.en.4
     movl        $1, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         
-.Lif.en.4:
+.Lmain.if.en.4:
     movl        $-5, -20(%rbp)
     movl        y(%rip), %r10d
     movl        %r10d, -24(%rbp)
@@ -44,12 +44,12 @@ main:
     movl        $0, -40(%rbp)
     setne       -40(%rbp)
     cmpl        $0, -40(%rbp)
-    je          .Lif.en.11
+    je          .Lmain.if.en.11
     movl        $2, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         
-.Lif.en.11:
+.Lmain.if.en.11:
     movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp

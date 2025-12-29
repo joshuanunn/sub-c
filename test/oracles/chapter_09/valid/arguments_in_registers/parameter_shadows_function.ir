@@ -3,25 +3,20 @@
       body = [(Ir.Return (Ir.Constant 1)); (Ir.Return (Ir.Constant 0))];
       frame =
       Env.lenv {
-        counter = 3;
-        offset = -16;
+        namespace = "a";
+        counter = 0;
+        offset = 0;
         stack slots = {
-          a.0   -> -4,
-          tmp.0 -> -8,
-          tmp.1 -> -12,
-          tmp.2 -> -16,
         }}};
      Ir.Function {name = "b"; global = true; params = ["a.0"];
        body = [(Ir.Return (Ir.Var "a.0")); (Ir.Return (Ir.Constant 0))];
        frame =
        Env.lenv {
-         counter = 3;
-         offset = -16;
+         namespace = "b";
+         counter = 0;
+         offset = -4;
          stack slots = {
-           a.0   -> -4,
-           tmp.0 -> -8,
-           tmp.1 -> -12,
-           tmp.2 -> -16,
+           a.0 -> -4,
          }}};
      Ir.Function {name = "main"; global = true; params = [];
        body =
@@ -33,12 +28,12 @@
          (Ir.Return (Ir.Var "tmp.2")); (Ir.Return (Ir.Constant 0))];
        frame =
        Env.lenv {
+         namespace = "main";
          counter = 3;
-         offset = -16;
+         offset = -12;
          stack slots = {
-           a.0   -> -4,
-           tmp.0 -> -8,
-           tmp.1 -> -12,
-           tmp.2 -> -16,
+           tmp.0 -> -4,
+           tmp.1 -> -8,
+           tmp.2 -> -12,
          }}}
      ])

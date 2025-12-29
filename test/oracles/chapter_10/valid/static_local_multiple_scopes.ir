@@ -16,48 +16,41 @@
         (Ir.Return (Ir.Constant 0)); (Ir.Return (Ir.Constant 0))];
       frame =
       Env.lenv {
-        counter = 8;
-        offset = -36;
+        namespace = "print_letters";
+        counter = 5;
+        offset = -20;
         stack slots = {
           tmp.0 -> -4,
           tmp.1 -> -8,
           tmp.2 -> -12,
           tmp.3 -> -16,
           tmp.4 -> -20,
-          i.3   -> -24,
-          tmp.5 -> -28,
-          tmp.6 -> -32,
-          tmp.7 -> -36,
         }}};
      Ir.Function {name = "main"; global = true; params = [];
        body =
        [Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "i.3")};
          (Ir.Label "loop.st.1");
          Ir.Binary {op = Ir.LessThan; src1 = (Ir.Var "i.3");
-           src2 = (Ir.Constant 26); dst = (Ir.Var "tmp.5")};
-         Ir.JumpIfZero {condition = (Ir.Var "tmp.5"); target = "loop.br.1"};
+           src2 = (Ir.Constant 26); dst = (Ir.Var "tmp.0")};
+         Ir.JumpIfZero {condition = (Ir.Var "tmp.0"); target = "loop.br.1"};
          Ir.FunCall {fun_name = "print_letters"; args = [];
-           dst = (Ir.Var "tmp.6")};
+           dst = (Ir.Var "tmp.1")};
          (Ir.Label "loop.ct.1");
          Ir.Binary {op = Ir.Add; src1 = (Ir.Var "i.3");
-           src2 = (Ir.Constant 1); dst = (Ir.Var "tmp.7")};
-         Ir.Copy {src = (Ir.Var "tmp.7"); dst = (Ir.Var "i.3")};
+           src2 = (Ir.Constant 1); dst = (Ir.Var "tmp.2")};
+         Ir.Copy {src = (Ir.Var "tmp.2"); dst = (Ir.Var "i.3")};
          Ir.Jump {target = "loop.st.1"}; (Ir.Label "loop.br.1");
          (Ir.Return (Ir.Constant 0))];
        frame =
        Env.lenv {
-         counter = 8;
-         offset = -36;
+         namespace = "main";
+         counter = 3;
+         offset = -16;
          stack slots = {
-           tmp.0 -> -4,
-           tmp.1 -> -8,
-           tmp.2 -> -12,
-           tmp.3 -> -16,
-           tmp.4 -> -20,
-           i.3   -> -24,
-           tmp.5 -> -28,
-           tmp.6 -> -32,
-           tmp.7 -> -36,
+           i.3   -> -4,
+           tmp.0 -> -8,
+           tmp.1 -> -12,
+           tmp.2 -> -16,
          }}};
      Ir.StaticVariable {name = "i.1"; global = false; init = 65};
      Ir.StaticVariable {name = "i.2"; global = false; init = 97}])

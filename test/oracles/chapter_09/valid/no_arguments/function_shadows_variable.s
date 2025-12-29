@@ -14,12 +14,12 @@ main:
     movl        $0, -16(%rbp)
     setg        -16(%rbp)
     cmpl        $0, -16(%rbp)
-    je          .Lif.en.2
+    je          .Lmain.if.en.2
     call        foo@PLT
     movl        %eax, -20(%rbp)
     movl        -20(%rbp), %r10d
     movl        %r10d, -8(%rbp)
-.Lif.en.2:
+.Lmain.if.en.2:
     movl        -4(%rbp), %r10d
     movl        %r10d, -24(%rbp)
     movl        -8(%rbp), %r10d
@@ -37,7 +37,6 @@ main:
 foo:
     pushq       %rbp
     movq        %rsp, %rbp
-    subq        $32, %rsp
     movl        $8, %eax
     movq        %rbp, %rsp
     popq        %rbp

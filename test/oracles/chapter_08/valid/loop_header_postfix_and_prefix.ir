@@ -14,8 +14,8 @@
         Ir.Jump {target = "loop.ct.1"}; (Ir.Label "loop.br.1");
         Ir.Binary {op = Ir.NotEqual; src1 = (Ir.Var "count.1");
           src2 = (Ir.Constant 100); dst = (Ir.Var "tmp.2")};
-        Ir.JumpIfZero {condition = (Ir.Var "tmp.2"); target = "if.en.3"};
-        (Ir.Return (Ir.Constant 0)); (Ir.Label "if.en.3");
+        Ir.JumpIfZero {condition = (Ir.Var "tmp.2"); target = "main.if.en.3"};
+        (Ir.Return (Ir.Constant 0)); (Ir.Label "main.if.en.3");
         Ir.Copy {src = (Ir.Constant 100); dst = (Ir.Var "i.0")};
         Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "count.1")};
         (Ir.Label "loop.ct.2");
@@ -28,11 +28,12 @@
         Ir.Jump {target = "loop.ct.2"}; (Ir.Label "loop.br.2");
         Ir.Binary {op = Ir.NotEqual; src1 = (Ir.Var "count.1");
           src2 = (Ir.Constant 99); dst = (Ir.Var "tmp.5")};
-        Ir.JumpIfZero {condition = (Ir.Var "tmp.5"); target = "if.en.6"};
-        (Ir.Return (Ir.Constant 0)); (Ir.Label "if.en.6");
+        Ir.JumpIfZero {condition = (Ir.Var "tmp.5"); target = "main.if.en.6"};
+        (Ir.Return (Ir.Constant 0)); (Ir.Label "main.if.en.6");
         (Ir.Return (Ir.Constant 1)); (Ir.Return (Ir.Constant 0))];
       frame =
       Env.lenv {
+        namespace = "main";
         counter = 7;
         offset = -28;
         stack slots = {

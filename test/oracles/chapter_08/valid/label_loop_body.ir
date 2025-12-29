@@ -9,6 +9,7 @@
         (Ir.Return (Ir.Var "result.1")); (Ir.Return (Ir.Constant 0))];
       frame =
       Env.lenv {
+        namespace = "main";
         counter = 0;
         offset = -4;
         stack slots = {

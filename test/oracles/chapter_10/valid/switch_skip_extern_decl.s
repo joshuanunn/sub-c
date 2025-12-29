@@ -41,12 +41,12 @@ main:
     movl        $0, -24(%rbp)
     sete        -24(%rbp)
     cmpl        $0, -24(%rbp)
-    je          .Lif.en.5
+    je          .Lmain.if.en.5
     movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         
-.Lif.en.5:
+.Lmain.if.en.5:
 .Lswit.df.1:
     movl        $5, %eax
     movq        %rbp, %rsp

@@ -12,20 +12,20 @@ main:
     movl        $0, -20(%rbp)
     setg        -20(%rbp)
     cmpl        $0, -20(%rbp)
-    je          .Lcond.el.3
+    je          .Lmain.cond.el.3
     movl        $5, -16(%rbp)
-    jmp         .Lcond.en.2
-.Lcond.el.3:
+    jmp         .Lmain.cond.en.2
+.Lmain.cond.el.3:
     cmpl        $0, -12(%rbp)
-    je          .Lcond.el.6
+    je          .Lmain.cond.el.6
     movl        $6, -24(%rbp)
-    jmp         .Lcond.en.5
-.Lcond.el.6:
+    jmp         .Lmain.cond.en.5
+.Lmain.cond.el.6:
     movl        $7, -24(%rbp)
-.Lcond.en.5:
+.Lmain.cond.en.5:
     movl        -24(%rbp), %r10d
     movl        %r10d, -16(%rbp)
-.Lcond.en.2:
+.Lmain.cond.en.2:
     movl        -16(%rbp), %eax
     movq        %rbp, %rsp
     popq        %rbp

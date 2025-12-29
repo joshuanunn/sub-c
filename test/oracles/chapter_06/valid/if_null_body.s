@@ -5,11 +5,11 @@ main:
     movq        %rsp, %rbp
     subq        $16, %rsp
     movl        $0, -4(%rbp)
-    jmp         .Lif.el.1
-    jmp         .Lif.en.0
-.Lif.el.1:
+    jmp         .Lmain.if.el.1
+    jmp         .Lmain.if.en.0
+.Lmain.if.el.1:
     movl        $1, -4(%rbp)
-.Lif.en.0:
+.Lmain.if.en.0:
     movl        -4(%rbp), %eax
     movq        %rbp, %rsp
     popq        %rbp

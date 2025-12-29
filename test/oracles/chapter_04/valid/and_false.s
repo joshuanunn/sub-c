@@ -4,29 +4,29 @@ main:
     pushq       %rbp
     movq        %rsp, %rbp
     subq        $32, %rsp
-    jmp         .Land.fl.1
+    jmp         .Lmain.and.fl.1
     movl        $1, -4(%rbp)
-    jmp         .Land.en.2
-.Land.fl.1:
+    jmp         .Lmain.and.en.2
+.Lmain.and.fl.1:
     movl        $0, -4(%rbp)
-.Land.en.2:
-    jmp         .Land.fl.4
+.Lmain.and.en.2:
+    jmp         .Lmain.and.fl.4
     movl        $1, -8(%rbp)
-    jmp         .Land.en.5
-.Land.fl.4:
+    jmp         .Lmain.and.en.5
+.Lmain.and.fl.4:
     movl        $0, -8(%rbp)
-.Land.en.5:
+.Lmain.and.en.5:
     movl        -4(%rbp), %r10d
     movl        %r10d, -12(%rbp)
     movl        -8(%rbp), %r10d
     addl        %r10d, -12(%rbp)
-    jmp         .Land.fl.8
-    jmp         .Land.fl.8
+    jmp         .Lmain.and.fl.8
+    jmp         .Lmain.and.fl.8
     movl        $1, -16(%rbp)
-    jmp         .Land.en.9
-.Land.fl.8:
+    jmp         .Lmain.and.en.9
+.Lmain.and.fl.8:
     movl        $0, -16(%rbp)
-.Land.en.9:
+.Lmain.and.en.9:
     movl        -12(%rbp), %r10d
     movl        %r10d, -20(%rbp)
     movl        -16(%rbp), %r10d

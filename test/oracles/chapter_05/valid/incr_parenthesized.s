@@ -24,43 +24,43 @@ main:
     movl        $0, -32(%rbp)
     sete        -32(%rbp)
     cmpl        $0, -32(%rbp)
-    je          .Land.fl.6
+    je          .Lmain.and.fl.6
     cmpl        $1, -8(%rbp)
     movl        $0, -36(%rbp)
     sete        -36(%rbp)
     cmpl        $0, -36(%rbp)
-    je          .Land.fl.6
+    je          .Lmain.and.fl.6
     movl        $1, -40(%rbp)
-    jmp         .Land.en.7
-.Land.fl.6:
+    jmp         .Lmain.and.en.7
+.Lmain.and.fl.6:
     movl        $0, -40(%rbp)
-.Land.en.7:
+.Lmain.and.en.7:
     cmpl        $0, -40(%rbp)
-    je          .Land.fl.11
+    je          .Lmain.and.fl.11
     movl        $-2, -44(%rbp)
     movl        -44(%rbp), %r10d
     cmpl        %r10d, -12(%rbp)
     movl        $0, -48(%rbp)
     sete        -48(%rbp)
     cmpl        $0, -48(%rbp)
-    je          .Land.fl.11
+    je          .Lmain.and.fl.11
     movl        $1, -52(%rbp)
-    jmp         .Land.en.12
-.Land.fl.11:
+    jmp         .Lmain.and.en.12
+.Lmain.and.fl.11:
     movl        $0, -52(%rbp)
-.Land.en.12:
+.Lmain.and.en.12:
     cmpl        $0, -52(%rbp)
-    je          .Land.fl.15
+    je          .Lmain.and.fl.15
     cmpl        $0, -20(%rbp)
     movl        $0, -56(%rbp)
     sete        -56(%rbp)
     cmpl        $0, -56(%rbp)
-    je          .Land.fl.15
+    je          .Lmain.and.fl.15
     movl        $1, -60(%rbp)
-    jmp         .Land.en.16
-.Land.fl.15:
+    jmp         .Lmain.and.en.16
+.Lmain.and.fl.15:
     movl        $0, -60(%rbp)
-.Land.en.16:
+.Lmain.and.en.16:
     movl        -60(%rbp), %eax
     movq        %rbp, %rsp
     popq        %rbp

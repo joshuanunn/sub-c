@@ -19,10 +19,10 @@ print_alphabet:
     movl        $0, -16(%rbp)
     setl        -16(%rbp)
     cmpl        $0, -16(%rbp)
-    je          .Lif.en.4
+    je          .Lprint_alphabet.if.en.4
     call        print_alphabet@PLT
     movl        %eax, -20(%rbp)
-.Lif.en.4:
+.Lprint_alphabet.if.en.4:
     movl        count.1(%rip), %eax
     movq        %rbp, %rsp
     popq        %rbp
@@ -36,9 +36,9 @@ print_alphabet:
 main:
     pushq       %rbp
     movq        %rsp, %rbp
-    subq        $32, %rsp
+    subq        $16, %rsp
     call        print_alphabet@PLT
-    movl        %eax, -24(%rbp)
+    movl        %eax, -4(%rbp)
     movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp

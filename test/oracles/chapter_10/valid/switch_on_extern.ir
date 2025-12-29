@@ -22,6 +22,7 @@
         (Ir.Return (Ir.Constant 0))];
       frame =
       Env.lenv {
+        namespace = "main";
         counter = 4;
         offset = -16;
         stack slots = {
@@ -36,12 +37,9 @@
          (Ir.Return (Ir.Constant 0)); (Ir.Return (Ir.Constant 0))];
        frame =
        Env.lenv {
-         counter = 4;
-         offset = -16;
+         namespace = "update_x";
+         counter = 0;
+         offset = 0;
          stack slots = {
-           tmp.0 -> -4,
-           tmp.1 -> -8,
-           tmp.2 -> -12,
-           tmp.3 -> -16,
          }}};
      Ir.StaticVariable {name = "x"; global = true; init = 0}])

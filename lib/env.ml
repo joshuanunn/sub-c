@@ -15,6 +15,7 @@ let ident_name (id : Ast.ident) : string = get_identifier_name id
 *)
 
 type lenv = {
+  namespace : string;  (** Allow unique global labels using a namespace *)
   mutable counter : int;  (** Counter for generating unique names *)
   mutable offset : int;  (** Current top-of-stack offset *)
   stack_offsets : (string, int) Hashtbl.t;
@@ -34,6 +35,7 @@ let pp_lenv fmt (le : lenv) =
   in
   Format.fprintf fmt "@[<v>";
   Format.fprintf fmt "Env.lenv {@;<2 2>@[<v>";
+  Format.fprintf fmt "namespace = \"%s\";@," le.namespace;
   Format.fprintf fmt "counter = %d;@," le.counter;
   Format.fprintf fmt "offset = %d;@," le.offset;
   Format.fprintf fmt "@[<v>stack slots = {@,";
@@ -49,8 +51,8 @@ let pp_lenv fmt (le : lenv) =
 let show_lenv le = Format.asprintf "%a" pp_lenv le
 
 (** Create a new, empty local environment *)
-let make_lenv () : lenv =
-  { counter = 0; offset = 0; stack_offsets = Hashtbl.create 16 }
+let make_lenv (namespace : string) : lenv =
+  { namespace; counter = 0; offset = 0; stack_offsets = Hashtbl.create 16 }
 
 (** Declare a new temporary value.
     - Generates a unique name by appending the counter to [name]
@@ -73,9 +75,10 @@ let insert_value (le : lenv) (id : Ast.ident) : unit =
   le.offset <- new_offset;
   ()
 
-(** Declare a unique label name for control-flow constructs *)
+(** Declare a unique label name for control-flow constructs. As labels are
+    global in the final assembly code, labels must be namespaced by function. *)
 let declare_label (le : lenv) (name : string) : string =
-  let eid = name ^ "." ^ string_of_int le.counter in
+  let eid = le.namespace ^ "." ^ name ^ "." ^ string_of_int le.counter in
   le.counter <- le.counter + 1;
   eid
 

@@ -15,9 +15,9 @@ main:
     movl        $0, -12(%rbp)
     setg        -12(%rbp)
     cmpl        $0, -12(%rbp)
-    je          .Lif.en.2
+    je          .Lmain.if.en.2
     jmp         .Lloop.br.1
-.Lif.en.2:
+.Lmain.if.en.2:
 .Lloop.ct.1:
     jmp         .Lloop.st.1
 .Lloop.br.1:

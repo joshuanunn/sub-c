@@ -4,9 +4,11 @@
       [Ir.Jump {target = "_foo_1_.0"}; (Ir.Return (Ir.Constant 0));
         (Ir.Label "_foo_1_.0"); (Ir.Return (Ir.Constant 1));
         (Ir.Return (Ir.Constant 0))];
-      frame = Env.lenv {
-                counter = 0;
-                offset = 0;
-                stack slots = {
-                }}}
+      frame =
+      Env.lenv {
+        namespace = "main";
+        counter = 0;
+        offset = 0;
+        stack slots = {
+        }}}
      ])

@@ -12,17 +12,18 @@
         (Ir.Label "swit.br.1");
         Ir.Binary {op = Ir.Equal; src1 = (Ir.Var "a.0");
           src2 = (Ir.Constant 4); dst = (Ir.Var "tmp.1")};
-        Ir.JumpIfZero {condition = (Ir.Var "tmp.1"); target = "and.fl.4"};
+        Ir.JumpIfZero {condition = (Ir.Var "tmp.1"); target = "main.and.fl.4"};
         Ir.Binary {op = Ir.Equal; src1 = (Ir.Var "b.1");
           src2 = (Ir.Constant 8); dst = (Ir.Var "tmp.2")};
-        Ir.JumpIfZero {condition = (Ir.Var "tmp.2"); target = "and.fl.4"};
+        Ir.JumpIfZero {condition = (Ir.Var "tmp.2"); target = "main.and.fl.4"};
         Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "tmp.3")};
-        Ir.Jump {target = "and.en.5"}; (Ir.Label "and.fl.4");
+        Ir.Jump {target = "main.and.en.5"}; (Ir.Label "main.and.fl.4");
         Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "tmp.3")};
-        (Ir.Label "and.en.5"); (Ir.Return (Ir.Var "tmp.3"));
+        (Ir.Label "main.and.en.5"); (Ir.Return (Ir.Var "tmp.3"));
         (Ir.Return (Ir.Constant 0))];
       frame =
       Env.lenv {
+        namespace = "main";
         counter = 6;
         offset = -28;
         stack slots = {

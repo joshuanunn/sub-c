@@ -3,17 +3,19 @@
       body =
       [Ir.Binary {op = Ir.Equal; src1 = (Ir.Var "n.0");
          src2 = (Ir.Constant 0); dst = (Ir.Var "tmp.0")};
-        Ir.JumpIfNotZero {condition = (Ir.Var "tmp.0"); target = "or.tr.3"};
+        Ir.JumpIfNotZero {condition = (Ir.Var "tmp.0");
+          target = "fib.or.tr.3"};
         Ir.Binary {op = Ir.Equal; src1 = (Ir.Var "n.0");
           src2 = (Ir.Constant 1); dst = (Ir.Var "tmp.1")};
-        Ir.JumpIfNotZero {condition = (Ir.Var "tmp.1"); target = "or.tr.3"};
+        Ir.JumpIfNotZero {condition = (Ir.Var "tmp.1");
+          target = "fib.or.tr.3"};
         Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "tmp.2")};
-        Ir.Jump {target = "or.en.4"}; (Ir.Label "or.tr.3");
+        Ir.Jump {target = "fib.or.en.4"}; (Ir.Label "fib.or.tr.3");
         Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "tmp.2")};
-        (Ir.Label "or.en.4");
-        Ir.JumpIfZero {condition = (Ir.Var "tmp.2"); target = "if.el.6"};
-        (Ir.Return (Ir.Var "n.0")); Ir.Jump {target = "if.en.5"};
-        (Ir.Label "if.el.6");
+        (Ir.Label "fib.or.en.4");
+        Ir.JumpIfZero {condition = (Ir.Var "tmp.2"); target = "fib.if.el.6"};
+        (Ir.Return (Ir.Var "n.0")); Ir.Jump {target = "fib.if.en.5"};
+        (Ir.Label "fib.if.el.6");
         Ir.Binary {op = Ir.Subtract; src1 = (Ir.Var "n.0");
           src2 = (Ir.Constant 1); dst = (Ir.Var "tmp.7")};
         Ir.FunCall {fun_name = "fib"; args = [(Ir.Var "tmp.7")];
@@ -24,12 +26,13 @@
           dst = (Ir.Var "tmp.10")};
         Ir.Binary {op = Ir.Add; src1 = (Ir.Var "tmp.8");
           src2 = (Ir.Var "tmp.10"); dst = (Ir.Var "tmp.11")};
-        (Ir.Return (Ir.Var "tmp.11")); (Ir.Label "if.en.5");
+        (Ir.Return (Ir.Var "tmp.11")); (Ir.Label "fib.if.en.5");
         (Ir.Return (Ir.Constant 0))];
       frame =
       Env.lenv {
-        counter = 13;
-        offset = -44;
+        namespace = "fib";
+        counter = 12;
+        offset = -36;
         stack slots = {
           tmp.0  -> -4,
           tmp.1  -> -8,
@@ -40,30 +43,20 @@
           tmp.10 -> -28,
           tmp.11 -> -32,
           n.0    -> -36,
-          n.1    -> -40,
-          tmp.12 -> -44,
         }}};
      Ir.Function {name = "main"; global = true; params = [];
        body =
        [Ir.Copy {src = (Ir.Constant 6); dst = (Ir.Var "n.1")};
          Ir.FunCall {fun_name = "fib"; args = [(Ir.Var "n.1")];
-           dst = (Ir.Var "tmp.12")};
-         (Ir.Return (Ir.Var "tmp.12")); (Ir.Return (Ir.Constant 0))];
+           dst = (Ir.Var "tmp.0")};
+         (Ir.Return (Ir.Var "tmp.0")); (Ir.Return (Ir.Constant 0))];
        frame =
        Env.lenv {
-         counter = 13;
-         offset = -44;
+         namespace = "main";
+         counter = 1;
+         offset = -8;
          stack slots = {
-           tmp.0  -> -4,
-           tmp.1  -> -8,
-           tmp.2  -> -12,
-           tmp.7  -> -16,
-           tmp.8  -> -20,
-           tmp.9  -> -24,
-           tmp.10 -> -28,
-           tmp.11 -> -32,
-           n.0    -> -36,
-           n.1    -> -40,
-           tmp.12 -> -44,
+           n.1   -> -4,
+           tmp.0 -> -8,
          }}}
      ])

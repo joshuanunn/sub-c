@@ -34,7 +34,7 @@ foo:
 main:
     pushq       %rbp
     movq        %rsp, %rbp
-    subq        $48, %rsp
+    subq        $16, %rsp
     movl        $1, %edi
     movl        $2, %esi
     movl        $3, %edx
@@ -45,8 +45,8 @@ main:
     pushq       $7
     call        foo@PLT
     addq        $16, %rsp
-    movl        %eax, -44(%rbp)
-    movl        -44(%rbp), %eax
+    movl        %eax, -4(%rbp)
+    movl        -4(%rbp), %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         

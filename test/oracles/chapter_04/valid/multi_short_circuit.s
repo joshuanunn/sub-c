@@ -4,26 +4,26 @@ main:
     pushq       %rbp
     movq        %rsp, %rbp
     subq        $16, %rsp
-    jmp         .Land.fl.2
+    jmp         .Lmain.and.fl.2
     movl        $1, %eax
     cdq         
     movl        $0, %r10d
     idivl       %r10d
     movl        %eax, -4(%rbp)
     cmpl        $0, -4(%rbp)
-    je          .Land.fl.2
+    je          .Lmain.and.fl.2
     movl        $1, -8(%rbp)
-    jmp         .Land.en.3
-.Land.fl.2:
+    jmp         .Lmain.and.en.3
+.Lmain.and.fl.2:
     movl        $0, -8(%rbp)
-.Land.en.3:
+.Lmain.and.en.3:
     cmpl        $0, -8(%rbp)
-    jne         .Lor.tr.5
+    jne         .Lmain.or.tr.5
     movl        $0, -12(%rbp)
-    jmp         .Lor.en.6
-.Lor.tr.5:
+    jmp         .Lmain.or.en.6
+.Lmain.or.tr.5:
     movl        $1, -12(%rbp)
-.Lor.en.6:
+.Lmain.or.en.6:
     movl        -12(%rbp), %eax
     movq        %rbp, %rsp
     popq        %rbp

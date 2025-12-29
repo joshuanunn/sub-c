@@ -23,11 +23,11 @@ main:
     popq        %rbp
     ret         
 .Lswit.cs.1.1:
-    jmp         .Lif.en.3
+    jmp         .Lmain.if.en.3
 .Lswit.cs.1.3:
     movl        $1, -4(%rbp)
     jmp         .Lswit.br.1
-.Lif.en.3:
+.Lmain.if.en.3:
 .Lswit.df.1:
     movl        $0, %eax
     movq        %rbp, %rsp
@@ -50,12 +50,12 @@ main:
     movq        %rbp, %rsp
     popq        %rbp
     ret         
-    jmp         .Lif.en.6
-.Lif.el.7:
+    jmp         .Lmain.if.en.6
+.Lmain.if.el.7:
 .Lswit.cs.2.4:
     movl        $1, -8(%rbp)
     jmp         .Lswit.br.2
-.Lif.en.6:
+.Lmain.if.en.6:
 .Lswit.df.2:
     movl        $0, %eax
     movq        %rbp, %rsp
@@ -92,23 +92,23 @@ main:
 .Lloop.br.4:
 .Lswit.br.3:
     cmpl        $0, -4(%rbp)
-    je          .Land.fl.12
+    je          .Lmain.and.fl.12
     cmpl        $0, -8(%rbp)
-    je          .Land.fl.12
+    je          .Lmain.and.fl.12
     movl        $1, -52(%rbp)
-    jmp         .Land.en.13
-.Land.fl.12:
+    jmp         .Lmain.and.en.13
+.Lmain.and.fl.12:
     movl        $0, -52(%rbp)
-.Land.en.13:
+.Lmain.and.en.13:
     cmpl        $0, -52(%rbp)
-    je          .Land.fl.15
+    je          .Lmain.and.fl.15
     cmpl        $0, -12(%rbp)
-    je          .Land.fl.15
+    je          .Lmain.and.fl.15
     movl        $1, -56(%rbp)
-    jmp         .Land.en.16
-.Land.fl.15:
+    jmp         .Lmain.and.en.16
+.Lmain.and.fl.15:
     movl        $0, -56(%rbp)
-.Land.en.16:
+.Lmain.and.en.16:
     movl        -56(%rbp), %eax
     movq        %rbp, %rsp
     popq        %rbp

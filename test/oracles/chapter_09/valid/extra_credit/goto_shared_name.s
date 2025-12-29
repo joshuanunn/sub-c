@@ -3,7 +3,6 @@
 foo:
     pushq       %rbp
     movq        %rsp, %rbp
-    subq        $16, %rsp
     jmp         .Lfoo.0
     movl        $0, %eax
     movq        %rbp, %rsp

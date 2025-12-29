@@ -4,22 +4,22 @@ main:
     pushq       %rbp
     movq        %rsp, %rbp
     subq        $32, %rsp
-    jmp         .Land.fl.1
+    jmp         .Lmain.and.fl.1
     movl        $1, -4(%rbp)
-    jmp         .Land.en.2
-.Land.fl.1:
+    jmp         .Lmain.and.en.2
+.Lmain.and.fl.1:
     movl        $0, -4(%rbp)
-.Land.en.2:
+.Lmain.and.en.2:
     movl        -4(%rbp), %r10d
     movl        %r10d, -8(%rbp)
     notl        -8(%rbp)
-    jmp         .Lor.tr.5
-    jmp         .Lor.tr.5
+    jmp         .Lmain.or.tr.5
+    jmp         .Lmain.or.tr.5
     movl        $0, -12(%rbp)
-    jmp         .Lor.en.6
-.Lor.tr.5:
+    jmp         .Lmain.or.en.6
+.Lmain.or.tr.5:
     movl        $1, -12(%rbp)
-.Lor.en.6:
+.Lmain.or.en.6:
     movl        -12(%rbp), %r10d
     movl        %r10d, -16(%rbp)
     negl        -16(%rbp)

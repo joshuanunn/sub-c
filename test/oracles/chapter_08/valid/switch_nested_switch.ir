@@ -27,6 +27,7 @@
         (Ir.Label "swit.br.1"); (Ir.Return (Ir.Constant 0))];
       frame =
       Env.lenv {
+        namespace = "main";
         counter = 5;
         offset = -20;
         stack slots = {

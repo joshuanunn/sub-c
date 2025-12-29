@@ -3,7 +3,7 @@
 f:
     pushq       %rbp
     movq        %rsp, %rbp
-    subq        $64, %rsp
+    subq        $48, %rsp
     movl        i.0(%rip), %r10d
     movl        %r10d, -4(%rbp)
     addl        $1, -4(%rbp)
@@ -33,46 +33,46 @@ f:
     movl        $0, -20(%rbp)
     setne       -20(%rbp)
     cmpl        $0, -20(%rbp)
-    je          .Lif.en.5
+    je          .Lf.if.en.5
     movl        $1, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         
-.Lif.en.5:
+.Lf.if.en.5:
     movl        $-6, -24(%rbp)
     movl        -24(%rbp), %r10d
     cmpl        %r10d, j.1(%rip)
     movl        $0, -28(%rbp)
     setne       -28(%rbp)
     cmpl        $0, -28(%rbp)
-    je          .Lif.en.8
+    je          .Lf.if.en.8
     movl        $2, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         
-.Lif.en.8:
+.Lf.if.en.8:
     movl        $-18, -32(%rbp)
     movl        -32(%rbp), %r10d
     cmpl        %r10d, k.2(%rip)
     movl        $0, -36(%rbp)
     setne       -36(%rbp)
     cmpl        $0, -36(%rbp)
-    je          .Lif.en.11
+    je          .Lf.if.en.11
     movl        $3, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         
-.Lif.en.11:
+.Lf.if.en.11:
     cmpl        $6, l.3(%rip)
     movl        $0, -40(%rbp)
     setne       -40(%rbp)
     cmpl        $0, -40(%rbp)
-    je          .Lif.en.13
+    je          .Lf.if.en.13
     movl        $4, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         
-.Lif.en.13:
+.Lf.if.en.13:
     movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp
@@ -86,14 +86,14 @@ f:
 main:
     pushq       %rbp
     movq        %rsp, %rbp
-    subq        $64, %rsp
+    subq        $16, %rsp
     call        f@PLT
-    movl        %eax, -44(%rbp)
+    movl        %eax, -4(%rbp)
     call        f@PLT
-    movl        %eax, -48(%rbp)
+    movl        %eax, -8(%rbp)
     call        f@PLT
-    movl        %eax, -52(%rbp)
-    movl        -52(%rbp), %eax
+    movl        %eax, -12(%rbp)
+    movl        -12(%rbp), %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         

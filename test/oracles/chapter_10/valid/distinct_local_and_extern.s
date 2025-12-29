@@ -3,7 +3,6 @@
 return_a:
     pushq       %rbp
     movq        %rsp, %rbp
-    subq        $16, %rsp
     movl        a(%rip), %eax
     movq        %rbp, %rsp
     popq        %rbp
@@ -23,12 +22,12 @@ main:
     movl        $0, -8(%rbp)
     setne       -8(%rbp)
     cmpl        $0, -8(%rbp)
-    je          .Lif.en.1
+    je          .Lmain.if.en.1
     movl        $1, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         
-.Lif.en.1:
+.Lmain.if.en.1:
     movl        $4, a(%rip)
     call        return_a@PLT
     movl        %eax, -12(%rbp)

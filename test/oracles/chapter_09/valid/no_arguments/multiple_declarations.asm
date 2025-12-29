@@ -7,6 +7,7 @@
         (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX))); Asm.Ret];
       frame =
       Env.lenv {
+        namespace = "main";
         counter = 1;
         offset = -4;
         stack slots = {
@@ -14,13 +15,13 @@
         }}};
      Asm.Function {name = "f"; global = true;
        instructions =
-       [(Asm.AllocateStack 16); (Asm.Mov ((Asm.Imm 3), (Asm.Reg Asm.AX)));
-         Asm.Ret; (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX))); Asm.Ret];
+       [(Asm.Mov ((Asm.Imm 3), (Asm.Reg Asm.AX))); Asm.Ret;
+         (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX))); Asm.Ret];
        frame =
        Env.lenv {
-         counter = 1;
-         offset = -4;
+         namespace = "f";
+         counter = 0;
+         offset = 0;
          stack slots = {
-           tmp.0 -> -4,
          }}}
      ])

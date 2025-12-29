@@ -22,9 +22,9 @@ main:
     movl        $0, -20(%rbp)
     setg        -20(%rbp)
     cmpl        $0, -20(%rbp)
-    je          .Lif.en.3
+    je          .Lmain.if.en.3
     jmp         .Lloop.br.1
-.Lif.en.3:
+.Lmain.if.en.3:
     jmp         .Llbl.0
 .Lloop.ct.1:
     movl        $0, -8(%rbp)

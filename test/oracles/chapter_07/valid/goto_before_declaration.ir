@@ -4,13 +4,14 @@
       [Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "a.1")};
         Ir.Binary {op = Ir.NotEqual; src1 = (Ir.Var "a.1");
           src2 = (Ir.Constant 0); dst = (Ir.Var "tmp.0")};
-        Ir.JumpIfZero {condition = (Ir.Var "tmp.0"); target = "if.en.1"};
+        Ir.JumpIfZero {condition = (Ir.Var "tmp.0"); target = "main.if.en.1"};
         (Ir.Label "return_a.0"); (Ir.Return (Ir.Var "a.1"));
-        (Ir.Label "if.en.1");
+        (Ir.Label "main.if.en.1");
         Ir.Copy {src = (Ir.Constant 4); dst = (Ir.Var "a.2")};
         Ir.Jump {target = "return_a.0"}; (Ir.Return (Ir.Constant 0))];
       frame =
       Env.lenv {
+        namespace = "main";
         counter = 2;
         offset = -12;
         stack slots = {

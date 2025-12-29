@@ -85,19 +85,21 @@
         (Asm.Mov ((Asm.Imm 0), (Asm.Stack -72)));
         (Asm.SetCC (Asm.E, (Asm.Stack -72)));
         (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -72)));
-        (Asm.JmpCC (Asm.E, "and.fl.18"));
+        (Asm.JmpCC (Asm.E, "main.and.fl.18"));
         (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -8)));
         (Asm.Mov ((Asm.Imm 0), (Asm.Stack -76)));
         (Asm.SetCC (Asm.E, (Asm.Stack -76)));
         (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -76)));
-        (Asm.JmpCC (Asm.E, "and.fl.18"));
-        (Asm.Mov ((Asm.Imm 1), (Asm.Stack -80))); (Asm.Jmp "and.en.19");
-        (Asm.Label "and.fl.18"); (Asm.Mov ((Asm.Imm 0), (Asm.Stack -80)));
-        (Asm.Label "and.en.19");
+        (Asm.JmpCC (Asm.E, "main.and.fl.18"));
+        (Asm.Mov ((Asm.Imm 1), (Asm.Stack -80))); (Asm.Jmp "main.and.en.19");
+        (Asm.Label "main.and.fl.18");
+        (Asm.Mov ((Asm.Imm 0), (Asm.Stack -80)));
+        (Asm.Label "main.and.en.19");
         (Asm.Mov ((Asm.Stack -80), (Asm.Reg Asm.AX))); Asm.Ret;
         (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX))); Asm.Ret];
       frame =
       Env.lenv {
+        namespace = "main";
         counter = 20;
         offset = -80;
         stack slots = {

@@ -23,9 +23,9 @@ main:
     idivl       %r10d
     movl        %edx, -20(%rbp)
     cmpl        $0, -20(%rbp)
-    je          .Lif.en.3
+    je          .Lmain.if.en.3
     jmp         .Lloop.ct.1
-.Lif.en.3:
+.Lmain.if.en.3:
     movl        -4(%rbp), %r10d
     movl        %r10d, -24(%rbp)
     movl        -8(%rbp), %r10d

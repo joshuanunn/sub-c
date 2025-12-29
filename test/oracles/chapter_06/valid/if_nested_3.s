@@ -7,18 +7,18 @@ main:
     movl        $0, -4(%rbp)
     movl        $1, -4(%rbp)
     cmpl        $0, -4(%rbp)
-    je          .Lif.en.0
+    je          .Lmain.if.en.0
     cmpl        $1, -4(%rbp)
     movl        $0, -8(%rbp)
     sete        -8(%rbp)
     cmpl        $0, -8(%rbp)
-    je          .Lif.el.3
+    je          .Lmain.if.el.3
     movl        $3, -4(%rbp)
-    jmp         .Lif.en.2
-.Lif.el.3:
+    jmp         .Lmain.if.en.2
+.Lmain.if.el.3:
     movl        $4, -4(%rbp)
-.Lif.en.2:
-.Lif.en.0:
+.Lmain.if.en.2:
+.Lmain.if.en.0:
     movl        -4(%rbp), %eax
     movq        %rbp, %rsp
     popq        %rbp

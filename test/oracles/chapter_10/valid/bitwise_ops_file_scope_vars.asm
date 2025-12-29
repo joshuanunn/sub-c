@@ -16,9 +16,10 @@
         (Asm.Mov ((Asm.Imm 0), (Asm.Stack -16)));
         (Asm.SetCC (Asm.NE, (Asm.Stack -16)));
         (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -16)));
-        (Asm.JmpCC (Asm.E, "if.en.4"));
+        (Asm.JmpCC (Asm.E, "main.if.en.4"));
         (Asm.Mov ((Asm.Imm 1), (Asm.Reg Asm.AX))); Asm.Ret;
-        (Asm.Label "if.en.4"); (Asm.Mov ((Asm.Imm -5), (Asm.Stack -20)));
+        (Asm.Label "main.if.en.4");
+        (Asm.Mov ((Asm.Imm -5), (Asm.Stack -20)));
         (Asm.Mov ((Asm.Data "y"), (Asm.Reg Asm.R10)));
         (Asm.Mov ((Asm.Reg Asm.R10), (Asm.Stack -24)));
         (Asm.Mov ((Asm.Stack -20), (Asm.Reg Asm.R10)));
@@ -38,12 +39,14 @@
         (Asm.Mov ((Asm.Imm 0), (Asm.Stack -40)));
         (Asm.SetCC (Asm.NE, (Asm.Stack -40)));
         (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -40)));
-        (Asm.JmpCC (Asm.E, "if.en.11"));
+        (Asm.JmpCC (Asm.E, "main.if.en.11"));
         (Asm.Mov ((Asm.Imm 2), (Asm.Reg Asm.AX))); Asm.Ret;
-        (Asm.Label "if.en.11"); (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX)));
-        Asm.Ret; (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX))); Asm.Ret];
+        (Asm.Label "main.if.en.11");
+        (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX))); Asm.Ret;
+        (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX))); Asm.Ret];
       frame =
       Env.lenv {
+        namespace = "main";
         counter = 12;
         offset = -40;
         stack slots = {

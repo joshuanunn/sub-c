@@ -10,38 +10,35 @@
         Ir.Copy {src = (Ir.Var "tmp.2"); dst = (Ir.Var "count.1")};
         Ir.Binary {op = Ir.LessThan; src1 = (Ir.Var "count.1");
           src2 = (Ir.Constant 26); dst = (Ir.Var "tmp.3")};
-        Ir.JumpIfZero {condition = (Ir.Var "tmp.3"); target = "if.en.4"};
+        Ir.JumpIfZero {condition = (Ir.Var "tmp.3");
+          target = "print_alphabet.if.en.4"};
         Ir.FunCall {fun_name = "print_alphabet"; args = [];
           dst = (Ir.Var "tmp.5")};
-        (Ir.Label "if.en.4"); (Ir.Return (Ir.Var "count.1"));
+        (Ir.Label "print_alphabet.if.en.4"); (Ir.Return (Ir.Var "count.1"));
         (Ir.Return (Ir.Constant 0))];
       frame =
       Env.lenv {
-        counter = 7;
-        offset = -24;
+        namespace = "print_alphabet";
+        counter = 6;
+        offset = -20;
         stack slots = {
           tmp.0 -> -4,
           tmp.1 -> -8,
           tmp.2 -> -12,
           tmp.3 -> -16,
           tmp.5 -> -20,
-          tmp.6 -> -24,
         }}};
      Ir.Function {name = "main"; global = true; params = [];
        body =
        [Ir.FunCall {fun_name = "print_alphabet"; args = [];
-          dst = (Ir.Var "tmp.6")};
+          dst = (Ir.Var "tmp.0")};
          (Ir.Return (Ir.Constant 0))];
        frame =
        Env.lenv {
-         counter = 7;
-         offset = -24;
+         namespace = "main";
+         counter = 1;
+         offset = -4;
          stack slots = {
            tmp.0 -> -4,
-           tmp.1 -> -8,
-           tmp.2 -> -12,
-           tmp.3 -> -16,
-           tmp.5 -> -20,
-           tmp.6 -> -24,
          }}};
      Ir.StaticVariable {name = "count.1"; global = false; init = 0}])

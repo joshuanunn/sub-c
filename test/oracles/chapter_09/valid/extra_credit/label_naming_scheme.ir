@@ -3,27 +3,33 @@
       body =
       [(Ir.Label "_label.0"); (Ir.Label "label_.1");
         (Ir.Return (Ir.Constant 0)); (Ir.Return (Ir.Constant 0))];
-      frame = Env.lenv {
-                counter = 0;
-                offset = 0;
-                stack slots = {
-                }}};
+      frame =
+      Env.lenv {
+        namespace = "main";
+        counter = 0;
+        offset = 0;
+        stack slots = {
+        }}};
      Ir.Function {name = "main_"; global = true; params = [];
        body =
        [(Ir.Label "label.2"); (Ir.Return (Ir.Constant 0));
          (Ir.Return (Ir.Constant 0))];
-       frame = Env.lenv {
-                 counter = 0;
-                 offset = 0;
-                 stack slots = {
-                 }}};
+       frame =
+       Env.lenv {
+         namespace = "main_";
+         counter = 0;
+         offset = 0;
+         stack slots = {
+         }}};
      Ir.Function {name = "_main"; global = true; params = [];
        body =
        [(Ir.Label "label.3"); (Ir.Return (Ir.Constant 0));
          (Ir.Return (Ir.Constant 0))];
-       frame = Env.lenv {
-                 counter = 0;
-                 offset = 0;
-                 stack slots = {
-                 }}}
+       frame =
+       Env.lenv {
+         namespace = "_main";
+         counter = 0;
+         offset = 0;
+         stack slots = {
+         }}}
      ])

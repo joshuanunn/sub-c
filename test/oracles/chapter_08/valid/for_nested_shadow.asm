@@ -31,28 +31,32 @@
         (Asm.Mov ((Asm.Imm 0), (Asm.Stack -40)));
         (Asm.SetCC (Asm.E, (Asm.Stack -40)));
         (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -40)));
-        (Asm.JmpCC (Asm.E, "and.fl.6"));
+        (Asm.JmpCC (Asm.E, "main.and.fl.6"));
         (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -4)));
         (Asm.Mov ((Asm.Imm 0), (Asm.Stack -44)));
         (Asm.SetCC (Asm.E, (Asm.Stack -44)));
         (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -44)));
-        (Asm.JmpCC (Asm.E, "and.fl.6"));
-        (Asm.Mov ((Asm.Imm 1), (Asm.Stack -48))); (Asm.Jmp "and.en.7");
-        (Asm.Label "and.fl.6"); (Asm.Mov ((Asm.Imm 0), (Asm.Stack -48)));
-        (Asm.Label "and.en.7"); (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -48)));
-        (Asm.JmpCC (Asm.E, "and.fl.10"));
+        (Asm.JmpCC (Asm.E, "main.and.fl.6"));
+        (Asm.Mov ((Asm.Imm 1), (Asm.Stack -48))); (Asm.Jmp "main.and.en.7");
+        (Asm.Label "main.and.fl.6");
+        (Asm.Mov ((Asm.Imm 0), (Asm.Stack -48)));
+        (Asm.Label "main.and.en.7");
+        (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -48)));
+        (Asm.JmpCC (Asm.E, "main.and.fl.10"));
         (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -8)));
         (Asm.Mov ((Asm.Imm 0), (Asm.Stack -52)));
         (Asm.SetCC (Asm.E, (Asm.Stack -52)));
         (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -52)));
-        (Asm.JmpCC (Asm.E, "and.fl.10"));
-        (Asm.Mov ((Asm.Imm 1), (Asm.Stack -56))); (Asm.Jmp "and.en.11");
-        (Asm.Label "and.fl.10"); (Asm.Mov ((Asm.Imm 0), (Asm.Stack -56)));
-        (Asm.Label "and.en.11");
+        (Asm.JmpCC (Asm.E, "main.and.fl.10"));
+        (Asm.Mov ((Asm.Imm 1), (Asm.Stack -56))); (Asm.Jmp "main.and.en.11");
+        (Asm.Label "main.and.fl.10");
+        (Asm.Mov ((Asm.Imm 0), (Asm.Stack -56)));
+        (Asm.Label "main.and.en.11");
         (Asm.Mov ((Asm.Stack -56), (Asm.Reg Asm.AX))); Asm.Ret;
         (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX))); Asm.Ret];
       frame =
       Env.lenv {
+        namespace = "main";
         counter = 12;
         offset = -56;
         stack slots = {

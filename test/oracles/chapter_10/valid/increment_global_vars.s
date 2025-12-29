@@ -3,17 +3,17 @@
 incr_i:
     pushq       %rbp
     movq        %rsp, %rbp
-    subq        $64, %rsp
+    subq        $16, %rsp
     cmpl        $1, i(%rip)
     movl        $0, -4(%rbp)
     sete        -4(%rbp)
     cmpl        $0, -4(%rbp)
-    je          .Lif.en.1
+    je          .Lincr_i.if.en.1
     movl        i(%rip), %r10d
     movl        %r10d, -8(%rbp)
     addl        $1, i(%rip)
     addl        $1, i(%rip)
-.Lif.en.1:
+.Lincr_i.if.en.1:
     movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp
@@ -27,18 +27,18 @@ incr_i:
 decr_j:
     pushq       %rbp
     movq        %rsp, %rbp
-    subq        $64, %rsp
-    movl        $-1, -12(%rbp)
-    movl        -12(%rbp), %r10d
+    subq        $16, %rsp
+    movl        $-1, -4(%rbp)
+    movl        -4(%rbp), %r10d
     cmpl        %r10d, j(%rip)
-    movl        $0, -16(%rbp)
-    sete        -16(%rbp)
-    cmpl        $0, -16(%rbp)
-    je          .Lif.en.5
+    movl        $0, -8(%rbp)
+    sete        -8(%rbp)
+    cmpl        $0, -8(%rbp)
+    je          .Ldecr_j.if.en.2
     movl        j(%rip), %r10d
-    movl        %r10d, -20(%rbp)
+    movl        %r10d, -12(%rbp)
     subl        $1, j(%rip)
-.Lif.en.5:
+.Ldecr_j.if.en.2:
     movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp
@@ -52,53 +52,53 @@ decr_j:
 main:
     pushq       %rbp
     movq        %rsp, %rbp
-    subq        $64, %rsp
+    subq        $32, %rsp
     movl        i(%rip), %r10d
-    movl        %r10d, -28(%rbp)
+    movl        %r10d, -8(%rbp)
     addl        $1, i(%rip)
-    cmpl        $0, -28(%rbp)
-    je          .Lcond.el.10
-    movl        $0, -24(%rbp)
-    jmp         .Lcond.en.9
-.Lcond.el.10:
+    cmpl        $0, -8(%rbp)
+    je          .Lmain.cond.el.3
+    movl        $0, -4(%rbp)
+    jmp         .Lmain.cond.en.2
+.Lmain.cond.el.3:
     call        incr_i@PLT
-    movl        %eax, -32(%rbp)
-    movl        -32(%rbp), %r10d
-    movl        %r10d, -24(%rbp)
-.Lcond.en.9:
+    movl        %eax, -12(%rbp)
+    movl        -12(%rbp), %r10d
+    movl        %r10d, -4(%rbp)
+.Lmain.cond.en.2:
     cmpl        $3, i(%rip)
-    movl        $0, -36(%rbp)
-    setne       -36(%rbp)
-    cmpl        $0, -36(%rbp)
-    je          .Lif.en.13
+    movl        $0, -16(%rbp)
+    setne       -16(%rbp)
+    cmpl        $0, -16(%rbp)
+    je          .Lmain.if.en.6
     movl        $1, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         
-.Lif.en.13:
+.Lmain.if.en.6:
     subl        $1, j(%rip)
     cmpl        $0, j(%rip)
-    je          .Lcond.el.16
+    je          .Lmain.cond.el.9
     call        decr_j@PLT
-    movl        %eax, -44(%rbp)
-    movl        -44(%rbp), %r10d
-    movl        %r10d, -40(%rbp)
-    jmp         .Lcond.en.15
-.Lcond.el.16:
-    movl        $0, -40(%rbp)
-.Lcond.en.15:
-    movl        $-2, -48(%rbp)
-    movl        -48(%rbp), %r10d
+    movl        %eax, -24(%rbp)
+    movl        -24(%rbp), %r10d
+    movl        %r10d, -20(%rbp)
+    jmp         .Lmain.cond.en.8
+.Lmain.cond.el.9:
+    movl        $0, -20(%rbp)
+.Lmain.cond.en.8:
+    movl        $-2, -28(%rbp)
+    movl        -28(%rbp), %r10d
     cmpl        %r10d, j(%rip)
-    movl        $0, -52(%rbp)
-    setne       -52(%rbp)
-    cmpl        $0, -52(%rbp)
-    je          .Lif.en.20
+    movl        $0, -32(%rbp)
+    setne       -32(%rbp)
+    cmpl        $0, -32(%rbp)
+    je          .Lmain.if.en.13
     movl        $2, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         
-.Lif.en.20:
+.Lmain.if.en.13:
     movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp

@@ -6,27 +6,25 @@
         (Ir.Return (Ir.Var "tmp.0")); (Ir.Return (Ir.Constant 0))];
       frame =
       Env.lenv {
-        counter = 2;
-        offset = -16;
+        namespace = "main";
+        counter = 1;
+        offset = -4;
         stack slots = {
           tmp.0 -> -4,
-          tmp.1 -> -8,
-          x.2   -> -12,
-          y.3   -> -16,
         }}};
      Ir.Function {name = "foo"; global = true; params = ["x.2"; "y.3"];
        body =
        [Ir.Binary {op = Ir.Subtract; src1 = (Ir.Var "x.2");
-          src2 = (Ir.Var "y.3"); dst = (Ir.Var "tmp.1")};
-         (Ir.Return (Ir.Var "tmp.1")); (Ir.Return (Ir.Constant 0))];
+          src2 = (Ir.Var "y.3"); dst = (Ir.Var "tmp.0")};
+         (Ir.Return (Ir.Var "tmp.0")); (Ir.Return (Ir.Constant 0))];
        frame =
        Env.lenv {
-         counter = 2;
-         offset = -16;
+         namespace = "foo";
+         counter = 1;
+         offset = -12;
          stack slots = {
            tmp.0 -> -4,
-           tmp.1 -> -8,
-           x.2   -> -12,
-           y.3   -> -16,
+           x.2   -> -8,
+           y.3   -> -12,
          }}}
      ])

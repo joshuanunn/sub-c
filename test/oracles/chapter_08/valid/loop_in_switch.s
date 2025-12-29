@@ -38,9 +38,9 @@ main:
     movl        $0, -28(%rbp)
     sete        -28(%rbp)
     cmpl        $0, -28(%rbp)
-    je          .Lif.en.5
+    je          .Lmain.if.en.5
     jmp         .Lloop.br.2
-.Lif.en.5:
+.Lmain.if.en.5:
 .Lloop.ct.2:
     movl        -16(%rbp), %r10d
     movl        %r10d, -32(%rbp)

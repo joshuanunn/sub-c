@@ -5,11 +5,12 @@
          src2 = (Ir.Var "j.1"); dst = (Ir.Var "tmp.0")};
         Ir.Copy {src = (Ir.Var "tmp.0"); dst = (Ir.Var "cmp.2")};
         Ir.Unary {op = Ir.Not; src = (Ir.Var "cmp.2"); dst = (Ir.Var "tmp.1")};
-        Ir.JumpIfZero {condition = (Ir.Var "tmp.1"); target = "if.en.2"};
-        (Ir.Return (Ir.Constant 1)); (Ir.Label "if.en.2");
+        Ir.JumpIfZero {condition = (Ir.Var "tmp.1"); target = "main.if.en.2"};
+        (Ir.Return (Ir.Constant 1)); (Ir.Label "main.if.en.2");
         (Ir.Return (Ir.Constant 0)); (Ir.Return (Ir.Constant 0))];
       frame =
       Env.lenv {
+        namespace = "main";
         counter = 3;
         offset = -12;
         stack slots = {

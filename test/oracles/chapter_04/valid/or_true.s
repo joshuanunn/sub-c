@@ -4,29 +4,29 @@ main:
     pushq       %rbp
     movq        %rsp, %rbp
     subq        $32, %rsp
-    jmp         .Lor.tr.1
+    jmp         .Lmain.or.tr.1
     movl        $0, -4(%rbp)
-    jmp         .Lor.en.2
-.Lor.tr.1:
+    jmp         .Lmain.or.en.2
+.Lmain.or.tr.1:
     movl        $1, -4(%rbp)
-.Lor.en.2:
-    jmp         .Lor.tr.4
+.Lmain.or.en.2:
+    jmp         .Lmain.or.tr.4
     movl        $0, -8(%rbp)
-    jmp         .Lor.en.5
-.Lor.tr.4:
+    jmp         .Lmain.or.en.5
+.Lmain.or.tr.4:
     movl        $1, -8(%rbp)
-.Lor.en.5:
+.Lmain.or.en.5:
     movl        -4(%rbp), %r10d
     movl        %r10d, -12(%rbp)
     movl        -8(%rbp), %r10d
     addl        %r10d, -12(%rbp)
-    jmp         .Lor.tr.8
-    jmp         .Lor.tr.8
+    jmp         .Lmain.or.tr.8
+    jmp         .Lmain.or.tr.8
     movl        $0, -16(%rbp)
-    jmp         .Lor.en.9
-.Lor.tr.8:
+    jmp         .Lmain.or.en.9
+.Lmain.or.tr.8:
     movl        $1, -16(%rbp)
-.Lor.en.9:
+.Lmain.or.en.9:
     movl        -12(%rbp), %r10d
     movl        %r10d, -20(%rbp)
     movl        -16(%rbp), %r10d

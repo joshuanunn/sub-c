@@ -15,27 +15,28 @@
         Ir.Copy {src = (Ir.Var "tmp.3"); dst = (Ir.Var "l.3")};
         Ir.Binary {op = Ir.NotEqual; src1 = (Ir.Var "i.0");
           src2 = (Ir.Constant 3); dst = (Ir.Var "tmp.4")};
-        Ir.JumpIfZero {condition = (Ir.Var "tmp.4"); target = "if.en.5"};
-        (Ir.Return (Ir.Constant 1)); (Ir.Label "if.en.5");
+        Ir.JumpIfZero {condition = (Ir.Var "tmp.4"); target = "f.if.en.5"};
+        (Ir.Return (Ir.Constant 1)); (Ir.Label "f.if.en.5");
         Ir.Copy {src = (Ir.Constant -6); dst = (Ir.Var "tmp.6")};
         Ir.Binary {op = Ir.NotEqual; src1 = (Ir.Var "j.1");
           src2 = (Ir.Var "tmp.6"); dst = (Ir.Var "tmp.7")};
-        Ir.JumpIfZero {condition = (Ir.Var "tmp.7"); target = "if.en.8"};
-        (Ir.Return (Ir.Constant 2)); (Ir.Label "if.en.8");
+        Ir.JumpIfZero {condition = (Ir.Var "tmp.7"); target = "f.if.en.8"};
+        (Ir.Return (Ir.Constant 2)); (Ir.Label "f.if.en.8");
         Ir.Copy {src = (Ir.Constant -18); dst = (Ir.Var "tmp.9")};
         Ir.Binary {op = Ir.NotEqual; src1 = (Ir.Var "k.2");
           src2 = (Ir.Var "tmp.9"); dst = (Ir.Var "tmp.10")};
-        Ir.JumpIfZero {condition = (Ir.Var "tmp.10"); target = "if.en.11"};
-        (Ir.Return (Ir.Constant 3)); (Ir.Label "if.en.11");
+        Ir.JumpIfZero {condition = (Ir.Var "tmp.10"); target = "f.if.en.11"};
+        (Ir.Return (Ir.Constant 3)); (Ir.Label "f.if.en.11");
         Ir.Binary {op = Ir.NotEqual; src1 = (Ir.Var "l.3");
           src2 = (Ir.Constant 6); dst = (Ir.Var "tmp.12")};
-        Ir.JumpIfZero {condition = (Ir.Var "tmp.12"); target = "if.en.13"};
-        (Ir.Return (Ir.Constant 4)); (Ir.Label "if.en.13");
+        Ir.JumpIfZero {condition = (Ir.Var "tmp.12"); target = "f.if.en.13"};
+        (Ir.Return (Ir.Constant 4)); (Ir.Label "f.if.en.13");
         (Ir.Return (Ir.Constant 0)); (Ir.Return (Ir.Constant 0))];
       frame =
       Env.lenv {
-        counter = 17;
-        offset = -52;
+        namespace = "f";
+        counter = 14;
+        offset = -40;
         stack slots = {
           tmp.0  -> -4,
           tmp.1  -> -8,
@@ -47,34 +48,22 @@
           tmp.9  -> -32,
           tmp.10 -> -36,
           tmp.12 -> -40,
-          tmp.14 -> -44,
-          tmp.15 -> -48,
-          tmp.16 -> -52,
         }}};
      Ir.Function {name = "main"; global = true; params = [];
        body =
-       [Ir.FunCall {fun_name = "f"; args = []; dst = (Ir.Var "tmp.14")};
-         Ir.FunCall {fun_name = "f"; args = []; dst = (Ir.Var "tmp.15")};
-         Ir.FunCall {fun_name = "f"; args = []; dst = (Ir.Var "tmp.16")};
-         (Ir.Return (Ir.Var "tmp.16")); (Ir.Return (Ir.Constant 0))];
+       [Ir.FunCall {fun_name = "f"; args = []; dst = (Ir.Var "tmp.0")};
+         Ir.FunCall {fun_name = "f"; args = []; dst = (Ir.Var "tmp.1")};
+         Ir.FunCall {fun_name = "f"; args = []; dst = (Ir.Var "tmp.2")};
+         (Ir.Return (Ir.Var "tmp.2")); (Ir.Return (Ir.Constant 0))];
        frame =
        Env.lenv {
-         counter = 17;
-         offset = -52;
+         namespace = "main";
+         counter = 3;
+         offset = -12;
          stack slots = {
-           tmp.0  -> -4,
-           tmp.1  -> -8,
-           tmp.2  -> -12,
-           tmp.3  -> -16,
-           tmp.4  -> -20,
-           tmp.6  -> -24,
-           tmp.7  -> -28,
-           tmp.9  -> -32,
-           tmp.10 -> -36,
-           tmp.12 -> -40,
-           tmp.14 -> -44,
-           tmp.15 -> -48,
-           tmp.16 -> -52,
+           tmp.0 -> -4,
+           tmp.1 -> -8,
+           tmp.2 -> -12,
          }}};
      Ir.StaticVariable {name = "l.3"; global = false; init = 48};
      Ir.StaticVariable {name = "k.2"; global = false; init = 1};

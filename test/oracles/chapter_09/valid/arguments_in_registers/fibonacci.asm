@@ -6,18 +6,18 @@
         (Asm.Mov ((Asm.Imm 0), (Asm.Stack -4)));
         (Asm.SetCC (Asm.E, (Asm.Stack -4)));
         (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -4)));
-        (Asm.JmpCC (Asm.NE, "or.tr.3"));
+        (Asm.JmpCC (Asm.NE, "fib.or.tr.3"));
         (Asm.Cmp ((Asm.Imm 1), (Asm.Stack -36)));
         (Asm.Mov ((Asm.Imm 0), (Asm.Stack -8)));
         (Asm.SetCC (Asm.E, (Asm.Stack -8)));
         (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -8)));
-        (Asm.JmpCC (Asm.NE, "or.tr.3"));
-        (Asm.Mov ((Asm.Imm 0), (Asm.Stack -12))); (Asm.Jmp "or.en.4");
-        (Asm.Label "or.tr.3"); (Asm.Mov ((Asm.Imm 1), (Asm.Stack -12)));
-        (Asm.Label "or.en.4"); (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -12)));
-        (Asm.JmpCC (Asm.E, "if.el.6"));
+        (Asm.JmpCC (Asm.NE, "fib.or.tr.3"));
+        (Asm.Mov ((Asm.Imm 0), (Asm.Stack -12))); (Asm.Jmp "fib.or.en.4");
+        (Asm.Label "fib.or.tr.3"); (Asm.Mov ((Asm.Imm 1), (Asm.Stack -12)));
+        (Asm.Label "fib.or.en.4"); (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -12)));
+        (Asm.JmpCC (Asm.E, "fib.if.el.6"));
         (Asm.Mov ((Asm.Stack -36), (Asm.Reg Asm.AX))); Asm.Ret;
-        (Asm.Jmp "if.en.5"); (Asm.Label "if.el.6");
+        (Asm.Jmp "fib.if.en.5"); (Asm.Label "fib.if.el.6");
         (Asm.Mov ((Asm.Stack -36), (Asm.Reg Asm.R10)));
         (Asm.Mov ((Asm.Reg Asm.R10), (Asm.Stack -16)));
         Asm.Binary {op = Asm.Sub; src = (Asm.Imm 1); dst = (Asm.Stack -16)};
@@ -34,12 +34,13 @@
         Asm.Binary {op = Asm.Add; src = (Asm.Reg Asm.R10);
           dst = (Asm.Stack -32)};
         (Asm.Mov ((Asm.Stack -32), (Asm.Reg Asm.AX))); Asm.Ret;
-        (Asm.Label "if.en.5"); (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX)));
+        (Asm.Label "fib.if.en.5"); (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX)));
         Asm.Ret];
       frame =
       Env.lenv {
-        counter = 13;
-        offset = -44;
+        namespace = "fib";
+        counter = 12;
+        offset = -36;
         stack slots = {
           tmp.0  -> -4,
           tmp.1  -> -8,
@@ -50,31 +51,21 @@
           tmp.10 -> -28,
           tmp.11 -> -32,
           n.0    -> -36,
-          n.1    -> -40,
-          tmp.12 -> -44,
         }}};
      Asm.Function {name = "main"; global = true;
        instructions =
-       [(Asm.AllocateStack 48); (Asm.Mov ((Asm.Imm 6), (Asm.Stack -40)));
-         (Asm.Mov ((Asm.Stack -40), (Asm.Reg Asm.DI))); (Asm.Call "fib");
-         (Asm.Mov ((Asm.Reg Asm.AX), (Asm.Stack -44)));
-         (Asm.Mov ((Asm.Stack -44), (Asm.Reg Asm.AX))); Asm.Ret;
+       [(Asm.AllocateStack 16); (Asm.Mov ((Asm.Imm 6), (Asm.Stack -4)));
+         (Asm.Mov ((Asm.Stack -4), (Asm.Reg Asm.DI))); (Asm.Call "fib");
+         (Asm.Mov ((Asm.Reg Asm.AX), (Asm.Stack -8)));
+         (Asm.Mov ((Asm.Stack -8), (Asm.Reg Asm.AX))); Asm.Ret;
          (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX))); Asm.Ret];
        frame =
        Env.lenv {
-         counter = 13;
-         offset = -44;
+         namespace = "main";
+         counter = 1;
+         offset = -8;
          stack slots = {
-           tmp.0  -> -4,
-           tmp.1  -> -8,
-           tmp.2  -> -12,
-           tmp.7  -> -16,
-           tmp.8  -> -20,
-           tmp.9  -> -24,
-           tmp.10 -> -28,
-           tmp.11 -> -32,
-           n.0    -> -36,
-           n.1    -> -40,
-           tmp.12 -> -44,
+           n.1   -> -4,
+           tmp.0 -> -8,
          }}}
      ])

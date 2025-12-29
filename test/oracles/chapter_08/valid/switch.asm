@@ -23,6 +23,7 @@
         Asm.Ret];
       frame =
       Env.lenv {
+        namespace = "main";
         counter = 4;
         offset = -16;
         stack slots = {
