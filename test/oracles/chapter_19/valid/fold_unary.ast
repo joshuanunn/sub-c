@@ -1,0 +1,131 @@
+(Ast.Program
+   [(Ast.FunDecl
+       { Ast.name = (Ast.Identifier "target_negate"); params = [];
+         body =
+         (Some (Ast.Block
+                  [(Ast.S
+                      (Ast.Return
+                         Ast.Unary {op = Ast.Negate; exp = (Ast.LiteralInt 3)}))
+                    ]));
+         storage = None });
+     (Ast.FunDecl
+        { Ast.name = (Ast.Identifier "target_negate_zero"); params = [];
+          body =
+          (Some (Ast.Block
+                   [(Ast.S
+                       (Ast.Return
+                          Ast.Unary {op = Ast.Negate;
+                            exp = (Ast.LiteralInt 0)}))
+                     ]));
+          storage = None });
+     (Ast.FunDecl
+        { Ast.name = (Ast.Identifier "target_not"); params = [];
+          body =
+          (Some (Ast.Block
+                   [(Ast.S
+                       (Ast.Return
+                          Ast.Unary {op = Ast.Not;
+                            exp = (Ast.LiteralInt 1024)}))
+                     ]));
+          storage = None });
+     (Ast.FunDecl
+        { Ast.name = (Ast.Identifier "target_not_zero"); params = [];
+          body =
+          (Some (Ast.Block
+                   [(Ast.S
+                       (Ast.Return
+                          Ast.Unary {op = Ast.Not; exp = (Ast.LiteralInt 0)}))
+                     ]));
+          storage = None });
+     (Ast.FunDecl
+        { Ast.name = (Ast.Identifier "target_complement"); params = [];
+          body =
+          (Some (Ast.Block
+                   [(Ast.S
+                       (Ast.Return
+                          Ast.Unary {op = Ast.BwNot; exp = (Ast.LiteralInt 1)}))
+                     ]));
+          storage = None });
+     (Ast.VarDecl
+        { Ast.name = (Ast.Identifier "three");
+          init = (Some (Ast.LiteralInt 3)); storage = None });
+     (Ast.VarDecl
+        { Ast.name = (Ast.Identifier "two");
+          init = (Some (Ast.LiteralInt 2)); storage = None });
+     (Ast.FunDecl
+        { Ast.name = (Ast.Identifier "main"); params = [];
+          body =
+          (Some (Ast.Block
+                   [(Ast.S
+                       Ast.If {
+                         cond_exp =
+                         Ast.Binary {op = Ast.NotEqual;
+                           left =
+                           Ast.FunctionCall {
+                             name = (Ast.Identifier "target_negate");
+                             args = []};
+                           right =
+                           Ast.Unary {op = Ast.Negate;
+                             exp = (Ast.Var (Ast.Identifier "three"))}};
+                         then_smt = (Ast.Return (Ast.LiteralInt 1));
+                         else_smt = None});
+                     (Ast.S
+                        Ast.If {
+                          cond_exp =
+                          Ast.Binary {op = Ast.NotEqual;
+                            left =
+                            Ast.FunctionCall {
+                              name = (Ast.Identifier "target_negate_zero");
+                              args = []};
+                            right = (Ast.LiteralInt 0)};
+                          then_smt =
+                          (Ast.Compound
+                             (Ast.Block
+                                [(Ast.S (Ast.Return (Ast.LiteralInt 2)))]));
+                          else_smt = None});
+                     (Ast.S
+                        Ast.If {
+                          cond_exp =
+                          Ast.Binary {op = Ast.NotEqual;
+                            left =
+                            Ast.FunctionCall {
+                              name = (Ast.Identifier "target_not"); args = []};
+                            right = (Ast.LiteralInt 0)};
+                          then_smt =
+                          (Ast.Compound
+                             (Ast.Block
+                                [(Ast.S (Ast.Return (Ast.LiteralInt 3)))]));
+                          else_smt = None});
+                     (Ast.S
+                        Ast.If {
+                          cond_exp =
+                          Ast.Binary {op = Ast.NotEqual;
+                            left =
+                            Ast.FunctionCall {
+                              name = (Ast.Identifier "target_not_zero");
+                              args = []};
+                            right = (Ast.LiteralInt 1)};
+                          then_smt =
+                          (Ast.Compound
+                             (Ast.Block
+                                [(Ast.S (Ast.Return (Ast.LiteralInt 4)))]));
+                          else_smt = None});
+                     (Ast.S
+                        Ast.If {
+                          cond_exp =
+                          Ast.Binary {op = Ast.NotEqual;
+                            left =
+                            Ast.FunctionCall {
+                              name = (Ast.Identifier "target_complement");
+                              args = []};
+                            right =
+                            Ast.Unary {op = Ast.Negate;
+                              exp = (Ast.Var (Ast.Identifier "two"))}};
+                          then_smt =
+                          (Ast.Compound
+                             (Ast.Block
+                                [(Ast.S (Ast.Return (Ast.LiteralInt 5)))]));
+                          else_smt = None});
+                     (Ast.S (Ast.Return (Ast.LiteralInt 0)))]));
+          storage = None })
+     ])

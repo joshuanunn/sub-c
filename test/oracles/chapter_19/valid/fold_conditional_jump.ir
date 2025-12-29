@@ -1,0 +1,114 @@
+(Ir.Program
+   [Ir.Function {name = "target_jz_to_jmp"; global = true; params = [];
+      body =
+      [Ir.Jump {target = "target_jz_to_jmp.and.fl.1"};
+        Ir.Jump {target = "target_jz_to_jmp.and.fl.1"};
+        Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "tmp.0")};
+        Ir.Jump {target = "target_jz_to_jmp.and.en.2"};
+        (Ir.Label "target_jz_to_jmp.and.fl.1");
+        Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "tmp.0")};
+        (Ir.Label "target_jz_to_jmp.and.en.2"); (Ir.Return (Ir.Var "tmp.0"));
+        (Ir.Return (Ir.Constant 0))];
+      frame =
+      Env.lenv {
+        namespace = "target_jz_to_jmp";
+        counter = 3;
+        offset = -4;
+        stack slots = {
+          tmp.0 -> -4,
+        }}};
+     Ir.Function {name = "target_remove_jz"; global = true; params = [];
+       body =
+       [Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "tmp.0")};
+         Ir.Jump {target = "target_remove_jz.and.en.2"};
+         (Ir.Label "target_remove_jz.and.fl.1");
+         Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "tmp.0")};
+         (Ir.Label "target_remove_jz.and.en.2");
+         (Ir.Return (Ir.Var "tmp.0")); (Ir.Return (Ir.Constant 0))];
+       frame =
+       Env.lenv {
+         namespace = "target_remove_jz";
+         counter = 3;
+         offset = -4;
+         stack slots = {
+           tmp.0 -> -4,
+         }}};
+     Ir.Function {name = "target_jnz_to_jmp"; global = true; params = [];
+       body =
+       [Ir.Jump {target = "target_jnz_to_jmp.or.tr.1"};
+         Ir.Jump {target = "target_jnz_to_jmp.or.tr.1"};
+         Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "tmp.0")};
+         Ir.Jump {target = "target_jnz_to_jmp.or.en.2"};
+         (Ir.Label "target_jnz_to_jmp.or.tr.1");
+         Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "tmp.0")};
+         (Ir.Label "target_jnz_to_jmp.or.en.2");
+         (Ir.Return (Ir.Var "tmp.0")); (Ir.Return (Ir.Constant 0))];
+       frame =
+       Env.lenv {
+         namespace = "target_jnz_to_jmp";
+         counter = 3;
+         offset = -4;
+         stack slots = {
+           tmp.0 -> -4,
+         }}};
+     Ir.Function {name = "target_remove_jnz"; global = true; params = [];
+       body =
+       [Ir.Jump {target = "target_remove_jnz.or.tr.1"};
+         Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "tmp.0")};
+         Ir.Jump {target = "target_remove_jnz.or.en.2"};
+         (Ir.Label "target_remove_jnz.or.tr.1");
+         Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "tmp.0")};
+         (Ir.Label "target_remove_jnz.or.en.2");
+         (Ir.Return (Ir.Var "tmp.0")); (Ir.Return (Ir.Constant 0))];
+       frame =
+       Env.lenv {
+         namespace = "target_remove_jnz";
+         counter = 3;
+         offset = -4;
+         stack slots = {
+           tmp.0 -> -4,
+         }}};
+     Ir.Function {name = "main"; global = true; params = [];
+       body =
+       [Ir.FunCall {fun_name = "target_jz_to_jmp"; args = [];
+          dst = (Ir.Var "tmp.0")};
+         Ir.Binary {op = Ir.NotEqual; src1 = (Ir.Var "tmp.0");
+           src2 = (Ir.Constant 0); dst = (Ir.Var "tmp.1")};
+         Ir.JumpIfZero {condition = (Ir.Var "tmp.1"); target = "main.if.en.2"};
+         (Ir.Return (Ir.Constant 1)); (Ir.Label "main.if.en.2");
+         Ir.FunCall {fun_name = "target_remove_jz"; args = [];
+           dst = (Ir.Var "tmp.3")};
+         Ir.Binary {op = Ir.NotEqual; src1 = (Ir.Var "tmp.3");
+           src2 = (Ir.Constant 1); dst = (Ir.Var "tmp.4")};
+         Ir.JumpIfZero {condition = (Ir.Var "tmp.4"); target = "main.if.en.5"};
+         (Ir.Return (Ir.Constant 2)); (Ir.Label "main.if.en.5");
+         Ir.FunCall {fun_name = "target_jnz_to_jmp"; args = [];
+           dst = (Ir.Var "tmp.6")};
+         Ir.Binary {op = Ir.NotEqual; src1 = (Ir.Var "tmp.6");
+           src2 = (Ir.Constant 1); dst = (Ir.Var "tmp.7")};
+         Ir.JumpIfZero {condition = (Ir.Var "tmp.7"); target = "main.if.en.8"};
+         (Ir.Return (Ir.Constant 3)); (Ir.Label "main.if.en.8");
+         Ir.FunCall {fun_name = "target_remove_jnz"; args = [];
+           dst = (Ir.Var "tmp.9")};
+         Ir.Binary {op = Ir.NotEqual; src1 = (Ir.Var "tmp.9");
+           src2 = (Ir.Constant 1); dst = (Ir.Var "tmp.10")};
+         Ir.JumpIfZero {condition = (Ir.Var "tmp.10");
+           target = "main.if.en.11"};
+         (Ir.Return (Ir.Constant 4)); (Ir.Label "main.if.en.11");
+         (Ir.Return (Ir.Constant 0)); (Ir.Return (Ir.Constant 0))];
+       frame =
+       Env.lenv {
+         namespace = "main";
+         counter = 12;
+         offset = -32;
+         stack slots = {
+           tmp.0  -> -4,
+           tmp.1  -> -8,
+           tmp.3  -> -12,
+           tmp.4  -> -16,
+           tmp.6  -> -20,
+           tmp.7  -> -24,
+           tmp.9  -> -28,
+           tmp.10 -> -32,
+         }}}
+     ])

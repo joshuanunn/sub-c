@@ -1,0 +1,66 @@
+(Ir.Program
+   [Ir.Function {name = "main"; global = true; params = [];
+      body =
+      [Ir.Jump {target = "main.or.tr.2"};
+        Ir.Binary {op = Ir.Divide; src1 = (Ir.Constant 1);
+          src2 = (Ir.Constant 0); dst = (Ir.Var "tmp.0")};
+        Ir.JumpIfNotZero {condition = (Ir.Var "tmp.0");
+          target = "main.or.tr.2"};
+        Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "tmp.1")};
+        Ir.Jump {target = "main.or.en.3"}; (Ir.Label "main.or.tr.2");
+        Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "tmp.1")};
+        (Ir.Label "main.or.en.3");
+        Ir.Copy {src = (Ir.Var "tmp.1"); dst = (Ir.Var "dead_div_by_zero.0")};
+        Ir.Jump {target = "main.and.fl.6"};
+        Ir.Binary {op = Ir.Remainder; src1 = (Ir.Constant 100);
+          src2 = (Ir.Constant 0); dst = (Ir.Var "tmp.4")};
+        Ir.JumpIfZero {condition = (Ir.Var "tmp.4"); target = "main.and.fl.6"};
+        Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "tmp.5")};
+        Ir.Jump {target = "main.and.en.7"}; (Ir.Label "main.and.fl.6");
+        Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "tmp.5")};
+        (Ir.Label "main.and.en.7");
+        Ir.Copy {src = (Ir.Var "tmp.5");
+          dst = (Ir.Var "dead_zero_remainder.1")};
+        Ir.Jump {target = "main.cond.el.10"};
+        Ir.Copy {src = (Ir.Constant 2147483657); dst = (Ir.Var "tmp.11")};
+        Ir.Copy {src = (Ir.Var "tmp.11"); dst = (Ir.Var "tmp.8")};
+        Ir.Jump {target = "main.cond.en.9"}; (Ir.Label "main.cond.el.10");
+        Ir.Copy {src = (Ir.Constant 100); dst = (Ir.Var "tmp.8")};
+        (Ir.Label "main.cond.en.9");
+        Ir.Copy {src = (Ir.Var "tmp.8"); dst = (Ir.Var "overflow.2")};
+        Ir.Binary {op = Ir.NotEqual; src1 = (Ir.Var "dead_div_by_zero.0");
+          src2 = (Ir.Constant 1); dst = (Ir.Var "tmp.12")};
+        Ir.JumpIfZero {condition = (Ir.Var "tmp.12");
+          target = "main.if.en.13"};
+        (Ir.Return (Ir.Constant 1)); (Ir.Label "main.if.en.13");
+        Ir.Binary {op = Ir.NotEqual; src1 = (Ir.Var "dead_zero_remainder.1");
+          src2 = (Ir.Constant 0); dst = (Ir.Var "tmp.14")};
+        Ir.JumpIfZero {condition = (Ir.Var "tmp.14");
+          target = "main.if.en.15"};
+        (Ir.Return (Ir.Constant 2)); (Ir.Label "main.if.en.15");
+        Ir.Binary {op = Ir.NotEqual; src1 = (Ir.Var "overflow.2");
+          src2 = (Ir.Constant 100); dst = (Ir.Var "tmp.16")};
+        Ir.JumpIfZero {condition = (Ir.Var "tmp.16");
+          target = "main.if.en.17"};
+        (Ir.Return (Ir.Constant 3)); (Ir.Label "main.if.en.17");
+        (Ir.Return (Ir.Constant 0)); (Ir.Return (Ir.Constant 0))];
+      frame =
+      Env.lenv {
+        namespace = "main";
+        counter = 18;
+        offset = -48;
+        stack slots = {
+          dead_div_by_zero.0    -> -4,
+          tmp.0                 -> -8,
+          tmp.1                 -> -12,
+          dead_zero_remainder.1 -> -16,
+          tmp.4                 -> -20,
+          tmp.5                 -> -24,
+          overflow.2            -> -28,
+          tmp.8                 -> -32,
+          tmp.11                -> -36,
+          tmp.12                -> -40,
+          tmp.14                -> -44,
+          tmp.16                -> -48,
+        }}}
+     ])

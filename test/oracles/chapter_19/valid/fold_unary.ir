@@ -1,0 +1,121 @@
+(Ir.Program
+   [Ir.Function {name = "target_negate"; global = true; params = [];
+      body =
+      [Ir.Copy {src = (Ir.Constant -3); dst = (Ir.Var "tmp.0")};
+        (Ir.Return (Ir.Var "tmp.0")); (Ir.Return (Ir.Constant 0))];
+      frame =
+      Env.lenv {
+        namespace = "target_negate";
+        counter = 1;
+        offset = -4;
+        stack slots = {
+          tmp.0 -> -4,
+        }}};
+     Ir.Function {name = "target_negate_zero"; global = true; params = [];
+       body =
+       [Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "tmp.0")};
+         (Ir.Return (Ir.Var "tmp.0")); (Ir.Return (Ir.Constant 0))];
+       frame =
+       Env.lenv {
+         namespace = "target_negate_zero";
+         counter = 1;
+         offset = -4;
+         stack slots = {
+           tmp.0 -> -4,
+         }}};
+     Ir.Function {name = "target_not"; global = true; params = [];
+       body =
+       [Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "tmp.0")};
+         (Ir.Return (Ir.Var "tmp.0")); (Ir.Return (Ir.Constant 0))];
+       frame =
+       Env.lenv {
+         namespace = "target_not";
+         counter = 1;
+         offset = -4;
+         stack slots = {
+           tmp.0 -> -4,
+         }}};
+     Ir.Function {name = "target_not_zero"; global = true; params = [];
+       body =
+       [Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "tmp.0")};
+         (Ir.Return (Ir.Var "tmp.0")); (Ir.Return (Ir.Constant 0))];
+       frame =
+       Env.lenv {
+         namespace = "target_not_zero";
+         counter = 1;
+         offset = -4;
+         stack slots = {
+           tmp.0 -> -4,
+         }}};
+     Ir.Function {name = "target_complement"; global = true; params = [];
+       body =
+       [Ir.Copy {src = (Ir.Constant -2); dst = (Ir.Var "tmp.0")};
+         (Ir.Return (Ir.Var "tmp.0")); (Ir.Return (Ir.Constant 0))];
+       frame =
+       Env.lenv {
+         namespace = "target_complement";
+         counter = 1;
+         offset = -4;
+         stack slots = {
+           tmp.0 -> -4,
+         }}};
+     Ir.Function {name = "main"; global = true; params = [];
+       body =
+       [Ir.FunCall {fun_name = "target_negate"; args = [];
+          dst = (Ir.Var "tmp.0")};
+         Ir.Unary {op = Ir.Negate; src = (Ir.Var "three");
+           dst = (Ir.Var "tmp.1")};
+         Ir.Binary {op = Ir.NotEqual; src1 = (Ir.Var "tmp.0");
+           src2 = (Ir.Var "tmp.1"); dst = (Ir.Var "tmp.2")};
+         Ir.JumpIfZero {condition = (Ir.Var "tmp.2"); target = "main.if.en.3"};
+         (Ir.Return (Ir.Constant 1)); (Ir.Label "main.if.en.3");
+         Ir.FunCall {fun_name = "target_negate_zero"; args = [];
+           dst = (Ir.Var "tmp.4")};
+         Ir.Binary {op = Ir.NotEqual; src1 = (Ir.Var "tmp.4");
+           src2 = (Ir.Constant 0); dst = (Ir.Var "tmp.5")};
+         Ir.JumpIfZero {condition = (Ir.Var "tmp.5"); target = "main.if.en.6"};
+         (Ir.Return (Ir.Constant 2)); (Ir.Label "main.if.en.6");
+         Ir.FunCall {fun_name = "target_not"; args = [];
+           dst = (Ir.Var "tmp.7")};
+         Ir.Binary {op = Ir.NotEqual; src1 = (Ir.Var "tmp.7");
+           src2 = (Ir.Constant 0); dst = (Ir.Var "tmp.8")};
+         Ir.JumpIfZero {condition = (Ir.Var "tmp.8"); target = "main.if.en.9"};
+         (Ir.Return (Ir.Constant 3)); (Ir.Label "main.if.en.9");
+         Ir.FunCall {fun_name = "target_not_zero"; args = [];
+           dst = (Ir.Var "tmp.10")};
+         Ir.Binary {op = Ir.NotEqual; src1 = (Ir.Var "tmp.10");
+           src2 = (Ir.Constant 1); dst = (Ir.Var "tmp.11")};
+         Ir.JumpIfZero {condition = (Ir.Var "tmp.11");
+           target = "main.if.en.12"};
+         (Ir.Return (Ir.Constant 4)); (Ir.Label "main.if.en.12");
+         Ir.FunCall {fun_name = "target_complement"; args = [];
+           dst = (Ir.Var "tmp.13")};
+         Ir.Unary {op = Ir.Negate; src = (Ir.Var "two");
+           dst = (Ir.Var "tmp.14")};
+         Ir.Binary {op = Ir.NotEqual; src1 = (Ir.Var "tmp.13");
+           src2 = (Ir.Var "tmp.14"); dst = (Ir.Var "tmp.15")};
+         Ir.JumpIfZero {condition = (Ir.Var "tmp.15");
+           target = "main.if.en.16"};
+         (Ir.Return (Ir.Constant 5)); (Ir.Label "main.if.en.16");
+         (Ir.Return (Ir.Constant 0)); (Ir.Return (Ir.Constant 0))];
+       frame =
+       Env.lenv {
+         namespace = "main";
+         counter = 17;
+         offset = -48;
+         stack slots = {
+           tmp.0  -> -4,
+           tmp.1  -> -8,
+           tmp.2  -> -12,
+           tmp.4  -> -16,
+           tmp.5  -> -20,
+           tmp.7  -> -24,
+           tmp.8  -> -28,
+           tmp.10 -> -32,
+           tmp.11 -> -36,
+           tmp.13 -> -40,
+           tmp.14 -> -44,
+           tmp.15 -> -48,
+         }}};
+     Ir.StaticVariable {name = "two"; global = true; init = 2};
+     Ir.StaticVariable {name = "three"; global = true; init = 3}])

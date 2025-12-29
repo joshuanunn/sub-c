@@ -1,0 +1,350 @@
+(Ast.Program
+   [(Ast.FunDecl
+       { Ast.name = (Ast.Identifier "target_if"); params = [];
+         body =
+         (Some (Ast.Block
+                  [(Ast.S
+                      Ast.If {cond_exp = (Ast.LiteralInt 0);
+                        then_smt = (Ast.Return (Ast.LiteralInt 1));
+                        else_smt = None});
+                    (Ast.S (Ast.Return (Ast.LiteralInt 0)))]));
+         storage = None });
+     (Ast.FunDecl
+        { Ast.name = (Ast.Identifier "target_if_else_true"); params = [];
+          body =
+          (Some (Ast.Block
+                   [(Ast.S
+                       Ast.If {cond_exp = (Ast.LiteralInt 1);
+                         then_smt =
+                         (Ast.Compound
+                            (Ast.Block
+                               [(Ast.S (Ast.Return (Ast.LiteralInt 2)))]));
+                         else_smt =
+                         (Some (Ast.Compound
+                                  (Ast.Block
+                                     [(Ast.S (Ast.Return (Ast.LiteralInt 3)))
+                                       ])))})
+                     ]));
+          storage = None });
+     (Ast.FunDecl
+        { Ast.name = (Ast.Identifier "target_if_else_false"); params = [];
+          body =
+          (Some (Ast.Block
+                   [(Ast.S
+                       Ast.If {cond_exp = (Ast.LiteralInt 0);
+                         then_smt =
+                         (Ast.Compound
+                            (Ast.Block
+                               [(Ast.S (Ast.Return (Ast.LiteralInt 2)))]));
+                         else_smt =
+                         (Some (Ast.Compound
+                                  (Ast.Block
+                                     [(Ast.S (Ast.Return (Ast.LiteralInt 3)))
+                                       ])))})
+                     ]));
+          storage = None });
+     (Ast.FunDecl
+        { Ast.name = (Ast.Identifier "target_conditional_true"); params = [];
+          body =
+          (Some (Ast.Block
+                   [(Ast.S
+                       (Ast.Return
+                          Ast.Conditional {cond_exp = (Ast.LiteralInt 1);
+                            then_exp = (Ast.LiteralInt 2);
+                            else_exp = (Ast.LiteralInt 3)}))
+                     ]));
+          storage = None });
+     (Ast.FunDecl
+        { Ast.name = (Ast.Identifier "target_conditional_false");
+          params = [];
+          body =
+          (Some (Ast.Block
+                   [(Ast.S
+                       (Ast.Return
+                          Ast.Conditional {cond_exp = (Ast.LiteralInt 0);
+                            then_exp = (Ast.LiteralInt 4);
+                            else_exp = (Ast.LiteralInt 5)}))
+                     ]));
+          storage = None });
+     (Ast.FunDecl
+        { Ast.name = (Ast.Identifier "target_do_loop"); params = [];
+          body =
+          (Some (Ast.Block
+                   [(Ast.D
+                       (Ast.VarDecl
+                          { Ast.name = (Ast.Identifier "retval");
+                            init = (Some (Ast.LiteralInt 0)); storage = None
+                            }));
+                     (Ast.S
+                        Ast.DoWhile {
+                          body =
+                          (Ast.Compound
+                             (Ast.Block
+                                [(Ast.S
+                                    (Ast.Expression
+                                       (Ast.Assignment (
+                                          (Ast.Var (Ast.Identifier "retval")),
+                                          (Ast.LiteralInt 10)))))
+                                  ]));
+                          cond = (Ast.LiteralInt 0); id = None});
+                     (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "retval"))))
+                     ]));
+          storage = None });
+     (Ast.FunDecl
+        { Ast.name = (Ast.Identifier "target_while_loop_false"); params = [];
+          body =
+          (Some (Ast.Block
+                   [(Ast.D
+                       (Ast.VarDecl
+                          { Ast.name = (Ast.Identifier "retval");
+                            init = (Some (Ast.LiteralInt 0)); storage = None
+                            }));
+                     (Ast.S
+                        Ast.While {cond = (Ast.LiteralInt 0);
+                          body =
+                          (Ast.Compound
+                             (Ast.Block
+                                [(Ast.S
+                                    (Ast.Expression
+                                       (Ast.Assignment (
+                                          (Ast.Var (Ast.Identifier "retval")),
+                                          (Ast.LiteralInt 10)))))
+                                  ]));
+                          id = None});
+                     (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "retval"))))
+                     ]));
+          storage = None });
+     (Ast.FunDecl
+        { Ast.name = (Ast.Identifier "target_while_loop_true"); params = [];
+          body =
+          (Some (Ast.Block
+                   [(Ast.D
+                       (Ast.VarDecl
+                          { Ast.name = (Ast.Identifier "retval");
+                            init = (Some (Ast.LiteralInt 0)); storage = None
+                            }));
+                     (Ast.S
+                        Ast.While {cond = (Ast.LiteralInt 1048576);
+                          body =
+                          (Ast.Compound
+                             (Ast.Block
+                                [(Ast.S
+                                    (Ast.Expression
+                                       (Ast.Assignment (
+                                          (Ast.Var (Ast.Identifier "retval")),
+                                          (Ast.LiteralInt 10)))));
+                                  (Ast.S (Ast.Break None))]));
+                          id = None});
+                     (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "retval"))))
+                     ]));
+          storage = None });
+     (Ast.FunDecl
+        { Ast.name = (Ast.Identifier "target_for_loop_true"); params = [];
+          body =
+          (Some (Ast.Block
+                   [(Ast.D
+                       (Ast.VarDecl
+                          { Ast.name = (Ast.Identifier "retval");
+                            init = (Some (Ast.LiteralInt 0)); storage = None
+                            }));
+                     (Ast.S
+                        Ast.For {
+                          init =
+                          (Ast.InclDecl
+                             { Ast.name = (Ast.Identifier "i");
+                               init = (Some (Ast.LiteralInt 100));
+                               storage = None });
+                          cond = (Some (Ast.LiteralInt 123)); post = None;
+                          body =
+                          (Ast.Compound
+                             (Ast.Block
+                                [(Ast.S
+                                    (Ast.Expression
+                                       (Ast.Assignment (
+                                          (Ast.Var (Ast.Identifier "retval")),
+                                          (Ast.Var (Ast.Identifier "i"))))));
+                                  (Ast.S (Ast.Break None))]));
+                          id = None});
+                     (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "retval"))))
+                     ]));
+          storage = None });
+     (Ast.FunDecl
+        { Ast.name = (Ast.Identifier "target_for_loop_false"); params = [];
+          body =
+          (Some (Ast.Block
+                   [(Ast.D
+                       (Ast.VarDecl
+                          { Ast.name = (Ast.Identifier "retval");
+                            init = (Some (Ast.LiteralInt 0)); storage = None
+                            }));
+                     (Ast.S
+                        Ast.For {
+                          init =
+                          (Ast.InclDecl
+                             { Ast.name = (Ast.Identifier "i");
+                               init = (Some (Ast.LiteralInt 100));
+                               storage = None });
+                          cond = (Some (Ast.LiteralInt 0)); post = None;
+                          body =
+                          (Ast.Compound
+                             (Ast.Block
+                                [(Ast.S
+                                    (Ast.Expression
+                                       (Ast.Assignment (
+                                          (Ast.Var (Ast.Identifier "retval")),
+                                          (Ast.Var (Ast.Identifier "i"))))));
+                                  (Ast.S (Ast.Break None))]));
+                          id = None});
+                     (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "retval"))))
+                     ]));
+          storage = None });
+     (Ast.FunDecl
+        { Ast.name = (Ast.Identifier "main"); params = [];
+          body =
+          (Some (Ast.Block
+                   [(Ast.S
+                       Ast.If {
+                         cond_exp =
+                         Ast.Binary {op = Ast.NotEqual;
+                           left =
+                           Ast.FunctionCall {
+                             name = (Ast.Identifier "target_if"); args = []};
+                           right = (Ast.LiteralInt 0)};
+                         then_smt =
+                         (Ast.Compound
+                            (Ast.Block
+                               [(Ast.S (Ast.Return (Ast.LiteralInt 1)))]));
+                         else_smt = None});
+                     (Ast.S
+                        Ast.If {
+                          cond_exp =
+                          Ast.Binary {op = Ast.NotEqual;
+                            left =
+                            Ast.FunctionCall {
+                              name = (Ast.Identifier "target_if_else_true");
+                              args = []};
+                            right = (Ast.LiteralInt 2)};
+                          then_smt =
+                          (Ast.Compound
+                             (Ast.Block
+                                [(Ast.S (Ast.Return (Ast.LiteralInt 2)))]));
+                          else_smt = None});
+                     (Ast.S
+                        Ast.If {
+                          cond_exp =
+                          Ast.Binary {op = Ast.NotEqual;
+                            left =
+                            Ast.FunctionCall {
+                              name = (Ast.Identifier "target_if_else_false");
+                              args = []};
+                            right = (Ast.LiteralInt 3)};
+                          then_smt =
+                          (Ast.Compound
+                             (Ast.Block
+                                [(Ast.S (Ast.Return (Ast.LiteralInt 3)))]));
+                          else_smt = None});
+                     (Ast.S
+                        Ast.If {
+                          cond_exp =
+                          Ast.Binary {op = Ast.NotEqual;
+                            left =
+                            Ast.FunctionCall {
+                              name =
+                              (Ast.Identifier "target_conditional_true");
+                              args = []};
+                            right = (Ast.LiteralInt 2)};
+                          then_smt =
+                          (Ast.Compound
+                             (Ast.Block
+                                [(Ast.S (Ast.Return (Ast.LiteralInt 4)))]));
+                          else_smt = None});
+                     (Ast.S
+                        Ast.If {
+                          cond_exp =
+                          Ast.Binary {op = Ast.NotEqual;
+                            left =
+                            Ast.FunctionCall {
+                              name =
+                              (Ast.Identifier "target_conditional_false");
+                              args = []};
+                            right = (Ast.LiteralInt 5)};
+                          then_smt =
+                          (Ast.Compound
+                             (Ast.Block
+                                [(Ast.S (Ast.Return (Ast.LiteralInt 5)))]));
+                          else_smt = None});
+                     (Ast.S
+                        Ast.If {
+                          cond_exp =
+                          Ast.Binary {op = Ast.NotEqual;
+                            left =
+                            Ast.FunctionCall {
+                              name = (Ast.Identifier "target_do_loop");
+                              args = []};
+                            right = (Ast.LiteralInt 10)};
+                          then_smt =
+                          (Ast.Compound
+                             (Ast.Block
+                                [(Ast.S (Ast.Return (Ast.LiteralInt 6)))]));
+                          else_smt = None});
+                     (Ast.S
+                        Ast.If {
+                          cond_exp =
+                          Ast.Binary {op = Ast.NotEqual;
+                            left =
+                            Ast.FunctionCall {
+                              name =
+                              (Ast.Identifier "target_while_loop_false");
+                              args = []};
+                            right = (Ast.LiteralInt 0)};
+                          then_smt =
+                          (Ast.Compound
+                             (Ast.Block
+                                [(Ast.S (Ast.Return (Ast.LiteralInt 7)))]));
+                          else_smt = None});
+                     (Ast.S
+                        Ast.If {
+                          cond_exp =
+                          Ast.Binary {op = Ast.NotEqual;
+                            left =
+                            Ast.FunctionCall {
+                              name =
+                              (Ast.Identifier "target_while_loop_true");
+                              args = []};
+                            right = (Ast.LiteralInt 10)};
+                          then_smt =
+                          (Ast.Compound
+                             (Ast.Block
+                                [(Ast.S (Ast.Return (Ast.LiteralInt 8)))]));
+                          else_smt = None});
+                     (Ast.S
+                        Ast.If {
+                          cond_exp =
+                          Ast.Binary {op = Ast.NotEqual;
+                            left =
+                            Ast.FunctionCall {
+                              name = (Ast.Identifier "target_for_loop_true");
+                              args = []};
+                            right = (Ast.LiteralInt 100)};
+                          then_smt =
+                          (Ast.Compound
+                             (Ast.Block
+                                [(Ast.S (Ast.Return (Ast.LiteralInt 9)))]));
+                          else_smt = None});
+                     (Ast.S
+                        Ast.If {
+                          cond_exp =
+                          Ast.Binary {op = Ast.NotEqual;
+                            left =
+                            Ast.FunctionCall {
+                              name = (Ast.Identifier "target_for_loop_false");
+                              args = []};
+                            right = (Ast.LiteralInt 0)};
+                          then_smt =
+                          (Ast.Compound
+                             (Ast.Block
+                                [(Ast.S (Ast.Return (Ast.LiteralInt 10)))]));
+                          else_smt = None});
+                     (Ast.S (Ast.Return (Ast.LiteralInt 0)))]));
+          storage = None })
+     ])
