@@ -3,7 +3,7 @@
 g:
     pushq       %rbp
     movq        %rsp, %rbp
-    subq        $48, %rsp
+    subq        $128, %rsp
     movl        %edi, -32(%rbp)
     movl        %esi, -36(%rbp)
     movl        %edx, -40(%rbp)
@@ -67,91 +67,91 @@ g:
 f:
     pushq       %rbp
     movq        %rsp, %rbp
-    subq        $80, %rsp
-    movl        %edi, -64(%rbp)
-    movl        %esi, -68(%rbp)
-    movl        %edx, -72(%rbp)
-    movl        %ecx, -76(%rbp)
-    movl        -64(%rbp), %r10d
-    movl        %r10d, -8(%rbp)
-    movl        -8(%rbp), %r11d
+    subq        $128, %rsp
+    movl        %edi, -108(%rbp)
+    movl        %esi, -112(%rbp)
+    movl        %edx, -116(%rbp)
+    movl        %ecx, -120(%rbp)
+    movl        -108(%rbp), %r10d
+    movl        %r10d, -52(%rbp)
+    movl        -52(%rbp), %r11d
     imull       $2, %r11d
-    movl        %r11d, -8(%rbp)
-    movl        -68(%rbp), %r10d
-    movl        %r10d, -12(%rbp)
-    movl        -12(%rbp), %r11d
+    movl        %r11d, -52(%rbp)
+    movl        -112(%rbp), %r10d
+    movl        %r10d, -56(%rbp)
+    movl        -56(%rbp), %r11d
     imull       $2, %r11d
-    movl        %r11d, -12(%rbp)
-    movl        -72(%rbp), %r10d
-    movl        %r10d, -16(%rbp)
-    movl        -16(%rbp), %r11d
+    movl        %r11d, -56(%rbp)
+    movl        -116(%rbp), %r10d
+    movl        %r10d, -60(%rbp)
+    movl        -60(%rbp), %r11d
     imull       $2, %r11d
-    movl        %r11d, -16(%rbp)
-    movl        -76(%rbp), %r10d
-    movl        %r10d, -20(%rbp)
-    movl        -20(%rbp), %r11d
+    movl        %r11d, -60(%rbp)
+    movl        -120(%rbp), %r10d
+    movl        %r10d, -64(%rbp)
+    movl        -64(%rbp), %r11d
     imull       $2, %r11d
-    movl        %r11d, -20(%rbp)
-    movl        -8(%rbp), %edi
-    movl        -12(%rbp), %esi
-    movl        -16(%rbp), %edx
-    movl        -20(%rbp), %ecx
+    movl        %r11d, -64(%rbp)
+    movl        -52(%rbp), %edi
+    movl        -56(%rbp), %esi
+    movl        -60(%rbp), %edx
+    movl        -64(%rbp), %ecx
     call        g@PLT
-    movl        %eax, -24(%rbp)
-    movl        -24(%rbp), %r10d
-    movl        %r10d, -4(%rbp)
-    cmpl        $1, -4(%rbp)
-    movl        $0, -28(%rbp)
-    sete        -28(%rbp)
-    cmpl        $0, -28(%rbp)
-    je          .Land.fl.8
-    cmpl        $1, -64(%rbp)
-    movl        $0, -32(%rbp)
-    sete        -32(%rbp)
-    cmpl        $0, -32(%rbp)
-    je          .Land.fl.8
-    movl        $1, -36(%rbp)
-    jmp         .Land.en.9
-.Land.fl.8:
-    movl        $0, -36(%rbp)
-.Land.en.9:
-    cmpl        $0, -36(%rbp)
-    je          .Land.fl.12
-    cmpl        $2, -68(%rbp)
-    movl        $0, -40(%rbp)
-    sete        -40(%rbp)
-    cmpl        $0, -40(%rbp)
-    je          .Land.fl.12
-    movl        $1, -44(%rbp)
-    jmp         .Land.en.13
-.Land.fl.12:
-    movl        $0, -44(%rbp)
-.Land.en.13:
-    cmpl        $0, -44(%rbp)
-    je          .Land.fl.16
-    cmpl        $3, -72(%rbp)
-    movl        $0, -48(%rbp)
-    sete        -48(%rbp)
-    cmpl        $0, -48(%rbp)
-    je          .Land.fl.16
-    movl        $1, -52(%rbp)
-    jmp         .Land.en.17
-.Land.fl.16:
-    movl        $0, -52(%rbp)
-.Land.en.17:
-    cmpl        $0, -52(%rbp)
-    je          .Land.fl.20
-    cmpl        $4, -76(%rbp)
-    movl        $0, -56(%rbp)
-    sete        -56(%rbp)
-    cmpl        $0, -56(%rbp)
-    je          .Land.fl.20
-    movl        $1, -60(%rbp)
-    jmp         .Land.en.21
-.Land.fl.20:
-    movl        $0, -60(%rbp)
-.Land.en.21:
-    movl        -60(%rbp), %eax
+    movl        %eax, -68(%rbp)
+    movl        -68(%rbp), %r10d
+    movl        %r10d, -48(%rbp)
+    cmpl        $1, -48(%rbp)
+    movl        $0, -72(%rbp)
+    sete        -72(%rbp)
+    cmpl        $0, -72(%rbp)
+    je          .Land.fl.22
+    cmpl        $1, -108(%rbp)
+    movl        $0, -76(%rbp)
+    sete        -76(%rbp)
+    cmpl        $0, -76(%rbp)
+    je          .Land.fl.22
+    movl        $1, -80(%rbp)
+    jmp         .Land.en.23
+.Land.fl.22:
+    movl        $0, -80(%rbp)
+.Land.en.23:
+    cmpl        $0, -80(%rbp)
+    je          .Land.fl.26
+    cmpl        $2, -112(%rbp)
+    movl        $0, -84(%rbp)
+    sete        -84(%rbp)
+    cmpl        $0, -84(%rbp)
+    je          .Land.fl.26
+    movl        $1, -88(%rbp)
+    jmp         .Land.en.27
+.Land.fl.26:
+    movl        $0, -88(%rbp)
+.Land.en.27:
+    cmpl        $0, -88(%rbp)
+    je          .Land.fl.30
+    cmpl        $3, -116(%rbp)
+    movl        $0, -92(%rbp)
+    sete        -92(%rbp)
+    cmpl        $0, -92(%rbp)
+    je          .Land.fl.30
+    movl        $1, -96(%rbp)
+    jmp         .Land.en.31
+.Land.fl.30:
+    movl        $0, -96(%rbp)
+.Land.en.31:
+    cmpl        $0, -96(%rbp)
+    je          .Land.fl.34
+    cmpl        $4, -120(%rbp)
+    movl        $0, -100(%rbp)
+    sete        -100(%rbp)
+    cmpl        $0, -100(%rbp)
+    je          .Land.fl.34
+    movl        $1, -104(%rbp)
+    jmp         .Land.en.35
+.Land.fl.34:
+    movl        $0, -104(%rbp)
+.Land.en.35:
+    movl        -104(%rbp), %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         
@@ -164,14 +164,14 @@ f:
 main:
     pushq       %rbp
     movq        %rsp, %rbp
-    subq        $16, %rsp
+    subq        $128, %rsp
     movl        $1, %edi
     movl        $2, %esi
     movl        $3, %edx
     movl        $4, %ecx
     call        f@PLT
-    movl        %eax, -4(%rbp)
-    movl        -4(%rbp), %eax
+    movl        %eax, -124(%rbp)
+    movl        -124(%rbp), %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         

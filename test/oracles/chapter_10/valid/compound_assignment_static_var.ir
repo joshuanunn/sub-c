@@ -34,8 +34,8 @@
         (Ir.Return (Ir.Constant 0)); (Ir.Return (Ir.Constant 0))];
       frame =
       Env.lenv {
-        counter = 14;
-        offset = -40;
+        counter = 17;
+        offset = -52;
         stack slots = {
           tmp.0  -> -4,
           tmp.1  -> -8,
@@ -47,21 +47,34 @@
           tmp.9  -> -32,
           tmp.10 -> -36,
           tmp.12 -> -40,
+          tmp.14 -> -44,
+          tmp.15 -> -48,
+          tmp.16 -> -52,
         }}};
      Ir.Function {name = "main"; global = true; params = [];
        body =
-       [Ir.FunCall {fun_name = "f"; args = []; dst = (Ir.Var "tmp.0")};
-         Ir.FunCall {fun_name = "f"; args = []; dst = (Ir.Var "tmp.1")};
-         Ir.FunCall {fun_name = "f"; args = []; dst = (Ir.Var "tmp.2")};
-         (Ir.Return (Ir.Var "tmp.2")); (Ir.Return (Ir.Constant 0))];
+       [Ir.FunCall {fun_name = "f"; args = []; dst = (Ir.Var "tmp.14")};
+         Ir.FunCall {fun_name = "f"; args = []; dst = (Ir.Var "tmp.15")};
+         Ir.FunCall {fun_name = "f"; args = []; dst = (Ir.Var "tmp.16")};
+         (Ir.Return (Ir.Var "tmp.16")); (Ir.Return (Ir.Constant 0))];
        frame =
        Env.lenv {
-         counter = 3;
-         offset = -12;
+         counter = 17;
+         offset = -52;
          stack slots = {
-           tmp.0 -> -4,
-           tmp.1 -> -8,
-           tmp.2 -> -12,
+           tmp.0  -> -4,
+           tmp.1  -> -8,
+           tmp.2  -> -12,
+           tmp.3  -> -16,
+           tmp.4  -> -20,
+           tmp.6  -> -24,
+           tmp.7  -> -28,
+           tmp.9  -> -32,
+           tmp.10 -> -36,
+           tmp.12 -> -40,
+           tmp.14 -> -44,
+           tmp.15 -> -48,
+           tmp.16 -> -52,
          }}};
      Ir.StaticVariable {name = "l.3"; global = false; init = 48};
      Ir.StaticVariable {name = "k.2"; global = false; init = 1};

@@ -36,9 +36,9 @@ print_alphabet:
 main:
     pushq       %rbp
     movq        %rsp, %rbp
-    subq        $16, %rsp
+    subq        $32, %rsp
     call        print_alphabet@PLT
-    movl        %eax, -4(%rbp)
+    movl        %eax, -24(%rbp)
     movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp

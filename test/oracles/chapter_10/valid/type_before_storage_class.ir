@@ -1,11 +1,14 @@
 (Ir.Program
    [Ir.Function {name = "foo"; global = false; params = [];
       body = [(Ir.Return (Ir.Constant 3)); (Ir.Return (Ir.Constant 0))];
-      frame = Env.lenv {
-                counter = 0;
-                offset = 0;
-                stack slots = {
-                }}};
+      frame =
+      Env.lenv {
+        counter = 2;
+        offset = -8;
+        stack slots = {
+          tmp.0 -> -4,
+          tmp.1 -> -8,
+        }}};
      Ir.Function {name = "main"; global = true; params = [];
        body =
        [Ir.FunCall {fun_name = "foo"; args = []; dst = (Ir.Var "tmp.0")};

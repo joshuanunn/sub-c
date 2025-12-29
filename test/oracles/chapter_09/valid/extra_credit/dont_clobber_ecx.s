@@ -3,7 +3,7 @@
 x:
     pushq       %rbp
     movq        %rsp, %rbp
-    subq        $80, %rsp
+    subq        $96, %rsp
     movl        %edi, -48(%rbp)
     movl        %esi, -52(%rbp)
     movl        %edx, -56(%rbp)
@@ -86,25 +86,25 @@ x:
 main:
     pushq       %rbp
     movq        %rsp, %rbp
-    subq        $16, %rsp
-    movl        $4, -4(%rbp)
-    movl        -4(%rbp), %eax
+    subq        $96, %rsp
+    movl        $4, -72(%rbp)
+    movl        -72(%rbp), %eax
     cdq         
     movl        $2, %r10d
     idivl       %r10d
-    movl        %eax, -8(%rbp)
-    movl        $24, -12(%rbp)
-    movl        -8(%rbp), %ecx
-    sarl        %cl, -12(%rbp)
+    movl        %eax, -76(%rbp)
+    movl        $24, -80(%rbp)
+    movl        -76(%rbp), %ecx
+    sarl        %cl, -80(%rbp)
     movl        $1, %edi
     movl        $2, %esi
     movl        $3, %edx
     movl        $4, %ecx
     movl        $5, %r8d
-    movl        -12(%rbp), %r9d
+    movl        -80(%rbp), %r9d
     call        x@PLT
-    movl        %eax, -16(%rbp)
-    movl        -16(%rbp), %eax
+    movl        %eax, -84(%rbp)
+    movl        -84(%rbp), %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         

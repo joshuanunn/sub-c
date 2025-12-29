@@ -1,11 +1,15 @@
 (Ir.Program
    [Ir.Function {name = "foo"; global = true; params = [];
       body = [(Ir.Return (Ir.Constant 2)); (Ir.Return (Ir.Constant 0))];
-      frame = Env.lenv {
-                counter = 0;
-                offset = 0;
-                stack slots = {
-                }}};
+      frame =
+      Env.lenv {
+        counter = 2;
+        offset = -12;
+        stack slots = {
+          x.0   -> -4,
+          tmp.0 -> -8,
+          tmp.1 -> -12,
+        }}};
      Ir.Function {name = "main"; global = true; params = [];
        body =
        [Ir.Copy {src = (Ir.Constant 3); dst = (Ir.Var "x.0")};

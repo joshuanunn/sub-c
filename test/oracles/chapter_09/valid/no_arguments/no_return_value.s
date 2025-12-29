@@ -16,7 +16,7 @@ main:
     movq        %rsp, %rbp
     subq        $16, %rsp
     call        foo@PLT
-    movl        %eax, -4(%rbp)
+    movl        %eax, -8(%rbp)
     movl        $3, %eax
     movq        %rbp, %rsp
     popq        %rbp

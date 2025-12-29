@@ -17,25 +17,31 @@
         (Ir.Return (Ir.Constant 0))];
       frame =
       Env.lenv {
-        counter = 6;
-        offset = -20;
+        counter = 7;
+        offset = -24;
         stack slots = {
           tmp.0 -> -4,
           tmp.1 -> -8,
           tmp.2 -> -12,
           tmp.3 -> -16,
           tmp.5 -> -20,
+          tmp.6 -> -24,
         }}};
      Ir.Function {name = "main"; global = true; params = [];
        body =
        [Ir.FunCall {fun_name = "print_alphabet"; args = [];
-          dst = (Ir.Var "tmp.0")};
+          dst = (Ir.Var "tmp.6")};
          (Ir.Return (Ir.Constant 0))];
        frame =
        Env.lenv {
-         counter = 1;
-         offset = -4;
+         counter = 7;
+         offset = -24;
          stack slots = {
            tmp.0 -> -4,
+           tmp.1 -> -8,
+           tmp.2 -> -12,
+           tmp.3 -> -16,
+           tmp.5 -> -20,
+           tmp.6 -> -24,
          }}};
      Ir.StaticVariable {name = "count.1"; global = false; init = 0}])

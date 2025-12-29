@@ -37,6 +37,7 @@ main:
 foo:
     pushq       %rbp
     movq        %rsp, %rbp
+    subq        $32, %rsp
     movl        $8, %eax
     movq        %rbp, %rsp
     popq        %rbp

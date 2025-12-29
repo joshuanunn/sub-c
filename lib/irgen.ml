@@ -377,15 +377,14 @@ and convert_for_post (e : Ast.expr option) (le : Env.lenv) : Ir.instruction list
       ins
   | None -> []
 
-and convert_func (f : Ast.fun_decl) (te : Env.tenv) : Ir.top_level =
+and convert_func (f : Ast.fun_decl) (te : Env.tenv) (le : Env.lenv) :
+    Ir.top_level =
   match f.body with
   | None ->
       failwith
         ("convert_func called on function declaration: "
         ^ identifier_to_string f.name)
   | Some (Block items) ->
-      (* Create a new environment for the function to track frame contents *)
-      let le = Env.make_lenv () in
       let body =
         List.map
           (fun node ->
@@ -424,12 +423,15 @@ let convert_symbols (te : Env.tenv) : Ir.top_level list =
 
 let convert_prog (Program p : Ast.prog) (te : Env.tenv) : Ir.prog =
   (* AST pass: convert top-level function definitions into IR functions *)
+  (* Create a new environment to track frame contents *)
+  let le = Env.make_lenv () in
   let ir_funcs =
     List.filter_map
       (function
         | Ast.FunDecl f -> (
             match f.body with
-            | Some _ -> Some (convert_func f te) (* process func definitions *)
+            | Some _ ->
+                Some (convert_func f te le) (* process func definitions *)
             | None -> None (* ignore func declarations *))
         | Ast.VarDecl _ -> None) (* top-level vars handled by symbol table *)
       p

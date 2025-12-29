@@ -26,8 +26,8 @@ main:
     subq        $16, %rsp
     movl        $1, %edi
     call        a@PLT
-    movl        %eax, -4(%rbp)
-    movl        -4(%rbp), %eax
+    movl        %eax, -12(%rbp)
+    movl        -12(%rbp), %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         

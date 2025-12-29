@@ -58,12 +58,12 @@ fib:
 main:
     pushq       %rbp
     movq        %rsp, %rbp
-    subq        $16, %rsp
-    movl        $6, -4(%rbp)
-    movl        -4(%rbp), %edi
+    subq        $48, %rsp
+    movl        $6, -40(%rbp)
+    movl        -40(%rbp), %edi
     call        fib@PLT
-    movl        %eax, -8(%rbp)
-    movl        -8(%rbp), %eax
+    movl        %eax, -44(%rbp)
+    movl        -44(%rbp), %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         

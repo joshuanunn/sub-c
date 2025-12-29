@@ -3,7 +3,7 @@
 lots_of_args:
     pushq       %rbp
     movq        %rsp, %rbp
-    subq        $64, %rsp
+    subq        $96, %rsp
     movl        %edi, -8(%rbp)
     movl        %esi, -12(%rbp)
     movl        %edx, -16(%rbp)
@@ -45,14 +45,14 @@ lots_of_args:
 main:
     pushq       %rbp
     movq        %rsp, %rbp
-    subq        $32, %rsp
-    movl        $0, -4(%rbp)
-    movl        $0, -8(%rbp)
+    subq        $96, %rsp
+    movl        $0, -68(%rbp)
+    movl        $0, -72(%rbp)
 .Lloop.st.1:
-    cmpl        $10000000, -8(%rbp)
-    movl        $0, -12(%rbp)
-    setl        -12(%rbp)
-    cmpl        $0, -12(%rbp)
+    cmpl        $10000000, -72(%rbp)
+    movl        $0, -76(%rbp)
+    setl        -76(%rbp)
+    cmpl        $0, -76(%rbp)
     je          .Lloop.br.1
     subq        $8, %rsp
     movl        $1, %edi
@@ -64,7 +64,7 @@ main:
     pushq       $15
     pushq       $14
     pushq       $13
-    movl        -4(%rbp), %eax
+    movl        -68(%rbp), %eax
     pushq       %rax
     pushq       $11
     pushq       $10
@@ -73,21 +73,21 @@ main:
     pushq       $7
     call        lots_of_args@PLT
     addq        $80, %rsp
-    movl        %eax, -16(%rbp)
-    movl        -16(%rbp), %r10d
-    movl        %r10d, -4(%rbp)
+    movl        %eax, -80(%rbp)
+    movl        -80(%rbp), %r10d
+    movl        %r10d, -68(%rbp)
 .Lloop.ct.1:
-    movl        -8(%rbp), %r10d
-    movl        %r10d, -20(%rbp)
-    addl        $1, -20(%rbp)
-    movl        -20(%rbp), %r10d
-    movl        %r10d, -8(%rbp)
+    movl        -72(%rbp), %r10d
+    movl        %r10d, -84(%rbp)
+    addl        $1, -84(%rbp)
+    movl        -84(%rbp), %r10d
+    movl        %r10d, -72(%rbp)
     jmp         .Lloop.st.1
 .Lloop.br.1:
-    cmpl        $150000000, -4(%rbp)
-    movl        $0, -24(%rbp)
-    sete        -24(%rbp)
-    movl        -24(%rbp), %eax
+    cmpl        $150000000, -68(%rbp)
+    movl        $0, -88(%rbp)
+    sete        -88(%rbp)
+    movl        -88(%rbp), %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         

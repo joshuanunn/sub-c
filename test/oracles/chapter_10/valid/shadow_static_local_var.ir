@@ -11,69 +11,82 @@
         (Ir.Return (Ir.Constant 0))];
       frame =
       Env.lenv {
-        counter = 2;
-        offset = -8;
+        counter = 19;
+        offset = -52;
         stack slots = {
           update_global.0 -> -4,
           new_val.1       -> -8,
+          tmp.2           -> -12,
+          result.3        -> -16,
+          tmp.4           -> -20,
+          tmp.5           -> -24,
+          tmp.7           -> -28,
+          tmp.9           -> -32,
+          tmp.10          -> -36,
+          tmp.12          -> -40,
+          tmp.14          -> -44,
+          tmp.15          -> -48,
+          tmp.17          -> -52,
         }}};
      Ir.Function {name = "main"; global = true; params = [];
        body =
        [Ir.Binary {op = Ir.NotEqual; src1 = (Ir.Var "i");
-          src2 = (Ir.Constant 0); dst = (Ir.Var "tmp.0")};
-         Ir.JumpIfZero {condition = (Ir.Var "tmp.0"); target = "if.en.1"};
-         (Ir.Return (Ir.Constant 1)); (Ir.Label "if.en.1");
+          src2 = (Ir.Constant 0); dst = (Ir.Var "tmp.2")};
+         Ir.JumpIfZero {condition = (Ir.Var "tmp.2"); target = "if.en.3"};
+         (Ir.Return (Ir.Constant 1)); (Ir.Label "if.en.3");
          Ir.FunCall {fun_name = "update_static_or_global";
-           args = [(Ir.Constant 1); (Ir.Constant 10)]; dst = (Ir.Var "tmp.2")};
-         Ir.Copy {src = (Ir.Var "tmp.2"); dst = (Ir.Var "result.3")};
+           args = [(Ir.Constant 1); (Ir.Constant 10)]; dst = (Ir.Var "tmp.4")};
+         Ir.Copy {src = (Ir.Var "tmp.4"); dst = (Ir.Var "result.3")};
          Ir.Binary {op = Ir.NotEqual; src1 = (Ir.Var "result.3");
-           src2 = (Ir.Constant 0); dst = (Ir.Var "tmp.3")};
-         Ir.JumpIfZero {condition = (Ir.Var "tmp.3"); target = "if.en.4"};
-         (Ir.Return (Ir.Constant 1)); (Ir.Label "if.en.4");
-         Ir.Binary {op = Ir.NotEqual; src1 = (Ir.Var "i");
-           src2 = (Ir.Constant 10); dst = (Ir.Var "tmp.5")};
+           src2 = (Ir.Constant 0); dst = (Ir.Var "tmp.5")};
          Ir.JumpIfZero {condition = (Ir.Var "tmp.5"); target = "if.en.6"};
          (Ir.Return (Ir.Constant 1)); (Ir.Label "if.en.6");
-         Ir.FunCall {fun_name = "update_static_or_global";
-           args = [(Ir.Constant 0); (Ir.Constant 9)]; dst = (Ir.Var "tmp.7")};
-         Ir.Copy {src = (Ir.Var "tmp.7"); dst = (Ir.Var "result.3")};
-         Ir.Binary {op = Ir.NotEqual; src1 = (Ir.Var "result.3");
-           src2 = (Ir.Constant 9); dst = (Ir.Var "tmp.8")};
-         Ir.JumpIfZero {condition = (Ir.Var "tmp.8"); target = "if.en.9"};
-         (Ir.Return (Ir.Constant 1)); (Ir.Label "if.en.9");
          Ir.Binary {op = Ir.NotEqual; src1 = (Ir.Var "i");
-           src2 = (Ir.Constant 10); dst = (Ir.Var "tmp.10")};
+           src2 = (Ir.Constant 10); dst = (Ir.Var "tmp.7")};
+         Ir.JumpIfZero {condition = (Ir.Var "tmp.7"); target = "if.en.8"};
+         (Ir.Return (Ir.Constant 1)); (Ir.Label "if.en.8");
+         Ir.FunCall {fun_name = "update_static_or_global";
+           args = [(Ir.Constant 0); (Ir.Constant 9)]; dst = (Ir.Var "tmp.9")};
+         Ir.Copy {src = (Ir.Var "tmp.9"); dst = (Ir.Var "result.3")};
+         Ir.Binary {op = Ir.NotEqual; src1 = (Ir.Var "result.3");
+           src2 = (Ir.Constant 9); dst = (Ir.Var "tmp.10")};
          Ir.JumpIfZero {condition = (Ir.Var "tmp.10"); target = "if.en.11"};
          (Ir.Return (Ir.Constant 1)); (Ir.Label "if.en.11");
+         Ir.Binary {op = Ir.NotEqual; src1 = (Ir.Var "i");
+           src2 = (Ir.Constant 10); dst = (Ir.Var "tmp.12")};
+         Ir.JumpIfZero {condition = (Ir.Var "tmp.12"); target = "if.en.13"};
+         (Ir.Return (Ir.Constant 1)); (Ir.Label "if.en.13");
          Ir.FunCall {fun_name = "update_static_or_global";
            args = [(Ir.Constant 1); (Ir.Constant 11)];
-           dst = (Ir.Var "tmp.12")};
-         Ir.Copy {src = (Ir.Var "tmp.12"); dst = (Ir.Var "result.3")};
+           dst = (Ir.Var "tmp.14")};
+         Ir.Copy {src = (Ir.Var "tmp.14"); dst = (Ir.Var "result.3")};
          Ir.Binary {op = Ir.NotEqual; src1 = (Ir.Var "result.3");
-           src2 = (Ir.Constant 9); dst = (Ir.Var "tmp.13")};
-         Ir.JumpIfZero {condition = (Ir.Var "tmp.13"); target = "if.en.14"};
-         (Ir.Return (Ir.Constant 1)); (Ir.Label "if.en.14");
-         Ir.Binary {op = Ir.NotEqual; src1 = (Ir.Var "i");
-           src2 = (Ir.Constant 11); dst = (Ir.Var "tmp.15")};
+           src2 = (Ir.Constant 9); dst = (Ir.Var "tmp.15")};
          Ir.JumpIfZero {condition = (Ir.Var "tmp.15"); target = "if.en.16"};
          (Ir.Return (Ir.Constant 1)); (Ir.Label "if.en.16");
+         Ir.Binary {op = Ir.NotEqual; src1 = (Ir.Var "i");
+           src2 = (Ir.Constant 11); dst = (Ir.Var "tmp.17")};
+         Ir.JumpIfZero {condition = (Ir.Var "tmp.17"); target = "if.en.18"};
+         (Ir.Return (Ir.Constant 1)); (Ir.Label "if.en.18");
          (Ir.Return (Ir.Constant 0)); (Ir.Return (Ir.Constant 0))];
        frame =
        Env.lenv {
-         counter = 17;
-         offset = -44;
+         counter = 19;
+         offset = -52;
          stack slots = {
-           tmp.0    -> -4,
-           result.3 -> -8,
-           tmp.2    -> -12,
-           tmp.3    -> -16,
-           tmp.5    -> -20,
-           tmp.7    -> -24,
-           tmp.8    -> -28,
-           tmp.10   -> -32,
-           tmp.12   -> -36,
-           tmp.13   -> -40,
-           tmp.15   -> -44,
+           update_global.0 -> -4,
+           new_val.1       -> -8,
+           tmp.2           -> -12,
+           result.3        -> -16,
+           tmp.4           -> -20,
+           tmp.5           -> -24,
+           tmp.7           -> -28,
+           tmp.9           -> -32,
+           tmp.10          -> -36,
+           tmp.12          -> -40,
+           tmp.14          -> -44,
+           tmp.15          -> -48,
+           tmp.17          -> -52,
          }}};
      Ir.StaticVariable {name = "i"; global = true; init = 0};
      Ir.StaticVariable {name = "i.2"; global = false; init = 0}])

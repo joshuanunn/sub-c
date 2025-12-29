@@ -38,8 +38,8 @@
         Asm.Ret];
       frame =
       Env.lenv {
-        counter = 12;
-        offset = -36;
+        counter = 13;
+        offset = -44;
         stack slots = {
           tmp.0  -> -4,
           tmp.1  -> -8,
@@ -50,20 +50,31 @@
           tmp.10 -> -28,
           tmp.11 -> -32,
           n.0    -> -36,
+          n.1    -> -40,
+          tmp.12 -> -44,
         }}};
      Asm.Function {name = "main"; global = true;
        instructions =
-       [(Asm.AllocateStack 16); (Asm.Mov ((Asm.Imm 6), (Asm.Stack -4)));
-         (Asm.Mov ((Asm.Stack -4), (Asm.Reg Asm.DI))); (Asm.Call "fib");
-         (Asm.Mov ((Asm.Reg Asm.AX), (Asm.Stack -8)));
-         (Asm.Mov ((Asm.Stack -8), (Asm.Reg Asm.AX))); Asm.Ret;
+       [(Asm.AllocateStack 48); (Asm.Mov ((Asm.Imm 6), (Asm.Stack -40)));
+         (Asm.Mov ((Asm.Stack -40), (Asm.Reg Asm.DI))); (Asm.Call "fib");
+         (Asm.Mov ((Asm.Reg Asm.AX), (Asm.Stack -44)));
+         (Asm.Mov ((Asm.Stack -44), (Asm.Reg Asm.AX))); Asm.Ret;
          (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX))); Asm.Ret];
        frame =
        Env.lenv {
-         counter = 1;
-         offset = -8;
+         counter = 13;
+         offset = -44;
          stack slots = {
-           n.1   -> -4,
-           tmp.0 -> -8,
+           tmp.0  -> -4,
+           tmp.1  -> -8,
+           tmp.2  -> -12,
+           tmp.7  -> -16,
+           tmp.8  -> -20,
+           tmp.9  -> -24,
+           tmp.10 -> -28,
+           tmp.11 -> -32,
+           n.0    -> -36,
+           n.1    -> -40,
+           tmp.12 -> -44,
          }}}
      ])

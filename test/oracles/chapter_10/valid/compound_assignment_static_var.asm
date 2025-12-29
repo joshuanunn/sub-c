@@ -1,7 +1,7 @@
 (Asm.Program
    [Asm.Function {name = "f"; global = true;
       instructions =
-      [(Asm.AllocateStack 48);
+      [(Asm.AllocateStack 64);
         (Asm.Mov ((Asm.Data "i.0"), (Asm.Reg Asm.R10)));
         (Asm.Mov ((Asm.Reg Asm.R10), (Asm.Stack -4)));
         Asm.Binary {op = Asm.Add; src = (Asm.Imm 1); dst = (Asm.Stack -4)};
@@ -60,8 +60,8 @@
         Asm.Ret; (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX))); Asm.Ret];
       frame =
       Env.lenv {
-        counter = 14;
-        offset = -40;
+        counter = 17;
+        offset = -52;
         stack slots = {
           tmp.0  -> -4,
           tmp.1  -> -8,
@@ -73,23 +73,36 @@
           tmp.9  -> -32,
           tmp.10 -> -36,
           tmp.12 -> -40,
+          tmp.14 -> -44,
+          tmp.15 -> -48,
+          tmp.16 -> -52,
         }}};
      Asm.Function {name = "main"; global = true;
        instructions =
-       [(Asm.AllocateStack 16); (Asm.Call "f");
-         (Asm.Mov ((Asm.Reg Asm.AX), (Asm.Stack -4))); (Asm.Call "f");
-         (Asm.Mov ((Asm.Reg Asm.AX), (Asm.Stack -8))); (Asm.Call "f");
-         (Asm.Mov ((Asm.Reg Asm.AX), (Asm.Stack -12)));
-         (Asm.Mov ((Asm.Stack -12), (Asm.Reg Asm.AX))); Asm.Ret;
+       [(Asm.AllocateStack 64); (Asm.Call "f");
+         (Asm.Mov ((Asm.Reg Asm.AX), (Asm.Stack -44))); (Asm.Call "f");
+         (Asm.Mov ((Asm.Reg Asm.AX), (Asm.Stack -48))); (Asm.Call "f");
+         (Asm.Mov ((Asm.Reg Asm.AX), (Asm.Stack -52)));
+         (Asm.Mov ((Asm.Stack -52), (Asm.Reg Asm.AX))); Asm.Ret;
          (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX))); Asm.Ret];
        frame =
        Env.lenv {
-         counter = 3;
-         offset = -12;
+         counter = 17;
+         offset = -52;
          stack slots = {
-           tmp.0 -> -4,
-           tmp.1 -> -8,
-           tmp.2 -> -12,
+           tmp.0  -> -4,
+           tmp.1  -> -8,
+           tmp.2  -> -12,
+           tmp.3  -> -16,
+           tmp.4  -> -20,
+           tmp.6  -> -24,
+           tmp.7  -> -28,
+           tmp.9  -> -32,
+           tmp.10 -> -36,
+           tmp.12 -> -40,
+           tmp.14 -> -44,
+           tmp.15 -> -48,
+           tmp.16 -> -52,
          }}};
      Asm.StaticVariable {name = "l.3"; global = false; init = 48};
      Asm.StaticVariable {name = "k.2"; global = false; init = 1};

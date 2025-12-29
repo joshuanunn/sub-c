@@ -82,8 +82,8 @@
         (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX))); Asm.Ret];
       frame =
       Env.lenv {
-        counter = 29;
-        offset = -92;
+        counter = 30;
+        offset = -96;
         stack slots = {
           tmp.0  -> -4,
           tmp.1  -> -8,
@@ -108,24 +108,48 @@
           f.5    -> -84,
           g.6    -> -88,
           h.7    -> -92,
+          tmp.29 -> -96,
         }}};
      Asm.Function {name = "main"; global = true;
        instructions =
-       [(Asm.AllocateStack 16); (Asm.Mov ((Asm.Imm 1), (Asm.Reg Asm.DI)));
+       [(Asm.AllocateStack 96); (Asm.Mov ((Asm.Imm 1), (Asm.Reg Asm.DI)));
          (Asm.Mov ((Asm.Imm 2), (Asm.Reg Asm.SI)));
          (Asm.Mov ((Asm.Imm 3), (Asm.Reg Asm.DX)));
          (Asm.Mov ((Asm.Imm 4), (Asm.Reg Asm.CX)));
          (Asm.Mov ((Asm.Imm 5), (Asm.Reg Asm.R8)));
          (Asm.Mov ((Asm.Imm 6), (Asm.Reg Asm.R9))); (Asm.Push (Asm.Imm 8));
          (Asm.Push (Asm.Imm 7)); (Asm.Call "foo"); (Asm.DeallocateStack 16);
-         (Asm.Mov ((Asm.Reg Asm.AX), (Asm.Stack -4)));
-         (Asm.Mov ((Asm.Stack -4), (Asm.Reg Asm.AX))); Asm.Ret;
+         (Asm.Mov ((Asm.Reg Asm.AX), (Asm.Stack -96)));
+         (Asm.Mov ((Asm.Stack -96), (Asm.Reg Asm.AX))); Asm.Ret;
          (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX))); Asm.Ret];
        frame =
        Env.lenv {
-         counter = 1;
-         offset = -4;
+         counter = 30;
+         offset = -96;
          stack slots = {
-           tmp.0 -> -4,
+           tmp.0  -> -4,
+           tmp.1  -> -8,
+           tmp.2  -> -12,
+           tmp.5  -> -16,
+           tmp.6  -> -20,
+           tmp.9  -> -24,
+           tmp.10 -> -28,
+           tmp.13 -> -32,
+           tmp.14 -> -36,
+           tmp.17 -> -40,
+           tmp.18 -> -44,
+           tmp.21 -> -48,
+           tmp.22 -> -52,
+           tmp.25 -> -56,
+           tmp.26 -> -60,
+           a.0    -> -64,
+           b.1    -> -68,
+           c.2    -> -72,
+           d.3    -> -76,
+           e.4    -> -80,
+           f.5    -> -84,
+           g.6    -> -88,
+           h.7    -> -92,
+           tmp.29 -> -96,
          }}}
      ])

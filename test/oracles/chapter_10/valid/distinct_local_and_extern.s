@@ -3,6 +3,7 @@
 return_a:
     pushq       %rbp
     movq        %rsp, %rbp
+    subq        $16, %rsp
     movl        a(%rip), %eax
     movq        %rbp, %rsp
     popq        %rbp

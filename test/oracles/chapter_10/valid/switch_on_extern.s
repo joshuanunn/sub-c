@@ -52,6 +52,7 @@ main:
 update_x:
     pushq       %rbp
     movq        %rsp, %rbp
+    subq        $16, %rsp
     movl        $4, x(%rip)
     movl        $0, %eax
     movq        %rbp, %rsp

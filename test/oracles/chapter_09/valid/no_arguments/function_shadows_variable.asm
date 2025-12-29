@@ -37,11 +37,18 @@
         }}};
      Asm.Function {name = "foo"; global = true;
        instructions =
-       [(Asm.Mov ((Asm.Imm 8), (Asm.Reg Asm.AX))); Asm.Ret;
-         (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX))); Asm.Ret];
-       frame = Env.lenv {
-                 counter = 0;
-                 offset = 0;
-                 stack slots = {
-                 }}}
+       [(Asm.AllocateStack 32); (Asm.Mov ((Asm.Imm 8), (Asm.Reg Asm.AX)));
+         Asm.Ret; (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX))); Asm.Ret];
+       frame =
+       Env.lenv {
+         counter = 5;
+         offset = -24;
+         stack slots = {
+           foo.0 -> -4,
+           bar.1 -> -8,
+           tmp.0 -> -12,
+           tmp.1 -> -16,
+           tmp.3 -> -20,
+           tmp.4 -> -24,
+         }}}
      ])

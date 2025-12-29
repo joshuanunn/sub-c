@@ -3,7 +3,7 @@
 f:
     pushq       %rbp
     movq        %rsp, %rbp
-    subq        $48, %rsp
+    subq        $64, %rsp
     movl        i.0(%rip), %r10d
     movl        %r10d, -4(%rbp)
     addl        $1, -4(%rbp)
@@ -86,14 +86,14 @@ f:
 main:
     pushq       %rbp
     movq        %rsp, %rbp
-    subq        $16, %rsp
+    subq        $64, %rsp
     call        f@PLT
-    movl        %eax, -4(%rbp)
+    movl        %eax, -44(%rbp)
     call        f@PLT
-    movl        %eax, -8(%rbp)
+    movl        %eax, -48(%rbp)
     call        f@PLT
-    movl        %eax, -12(%rbp)
-    movl        -12(%rbp), %eax
+    movl        %eax, -52(%rbp)
+    movl        -52(%rbp), %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         

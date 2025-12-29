@@ -38,12 +38,17 @@
         }}};
      Asm.Function {name = "update_x"; global = true;
        instructions =
-       [(Asm.Mov ((Asm.Imm 4), (Asm.Data "x")));
+       [(Asm.AllocateStack 16); (Asm.Mov ((Asm.Imm 4), (Asm.Data "x")));
          (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX))); Asm.Ret;
          (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX))); Asm.Ret];
-       frame = Env.lenv {
-                 counter = 0;
-                 offset = 0;
-                 stack slots = {
-                 }}};
+       frame =
+       Env.lenv {
+         counter = 4;
+         offset = -16;
+         stack slots = {
+           tmp.0 -> -4,
+           tmp.1 -> -8,
+           tmp.2 -> -12,
+           tmp.3 -> -16,
+         }}};
      Asm.StaticVariable {name = "x"; global = true; init = 0}])

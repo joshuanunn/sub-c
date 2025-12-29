@@ -63,8 +63,8 @@
         (Ir.Return (Ir.Constant 0))];
       frame =
       Env.lenv {
-        counter = 29;
-        offset = -92;
+        counter = 30;
+        offset = -96;
         stack slots = {
           tmp.0  -> -4,
           tmp.1  -> -8,
@@ -89,6 +89,7 @@
           f.5    -> -84,
           g.6    -> -88,
           h.7    -> -92,
+          tmp.29 -> -96,
         }}};
      Ir.Function {name = "main"; global = true; params = [];
        body =
@@ -97,13 +98,36 @@
           [(Ir.Constant 1); (Ir.Constant 2); (Ir.Constant 3);
             (Ir.Constant 4); (Ir.Constant 5); (Ir.Constant 6);
             (Ir.Constant 7); (Ir.Constant 8)];
-          dst = (Ir.Var "tmp.0")};
-         (Ir.Return (Ir.Var "tmp.0")); (Ir.Return (Ir.Constant 0))];
+          dst = (Ir.Var "tmp.29")};
+         (Ir.Return (Ir.Var "tmp.29")); (Ir.Return (Ir.Constant 0))];
        frame =
        Env.lenv {
-         counter = 1;
-         offset = -4;
+         counter = 30;
+         offset = -96;
          stack slots = {
-           tmp.0 -> -4,
+           tmp.0  -> -4,
+           tmp.1  -> -8,
+           tmp.2  -> -12,
+           tmp.5  -> -16,
+           tmp.6  -> -20,
+           tmp.9  -> -24,
+           tmp.10 -> -28,
+           tmp.13 -> -32,
+           tmp.14 -> -36,
+           tmp.17 -> -40,
+           tmp.18 -> -44,
+           tmp.21 -> -48,
+           tmp.22 -> -52,
+           tmp.25 -> -56,
+           tmp.26 -> -60,
+           a.0    -> -64,
+           b.1    -> -68,
+           c.2    -> -72,
+           d.3    -> -76,
+           e.4    -> -80,
+           f.5    -> -84,
+           g.6    -> -88,
+           h.7    -> -92,
+           tmp.29 -> -96,
          }}}
      ])
