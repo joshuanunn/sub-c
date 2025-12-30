@@ -15,10 +15,6 @@ foo:
     movq        %rbp, %rsp
     popq        %rbp
     ret         
-    movl        $0, %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
     .globl      bar
     .text       
 bar:
@@ -31,10 +27,6 @@ bar:
     movl        -4(%rbp), %r10d
     movl        %r10d, a.1(%rip)
     movl        a.1(%rip), %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
-    movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         
@@ -65,10 +57,6 @@ main:
     movl        -24(%rbp), %r10d
     addl        %r10d, -28(%rbp)
     movl        -28(%rbp), %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
-    movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         

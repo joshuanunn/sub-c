@@ -7,10 +7,6 @@ three:
     movq        %rbp, %rsp
     popq        %rbp
     ret         
-    movl        $0, %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
     .globl      main
     .text       
 main:
@@ -23,10 +19,6 @@ main:
     movl        $0, -8(%rbp)
     sete        -8(%rbp)
     movl        -8(%rbp), %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
-    movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         

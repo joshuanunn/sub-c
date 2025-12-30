@@ -4,25 +4,9 @@ main:
     pushq       %rbp
     movq        %rsp, %rbp
     subq        $16, %rsp
-    jmp         .Lmain.or.tr.1
-    movl        $0, -4(%rbp)
-    jmp         .Lmain.or.en.2
-.Lmain.or.tr.1:
     movl        $1, -4(%rbp)
-.Lmain.or.en.2:
-    cmpl        $0, -4(%rbp)
-    je          .Lmain.and.fl.4
-    jmp         .Lmain.and.fl.4
-    movl        $1, -8(%rbp)
-    jmp         .Lmain.and.en.5
-.Lmain.and.fl.4:
     movl        $0, -8(%rbp)
-.Lmain.and.en.5:
     movl        -8(%rbp), %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
-    movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         

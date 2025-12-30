@@ -1,17 +1,9 @@
 (Ir.Program
    [Ir.Function {name = "main"; global = true; params = [];
       body =
-      [Ir.Jump {target = "main.cond.el.2"};
-        Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "tmp.0")};
-        Ir.Jump {target = "main.cond.en.1"}; (Ir.Label "main.cond.el.2");
-        Ir.Jump {target = "main.or.tr.4"};
-        Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "tmp.3")};
-        Ir.Jump {target = "main.or.en.5"}; (Ir.Label "main.or.tr.4");
-        Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "tmp.3")};
-        (Ir.Label "main.or.en.5");
+      [Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "tmp.3")};
         Ir.Copy {src = (Ir.Var "tmp.3"); dst = (Ir.Var "tmp.0")};
-        (Ir.Label "main.cond.en.1"); (Ir.Return (Ir.Var "tmp.0"));
-        (Ir.Return (Ir.Constant 0))];
+        (Ir.Return (Ir.Var "tmp.0"))];
       frame =
       Env.lenv {
         namespace = "main";

@@ -62,7 +62,6 @@ main:
     addl        $1, -44(%rbp)
     movl        -44(%rbp), %r10d
     movl        %r10d, -8(%rbp)
-.Lloop.ct.1:
     movl        -12(%rbp), %r10d
     movl        %r10d, -48(%rbp)
     addl        $1, -48(%rbp)
@@ -86,10 +85,6 @@ main:
     movl        $0, -60(%rbp)
 .Lmain.and.en.13:
     movl        -60(%rbp), %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
-    movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         

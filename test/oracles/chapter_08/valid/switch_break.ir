@@ -14,8 +14,7 @@
         Ir.Copy {src = (Ir.Constant 10); dst = (Ir.Var "a.0")};
         Ir.Jump {target = "swit.br.1"}; (Ir.Label "swit.cs.1.6");
         Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "a.0")};
-        Ir.Jump {target = "swit.br.1"}; (Ir.Label "swit.br.1");
-        (Ir.Return (Ir.Var "a.0")); (Ir.Return (Ir.Constant 0))];
+        (Ir.Label "swit.br.1"); (Ir.Return (Ir.Var "a.0"))];
       frame =
       Env.lenv {
         namespace = "main";

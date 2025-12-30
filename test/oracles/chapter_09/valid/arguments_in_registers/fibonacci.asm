@@ -17,7 +17,7 @@
         (Asm.Label "fib.or.en.4"); (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -12)));
         (Asm.JmpCC (Asm.E, "fib.if.el.6"));
         (Asm.Mov ((Asm.Stack -36), (Asm.Reg Asm.AX))); Asm.Ret;
-        (Asm.Jmp "fib.if.en.5"); (Asm.Label "fib.if.el.6");
+        (Asm.Label "fib.if.el.6");
         (Asm.Mov ((Asm.Stack -36), (Asm.Reg Asm.R10)));
         (Asm.Mov ((Asm.Reg Asm.R10), (Asm.Stack -16)));
         Asm.Binary {op = Asm.Sub; src = (Asm.Imm 1); dst = (Asm.Stack -16)};
@@ -33,9 +33,7 @@
         (Asm.Mov ((Asm.Stack -28), (Asm.Reg Asm.R10)));
         Asm.Binary {op = Asm.Add; src = (Asm.Reg Asm.R10);
           dst = (Asm.Stack -32)};
-        (Asm.Mov ((Asm.Stack -32), (Asm.Reg Asm.AX))); Asm.Ret;
-        (Asm.Label "fib.if.en.5"); (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX)));
-        Asm.Ret];
+        (Asm.Mov ((Asm.Stack -32), (Asm.Reg Asm.AX))); Asm.Ret];
       frame =
       Env.lenv {
         namespace = "fib";
@@ -57,8 +55,7 @@
        [(Asm.AllocateStack 16); (Asm.Mov ((Asm.Imm 6), (Asm.Stack -4)));
          (Asm.Mov ((Asm.Stack -4), (Asm.Reg Asm.DI))); (Asm.Call "fib");
          (Asm.Mov ((Asm.Reg Asm.AX), (Asm.Stack -8)));
-         (Asm.Mov ((Asm.Stack -8), (Asm.Reg Asm.AX))); Asm.Ret;
-         (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX))); Asm.Ret];
+         (Asm.Mov ((Asm.Stack -8), (Asm.Reg Asm.AX))); Asm.Ret];
        frame =
        Env.lenv {
          namespace = "main";

@@ -7,12 +7,10 @@
         Ir.Binary {op = Ir.Add; src1 = (Ir.Var "sum.1");
           src2 = (Ir.Constant 2); dst = (Ir.Var "tmp.0")};
         Ir.Copy {src = (Ir.Var "tmp.0"); dst = (Ir.Var "sum.1")};
-        (Ir.Label "loop.ct.1");
         Ir.Binary {op = Ir.Subtract; src1 = (Ir.Var "i.0");
           src2 = (Ir.Constant 1); dst = (Ir.Var "tmp.1")};
         Ir.Copy {src = (Ir.Var "tmp.1"); dst = (Ir.Var "i.0")};
         Ir.JumpIfNotZero {condition = (Ir.Var "i.0"); target = "loop.st.1"};
-        (Ir.Label "loop.br.1");
         Ir.Binary {op = Ir.Equal; src1 = (Ir.Var "i.0");
           src2 = (Ir.Constant 0); dst = (Ir.Var "tmp.2")};
         Ir.JumpIfZero {condition = (Ir.Var "tmp.2"); target = "main.and.fl.5"};
@@ -22,8 +20,7 @@
         Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "tmp.4")};
         Ir.Jump {target = "main.and.en.6"}; (Ir.Label "main.and.fl.5");
         Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "tmp.4")};
-        (Ir.Label "main.and.en.6"); (Ir.Return (Ir.Var "tmp.4"));
-        (Ir.Return (Ir.Constant 0))];
+        (Ir.Label "main.and.en.6"); (Ir.Return (Ir.Var "tmp.4"))];
       frame =
       Env.lenv {
         namespace = "main";

@@ -13,8 +13,7 @@
         (Asm.Mov ((Asm.Imm 3), (Asm.Stack -4))); (Asm.Jmp "main.if.en.2");
         (Asm.Label "main.if.el.3"); (Asm.Mov ((Asm.Imm 4), (Asm.Stack -4)));
         (Asm.Label "main.if.en.2"); (Asm.Label "main.if.en.0");
-        (Asm.Mov ((Asm.Stack -4), (Asm.Reg Asm.AX))); Asm.Ret;
-        (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX))); Asm.Ret];
+        (Asm.Mov ((Asm.Stack -4), (Asm.Reg Asm.AX))); Asm.Ret];
       frame =
       Env.lenv {
         namespace = "main";

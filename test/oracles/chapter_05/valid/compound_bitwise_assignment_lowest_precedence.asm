@@ -15,11 +15,7 @@
           dst = (Asm.Stack -16)};
         (Asm.Mov ((Asm.Stack -16), (Asm.Reg Asm.R10)));
         (Asm.Mov ((Asm.Reg Asm.R10), (Asm.Stack -4)));
-        (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -4)));
-        (Asm.JmpCC (Asm.NE, "main.or.tr.5")); (Asm.Jmp "main.or.tr.5");
-        (Asm.Mov ((Asm.Imm 0), (Asm.Stack -20))); (Asm.Jmp "main.or.en.6");
-        (Asm.Label "main.or.tr.5"); (Asm.Mov ((Asm.Imm 1), (Asm.Stack -20)));
-        (Asm.Label "main.or.en.6");
+        (Asm.Mov ((Asm.Imm 1), (Asm.Stack -20)));
         (Asm.Mov ((Asm.Stack -8), (Asm.Reg Asm.R10)));
         (Asm.Mov ((Asm.Reg Asm.R10), (Asm.Stack -24)));
         (Asm.Mov ((Asm.Stack -20), (Asm.Reg Asm.R10)));
@@ -119,8 +115,7 @@
         (Asm.Label "main.and.fl.35");
         (Asm.Mov ((Asm.Imm 0), (Asm.Stack -96)));
         (Asm.Label "main.and.en.36");
-        (Asm.Mov ((Asm.Stack -96), (Asm.Reg Asm.AX))); Asm.Ret;
-        (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX))); Asm.Ret];
+        (Asm.Mov ((Asm.Stack -96), (Asm.Reg Asm.AX))); Asm.Ret];
       frame =
       Env.lenv {
         namespace = "main";

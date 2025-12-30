@@ -11,14 +11,8 @@ main:
     movq        %rbp, %rsp
     popq        %rbp
     ret         
-    jmp         .Lmain.if.en.0
 .Lmain.if.el.1:
     movl        $2, %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
-.Lmain.if.en.0:
-    movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         

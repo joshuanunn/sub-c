@@ -42,21 +42,12 @@ main:
     movq        %rbp, %rsp
     popq        %rbp
     ret         
-.Lswit.br.1:
-    movl        $0, %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
     .globl      update_x
     .text       
 update_x:
     pushq       %rbp
     movq        %rsp, %rbp
     movl        $4, x(%rip)
-    movl        $0, %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
     movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp

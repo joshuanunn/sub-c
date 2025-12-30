@@ -12,8 +12,7 @@
         (Asm.Mov ((Asm.Stack -8), (Asm.Reg Asm.R10)));
         (Asm.Mov ((Asm.Reg Asm.R10), (Asm.Data "i.2")));
         (Asm.Label "update_static_or_global.if.en.0");
-        (Asm.Mov ((Asm.Data "i.2"), (Asm.Reg Asm.AX))); Asm.Ret;
-        (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX))); Asm.Ret];
+        (Asm.Mov ((Asm.Data "i.2"), (Asm.Reg Asm.AX))); Asm.Ret];
       frame =
       Env.lenv {
         namespace = "update_static_or_global";
@@ -92,7 +91,6 @@
          (Asm.JmpCC (Asm.E, "main.if.en.16"));
          (Asm.Mov ((Asm.Imm 1), (Asm.Reg Asm.AX))); Asm.Ret;
          (Asm.Label "main.if.en.16");
-         (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX))); Asm.Ret;
          (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX))); Asm.Ret];
        frame =
        Env.lenv {

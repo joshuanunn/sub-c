@@ -27,10 +27,6 @@ print_letters:
     movq        %rbp, %rsp
     popq        %rbp
     ret         
-    movl        $0, %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
     .globl      main
     .text       
 main:
@@ -46,7 +42,6 @@ main:
     je          .Lloop.br.1
     call        print_letters@PLT
     movl        %eax, -12(%rbp)
-.Lloop.ct.1:
     movl        -4(%rbp), %r10d
     movl        %r10d, -16(%rbp)
     addl        $1, -16(%rbp)

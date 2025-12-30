@@ -10,20 +10,12 @@ main:
     movq        %rbp, %rsp
     popq        %rbp
     ret         
-    movl        $0, %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
     .globl      foo
     .text       
 foo:
     pushq       %rbp
     movq        %rsp, %rbp
     movl        $3, %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
-    movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         

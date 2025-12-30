@@ -77,7 +77,6 @@ main:
     subl        $1, -60(%rbp)
     movl        -60(%rbp), %r10d
     movl        %r10d, -4(%rbp)
-.Lloop.ct.2:
     movl        -8(%rbp), %r10d
     movl        %r10d, -64(%rbp)
     subl        $1, -64(%rbp)
@@ -88,7 +87,6 @@ main:
     setg        -68(%rbp)
     cmpl        $0, -68(%rbp)
     jne         .Lloop.st.2
-.Lloop.br.2:
 .Lswit.br.1:
     cmpl        $0, -4(%rbp)
     movl        $0, -72(%rbp)
@@ -106,10 +104,6 @@ main:
     movl        $0, -80(%rbp)
 .Lmain.and.en.19:
     movl        -80(%rbp), %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
-    movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         

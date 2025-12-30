@@ -20,8 +20,7 @@
         (Asm.Call "print_alphabet");
         (Asm.Mov ((Asm.Reg Asm.AX), (Asm.Stack -20)));
         (Asm.Label "print_alphabet.if.en.4");
-        (Asm.Mov ((Asm.Data "count.1"), (Asm.Reg Asm.AX))); Asm.Ret;
-        (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX))); Asm.Ret];
+        (Asm.Mov ((Asm.Data "count.1"), (Asm.Reg Asm.AX))); Asm.Ret];
       frame =
       Env.lenv {
         namespace = "print_alphabet";

@@ -9,10 +9,6 @@ target_add:
     movq        %rbp, %rsp
     popq        %rbp
     ret         
-    movl        $0, %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
     .globl      target_sub
     .text       
 target_sub:
@@ -21,10 +17,6 @@ target_sub:
     subq        $16, %rsp
     movl        $-2147483645, -4(%rbp)
     movl        -4(%rbp), %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
-    movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         
@@ -39,10 +31,6 @@ target_mult:
     movq        %rbp, %rsp
     popq        %rbp
     ret         
-    movl        $0, %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
     .globl      target_div
     .text       
 target_div:
@@ -51,10 +39,6 @@ target_div:
     subq        $16, %rsp
     movl        $277, -4(%rbp)
     movl        -4(%rbp), %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
-    movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         
@@ -69,10 +53,6 @@ target_rem:
     movq        %rbp, %rsp
     popq        %rbp
     ret         
-    movl        $0, %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
     .globl      target_eq_true
     .text       
 target_eq_true:
@@ -81,10 +61,6 @@ target_eq_true:
     subq        $16, %rsp
     movl        $1, -4(%rbp)
     movl        -4(%rbp), %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
-    movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         
@@ -99,10 +75,6 @@ target_eq_false:
     movq        %rbp, %rsp
     popq        %rbp
     ret         
-    movl        $0, %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
     .globl      target_neq_true
     .text       
 target_neq_true:
@@ -111,10 +83,6 @@ target_neq_true:
     subq        $16, %rsp
     movl        $1, -4(%rbp)
     movl        -4(%rbp), %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
-    movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         
@@ -129,10 +97,6 @@ target_neq_false:
     movq        %rbp, %rsp
     popq        %rbp
     ret         
-    movl        $0, %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
     .globl      target_gt_true
     .text       
 target_gt_true:
@@ -141,10 +105,6 @@ target_gt_true:
     subq        $16, %rsp
     movl        $1, -4(%rbp)
     movl        -4(%rbp), %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
-    movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         
@@ -159,10 +119,6 @@ target_gt_false:
     movq        %rbp, %rsp
     popq        %rbp
     ret         
-    movl        $0, %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
     .globl      target_ge_true
     .text       
 target_ge_true:
@@ -171,10 +127,6 @@ target_ge_true:
     subq        $16, %rsp
     movl        $1, -4(%rbp)
     movl        -4(%rbp), %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
-    movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         
@@ -189,10 +141,6 @@ target_ge_false:
     movq        %rbp, %rsp
     popq        %rbp
     ret         
-    movl        $0, %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
     .globl      target_lt_true
     .text       
 target_lt_true:
@@ -201,10 +149,6 @@ target_lt_true:
     subq        $16, %rsp
     movl        $1, -4(%rbp)
     movl        -4(%rbp), %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
-    movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         
@@ -219,10 +163,6 @@ target_lt_false:
     movq        %rbp, %rsp
     popq        %rbp
     ret         
-    movl        $0, %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
     .globl      target_le_true
     .text       
 target_le_true:
@@ -234,10 +174,6 @@ target_le_true:
     movq        %rbp, %rsp
     popq        %rbp
     ret         
-    movl        $0, %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
     .globl      target_le_false
     .text       
 target_le_false:
@@ -246,10 +182,6 @@ target_le_false:
     subq        $16, %rsp
     movl        $0, -4(%rbp)
     movl        -4(%rbp), %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
-    movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         
@@ -449,10 +381,6 @@ main:
     popq        %rbp
     ret         
 .Lmain.if.en.45:
-    movl        $0, %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
     movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp

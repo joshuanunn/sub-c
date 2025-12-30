@@ -14,9 +14,8 @@
         Ir.Binary {op = Ir.Add; src1 = (Ir.Var "count.2");
           src2 = (Ir.Constant 1); dst = (Ir.Var "tmp.2")};
         Ir.Copy {src = (Ir.Var "tmp.2"); dst = (Ir.Var "count.2")};
-        (Ir.Label "loop.ct.1"); Ir.Jump {target = "loop.st.1"};
-        (Ir.Label "loop.br.1"); (Ir.Return (Ir.Var "count.2"));
-        (Ir.Return (Ir.Constant 0))];
+        Ir.Jump {target = "loop.st.1"}; (Ir.Label "loop.br.1");
+        (Ir.Return (Ir.Var "count.2"))];
       frame =
       Env.lenv {
         namespace = "main";

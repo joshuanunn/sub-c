@@ -7,10 +7,6 @@ bar:
     movq        %rbp, %rsp
     popq        %rbp
     ret         
-    movl        $0, %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
     .globl      foo
     .text       
 foo:
@@ -24,10 +20,6 @@ foo:
     imull       -4(%rbp), %r11d
     movl        %r11d, -8(%rbp)
     movl        -8(%rbp), %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
-    movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         
@@ -51,10 +43,6 @@ main:
     movl        -12(%rbp), %r10d
     addl        %r10d, -16(%rbp)
     movl        -16(%rbp), %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
-    movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         

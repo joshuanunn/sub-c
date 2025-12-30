@@ -55,8 +55,7 @@
         (Asm.Label "main.and.fl.15");
         (Asm.Mov ((Asm.Imm 0), (Asm.Stack -60)));
         (Asm.Label "main.and.en.16");
-        (Asm.Mov ((Asm.Stack -60), (Asm.Reg Asm.AX))); Asm.Ret;
-        (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX))); Asm.Ret];
+        (Asm.Mov ((Asm.Stack -60), (Asm.Reg Asm.AX))); Asm.Ret];
       frame =
       Env.lenv {
         namespace = "main";

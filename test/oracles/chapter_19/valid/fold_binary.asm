@@ -2,8 +2,7 @@
    [Asm.Function {name = "target_add"; global = true;
       instructions =
       [(Asm.AllocateStack 16); (Asm.Mov ((Asm.Imm 300), (Asm.Stack -4)));
-        (Asm.Mov ((Asm.Stack -4), (Asm.Reg Asm.AX))); Asm.Ret;
-        (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX))); Asm.Ret];
+        (Asm.Mov ((Asm.Stack -4), (Asm.Reg Asm.AX))); Asm.Ret];
       frame =
       Env.lenv {
         namespace = "target_add";
@@ -16,8 +15,7 @@
        instructions =
        [(Asm.AllocateStack 16);
          (Asm.Mov ((Asm.Imm -2147483645), (Asm.Stack -4)));
-         (Asm.Mov ((Asm.Stack -4), (Asm.Reg Asm.AX))); Asm.Ret;
-         (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX))); Asm.Ret];
+         (Asm.Mov ((Asm.Stack -4), (Asm.Reg Asm.AX))); Asm.Ret];
        frame =
        Env.lenv {
          namespace = "target_sub";
@@ -30,8 +28,7 @@
        instructions =
        [(Asm.AllocateStack 16);
          (Asm.Mov ((Asm.Imm 1000000), (Asm.Stack -4)));
-         (Asm.Mov ((Asm.Stack -4), (Asm.Reg Asm.AX))); Asm.Ret;
-         (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX))); Asm.Ret];
+         (Asm.Mov ((Asm.Stack -4), (Asm.Reg Asm.AX))); Asm.Ret];
        frame =
        Env.lenv {
          namespace = "target_mult";
@@ -43,8 +40,7 @@
      Asm.Function {name = "target_div"; global = true;
        instructions =
        [(Asm.AllocateStack 16); (Asm.Mov ((Asm.Imm 277), (Asm.Stack -4)));
-         (Asm.Mov ((Asm.Stack -4), (Asm.Reg Asm.AX))); Asm.Ret;
-         (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX))); Asm.Ret];
+         (Asm.Mov ((Asm.Stack -4), (Asm.Reg Asm.AX))); Asm.Ret];
        frame =
        Env.lenv {
          namespace = "target_div";
@@ -56,8 +52,7 @@
      Asm.Function {name = "target_rem"; global = true;
        instructions =
        [(Asm.AllocateStack 16); (Asm.Mov ((Asm.Imm 1), (Asm.Stack -4)));
-         (Asm.Mov ((Asm.Stack -4), (Asm.Reg Asm.AX))); Asm.Ret;
-         (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX))); Asm.Ret];
+         (Asm.Mov ((Asm.Stack -4), (Asm.Reg Asm.AX))); Asm.Ret];
        frame =
        Env.lenv {
          namespace = "target_rem";
@@ -69,8 +64,7 @@
      Asm.Function {name = "target_eq_true"; global = true;
        instructions =
        [(Asm.AllocateStack 16); (Asm.Mov ((Asm.Imm 1), (Asm.Stack -4)));
-         (Asm.Mov ((Asm.Stack -4), (Asm.Reg Asm.AX))); Asm.Ret;
-         (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX))); Asm.Ret];
+         (Asm.Mov ((Asm.Stack -4), (Asm.Reg Asm.AX))); Asm.Ret];
        frame =
        Env.lenv {
          namespace = "target_eq_true";
@@ -82,8 +76,7 @@
      Asm.Function {name = "target_eq_false"; global = true;
        instructions =
        [(Asm.AllocateStack 16); (Asm.Mov ((Asm.Imm 0), (Asm.Stack -4)));
-         (Asm.Mov ((Asm.Stack -4), (Asm.Reg Asm.AX))); Asm.Ret;
-         (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX))); Asm.Ret];
+         (Asm.Mov ((Asm.Stack -4), (Asm.Reg Asm.AX))); Asm.Ret];
        frame =
        Env.lenv {
          namespace = "target_eq_false";
@@ -95,8 +88,7 @@
      Asm.Function {name = "target_neq_true"; global = true;
        instructions =
        [(Asm.AllocateStack 16); (Asm.Mov ((Asm.Imm 1), (Asm.Stack -4)));
-         (Asm.Mov ((Asm.Stack -4), (Asm.Reg Asm.AX))); Asm.Ret;
-         (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX))); Asm.Ret];
+         (Asm.Mov ((Asm.Stack -4), (Asm.Reg Asm.AX))); Asm.Ret];
        frame =
        Env.lenv {
          namespace = "target_neq_true";
@@ -108,8 +100,7 @@
      Asm.Function {name = "target_neq_false"; global = true;
        instructions =
        [(Asm.AllocateStack 16); (Asm.Mov ((Asm.Imm 0), (Asm.Stack -4)));
-         (Asm.Mov ((Asm.Stack -4), (Asm.Reg Asm.AX))); Asm.Ret;
-         (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX))); Asm.Ret];
+         (Asm.Mov ((Asm.Stack -4), (Asm.Reg Asm.AX))); Asm.Ret];
        frame =
        Env.lenv {
          namespace = "target_neq_false";
@@ -121,8 +112,7 @@
      Asm.Function {name = "target_gt_true"; global = true;
        instructions =
        [(Asm.AllocateStack 16); (Asm.Mov ((Asm.Imm 1), (Asm.Stack -4)));
-         (Asm.Mov ((Asm.Stack -4), (Asm.Reg Asm.AX))); Asm.Ret;
-         (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX))); Asm.Ret];
+         (Asm.Mov ((Asm.Stack -4), (Asm.Reg Asm.AX))); Asm.Ret];
        frame =
        Env.lenv {
          namespace = "target_gt_true";
@@ -134,8 +124,7 @@
      Asm.Function {name = "target_gt_false"; global = true;
        instructions =
        [(Asm.AllocateStack 16); (Asm.Mov ((Asm.Imm 0), (Asm.Stack -4)));
-         (Asm.Mov ((Asm.Stack -4), (Asm.Reg Asm.AX))); Asm.Ret;
-         (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX))); Asm.Ret];
+         (Asm.Mov ((Asm.Stack -4), (Asm.Reg Asm.AX))); Asm.Ret];
        frame =
        Env.lenv {
          namespace = "target_gt_false";
@@ -147,8 +136,7 @@
      Asm.Function {name = "target_ge_true"; global = true;
        instructions =
        [(Asm.AllocateStack 16); (Asm.Mov ((Asm.Imm 1), (Asm.Stack -4)));
-         (Asm.Mov ((Asm.Stack -4), (Asm.Reg Asm.AX))); Asm.Ret;
-         (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX))); Asm.Ret];
+         (Asm.Mov ((Asm.Stack -4), (Asm.Reg Asm.AX))); Asm.Ret];
        frame =
        Env.lenv {
          namespace = "target_ge_true";
@@ -160,8 +148,7 @@
      Asm.Function {name = "target_ge_false"; global = true;
        instructions =
        [(Asm.AllocateStack 16); (Asm.Mov ((Asm.Imm 0), (Asm.Stack -4)));
-         (Asm.Mov ((Asm.Stack -4), (Asm.Reg Asm.AX))); Asm.Ret;
-         (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX))); Asm.Ret];
+         (Asm.Mov ((Asm.Stack -4), (Asm.Reg Asm.AX))); Asm.Ret];
        frame =
        Env.lenv {
          namespace = "target_ge_false";
@@ -173,8 +160,7 @@
      Asm.Function {name = "target_lt_true"; global = true;
        instructions =
        [(Asm.AllocateStack 16); (Asm.Mov ((Asm.Imm 1), (Asm.Stack -4)));
-         (Asm.Mov ((Asm.Stack -4), (Asm.Reg Asm.AX))); Asm.Ret;
-         (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX))); Asm.Ret];
+         (Asm.Mov ((Asm.Stack -4), (Asm.Reg Asm.AX))); Asm.Ret];
        frame =
        Env.lenv {
          namespace = "target_lt_true";
@@ -186,8 +172,7 @@
      Asm.Function {name = "target_lt_false"; global = true;
        instructions =
        [(Asm.AllocateStack 16); (Asm.Mov ((Asm.Imm 0), (Asm.Stack -4)));
-         (Asm.Mov ((Asm.Stack -4), (Asm.Reg Asm.AX))); Asm.Ret;
-         (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX))); Asm.Ret];
+         (Asm.Mov ((Asm.Stack -4), (Asm.Reg Asm.AX))); Asm.Ret];
        frame =
        Env.lenv {
          namespace = "target_lt_false";
@@ -199,8 +184,7 @@
      Asm.Function {name = "target_le_true"; global = true;
        instructions =
        [(Asm.AllocateStack 16); (Asm.Mov ((Asm.Imm 1), (Asm.Stack -4)));
-         (Asm.Mov ((Asm.Stack -4), (Asm.Reg Asm.AX))); Asm.Ret;
-         (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX))); Asm.Ret];
+         (Asm.Mov ((Asm.Stack -4), (Asm.Reg Asm.AX))); Asm.Ret];
        frame =
        Env.lenv {
          namespace = "target_le_true";
@@ -212,8 +196,7 @@
      Asm.Function {name = "target_le_false"; global = true;
        instructions =
        [(Asm.AllocateStack 16); (Asm.Mov ((Asm.Imm 0), (Asm.Stack -4)));
-         (Asm.Mov ((Asm.Stack -4), (Asm.Reg Asm.AX))); Asm.Ret;
-         (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX))); Asm.Ret];
+         (Asm.Mov ((Asm.Stack -4), (Asm.Reg Asm.AX))); Asm.Ret];
        frame =
        Env.lenv {
          namespace = "target_le_false";
@@ -347,7 +330,6 @@
          (Asm.JmpCC (Asm.E, "main.if.en.45"));
          (Asm.Mov ((Asm.Imm 17), (Asm.Reg Asm.AX))); Asm.Ret;
          (Asm.Label "main.if.en.45");
-         (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX))); Asm.Ret;
          (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX))); Asm.Ret];
        frame =
        Env.lenv {

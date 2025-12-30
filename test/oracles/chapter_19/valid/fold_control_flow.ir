@@ -1,9 +1,6 @@
 (Ir.Program
    [Ir.Function {name = "target_if"; global = true; params = [];
-      body =
-      [Ir.Jump {target = "target_if.if.en.0"}; (Ir.Return (Ir.Constant 1));
-        (Ir.Label "target_if.if.en.0"); (Ir.Return (Ir.Constant 0));
-        (Ir.Return (Ir.Constant 0))];
+      body = [(Ir.Return (Ir.Constant 0))];
       frame =
       Env.lenv {
         namespace = "target_if";
@@ -12,13 +9,7 @@
         stack slots = {
         }}};
      Ir.Function {name = "target_if_else_true"; global = true; params = [];
-       body =
-       [(Ir.Return (Ir.Constant 2));
-         Ir.Jump {target = "target_if_else_true.if.en.0"};
-         (Ir.Label "target_if_else_true.if.el.1");
-         (Ir.Return (Ir.Constant 3));
-         (Ir.Label "target_if_else_true.if.en.0");
-         (Ir.Return (Ir.Constant 0))];
+       body = [(Ir.Return (Ir.Constant 2))];
        frame =
        Env.lenv {
          namespace = "target_if_else_true";
@@ -27,14 +18,7 @@
          stack slots = {
          }}};
      Ir.Function {name = "target_if_else_false"; global = true; params = [];
-       body =
-       [Ir.Jump {target = "target_if_else_false.if.el.1"};
-         (Ir.Return (Ir.Constant 2));
-         Ir.Jump {target = "target_if_else_false.if.en.0"};
-         (Ir.Label "target_if_else_false.if.el.1");
-         (Ir.Return (Ir.Constant 3));
-         (Ir.Label "target_if_else_false.if.en.0");
-         (Ir.Return (Ir.Constant 0))];
+       body = [(Ir.Return (Ir.Constant 3))];
        frame =
        Env.lenv {
          namespace = "target_if_else_false";
@@ -46,11 +30,7 @@
        params = [];
        body =
        [Ir.Copy {src = (Ir.Constant 2); dst = (Ir.Var "tmp.0")};
-         Ir.Jump {target = "target_conditional_true.cond.en.1"};
-         (Ir.Label "target_conditional_true.cond.el.2");
-         Ir.Copy {src = (Ir.Constant 3); dst = (Ir.Var "tmp.0")};
-         (Ir.Label "target_conditional_true.cond.en.1");
-         (Ir.Return (Ir.Var "tmp.0")); (Ir.Return (Ir.Constant 0))];
+         (Ir.Return (Ir.Var "tmp.0"))];
        frame =
        Env.lenv {
          namespace = "target_conditional_true";
@@ -62,13 +42,8 @@
      Ir.Function {name = "target_conditional_false"; global = true;
        params = [];
        body =
-       [Ir.Jump {target = "target_conditional_false.cond.el.2"};
-         Ir.Copy {src = (Ir.Constant 4); dst = (Ir.Var "tmp.0")};
-         Ir.Jump {target = "target_conditional_false.cond.en.1"};
-         (Ir.Label "target_conditional_false.cond.el.2");
-         Ir.Copy {src = (Ir.Constant 5); dst = (Ir.Var "tmp.0")};
-         (Ir.Label "target_conditional_false.cond.en.1");
-         (Ir.Return (Ir.Var "tmp.0")); (Ir.Return (Ir.Constant 0))];
+       [Ir.Copy {src = (Ir.Constant 5); dst = (Ir.Var "tmp.0")};
+         (Ir.Return (Ir.Var "tmp.0"))];
        frame =
        Env.lenv {
          namespace = "target_conditional_false";
@@ -80,10 +55,8 @@
      Ir.Function {name = "target_do_loop"; global = true; params = [];
        body =
        [Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "retval.0")};
-         (Ir.Label "loop.st.1");
          Ir.Copy {src = (Ir.Constant 10); dst = (Ir.Var "retval.0")};
-         (Ir.Label "loop.ct.1"); (Ir.Label "loop.br.1");
-         (Ir.Return (Ir.Var "retval.0")); (Ir.Return (Ir.Constant 0))];
+         (Ir.Return (Ir.Var "retval.0"))];
        frame =
        Env.lenv {
          namespace = "target_do_loop";
@@ -96,10 +69,7 @@
        params = [];
        body =
        [Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "retval.1")};
-         (Ir.Label "loop.ct.2"); Ir.Jump {target = "loop.br.2"};
-         Ir.Copy {src = (Ir.Constant 10); dst = (Ir.Var "retval.1")};
-         Ir.Jump {target = "loop.ct.2"}; (Ir.Label "loop.br.2");
-         (Ir.Return (Ir.Var "retval.1")); (Ir.Return (Ir.Constant 0))];
+         (Ir.Return (Ir.Var "retval.1"))];
        frame =
        Env.lenv {
          namespace = "target_while_loop_false";
@@ -112,11 +82,8 @@
        params = [];
        body =
        [Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "retval.2")};
-         (Ir.Label "loop.ct.3");
          Ir.Copy {src = (Ir.Constant 10); dst = (Ir.Var "retval.2")};
-         Ir.Jump {target = "loop.br.3"}; Ir.Jump {target = "loop.ct.3"};
-         (Ir.Label "loop.br.3"); (Ir.Return (Ir.Var "retval.2"));
-         (Ir.Return (Ir.Constant 0))];
+         (Ir.Return (Ir.Var "retval.2"))];
        frame =
        Env.lenv {
          namespace = "target_while_loop_true";
@@ -129,11 +96,8 @@
        body =
        [Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "retval.3")};
          Ir.Copy {src = (Ir.Constant 100); dst = (Ir.Var "i.4")};
-         (Ir.Label "loop.st.4");
          Ir.Copy {src = (Ir.Var "i.4"); dst = (Ir.Var "retval.3")};
-         Ir.Jump {target = "loop.br.4"}; (Ir.Label "loop.ct.4");
-         Ir.Jump {target = "loop.st.4"}; (Ir.Label "loop.br.4");
-         (Ir.Return (Ir.Var "retval.3")); (Ir.Return (Ir.Constant 0))];
+         (Ir.Return (Ir.Var "retval.3"))];
        frame =
        Env.lenv {
          namespace = "target_for_loop_true";
@@ -147,11 +111,7 @@
        body =
        [Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "retval.5")};
          Ir.Copy {src = (Ir.Constant 100); dst = (Ir.Var "i.6")};
-         (Ir.Label "loop.st.5"); Ir.Jump {target = "loop.br.5"};
-         Ir.Copy {src = (Ir.Var "i.6"); dst = (Ir.Var "retval.5")};
-         Ir.Jump {target = "loop.br.5"}; (Ir.Label "loop.ct.5");
-         Ir.Jump {target = "loop.st.5"}; (Ir.Label "loop.br.5");
-         (Ir.Return (Ir.Var "retval.5")); (Ir.Return (Ir.Constant 0))];
+         (Ir.Return (Ir.Var "retval.5"))];
        frame =
        Env.lenv {
          namespace = "target_for_loop_false";
@@ -229,7 +189,7 @@
          Ir.JumpIfZero {condition = (Ir.Var "tmp.28");
            target = "main.if.en.29"};
          (Ir.Return (Ir.Constant 10)); (Ir.Label "main.if.en.29");
-         (Ir.Return (Ir.Constant 0)); (Ir.Return (Ir.Constant 0))];
+         (Ir.Return (Ir.Constant 0))];
        frame =
        Env.lenv {
          namespace = "main";

@@ -27,32 +27,17 @@
         Ir.JumpIfNotZero {condition = (Ir.Var "tmp.5");
           target = "swit.cs.2.4"};
         Ir.Jump {target = "swit.df.2"}; (Ir.Label "swit.cs.2.0");
-        (Ir.Return (Ir.Constant 0)); (Ir.Return (Ir.Constant 0));
-        Ir.Jump {target = "main.if.en.6"}; (Ir.Label "main.if.el.7");
-        (Ir.Label "swit.cs.2.4");
+        (Ir.Return (Ir.Constant 0)); (Ir.Label "swit.cs.2.4");
         Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "switch2.1")};
-        Ir.Jump {target = "swit.br.2"}; (Ir.Label "main.if.en.6");
-        (Ir.Label "swit.df.2"); (Ir.Return (Ir.Constant 0));
-        (Ir.Label "swit.br.2");
+        Ir.Jump {target = "swit.br.2"}; (Ir.Label "swit.df.2");
+        (Ir.Return (Ir.Constant 0)); (Ir.Label "swit.br.2");
         Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "tmp.8")};
         Ir.JumpIfNotZero {condition = (Ir.Var "tmp.8");
           target = "swit.cs.3.5"};
-        Ir.Jump {target = "swit.df.3"};
-        Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "i.3")};
-        (Ir.Label "loop.st.4");
-        Ir.Binary {op = Ir.LessThan; src1 = (Ir.Var "i.3");
-          src2 = (Ir.Constant 10); dst = (Ir.Var "tmp.9")};
-        Ir.JumpIfZero {condition = (Ir.Var "tmp.9"); target = "loop.br.4"};
-        Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "switch1.0")};
-        (Ir.Label "swit.cs.3.5");
+        Ir.Jump {target = "swit.df.3"}; (Ir.Label "swit.cs.3.5");
         Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "switch3.2")};
         Ir.Jump {target = "loop.br.4"}; (Ir.Label "swit.df.3");
-        (Ir.Return (Ir.Constant 0)); (Ir.Label "loop.ct.4");
-        Ir.Binary {op = Ir.Add; src1 = (Ir.Var "i.3");
-          src2 = (Ir.Constant 1); dst = (Ir.Var "tmp.10")};
-        Ir.Copy {src = (Ir.Var "tmp.10"); dst = (Ir.Var "i.3")};
-        Ir.Jump {target = "loop.st.4"}; (Ir.Label "loop.br.4");
-        (Ir.Label "swit.br.3");
+        (Ir.Return (Ir.Constant 0)); (Ir.Label "loop.br.4");
         Ir.JumpIfZero {condition = (Ir.Var "switch1.0");
           target = "main.and.fl.12"};
         Ir.JumpIfZero {condition = (Ir.Var "switch2.1");
@@ -68,8 +53,7 @@
         Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "tmp.14")};
         Ir.Jump {target = "main.and.en.16"}; (Ir.Label "main.and.fl.15");
         Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "tmp.14")};
-        (Ir.Label "main.and.en.16"); (Ir.Return (Ir.Var "tmp.14"));
-        (Ir.Return (Ir.Constant 0))];
+        (Ir.Label "main.and.en.16"); (Ir.Return (Ir.Var "tmp.14"))];
       frame =
       Env.lenv {
         namespace = "main";

@@ -6,7 +6,6 @@ main:
     subq        $16, %rsp
     movl        $0, -4(%rbp)
     jmp         .Ltarget.0
-    movl        $5, -4(%rbp)
 .Lloop.st.1:
     cmpl        $10, -4(%rbp)
     movl        $0, -8(%rbp)
@@ -24,7 +23,6 @@ main:
     popq        %rbp
     ret         
 .Lmain.if.en.2:
-.Lloop.ct.1:
     movl        -4(%rbp), %r10d
     movl        %r10d, -16(%rbp)
     addl        $1, -16(%rbp)
@@ -32,10 +30,6 @@ main:
     movl        %r10d, -4(%rbp)
     jmp         .Lloop.st.1
 .Lloop.br.1:
-    movl        $0, %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
     movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp

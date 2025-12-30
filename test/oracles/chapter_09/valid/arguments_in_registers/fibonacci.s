@@ -26,7 +26,6 @@ fib:
     movq        %rbp, %rsp
     popq        %rbp
     ret         
-    jmp         .Lfib.if.en.5
 .Lfib.if.el.6:
     movl        -36(%rbp), %r10d
     movl        %r10d, -16(%rbp)
@@ -48,11 +47,6 @@ fib:
     movq        %rbp, %rsp
     popq        %rbp
     ret         
-.Lfib.if.en.5:
-    movl        $0, %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
     .globl      main
     .text       
 main:
@@ -64,10 +58,6 @@ main:
     call        fib@PLT
     movl        %eax, -8(%rbp)
     movl        -8(%rbp), %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
-    movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         

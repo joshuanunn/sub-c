@@ -30,7 +30,7 @@
           src2 = (Ir.Constant 99); dst = (Ir.Var "tmp.5")};
         Ir.JumpIfZero {condition = (Ir.Var "tmp.5"); target = "main.if.en.6"};
         (Ir.Return (Ir.Constant 0)); (Ir.Label "main.if.en.6");
-        (Ir.Return (Ir.Constant 1)); (Ir.Return (Ir.Constant 0))];
+        (Ir.Return (Ir.Constant 1))];
       frame =
       Env.lenv {
         namespace = "main";

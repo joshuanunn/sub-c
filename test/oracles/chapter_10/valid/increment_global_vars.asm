@@ -11,7 +11,6 @@
         Asm.Binary {op = Asm.Add; src = (Asm.Imm 1); dst = (Asm.Data "i")};
         Asm.Binary {op = Asm.Add; src = (Asm.Imm 1); dst = (Asm.Data "i")};
         (Asm.Label "incr_i.if.en.1");
-        (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX))); Asm.Ret;
         (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX))); Asm.Ret];
       frame =
       Env.lenv {
@@ -35,7 +34,6 @@
          (Asm.Mov ((Asm.Reg Asm.R10), (Asm.Stack -12)));
          Asm.Binary {op = Asm.Sub; src = (Asm.Imm 1); dst = (Asm.Data "j")};
          (Asm.Label "decr_j.if.en.2");
-         (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX))); Asm.Ret;
          (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX))); Asm.Ret];
        frame =
        Env.lenv {
@@ -86,7 +84,6 @@
          (Asm.JmpCC (Asm.E, "main.if.en.13"));
          (Asm.Mov ((Asm.Imm 2), (Asm.Reg Asm.AX))); Asm.Ret;
          (Asm.Label "main.if.en.13");
-         (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX))); Asm.Ret;
          (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX))); Asm.Ret];
        frame =
        Env.lenv {

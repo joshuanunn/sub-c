@@ -3,13 +3,7 @@
 main:
     pushq       %rbp
     movq        %rsp, %rbp
-    jmp         .Lend.0
-.Lend.0:
     movl        x.1(%rip), %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
-    movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         

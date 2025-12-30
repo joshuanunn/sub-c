@@ -13,7 +13,7 @@
         (Ir.Label "main.if.en.2");
         Ir.Binary {op = Ir.Add; src1 = (Ir.Var "foo.0");
           src2 = (Ir.Var "bar.1"); dst = (Ir.Var "tmp.4")};
-        (Ir.Return (Ir.Var "tmp.4")); (Ir.Return (Ir.Constant 0))];
+        (Ir.Return (Ir.Var "tmp.4"))];
       frame =
       Env.lenv {
         namespace = "main";
@@ -28,7 +28,7 @@
           tmp.4 -> -24,
         }}};
      Ir.Function {name = "foo"; global = true; params = [];
-       body = [(Ir.Return (Ir.Constant 8)); (Ir.Return (Ir.Constant 0))];
+       body = [(Ir.Return (Ir.Constant 8))];
        frame =
        Env.lenv {
          namespace = "foo";

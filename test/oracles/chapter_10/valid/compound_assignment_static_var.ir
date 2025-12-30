@@ -31,7 +31,7 @@
           src2 = (Ir.Constant 6); dst = (Ir.Var "tmp.12")};
         Ir.JumpIfZero {condition = (Ir.Var "tmp.12"); target = "f.if.en.13"};
         (Ir.Return (Ir.Constant 4)); (Ir.Label "f.if.en.13");
-        (Ir.Return (Ir.Constant 0)); (Ir.Return (Ir.Constant 0))];
+        (Ir.Return (Ir.Constant 0))];
       frame =
       Env.lenv {
         namespace = "f";
@@ -54,7 +54,7 @@
        [Ir.FunCall {fun_name = "f"; args = []; dst = (Ir.Var "tmp.0")};
          Ir.FunCall {fun_name = "f"; args = []; dst = (Ir.Var "tmp.1")};
          Ir.FunCall {fun_name = "f"; args = []; dst = (Ir.Var "tmp.2")};
-         (Ir.Return (Ir.Var "tmp.2")); (Ir.Return (Ir.Constant 0))];
+         (Ir.Return (Ir.Var "tmp.2"))];
        frame =
        Env.lenv {
          namespace = "main";

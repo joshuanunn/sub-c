@@ -1,6 +1,6 @@
 (Ir.Program
    [Ir.Function {name = "foo"; global = false; params = [];
-      body = [(Ir.Return (Ir.Constant 3)); (Ir.Return (Ir.Constant 0))];
+      body = [(Ir.Return (Ir.Constant 3))];
       frame =
       Env.lenv {
         namespace = "foo";
@@ -13,7 +13,7 @@
        [Ir.FunCall {fun_name = "foo"; args = []; dst = (Ir.Var "tmp.0")};
          Ir.Binary {op = Ir.Add; src1 = (Ir.Var "tmp.0");
            src2 = (Ir.Var "bar"); dst = (Ir.Var "tmp.1")};
-         (Ir.Return (Ir.Var "tmp.1")); (Ir.Return (Ir.Constant 0))];
+         (Ir.Return (Ir.Var "tmp.1"))];
        frame =
        Env.lenv {
          namespace = "main";

@@ -14,7 +14,7 @@
           src2 = (Ir.Var "i.0"); dst = (Ir.Var "tmp.2")};
         Ir.Copy {src = (Ir.Var "tmp.2"); dst = (Ir.Var "sum.1")};
         Ir.Jump {target = "loop.ct.1"}; (Ir.Label "loop.br.1");
-        (Ir.Return (Ir.Var "sum.1")); (Ir.Return (Ir.Constant 0))];
+        (Ir.Return (Ir.Var "sum.1"))];
       frame =
       Env.lenv {
         namespace = "main";

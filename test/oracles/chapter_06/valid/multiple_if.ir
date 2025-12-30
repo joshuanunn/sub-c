@@ -15,7 +15,7 @@
         (Ir.Label "main.if.en.2");
         Ir.Binary {op = Ir.Add; src1 = (Ir.Var "a.0"); src2 = (Ir.Var "b.1");
           dst = (Ir.Var "tmp.4")};
-        (Ir.Return (Ir.Var "tmp.4")); (Ir.Return (Ir.Constant 0))];
+        (Ir.Return (Ir.Var "tmp.4"))];
       frame =
       Env.lenv {
         namespace = "main";

@@ -14,10 +14,8 @@
         (Asm.JmpCC (Asm.NE, "swit.cs.1.6")); (Asm.Jmp "swit.br.1");
         (Asm.Label "swit.cs.1.5"); (Asm.Mov ((Asm.Imm 10), (Asm.Stack -4)));
         (Asm.Jmp "swit.br.1"); (Asm.Label "swit.cs.1.6");
-        (Asm.Mov ((Asm.Imm 0), (Asm.Stack -4))); (Asm.Jmp "swit.br.1");
-        (Asm.Label "swit.br.1");
-        (Asm.Mov ((Asm.Stack -4), (Asm.Reg Asm.AX))); Asm.Ret;
-        (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX))); Asm.Ret];
+        (Asm.Mov ((Asm.Imm 0), (Asm.Stack -4))); (Asm.Label "swit.br.1");
+        (Asm.Mov ((Asm.Stack -4), (Asm.Reg Asm.AX))); Asm.Ret];
       frame =
       Env.lenv {
         namespace = "main";

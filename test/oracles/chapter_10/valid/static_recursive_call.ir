@@ -14,8 +14,7 @@
           target = "print_alphabet.if.en.4"};
         Ir.FunCall {fun_name = "print_alphabet"; args = [];
           dst = (Ir.Var "tmp.5")};
-        (Ir.Label "print_alphabet.if.en.4"); (Ir.Return (Ir.Var "count.1"));
-        (Ir.Return (Ir.Constant 0))];
+        (Ir.Label "print_alphabet.if.en.4"); (Ir.Return (Ir.Var "count.1"))];
       frame =
       Env.lenv {
         namespace = "print_alphabet";

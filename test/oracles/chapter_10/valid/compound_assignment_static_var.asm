@@ -57,7 +57,7 @@
         (Asm.JmpCC (Asm.E, "f.if.en.13"));
         (Asm.Mov ((Asm.Imm 4), (Asm.Reg Asm.AX))); Asm.Ret;
         (Asm.Label "f.if.en.13"); (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX)));
-        Asm.Ret; (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX))); Asm.Ret];
+        Asm.Ret];
       frame =
       Env.lenv {
         namespace = "f";
@@ -81,8 +81,7 @@
          (Asm.Mov ((Asm.Reg Asm.AX), (Asm.Stack -4))); (Asm.Call "f");
          (Asm.Mov ((Asm.Reg Asm.AX), (Asm.Stack -8))); (Asm.Call "f");
          (Asm.Mov ((Asm.Reg Asm.AX), (Asm.Stack -12)));
-         (Asm.Mov ((Asm.Stack -12), (Asm.Reg Asm.AX))); Asm.Ret;
-         (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX))); Asm.Ret];
+         (Asm.Mov ((Asm.Stack -12), (Asm.Reg Asm.AX))); Asm.Ret];
        frame =
        Env.lenv {
          namespace = "main";

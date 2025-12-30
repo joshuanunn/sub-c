@@ -43,8 +43,7 @@
         Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "tmp.18")};
         Ir.Jump {target = "x.and.en.20"}; (Ir.Label "x.and.fl.19");
         Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "tmp.18")};
-        (Ir.Label "x.and.en.20"); (Ir.Return (Ir.Var "tmp.18"));
-        (Ir.Return (Ir.Constant 0))];
+        (Ir.Label "x.and.en.20"); (Ir.Return (Ir.Var "tmp.18"))];
       frame =
       Env.lenv {
         namespace = "x";
@@ -79,7 +78,7 @@
            [(Ir.Constant 1); (Ir.Constant 2); (Ir.Constant 3);
              (Ir.Constant 4); (Ir.Constant 5); (Ir.Var "tmp.0")];
            dst = (Ir.Var "tmp.1")};
-         (Ir.Return (Ir.Var "tmp.1")); (Ir.Return (Ir.Constant 0))];
+         (Ir.Return (Ir.Var "tmp.1"))];
        frame =
        Env.lenv {
          namespace = "main";

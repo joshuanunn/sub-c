@@ -46,16 +46,9 @@ main:
     movq        %rbp, %rsp
     popq        %rbp
     ret         
-    movl        $0, %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
-    jmp         .Lmain.if.en.6
-.Lmain.if.el.7:
 .Lswit.cs.2.4:
     movl        $1, -8(%rbp)
     jmp         .Lswit.br.2
-.Lmain.if.en.6:
 .Lswit.df.2:
     movl        $0, %eax
     movq        %rbp, %rsp
@@ -66,14 +59,6 @@ main:
     cmpl        $0, -36(%rbp)
     jne         .Lswit.cs.3.5
     jmp         .Lswit.df.3
-    movl        $0, -40(%rbp)
-.Lloop.st.4:
-    cmpl        $10, -40(%rbp)
-    movl        $0, -44(%rbp)
-    setl        -44(%rbp)
-    cmpl        $0, -44(%rbp)
-    je          .Lloop.br.4
-    movl        $0, -4(%rbp)
 .Lswit.cs.3.5:
     movl        $1, -12(%rbp)
     jmp         .Lloop.br.4
@@ -82,15 +67,7 @@ main:
     movq        %rbp, %rsp
     popq        %rbp
     ret         
-.Lloop.ct.4:
-    movl        -40(%rbp), %r10d
-    movl        %r10d, -48(%rbp)
-    addl        $1, -48(%rbp)
-    movl        -48(%rbp), %r10d
-    movl        %r10d, -40(%rbp)
-    jmp         .Lloop.st.4
 .Lloop.br.4:
-.Lswit.br.3:
     cmpl        $0, -4(%rbp)
     je          .Lmain.and.fl.12
     cmpl        $0, -8(%rbp)
@@ -110,10 +87,6 @@ main:
     movl        $0, -56(%rbp)
 .Lmain.and.en.16:
     movl        -56(%rbp), %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
-    movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         

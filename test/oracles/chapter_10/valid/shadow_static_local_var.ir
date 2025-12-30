@@ -9,7 +9,7 @@
         (Ir.Label "update_static_or_global.if.el.1");
         Ir.Copy {src = (Ir.Var "new_val.1"); dst = (Ir.Var "i.2")};
         (Ir.Label "update_static_or_global.if.en.0");
-        (Ir.Return (Ir.Var "i.2")); (Ir.Return (Ir.Constant 0))];
+        (Ir.Return (Ir.Var "i.2"))];
       frame =
       Env.lenv {
         namespace = "update_static_or_global";
@@ -62,7 +62,7 @@
          Ir.JumpIfZero {condition = (Ir.Var "tmp.15");
            target = "main.if.en.16"};
          (Ir.Return (Ir.Constant 1)); (Ir.Label "main.if.en.16");
-         (Ir.Return (Ir.Constant 0)); (Ir.Return (Ir.Constant 0))];
+         (Ir.Return (Ir.Constant 0))];
        frame =
        Env.lenv {
          namespace = "main";

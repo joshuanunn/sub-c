@@ -12,8 +12,7 @@
         Ir.Binary {op = Ir.Add; src1 = (Ir.Var "a.0");
           src2 = (Ir.Constant 1); dst = (Ir.Var "tmp.3")};
         Ir.Copy {src = (Ir.Var "tmp.3"); dst = (Ir.Var "a.0")};
-        (Ir.Label "loop.ct.1"); Ir.Jump {target = "loop.st.1"};
-        (Ir.Label "loop.br.1");
+        Ir.Jump {target = "loop.st.1"}; (Ir.Label "loop.br.1");
         Ir.Binary {op = Ir.Remainder; src1 = (Ir.Var "a.0");
           src2 = (Ir.Constant 5); dst = (Ir.Var "tmp.4")};
         Ir.JumpIfNotZero {condition = (Ir.Var "tmp.4");
@@ -25,8 +24,7 @@
         Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "tmp.6")};
         Ir.Jump {target = "main.or.en.8"}; (Ir.Label "main.or.tr.7");
         Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "tmp.6")};
-        (Ir.Label "main.or.en.8"); (Ir.Return (Ir.Var "tmp.6"));
-        (Ir.Return (Ir.Constant 0))];
+        (Ir.Label "main.or.en.8"); (Ir.Return (Ir.Var "tmp.6"))];
       frame =
       Env.lenv {
         namespace = "main";

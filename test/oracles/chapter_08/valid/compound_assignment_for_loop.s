@@ -21,7 +21,6 @@ main:
     setge       -20(%rbp)
     cmpl        $0, -20(%rbp)
     je          .Lloop.br.1
-.Lloop.ct.1:
     movl        -4(%rbp), %r10d
     movl        %r10d, -24(%rbp)
     subl        $3, -24(%rbp)
@@ -35,10 +34,6 @@ main:
     movl        $0, -32(%rbp)
     sete        -32(%rbp)
     movl        -32(%rbp), %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
-    movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         

@@ -1,6 +1,6 @@
 (Ir.Program
    [Ir.Function {name = "a"; global = true; params = [];
-      body = [(Ir.Return (Ir.Constant 1)); (Ir.Return (Ir.Constant 0))];
+      body = [(Ir.Return (Ir.Constant 1))];
       frame =
       Env.lenv {
         namespace = "a";
@@ -9,7 +9,7 @@
         stack slots = {
         }}};
      Ir.Function {name = "b"; global = true; params = ["a.0"];
-       body = [(Ir.Return (Ir.Var "a.0")); (Ir.Return (Ir.Constant 0))];
+       body = [(Ir.Return (Ir.Var "a.0"))];
        frame =
        Env.lenv {
          namespace = "b";
@@ -25,7 +25,7 @@
            dst = (Ir.Var "tmp.1")};
          Ir.Binary {op = Ir.Add; src1 = (Ir.Var "tmp.0");
            src2 = (Ir.Var "tmp.1"); dst = (Ir.Var "tmp.2")};
-         (Ir.Return (Ir.Var "tmp.2")); (Ir.Return (Ir.Constant 0))];
+         (Ir.Return (Ir.Var "tmp.2"))];
        frame =
        Env.lenv {
          namespace = "main";

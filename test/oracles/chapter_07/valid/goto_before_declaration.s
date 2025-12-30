@@ -18,8 +18,4 @@ main:
 .Lmain.if.en.1:
     movl        $4, -12(%rbp)
     jmp         .Lreturn_a.0
-    movl        $0, %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
     .section    .note.GNU-stack,"",@progbits

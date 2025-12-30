@@ -1,8 +1,6 @@
 (Ir.Program
    [Ir.Function {name = "main"; global = true; params = [];
-      body =
-      [Ir.Jump {target = "end.0"}; (Ir.Label "end.0");
-        (Ir.Return (Ir.Var "x.1")); (Ir.Return (Ir.Constant 0))];
+      body = [(Ir.Return (Ir.Var "x.1"))];
       frame =
       Env.lenv {
         namespace = "main";

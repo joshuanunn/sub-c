@@ -1,9 +1,7 @@
 (Asm.Program
    [Asm.Function {name = "main"; global = true;
       instructions =
-      [(Asm.Jmp "end.0"); (Asm.Label "end.0");
-        (Asm.Mov ((Asm.Data "x.1"), (Asm.Reg Asm.AX))); Asm.Ret;
-        (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX))); Asm.Ret];
+      [(Asm.Mov ((Asm.Data "x.1"), (Asm.Reg Asm.AX))); Asm.Ret];
       frame =
       Env.lenv {
         namespace = "main";

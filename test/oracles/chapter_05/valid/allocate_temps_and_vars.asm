@@ -31,8 +31,7 @@
         (Asm.Cmp ((Asm.Reg Asm.R10), (Asm.Stack -28)));
         (Asm.Mov ((Asm.Imm 0), (Asm.Stack -36)));
         (Asm.SetCC (Asm.E, (Asm.Stack -36)));
-        (Asm.Mov ((Asm.Stack -36), (Asm.Reg Asm.AX))); Asm.Ret;
-        (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX))); Asm.Ret];
+        (Asm.Mov ((Asm.Stack -36), (Asm.Reg Asm.AX))); Asm.Ret];
       frame =
       Env.lenv {
         namespace = "main";

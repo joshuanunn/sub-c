@@ -18,10 +18,6 @@ incr_i:
     movq        %rbp, %rsp
     popq        %rbp
     ret         
-    movl        $0, %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
     .globl      decr_j
     .text       
 decr_j:
@@ -39,10 +35,6 @@ decr_j:
     movl        %r10d, -12(%rbp)
     subl        $1, j(%rip)
 .Ldecr_j.if.en.2:
-    movl        $0, %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
     movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp
@@ -99,10 +91,6 @@ main:
     popq        %rbp
     ret         
 .Lmain.if.en.13:
-    movl        $0, %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
     movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp

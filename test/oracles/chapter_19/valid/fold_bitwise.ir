@@ -2,7 +2,7 @@
    [Ir.Function {name = "target_and"; global = true; params = [];
       body =
       [Ir.Copy {src = (Ir.Constant 983055); dst = (Ir.Var "tmp.0")};
-        (Ir.Return (Ir.Var "tmp.0")); (Ir.Return (Ir.Constant 0))];
+        (Ir.Return (Ir.Var "tmp.0"))];
       frame =
       Env.lenv {
         namespace = "target_and";
@@ -14,7 +14,7 @@
      Ir.Function {name = "target_or"; global = true; params = [];
        body =
        [Ir.Copy {src = (Ir.Constant 268374015); dst = (Ir.Var "tmp.0")};
-         (Ir.Return (Ir.Var "tmp.0")); (Ir.Return (Ir.Constant 0))];
+         (Ir.Return (Ir.Var "tmp.0"))];
        frame =
        Env.lenv {
          namespace = "target_or";
@@ -26,7 +26,7 @@
      Ir.Function {name = "target_xor"; global = true; params = [];
        body =
        [Ir.Copy {src = (Ir.Constant 267390960); dst = (Ir.Var "tmp.0")};
-         (Ir.Return (Ir.Var "tmp.0")); (Ir.Return (Ir.Constant 0))];
+         (Ir.Return (Ir.Var "tmp.0"))];
        frame =
        Env.lenv {
          namespace = "target_xor";
@@ -38,7 +38,7 @@
      Ir.Function {name = "target_shift_left"; global = true; params = [];
        body =
        [Ir.Copy {src = (Ir.Constant 76283904); dst = (Ir.Var "tmp.0")};
-         (Ir.Return (Ir.Var "tmp.0")); (Ir.Return (Ir.Constant 0))];
+         (Ir.Return (Ir.Var "tmp.0"))];
        frame =
        Env.lenv {
          namespace = "target_shift_left";
@@ -50,7 +50,7 @@
      Ir.Function {name = "target_shift_right"; global = true; params = [];
        body =
        [Ir.Copy {src = (Ir.Constant 493447); dst = (Ir.Var "tmp.0")};
-         (Ir.Return (Ir.Var "tmp.0")); (Ir.Return (Ir.Constant 0))];
+         (Ir.Return (Ir.Var "tmp.0"))];
        frame =
        Env.lenv {
          namespace = "target_shift_right";
@@ -93,7 +93,7 @@
          Ir.JumpIfZero {condition = (Ir.Var "tmp.13");
            target = "main.if.en.14"};
          (Ir.Return (Ir.Constant 5)); (Ir.Label "main.if.en.14");
-         (Ir.Return (Ir.Constant 0)); (Ir.Return (Ir.Constant 0))];
+         (Ir.Return (Ir.Constant 0))];
        frame =
        Env.lenv {
          namespace = "main";

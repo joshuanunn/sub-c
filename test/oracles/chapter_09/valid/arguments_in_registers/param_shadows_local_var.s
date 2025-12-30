@@ -12,10 +12,6 @@ main:
     movq        %rbp, %rsp
     popq        %rbp
     ret         
-    movl        $0, %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
     .globl      f
     .text       
 f:
@@ -29,10 +25,6 @@ f:
     imull       $2, %r11d
     movl        %r11d, -4(%rbp)
     movl        -4(%rbp), %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
-    movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         

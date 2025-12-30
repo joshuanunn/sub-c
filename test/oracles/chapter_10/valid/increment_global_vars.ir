@@ -10,8 +10,7 @@
           dst = (Ir.Var "i")};
         Ir.Binary {op = Ir.Add; src1 = (Ir.Var "i"); src2 = (Ir.Constant 1);
           dst = (Ir.Var "i")};
-        (Ir.Label "incr_i.if.en.1"); (Ir.Return (Ir.Constant 0));
-        (Ir.Return (Ir.Constant 0))];
+        (Ir.Label "incr_i.if.en.1"); (Ir.Return (Ir.Constant 0))];
       frame =
       Env.lenv {
         namespace = "incr_i";
@@ -31,8 +30,7 @@
          Ir.Copy {src = (Ir.Var "j"); dst = (Ir.Var "tmp.3")};
          Ir.Binary {op = Ir.Subtract; src1 = (Ir.Var "j");
            src2 = (Ir.Constant 1); dst = (Ir.Var "j")};
-         (Ir.Label "decr_j.if.en.2"); (Ir.Return (Ir.Constant 0));
-         (Ir.Return (Ir.Constant 0))];
+         (Ir.Label "decr_j.if.en.2"); (Ir.Return (Ir.Constant 0))];
        frame =
        Env.lenv {
          namespace = "decr_j";
@@ -73,7 +71,7 @@
          Ir.JumpIfZero {condition = (Ir.Var "tmp.12");
            target = "main.if.en.13"};
          (Ir.Return (Ir.Constant 2)); (Ir.Label "main.if.en.13");
-         (Ir.Return (Ir.Constant 0)); (Ir.Return (Ir.Constant 0))];
+         (Ir.Return (Ir.Constant 0))];
        frame =
        Env.lenv {
          namespace = "main";

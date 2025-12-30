@@ -70,7 +70,6 @@
         Asm.Binary {op = Asm.Sub; src = (Asm.Imm 1); dst = (Asm.Stack -60)};
         (Asm.Mov ((Asm.Stack -60), (Asm.Reg Asm.R10)));
         (Asm.Mov ((Asm.Reg Asm.R10), (Asm.Stack -4)));
-        (Asm.Label "loop.ct.2");
         (Asm.Mov ((Asm.Stack -8), (Asm.Reg Asm.R10)));
         (Asm.Mov ((Asm.Reg Asm.R10), (Asm.Stack -64)));
         Asm.Binary {op = Asm.Sub; src = (Asm.Imm 1); dst = (Asm.Stack -64)};
@@ -80,8 +79,8 @@
         (Asm.Mov ((Asm.Imm 0), (Asm.Stack -68)));
         (Asm.SetCC (Asm.G, (Asm.Stack -68)));
         (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -68)));
-        (Asm.JmpCC (Asm.NE, "loop.st.2")); (Asm.Label "loop.br.2");
-        (Asm.Label "swit.br.1"); (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -4)));
+        (Asm.JmpCC (Asm.NE, "loop.st.2")); (Asm.Label "swit.br.1");
+        (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -4)));
         (Asm.Mov ((Asm.Imm 0), (Asm.Stack -72)));
         (Asm.SetCC (Asm.E, (Asm.Stack -72)));
         (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -72)));
@@ -95,8 +94,7 @@
         (Asm.Label "main.and.fl.18");
         (Asm.Mov ((Asm.Imm 0), (Asm.Stack -80)));
         (Asm.Label "main.and.en.19");
-        (Asm.Mov ((Asm.Stack -80), (Asm.Reg Asm.AX))); Asm.Ret;
-        (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX))); Asm.Ret];
+        (Asm.Mov ((Asm.Stack -80), (Asm.Reg Asm.AX))); Asm.Ret];
       frame =
       Env.lenv {
         namespace = "main";

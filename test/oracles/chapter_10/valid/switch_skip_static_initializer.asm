@@ -15,7 +15,7 @@
         (Asm.Label "swit.cs.1.3");
         (Asm.Mov ((Asm.Data "x.0"), (Asm.Reg Asm.AX))); Asm.Ret;
         (Asm.Label "swit.br.1"); (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX)));
-        Asm.Ret; (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX))); Asm.Ret];
+        Asm.Ret];
       frame =
       Env.lenv {
         namespace = "main";

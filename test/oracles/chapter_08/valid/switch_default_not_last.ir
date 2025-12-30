@@ -9,10 +9,8 @@
           src2 = (Ir.Constant 2); dst = (Ir.Var "tmp.1")};
         Ir.JumpIfNotZero {condition = (Ir.Var "tmp.1");
           target = "swit.cs.1.2"};
-        Ir.Jump {target = "swit.df.1"}; (Ir.Label "swit.df.1");
         (Ir.Return (Ir.Constant 0)); (Ir.Label "swit.cs.1.2");
-        (Ir.Return (Ir.Constant 1)); (Ir.Label "swit.br.1");
-        (Ir.Return (Ir.Constant 0))];
+        (Ir.Return (Ir.Constant 1))];
       frame =
       Env.lenv {
         namespace = "main";

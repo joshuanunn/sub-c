@@ -9,10 +9,6 @@ target_negate:
     movq        %rbp, %rsp
     popq        %rbp
     ret         
-    movl        $0, %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
     .globl      target_negate_zero
     .text       
 target_negate_zero:
@@ -21,10 +17,6 @@ target_negate_zero:
     subq        $16, %rsp
     movl        $0, -4(%rbp)
     movl        -4(%rbp), %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
-    movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         
@@ -39,10 +31,6 @@ target_not:
     movq        %rbp, %rsp
     popq        %rbp
     ret         
-    movl        $0, %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
     .globl      target_not_zero
     .text       
 target_not_zero:
@@ -54,10 +42,6 @@ target_not_zero:
     movq        %rbp, %rsp
     popq        %rbp
     ret         
-    movl        $0, %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
     .globl      target_complement
     .text       
 target_complement:
@@ -66,10 +50,6 @@ target_complement:
     subq        $16, %rsp
     movl        $-2, -4(%rbp)
     movl        -4(%rbp), %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
-    movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         
@@ -147,10 +127,6 @@ main:
     popq        %rbp
     ret         
 .Lmain.if.en.16:
-    movl        $0, %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
     movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp

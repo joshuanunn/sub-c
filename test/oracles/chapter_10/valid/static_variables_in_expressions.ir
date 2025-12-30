@@ -7,7 +7,7 @@
         Ir.Unary {op = Ir.Not; src = (Ir.Var "cmp.2"); dst = (Ir.Var "tmp.1")};
         Ir.JumpIfZero {condition = (Ir.Var "tmp.1"); target = "main.if.en.2"};
         (Ir.Return (Ir.Constant 1)); (Ir.Label "main.if.en.2");
-        (Ir.Return (Ir.Constant 0)); (Ir.Return (Ir.Constant 0))];
+        (Ir.Return (Ir.Constant 0))];
       frame =
       Env.lenv {
         namespace = "main";

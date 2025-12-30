@@ -5,15 +5,8 @@ main:
     movq        %rsp, %rbp
     subq        $16, %rsp
     movl        $5, -4(%rbp)
-    jmp         .Linner.0
-    movl        $0, -8(%rbp)
-.Linner.0:
     movl        $1, -8(%rbp)
     movl        -8(%rbp), %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
-    movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         

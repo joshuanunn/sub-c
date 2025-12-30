@@ -41,7 +41,6 @@ main:
     je          .Lmain.if.en.5
     jmp         .Lloop.br.2
 .Lmain.if.en.5:
-.Lloop.ct.2:
     movl        -16(%rbp), %r10d
     movl        %r10d, -32(%rbp)
     addl        $1, -32(%rbp)
@@ -55,15 +54,6 @@ main:
     ret         
 .Lswit.df.1:
     movl        $2, %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
-.Lswit.br.1:
-    movl        $3, %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
-    movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         

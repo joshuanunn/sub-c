@@ -1,21 +1,13 @@
 (Ir.Program
    [Ir.Function {name = "main"; global = true; params = [];
       body =
-      [Ir.Jump {target = "main.and.fl.2"};
-        Ir.Binary {op = Ir.Divide; src1 = (Ir.Constant 1);
-          src2 = (Ir.Constant 0); dst = (Ir.Var "tmp.0")};
-        Ir.JumpIfZero {condition = (Ir.Var "tmp.0"); target = "main.and.fl.2"};
-        Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "tmp.1")};
-        Ir.Jump {target = "main.and.en.3"}; (Ir.Label "main.and.fl.2");
-        Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "tmp.1")};
-        (Ir.Label "main.and.en.3");
+      [Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "tmp.1")};
         Ir.JumpIfNotZero {condition = (Ir.Var "tmp.1");
           target = "main.or.tr.5"};
         Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "tmp.4")};
         Ir.Jump {target = "main.or.en.6"}; (Ir.Label "main.or.tr.5");
         Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "tmp.4")};
-        (Ir.Label "main.or.en.6"); (Ir.Return (Ir.Var "tmp.4"));
-        (Ir.Return (Ir.Constant 0))];
+        (Ir.Label "main.or.en.6"); (Ir.Return (Ir.Var "tmp.4"))];
       frame =
       Env.lenv {
         namespace = "main";

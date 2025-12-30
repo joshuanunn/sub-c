@@ -43,7 +43,6 @@ main:
     setne       -36(%rbp)
     cmpl        $0, -36(%rbp)
     jne         .Lloop.st.1
-.Lloop.br.1:
     cmpl        $50, -12(%rbp)
     movl        $0, -40(%rbp)
     sete        -40(%rbp)
@@ -72,10 +71,6 @@ main:
     movl        $0, -56(%rbp)
 .Lmain.and.en.16:
     movl        -56(%rbp), %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
-    movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         

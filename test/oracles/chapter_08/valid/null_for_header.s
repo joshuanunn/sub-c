@@ -18,14 +18,9 @@ main:
     je          .Lmain.if.en.2
     jmp         .Lloop.br.1
 .Lmain.if.en.2:
-.Lloop.ct.1:
     jmp         .Lloop.st.1
 .Lloop.br.1:
     movl        -4(%rbp), %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
-    movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         

@@ -26,7 +26,7 @@
         Ir.JumpIfZero {condition = (Ir.Var "tmp.10");
           target = "main.if.en.11"};
         (Ir.Return (Ir.Constant 2)); (Ir.Label "main.if.en.11");
-        (Ir.Return (Ir.Constant 0)); (Ir.Return (Ir.Constant 0))];
+        (Ir.Return (Ir.Constant 0))];
       frame =
       Env.lenv {
         namespace = "main";

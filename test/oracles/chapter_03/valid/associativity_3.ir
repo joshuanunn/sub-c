@@ -9,7 +9,7 @@
           src2 = (Ir.Constant 3); dst = (Ir.Var "tmp.3")};
         Ir.Binary {op = Ir.Add; src1 = (Ir.Var "tmp.1");
           src2 = (Ir.Var "tmp.3"); dst = (Ir.Var "tmp.4")};
-        (Ir.Return (Ir.Var "tmp.4")); (Ir.Return (Ir.Constant 0))];
+        (Ir.Return (Ir.Var "tmp.4"))];
       frame =
       Env.lenv {
         namespace = "main";

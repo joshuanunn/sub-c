@@ -12,9 +12,6 @@ main:
     cmpl        $0, -12(%rbp)
     jne         .Lswit.cs.1.3
     jmp         .Lswit.br.1
-    movl        $5, -8(%rbp)
-    movl        -8(%rbp), %r10d
-    movl        %r10d, -16(%rbp)
 .Lswit.cs.1.3:
     movl        $4, -16(%rbp)
     movl        -8(%rbp), %r10d
@@ -40,10 +37,6 @@ main:
     movl        $0, -32(%rbp)
 .Lmain.and.en.6:
     movl        -32(%rbp), %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
-    movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         

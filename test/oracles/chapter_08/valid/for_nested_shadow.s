@@ -23,7 +23,6 @@ main:
     movl        %r10d, -28(%rbp)
     movl        -28(%rbp), %r10d
     movl        %r10d, -12(%rbp)
-.Lloop.ct.1:
     movl        -16(%rbp), %r10d
     movl        %r10d, -36(%rbp)
     subl        $1, -36(%rbp)
@@ -59,10 +58,6 @@ main:
     movl        $0, -56(%rbp)
 .Lmain.and.en.11:
     movl        -56(%rbp), %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
-    movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         

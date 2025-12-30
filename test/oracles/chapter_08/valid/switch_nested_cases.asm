@@ -26,32 +26,17 @@
         (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -32)));
         (Asm.JmpCC (Asm.NE, "swit.cs.2.4")); (Asm.Jmp "swit.df.2");
         (Asm.Label "swit.cs.2.0"); (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX)));
-        Asm.Ret; (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX))); Asm.Ret;
-        (Asm.Jmp "main.if.en.6"); (Asm.Label "main.if.el.7");
-        (Asm.Label "swit.cs.2.4"); (Asm.Mov ((Asm.Imm 1), (Asm.Stack -8)));
-        (Asm.Jmp "swit.br.2"); (Asm.Label "main.if.en.6");
+        Asm.Ret; (Asm.Label "swit.cs.2.4");
+        (Asm.Mov ((Asm.Imm 1), (Asm.Stack -8))); (Asm.Jmp "swit.br.2");
         (Asm.Label "swit.df.2"); (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX)));
         Asm.Ret; (Asm.Label "swit.br.2");
         (Asm.Mov ((Asm.Imm 1), (Asm.Stack -36)));
         (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -36)));
         (Asm.JmpCC (Asm.NE, "swit.cs.3.5")); (Asm.Jmp "swit.df.3");
-        (Asm.Mov ((Asm.Imm 0), (Asm.Stack -40))); (Asm.Label "loop.st.4");
-        (Asm.Cmp ((Asm.Imm 10), (Asm.Stack -40)));
-        (Asm.Mov ((Asm.Imm 0), (Asm.Stack -44)));
-        (Asm.SetCC (Asm.L, (Asm.Stack -44)));
-        (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -44)));
-        (Asm.JmpCC (Asm.E, "loop.br.4"));
-        (Asm.Mov ((Asm.Imm 0), (Asm.Stack -4))); (Asm.Label "swit.cs.3.5");
-        (Asm.Mov ((Asm.Imm 1), (Asm.Stack -12))); (Asm.Jmp "loop.br.4");
-        (Asm.Label "swit.df.3"); (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX)));
-        Asm.Ret; (Asm.Label "loop.ct.4");
-        (Asm.Mov ((Asm.Stack -40), (Asm.Reg Asm.R10)));
-        (Asm.Mov ((Asm.Reg Asm.R10), (Asm.Stack -48)));
-        Asm.Binary {op = Asm.Add; src = (Asm.Imm 1); dst = (Asm.Stack -48)};
-        (Asm.Mov ((Asm.Stack -48), (Asm.Reg Asm.R10)));
-        (Asm.Mov ((Asm.Reg Asm.R10), (Asm.Stack -40)));
-        (Asm.Jmp "loop.st.4"); (Asm.Label "loop.br.4");
-        (Asm.Label "swit.br.3"); (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -4)));
+        (Asm.Label "swit.cs.3.5"); (Asm.Mov ((Asm.Imm 1), (Asm.Stack -12)));
+        (Asm.Jmp "loop.br.4"); (Asm.Label "swit.df.3");
+        (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX))); Asm.Ret;
+        (Asm.Label "loop.br.4"); (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -4)));
         (Asm.JmpCC (Asm.E, "main.and.fl.12"));
         (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -8)));
         (Asm.JmpCC (Asm.E, "main.and.fl.12"));
@@ -67,8 +52,7 @@
         (Asm.Label "main.and.fl.15");
         (Asm.Mov ((Asm.Imm 0), (Asm.Stack -56)));
         (Asm.Label "main.and.en.16");
-        (Asm.Mov ((Asm.Stack -56), (Asm.Reg Asm.AX))); Asm.Ret;
-        (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX))); Asm.Ret];
+        (Asm.Mov ((Asm.Stack -56), (Asm.Reg Asm.AX))); Asm.Ret];
       frame =
       Env.lenv {
         namespace = "main";

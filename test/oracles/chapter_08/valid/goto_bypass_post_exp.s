@@ -6,7 +6,6 @@ main:
     subq        $32, %rsp
     movl        $0, -4(%rbp)
     movl        $0, -8(%rbp)
-.Lloop.st.1:
 .Llbl.0:
     movl        -4(%rbp), %r10d
     movl        %r10d, -12(%rbp)
@@ -26,15 +25,8 @@ main:
     jmp         .Lloop.br.1
 .Lmain.if.en.3:
     jmp         .Llbl.0
-.Lloop.ct.1:
-    movl        $0, -8(%rbp)
-    jmp         .Lloop.st.1
 .Lloop.br.1:
     movl        -4(%rbp), %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
-    movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         

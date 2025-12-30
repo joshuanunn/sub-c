@@ -11,7 +11,7 @@
         Ir.Copy {src = (Ir.Var "tmp.1"); dst = (Ir.Var "y.1")};
         Ir.Binary {op = Ir.Add; src1 = (Ir.Var "x.0"); src2 = (Ir.Var "y.1");
           dst = (Ir.Var "tmp.2")};
-        (Ir.Return (Ir.Var "tmp.2")); (Ir.Return (Ir.Constant 0))];
+        (Ir.Return (Ir.Var "tmp.2"))];
       frame =
       Env.lenv {
         namespace = "main";

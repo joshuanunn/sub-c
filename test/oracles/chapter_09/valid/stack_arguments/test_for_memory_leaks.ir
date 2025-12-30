@@ -6,7 +6,7 @@
       body =
       [Ir.Binary {op = Ir.Add; src1 = (Ir.Var "l.11");
          src2 = (Ir.Var "o.14"); dst = (Ir.Var "tmp.0")};
-        (Ir.Return (Ir.Var "tmp.0")); (Ir.Return (Ir.Constant 0))];
+        (Ir.Return (Ir.Var "tmp.0"))];
       frame =
       Env.lenv {
         namespace = "lots_of_args";
@@ -47,14 +47,13 @@
              (Ir.Constant 13); (Ir.Constant 14); (Ir.Constant 15)];
            dst = (Ir.Var "tmp.1")};
          Ir.Copy {src = (Ir.Var "tmp.1"); dst = (Ir.Var "ret.15")};
-         (Ir.Label "loop.ct.1");
          Ir.Binary {op = Ir.Add; src1 = (Ir.Var "i.16");
            src2 = (Ir.Constant 1); dst = (Ir.Var "tmp.2")};
          Ir.Copy {src = (Ir.Var "tmp.2"); dst = (Ir.Var "i.16")};
          Ir.Jump {target = "loop.st.1"}; (Ir.Label "loop.br.1");
          Ir.Binary {op = Ir.Equal; src1 = (Ir.Var "ret.15");
            src2 = (Ir.Constant 150000000); dst = (Ir.Var "tmp.3")};
-         (Ir.Return (Ir.Var "tmp.3")); (Ir.Return (Ir.Constant 0))];
+         (Ir.Return (Ir.Var "tmp.3"))];
        frame =
        Env.lenv {
          namespace = "main";

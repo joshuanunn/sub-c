@@ -19,14 +19,7 @@ main:
     andl        %r10d, -16(%rbp)
     movl        -16(%rbp), %r10d
     movl        %r10d, -4(%rbp)
-    cmpl        $0, -4(%rbp)
-    jne         .Lmain.or.tr.5
-    jmp         .Lmain.or.tr.5
-    movl        $0, -20(%rbp)
-    jmp         .Lmain.or.en.6
-.Lmain.or.tr.5:
     movl        $1, -20(%rbp)
-.Lmain.or.en.6:
     movl        -8(%rbp), %r10d
     movl        %r10d, -24(%rbp)
     movl        -20(%rbp), %r10d
@@ -133,10 +126,6 @@ main:
     movl        $0, -96(%rbp)
 .Lmain.and.en.36:
     movl        -96(%rbp), %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
-    movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         

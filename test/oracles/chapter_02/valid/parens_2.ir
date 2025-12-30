@@ -2,7 +2,7 @@
    [Ir.Function {name = "main"; global = true; params = [];
       body =
       [Ir.Copy {src = (Ir.Constant -3); dst = (Ir.Var "tmp.0")};
-        (Ir.Return (Ir.Var "tmp.0")); (Ir.Return (Ir.Constant 0))];
+        (Ir.Return (Ir.Var "tmp.0"))];
       frame =
       Env.lenv {
         namespace = "main";

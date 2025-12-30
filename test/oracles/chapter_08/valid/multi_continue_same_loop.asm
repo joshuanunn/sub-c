@@ -35,7 +35,7 @@
         (Asm.Mov ((Asm.Imm 0), (Asm.Stack -36)));
         (Asm.SetCC (Asm.NE, (Asm.Stack -36)));
         (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -36)));
-        (Asm.JmpCC (Asm.NE, "loop.st.1")); (Asm.Label "loop.br.1");
+        (Asm.JmpCC (Asm.NE, "loop.st.1"));
         (Asm.Cmp ((Asm.Imm 50), (Asm.Stack -12)));
         (Asm.Mov ((Asm.Imm 0), (Asm.Stack -40)));
         (Asm.SetCC (Asm.E, (Asm.Stack -40)));
@@ -61,8 +61,7 @@
         (Asm.Label "main.and.fl.15");
         (Asm.Mov ((Asm.Imm 0), (Asm.Stack -56)));
         (Asm.Label "main.and.en.16");
-        (Asm.Mov ((Asm.Stack -56), (Asm.Reg Asm.AX))); Asm.Ret;
-        (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX))); Asm.Ret];
+        (Asm.Mov ((Asm.Stack -56), (Asm.Reg Asm.AX))); Asm.Ret];
       frame =
       Env.lenv {
         namespace = "main";

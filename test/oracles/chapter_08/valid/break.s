@@ -27,7 +27,6 @@ main:
     je          .Lmain.if.en.4
     jmp         .Lloop.br.1
 .Lmain.if.en.4:
-.Lloop.ct.1:
     movl        -8(%rbp), %r10d
     movl        %r10d, -28(%rbp)
     addl        $1, -28(%rbp)
@@ -53,10 +52,6 @@ main:
     movl        $0, -44(%rbp)
 .Lmain.and.en.11:
     movl        -44(%rbp), %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
-    movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         

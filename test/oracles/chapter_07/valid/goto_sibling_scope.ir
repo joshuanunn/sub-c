@@ -3,23 +3,18 @@
       body =
       [Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "sum.2")};
         Ir.Copy {src = (Ir.Constant 5); dst = (Ir.Var "a.3")};
-        Ir.Jump {target = "other_if.1"};
-        Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "sum.2")};
-        (Ir.Label "first_if.0");
+        Ir.Jump {target = "other_if.1"}; (Ir.Label "first_if.0");
         Ir.Copy {src = (Ir.Constant 5); dst = (Ir.Var "a.3")};
         Ir.Binary {op = Ir.Add; src1 = (Ir.Var "sum.2");
           src2 = (Ir.Var "a.3"); dst = (Ir.Var "tmp.1")};
         Ir.Copy {src = (Ir.Var "tmp.1"); dst = (Ir.Var "sum.2")};
-        (Ir.Label "main.if.en.0"); Ir.Jump {target = "main.if.en.2"};
-        (Ir.Label "other_if.1");
+        Ir.Jump {target = "main.if.en.2"}; (Ir.Label "other_if.1");
         Ir.Copy {src = (Ir.Constant 6); dst = (Ir.Var "a.4")};
         Ir.Binary {op = Ir.Add; src1 = (Ir.Var "sum.2");
           src2 = (Ir.Var "a.4"); dst = (Ir.Var "tmp.3")};
         Ir.Copy {src = (Ir.Var "tmp.3"); dst = (Ir.Var "sum.2")};
-        Ir.Jump {target = "first_if.0"};
-        Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "sum.2")};
-        (Ir.Label "main.if.en.2"); (Ir.Return (Ir.Var "sum.2"));
-        (Ir.Return (Ir.Constant 0))];
+        Ir.Jump {target = "first_if.0"}; (Ir.Label "main.if.en.2");
+        (Ir.Return (Ir.Var "sum.2"))];
       frame =
       Env.lenv {
         namespace = "main";

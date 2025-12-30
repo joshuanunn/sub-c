@@ -5,17 +5,7 @@ main:
     movq        %rsp, %rbp
     subq        $16, %rsp
     movl        $10, -4(%rbp)
-    jmp         .Lx.0
-    movl        -4(%rbp), %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
-.Lx.0:
     movl        x(%rip), %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
-    movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         

@@ -13,7 +13,7 @@
         Ir.Copy {src = (Ir.Var "tmp.3"); dst = (Ir.Var "i.2")};
         Ir.FunCall {fun_name = "putchar"; args = [(Ir.Constant 10)];
           dst = (Ir.Var "tmp.4")};
-        (Ir.Return (Ir.Constant 0)); (Ir.Return (Ir.Constant 0))];
+        (Ir.Return (Ir.Constant 0))];
       frame =
       Env.lenv {
         namespace = "print_letters";
@@ -35,7 +35,6 @@
          Ir.JumpIfZero {condition = (Ir.Var "tmp.0"); target = "loop.br.1"};
          Ir.FunCall {fun_name = "print_letters"; args = [];
            dst = (Ir.Var "tmp.1")};
-         (Ir.Label "loop.ct.1");
          Ir.Binary {op = Ir.Add; src1 = (Ir.Var "i.3");
            src2 = (Ir.Constant 1); dst = (Ir.Var "tmp.2")};
          Ir.Copy {src = (Ir.Var "tmp.2"); dst = (Ir.Var "i.3")};

@@ -53,7 +53,6 @@
         Asm.Binary {op = Asm.Add; src = (Asm.Imm 1); dst = (Asm.Stack -44)};
         (Asm.Mov ((Asm.Stack -44), (Asm.Reg Asm.R10)));
         (Asm.Mov ((Asm.Reg Asm.R10), (Asm.Stack -8)));
-        (Asm.Label "loop.ct.1");
         (Asm.Mov ((Asm.Stack -12), (Asm.Reg Asm.R10)));
         (Asm.Mov ((Asm.Reg Asm.R10), (Asm.Stack -48)));
         Asm.Binary {op = Asm.Add; src = (Asm.Imm 1); dst = (Asm.Stack -48)};
@@ -74,8 +73,7 @@
         (Asm.Label "main.and.fl.12");
         (Asm.Mov ((Asm.Imm 0), (Asm.Stack -60)));
         (Asm.Label "main.and.en.13");
-        (Asm.Mov ((Asm.Stack -60), (Asm.Reg Asm.AX))); Asm.Ret;
-        (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX))); Asm.Ret];
+        (Asm.Mov ((Asm.Stack -60), (Asm.Reg Asm.AX))); Asm.Ret];
       frame =
       Env.lenv {
         namespace = "main";

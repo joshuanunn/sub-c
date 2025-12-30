@@ -11,7 +11,7 @@
         Ir.Jump {target = "main.if.en.2"}; (Ir.Label "main.if.el.3");
         Ir.Copy {src = (Ir.Constant 4); dst = (Ir.Var "a.0")};
         (Ir.Label "main.if.en.2"); (Ir.Label "main.if.en.0");
-        (Ir.Return (Ir.Var "a.0")); (Ir.Return (Ir.Constant 0))];
+        (Ir.Return (Ir.Var "a.0"))];
       frame =
       Env.lenv {
         namespace = "main";

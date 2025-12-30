@@ -36,10 +36,6 @@ lots_of_args:
     movq        %rbp, %rsp
     popq        %rbp
     ret         
-    movl        $0, %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
     .globl      main
     .text       
 main:
@@ -76,7 +72,6 @@ main:
     movl        %eax, -16(%rbp)
     movl        -16(%rbp), %r10d
     movl        %r10d, -4(%rbp)
-.Lloop.ct.1:
     movl        -8(%rbp), %r10d
     movl        %r10d, -20(%rbp)
     addl        $1, -20(%rbp)
@@ -88,10 +83,6 @@ main:
     movl        $0, -24(%rbp)
     sete        -24(%rbp)
     movl        -24(%rbp), %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
-    movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         

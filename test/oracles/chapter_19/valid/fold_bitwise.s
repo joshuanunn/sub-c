@@ -9,10 +9,6 @@ target_and:
     movq        %rbp, %rsp
     popq        %rbp
     ret         
-    movl        $0, %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
     .globl      target_or
     .text       
 target_or:
@@ -21,10 +17,6 @@ target_or:
     subq        $16, %rsp
     movl        $268374015, -4(%rbp)
     movl        -4(%rbp), %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
-    movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         
@@ -39,10 +31,6 @@ target_xor:
     movq        %rbp, %rsp
     popq        %rbp
     ret         
-    movl        $0, %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
     .globl      target_shift_left
     .text       
 target_shift_left:
@@ -54,10 +42,6 @@ target_shift_left:
     movq        %rbp, %rsp
     popq        %rbp
     ret         
-    movl        $0, %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
     .globl      target_shift_right
     .text       
 target_shift_right:
@@ -66,10 +50,6 @@ target_shift_right:
     subq        $16, %rsp
     movl        $493447, -4(%rbp)
     movl        -4(%rbp), %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
-    movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         
@@ -139,10 +119,6 @@ main:
     popq        %rbp
     ret         
 .Lmain.if.en.14:
-    movl        $0, %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
     movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp

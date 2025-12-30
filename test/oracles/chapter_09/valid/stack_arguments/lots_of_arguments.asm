@@ -87,8 +87,7 @@
         (Asm.Label "foo.and.fl.27");
         (Asm.Mov ((Asm.Imm 0), (Asm.Stack -60)));
         (Asm.Label "foo.and.en.28");
-        (Asm.Mov ((Asm.Stack -60), (Asm.Reg Asm.AX))); Asm.Ret;
-        (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX))); Asm.Ret];
+        (Asm.Mov ((Asm.Stack -60), (Asm.Reg Asm.AX))); Asm.Ret];
       frame =
       Env.lenv {
         namespace = "foo";
@@ -129,8 +128,7 @@
          (Asm.Mov ((Asm.Imm 6), (Asm.Reg Asm.R9))); (Asm.Push (Asm.Imm 8));
          (Asm.Push (Asm.Imm 7)); (Asm.Call "foo"); (Asm.DeallocateStack 16);
          (Asm.Mov ((Asm.Reg Asm.AX), (Asm.Stack -4)));
-         (Asm.Mov ((Asm.Stack -4), (Asm.Reg Asm.AX))); Asm.Ret;
-         (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX))); Asm.Ret];
+         (Asm.Mov ((Asm.Stack -4), (Asm.Reg Asm.AX))); Asm.Ret];
        frame =
        Env.lenv {
          namespace = "main";

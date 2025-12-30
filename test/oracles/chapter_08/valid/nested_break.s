@@ -36,7 +36,6 @@ main:
     cmpl        $0, -32(%rbp)
     je          .Lmain.if.el.6
     jmp         .Lloop.br.2
-    jmp         .Lmain.if.en.5
 .Lmain.if.el.6:
     movl        -4(%rbp), %r10d
     movl        %r10d, -36(%rbp)
@@ -44,8 +43,6 @@ main:
     addl        %r10d, -36(%rbp)
     movl        -36(%rbp), %r10d
     movl        %r10d, -4(%rbp)
-.Lmain.if.en.5:
-.Lloop.ct.2:
     movl        -16(%rbp), %r10d
     movl        %r10d, -40(%rbp)
     addl        $1, -40(%rbp)
@@ -53,7 +50,6 @@ main:
     movl        %r10d, -16(%rbp)
     jmp         .Lloop.st.2
 .Lloop.br.2:
-.Lloop.ct.1:
     movl        -8(%rbp), %r10d
     movl        %r10d, -44(%rbp)
     addl        $1, -44(%rbp)
@@ -62,10 +58,6 @@ main:
     jmp         .Lloop.st.1
 .Lloop.br.1:
     movl        -4(%rbp), %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
-    movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         

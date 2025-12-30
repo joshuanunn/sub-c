@@ -10,8 +10,7 @@
         Ir.Binary {op = Ir.Add; src1 = (Ir.Var "x.0");
           src2 = (Ir.Var "foo.1"); dst = (Ir.Var "tmp.3")};
         Ir.Copy {src = (Ir.Var "tmp.3"); dst = (Ir.Var "x.0")};
-        (Ir.Label "main.if.en.2"); (Ir.Return (Ir.Var "x.0"));
-        (Ir.Return (Ir.Constant 0))];
+        (Ir.Label "main.if.en.2"); (Ir.Return (Ir.Var "x.0"))];
       frame =
       Env.lenv {
         namespace = "main";
@@ -25,7 +24,7 @@
           tmp.3 -> -20,
         }}};
      Ir.Function {name = "foo"; global = true; params = [];
-       body = [(Ir.Return (Ir.Constant 4)); (Ir.Return (Ir.Constant 0))];
+       body = [(Ir.Return (Ir.Constant 4))];
        frame =
        Env.lenv {
          namespace = "foo";

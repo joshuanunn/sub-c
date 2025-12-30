@@ -7,8 +7,7 @@
         Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "tmp.0")};
         Ir.Jump {target = "main.or.en.2"}; (Ir.Label "main.or.tr.1");
         Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "tmp.0")};
-        (Ir.Label "main.or.en.2"); (Ir.Return (Ir.Var "a.0"));
-        (Ir.Return (Ir.Constant 0))];
+        (Ir.Label "main.or.en.2"); (Ir.Return (Ir.Var "a.0"))];
       frame =
       Env.lenv {
         namespace = "main";

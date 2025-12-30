@@ -2,10 +2,6 @@
    [Ir.Function {name = "main"; global = true; params = [];
       body =
       [Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "x.1")};
-        Ir.Jump {target = "post_declaration.0"};
-        Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "x.1")};
-        Ir.Copy {src = (Ir.Var "x.1"); dst = (Ir.Var "i.2")};
-        (Ir.Label "post_declaration.0");
         Ir.Copy {src = (Ir.Constant 5); dst = (Ir.Var "i.2")};
         Ir.Binary {op = Ir.Equal; src1 = (Ir.Var "x.1");
           src2 = (Ir.Constant 1); dst = (Ir.Var "tmp.0")};
@@ -16,8 +12,7 @@
         Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "tmp.2")};
         Ir.Jump {target = "main.and.en.4"}; (Ir.Label "main.and.fl.3");
         Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "tmp.2")};
-        (Ir.Label "main.and.en.4"); (Ir.Return (Ir.Var "tmp.2"));
-        (Ir.Return (Ir.Constant 0))];
+        (Ir.Label "main.and.en.4"); (Ir.Return (Ir.Var "tmp.2"))];
       frame =
       Env.lenv {
         namespace = "main";

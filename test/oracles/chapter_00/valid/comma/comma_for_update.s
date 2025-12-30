@@ -19,7 +19,6 @@ main:
     addl        %r10d, -20(%rbp)
     movl        -20(%rbp), %r10d
     movl        %r10d, -12(%rbp)
-.Lloop.ct.1:
     movl        -4(%rbp), %r10d
     movl        %r10d, -24(%rbp)
     addl        $1, -24(%rbp)
@@ -33,10 +32,6 @@ main:
     jmp         .Lloop.st.1
 .Lloop.br.1:
     movl        -12(%rbp), %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
-    movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         

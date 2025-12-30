@@ -4,7 +4,7 @@
       [Ir.Binary {op = Ir.Add; src1 = (Ir.Var "x.0"); src2 = (Ir.Constant 1);
          dst = (Ir.Var "tmp.0")};
         Ir.Copy {src = (Ir.Var "tmp.0"); dst = (Ir.Var "x.0")};
-        (Ir.Return (Ir.Var "x.0")); (Ir.Return (Ir.Constant 0))];
+        (Ir.Return (Ir.Var "x.0"))];
       frame =
       Env.lenv {
         namespace = "foo";
@@ -22,12 +22,11 @@
          Ir.JumpIfZero {condition = (Ir.Var "tmp.0"); target = "loop.br.1"};
          Ir.FunCall {fun_name = "foo"; args = []; dst = (Ir.Var "tmp.1")};
          Ir.Copy {src = (Ir.Var "tmp.1"); dst = (Ir.Var "ret.1")};
-         (Ir.Label "loop.ct.1");
          Ir.Binary {op = Ir.Add; src1 = (Ir.Var "i.2");
            src2 = (Ir.Constant 1); dst = (Ir.Var "tmp.2")};
          Ir.Copy {src = (Ir.Var "tmp.2"); dst = (Ir.Var "i.2")};
          Ir.Jump {target = "loop.st.1"}; (Ir.Label "loop.br.1");
-         (Ir.Return (Ir.Var "ret.1")); (Ir.Return (Ir.Constant 0))];
+         (Ir.Return (Ir.Var "ret.1"))];
        frame =
        Env.lenv {
          namespace = "main";

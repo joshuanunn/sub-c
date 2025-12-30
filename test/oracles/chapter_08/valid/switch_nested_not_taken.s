@@ -28,15 +28,9 @@ main:
     movq        %rbp, %rsp
     popq        %rbp
     ret         
-.Lswit.br.2:
 .Lswit.df.1:
     movl        $2, -4(%rbp)
-.Lswit.br.1:
     movl        -4(%rbp), %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
-    movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         

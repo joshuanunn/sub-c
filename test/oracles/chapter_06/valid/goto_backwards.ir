@@ -3,8 +3,7 @@
       body =
       [Ir.Jump {target = "main.if.en.0"}; (Ir.Label "label.0");
         (Ir.Return (Ir.Constant 5)); (Ir.Label "main.if.en.0");
-        Ir.Jump {target = "label.0"}; (Ir.Return (Ir.Constant 0));
-        (Ir.Return (Ir.Constant 0))];
+        Ir.Jump {target = "label.0"}];
       frame =
       Env.lenv {
         namespace = "main";

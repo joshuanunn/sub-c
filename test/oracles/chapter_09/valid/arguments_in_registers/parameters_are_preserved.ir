@@ -30,7 +30,7 @@
         (Ir.Label "g.and.en.12");
         Ir.JumpIfZero {condition = (Ir.Var "tmp.10"); target = "g.if.en.13"};
         (Ir.Return (Ir.Constant 1)); (Ir.Label "g.if.en.13");
-        (Ir.Return (Ir.Constant 0)); (Ir.Return (Ir.Constant 0))];
+        (Ir.Return (Ir.Constant 0))];
       frame =
       Env.lenv {
         namespace = "g";
@@ -99,8 +99,7 @@
          Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "tmp.19")};
          Ir.Jump {target = "f.and.en.21"}; (Ir.Label "f.and.fl.20");
          Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "tmp.19")};
-         (Ir.Label "f.and.en.21"); (Ir.Return (Ir.Var "tmp.19"));
-         (Ir.Return (Ir.Constant 0))];
+         (Ir.Label "f.and.en.21"); (Ir.Return (Ir.Var "tmp.19"))];
        frame =
        Env.lenv {
          namespace = "f";
@@ -134,7 +133,7 @@
           [(Ir.Constant 1); (Ir.Constant 2); (Ir.Constant 3); (Ir.Constant 4)
             ];
           dst = (Ir.Var "tmp.0")};
-         (Ir.Return (Ir.Var "tmp.0")); (Ir.Return (Ir.Constant 0))];
+         (Ir.Return (Ir.Var "tmp.0"))];
        frame =
        Env.lenv {
          namespace = "main";

@@ -1,14 +1,8 @@
 (Ir.Program
    [Ir.Function {name = "target_jz_to_jmp"; global = true; params = [];
       body =
-      [Ir.Jump {target = "target_jz_to_jmp.and.fl.1"};
-        Ir.Jump {target = "target_jz_to_jmp.and.fl.1"};
-        Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "tmp.0")};
-        Ir.Jump {target = "target_jz_to_jmp.and.en.2"};
-        (Ir.Label "target_jz_to_jmp.and.fl.1");
-        Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "tmp.0")};
-        (Ir.Label "target_jz_to_jmp.and.en.2"); (Ir.Return (Ir.Var "tmp.0"));
-        (Ir.Return (Ir.Constant 0))];
+      [Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "tmp.0")};
+        (Ir.Return (Ir.Var "tmp.0"))];
       frame =
       Env.lenv {
         namespace = "target_jz_to_jmp";
@@ -20,11 +14,7 @@
      Ir.Function {name = "target_remove_jz"; global = true; params = [];
        body =
        [Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "tmp.0")};
-         Ir.Jump {target = "target_remove_jz.and.en.2"};
-         (Ir.Label "target_remove_jz.and.fl.1");
-         Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "tmp.0")};
-         (Ir.Label "target_remove_jz.and.en.2");
-         (Ir.Return (Ir.Var "tmp.0")); (Ir.Return (Ir.Constant 0))];
+         (Ir.Return (Ir.Var "tmp.0"))];
        frame =
        Env.lenv {
          namespace = "target_remove_jz";
@@ -35,14 +25,8 @@
          }}};
      Ir.Function {name = "target_jnz_to_jmp"; global = true; params = [];
        body =
-       [Ir.Jump {target = "target_jnz_to_jmp.or.tr.1"};
-         Ir.Jump {target = "target_jnz_to_jmp.or.tr.1"};
-         Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "tmp.0")};
-         Ir.Jump {target = "target_jnz_to_jmp.or.en.2"};
-         (Ir.Label "target_jnz_to_jmp.or.tr.1");
-         Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "tmp.0")};
-         (Ir.Label "target_jnz_to_jmp.or.en.2");
-         (Ir.Return (Ir.Var "tmp.0")); (Ir.Return (Ir.Constant 0))];
+       [Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "tmp.0")};
+         (Ir.Return (Ir.Var "tmp.0"))];
        frame =
        Env.lenv {
          namespace = "target_jnz_to_jmp";
@@ -53,13 +37,8 @@
          }}};
      Ir.Function {name = "target_remove_jnz"; global = true; params = [];
        body =
-       [Ir.Jump {target = "target_remove_jnz.or.tr.1"};
-         Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "tmp.0")};
-         Ir.Jump {target = "target_remove_jnz.or.en.2"};
-         (Ir.Label "target_remove_jnz.or.tr.1");
-         Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "tmp.0")};
-         (Ir.Label "target_remove_jnz.or.en.2");
-         (Ir.Return (Ir.Var "tmp.0")); (Ir.Return (Ir.Constant 0))];
+       [Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "tmp.0")};
+         (Ir.Return (Ir.Var "tmp.0"))];
        frame =
        Env.lenv {
          namespace = "target_remove_jnz";
@@ -95,7 +74,7 @@
          Ir.JumpIfZero {condition = (Ir.Var "tmp.10");
            target = "main.if.en.11"};
          (Ir.Return (Ir.Constant 4)); (Ir.Label "main.if.en.11");
-         (Ir.Return (Ir.Constant 0)); (Ir.Return (Ir.Constant 0))];
+         (Ir.Return (Ir.Constant 0))];
        frame =
        Env.lenv {
          namespace = "main";

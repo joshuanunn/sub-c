@@ -27,7 +27,7 @@
           src2 = (Ir.Constant 1); dst = (Ir.Var "tmp.6")};
         Ir.Copy {src = (Ir.Var "tmp.6"); dst = (Ir.Var "x.0")};
         Ir.Jump {target = "loop.ct.1"}; (Ir.Label "loop.br.1");
-        (Ir.Return (Ir.Var "acc.1")); (Ir.Return (Ir.Constant 0))];
+        (Ir.Return (Ir.Var "acc.1"))];
       frame =
       Env.lenv {
         namespace = "main";

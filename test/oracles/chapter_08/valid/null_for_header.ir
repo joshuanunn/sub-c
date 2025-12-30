@@ -10,9 +10,8 @@
           src2 = (Ir.Constant 3); dst = (Ir.Var "tmp.1")};
         Ir.JumpIfZero {condition = (Ir.Var "tmp.1"); target = "main.if.en.2"};
         Ir.Jump {target = "loop.br.1"}; (Ir.Label "main.if.en.2");
-        (Ir.Label "loop.ct.1"); Ir.Jump {target = "loop.st.1"};
-        (Ir.Label "loop.br.1"); (Ir.Return (Ir.Var "a.0"));
-        (Ir.Return (Ir.Constant 0))];
+        Ir.Jump {target = "loop.st.1"}; (Ir.Label "loop.br.1");
+        (Ir.Return (Ir.Var "a.0"))];
       frame =
       Env.lenv {
         namespace = "main";

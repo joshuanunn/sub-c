@@ -4,17 +4,14 @@
       [Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "a.5")};
         (Ir.Label "label_if.0");
         Ir.JumpIfZero {condition = (Ir.Var "a.5"); target = "main.if.el.1"};
-        Ir.Jump {target = "label_expression.2"};
-        Ir.Jump {target = "main.if.en.0"}; (Ir.Label "main.if.el.1");
-        Ir.Jump {target = "label_empty.4"}; (Ir.Label "main.if.en.0");
-        (Ir.Label "label_goto.1"); Ir.Jump {target = "label_return.3"};
-        Ir.Jump {target = "main.if.en.2"}; (Ir.Label "label_expression.2");
+        Ir.Jump {target = "label_expression.2"}; (Ir.Label "main.if.el.1");
+        Ir.Jump {target = "label_empty.4"}; (Ir.Label "label_goto.1");
+        Ir.Jump {target = "label_return.3"}; (Ir.Label "label_expression.2");
         Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "a.5")};
-        (Ir.Label "main.if.en.2"); Ir.Jump {target = "label_if.0"};
-        (Ir.Label "label_return.3"); (Ir.Return (Ir.Var "a.5"));
-        (Ir.Label "label_empty.4");
+        Ir.Jump {target = "label_if.0"}; (Ir.Label "label_return.3");
+        (Ir.Return (Ir.Var "a.5")); (Ir.Label "label_empty.4");
         Ir.Copy {src = (Ir.Constant 100); dst = (Ir.Var "a.5")};
-        Ir.Jump {target = "label_goto.1"}; (Ir.Return (Ir.Constant 0))];
+        Ir.Jump {target = "label_goto.1"}];
       frame =
       Env.lenv {
         namespace = "main";

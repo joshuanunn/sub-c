@@ -23,7 +23,6 @@ main:
     addl        $1, -20(%rbp)
     movl        -20(%rbp), %r10d
     movl        %r10d, -4(%rbp)
-.Lloop.ct.1:
     jmp         .Lloop.st.1
 .Lloop.br.1:
     movl        -4(%rbp), %eax
@@ -44,10 +43,6 @@ main:
     movl        $1, -32(%rbp)
 .Lmain.or.en.8:
     movl        -32(%rbp), %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
-    movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         

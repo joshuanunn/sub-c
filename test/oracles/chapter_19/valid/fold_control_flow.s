@@ -3,16 +3,6 @@
 target_if:
     pushq       %rbp
     movq        %rsp, %rbp
-    jmp         .Ltarget_if.if.en.0
-    movl        $1, %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
-.Ltarget_if.if.en.0:
-    movl        $0, %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
     movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp
@@ -26,35 +16,12 @@ target_if_else_true:
     movq        %rbp, %rsp
     popq        %rbp
     ret         
-    jmp         .Ltarget_if_else_true.if.en.0
-.Ltarget_if_else_true.if.el.1:
-    movl        $3, %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
-.Ltarget_if_else_true.if.en.0:
-    movl        $0, %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
     .globl      target_if_else_false
     .text       
 target_if_else_false:
     pushq       %rbp
     movq        %rsp, %rbp
-    jmp         .Ltarget_if_else_false.if.el.1
-    movl        $2, %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
-    jmp         .Ltarget_if_else_false.if.en.0
-.Ltarget_if_else_false.if.el.1:
     movl        $3, %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
-.Ltarget_if_else_false.if.en.0:
-    movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         
@@ -65,15 +32,7 @@ target_conditional_true:
     movq        %rsp, %rbp
     subq        $16, %rsp
     movl        $2, -4(%rbp)
-    jmp         .Ltarget_conditional_true.cond.en.1
-.Ltarget_conditional_true.cond.el.2:
-    movl        $3, -4(%rbp)
-.Ltarget_conditional_true.cond.en.1:
     movl        -4(%rbp), %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
-    movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         
@@ -83,17 +42,8 @@ target_conditional_false:
     pushq       %rbp
     movq        %rsp, %rbp
     subq        $16, %rsp
-    jmp         .Ltarget_conditional_false.cond.el.2
-    movl        $4, -4(%rbp)
-    jmp         .Ltarget_conditional_false.cond.en.1
-.Ltarget_conditional_false.cond.el.2:
     movl        $5, -4(%rbp)
-.Ltarget_conditional_false.cond.en.1:
     movl        -4(%rbp), %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
-    movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         
@@ -104,15 +54,8 @@ target_do_loop:
     movq        %rsp, %rbp
     subq        $16, %rsp
     movl        $0, -4(%rbp)
-.Lloop.st.1:
     movl        $10, -4(%rbp)
-.Lloop.ct.1:
-.Lloop.br.1:
     movl        -4(%rbp), %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
-    movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         
@@ -123,16 +66,7 @@ target_while_loop_false:
     movq        %rsp, %rbp
     subq        $16, %rsp
     movl        $0, -4(%rbp)
-.Lloop.ct.2:
-    jmp         .Lloop.br.2
-    movl        $10, -4(%rbp)
-    jmp         .Lloop.ct.2
-.Lloop.br.2:
     movl        -4(%rbp), %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
-    movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         
@@ -143,16 +77,8 @@ target_while_loop_true:
     movq        %rsp, %rbp
     subq        $16, %rsp
     movl        $0, -4(%rbp)
-.Lloop.ct.3:
     movl        $10, -4(%rbp)
-    jmp         .Lloop.br.3
-    jmp         .Lloop.ct.3
-.Lloop.br.3:
     movl        -4(%rbp), %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
-    movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         
@@ -164,18 +90,9 @@ target_for_loop_true:
     subq        $16, %rsp
     movl        $0, -4(%rbp)
     movl        $100, -8(%rbp)
-.Lloop.st.4:
     movl        -8(%rbp), %r10d
     movl        %r10d, -4(%rbp)
-    jmp         .Lloop.br.4
-.Lloop.ct.4:
-    jmp         .Lloop.st.4
-.Lloop.br.4:
     movl        -4(%rbp), %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
-    movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         
@@ -187,19 +104,7 @@ target_for_loop_false:
     subq        $16, %rsp
     movl        $0, -4(%rbp)
     movl        $100, -8(%rbp)
-.Lloop.st.5:
-    jmp         .Lloop.br.5
-    movl        -8(%rbp), %r10d
-    movl        %r10d, -4(%rbp)
-    jmp         .Lloop.br.5
-.Lloop.ct.5:
-    jmp         .Lloop.st.5
-.Lloop.br.5:
     movl        -4(%rbp), %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
-    movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         
@@ -329,10 +234,6 @@ main:
     popq        %rbp
     ret         
 .Lmain.if.en.29:
-    movl        $0, %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
     movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp

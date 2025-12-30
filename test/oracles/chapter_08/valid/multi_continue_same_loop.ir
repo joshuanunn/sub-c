@@ -26,7 +26,6 @@
         Ir.Binary {op = Ir.NotEqual; src1 = (Ir.Var "z.2");
           src2 = (Ir.Constant 50); dst = (Ir.Var "tmp.7")};
         Ir.JumpIfNotZero {condition = (Ir.Var "tmp.7"); target = "loop.st.1"};
-        (Ir.Label "loop.br.1");
         Ir.Binary {op = Ir.Equal; src1 = (Ir.Var "z.2");
           src2 = (Ir.Constant 50); dst = (Ir.Var "tmp.8")};
         Ir.JumpIfZero {condition = (Ir.Var "tmp.8");
@@ -48,8 +47,7 @@
         Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "tmp.14")};
         Ir.Jump {target = "main.and.en.16"}; (Ir.Label "main.and.fl.15");
         Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "tmp.14")};
-        (Ir.Label "main.and.en.16"); (Ir.Return (Ir.Var "tmp.14"));
-        (Ir.Return (Ir.Constant 0))];
+        (Ir.Label "main.and.en.16"); (Ir.Return (Ir.Var "tmp.14"))];
       frame =
       Env.lenv {
         namespace = "main";

@@ -4,18 +4,8 @@ target_jz_to_jmp:
     pushq       %rbp
     movq        %rsp, %rbp
     subq        $16, %rsp
-    jmp         .Ltarget_jz_to_jmp.and.fl.1
-    jmp         .Ltarget_jz_to_jmp.and.fl.1
-    movl        $1, -4(%rbp)
-    jmp         .Ltarget_jz_to_jmp.and.en.2
-.Ltarget_jz_to_jmp.and.fl.1:
     movl        $0, -4(%rbp)
-.Ltarget_jz_to_jmp.and.en.2:
     movl        -4(%rbp), %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
-    movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         
@@ -26,15 +16,7 @@ target_remove_jz:
     movq        %rsp, %rbp
     subq        $16, %rsp
     movl        $1, -4(%rbp)
-    jmp         .Ltarget_remove_jz.and.en.2
-.Ltarget_remove_jz.and.fl.1:
-    movl        $0, -4(%rbp)
-.Ltarget_remove_jz.and.en.2:
     movl        -4(%rbp), %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
-    movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         
@@ -44,18 +26,8 @@ target_jnz_to_jmp:
     pushq       %rbp
     movq        %rsp, %rbp
     subq        $16, %rsp
-    jmp         .Ltarget_jnz_to_jmp.or.tr.1
-    jmp         .Ltarget_jnz_to_jmp.or.tr.1
-    movl        $0, -4(%rbp)
-    jmp         .Ltarget_jnz_to_jmp.or.en.2
-.Ltarget_jnz_to_jmp.or.tr.1:
     movl        $1, -4(%rbp)
-.Ltarget_jnz_to_jmp.or.en.2:
     movl        -4(%rbp), %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
-    movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         
@@ -65,17 +37,8 @@ target_remove_jnz:
     pushq       %rbp
     movq        %rsp, %rbp
     subq        $16, %rsp
-    jmp         .Ltarget_remove_jnz.or.tr.1
-    movl        $0, -4(%rbp)
-    jmp         .Ltarget_remove_jnz.or.en.2
-.Ltarget_remove_jnz.or.tr.1:
     movl        $1, -4(%rbp)
-.Ltarget_remove_jnz.or.en.2:
     movl        -4(%rbp), %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
-    movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         
@@ -133,10 +96,6 @@ main:
     popq        %rbp
     ret         
 .Lmain.if.en.11:
-    movl        $0, %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
     movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp

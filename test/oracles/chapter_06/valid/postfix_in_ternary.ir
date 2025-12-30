@@ -12,8 +12,7 @@
         Ir.Binary {op = Ir.Subtract; src1 = (Ir.Var "x.0");
           src2 = (Ir.Constant 1); dst = (Ir.Var "x.0")};
         Ir.Copy {src = (Ir.Var "tmp.4"); dst = (Ir.Var "tmp.0")};
-        (Ir.Label "main.cond.en.2"); (Ir.Return (Ir.Var "x.0"));
-        (Ir.Return (Ir.Constant 0))];
+        (Ir.Label "main.cond.en.2"); (Ir.Return (Ir.Var "x.0"))];
       frame =
       Env.lenv {
         namespace = "main";

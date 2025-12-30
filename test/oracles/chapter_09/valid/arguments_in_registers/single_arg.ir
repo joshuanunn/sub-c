@@ -3,7 +3,7 @@
       body =
       [Ir.Binary {op = Ir.Multiply; src1 = (Ir.Constant 2);
          src2 = (Ir.Var "x.0"); dst = (Ir.Var "tmp.0")};
-        (Ir.Return (Ir.Var "tmp.0")); (Ir.Return (Ir.Constant 0))];
+        (Ir.Return (Ir.Var "tmp.0"))];
       frame =
       Env.lenv {
         namespace = "twice";
@@ -17,7 +17,7 @@
        body =
        [Ir.FunCall {fun_name = "twice"; args = [(Ir.Constant 3)];
           dst = (Ir.Var "tmp.0")};
-         (Ir.Return (Ir.Var "tmp.0")); (Ir.Return (Ir.Constant 0))];
+         (Ir.Return (Ir.Var "tmp.0"))];
        frame =
        Env.lenv {
          namespace = "main";

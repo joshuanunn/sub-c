@@ -50,14 +50,13 @@
         Ir.Binary {op = Ir.Subtract; src1 = (Ir.Var "count.0");
           src2 = (Ir.Constant 1); dst = (Ir.Var "tmp.12")};
         Ir.Copy {src = (Ir.Var "tmp.12"); dst = (Ir.Var "count.0")};
-        (Ir.Label "loop.ct.2");
         Ir.Binary {op = Ir.Subtract; src1 = (Ir.Var "iterations.1");
           src2 = (Ir.Constant 1); dst = (Ir.Var "tmp.13")};
         Ir.Copy {src = (Ir.Var "tmp.13"); dst = (Ir.Var "iterations.1")};
         Ir.Binary {op = Ir.GreaterThan; src1 = (Ir.Var "iterations.1");
           src2 = (Ir.Constant 0); dst = (Ir.Var "tmp.14")};
         Ir.JumpIfNotZero {condition = (Ir.Var "tmp.14"); target = "loop.st.2"};
-        (Ir.Label "loop.br.2"); (Ir.Label "swit.br.1");
+        (Ir.Label "swit.br.1");
         Ir.Binary {op = Ir.Equal; src1 = (Ir.Var "count.0");
           src2 = (Ir.Constant 0); dst = (Ir.Var "tmp.15")};
         Ir.JumpIfZero {condition = (Ir.Var "tmp.15");
@@ -69,8 +68,7 @@
         Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "tmp.17")};
         Ir.Jump {target = "main.and.en.19"}; (Ir.Label "main.and.fl.18");
         Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "tmp.17")};
-        (Ir.Label "main.and.en.19"); (Ir.Return (Ir.Var "tmp.17"));
-        (Ir.Return (Ir.Constant 0))];
+        (Ir.Label "main.and.en.19"); (Ir.Return (Ir.Var "tmp.17"))];
       frame =
       Env.lenv {
         namespace = "main";

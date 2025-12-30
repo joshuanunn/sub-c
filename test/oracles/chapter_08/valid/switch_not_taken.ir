@@ -18,7 +18,7 @@
         (Ir.Return (Ir.Constant 0)); (Ir.Label "swit.cs.1.2");
         (Ir.Return (Ir.Constant 0)); (Ir.Label "swit.cs.1.3");
         (Ir.Return (Ir.Constant 0)); (Ir.Label "swit.br.1");
-        (Ir.Return (Ir.Constant 1)); (Ir.Return (Ir.Constant 0))];
+        (Ir.Return (Ir.Constant 1))];
       frame =
       Env.lenv {
         namespace = "main";

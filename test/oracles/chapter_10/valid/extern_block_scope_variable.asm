@@ -7,7 +7,6 @@
         (Asm.JmpCC (Asm.E, "main.if.en.0"));
         (Asm.Mov ((Asm.Data "foo"), (Asm.Reg Asm.AX))); Asm.Ret;
         (Asm.Label "main.if.en.0");
-        (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX))); Asm.Ret;
         (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX))); Asm.Ret];
       frame =
       Env.lenv {

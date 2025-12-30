@@ -12,8 +12,7 @@
         (Asm.Label "main.cond.el.5");
         (Asm.Mov ((Asm.Imm 0), (Asm.Stack -8)));
         (Asm.Label "main.cond.en.4");
-        (Asm.Mov ((Asm.Stack -8), (Asm.Reg Asm.AX))); Asm.Ret;
-        (Asm.Mov ((Asm.Imm 0), (Asm.Reg Asm.AX))); Asm.Ret];
+        (Asm.Mov ((Asm.Stack -8), (Asm.Reg Asm.AX))); Asm.Ret];
       frame =
       Env.lenv {
         namespace = "main";

@@ -21,13 +21,8 @@ main:
     jmp         .Lswit.br.1
 .Lswit.cs.1.6:
     movl        $0, -4(%rbp)
-    jmp         .Lswit.br.1
 .Lswit.br.1:
     movl        -4(%rbp), %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
-    movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         

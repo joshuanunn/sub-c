@@ -1,6 +1,6 @@
 (Ir.Program
    [Ir.Function {name = "main"; global = true; params = [];
-      body = [(Ir.Return (Ir.Constant 100)); (Ir.Return (Ir.Constant 0))];
+      body = [(Ir.Return (Ir.Constant 100))];
       frame =
       Env.lenv {
         namespace = "main";
