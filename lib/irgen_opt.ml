@@ -95,6 +95,13 @@ let cfg_to_instructions (cfg : Cfg.graph) : Ir.instruction list =
   |> List.sort (fun (a, _) (b, _) -> compare a b)
   |> List.concat_map (fun (_, node) -> Cfg.get_instructions node)
 
+let unreachable_code_elimination (cfg : Cfg.graph) : unit =
+  Cfg.remove_unreachable_blocks cfg;
+  Cfg.remove_redundant_jumps cfg;
+  Cfg.remove_redundant_labels cfg;
+  Cfg.remove_empty_blocks cfg;
+  ()
+
 let optimise (body : Ir.instruction list) (o : opts) : Ir.instruction list =
   let rec loop body =
     if body = [] then body
@@ -105,29 +112,10 @@ let optimise (body : Ir.instruction list) (o : opts) : Ir.instruction list =
 
       let cfg = instructions_to_cfg post_folding in
 
-      (* print CFG for debugging *)
-      print_endline (Cfg.show_graph cfg);
+      if o.unreachable then unreachable_code_elimination cfg;
 
-      (*let cfg =
-        if o.unreachable then
-          unreachable_code_elimination cfg
-        else
-          cfg
-      in
-
-      let cfg =
-        if o.propagation then
-          copy_propagation cfg
-        else
-          cfg
-      in
-
-      let cfg =
-        if o.deadstores then
-          dead_store_elimination cfg
-        else
-          cfg
-      in*)
+      (*if o.propagation then copy_propagation cfg;
+      if o.deadstores then dead_store_elimination cfg;*)
       let body_opt = cfg_to_instructions cfg in
       if body_opt = body || body_opt = [] then body_opt else loop body_opt
   in

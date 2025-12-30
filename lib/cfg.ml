@@ -1,12 +1,14 @@
 (** Define control-flow graph data structures. Used in IR optimisation for copy
     propagation, unreachable code elimination and dead store elimination.*)
 
+module IntSet = Set.Make (Int)
+
 type node_id = Entry | Exit | Block of int
 
 type node =
   | BasicBlock of {
       id : int;
-      instructions : Ir.instruction list;
+      mutable instructions : Ir.instruction list;
       mutable predecessors : node_id list;
       mutable successors : node_id list;
     }
@@ -124,6 +126,205 @@ let add_all_edges (cfg : graph) : unit =
             end
           end
       | _ -> ())
+    cfg.blocks
+
+let reachable_blocks (cfg : graph) : IntSet.t =
+  let visited = ref IntSet.empty in
+
+  let rec dfs_block id =
+    if IntSet.mem id !visited then ()
+    else begin
+      visited := IntSet.add id !visited;
+      let node = Hashtbl.find cfg.blocks id in
+      match node with
+      | BasicBlock { successors; _ } ->
+          List.iter
+            (function Block i -> dfs_block i | Exit -> () | Entry -> ())
+            successors
+      | _ -> ()
+    end
+  in
+
+  (* EntryNode always goes to block 0 *)
+  dfs_block 0;
+  !visited
+
+let clean_edges (valid : IntSet.t) =
+  List.filter (function Block i -> IntSet.mem i valid | _ -> true)
+
+let valid_blocks (cfg : graph) =
+  Hashtbl.fold (fun id _ acc -> IntSet.add id acc) cfg.blocks IntSet.empty
+
+let valid_node_id (cfg : graph) = function
+  | Block i -> IntSet.mem i (valid_blocks cfg)
+  | Entry | Exit -> true
+
+let remove_unreachable_blocks (cfg : graph) : unit =
+  let reachable = reachable_blocks cfg in
+
+  (* Remove unreachable blocks *)
+  Hashtbl.filter_map_inplace
+    (fun id node -> if IntSet.mem id reachable then Some node else None)
+    cfg.blocks;
+
+  (* Update edges *)
+  Hashtbl.iter
+    (fun _ node ->
+      match node with
+      | BasicBlock r ->
+          r.predecessors <- clean_edges reachable r.predecessors;
+          r.successors <- clean_edges reachable r.successors
+      | EntryNode r -> r.successors <- clean_edges reachable r.successors
+      | ExitNode _ -> ())
+    cfg.blocks;
+
+  (* Finally clean up edges on ExitNode *)
+  match cfg.exit with
+  | ExitNode r ->
+      r.predecessors <- List.filter (valid_node_id cfg) r.predecessors
+  | _ -> ()
+
+let is_jump = function
+  | Ir.Jump _ | Ir.JumpIfZero _ | Ir.JumpIfNotZero _ -> true
+  | _ -> false
+
+let remove_leading_label instrs =
+  match instrs with Ir.Label _ :: rest -> rest | _ -> instrs
+
+let remove_last_instruction instrs =
+  match List.rev instrs with _ :: rest_rev -> List.rev rest_rev | [] -> []
+
+let pairwise lst =
+  let rec aux acc = function
+    | x :: (y :: _ as tl) -> aux ((x, y) :: acc) tl
+    | _ -> List.rev acc
+  in
+  aux [] lst
+
+(** Remove redundant jump instructions. Any conditional or unconditional jump
+    instructions at the end of a basic block, which target the (default) next
+    block can be removed as these have no effect. Any associated redundant
+    labels will be removed in the next step.*)
+let remove_redundant_jumps (cfg : graph) : unit =
+  let sorted_blocks =
+    Hashtbl.fold (fun id node acc -> (id, node) :: acc) cfg.blocks []
+    |> List.sort (fun (a, _) (b, _) -> compare a b)
+    |> List.map snd
+  in
+
+  List.iter
+    (fun (block, next_block) ->
+      match (block, next_block) with
+      | BasicBlock r, BasicBlock r_next -> (
+          match List.rev r.instructions with
+          | last :: _ when is_jump last ->
+              let default_succ = Block r_next.id in
+              let keep_jump =
+                List.exists (fun succ -> succ <> default_succ) r.successors
+              in
+              if not keep_jump then
+                r.instructions <- remove_last_instruction r.instructions
+          | _ -> ())
+      | _ -> ())
+    (pairwise sorted_blocks)
+
+(** Remove redundant labels. Sort basic blocks by ID, then delete any Label
+    instruction at the start of a block if it's only entered by "falling
+    through" from the previous block, rather than via an explicit jump. The
+    Label at the start of sorted_blocks[i] can be deleted if its only
+    predecessor is sorted_blocks[i - 1]. The Label at the start of
+    sorted_blocks[0] is deleted if its only predecessor is Entry.*)
+let remove_redundant_labels (cfg : graph) : unit =
+  let sorted_blocks =
+    Hashtbl.fold (fun id node acc -> (id, node) :: acc) cfg.blocks []
+    |> List.sort (fun (a, _) (b, _) -> compare a b)
+    |> List.map snd
+  in
+
+  (* Handle first block *)
+  (match sorted_blocks with
+  | BasicBlock r :: _ ->
+      if r.predecessors = [ Entry ] then
+        r.instructions <- remove_leading_label r.instructions
+  | _ -> ());
+
+  (* Handle remaining blocks *)
+  List.iter
+    (fun (prev_block, block) ->
+      match (prev_block, block) with
+      | BasicBlock r_prev, BasicBlock r ->
+          if r.predecessors = [ Block r_prev.id ] then
+            r.instructions <- remove_leading_label r.instructions
+      | _ -> ())
+    (pairwise sorted_blocks)
+
+let is_empty_block = function
+  | BasicBlock { instructions = []; _ } -> true
+  | _ -> false
+
+let empty_blocks (cfg : graph) : IntSet.t =
+  Hashtbl.fold
+    (fun id node acc -> if is_empty_block node then IntSet.add id acc else acc)
+    cfg.blocks IntSet.empty
+
+let splice_out_block (cfg : graph) (id : int) =
+  (* Get the predecessors and successors of the block being removed *)
+  let predecessors, successors =
+    match Hashtbl.find cfg.blocks id with
+    | BasicBlock { predecessors; successors; _ } -> (predecessors, successors)
+    | _ -> failwith "expected basic block"
+  in
+
+  (* Remove this block from its successors' predecessors *)
+  List.iter
+    (fun succ ->
+      match get_node cfg succ with
+      | BasicBlock r ->
+          r.predecessors <- List.filter (( <> ) (Block id)) r.predecessors
+      | ExitNode r ->
+          r.predecessors <- List.filter (( <> ) (Block id)) r.predecessors
+      | EntryNode _ -> ())
+    successors;
+
+  (* Update predecessors to skip over the removed block *)
+  List.iter
+    (fun pred ->
+      match get_node cfg pred with
+      | EntryNode r ->
+          r.successors <-
+            List.filter (( <> ) (Block id)) r.successors @ successors
+      | BasicBlock r ->
+          r.successors <-
+            List.filter (( <> ) (Block id)) r.successors @ successors
+      | ExitNode _ -> ())
+    predecessors;
+
+  (* Update successors to include the predecessors of the removed block *)
+  List.iter
+    (fun succ ->
+      match get_node cfg succ with
+      | BasicBlock r ->
+          r.predecessors <-
+            List.fold_left
+              (fun acc p -> if List.mem p acc then acc else p :: acc)
+              r.predecessors predecessors
+      | ExitNode r ->
+          r.predecessors <-
+            List.fold_left
+              (fun acc p -> if List.mem p acc then acc else p :: acc)
+              r.predecessors predecessors
+      | EntryNode _ -> ())
+    successors
+
+(** Remove any empty blocks *)
+let remove_empty_blocks (cfg : graph) : unit =
+  (* Identify empty block nodes *)
+  let empties = empty_blocks cfg in
+  (* Update edges to route around empty block nodes *)
+  IntSet.iter (splice_out_block cfg) empties;
+  (* Finally, remove the empty block nodes *)
+  Hashtbl.filter_map_inplace
+    (fun id node -> if IntSet.mem id empties then None else Some node)
     cfg.blocks
 
 let string_of_node_id = function
