@@ -57,17 +57,58 @@ let constant_folding (i : Ir.instruction) : Ir.instruction option =
   | JumpIfNotZero { condition = Constant _; target } -> Some (Jump { target })
   | ins -> Some ins
 
+let is_label = function Ir.Label _ -> true | _ -> false
+
+let is_terminator = function
+  | Ir.Jump _ | Ir.JumpIfZero _ | Ir.JumpIfNotZero _ | Ir.Return _ -> true
+  | _ -> false
+
+let instructions_to_cfg (ins : Ir.instruction list) : Cfg.graph =
+  let cfg = Cfg.make_cfg () in
+  let current_block = ref [] in
+
+  let flush () =
+    if !current_block <> [] then begin
+      Cfg.insert_block cfg (List.rev !current_block);
+      current_block := []
+    end
+  in
+
+  List.iter
+    (fun instr ->
+      if is_label instr then begin
+        flush ();
+        current_block := [ instr ]
+      end
+      else begin
+        current_block := instr :: !current_block;
+        if is_terminator instr then flush ()
+      end)
+    ins;
+
+  flush ();
+  Cfg.add_all_edges cfg;
+  cfg
+
+let cfg_to_instructions (cfg : Cfg.graph) : Ir.instruction list =
+  Hashtbl.fold (fun id node acc -> (id, node) :: acc) cfg.blocks []
+  |> List.sort (fun (a, _) (b, _) -> compare a b)
+  |> List.concat_map (fun (_, node) -> Cfg.get_instructions node)
+
 let optimise (body : Ir.instruction list) (o : opts) : Ir.instruction list =
   let rec loop body =
     if body = [] then body
     else
-      let body_opt =
+      let post_folding =
         if o.folding then List.filter_map constant_folding body else body
       in
 
-      (* let cfg = make_control_flow_graph body_after_folding in
+      let cfg = instructions_to_cfg post_folding in
 
-      let cfg =
+      (* print CFG for debugging *)
+      print_endline (Cfg.show_graph cfg);
+
+      (*let cfg =
         if o.unreachable then
           unreachable_code_elimination cfg
         else
@@ -86,9 +127,8 @@ let optimise (body : Ir.instruction list) (o : opts) : Ir.instruction list =
           dead_store_elimination cfg
         else
           cfg
-      in
-
-      let optimised_body = cfg_to_instructions cfg in*)
+      in*)
+      let body_opt = cfg_to_instructions cfg in
       if body_opt = body || body_opt = [] then body_opt else loop body_opt
   in
   loop body

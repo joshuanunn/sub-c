@@ -3,6 +3,7 @@
  (modules
   io
   env
+  cfg
   lexer
   lexer_pp
   parser
