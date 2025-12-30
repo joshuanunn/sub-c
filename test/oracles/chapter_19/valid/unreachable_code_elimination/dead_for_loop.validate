@@ -1,0 +1,54 @@
+(Ast.Program
+   [(Ast.FunDecl
+       { Ast.name = (Ast.Identifier "callee"); params = [];
+         body =
+         (Some (Ast.Block
+                  [(Ast.S
+                      (Ast.Return
+                         Ast.Binary {op = Ast.Divide;
+                           left = (Ast.LiteralInt 1);
+                           right = (Ast.LiteralInt 0)}))
+                    ]));
+         storage = None });
+     (Ast.FunDecl
+        { Ast.name = (Ast.Identifier "target"); params = [];
+          body =
+          (Some (Ast.Block
+                   [(Ast.D
+                       (Ast.VarDecl
+                          { Ast.name = (Ast.Identifier "i.0");
+                            init = (Some (Ast.LiteralInt 0)); storage = None
+                            }));
+                     (Ast.S
+                        Ast.For {
+                          init =
+                          (Ast.InitExp
+                             (Some (Ast.Assignment (
+                                      (Ast.Var (Ast.Identifier "i.0")),
+                                      (Ast.LiteralInt 10)))));
+                          cond = (Some (Ast.LiteralInt 0));
+                          post =
+                          (Some (Ast.Assignment (
+                                   (Ast.Var (Ast.Identifier "i.0")),
+                                   Ast.FunctionCall {
+                                     name = (Ast.Identifier "callee");
+                                     args = []}
+                                   )));
+                          body =
+                          (Ast.Expression
+                             Ast.FunctionCall {
+                               name = (Ast.Identifier "callee"); args = []});
+                          id = (Some (Ast.LoopLabel "1"))});
+                     (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "i.0"))))]));
+          storage = None });
+     (Ast.FunDecl
+        { Ast.name = (Ast.Identifier "main"); params = [];
+          body =
+          (Some (Ast.Block
+                   [(Ast.S
+                       (Ast.Return
+                          Ast.FunctionCall {name = (Ast.Identifier "target");
+                            args = []}))
+                     ]));
+          storage = None })
+     ])

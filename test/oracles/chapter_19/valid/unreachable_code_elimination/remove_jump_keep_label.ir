@@ -1,0 +1,52 @@
+(Ir.Program
+   [Ir.Function {name = "callee"; global = true; params = [];
+      body =
+      [Ir.Binary {op = Ir.Add; src1 = (Ir.Var "x"); src2 = (Ir.Constant 1);
+         dst = (Ir.Var "tmp.0")};
+        Ir.Copy {src = (Ir.Var "tmp.0"); dst = (Ir.Var "x")};
+        (Ir.Return (Ir.Constant 0))];
+      frame =
+      Env.lenv {
+        namespace = "callee";
+        counter = 1;
+        offset = -4;
+        stack slots = {
+          tmp.0 -> -4,
+        }}};
+     Ir.Function {name = "f"; global = true; params = [];
+       body =
+       [Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "i.0")};
+         (Ir.Label "loop.st.1");
+         Ir.Binary {op = Ir.LessThan; src1 = (Ir.Var "i.0");
+           src2 = (Ir.Constant 10); dst = (Ir.Var "tmp.0")};
+         Ir.JumpIfZero {condition = (Ir.Var "tmp.0"); target = "loop.br.1"};
+         Ir.FunCall {fun_name = "callee"; args = []; dst = (Ir.Var "tmp.2")};
+         Ir.Binary {op = Ir.Add; src1 = (Ir.Var "i.0");
+           src2 = (Ir.Constant 1); dst = (Ir.Var "tmp.3")};
+         Ir.Copy {src = (Ir.Var "tmp.3"); dst = (Ir.Var "i.0")};
+         Ir.Jump {target = "loop.st.1"}; (Ir.Label "loop.br.1");
+         (Ir.Return (Ir.Constant 0))];
+       frame =
+       Env.lenv {
+         namespace = "f";
+         counter = 4;
+         offset = -16;
+         stack slots = {
+           i.0   -> -4,
+           tmp.0 -> -8,
+           tmp.2 -> -12,
+           tmp.3 -> -16,
+         }}};
+     Ir.Function {name = "main"; global = true; params = [];
+       body =
+       [Ir.FunCall {fun_name = "f"; args = []; dst = (Ir.Var "tmp.0")};
+         (Ir.Return (Ir.Var "x"))];
+       frame =
+       Env.lenv {
+         namespace = "main";
+         counter = 1;
+         offset = -4;
+         stack slots = {
+           tmp.0 -> -4,
+         }}};
+     Ir.StaticVariable {name = "x"; global = true; init = 0}])

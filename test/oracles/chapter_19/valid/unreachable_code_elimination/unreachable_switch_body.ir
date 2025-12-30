@@ -1,0 +1,33 @@
+(Ir.Program
+   [Ir.Function {name = "target"; global = true; params = ["flag.0"];
+      body = [(Ir.Return (Ir.Constant 0))];
+      frame =
+      Env.lenv {
+        namespace = "target";
+        counter = 7;
+        offset = -36;
+        stack slots = {
+          i.2    -> -4,
+          tmp.0  -> -8,
+          tmp.1  -> -12,
+          tmp.2  -> -16,
+          tmp.3  -> -20,
+          tmp.4  -> -24,
+          tmp.5  -> -28,
+          tmp.6  -> -32,
+          flag.0 -> -36,
+        }}};
+     Ir.Function {name = "main"; global = true; params = [];
+       body =
+       [Ir.FunCall {fun_name = "target"; args = [(Ir.Constant 20)];
+          dst = (Ir.Var "tmp.0")};
+         (Ir.Return (Ir.Var "tmp.0"))];
+       frame =
+       Env.lenv {
+         namespace = "main";
+         counter = 1;
+         offset = -4;
+         stack slots = {
+           tmp.0 -> -4,
+         }}};
+     Ir.StaticVariable {name = "x.1"; global = false; init = 0}])

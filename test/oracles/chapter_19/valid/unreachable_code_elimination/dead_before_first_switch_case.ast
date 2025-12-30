@@ -1,0 +1,43 @@
+(Ast.Program
+   [(Ast.FunDecl
+       { Ast.name = (Ast.Identifier "callee"); params = [];
+         body = (Some (Ast.Block [(Ast.S (Ast.Return (Ast.LiteralInt 0)))]));
+         storage = None });
+     (Ast.FunDecl
+        { Ast.name = (Ast.Identifier "target");
+          params = [(Ast.Identifier "x")];
+          body =
+          (Some (Ast.Block
+                   [(Ast.S
+                       Ast.Switch {cond = (Ast.Var (Ast.Identifier "x"));
+                         body =
+                         (Ast.Compound
+                            (Ast.Block
+                               [(Ast.S
+                                   (Ast.Return
+                                      Ast.FunctionCall {
+                                        name = (Ast.Identifier "callee");
+                                        args = []}));
+                                 (Ast.S
+                                    Ast.Case {value = (Ast.LiteralInt 1);
+                                      body = (Ast.Return (Ast.LiteralInt 1));
+                                      id = None});
+                                 (Ast.S
+                                    Ast.Default {
+                                      body = (Ast.Return (Ast.LiteralInt 2));
+                                      id = None})
+                                 ]));
+                         id = None})
+                     ]));
+          storage = None });
+     (Ast.FunDecl
+        { Ast.name = (Ast.Identifier "main"); params = [];
+          body =
+          (Some (Ast.Block
+                   [(Ast.S
+                       (Ast.Return
+                          Ast.FunctionCall {name = (Ast.Identifier "target");
+                            args = [(Ast.LiteralInt 1)]}))
+                     ]));
+          storage = None })
+     ])

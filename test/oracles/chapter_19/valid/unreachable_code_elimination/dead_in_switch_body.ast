@@ -1,0 +1,88 @@
+(Ast.Program
+   [(Ast.FunDecl
+       { Ast.name = (Ast.Identifier "callee"); params = [];
+         body =
+         (Some (Ast.Block
+                  [(Ast.S
+                      (Ast.Return
+                         Ast.Unary {op = Ast.Negate; exp = (Ast.LiteralInt 1)}))
+                    ]));
+         storage = None });
+     (Ast.FunDecl
+        { Ast.name = (Ast.Identifier "target");
+          params = [(Ast.Identifier "x")];
+          body =
+          (Some (Ast.Block
+                   [(Ast.D
+                       (Ast.VarDecl
+                          { Ast.name = (Ast.Identifier "retval");
+                            init = (Some (Ast.LiteralInt 0)); storage = None
+                            }));
+                     (Ast.S
+                        Ast.Switch {cond = (Ast.Var (Ast.Identifier "x"));
+                          body =
+                          (Ast.Compound
+                             (Ast.Block
+                                [(Ast.S
+                                    Ast.Case {value = (Ast.LiteralInt 1);
+                                      body =
+                                      (Ast.Expression
+                                         (Ast.Assignment (
+                                            (Ast.Var
+                                               (Ast.Identifier "retval")),
+                                            (Ast.LiteralInt 1))));
+                                      id = None});
+                                  (Ast.S (Ast.Break None));
+                                  (Ast.S
+                                     Ast.Case {value = (Ast.LiteralInt 2);
+                                       body =
+                                       (Ast.Expression
+                                          (Ast.Assignment (
+                                             (Ast.Var
+                                                (Ast.Identifier "retval")),
+                                             (Ast.LiteralInt 2))));
+                                       id = None});
+                                  (Ast.S (Ast.Break None));
+                                  (Ast.S
+                                     (Ast.Expression
+                                        Ast.FunctionCall {
+                                          name = (Ast.Identifier "callee");
+                                          args = []}));
+                                  (Ast.S
+                                     Ast.Case {value = (Ast.LiteralInt 3);
+                                       body =
+                                       (Ast.Expression
+                                          (Ast.Assignment (
+                                             (Ast.Var
+                                                (Ast.Identifier "retval")),
+                                             (Ast.LiteralInt 10))));
+                                       id = None});
+                                  (Ast.S (Ast.Break None));
+                                  (Ast.S
+                                     Ast.Default {
+                                       body =
+                                       (Ast.Return
+                                          Ast.Unary {op = Ast.Negate;
+                                            exp = (Ast.LiteralInt 1)});
+                                       id = None});
+                                  (Ast.S
+                                     (Ast.Expression
+                                        Ast.FunctionCall {
+                                          name = (Ast.Identifier "callee");
+                                          args = []}))
+                                  ]));
+                          id = None});
+                     (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "retval"))))
+                     ]));
+          storage = None });
+     (Ast.FunDecl
+        { Ast.name = (Ast.Identifier "main"); params = [];
+          body =
+          (Some (Ast.Block
+                   [(Ast.S
+                       (Ast.Return
+                          Ast.FunctionCall {name = (Ast.Identifier "target");
+                            args = [(Ast.LiteralInt 3)]}))
+                     ]));
+          storage = None })
+     ])

@@ -1,0 +1,43 @@
+(Ir.Program
+   [Ir.Function {name = "callee"; global = true; params = [];
+      body = [(Ir.Return (Ir.Constant 0))];
+      frame =
+      Env.lenv {
+        namespace = "callee";
+        counter = 0;
+        offset = 0;
+        stack slots = {
+        }}};
+     Ir.Function {name = "target"; global = true; params = ["x.0"];
+       body =
+       [Ir.Binary {op = Ir.Equal; src1 = (Ir.Var "x.0");
+          src2 = (Ir.Constant 1); dst = (Ir.Var "tmp.0")};
+         Ir.JumpIfNotZero {condition = (Ir.Var "tmp.0");
+           target = "swit.cs.1.1"};
+         Ir.Jump {target = "swit.df.1"}; (Ir.Label "swit.cs.1.1");
+         (Ir.Return (Ir.Constant 1)); (Ir.Label "swit.df.1");
+         (Ir.Return (Ir.Constant 2))];
+       frame =
+       Env.lenv {
+         namespace = "target";
+         counter = 2;
+         offset = -12;
+         stack slots = {
+           tmp.0 -> -4,
+           tmp.1 -> -8,
+           x.0   -> -12,
+         }}};
+     Ir.Function {name = "main"; global = true; params = [];
+       body =
+       [Ir.FunCall {fun_name = "target"; args = [(Ir.Constant 1)];
+          dst = (Ir.Var "tmp.0")};
+         (Ir.Return (Ir.Var "tmp.0"))];
+       frame =
+       Env.lenv {
+         namespace = "main";
+         counter = 1;
+         offset = -4;
+         stack slots = {
+           tmp.0 -> -4,
+         }}}
+     ])

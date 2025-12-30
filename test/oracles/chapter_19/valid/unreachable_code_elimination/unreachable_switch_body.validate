@@ -1,0 +1,153 @@
+(Ast.Program
+   [(Ast.FunDecl
+       { Ast.name = (Ast.Identifier "target");
+         params = [(Ast.Identifier "flag.0")];
+         body =
+         (Some (Ast.Block
+                  [(Ast.S
+                      Ast.Switch {cond = (Ast.Var (Ast.Identifier "flag.0"));
+                        body =
+                        (Ast.Compound
+                           (Ast.Block
+                              [(Ast.D
+                                  (Ast.VarDecl
+                                     { Ast.name = (Ast.Identifier "x.1");
+                                       init = (Some (Ast.LiteralInt 0));
+                                       storage = (Some Ast.Static) }));
+                                (Ast.S
+                                   Ast.For {
+                                     init =
+                                     (Ast.InclDecl
+                                        { Ast.name = (Ast.Identifier "i.2");
+                                          init = (Some (Ast.LiteralInt 0));
+                                          storage = None });
+                                     cond =
+                                     (Some Ast.Binary {op = Ast.LessThan;
+                                             left =
+                                             (Ast.Var (Ast.Identifier "i.2"));
+                                             right =
+                                             (Ast.Var
+                                                (Ast.Identifier "flag.0"))});
+                                     post =
+                                     (Some (Ast.Assignment (
+                                              (Ast.Var (Ast.Identifier "i.2")),
+                                              Ast.Binary {op = Ast.Add;
+                                                left =
+                                                (Ast.Var
+                                                   (Ast.Identifier "i.2"));
+                                                right = (Ast.LiteralInt 1)}
+                                              )));
+                                     body =
+                                     (Ast.Compound
+                                        (Ast.Block
+                                           [(Ast.S
+                                               Ast.Switch {
+                                                 cond =
+                                                 (Ast.Var
+                                                    (Ast.Identifier "i.2"));
+                                                 body =
+                                                 (Ast.Compound
+                                                    (Ast.Block
+                                                       [(Ast.S
+                                                           Ast.Case {
+                                                             value =
+                                                             (Ast.LiteralInt
+                                                                1);
+                                                             body =
+                                                             (Ast.Expression
+                                                                (Ast.Assignment (
+                                                                   (Ast.Var
+                                                                    (Ast.Identifier
+                                                                    "x.1")),
+                                                                   Ast.Binary {
+                                                                    op =
+                                                                    Ast.Add;
+                                                                    left =
+                                                                    (
+                                                                    Ast.Var
+                                                                    (Ast.Identifier
+                                                                    "x.1"));
+                                                                    right =
+                                                                    (
+                                                                    Ast.LiteralInt
+                                                                    1)}
+                                                                   )));
+                                                             id =
+                                                             (Some (Ast.SwitchLabel
+                                                                    "3"))});
+                                                         (Ast.S
+                                                            Ast.Case {
+                                                              value =
+                                                              (Ast.LiteralInt
+                                                                 2);
+                                                              body =
+                                                              (Ast.Expression
+                                                                 (Ast.Assignment (
+                                                                    (
+                                                                    Ast.Var
+                                                                    (Ast.Identifier
+                                                                    "x.1")),
+                                                                    Ast.Binary {
+                                                                    op =
+                                                                    Ast.Add;
+                                                                    left =
+                                                                    (
+                                                                    Ast.Var
+                                                                    (Ast.Identifier
+                                                                    "x.1"));
+                                                                    right =
+                                                                    (
+                                                                    Ast.LiteralInt
+                                                                    2)})));
+                                                              id =
+                                                              (Some (
+                                                              Ast.SwitchLabel
+                                                                "3"))});
+                                                         (Ast.S
+                                                            Ast.Default {
+                                                              body =
+                                                              (Ast.Expression
+                                                                 (Ast.Assignment (
+                                                                    (
+                                                                    Ast.Var
+                                                                    (Ast.Identifier
+                                                                    "x.1")),
+                                                                    Ast.Binary {
+                                                                    op =
+                                                                    Ast.Multiply;
+                                                                    left =
+                                                                    (
+                                                                    Ast.Var
+                                                                    (Ast.Identifier
+                                                                    "x.1"));
+                                                                    right =
+                                                                    (
+                                                                    Ast.LiteralInt
+                                                                    3)})));
+                                                              id =
+                                                              (Some (
+                                                              Ast.SwitchLabel
+                                                                "3"))})
+                                                         ]));
+                                                 id =
+                                                 (Some (Ast.SwitchLabel "3"))})
+                                             ]));
+                                     id = (Some (Ast.LoopLabel "2"))});
+                                (Ast.S
+                                   (Ast.Return
+                                      (Ast.Var (Ast.Identifier "x.1"))))
+                                ]));
+                        id = (Some (Ast.SwitchLabel "1"))});
+                    (Ast.S (Ast.Return (Ast.LiteralInt 0)))]));
+         storage = None });
+     (Ast.FunDecl
+        { Ast.name = (Ast.Identifier "main"); params = [];
+          body =
+          (Some (Ast.Block
+                   [(Ast.S
+                       (Ast.Return
+                          Ast.FunctionCall {name = (Ast.Identifier "target");
+                            args = [(Ast.LiteralInt 20)]}))
+                     ]));
+          storage = None })
+     ])

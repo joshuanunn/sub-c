@@ -1,0 +1,45 @@
+(Ast.Program
+   [(Ast.FunDecl
+       { Ast.name = (Ast.Identifier "callee"); params = [];
+         body = (Some (Ast.Block [(Ast.S (Ast.Return (Ast.LiteralInt 0)))]));
+         storage = None });
+     (Ast.FunDecl
+        { Ast.name = (Ast.Identifier "target"); params = [];
+          body =
+          (Some (Ast.Block
+                   [(Ast.D
+                       (Ast.VarDecl
+                          { Ast.name = (Ast.Identifier "x.0"); init = None;
+                            storage = None }));
+                     (Ast.S
+                        Ast.If {cond_exp = (Ast.LiteralInt 0);
+                          then_smt =
+                          (Ast.Expression
+                             (Ast.Assignment (
+                                (Ast.Var (Ast.Identifier "x.0")),
+                                Ast.FunctionCall {
+                                  name = (Ast.Identifier "callee"); args = []}
+                                )));
+                          else_smt =
+                          (Some (Ast.Expression
+                                   (Ast.Assignment (
+                                      (Ast.Var (Ast.Identifier "x.0")),
+                                      (Ast.LiteralInt 40)))))});
+                     (Ast.S
+                        (Ast.Return
+                           Ast.Binary {op = Ast.Add;
+                             left = (Ast.Var (Ast.Identifier "x.0"));
+                             right = (Ast.LiteralInt 5)}))
+                     ]));
+          storage = None });
+     (Ast.FunDecl
+        { Ast.name = (Ast.Identifier "main"); params = [];
+          body =
+          (Some (Ast.Block
+                   [(Ast.S
+                       (Ast.Return
+                          Ast.FunctionCall {name = (Ast.Identifier "target");
+                            args = []}))
+                     ]));
+          storage = None })
+     ])

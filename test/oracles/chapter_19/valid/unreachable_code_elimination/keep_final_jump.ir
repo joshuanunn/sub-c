@@ -1,0 +1,33 @@
+(Ir.Program
+   [Ir.Function {name = "f"; global = true; params = ["a.0"];
+      body =
+      [(Ir.Label "loop.st.1");
+        Ir.Binary {op = Ir.Subtract; src1 = (Ir.Var "a.0");
+          src2 = (Ir.Constant 1); dst = (Ir.Var "tmp.0")};
+        Ir.Copy {src = (Ir.Var "tmp.0"); dst = (Ir.Var "a.0")};
+        Ir.JumpIfZero {condition = (Ir.Var "a.0"); target = "f.if.en.1"};
+        (Ir.Return (Ir.Constant 17)); (Ir.Label "f.if.en.1");
+        Ir.Jump {target = "loop.st.1"}];
+      frame =
+      Env.lenv {
+        namespace = "f";
+        counter = 2;
+        offset = -8;
+        stack slots = {
+          tmp.0 -> -4,
+          a.0   -> -8,
+        }}};
+     Ir.Function {name = "main"; global = true; params = [];
+       body =
+       [Ir.FunCall {fun_name = "f"; args = [(Ir.Constant 10)];
+          dst = (Ir.Var "tmp.0")};
+         (Ir.Return (Ir.Var "tmp.0"))];
+       frame =
+       Env.lenv {
+         namespace = "main";
+         counter = 1;
+         offset = -4;
+         stack slots = {
+           tmp.0 -> -4,
+         }}}
+     ])

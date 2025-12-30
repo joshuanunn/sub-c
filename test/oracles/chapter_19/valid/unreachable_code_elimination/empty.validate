@@ -1,0 +1,5 @@
+(Ast.Program
+   [(Ast.FunDecl
+       { Ast.name = (Ast.Identifier "main"); params = [];
+         body = (Some (Ast.Block [])); storage = None })
+     ])

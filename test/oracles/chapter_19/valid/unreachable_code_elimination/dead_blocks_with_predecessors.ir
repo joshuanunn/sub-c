@@ -1,0 +1,43 @@
+(Ir.Program
+   [Ir.Function {name = "callee"; global = true; params = [];
+      body =
+      [Ir.Binary {op = Ir.Divide; src1 = (Ir.Constant 1);
+         src2 = (Ir.Constant 0); dst = (Ir.Var "tmp.0")};
+        (Ir.Return (Ir.Var "tmp.0"))];
+      frame =
+      Env.lenv {
+        namespace = "callee";
+        counter = 1;
+        offset = -4;
+        stack slots = {
+          tmp.0 -> -4,
+        }}};
+     Ir.Function {name = "target"; global = true; params = [];
+       body =
+       [Ir.Copy {src = (Ir.Constant 5); dst = (Ir.Var "x.0")};
+         (Ir.Return (Ir.Var "x.0"))];
+       frame =
+       Env.lenv {
+         namespace = "target";
+         counter = 4;
+         offset = -20;
+         stack slots = {
+           x.0   -> -4,
+           tmp.0 -> -8,
+           tmp.1 -> -12,
+           tmp.2 -> -16,
+           tmp.3 -> -20,
+         }}};
+     Ir.Function {name = "main"; global = true; params = [];
+       body =
+       [Ir.FunCall {fun_name = "target"; args = []; dst = (Ir.Var "tmp.0")};
+         (Ir.Return (Ir.Var "tmp.0"))];
+       frame =
+       Env.lenv {
+         namespace = "main";
+         counter = 1;
+         offset = -4;
+         stack slots = {
+           tmp.0 -> -4,
+         }}}
+     ])

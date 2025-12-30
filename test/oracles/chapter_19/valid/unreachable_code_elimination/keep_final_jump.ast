@@ -1,0 +1,41 @@
+(Ast.Program
+   [(Ast.FunDecl
+       { Ast.name = (Ast.Identifier "f"); params = [(Ast.Identifier "a")];
+         body =
+         (Some (Ast.Block
+                  [(Ast.S
+                      Ast.DoWhile {
+                        body =
+                        (Ast.Compound
+                           (Ast.Block
+                              [(Ast.S
+                                  (Ast.Expression
+                                     (Ast.Assignment (
+                                        (Ast.Var (Ast.Identifier "a")),
+                                        Ast.Binary {op = Ast.Subtract;
+                                          left =
+                                          (Ast.Var (Ast.Identifier "a"));
+                                          right = (Ast.LiteralInt 1)}
+                                        ))));
+                                (Ast.S
+                                   Ast.If {
+                                     cond_exp =
+                                     (Ast.Var (Ast.Identifier "a"));
+                                     then_smt =
+                                     (Ast.Return (Ast.LiteralInt 17));
+                                     else_smt = None})
+                                ]));
+                        cond = (Ast.LiteralInt 1); id = None})
+                    ]));
+         storage = None });
+     (Ast.FunDecl
+        { Ast.name = (Ast.Identifier "main"); params = [];
+          body =
+          (Some (Ast.Block
+                   [(Ast.S
+                       (Ast.Return
+                          Ast.FunctionCall {name = (Ast.Identifier "f");
+                            args = [(Ast.LiteralInt 10)]}))
+                     ]));
+          storage = None })
+     ])

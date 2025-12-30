@@ -1,0 +1,37 @@
+(Ast.Program
+   [(Ast.FunDecl
+       { Ast.name = (Ast.Identifier "callee"); params = [];
+         body = (Some (Ast.Block [(Ast.S (Ast.Return (Ast.LiteralInt 1)))]));
+         storage = None });
+     (Ast.FunDecl
+        { Ast.name = (Ast.Identifier "target"); params = [];
+          body =
+          (Some (Ast.Block
+                   [(Ast.D
+                       (Ast.VarDecl
+                          { Ast.name = (Ast.Identifier "x");
+                            init = (Some (Ast.LiteralInt 10)); storage = None
+                            }));
+                     (Ast.S (Ast.Goto (Ast.Identifier "end")));
+                     (Ast.S
+                        (Ast.Expression
+                           (Ast.Assignment ((Ast.Var (Ast.Identifier "x")),
+                              Ast.FunctionCall {
+                                name = (Ast.Identifier "callee"); args = []}
+                              ))));
+                     (Ast.S
+                        (Ast.Label ((Ast.Identifier "end"),
+                           (Ast.Return (Ast.Var (Ast.Identifier "x"))))))
+                     ]));
+          storage = None });
+     (Ast.FunDecl
+        { Ast.name = (Ast.Identifier "main"); params = [];
+          body =
+          (Some (Ast.Block
+                   [(Ast.S
+                       (Ast.Return
+                          Ast.FunctionCall {name = (Ast.Identifier "target");
+                            args = []}))
+                     ]));
+          storage = None })
+     ])
