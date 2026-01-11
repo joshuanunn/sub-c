@@ -2,8 +2,6 @@
    [Ir.Function {name = "main"; global = true; params = [];
       body =
       [Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "a.0")};
-        Ir.JumpIfZero {condition = (Ir.Var "a.0"); target = "main.if.el.1"};
-        (Ir.Return (Ir.Constant 1)); (Ir.Label "main.if.el.1");
         (Ir.Return (Ir.Constant 2))];
       frame =
       Env.lenv {

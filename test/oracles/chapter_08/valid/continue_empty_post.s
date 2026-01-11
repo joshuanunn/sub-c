@@ -17,7 +17,7 @@ main:
     addl        $1, -16(%rbp)
     movl        -16(%rbp), %r10d
     movl        %r10d, -8(%rbp)
-    movl        -8(%rbp), %eax
+    movl        -16(%rbp), %eax
     cdq         
     movl        $2, %r10d
     idivl       %r10d
@@ -28,7 +28,7 @@ main:
 .Lmain.if.en.3:
     movl        -4(%rbp), %r10d
     movl        %r10d, -24(%rbp)
-    movl        -8(%rbp), %r10d
+    movl        -16(%rbp), %r10d
     addl        %r10d, -24(%rbp)
     movl        -24(%rbp), %r10d
     movl        %r10d, -4(%rbp)

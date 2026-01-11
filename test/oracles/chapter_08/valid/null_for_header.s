@@ -11,7 +11,7 @@ main:
     addl        $1, -8(%rbp)
     movl        -8(%rbp), %r10d
     movl        %r10d, -4(%rbp)
-    cmpl        $3, -4(%rbp)
+    cmpl        $3, -8(%rbp)
     movl        $0, -12(%rbp)
     setg        -12(%rbp)
     cmpl        $0, -12(%rbp)
@@ -20,7 +20,7 @@ main:
 .Lmain.if.en.2:
     jmp         .Lloop.st.1
 .Lloop.br.1:
-    movl        -4(%rbp), %eax
+    movl        -8(%rbp), %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         

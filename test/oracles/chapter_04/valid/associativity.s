@@ -5,9 +5,7 @@ main:
     movq        %rsp, %rbp
     subq        $16, %rsp
     movl        $1, -4(%rbp)
-    cmpl        $1, -4(%rbp)
     movl        $0, -8(%rbp)
-    setg        -8(%rbp)
     cmpl        $0, -8(%rbp)
     movl        $0, -12(%rbp)
     setle       -12(%rbp)

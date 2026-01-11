@@ -5,19 +5,10 @@ main:
     movq        %rsp, %rbp
     subq        $16, %rsp
     movl        $1, -4(%rbp)
-    cmpl        $2, -4(%rbp)
-    movl        $0, -12(%rbp)
-    setne       -12(%rbp)
-    cmpl        $0, -12(%rbp)
-    je          .Lmain.cond.el.3
+    movl        $1, -12(%rbp)
     movl        $2, -4(%rbp)
-    movl        -4(%rbp), %r10d
-    movl        %r10d, -8(%rbp)
-    jmp         .Lmain.cond.en.2
-.Lmain.cond.el.3:
-    movl        $0, -8(%rbp)
-.Lmain.cond.en.2:
-    movl        -4(%rbp), %eax
+    movl        $2, -8(%rbp)
+    movl        $2, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         

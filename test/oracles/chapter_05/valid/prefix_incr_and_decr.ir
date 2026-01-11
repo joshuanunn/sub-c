@@ -3,14 +3,11 @@
       body =
       [Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "a.0")};
         Ir.Copy {src = (Ir.Constant 2); dst = (Ir.Var "b.1")};
-        Ir.Binary {op = Ir.Add; src1 = (Ir.Var "a.0");
-          src2 = (Ir.Constant 1); dst = (Ir.Var "a.0")};
+        Ir.Copy {src = (Ir.Constant 2); dst = (Ir.Var "a.0")};
         Ir.Copy {src = (Ir.Var "a.0"); dst = (Ir.Var "c.2")};
-        Ir.Binary {op = Ir.Subtract; src1 = (Ir.Var "b.1");
-          src2 = (Ir.Constant 1); dst = (Ir.Var "b.1")};
+        Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "b.1")};
         Ir.Copy {src = (Ir.Var "b.1"); dst = (Ir.Var "d.3")};
-        Ir.Binary {op = Ir.Equal; src1 = (Ir.Var "a.0");
-          src2 = (Ir.Constant 2); dst = (Ir.Var "tmp.0")};
+        Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "tmp.0")};
         Ir.JumpIfZero {condition = (Ir.Var "tmp.0"); target = "main.and.fl.3"};
         Ir.Binary {op = Ir.Equal; src1 = (Ir.Var "b.1");
           src2 = (Ir.Constant 1); dst = (Ir.Var "tmp.1")};
@@ -29,7 +26,7 @@
         (Ir.Label "main.and.en.8");
         Ir.JumpIfZero {condition = (Ir.Var "tmp.6");
           target = "main.and.fl.11"};
-        Ir.Binary {op = Ir.Equal; src1 = (Ir.Var "d.3");
+        Ir.Binary {op = Ir.Equal; src1 = (Ir.Var "b.1");
           src2 = (Ir.Constant 1); dst = (Ir.Var "tmp.9")};
         Ir.JumpIfZero {condition = (Ir.Var "tmp.9");
           target = "main.and.fl.11"};

@@ -8,7 +8,7 @@
         Ir.Binary {op = Ir.Add; src1 = (Ir.Var "count.1");
           src2 = (Ir.Constant 1); dst = (Ir.Var "tmp.2")};
         Ir.Copy {src = (Ir.Var "tmp.2"); dst = (Ir.Var "count.1")};
-        Ir.Binary {op = Ir.LessThan; src1 = (Ir.Var "count.1");
+        Ir.Binary {op = Ir.LessThan; src1 = (Ir.Var "tmp.2");
           src2 = (Ir.Constant 26); dst = (Ir.Var "tmp.3")};
         Ir.JumpIfZero {condition = (Ir.Var "tmp.3");
           target = "print_alphabet.if.en.4"};

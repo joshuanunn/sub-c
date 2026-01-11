@@ -4,8 +4,7 @@
       [Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "a.0")};
         Ir.Copy {src = (Ir.Constant 2); dst = (Ir.Var "b.1")};
         Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "flag.2")};
-        Ir.Binary {op = Ir.GreaterThan; src1 = (Ir.Var "a.0");
-          src2 = (Ir.Var "b.1"); dst = (Ir.Var "tmp.1")};
+        Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "tmp.1")};
         Ir.JumpIfZero {condition = (Ir.Var "tmp.1");
           target = "main.cond.el.3"};
         Ir.Copy {src = (Ir.Constant 5); dst = (Ir.Var "tmp.0")};

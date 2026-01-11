@@ -6,11 +6,7 @@ main:
     subq        $48, %rsp
     movl        $2147483646, -4(%rbp)
     movl        $0, -8(%rbp)
-    movl        -4(%rbp), %eax
-    cdq         
-    movl        $6, %r10d
-    idivl       %r10d
-    movl        %eax, -16(%rbp)
+    movl        $357913941, -16(%rbp)
     cmpl        $0, -8(%rbp)
     movl        $0, -20(%rbp)
     sete        -20(%rbp)
@@ -20,14 +16,12 @@ main:
     addl        %r10d, -24(%rbp)
     movl        -24(%rbp), %r10d
     movl        %r10d, -12(%rbp)
-    movl        -12(%rbp), %r10d
+    movl        -24(%rbp), %r10d
     movl        %r10d, -28(%rbp)
     movl        -28(%rbp), %r11d
     imull       $2, %r11d
     movl        %r11d, -28(%rbp)
-    movl        -4(%rbp), %r10d
-    movl        %r10d, -32(%rbp)
-    subl        $1431655762, -32(%rbp)
+    movl        $715827884, -32(%rbp)
     movl        -32(%rbp), %r10d
     cmpl        %r10d, -28(%rbp)
     movl        $0, -36(%rbp)

@@ -6,18 +6,15 @@ main:
     subq        $64, %rsp
     movl        $1, -4(%rbp)
     movl        $2, -8(%rbp)
-    addl        $1, -4(%rbp)
+    movl        $2, -4(%rbp)
     movl        -4(%rbp), %r10d
     movl        %r10d, -16(%rbp)
     negl        -16(%rbp)
     movl        -16(%rbp), %r10d
     movl        %r10d, -12(%rbp)
-    movl        -8(%rbp), %r10d
-    movl        %r10d, -24(%rbp)
-    subl        $1, -8(%rbp)
-    cmpl        $0, -24(%rbp)
+    movl        $2, -24(%rbp)
+    movl        $1, -8(%rbp)
     movl        $0, -28(%rbp)
-    sete        -28(%rbp)
     movl        -28(%rbp), %r10d
     movl        %r10d, -20(%rbp)
     cmpl        $2, -4(%rbp)
@@ -39,7 +36,7 @@ main:
     je          .Lmain.and.fl.11
     movl        $-2, -44(%rbp)
     movl        -44(%rbp), %r10d
-    cmpl        %r10d, -12(%rbp)
+    cmpl        %r10d, -16(%rbp)
     movl        $0, -48(%rbp)
     sete        -48(%rbp)
     cmpl        $0, -48(%rbp)
@@ -51,7 +48,7 @@ main:
 .Lmain.and.en.12:
     cmpl        $0, -52(%rbp)
     je          .Lmain.and.fl.15
-    cmpl        $0, -20(%rbp)
+    cmpl        $0, -28(%rbp)
     movl        $0, -56(%rbp)
     sete        -56(%rbp)
     cmpl        $0, -56(%rbp)

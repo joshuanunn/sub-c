@@ -31,11 +31,7 @@ main:
     sete        -28(%rbp)
     cmpl        $0, -28(%rbp)
     je          .Lmain.and.fl.6
-    cmpl        $1, -4(%rbp)
-    movl        $0, -32(%rbp)
-    sete        -32(%rbp)
-    cmpl        $0, -32(%rbp)
-    je          .Lmain.and.fl.6
+    movl        $1, -32(%rbp)
     movl        $1, -36(%rbp)
     jmp         .Lmain.and.en.7
 .Lmain.and.fl.6:

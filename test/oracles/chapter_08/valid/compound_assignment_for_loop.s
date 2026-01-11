@@ -6,8 +6,7 @@ main:
     subq        $32, %rsp
     movl        $1, -4(%rbp)
     movl        $-1, -8(%rbp)
-    movl        -4(%rbp), %r10d
-    movl        %r10d, -12(%rbp)
+    movl        $1, -12(%rbp)
     movl        -12(%rbp), %r11d
     imull       -8(%rbp), %r11d
     movl        %r11d, -12(%rbp)

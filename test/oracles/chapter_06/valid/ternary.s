@@ -6,8 +6,8 @@ main:
     subq        $16, %rsp
     movl        $0, -4(%rbp)
     movl        $-1, -12(%rbp)
-    movl        -12(%rbp), %r10d
-    cmpl        %r10d, -4(%rbp)
+    movl        $0, %r11d
+    cmpl        -12(%rbp), %r11d
     movl        $0, -16(%rbp)
     setg        -16(%rbp)
     cmpl        $0, -16(%rbp)

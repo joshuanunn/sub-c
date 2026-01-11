@@ -25,7 +25,7 @@ main:
     addl        $1, -24(%rbp)
     movl        -24(%rbp), %r10d
     movl        %r10d, -16(%rbp)
-    movl        -16(%rbp), %eax
+    movl        -24(%rbp), %eax
     cdq         
     movl        $2, %r10d
     idivl       %r10d

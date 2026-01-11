@@ -3,13 +3,9 @@
       body =
       [Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "a.0")};
         Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "b.1")};
-        Ir.JumpIfZero {condition = (Ir.Var "a.0"); target = "main.cond.el.2"};
-        Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "b.1")};
-        Ir.Copy {src = (Ir.Var "b.1"); dst = (Ir.Var "tmp.0")};
-        Ir.Jump {target = "main.cond.en.1"}; (Ir.Label "main.cond.el.2");
         Ir.Copy {src = (Ir.Constant 2); dst = (Ir.Var "b.1")};
-        Ir.Copy {src = (Ir.Var "b.1"); dst = (Ir.Var "tmp.0")};
-        (Ir.Label "main.cond.en.1"); (Ir.Return (Ir.Var "b.1"))];
+        Ir.Copy {src = (Ir.Constant 2); dst = (Ir.Var "tmp.0")};
+        (Ir.Return (Ir.Constant 2))];
       frame =
       Env.lenv {
         namespace = "main";

@@ -3,7 +3,7 @@
       instructions =
       [(Asm.AllocateStack 16); (Asm.Mov ((Asm.Imm 0), (Asm.Stack -4)));
         (Asm.Jmp "target.0"); (Asm.Label "loop.st.1");
-        (Asm.Cmp ((Asm.Imm 10), (Asm.Stack -4)));
+        (Asm.Cmp ((Asm.Imm 10), (Asm.Stack -16)));
         (Asm.Mov ((Asm.Imm 0), (Asm.Stack -8)));
         (Asm.SetCC (Asm.L, (Asm.Stack -8)));
         (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -8)));

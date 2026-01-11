@@ -5,11 +5,7 @@ main:
     movq        %rsp, %rbp
     subq        $32, %rsp
     movl        $20, -4(%rbp)
-    movl        -4(%rbp), %eax
-    cdq         
-    movl        $2, %r10d
-    idivl       %r10d
-    movl        %eax, -8(%rbp)
+    movl        $10, -8(%rbp)
     movl        $3, -12(%rbp)
     movl        $3, %eax
     cdq         

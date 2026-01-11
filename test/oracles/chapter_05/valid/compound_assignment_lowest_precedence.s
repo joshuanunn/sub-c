@@ -6,65 +6,48 @@ main:
     subq        $80, %rsp
     movl        $10, -4(%rbp)
     movl        $12, -8(%rbp)
-    cmpl        $0, -8(%rbp)
-    jne         .Lmain.or.tr.1
-    movl        $0, -12(%rbp)
-    jmp         .Lmain.or.en.2
-.Lmain.or.tr.1:
     movl        $1, -12(%rbp)
-.Lmain.or.en.2:
-    movl        -4(%rbp), %r10d
-    movl        %r10d, -16(%rbp)
+    movl        $10, -16(%rbp)
     movl        -12(%rbp), %r10d
     addl        %r10d, -16(%rbp)
     movl        -16(%rbp), %r10d
     movl        %r10d, -4(%rbp)
     movl        $0, -20(%rbp)
-    movl        -8(%rbp), %r10d
-    movl        %r10d, -24(%rbp)
+    movl        $12, -24(%rbp)
     movl        -24(%rbp), %r11d
     imull       -20(%rbp), %r11d
     movl        %r11d, -24(%rbp)
     movl        -24(%rbp), %r10d
     movl        %r10d, -8(%rbp)
     movl        $14, -28(%rbp)
-    cmpl        $0, -4(%rbp)
+    cmpl        $0, -16(%rbp)
     jne         .Lmain.or.tr.9
-    cmpl        $0, -8(%rbp)
+    cmpl        $0, -24(%rbp)
     jne         .Lmain.or.tr.9
     movl        $0, -32(%rbp)
     jmp         .Lmain.or.en.10
 .Lmain.or.tr.9:
     movl        $1, -32(%rbp)
 .Lmain.or.en.10:
-    movl        -28(%rbp), %r10d
-    movl        %r10d, -36(%rbp)
+    movl        $14, -36(%rbp)
     movl        -32(%rbp), %r10d
     subl        %r10d, -36(%rbp)
     movl        -36(%rbp), %r10d
     movl        %r10d, -28(%rbp)
     movl        $16, -40(%rbp)
-    cmpl        $0, -28(%rbp)
-    jne         .Lmain.or.tr.13
-    cmpl        $0, -40(%rbp)
-    jne         .Lmain.or.tr.13
-    movl        $0, -44(%rbp)
-    jmp         .Lmain.or.en.14
-.Lmain.or.tr.13:
     movl        $1, -44(%rbp)
-.Lmain.or.en.14:
-    movl        -40(%rbp), %eax
+    movl        $16, %eax
     cdq         
     idivl       -44(%rbp)
     movl        %eax, -48(%rbp)
     movl        -48(%rbp), %r10d
     movl        %r10d, -40(%rbp)
-    cmpl        $11, -4(%rbp)
+    cmpl        $11, -16(%rbp)
     movl        $0, -52(%rbp)
     sete        -52(%rbp)
     cmpl        $0, -52(%rbp)
     je          .Lmain.and.fl.19
-    cmpl        $0, -8(%rbp)
+    cmpl        $0, -24(%rbp)
     movl        $0, -56(%rbp)
     sete        -56(%rbp)
     cmpl        $0, -56(%rbp)
@@ -76,7 +59,7 @@ main:
 .Lmain.and.en.20:
     cmpl        $0, -60(%rbp)
     je          .Lmain.and.fl.23
-    cmpl        $13, -28(%rbp)
+    cmpl        $13, -36(%rbp)
     movl        $0, -64(%rbp)
     sete        -64(%rbp)
     cmpl        $0, -64(%rbp)

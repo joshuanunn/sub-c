@@ -3,12 +3,12 @@
       body =
       [Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "a.0")};
         Ir.Copy {src = (Ir.Constant 4); dst = (Ir.Var "b.1")};
-        Ir.Copy {src = (Ir.Var "b.1"); dst = (Ir.Var "a.0")};
+        Ir.Copy {src = (Ir.Constant 4); dst = (Ir.Var "a.0")};
         Ir.Copy {src = (Ir.Constant 2); dst = (Ir.Var "b.2")};
-        Ir.Binary {op = Ir.Subtract; src1 = (Ir.Var "a.0");
+        Ir.Binary {op = Ir.Subtract; src1 = (Ir.Constant 4);
           src2 = (Ir.Var "b.2"); dst = (Ir.Var "tmp.0")};
         Ir.Copy {src = (Ir.Var "tmp.0"); dst = (Ir.Var "a.0")};
-        (Ir.Return (Ir.Var "a.0"))];
+        (Ir.Return (Ir.Var "tmp.0"))];
       frame =
       Env.lenv {
         namespace = "main";

@@ -20,7 +20,7 @@
         Asm.Binary {op = Asm.Add; src = (Asm.Imm 1); dst = (Asm.Stack -24)};
         (Asm.Mov ((Asm.Stack -24), (Asm.Reg Asm.R10)));
         (Asm.Mov ((Asm.Reg Asm.R10), (Asm.Stack -16)));
-        (Asm.Mov ((Asm.Stack -16), (Asm.Reg Asm.AX))); Asm.Cdq;
+        (Asm.Mov ((Asm.Stack -24), (Asm.Reg Asm.AX))); Asm.Cdq;
         (Asm.Mov ((Asm.Imm 2), (Asm.Reg Asm.R10)));
         (Asm.Idiv (Asm.Reg Asm.R10));
         (Asm.Mov ((Asm.Reg Asm.DX), (Asm.Stack -28)));

@@ -5,8 +5,7 @@ main:
     movq        %rsp, %rbp
     subq        $48, %rsp
     movl        $-1, -4(%rbp)
-    movl        -4(%rbp), %r10d
-    movl        %r10d, y(%rip)
+    movl        $-1, y(%rip)
     movl        x(%rip), %r10d
     movl        %r10d, -8(%rbp)
     shll        $1, -8(%rbp)
@@ -15,7 +14,7 @@ main:
     orl         $1, -12(%rbp)
     movl        -12(%rbp), %r10d
     movl        %r10d, x(%rip)
-    cmpl        $3, x(%rip)
+    cmpl        $3, -12(%rbp)
     movl        $0, -16(%rbp)
     setne       -16(%rbp)
     cmpl        $0, -16(%rbp)
@@ -26,7 +25,7 @@ main:
     ret         
 .Lmain.if.en.4:
     movl        $-5, -20(%rbp)
-    movl        y(%rip), %r10d
+    movl        -4(%rbp), %r10d
     movl        %r10d, -24(%rbp)
     movl        -20(%rbp), %r10d
     andl        %r10d, -24(%rbp)
@@ -40,7 +39,7 @@ main:
     movl        %r10d, y(%rip)
     movl        $-3, -36(%rbp)
     movl        -36(%rbp), %r10d
-    cmpl        %r10d, y(%rip)
+    cmpl        %r10d, -32(%rbp)
     movl        $0, -40(%rbp)
     setne       -40(%rbp)
     cmpl        $0, -40(%rbp)

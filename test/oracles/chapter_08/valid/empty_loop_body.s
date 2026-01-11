@@ -11,12 +11,12 @@ main:
     subl        $5, -8(%rbp)
     movl        -8(%rbp), %r10d
     movl        %r10d, -4(%rbp)
-    cmpl        $256, -4(%rbp)
+    cmpl        $256, -8(%rbp)
     movl        $0, -12(%rbp)
     setge       -12(%rbp)
     cmpl        $0, -12(%rbp)
     jne         .Lloop.st.1
-    movl        -4(%rbp), %eax
+    movl        -8(%rbp), %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         

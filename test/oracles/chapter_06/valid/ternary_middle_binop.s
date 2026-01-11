@@ -5,11 +5,9 @@ main:
     movq        %rsp, %rbp
     subq        $16, %rsp
     movl        $1, -12(%rbp)
-    movl        -12(%rbp), %r10d
-    movl        %r10d, -8(%rbp)
-    movl        -8(%rbp), %r10d
-    movl        %r10d, -4(%rbp)
-    movl        -4(%rbp), %eax
+    movl        $1, -8(%rbp)
+    movl        $1, -4(%rbp)
+    movl        $1, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         

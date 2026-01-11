@@ -3,7 +3,7 @@
       body =
       [Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "i.1")};
         Ir.Jump {target = "target.0"}; (Ir.Label "loop.st.1");
-        Ir.Binary {op = Ir.LessThan; src1 = (Ir.Var "i.1");
+        Ir.Binary {op = Ir.LessThan; src1 = (Ir.Var "tmp.3");
           src2 = (Ir.Constant 10); dst = (Ir.Var "tmp.0")};
         Ir.JumpIfZero {condition = (Ir.Var "tmp.0"); target = "loop.br.1"};
         (Ir.Label "target.0");

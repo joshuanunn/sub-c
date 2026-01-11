@@ -12,7 +12,7 @@ main:
     movl        $1, -4(%rbp)
     jmp         .Lloop.ct.1
 .Lloop.br.1:
-    movl        -4(%rbp), %eax
+    movl        $1, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         

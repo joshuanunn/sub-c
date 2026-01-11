@@ -25,8 +25,7 @@ decr_j:
     movq        %rsp, %rbp
     subq        $16, %rsp
     movl        $-1, -4(%rbp)
-    movl        -4(%rbp), %r10d
-    cmpl        %r10d, j(%rip)
+    cmpl        $-1, j(%rip)
     movl        $0, -8(%rbp)
     sete        -8(%rbp)
     cmpl        $0, -8(%rbp)
@@ -80,8 +79,7 @@ main:
     movl        $0, -20(%rbp)
 .Lmain.cond.en.8:
     movl        $-2, -28(%rbp)
-    movl        -28(%rbp), %r10d
-    cmpl        %r10d, j(%rip)
+    cmpl        $-2, j(%rip)
     movl        $0, -32(%rbp)
     setne       -32(%rbp)
     cmpl        $0, -32(%rbp)

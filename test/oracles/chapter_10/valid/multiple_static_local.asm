@@ -9,7 +9,7 @@
         (Asm.Mov ((Asm.Reg Asm.R11), (Asm.Stack -4)));
         (Asm.Mov ((Asm.Stack -4), (Asm.Reg Asm.R10)));
         (Asm.Mov ((Asm.Reg Asm.R10), (Asm.Data "a.0")));
-        (Asm.Mov ((Asm.Data "a.0"), (Asm.Reg Asm.AX))); Asm.Ret];
+        (Asm.Mov ((Asm.Stack -4), (Asm.Reg Asm.AX))); Asm.Ret];
       frame =
       Env.lenv {
         namespace = "foo";
@@ -26,7 +26,7 @@
          Asm.Binary {op = Asm.Add; src = (Asm.Imm 1); dst = (Asm.Stack -4)};
          (Asm.Mov ((Asm.Stack -4), (Asm.Reg Asm.R10)));
          (Asm.Mov ((Asm.Reg Asm.R10), (Asm.Data "a.1")));
-         (Asm.Mov ((Asm.Data "a.1"), (Asm.Reg Asm.AX))); Asm.Ret];
+         (Asm.Mov ((Asm.Stack -4), (Asm.Reg Asm.AX))); Asm.Ret];
        frame =
        Env.lenv {
          namespace = "bar";

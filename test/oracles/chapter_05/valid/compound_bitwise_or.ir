@@ -2,10 +2,9 @@
    [Ir.Function {name = "main"; global = true; params = [];
       body =
       [Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "to_or.0")};
-        Ir.Binary {op = Ir.BwOr; src1 = (Ir.Var "to_or.0");
-          src2 = (Ir.Constant 30); dst = (Ir.Var "tmp.0")};
-        Ir.Copy {src = (Ir.Var "tmp.0"); dst = (Ir.Var "to_or.0")};
-        (Ir.Return (Ir.Var "to_or.0"))];
+        Ir.Copy {src = (Ir.Constant 31); dst = (Ir.Var "tmp.0")};
+        Ir.Copy {src = (Ir.Constant 31); dst = (Ir.Var "to_or.0")};
+        (Ir.Return (Ir.Constant 31))];
       frame =
       Env.lenv {
         namespace = "main";

@@ -23,10 +23,10 @@
           src2 = (Ir.Constant 1); dst = (Ir.Var "tmp.6")};
         Ir.Copy {src = (Ir.Var "tmp.6"); dst = (Ir.Var "y.1")};
         (Ir.Label "loop.ct.1");
-        Ir.Binary {op = Ir.NotEqual; src1 = (Ir.Var "z.2");
+        Ir.Binary {op = Ir.NotEqual; src1 = (Ir.Var "tmp.0");
           src2 = (Ir.Constant 50); dst = (Ir.Var "tmp.7")};
         Ir.JumpIfNotZero {condition = (Ir.Var "tmp.7"); target = "loop.st.1"};
-        Ir.Binary {op = Ir.Equal; src1 = (Ir.Var "z.2");
+        Ir.Binary {op = Ir.Equal; src1 = (Ir.Var "tmp.0");
           src2 = (Ir.Constant 50); dst = (Ir.Var "tmp.8")};
         Ir.JumpIfZero {condition = (Ir.Var "tmp.8");
           target = "main.and.fl.11"};

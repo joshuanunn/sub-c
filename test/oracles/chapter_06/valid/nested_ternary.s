@@ -7,10 +7,7 @@ main:
     movl        $1, -4(%rbp)
     movl        $2, -8(%rbp)
     movl        $0, -12(%rbp)
-    movl        -8(%rbp), %r10d
-    cmpl        %r10d, -4(%rbp)
     movl        $0, -20(%rbp)
-    setg        -20(%rbp)
     cmpl        $0, -20(%rbp)
     je          .Lmain.cond.el.3
     movl        $5, -16(%rbp)

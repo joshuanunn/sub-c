@@ -7,32 +7,17 @@ main:
     movl        $4, -4(%rbp)
     movl        $9, -8(%rbp)
     movl        $0, -12(%rbp)
-    cmpl        $0, -4(%rbp)
-    je          .Lmain.cond.el.2
-    movl        -8(%rbp), %r10d
-    movl        %r10d, -16(%rbp)
-    jmp         .Lmain.cond.en.1
-.Lmain.cond.el.2:
-    movl        $7, -16(%rbp)
-.Lmain.cond.en.1:
-    cmpl        $0, -16(%rbp)
+    movl        $9, -16(%rbp)
     movl        $0, -20(%rbp)
-    sete        -20(%rbp)
     cmpl        $0, -20(%rbp)
     jne         .Lswit.cs.1.0
-    cmpl        $7, -16(%rbp)
     movl        $0, -24(%rbp)
-    sete        -24(%rbp)
     cmpl        $0, -24(%rbp)
     jne         .Lswit.cs.1.7
-    cmpl        $9, -16(%rbp)
-    movl        $0, -28(%rbp)
-    sete        -28(%rbp)
+    movl        $1, -28(%rbp)
     cmpl        $0, -28(%rbp)
     jne         .Lswit.cs.1.9
-    cmpl        $1, -16(%rbp)
     movl        $0, -32(%rbp)
-    sete        -32(%rbp)
     cmpl        $0, -32(%rbp)
     jne         .Lswit.cs.1.1
     jmp         .Lswit.br.1

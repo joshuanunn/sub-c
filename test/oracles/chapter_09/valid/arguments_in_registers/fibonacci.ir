@@ -45,7 +45,7 @@
      Ir.Function {name = "main"; global = true; params = [];
        body =
        [Ir.Copy {src = (Ir.Constant 6); dst = (Ir.Var "n.1")};
-         Ir.FunCall {fun_name = "fib"; args = [(Ir.Var "n.1")];
+         Ir.FunCall {fun_name = "fib"; args = [(Ir.Constant 6)];
            dst = (Ir.Var "tmp.0")};
          (Ir.Return (Ir.Var "tmp.0"))];
        frame =

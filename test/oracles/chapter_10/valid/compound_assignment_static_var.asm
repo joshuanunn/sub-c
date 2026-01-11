@@ -9,7 +9,7 @@
         (Asm.Mov ((Asm.Reg Asm.R10), (Asm.Data "i.0")));
         (Asm.Mov ((Asm.Data "j.1"), (Asm.Reg Asm.R10)));
         (Asm.Mov ((Asm.Reg Asm.R10), (Asm.Stack -8)));
-        (Asm.Mov ((Asm.Data "i.0"), (Asm.Reg Asm.R10)));
+        (Asm.Mov ((Asm.Stack -4), (Asm.Reg Asm.R10)));
         Asm.Binary {op = Asm.Sub; src = (Asm.Reg Asm.R10);
           dst = (Asm.Stack -8)};
         (Asm.Mov ((Asm.Stack -8), (Asm.Reg Asm.R10)));
@@ -17,7 +17,7 @@
         (Asm.Mov ((Asm.Data "k.2"), (Asm.Reg Asm.R10)));
         (Asm.Mov ((Asm.Reg Asm.R10), (Asm.Stack -12)));
         (Asm.Mov ((Asm.Stack -12), (Asm.Reg Asm.R11)));
-        Asm.Binary {op = Asm.Mult; src = (Asm.Data "j.1");
+        Asm.Binary {op = Asm.Mult; src = (Asm.Stack -8);
           dst = (Asm.Reg Asm.R11)};
         (Asm.Mov ((Asm.Reg Asm.R11), (Asm.Stack -12)));
         (Asm.Mov ((Asm.Stack -12), (Asm.Reg Asm.R10)));
@@ -36,7 +36,7 @@
         (Asm.Mov ((Asm.Imm 1), (Asm.Reg Asm.AX))); Asm.Ret;
         (Asm.Label "f.if.en.5"); (Asm.Mov ((Asm.Imm -6), (Asm.Stack -24)));
         (Asm.Mov ((Asm.Stack -24), (Asm.Reg Asm.R10)));
-        (Asm.Cmp ((Asm.Reg Asm.R10), (Asm.Data "j.1")));
+        (Asm.Cmp ((Asm.Reg Asm.R10), (Asm.Stack -8)));
         (Asm.Mov ((Asm.Imm 0), (Asm.Stack -28)));
         (Asm.SetCC (Asm.NE, (Asm.Stack -28)));
         (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -28)));
@@ -50,7 +50,7 @@
         (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -36)));
         (Asm.JmpCC (Asm.E, "f.if.en.11"));
         (Asm.Mov ((Asm.Imm 3), (Asm.Reg Asm.AX))); Asm.Ret;
-        (Asm.Label "f.if.en.11"); (Asm.Cmp ((Asm.Imm 6), (Asm.Data "l.3")));
+        (Asm.Label "f.if.en.11"); (Asm.Cmp ((Asm.Imm 6), (Asm.Stack -16)));
         (Asm.Mov ((Asm.Imm 0), (Asm.Stack -40)));
         (Asm.SetCC (Asm.NE, (Asm.Stack -40)));
         (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -40)));

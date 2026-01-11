@@ -2,8 +2,8 @@
    [Ir.Function {name = "main"; global = true; params = [];
       body =
       [Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "a.0")};
-        Ir.Copy {src = (Ir.Var "a.0"); dst = (Ir.Var "b.1")};
-        (Ir.Return (Ir.Var "a.0"))];
+        Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "b.1")};
+        (Ir.Return (Ir.Constant 1))];
       frame =
       Env.lenv {
         namespace = "main";

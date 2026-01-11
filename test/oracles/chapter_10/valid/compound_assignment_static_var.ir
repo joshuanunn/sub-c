@@ -5,10 +5,10 @@
          dst = (Ir.Var "tmp.0")};
         Ir.Copy {src = (Ir.Var "tmp.0"); dst = (Ir.Var "i.0")};
         Ir.Binary {op = Ir.Subtract; src1 = (Ir.Var "j.1");
-          src2 = (Ir.Var "i.0"); dst = (Ir.Var "tmp.1")};
+          src2 = (Ir.Var "tmp.0"); dst = (Ir.Var "tmp.1")};
         Ir.Copy {src = (Ir.Var "tmp.1"); dst = (Ir.Var "j.1")};
         Ir.Binary {op = Ir.Multiply; src1 = (Ir.Var "k.2");
-          src2 = (Ir.Var "j.1"); dst = (Ir.Var "tmp.2")};
+          src2 = (Ir.Var "tmp.1"); dst = (Ir.Var "tmp.2")};
         Ir.Copy {src = (Ir.Var "tmp.2"); dst = (Ir.Var "k.2")};
         Ir.Binary {op = Ir.Divide; src1 = (Ir.Var "l.3");
           src2 = (Ir.Constant 2); dst = (Ir.Var "tmp.3")};
@@ -18,7 +18,7 @@
         Ir.JumpIfZero {condition = (Ir.Var "tmp.4"); target = "f.if.en.5"};
         (Ir.Return (Ir.Constant 1)); (Ir.Label "f.if.en.5");
         Ir.Copy {src = (Ir.Constant -6); dst = (Ir.Var "tmp.6")};
-        Ir.Binary {op = Ir.NotEqual; src1 = (Ir.Var "j.1");
+        Ir.Binary {op = Ir.NotEqual; src1 = (Ir.Var "tmp.1");
           src2 = (Ir.Var "tmp.6"); dst = (Ir.Var "tmp.7")};
         Ir.JumpIfZero {condition = (Ir.Var "tmp.7"); target = "f.if.en.8"};
         (Ir.Return (Ir.Constant 2)); (Ir.Label "f.if.en.8");
@@ -27,7 +27,7 @@
           src2 = (Ir.Var "tmp.9"); dst = (Ir.Var "tmp.10")};
         Ir.JumpIfZero {condition = (Ir.Var "tmp.10"); target = "f.if.en.11"};
         (Ir.Return (Ir.Constant 3)); (Ir.Label "f.if.en.11");
-        Ir.Binary {op = Ir.NotEqual; src1 = (Ir.Var "l.3");
+        Ir.Binary {op = Ir.NotEqual; src1 = (Ir.Var "tmp.3");
           src2 = (Ir.Constant 6); dst = (Ir.Var "tmp.12")};
         Ir.JumpIfZero {condition = (Ir.Var "tmp.12"); target = "f.if.en.13"};
         (Ir.Return (Ir.Constant 4)); (Ir.Label "f.if.en.13");

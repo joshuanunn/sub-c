@@ -11,14 +11,14 @@
         Asm.Binary {op = Asm.Add; src = (Asm.Imm 1); dst = (Asm.Stack -20)};
         (Asm.Mov ((Asm.Stack -20), (Asm.Reg Asm.R10)));
         (Asm.Mov ((Asm.Reg Asm.R10), (Asm.Stack -8)));
-        (Asm.Cmp ((Asm.Imm 8), (Asm.Stack -8)));
+        (Asm.Cmp ((Asm.Imm 8), (Asm.Stack -20)));
         (Asm.Mov ((Asm.Imm 0), (Asm.Stack -24)));
         (Asm.SetCC (Asm.E, (Asm.Stack -24)));
         (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -24)));
         (Asm.JmpCC (Asm.E, "main.and.fl.6"));
         (Asm.Mov ((Asm.Imm -4), (Asm.Stack -28)));
         (Asm.Mov ((Asm.Stack -28), (Asm.Reg Asm.R10)));
-        (Asm.Cmp ((Asm.Reg Asm.R10), (Asm.Stack -4)));
+        (Asm.Cmp ((Asm.Reg Asm.R10), (Asm.Stack -12)));
         (Asm.Mov ((Asm.Imm 0), (Asm.Stack -32)));
         (Asm.SetCC (Asm.E, (Asm.Stack -32)));
         (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -32)));

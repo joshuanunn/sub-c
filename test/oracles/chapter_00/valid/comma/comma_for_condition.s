@@ -13,8 +13,7 @@ main:
     addl        $1, -16(%rbp)
     movl        -16(%rbp), %r10d
     movl        %r10d, -4(%rbp)
-    movl        -8(%rbp), %r10d
-    cmpl        %r10d, -4(%rbp)
+    cmpl        $3, -16(%rbp)
     movl        $0, -20(%rbp)
     setle       -20(%rbp)
     cmpl        $0, -20(%rbp)

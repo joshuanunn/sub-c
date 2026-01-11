@@ -12,8 +12,7 @@ main:
     movl        $1, -16(%rbp)
     movl        -12(%rbp), %r10d
     xorl        %r10d, -16(%rbp)
-    movl        -4(%rbp), %r10d
-    movl        %r10d, -20(%rbp)
+    movl        $20, -20(%rbp)
     movl        -16(%rbp), %r10d
     orl         %r10d, -20(%rbp)
     movl        -20(%rbp), %eax

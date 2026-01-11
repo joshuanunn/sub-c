@@ -15,13 +15,12 @@ main:
     cmpl        $0, -20(%rbp)
     je          .Lloop.br.1
     movl        $1, -24(%rbp)
-    movl        -24(%rbp), %r10d
-    movl        %r10d, -32(%rbp)
+    movl        $1, -32(%rbp)
     movl        -12(%rbp), %r10d
     addl        %r10d, -32(%rbp)
     movl        -32(%rbp), %r10d
     movl        %r10d, -28(%rbp)
-    movl        -28(%rbp), %r10d
+    movl        -32(%rbp), %r10d
     movl        %r10d, -12(%rbp)
     movl        -16(%rbp), %r10d
     movl        %r10d, -36(%rbp)
@@ -35,11 +34,7 @@ main:
     sete        -40(%rbp)
     cmpl        $0, -40(%rbp)
     je          .Lmain.and.fl.6
-    cmpl        $0, -4(%rbp)
-    movl        $0, -44(%rbp)
-    sete        -44(%rbp)
-    cmpl        $0, -44(%rbp)
-    je          .Lmain.and.fl.6
+    movl        $1, -44(%rbp)
     movl        $1, -48(%rbp)
     jmp         .Lmain.and.en.7
 .Lmain.and.fl.6:
@@ -47,11 +42,7 @@ main:
 .Lmain.and.en.7:
     cmpl        $0, -48(%rbp)
     je          .Lmain.and.fl.10
-    cmpl        $0, -8(%rbp)
-    movl        $0, -52(%rbp)
-    sete        -52(%rbp)
-    cmpl        $0, -52(%rbp)
-    je          .Lmain.and.fl.10
+    movl        $1, -52(%rbp)
     movl        $1, -56(%rbp)
     jmp         .Lmain.and.en.11
 .Lmain.and.fl.10:

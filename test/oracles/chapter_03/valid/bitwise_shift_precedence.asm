@@ -2,12 +2,8 @@
    [Asm.Function {name = "main"; global = true;
       instructions =
       [(Asm.AllocateStack 16); (Asm.Mov ((Asm.Imm 16), (Asm.Stack -4)));
-        (Asm.Mov ((Asm.Imm 40), (Asm.Stack -8)));
-        (Asm.Mov ((Asm.Stack -4), (Asm.Reg Asm.CX)));
-        (Asm.Shl ((Asm.Reg Asm.CX), (Asm.Stack -8)));
-        (Asm.Mov ((Asm.Stack -8), (Asm.Reg Asm.R10)));
-        (Asm.Mov ((Asm.Reg Asm.R10), (Asm.Stack -12)));
-        (Asm.Sar ((Asm.Imm 1), (Asm.Stack -12)));
+        (Asm.Mov ((Asm.Imm 2621440), (Asm.Stack -8)));
+        (Asm.Mov ((Asm.Imm 1310720), (Asm.Stack -12)));
         (Asm.Mov ((Asm.Stack -12), (Asm.Reg Asm.AX))); Asm.Ret];
       frame =
       Env.lenv {

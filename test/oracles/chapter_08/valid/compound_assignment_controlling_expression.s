@@ -17,14 +17,14 @@ main:
     subl        $1, -16(%rbp)
     movl        -16(%rbp), %r10d
     movl        %r10d, -4(%rbp)
-    cmpl        $0, -4(%rbp)
+    cmpl        $0, -16(%rbp)
     jne         .Lloop.st.1
-    cmpl        $0, -4(%rbp)
+    cmpl        $0, -16(%rbp)
     movl        $0, -20(%rbp)
     sete        -20(%rbp)
     cmpl        $0, -20(%rbp)
     je          .Lmain.and.fl.5
-    cmpl        $200, -8(%rbp)
+    cmpl        $200, -12(%rbp)
     movl        $0, -24(%rbp)
     sete        -24(%rbp)
     cmpl        $0, -24(%rbp)

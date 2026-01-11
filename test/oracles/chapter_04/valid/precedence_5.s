@@ -5,12 +5,8 @@ main:
     movq        %rsp, %rbp
     subq        $32, %rsp
     movl        $1, -4(%rbp)
-    cmpl        $0, -4(%rbp)
-    je          .Lmain.and.fl.5
     movl        $3, -8(%rbp)
-    cmpl        $1, -8(%rbp)
-    movl        $0, -12(%rbp)
-    setg        -12(%rbp)
+    movl        $1, -12(%rbp)
     movl        $3, %r11d
     cmpl        -12(%rbp), %r11d
     movl        $0, -16(%rbp)

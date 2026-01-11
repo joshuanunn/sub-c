@@ -54,7 +54,7 @@ main:
     movq        %rsp, %rbp
     subq        $16, %rsp
     movl        $6, -4(%rbp)
-    movl        -4(%rbp), %edi
+    movl        $6, %edi
     call        fib@PLT
     movl        %eax, -8(%rbp)
     movl        -8(%rbp), %eax

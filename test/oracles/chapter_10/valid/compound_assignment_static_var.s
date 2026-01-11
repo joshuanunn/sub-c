@@ -11,14 +11,14 @@ f:
     movl        %r10d, i.0(%rip)
     movl        j.1(%rip), %r10d
     movl        %r10d, -8(%rbp)
-    movl        i.0(%rip), %r10d
+    movl        -4(%rbp), %r10d
     subl        %r10d, -8(%rbp)
     movl        -8(%rbp), %r10d
     movl        %r10d, j.1(%rip)
     movl        k.2(%rip), %r10d
     movl        %r10d, -12(%rbp)
     movl        -12(%rbp), %r11d
-    imull       j.1(%rip), %r11d
+    imull       -8(%rbp), %r11d
     movl        %r11d, -12(%rbp)
     movl        -12(%rbp), %r10d
     movl        %r10d, k.2(%rip)
@@ -41,7 +41,7 @@ f:
 .Lf.if.en.5:
     movl        $-6, -24(%rbp)
     movl        -24(%rbp), %r10d
-    cmpl        %r10d, j.1(%rip)
+    cmpl        %r10d, -8(%rbp)
     movl        $0, -28(%rbp)
     setne       -28(%rbp)
     cmpl        $0, -28(%rbp)
@@ -63,7 +63,7 @@ f:
     popq        %rbp
     ret         
 .Lf.if.en.11:
-    cmpl        $6, l.3(%rip)
+    cmpl        $6, -16(%rbp)
     movl        $0, -40(%rbp)
     setne       -40(%rbp)
     cmpl        $0, -40(%rbp)

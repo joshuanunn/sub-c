@@ -4,10 +4,7 @@
       [(Asm.AllocateStack 32); (Asm.Mov ((Asm.Imm 1), (Asm.Stack -4)));
         (Asm.Mov ((Asm.Imm 2), (Asm.Stack -8)));
         (Asm.Mov ((Asm.Imm 0), (Asm.Stack -12)));
-        (Asm.Mov ((Asm.Stack -8), (Asm.Reg Asm.R10)));
-        (Asm.Cmp ((Asm.Reg Asm.R10), (Asm.Stack -4)));
         (Asm.Mov ((Asm.Imm 0), (Asm.Stack -20)));
-        (Asm.SetCC (Asm.G, (Asm.Stack -20)));
         (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -20)));
         (Asm.JmpCC (Asm.E, "main.cond.el.3"));
         (Asm.Mov ((Asm.Imm 5), (Asm.Stack -16))); (Asm.Jmp "main.cond.en.2");

@@ -96,7 +96,7 @@
          (Asm.Mov ((Asm.Reg Asm.AX), (Asm.Stack -24)));
          (Asm.Mov ((Asm.Stack -24), (Asm.Reg Asm.R10)));
          (Asm.Mov ((Asm.Reg Asm.R10), (Asm.Stack -4)));
-         (Asm.Cmp ((Asm.Imm 1), (Asm.Stack -4)));
+         (Asm.Cmp ((Asm.Imm 1), (Asm.Stack -24)));
          (Asm.Mov ((Asm.Imm 0), (Asm.Stack -28)));
          (Asm.SetCC (Asm.E, (Asm.Stack -28)));
          (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -28)));

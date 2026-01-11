@@ -6,7 +6,7 @@
         Ir.Jump {target = "loop.br.1"}; (Ir.Label "label.0");
         Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "result.1")};
         Ir.Jump {target = "loop.ct.1"}; (Ir.Label "loop.br.1");
-        (Ir.Return (Ir.Var "result.1"))];
+        (Ir.Return (Ir.Constant 1))];
       frame =
       Env.lenv {
         namespace = "main";

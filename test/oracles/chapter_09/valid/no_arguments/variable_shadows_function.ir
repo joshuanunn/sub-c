@@ -3,11 +3,11 @@
       body =
       [Ir.FunCall {fun_name = "foo"; args = []; dst = (Ir.Var "tmp.0")};
         Ir.Copy {src = (Ir.Var "tmp.0"); dst = (Ir.Var "x.0")};
-        Ir.Binary {op = Ir.GreaterThan; src1 = (Ir.Var "x.0");
+        Ir.Binary {op = Ir.GreaterThan; src1 = (Ir.Var "tmp.0");
           src2 = (Ir.Constant 0); dst = (Ir.Var "tmp.1")};
         Ir.JumpIfZero {condition = (Ir.Var "tmp.1"); target = "main.if.en.2"};
         Ir.Copy {src = (Ir.Constant 3); dst = (Ir.Var "foo.1")};
-        Ir.Binary {op = Ir.Add; src1 = (Ir.Var "x.0");
+        Ir.Binary {op = Ir.Add; src1 = (Ir.Var "tmp.0");
           src2 = (Ir.Var "foo.1"); dst = (Ir.Var "tmp.3")};
         Ir.Copy {src = (Ir.Var "tmp.3"); dst = (Ir.Var "x.0")};
         (Ir.Label "main.if.en.2"); (Ir.Return (Ir.Var "x.0"))];

@@ -3,7 +3,7 @@
       body =
       [Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "tmp.0")};
         Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "tmp.3")};
-        (Ir.Return (Ir.Var "tmp.3"))];
+        (Ir.Return (Ir.Constant 0))];
       frame =
       Env.lenv {
         namespace = "main";

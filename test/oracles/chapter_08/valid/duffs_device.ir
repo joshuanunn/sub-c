@@ -2,13 +2,10 @@
    [Ir.Function {name = "main"; global = true; params = [];
       body =
       [Ir.Copy {src = (Ir.Constant 37); dst = (Ir.Var "count.0")};
-        Ir.Binary {op = Ir.Add; src1 = (Ir.Var "count.0");
-          src2 = (Ir.Constant 4); dst = (Ir.Var "tmp.0")};
-        Ir.Binary {op = Ir.Divide; src1 = (Ir.Var "tmp.0");
-          src2 = (Ir.Constant 5); dst = (Ir.Var "tmp.1")};
+        Ir.Copy {src = (Ir.Constant 41); dst = (Ir.Var "tmp.0")};
+        Ir.Copy {src = (Ir.Constant 8); dst = (Ir.Var "tmp.1")};
         Ir.Copy {src = (Ir.Var "tmp.1"); dst = (Ir.Var "iterations.1")};
-        Ir.Binary {op = Ir.Remainder; src1 = (Ir.Var "count.0");
-          src2 = (Ir.Constant 5); dst = (Ir.Var "tmp.2")};
+        Ir.Copy {src = (Ir.Constant 2); dst = (Ir.Var "tmp.2")};
         Ir.Binary {op = Ir.Equal; src1 = (Ir.Var "tmp.2");
           src2 = (Ir.Constant 0); dst = (Ir.Var "tmp.3")};
         Ir.JumpIfNotZero {condition = (Ir.Var "tmp.3");
@@ -53,7 +50,7 @@
         Ir.Binary {op = Ir.Subtract; src1 = (Ir.Var "iterations.1");
           src2 = (Ir.Constant 1); dst = (Ir.Var "tmp.13")};
         Ir.Copy {src = (Ir.Var "tmp.13"); dst = (Ir.Var "iterations.1")};
-        Ir.Binary {op = Ir.GreaterThan; src1 = (Ir.Var "iterations.1");
+        Ir.Binary {op = Ir.GreaterThan; src1 = (Ir.Var "tmp.13");
           src2 = (Ir.Constant 0); dst = (Ir.Var "tmp.14")};
         Ir.JumpIfNotZero {condition = (Ir.Var "tmp.14"); target = "loop.st.2"};
         (Ir.Label "swit.br.1");

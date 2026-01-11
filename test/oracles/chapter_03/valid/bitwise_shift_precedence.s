@@ -5,12 +5,8 @@ main:
     movq        %rsp, %rbp
     subq        $16, %rsp
     movl        $16, -4(%rbp)
-    movl        $40, -8(%rbp)
-    movl        -4(%rbp), %ecx
-    shll        %cl, -8(%rbp)
-    movl        -8(%rbp), %r10d
-    movl        %r10d, -12(%rbp)
-    sarl        $1, -12(%rbp)
+    movl        $2621440, -8(%rbp)
+    movl        $1310720, -12(%rbp)
     movl        -12(%rbp), %eax
     movq        %rbp, %rsp
     popq        %rbp

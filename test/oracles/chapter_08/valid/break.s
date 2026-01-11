@@ -20,7 +20,7 @@ main:
     subl        $1, -20(%rbp)
     movl        -20(%rbp), %r10d
     movl        %r10d, -4(%rbp)
-    cmpl        $0, -4(%rbp)
+    cmpl        $0, -20(%rbp)
     movl        $0, -24(%rbp)
     setle       -24(%rbp)
     cmpl        $0, -24(%rbp)
@@ -40,8 +40,7 @@ main:
     cmpl        $0, -32(%rbp)
     je          .Lmain.and.fl.10
     movl        $-11, -36(%rbp)
-    movl        -36(%rbp), %r10d
-    cmpl        %r10d, -8(%rbp)
+    cmpl        $-11, -8(%rbp)
     movl        $0, -40(%rbp)
     sete        -40(%rbp)
     cmpl        $0, -40(%rbp)

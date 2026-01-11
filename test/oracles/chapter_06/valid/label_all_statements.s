@@ -17,7 +17,7 @@ main:
     movl        $0, -4(%rbp)
     jmp         .Llabel_if.0
 .Llabel_return.3:
-    movl        -4(%rbp), %eax
+    movl        $100, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         

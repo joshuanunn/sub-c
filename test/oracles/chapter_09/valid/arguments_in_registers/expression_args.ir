@@ -18,9 +18,9 @@
        body =
        [Ir.Copy {src = (Ir.Constant 3); dst = (Ir.Var "tmp.0")};
          Ir.FunCall {fun_name = "sub";
-           args = [(Ir.Var "tmp.0"); (Ir.Constant 1)]; dst = (Ir.Var "tmp.1")};
+           args = [(Ir.Constant 3); (Ir.Constant 1)]; dst = (Ir.Var "tmp.1")};
          Ir.Copy {src = (Ir.Var "tmp.1"); dst = (Ir.Var "sum.2")};
-         (Ir.Return (Ir.Var "sum.2"))];
+         (Ir.Return (Ir.Var "tmp.1"))];
        frame =
        Env.lenv {
          namespace = "main";

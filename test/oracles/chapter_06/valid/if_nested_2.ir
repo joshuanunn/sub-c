@@ -3,14 +3,10 @@
       body =
       [Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "a.0")};
         Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "b.1")};
-        Ir.JumpIfZero {condition = (Ir.Var "a.0"); target = "main.if.el.1"};
-        Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "b.1")};
-        Ir.Jump {target = "main.if.en.0"}; (Ir.Label "main.if.el.1");
-        Ir.Unary {op = Ir.BwNot; src = (Ir.Var "b.1"); dst = (Ir.Var "tmp.2")};
+        Ir.Copy {src = (Ir.Constant -2); dst = (Ir.Var "tmp.2")};
         Ir.JumpIfZero {condition = (Ir.Var "tmp.2"); target = "main.if.en.3"};
         Ir.Copy {src = (Ir.Constant 2); dst = (Ir.Var "b.1")};
-        (Ir.Label "main.if.en.3"); (Ir.Label "main.if.en.0");
-        (Ir.Return (Ir.Var "b.1"))];
+        (Ir.Label "main.if.en.3"); (Ir.Return (Ir.Var "b.1"))];
       frame =
       Env.lenv {
         namespace = "main";

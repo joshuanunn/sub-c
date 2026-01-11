@@ -2,8 +2,7 @@
    [Ir.Function {name = "main"; global = true; params = [];
       body =
       [Ir.Copy {src = (Ir.Constant 528); dst = (Ir.Var "tmp.0")};
-        Ir.Binary {op = Ir.BwRightShift; src1 = (Ir.Var "tmp.0");
-          src2 = (Ir.Constant 2); dst = (Ir.Var "tmp.1")};
+        Ir.Copy {src = (Ir.Constant 132); dst = (Ir.Var "tmp.1")};
         (Ir.Return (Ir.Var "tmp.1"))];
       frame =
       Env.lenv {

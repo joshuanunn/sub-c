@@ -2,10 +2,9 @@
    [Ir.Function {name = "main"; global = true; params = [];
       body =
       [Ir.Copy {src = (Ir.Constant 10); dst = (Ir.Var "to_subtract.0")};
-        Ir.Binary {op = Ir.Subtract; src1 = (Ir.Var "to_subtract.0");
-          src2 = (Ir.Constant 8); dst = (Ir.Var "tmp.0")};
+        Ir.Copy {src = (Ir.Constant 2); dst = (Ir.Var "tmp.0")};
         Ir.Copy {src = (Ir.Var "tmp.0"); dst = (Ir.Var "to_subtract.0")};
-        (Ir.Return (Ir.Var "to_subtract.0"))];
+        (Ir.Return (Ir.Constant 2))];
       frame =
       Env.lenv {
         namespace = "main";

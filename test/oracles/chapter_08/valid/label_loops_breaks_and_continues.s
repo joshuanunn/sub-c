@@ -6,11 +6,8 @@ main:
     subq        $32, %rsp
     movl        $0, -4(%rbp)
     movl        $1, -4(%rbp)
-    movl        -4(%rbp), %r10d
-    movl        %r10d, -8(%rbp)
-    addl        $1, -8(%rbp)
-    movl        -8(%rbp), %r10d
-    movl        %r10d, -4(%rbp)
+    movl        $2, -8(%rbp)
+    movl        $2, -4(%rbp)
     movl        $0, -12(%rbp)
 .Lloop.st.3:
     cmpl        $10, -12(%rbp)

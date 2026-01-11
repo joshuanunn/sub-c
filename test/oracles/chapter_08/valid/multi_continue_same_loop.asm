@@ -31,12 +31,12 @@
         Asm.Binary {op = Asm.Add; src = (Asm.Imm 1); dst = (Asm.Stack -32)};
         (Asm.Mov ((Asm.Stack -32), (Asm.Reg Asm.R10)));
         (Asm.Mov ((Asm.Reg Asm.R10), (Asm.Stack -8)));
-        (Asm.Label "loop.ct.1"); (Asm.Cmp ((Asm.Imm 50), (Asm.Stack -12)));
+        (Asm.Label "loop.ct.1"); (Asm.Cmp ((Asm.Imm 50), (Asm.Stack -16)));
         (Asm.Mov ((Asm.Imm 0), (Asm.Stack -36)));
         (Asm.SetCC (Asm.NE, (Asm.Stack -36)));
         (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -36)));
         (Asm.JmpCC (Asm.NE, "loop.st.1"));
-        (Asm.Cmp ((Asm.Imm 50), (Asm.Stack -12)));
+        (Asm.Cmp ((Asm.Imm 50), (Asm.Stack -16)));
         (Asm.Mov ((Asm.Imm 0), (Asm.Stack -40)));
         (Asm.SetCC (Asm.E, (Asm.Stack -40)));
         (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -40)));

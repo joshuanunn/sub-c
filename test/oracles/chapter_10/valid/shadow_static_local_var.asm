@@ -37,7 +37,7 @@
          (Asm.Mov ((Asm.Reg Asm.AX), (Asm.Stack -12)));
          (Asm.Mov ((Asm.Stack -12), (Asm.Reg Asm.R10)));
          (Asm.Mov ((Asm.Reg Asm.R10), (Asm.Stack -8)));
-         (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -8)));
+         (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -12)));
          (Asm.Mov ((Asm.Imm 0), (Asm.Stack -16)));
          (Asm.SetCC (Asm.NE, (Asm.Stack -16)));
          (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -16)));
@@ -57,7 +57,7 @@
          (Asm.Mov ((Asm.Reg Asm.AX), (Asm.Stack -24)));
          (Asm.Mov ((Asm.Stack -24), (Asm.Reg Asm.R10)));
          (Asm.Mov ((Asm.Reg Asm.R10), (Asm.Stack -8)));
-         (Asm.Cmp ((Asm.Imm 9), (Asm.Stack -8)));
+         (Asm.Cmp ((Asm.Imm 9), (Asm.Stack -24)));
          (Asm.Mov ((Asm.Imm 0), (Asm.Stack -28)));
          (Asm.SetCC (Asm.NE, (Asm.Stack -28)));
          (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -28)));
@@ -77,7 +77,7 @@
          (Asm.Mov ((Asm.Reg Asm.AX), (Asm.Stack -36)));
          (Asm.Mov ((Asm.Stack -36), (Asm.Reg Asm.R10)));
          (Asm.Mov ((Asm.Reg Asm.R10), (Asm.Stack -8)));
-         (Asm.Cmp ((Asm.Imm 9), (Asm.Stack -8)));
+         (Asm.Cmp ((Asm.Imm 9), (Asm.Stack -36)));
          (Asm.Mov ((Asm.Imm 0), (Asm.Stack -40)));
          (Asm.SetCC (Asm.NE, (Asm.Stack -40)));
          (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -40)));

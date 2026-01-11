@@ -7,7 +7,7 @@ main:
     movl        $0, -4(%rbp)
     jmp         .Ltarget.0
 .Lloop.st.1:
-    cmpl        $10, -4(%rbp)
+    cmpl        $10, -16(%rbp)
     movl        $0, -8(%rbp)
     setl        -8(%rbp)
     cmpl        $0, -8(%rbp)

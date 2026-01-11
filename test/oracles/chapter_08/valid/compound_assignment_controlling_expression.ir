@@ -10,11 +10,11 @@
         Ir.Binary {op = Ir.Subtract; src1 = (Ir.Var "i.0");
           src2 = (Ir.Constant 1); dst = (Ir.Var "tmp.1")};
         Ir.Copy {src = (Ir.Var "tmp.1"); dst = (Ir.Var "i.0")};
-        Ir.JumpIfNotZero {condition = (Ir.Var "i.0"); target = "loop.st.1"};
-        Ir.Binary {op = Ir.Equal; src1 = (Ir.Var "i.0");
+        Ir.JumpIfNotZero {condition = (Ir.Var "tmp.1"); target = "loop.st.1"};
+        Ir.Binary {op = Ir.Equal; src1 = (Ir.Var "tmp.1");
           src2 = (Ir.Constant 0); dst = (Ir.Var "tmp.2")};
         Ir.JumpIfZero {condition = (Ir.Var "tmp.2"); target = "main.and.fl.5"};
-        Ir.Binary {op = Ir.Equal; src1 = (Ir.Var "sum.1");
+        Ir.Binary {op = Ir.Equal; src1 = (Ir.Var "tmp.0");
           src2 = (Ir.Constant 200); dst = (Ir.Var "tmp.3")};
         Ir.JumpIfZero {condition = (Ir.Var "tmp.3"); target = "main.and.fl.5"};
         Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "tmp.4")};

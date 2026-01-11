@@ -24,7 +24,7 @@
        body =
        [Ir.Copy {src = (Ir.Constant -1); dst = (Ir.Var "tmp.0")};
          Ir.Binary {op = Ir.Equal; src1 = (Ir.Var "j");
-           src2 = (Ir.Var "tmp.0"); dst = (Ir.Var "tmp.1")};
+           src2 = (Ir.Constant -1); dst = (Ir.Var "tmp.1")};
          Ir.JumpIfZero {condition = (Ir.Var "tmp.1");
            target = "decr_j.if.en.2"};
          Ir.Copy {src = (Ir.Var "j"); dst = (Ir.Var "tmp.3")};
@@ -67,7 +67,7 @@
          (Ir.Label "main.cond.en.8");
          Ir.Copy {src = (Ir.Constant -2); dst = (Ir.Var "tmp.11")};
          Ir.Binary {op = Ir.NotEqual; src1 = (Ir.Var "j");
-           src2 = (Ir.Var "tmp.11"); dst = (Ir.Var "tmp.12")};
+           src2 = (Ir.Constant -2); dst = (Ir.Var "tmp.12")};
          Ir.JumpIfZero {condition = (Ir.Var "tmp.12");
            target = "main.if.en.13"};
          (Ir.Return (Ir.Constant 2)); (Ir.Label "main.if.en.13");

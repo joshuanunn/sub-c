@@ -5,21 +5,11 @@ main:
     movq        %rsp, %rbp
     subq        $80, %rsp
     movl        $37, -4(%rbp)
-    movl        -4(%rbp), %r10d
-    movl        %r10d, -12(%rbp)
-    addl        $4, -12(%rbp)
-    movl        -12(%rbp), %eax
-    cdq         
-    movl        $5, %r10d
-    idivl       %r10d
-    movl        %eax, -16(%rbp)
+    movl        $41, -12(%rbp)
+    movl        $8, -16(%rbp)
     movl        -16(%rbp), %r10d
     movl        %r10d, -8(%rbp)
-    movl        -4(%rbp), %eax
-    cdq         
-    movl        $5, %r10d
-    idivl       %r10d
-    movl        %edx, -20(%rbp)
+    movl        $2, -20(%rbp)
     cmpl        $0, -20(%rbp)
     movl        $0, -24(%rbp)
     sete        -24(%rbp)
@@ -82,7 +72,7 @@ main:
     subl        $1, -64(%rbp)
     movl        -64(%rbp), %r10d
     movl        %r10d, -8(%rbp)
-    cmpl        $0, -8(%rbp)
+    cmpl        $0, -64(%rbp)
     movl        $0, -68(%rbp)
     setg        -68(%rbp)
     cmpl        $0, -68(%rbp)

@@ -2,11 +2,9 @@
    [Ir.Function {name = "main"; global = true; params = [];
       body =
       [Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "a.1")};
-        Ir.Binary {op = Ir.NotEqual; src1 = (Ir.Var "a.1");
-          src2 = (Ir.Constant 0); dst = (Ir.Var "tmp.0")};
-        Ir.JumpIfZero {condition = (Ir.Var "tmp.0"); target = "main.if.en.1"};
-        (Ir.Label "return_a.0"); (Ir.Return (Ir.Var "a.1"));
-        (Ir.Label "main.if.en.1");
+        Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "tmp.0")};
+        Ir.Jump {target = "main.if.en.1"}; (Ir.Label "return_a.0");
+        (Ir.Return (Ir.Constant 0)); (Ir.Label "main.if.en.1");
         Ir.Copy {src = (Ir.Constant 4); dst = (Ir.Var "a.2")};
         Ir.Jump {target = "return_a.0"}];
       frame =

@@ -5,19 +5,13 @@ main:
     movq        %rsp, %rbp
     subq        $32, %rsp
     movl        $10, -4(%rbp)
-    cmpl        $1, -4(%rbp)
     movl        $0, -8(%rbp)
-    sete        -8(%rbp)
     cmpl        $0, -8(%rbp)
     jne         .Lswit.cs.1.1
-    cmpl        $2, -4(%rbp)
     movl        $0, -12(%rbp)
-    sete        -12(%rbp)
     cmpl        $0, -12(%rbp)
     jne         .Lswit.cs.1.2
-    cmpl        $10, -4(%rbp)
-    movl        $0, -16(%rbp)
-    sete        -16(%rbp)
+    movl        $1, -16(%rbp)
     cmpl        $0, -16(%rbp)
     jne         .Lswit.cs.1.10
     jmp         .Lswit.df.1

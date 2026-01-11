@@ -12,12 +12,9 @@ main:
     jmp         .Lswit.br.1
 .Lswit.cs.1.2:
     movl        $8, -16(%rbp)
-    movl        -16(%rbp), %r10d
-    movl        %r10d, -8(%rbp)
+    movl        $8, -8(%rbp)
 .Lswit.br.1:
-    cmpl        $4, -4(%rbp)
-    movl        $0, -20(%rbp)
-    sete        -20(%rbp)
+    movl        $1, -20(%rbp)
     cmpl        $0, -20(%rbp)
     je          .Lmain.and.fl.4
     cmpl        $8, -8(%rbp)

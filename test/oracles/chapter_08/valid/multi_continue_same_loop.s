@@ -38,12 +38,12 @@ main:
     movl        -32(%rbp), %r10d
     movl        %r10d, -8(%rbp)
 .Lloop.ct.1:
-    cmpl        $50, -12(%rbp)
+    cmpl        $50, -16(%rbp)
     movl        $0, -36(%rbp)
     setne       -36(%rbp)
     cmpl        $0, -36(%rbp)
     jne         .Lloop.st.1
-    cmpl        $50, -12(%rbp)
+    cmpl        $50, -16(%rbp)
     movl        $0, -40(%rbp)
     sete        -40(%rbp)
     cmpl        $0, -40(%rbp)

@@ -96,7 +96,7 @@ f:
     movl        %eax, -24(%rbp)
     movl        -24(%rbp), %r10d
     movl        %r10d, -4(%rbp)
-    cmpl        $1, -4(%rbp)
+    cmpl        $1, -24(%rbp)
     movl        $0, -28(%rbp)
     sete        -28(%rbp)
     cmpl        $0, -28(%rbp)

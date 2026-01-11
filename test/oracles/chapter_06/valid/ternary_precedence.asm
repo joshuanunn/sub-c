@@ -2,17 +2,9 @@
    [Asm.Function {name = "main"; global = true;
       instructions =
       [(Asm.AllocateStack 16); (Asm.Mov ((Asm.Imm 10), (Asm.Stack -4)));
-        (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -4)));
-        (Asm.JmpCC (Asm.NE, "main.or.tr.2"));
-        (Asm.Mov ((Asm.Imm 0), (Asm.Stack -12))); (Asm.Jmp "main.or.en.3");
-        (Asm.Label "main.or.tr.2"); (Asm.Mov ((Asm.Imm 1), (Asm.Stack -12)));
-        (Asm.Label "main.or.en.3"); (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -12)));
-        (Asm.JmpCC (Asm.E, "main.cond.el.5"));
-        (Asm.Mov ((Asm.Imm 20), (Asm.Stack -8))); (Asm.Jmp "main.cond.en.4");
-        (Asm.Label "main.cond.el.5");
-        (Asm.Mov ((Asm.Imm 0), (Asm.Stack -8)));
-        (Asm.Label "main.cond.en.4");
-        (Asm.Mov ((Asm.Stack -8), (Asm.Reg Asm.AX))); Asm.Ret];
+        (Asm.Mov ((Asm.Imm 1), (Asm.Stack -12)));
+        (Asm.Mov ((Asm.Imm 20), (Asm.Stack -8)));
+        (Asm.Mov ((Asm.Imm 20), (Asm.Reg Asm.AX))); Asm.Ret];
       frame =
       Env.lenv {
         namespace = "main";

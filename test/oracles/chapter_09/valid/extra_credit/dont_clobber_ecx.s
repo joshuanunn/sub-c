@@ -84,11 +84,7 @@ main:
     movq        %rsp, %rbp
     subq        $16, %rsp
     movl        $4, -4(%rbp)
-    movl        -4(%rbp), %eax
-    cdq         
-    movl        $2, %r10d
-    idivl       %r10d
-    movl        %eax, -8(%rbp)
+    movl        $2, -8(%rbp)
     movl        $24, -12(%rbp)
     movl        -8(%rbp), %ecx
     sarl        %cl, -12(%rbp)

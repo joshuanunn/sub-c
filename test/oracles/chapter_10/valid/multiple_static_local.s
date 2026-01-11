@@ -11,7 +11,7 @@ foo:
     movl        %r11d, -4(%rbp)
     movl        -4(%rbp), %r10d
     movl        %r10d, a.0(%rip)
-    movl        a.0(%rip), %eax
+    movl        -4(%rbp), %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         
@@ -26,7 +26,7 @@ bar:
     addl        $1, -4(%rbp)
     movl        -4(%rbp), %r10d
     movl        %r10d, a.1(%rip)
-    movl        a.1(%rip), %eax
+    movl        -4(%rbp), %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         

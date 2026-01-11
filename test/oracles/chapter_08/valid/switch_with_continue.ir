@@ -2,13 +2,7 @@
    [Ir.Function {name = "main"; global = true; params = [];
       body =
       [Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "tmp.0")};
-        Ir.JumpIfNotZero {condition = (Ir.Var "tmp.0");
-          target = "swit.cs.1.0"};
         Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "tmp.1")};
-        Ir.JumpIfNotZero {condition = (Ir.Var "tmp.1");
-          target = "swit.cs.1.4"};
-        Ir.Jump {target = "swit.br.1"}; (Ir.Label "swit.cs.1.0");
-        (Ir.Return (Ir.Constant 0)); (Ir.Label "swit.cs.1.4");
         Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "acc.0")};
         Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "i.1")};
         (Ir.Label "loop.st.2");
@@ -27,8 +21,7 @@
           src2 = (Ir.Constant 1); dst = (Ir.Var "tmp.6")};
         Ir.Copy {src = (Ir.Var "tmp.6"); dst = (Ir.Var "i.1")};
         Ir.Jump {target = "loop.st.2"}; (Ir.Label "loop.br.2");
-        (Ir.Return (Ir.Var "acc.0")); (Ir.Label "swit.br.1");
-        (Ir.Return (Ir.Constant 0))];
+        (Ir.Return (Ir.Var "acc.0"))];
       frame =
       Env.lenv {
         namespace = "main";

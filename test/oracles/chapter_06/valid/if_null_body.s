@@ -6,7 +6,7 @@ main:
     subq        $16, %rsp
     movl        $0, -4(%rbp)
     movl        $1, -4(%rbp)
-    movl        -4(%rbp), %eax
+    movl        $1, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         

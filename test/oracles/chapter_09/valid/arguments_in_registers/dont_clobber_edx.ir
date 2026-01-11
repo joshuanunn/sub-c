@@ -71,12 +71,11 @@
      Ir.Function {name = "main"; global = true; params = [];
        body =
        [Ir.Copy {src = (Ir.Constant 4); dst = (Ir.Var "a.6")};
-         Ir.Binary {op = Ir.Divide; src1 = (Ir.Constant 24);
-           src2 = (Ir.Var "a.6"); dst = (Ir.Var "tmp.0")};
+         Ir.Copy {src = (Ir.Constant 6); dst = (Ir.Var "tmp.0")};
          Ir.FunCall {fun_name = "x";
            args =
            [(Ir.Constant 1); (Ir.Constant 2); (Ir.Constant 3);
-             (Ir.Constant 4); (Ir.Constant 5); (Ir.Var "tmp.0")];
+             (Ir.Constant 4); (Ir.Constant 5); (Ir.Constant 6)];
            dst = (Ir.Var "tmp.1")};
          (Ir.Return (Ir.Var "tmp.1"))];
        frame =

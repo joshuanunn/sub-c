@@ -27,8 +27,7 @@ main:
     movl        $4, a(%rip)
     call        return_a@PLT
     movl        %eax, -12(%rbp)
-    movl        -4(%rbp), %r10d
-    movl        %r10d, -16(%rbp)
+    movl        $3, -16(%rbp)
     movl        -12(%rbp), %r10d
     addl        %r10d, -16(%rbp)
     movl        -16(%rbp), %eax

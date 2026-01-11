@@ -3,18 +3,15 @@
       instructions =
       [(Asm.AllocateStack 64); (Asm.Mov ((Asm.Imm 1), (Asm.Stack -4)));
         (Asm.Mov ((Asm.Imm 2), (Asm.Stack -8)));
-        Asm.Binary {op = Asm.Add; src = (Asm.Imm 1); dst = (Asm.Stack -4)};
+        (Asm.Mov ((Asm.Imm 2), (Asm.Stack -4)));
         (Asm.Mov ((Asm.Stack -4), (Asm.Reg Asm.R10)));
         (Asm.Mov ((Asm.Reg Asm.R10), (Asm.Stack -16)));
         Asm.Unary {op = Asm.Neg; dst = (Asm.Stack -16)};
         (Asm.Mov ((Asm.Stack -16), (Asm.Reg Asm.R10)));
         (Asm.Mov ((Asm.Reg Asm.R10), (Asm.Stack -12)));
-        (Asm.Mov ((Asm.Stack -8), (Asm.Reg Asm.R10)));
-        (Asm.Mov ((Asm.Reg Asm.R10), (Asm.Stack -24)));
-        Asm.Binary {op = Asm.Sub; src = (Asm.Imm 1); dst = (Asm.Stack -8)};
-        (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -24)));
+        (Asm.Mov ((Asm.Imm 2), (Asm.Stack -24)));
+        (Asm.Mov ((Asm.Imm 1), (Asm.Stack -8)));
         (Asm.Mov ((Asm.Imm 0), (Asm.Stack -28)));
-        (Asm.SetCC (Asm.E, (Asm.Stack -28)));
         (Asm.Mov ((Asm.Stack -28), (Asm.Reg Asm.R10)));
         (Asm.Mov ((Asm.Reg Asm.R10), (Asm.Stack -20)));
         (Asm.Cmp ((Asm.Imm 2), (Asm.Stack -4)));
@@ -35,7 +32,7 @@
         (Asm.JmpCC (Asm.E, "main.and.fl.11"));
         (Asm.Mov ((Asm.Imm -2), (Asm.Stack -44)));
         (Asm.Mov ((Asm.Stack -44), (Asm.Reg Asm.R10)));
-        (Asm.Cmp ((Asm.Reg Asm.R10), (Asm.Stack -12)));
+        (Asm.Cmp ((Asm.Reg Asm.R10), (Asm.Stack -16)));
         (Asm.Mov ((Asm.Imm 0), (Asm.Stack -48)));
         (Asm.SetCC (Asm.E, (Asm.Stack -48)));
         (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -48)));
@@ -46,7 +43,7 @@
         (Asm.Label "main.and.en.12");
         (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -52)));
         (Asm.JmpCC (Asm.E, "main.and.fl.15"));
-        (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -20)));
+        (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -28)));
         (Asm.Mov ((Asm.Imm 0), (Asm.Stack -56)));
         (Asm.SetCC (Asm.E, (Asm.Stack -56)));
         (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -56)));

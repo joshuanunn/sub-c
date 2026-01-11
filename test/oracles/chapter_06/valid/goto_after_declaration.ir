@@ -3,11 +3,9 @@
       body =
       [Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "x.1")};
         Ir.Copy {src = (Ir.Constant 5); dst = (Ir.Var "i.2")};
-        Ir.Binary {op = Ir.Equal; src1 = (Ir.Var "x.1");
-          src2 = (Ir.Constant 1); dst = (Ir.Var "tmp.0")};
+        Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "tmp.0")};
         Ir.JumpIfZero {condition = (Ir.Var "tmp.0"); target = "main.and.fl.3"};
-        Ir.Binary {op = Ir.Equal; src1 = (Ir.Var "i.2");
-          src2 = (Ir.Constant 5); dst = (Ir.Var "tmp.1")};
+        Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "tmp.1")};
         Ir.JumpIfZero {condition = (Ir.Var "tmp.1"); target = "main.and.fl.3"};
         Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "tmp.2")};
         Ir.Jump {target = "main.and.en.4"}; (Ir.Label "main.and.fl.3");

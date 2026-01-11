@@ -2,16 +2,13 @@
    [Ir.Function {name = "main"; global = true; params = [];
       body =
       [Ir.Copy {src = (Ir.Constant 10); dst = (Ir.Var "a.0")};
-        Ir.Binary {op = Ir.Equal; src1 = (Ir.Var "a.0");
-          src2 = (Ir.Constant 1); dst = (Ir.Var "tmp.0")};
+        Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "tmp.0")};
         Ir.JumpIfNotZero {condition = (Ir.Var "tmp.0");
           target = "swit.cs.1.1"};
-        Ir.Binary {op = Ir.Equal; src1 = (Ir.Var "a.0");
-          src2 = (Ir.Constant 2); dst = (Ir.Var "tmp.1")};
+        Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "tmp.1")};
         Ir.JumpIfNotZero {condition = (Ir.Var "tmp.1");
           target = "swit.cs.1.2"};
-        Ir.Binary {op = Ir.Equal; src1 = (Ir.Var "a.0");
-          src2 = (Ir.Constant 10); dst = (Ir.Var "tmp.2")};
+        Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "tmp.2")};
         Ir.JumpIfNotZero {condition = (Ir.Var "tmp.2");
           target = "swit.cs.1.10"};
         Ir.Jump {target = "swit.df.1"}; (Ir.Label "swit.cs.1.1");

@@ -2,28 +2,14 @@
    [Ir.Function {name = "main"; global = true; params = [];
       body =
       [Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "tmp.0")};
-        Ir.JumpIfNotZero {condition = (Ir.Var "tmp.0");
-          target = "swit.cs.1.0"};
         Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "tmp.1")};
-        Ir.JumpIfNotZero {condition = (Ir.Var "tmp.1");
-          target = "swit.cs.1.3"};
-        Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "tmp.2")};
-        Ir.JumpIfNotZero {condition = (Ir.Var "tmp.2");
-          target = "swit.cs.1.4"};
-        Ir.Jump {target = "swit.df.1"}; (Ir.Label "swit.cs.1.0");
-        (Ir.Return (Ir.Constant 0)); (Ir.Label "swit.cs.1.3");
         Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "tmp.3")};
         Ir.JumpIfNotZero {condition = (Ir.Var "tmp.3");
           target = "swit.cs.2.3"};
         Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "tmp.4")};
-        Ir.JumpIfNotZero {condition = (Ir.Var "tmp.4");
-          target = "swit.cs.2.4"};
-        Ir.Jump {target = "swit.df.2"}; (Ir.Label "swit.cs.2.3");
+        Ir.Jump {target = "swit.cs.2.4"}; (Ir.Label "swit.cs.2.3");
         (Ir.Return (Ir.Constant 0)); (Ir.Label "swit.cs.2.4");
-        (Ir.Return (Ir.Constant 1)); (Ir.Label "swit.df.2");
-        (Ir.Return (Ir.Constant 0)); (Ir.Label "swit.cs.1.4");
-        (Ir.Return (Ir.Constant 0)); (Ir.Label "swit.df.1");
-        (Ir.Return (Ir.Constant 0))];
+        (Ir.Return (Ir.Constant 1))];
       frame =
       Env.lenv {
         namespace = "main";

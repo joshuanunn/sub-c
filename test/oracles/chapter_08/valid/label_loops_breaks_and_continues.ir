@@ -3,9 +3,8 @@
       body =
       [Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "sum.5")};
         Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "sum.5")};
-        Ir.Binary {op = Ir.Add; src1 = (Ir.Var "sum.5");
-          src2 = (Ir.Constant 1); dst = (Ir.Var "tmp.0")};
-        Ir.Copy {src = (Ir.Var "tmp.0"); dst = (Ir.Var "sum.5")};
+        Ir.Copy {src = (Ir.Constant 2); dst = (Ir.Var "tmp.0")};
+        Ir.Copy {src = (Ir.Constant 2); dst = (Ir.Var "sum.5")};
         Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "i.6")};
         (Ir.Label "loop.st.3");
         Ir.Binary {op = Ir.LessThan; src1 = (Ir.Var "i.6");

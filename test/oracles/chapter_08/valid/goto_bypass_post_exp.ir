@@ -10,12 +10,12 @@
         Ir.Binary {op = Ir.Add; src1 = (Ir.Var "i.2");
           src2 = (Ir.Constant 1); dst = (Ir.Var "tmp.1")};
         Ir.Copy {src = (Ir.Var "tmp.1"); dst = (Ir.Var "i.2")};
-        Ir.Binary {op = Ir.GreaterThan; src1 = (Ir.Var "i.2");
+        Ir.Binary {op = Ir.GreaterThan; src1 = (Ir.Var "tmp.1");
           src2 = (Ir.Constant 10); dst = (Ir.Var "tmp.2")};
         Ir.JumpIfZero {condition = (Ir.Var "tmp.2"); target = "main.if.en.3"};
         Ir.Jump {target = "loop.br.1"}; (Ir.Label "main.if.en.3");
         Ir.Jump {target = "lbl.0"}; (Ir.Label "loop.br.1");
-        (Ir.Return (Ir.Var "sum.1"))];
+        (Ir.Return (Ir.Var "tmp.0"))];
       frame =
       Env.lenv {
         namespace = "main";

@@ -10,8 +10,7 @@ main:
     cmpl        -8(%rbp), %r11d
     movl        $0, -12(%rbp)
     setge       -12(%rbp)
-    movl        -4(%rbp), %r10d
-    movl        %r10d, -16(%rbp)
+    movl        $1, -16(%rbp)
     movl        -12(%rbp), %r10d
     addl        %r10d, -16(%rbp)
     movl        -16(%rbp), %eax

@@ -5,18 +5,7 @@ main:
     movq        %rsp, %rbp
     subq        $32, %rsp
     movl        $0, -4(%rbp)
-    cmpl        $0, -4(%rbp)
-    jne         .Lswit.cs.1.0
     movl        $1, -8(%rbp)
-    cmpl        $0, -8(%rbp)
-    jne         .Lswit.cs.1.4
-    jmp         .Lswit.br.1
-.Lswit.cs.1.0:
-    movl        $0, %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
-.Lswit.cs.1.4:
     movl        $0, -12(%rbp)
     movl        $0, -16(%rbp)
 .Lloop.st.2:
@@ -48,11 +37,6 @@ main:
     jmp         .Lloop.st.2
 .Lloop.br.2:
     movl        -12(%rbp), %eax
-    movq        %rbp, %rsp
-    popq        %rbp
-    ret         
-.Lswit.br.1:
-    movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         

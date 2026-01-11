@@ -5,8 +5,7 @@ main:
     movq        %rsp, %rbp
     subq        $32, %rsp
     movl        $-2147483647, -8(%rbp)
-    movl        -8(%rbp), %r10d
-    movl        %r10d, -4(%rbp)
+    movl        $-2147483647, -4(%rbp)
 .Lloop.st.1:
     movl        -4(%rbp), %eax
     cdq         

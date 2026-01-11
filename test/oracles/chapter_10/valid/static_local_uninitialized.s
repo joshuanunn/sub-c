@@ -9,7 +9,7 @@ foo:
     addl        $1, -4(%rbp)
     movl        -4(%rbp), %r10d
     movl        %r10d, x.0(%rip)
-    movl        x.0(%rip), %eax
+    movl        -4(%rbp), %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         
