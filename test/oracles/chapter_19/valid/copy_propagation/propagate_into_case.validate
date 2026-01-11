@@ -1,0 +1,92 @@
+(Ast.Program
+   [(Ast.VarDecl
+       { Ast.name = (Ast.Identifier "globvar");
+         init = (Some (Ast.LiteralInt 0)); storage = None });
+     (Ast.FunDecl
+        { Ast.name = (Ast.Identifier "callee");
+          params = [(Ast.Identifier "arg.0")];
+          body =
+          (Some (Ast.Block
+                   [(Ast.S
+                       (Ast.Expression
+                          (Ast.Assignment (
+                             (Ast.Var (Ast.Identifier "globvar")),
+                             (Ast.Var (Ast.Identifier "arg.0"))))));
+                     (Ast.S (Ast.Return (Ast.LiteralInt 0)))]));
+          storage = None });
+     (Ast.FunDecl
+        { Ast.name = (Ast.Identifier "target");
+          params = [(Ast.Identifier "flag.1")];
+          body =
+          (Some (Ast.Block
+                   [(Ast.D
+                       (Ast.VarDecl
+                          { Ast.name = (Ast.Identifier "arg.2");
+                            init = (Some (Ast.LiteralInt 10)); storage = None
+                            }));
+                     (Ast.S
+                        Ast.Switch {
+                          cond = (Ast.Var (Ast.Identifier "flag.1"));
+                          body =
+                          (Ast.Compound
+                             (Ast.Block
+                                [(Ast.S
+                                    Ast.Case {value = (Ast.LiteralInt 1);
+                                      body =
+                                      (Ast.Expression
+                                         (Ast.Assignment (
+                                            (Ast.Var (Ast.Identifier "arg.2")),
+                                            (Ast.LiteralInt 20))));
+                                      id = (Some (Ast.SwitchLabel "1"))});
+                                  (Ast.S
+                                     (Ast.Break (Some (Ast.SwitchLabel "1"))));
+                                  (Ast.S
+                                     Ast.Case {value = (Ast.LiteralInt 2);
+                                       body =
+                                       (Ast.Expression
+                                          Ast.FunctionCall {
+                                            name = (Ast.Identifier "callee");
+                                            args =
+                                            [(Ast.Var
+                                                (Ast.Identifier "arg.2"))
+                                              ]});
+                                       id = (Some (Ast.SwitchLabel "1"))});
+                                  (Ast.S
+                                     (Ast.Break (Some (Ast.SwitchLabel "1"))));
+                                  (Ast.S
+                                     Ast.Default {
+                                       body =
+                                       (Ast.Expression
+                                          (Ast.Assignment (
+                                             (Ast.Var
+                                                (Ast.Identifier "globvar")),
+                                             Ast.Unary {op = Ast.Negate;
+                                               exp = (Ast.LiteralInt 1)}
+                                             )));
+                                       id = (Some (Ast.SwitchLabel "1"))})
+                                  ]));
+                          id = (Some (Ast.SwitchLabel "1"))});
+                     (Ast.S (Ast.Return (Ast.LiteralInt 0)))]));
+          storage = None });
+     (Ast.FunDecl
+        { Ast.name = (Ast.Identifier "main"); params = [];
+          body =
+          (Some (Ast.Block
+                   [(Ast.S
+                       (Ast.Expression
+                          Ast.FunctionCall {name = (Ast.Identifier "target");
+                            args = [(Ast.LiteralInt 2)]}));
+                     (Ast.S
+                        Ast.If {
+                          cond_exp =
+                          Ast.Binary {op = Ast.Equal;
+                            left = (Ast.Var (Ast.Identifier "globvar"));
+                            right = (Ast.LiteralInt 10)};
+                          then_smt =
+                          (Ast.Compound
+                             (Ast.Block
+                                [(Ast.S (Ast.Return (Ast.LiteralInt 0)))]));
+                          else_smt = None});
+                     (Ast.S (Ast.Return (Ast.LiteralInt 1)))]));
+          storage = None })
+     ])

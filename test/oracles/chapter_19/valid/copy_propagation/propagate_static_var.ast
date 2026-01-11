@@ -1,0 +1,83 @@
+(Ast.Program
+   [(Ast.FunDecl
+       { Ast.name = (Ast.Identifier "callee");
+         params = [(Ast.Identifier "a"); (Ast.Identifier "b")];
+         body =
+         (Some (Ast.Block
+                  [(Ast.S
+                      (Ast.Return
+                         Ast.Binary {op = Ast.Add;
+                           left = (Ast.Var (Ast.Identifier "a"));
+                           right = (Ast.Var (Ast.Identifier "b"))}))
+                    ]));
+         storage = None });
+     (Ast.FunDecl
+        { Ast.name = (Ast.Identifier "target"); params = [];
+          body =
+          (Some (Ast.Block
+                   [(Ast.D
+                       (Ast.VarDecl
+                          { Ast.name = (Ast.Identifier "x");
+                            init = (Some (Ast.LiteralInt 3));
+                            storage = (Some Ast.Static) }));
+                     (Ast.D
+                        (Ast.VarDecl
+                           { Ast.name = (Ast.Identifier "y");
+                             init = (Some (Ast.LiteralInt 0));
+                             storage = (Some Ast.Static) }));
+                     (Ast.S
+                        (Ast.Expression
+                           (Ast.Assignment ((Ast.Var (Ast.Identifier "y")),
+                              (Ast.Var (Ast.Identifier "x"))))));
+                     (Ast.D
+                        (Ast.VarDecl
+                           { Ast.name = (Ast.Identifier "sum");
+                             init =
+                             (Some Ast.FunctionCall {
+                                     name = (Ast.Identifier "callee");
+                                     args =
+                                     [(Ast.Var (Ast.Identifier "x"));
+                                       (Ast.Var (Ast.Identifier "y"))]});
+                             storage = None }));
+                     (Ast.S
+                        (Ast.Expression
+                           (Ast.Assignment ((Ast.Var (Ast.Identifier "x")),
+                              Ast.Binary {op = Ast.Add;
+                                left = (Ast.Var (Ast.Identifier "x"));
+                                right = (Ast.LiteralInt 1)}
+                              ))));
+                     (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "sum"))))]));
+          storage = None });
+     (Ast.FunDecl
+        { Ast.name = (Ast.Identifier "main"); params = [];
+          body =
+          (Some (Ast.Block
+                   [(Ast.S
+                       Ast.If {
+                         cond_exp =
+                         Ast.Binary {op = Ast.NotEqual;
+                           left =
+                           Ast.FunctionCall {
+                             name = (Ast.Identifier "target"); args = []};
+                           right = (Ast.LiteralInt 6)};
+                         then_smt =
+                         (Ast.Compound
+                            (Ast.Block
+                               [(Ast.S (Ast.Return (Ast.LiteralInt 1)))]));
+                         else_smt = None});
+                     (Ast.S
+                        Ast.If {
+                          cond_exp =
+                          Ast.Binary {op = Ast.NotEqual;
+                            left =
+                            Ast.FunctionCall {
+                              name = (Ast.Identifier "target"); args = []};
+                            right = (Ast.LiteralInt 8)};
+                          then_smt =
+                          (Ast.Compound
+                             (Ast.Block
+                                [(Ast.S (Ast.Return (Ast.LiteralInt 2)))]));
+                          else_smt = None});
+                     (Ast.S (Ast.Return (Ast.LiteralInt 0)))]));
+          storage = None })
+     ])

@@ -1,0 +1,143 @@
+(Ast.Program
+   [(Ast.VarDecl
+       { Ast.name = (Ast.Identifier "called_counter");
+         init = (Some (Ast.LiteralInt 0)); storage = (Some Ast.Static) });
+     (Ast.FunDecl
+        { Ast.name = (Ast.Identifier "callee");
+          params = [(Ast.Identifier "i.0")];
+          body =
+          (Some (Ast.Block
+                   [(Ast.S
+                       Ast.If {
+                         cond_exp =
+                         Ast.Binary {op = Ast.And;
+                           left =
+                           Ast.Binary {op = Ast.Equal;
+                             left = (Ast.Var (Ast.Identifier "i.0"));
+                             right = (Ast.LiteralInt 3)};
+                           right =
+                           Ast.Binary {op = Ast.Equal;
+                             left =
+                             (Ast.Var (Ast.Identifier "called_counter"));
+                             right = (Ast.LiteralInt 0)}};
+                         then_smt =
+                         (Ast.Compound
+                            (Ast.Block
+                               [(Ast.S
+                                   (Ast.Expression
+                                      (Ast.Assignment (
+                                         (Ast.Var
+                                            (Ast.Identifier "called_counter")),
+                                         (Ast.LiteralInt 1)))));
+                                 (Ast.S (Ast.Return (Ast.LiteralInt 1)))]));
+                         else_smt = None});
+                     (Ast.S
+                        Ast.If {
+                          cond_exp =
+                          Ast.Binary {op = Ast.And;
+                            left =
+                            Ast.Binary {op = Ast.Equal;
+                              left = (Ast.Var (Ast.Identifier "i.0"));
+                              right = (Ast.LiteralInt 4)};
+                            right =
+                            Ast.Binary {op = Ast.Equal;
+                              left =
+                              (Ast.Var (Ast.Identifier "called_counter"));
+                              right = (Ast.LiteralInt 1)}};
+                          then_smt =
+                          (Ast.Compound
+                             (Ast.Block
+                                [(Ast.S
+                                    (Ast.Expression
+                                       (Ast.Assignment (
+                                          (Ast.Var
+                                             (Ast.Identifier "called_counter")),
+                                          (Ast.LiteralInt 2)))));
+                                  (Ast.S (Ast.Return (Ast.LiteralInt 0)))]));
+                          else_smt = None});
+                     (Ast.S
+                        (Ast.Expression
+                           (Ast.Assignment (
+                              (Ast.Var (Ast.Identifier "called_counter")),
+                              Ast.Unary {op = Ast.Negate;
+                                exp = (Ast.LiteralInt 1)}
+                              ))));
+                     (Ast.S (Ast.Return (Ast.LiteralInt 0)))]));
+          storage = None });
+     (Ast.FunDecl
+        { Ast.name = (Ast.Identifier "target"); params = [];
+          body =
+          (Some (Ast.Block
+                   [(Ast.D
+                       (Ast.VarDecl
+                          { Ast.name = (Ast.Identifier "y.1");
+                            init = (Some (Ast.LiteralInt 3)); storage = None
+                            }));
+                     (Ast.D
+                        (Ast.VarDecl
+                           { Ast.name = (Ast.Identifier "keep_looping.2");
+                             init = None; storage = None }));
+                     (Ast.S
+                        Ast.DoWhile {
+                          body =
+                          (Ast.Compound
+                             (Ast.Block
+                                [(Ast.S
+                                    (Ast.Expression
+                                       (Ast.Assignment (
+                                          (Ast.Var
+                                             (Ast.Identifier "keep_looping.2")),
+                                          Ast.FunctionCall {
+                                            name = (Ast.Identifier "callee");
+                                            args =
+                                            [(Ast.Var (Ast.Identifier "y.1"))
+                                              ]}
+                                          ))));
+                                  (Ast.S
+                                     (Ast.Expression
+                                        (Ast.Assignment (
+                                           (Ast.Var (Ast.Identifier "y.1")),
+                                           (Ast.LiteralInt 4)))))
+                                  ]));
+                          cond = (Ast.Var (Ast.Identifier "keep_looping.2"));
+                          id = (Some (Ast.LoopLabel "1"))});
+                     (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "y.1"))))]));
+          storage = None });
+     (Ast.FunDecl
+        { Ast.name = (Ast.Identifier "main"); params = [];
+          body =
+          (Some (Ast.Block
+                   [(Ast.D
+                       (Ast.VarDecl
+                          { Ast.name = (Ast.Identifier "result.3");
+                            init =
+                            (Some Ast.FunctionCall {
+                                    name = (Ast.Identifier "target");
+                                    args = []});
+                            storage = None }));
+                     (Ast.S
+                        Ast.If {
+                          cond_exp =
+                          Ast.Binary {op = Ast.NotEqual;
+                            left = (Ast.Var (Ast.Identifier "result.3"));
+                            right = (Ast.LiteralInt 4)};
+                          then_smt =
+                          (Ast.Compound
+                             (Ast.Block
+                                [(Ast.S (Ast.Return (Ast.LiteralInt 1)))]));
+                          else_smt = None});
+                     (Ast.S
+                        Ast.If {
+                          cond_exp =
+                          Ast.Binary {op = Ast.NotEqual;
+                            left =
+                            (Ast.Var (Ast.Identifier "called_counter"));
+                            right = (Ast.LiteralInt 2)};
+                          then_smt =
+                          (Ast.Compound
+                             (Ast.Block
+                                [(Ast.S (Ast.Return (Ast.LiteralInt 2)))]));
+                          else_smt = None});
+                     (Ast.S (Ast.Return (Ast.LiteralInt 0)))]));
+          storage = None })
+     ])

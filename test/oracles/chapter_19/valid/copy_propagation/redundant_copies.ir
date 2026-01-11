@@ -1,0 +1,35 @@
+(Ir.Program
+   [Ir.Function {name = "target"; global = true;
+      params = ["flag.0"; "flag2.1"; "y.2"];
+      body =
+      [Ir.Copy {src = (Ir.Var "y.2"); dst = (Ir.Var "x.3")};
+        Ir.Binary {op = Ir.Add; src1 = (Ir.Var "y.2"); src2 = (Ir.Var "y.2");
+          dst = (Ir.Var "tmp.2")};
+        (Ir.Return (Ir.Var "tmp.2"))];
+      frame =
+      Env.lenv {
+        namespace = "target";
+        counter = 3;
+        offset = -20;
+        stack slots = {
+          x.3     -> -4,
+          tmp.2   -> -8,
+          flag.0  -> -12,
+          flag2.1 -> -16,
+          y.2     -> -20,
+        }}};
+     Ir.Function {name = "main"; global = true; params = [];
+       body =
+       [Ir.FunCall {fun_name = "target";
+          args = [(Ir.Constant 0); (Ir.Constant 1); (Ir.Constant 10)];
+          dst = (Ir.Var "tmp.0")};
+         (Ir.Return (Ir.Var "tmp.0"))];
+       frame =
+       Env.lenv {
+         namespace = "main";
+         counter = 1;
+         offset = -4;
+         stack slots = {
+           tmp.0 -> -4,
+         }}}
+     ])

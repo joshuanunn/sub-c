@@ -1,0 +1,93 @@
+(Ast.Program
+   [(Ast.VarDecl
+       { Ast.name = (Ast.Identifier "globvar"); init = None;
+         storage = (Some Ast.Static) });
+     (Ast.FunDecl
+        { Ast.name = (Ast.Identifier "set_globvar");
+          params = [(Ast.Identifier "i")];
+          body =
+          (Some (Ast.Block
+                   [(Ast.S
+                       (Ast.Expression
+                          (Ast.Assignment (
+                             (Ast.Var (Ast.Identifier "globvar")),
+                             (Ast.Var (Ast.Identifier "i"))))));
+                     (Ast.S (Ast.Return (Ast.LiteralInt 0)))]));
+          storage = None });
+     (Ast.FunDecl
+        { Ast.name = (Ast.Identifier "callee");
+          params = [(Ast.Identifier "a"); (Ast.Identifier "b")];
+          body =
+          (Some (Ast.Block
+                   [(Ast.S
+                       (Ast.Return
+                          Ast.Binary {op = Ast.Add;
+                            left = (Ast.Var (Ast.Identifier "a"));
+                            right = (Ast.Var (Ast.Identifier "b"))}))
+                     ]));
+          storage = None });
+     (Ast.FunDecl
+        { Ast.name = (Ast.Identifier "target");
+          params = [(Ast.Identifier "param")];
+          body =
+          (Some (Ast.Block
+                   [(Ast.D
+                       (Ast.VarDecl
+                          { Ast.name = (Ast.Identifier "x");
+                            init = (Some (Ast.Var (Ast.Identifier "param")));
+                            storage = None }));
+                     (Ast.S
+                        (Ast.Expression
+                           Ast.FunctionCall {
+                             name = (Ast.Identifier "set_globvar");
+                             args = [(Ast.Var (Ast.Identifier "x"))]}));
+                     (Ast.D
+                        (Ast.VarDecl
+                           { Ast.name = (Ast.Identifier "y");
+                             init = (Some (Ast.Var (Ast.Identifier "x")));
+                             storage = None }));
+                     (Ast.S
+                        (Ast.Expression
+                           (Ast.Assignment ((Ast.Var (Ast.Identifier "x")),
+                              (Ast.LiteralInt 10)))));
+                     (Ast.S
+                        (Ast.Return
+                           Ast.FunctionCall {
+                             name = (Ast.Identifier "callee");
+                             args =
+                             [(Ast.Var (Ast.Identifier "x"));
+                               (Ast.Var (Ast.Identifier "y"))]}))
+                     ]));
+          storage = None });
+     (Ast.FunDecl
+        { Ast.name = (Ast.Identifier "main"); params = [];
+          body =
+          (Some (Ast.Block
+                   [(Ast.S
+                       Ast.If {
+                         cond_exp =
+                         Ast.Binary {op = Ast.NotEqual;
+                           left =
+                           Ast.FunctionCall {
+                             name = (Ast.Identifier "target");
+                             args = [(Ast.LiteralInt 4)]};
+                           right = (Ast.LiteralInt 14)};
+                         then_smt =
+                         (Ast.Compound
+                            (Ast.Block
+                               [(Ast.S (Ast.Return (Ast.LiteralInt 1)))]));
+                         else_smt = None});
+                     (Ast.S
+                        Ast.If {
+                          cond_exp =
+                          Ast.Binary {op = Ast.NotEqual;
+                            left = (Ast.Var (Ast.Identifier "globvar"));
+                            right = (Ast.LiteralInt 4)};
+                          then_smt =
+                          (Ast.Compound
+                             (Ast.Block
+                                [(Ast.S (Ast.Return (Ast.LiteralInt 2)))]));
+                          else_smt = None});
+                     (Ast.S (Ast.Return (Ast.LiteralInt 0)))]));
+          storage = None })
+     ])

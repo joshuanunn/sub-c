@@ -1,0 +1,49 @@
+(Ir.Program
+   [Ir.Function {name = "target"; global = true; params = [];
+      body =
+      [Ir.Copy {src = (Ir.Constant 100); dst = (Ir.Var "x.0")};
+        Ir.Copy {src = (Ir.Constant -100); dst = (Ir.Var "tmp.0")};
+        Ir.Binary {op = Ir.Multiply; src1 = (Ir.Var "tmp.0");
+          src2 = (Ir.Constant 3); dst = (Ir.Var "tmp.1")};
+        Ir.Binary {op = Ir.Add; src1 = (Ir.Var "tmp.1");
+          src2 = (Ir.Constant 300); dst = (Ir.Var "tmp.2")};
+        Ir.Copy {src = (Ir.Var "tmp.2"); dst = (Ir.Var "y.1")};
+        Ir.JumpIfZero {condition = (Ir.Var "tmp.2");
+          target = "target.cond.el.5"};
+        Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "tmp.6")};
+        Ir.Copy {src = (Ir.Var "tmp.6"); dst = (Ir.Var "tmp.3")};
+        Ir.Jump {target = "target.cond.en.4"}; (Ir.Label "target.cond.el.5");
+        Ir.Copy {src = (Ir.Constant 25); dst = (Ir.Var "tmp.7")};
+        Ir.Copy {src = (Ir.Var "tmp.7"); dst = (Ir.Var "tmp.3")};
+        (Ir.Label "target.cond.en.4"); (Ir.Return (Ir.Var "tmp.3"))];
+      frame =
+      Env.lenv {
+        namespace = "target";
+        counter = 8;
+        offset = -32;
+        stack slots = {
+          x.0   -> -4,
+          y.1   -> -8,
+          tmp.0 -> -12,
+          tmp.1 -> -16,
+          tmp.2 -> -20,
+          tmp.3 -> -24,
+          tmp.6 -> -28,
+          tmp.7 -> -32,
+        }}};
+     Ir.Function {name = "main"; global = true; params = [];
+       body =
+       [Ir.FunCall {fun_name = "target"; args = []; dst = (Ir.Var "tmp.0")};
+         Ir.Binary {op = Ir.Equal; src1 = (Ir.Var "tmp.0");
+           src2 = (Ir.Constant 25); dst = (Ir.Var "tmp.1")};
+         (Ir.Return (Ir.Var "tmp.1"))];
+       frame =
+       Env.lenv {
+         namespace = "main";
+         counter = 2;
+         offset = -8;
+         stack slots = {
+           tmp.0 -> -4,
+           tmp.1 -> -8,
+         }}}
+     ])

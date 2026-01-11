@@ -1,0 +1,108 @@
+(Ast.Program
+   [(Ast.VarDecl
+       { Ast.name = (Ast.Identifier "globvar");
+         init = (Some (Ast.LiteralInt 0)); storage = None });
+     (Ast.FunDecl
+        { Ast.name = (Ast.Identifier "target");
+          params = [(Ast.Identifier "x.0")];
+          body =
+          (Some (Ast.Block
+                   [(Ast.D
+                       (Ast.VarDecl
+                          { Ast.name = (Ast.Identifier "retval.1");
+                            init = (Some (Ast.LiteralInt 0)); storage = None
+                            }));
+                     (Ast.S
+                        Ast.Switch {cond = (Ast.Var (Ast.Identifier "x.0"));
+                          body =
+                          (Ast.Compound
+                             (Ast.Block
+                                [(Ast.S
+                                    Ast.Case {value = (Ast.LiteralInt 1);
+                                      body =
+                                      (Ast.Expression
+                                         (Ast.Assignment (
+                                            (Ast.Var
+                                               (Ast.Identifier "globvar")),
+                                            (Ast.LiteralInt 1))));
+                                      id = (Some (Ast.SwitchLabel "1"))});
+                                  (Ast.S
+                                     Ast.Case {value = (Ast.LiteralInt 2);
+                                       body =
+                                       (Ast.Expression
+                                          (Ast.Assignment (
+                                             (Ast.Var
+                                                (Ast.Identifier "globvar")),
+                                             Ast.Binary {op = Ast.Add;
+                                               left =
+                                               (Ast.Var
+                                                  (Ast.Identifier "globvar"));
+                                               right = (Ast.LiteralInt 3)}
+                                             )));
+                                       id = (Some (Ast.SwitchLabel "1"))});
+                                  (Ast.S
+                                     Ast.Case {value = (Ast.LiteralInt 3);
+                                       body =
+                                       (Ast.Expression
+                                          (Ast.Assignment (
+                                             (Ast.Var
+                                                (Ast.Identifier "globvar")),
+                                             Ast.Binary {op = Ast.Multiply;
+                                               left =
+                                               (Ast.Var
+                                                  (Ast.Identifier "globvar"));
+                                               right = (Ast.LiteralInt 2)}
+                                             )));
+                                       id = (Some (Ast.SwitchLabel "1"))});
+                                  (Ast.S
+                                     Ast.Default {
+                                       body =
+                                       (Ast.Expression
+                                          (Ast.Assignment (
+                                             (Ast.Var
+                                                (Ast.Identifier "retval.1")),
+                                             (Ast.LiteralInt 3))));
+                                       id = (Some (Ast.SwitchLabel "1"))})
+                                  ]));
+                          id = (Some (Ast.SwitchLabel "1"))});
+                     (Ast.S
+                        (Ast.Return (Ast.Var (Ast.Identifier "retval.1"))))
+                     ]));
+          storage = None });
+     (Ast.FunDecl
+        { Ast.name = (Ast.Identifier "main"); params = [];
+          body =
+          (Some (Ast.Block
+                   [(Ast.D
+                       (Ast.VarDecl
+                          { Ast.name = (Ast.Identifier "retval.2");
+                            init =
+                            (Some Ast.FunctionCall {
+                                    name = (Ast.Identifier "target");
+                                    args = [(Ast.LiteralInt 2)]});
+                            storage = None }));
+                     (Ast.S
+                        Ast.If {
+                          cond_exp =
+                          Ast.Binary {op = Ast.NotEqual;
+                            left = (Ast.Var (Ast.Identifier "retval.2"));
+                            right = (Ast.LiteralInt 3)};
+                          then_smt =
+                          (Ast.Compound
+                             (Ast.Block
+                                [(Ast.S (Ast.Return (Ast.LiteralInt 1)))]));
+                          else_smt = None});
+                     (Ast.S
+                        Ast.If {
+                          cond_exp =
+                          Ast.Binary {op = Ast.NotEqual;
+                            left = (Ast.Var (Ast.Identifier "globvar"));
+                            right = (Ast.LiteralInt 6)};
+                          then_smt =
+                          (Ast.Compound
+                             (Ast.Block
+                                [(Ast.S (Ast.Return (Ast.LiteralInt 2)))]));
+                          else_smt = None});
+                     (Ast.S (Ast.Return (Ast.LiteralInt 0)))]));
+          storage = None })
+     ])

@@ -1,0 +1,83 @@
+(Ast.Program
+   [(Ast.VarDecl
+       { Ast.name = (Ast.Identifier "counter");
+         init = (Some (Ast.LiteralInt 0)); storage = None });
+     (Ast.FunDecl
+        { Ast.name = (Ast.Identifier "increment_counter"); params = [];
+          body =
+          (Some (Ast.Block
+                   [(Ast.S
+                       (Ast.Expression
+                          (Ast.Assignment (
+                             (Ast.Var (Ast.Identifier "counter")),
+                             Ast.Binary {op = Ast.Add;
+                               left = (Ast.Var (Ast.Identifier "counter"));
+                               right = (Ast.LiteralInt 1)}
+                             ))));
+                     (Ast.S (Ast.Return (Ast.LiteralInt 0)))]));
+          storage = None });
+     (Ast.FunDecl
+        { Ast.name = (Ast.Identifier "target"); params = [];
+          body =
+          (Some (Ast.Block
+                   [(Ast.D
+                       (Ast.VarDecl
+                          { Ast.name = (Ast.Identifier "y");
+                            init = (Some (Ast.LiteralInt 3)); storage = None
+                            }));
+                     (Ast.S
+                        Ast.DoWhile {
+                          body =
+                          (Ast.Compound
+                             (Ast.Block
+                                [(Ast.S
+                                    (Ast.Expression
+                                       Ast.FunctionCall {
+                                         name =
+                                         (Ast.Identifier "increment_counter");
+                                         args = []}))
+                                  ]));
+                          cond =
+                          Ast.Binary {op = Ast.LessThan;
+                            left = (Ast.Var (Ast.Identifier "counter"));
+                            right = (Ast.LiteralInt 5)};
+                          id = None});
+                     (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "y"))))]));
+          storage = None });
+     (Ast.FunDecl
+        { Ast.name = (Ast.Identifier "main"); params = [];
+          body =
+          (Some (Ast.Block
+                   [(Ast.D
+                       (Ast.VarDecl
+                          { Ast.name = (Ast.Identifier "result");
+                            init =
+                            (Some Ast.FunctionCall {
+                                    name = (Ast.Identifier "target");
+                                    args = []});
+                            storage = None }));
+                     (Ast.S
+                        Ast.If {
+                          cond_exp =
+                          Ast.Binary {op = Ast.NotEqual;
+                            left = (Ast.Var (Ast.Identifier "result"));
+                            right = (Ast.LiteralInt 3)};
+                          then_smt =
+                          (Ast.Compound
+                             (Ast.Block
+                                [(Ast.S (Ast.Return (Ast.LiteralInt 1)))]));
+                          else_smt = None});
+                     (Ast.S
+                        Ast.If {
+                          cond_exp =
+                          Ast.Binary {op = Ast.NotEqual;
+                            left = (Ast.Var (Ast.Identifier "counter"));
+                            right = (Ast.LiteralInt 5)};
+                          then_smt =
+                          (Ast.Compound
+                             (Ast.Block
+                                [(Ast.S (Ast.Return (Ast.LiteralInt 2)))]));
+                          else_smt = None});
+                     (Ast.S (Ast.Return (Ast.LiteralInt 0)))]));
+          storage = None })
+     ])

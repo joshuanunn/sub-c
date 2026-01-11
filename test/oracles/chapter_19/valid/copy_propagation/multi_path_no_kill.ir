@@ -1,0 +1,64 @@
+(Ir.Program
+   [Ir.Function {name = "callee"; global = true; params = [];
+      body =
+      [Ir.Binary {op = Ir.Add; src1 = (Ir.Var "var"); src2 = (Ir.Constant 1);
+         dst = (Ir.Var "tmp.0")};
+        Ir.Copy {src = (Ir.Var "tmp.0"); dst = (Ir.Var "var")};
+        (Ir.Return (Ir.Constant 0))];
+      frame =
+      Env.lenv {
+        namespace = "callee";
+        counter = 1;
+        offset = -4;
+        stack slots = {
+          tmp.0 -> -4,
+        }}};
+     Ir.Function {name = "target"; global = true; params = ["flag.0"];
+       body =
+       [Ir.Copy {src = (Ir.Constant 3); dst = (Ir.Var "x.1")};
+         Ir.JumpIfZero {condition = (Ir.Var "flag.0");
+           target = "target.if.en.0"};
+         Ir.FunCall {fun_name = "callee"; args = []; dst = (Ir.Var "tmp.1")};
+         (Ir.Label "target.if.en.0"); (Ir.Return (Ir.Constant 3))];
+       frame =
+       Env.lenv {
+         namespace = "target";
+         counter = 2;
+         offset = -12;
+         stack slots = {
+           x.1    -> -4,
+           tmp.1  -> -8,
+           flag.0 -> -12,
+         }}};
+     Ir.Function {name = "main"; global = true; params = [];
+       body =
+       [Ir.FunCall {fun_name = "target"; args = [(Ir.Constant 0)];
+          dst = (Ir.Var "tmp.0")};
+         Ir.Binary {op = Ir.NotEqual; src1 = (Ir.Var "tmp.0");
+           src2 = (Ir.Constant 3); dst = (Ir.Var "tmp.1")};
+         Ir.JumpIfZero {condition = (Ir.Var "tmp.1"); target = "main.if.en.2"};
+         (Ir.Return (Ir.Constant 1)); (Ir.Label "main.if.en.2");
+         Ir.FunCall {fun_name = "target"; args = [(Ir.Constant 1)];
+           dst = (Ir.Var "tmp.3")};
+         Ir.Binary {op = Ir.NotEqual; src1 = (Ir.Var "tmp.3");
+           src2 = (Ir.Constant 3); dst = (Ir.Var "tmp.4")};
+         Ir.JumpIfZero {condition = (Ir.Var "tmp.4"); target = "main.if.en.5"};
+         (Ir.Return (Ir.Constant 2)); (Ir.Label "main.if.en.5");
+         Ir.Binary {op = Ir.NotEqual; src1 = (Ir.Var "var");
+           src2 = (Ir.Constant 1); dst = (Ir.Var "tmp.6")};
+         Ir.JumpIfZero {condition = (Ir.Var "tmp.6"); target = "main.if.en.7"};
+         (Ir.Return (Ir.Constant 3)); (Ir.Label "main.if.en.7");
+         (Ir.Return (Ir.Constant 0))];
+       frame =
+       Env.lenv {
+         namespace = "main";
+         counter = 8;
+         offset = -20;
+         stack slots = {
+           tmp.0 -> -4,
+           tmp.1 -> -8,
+           tmp.3 -> -12,
+           tmp.4 -> -16,
+           tmp.6 -> -20,
+         }}};
+     Ir.StaticVariable {name = "var"; global = true; init = 0}])
