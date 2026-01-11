@@ -5,7 +5,7 @@ target_add:
     movq        %rsp, %rbp
     subq        $16, %rsp
     movl        $300, -4(%rbp)
-    movl        -4(%rbp), %eax
+    movl        $300, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         
@@ -16,7 +16,7 @@ target_sub:
     movq        %rsp, %rbp
     subq        $16, %rsp
     movl        $-2147483645, -4(%rbp)
-    movl        -4(%rbp), %eax
+    movl        $-2147483645, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         
@@ -27,7 +27,7 @@ target_mult:
     movq        %rsp, %rbp
     subq        $16, %rsp
     movl        $1000000, -4(%rbp)
-    movl        -4(%rbp), %eax
+    movl        $1000000, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         
@@ -38,7 +38,7 @@ target_div:
     movq        %rsp, %rbp
     subq        $16, %rsp
     movl        $277, -4(%rbp)
-    movl        -4(%rbp), %eax
+    movl        $277, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         
@@ -49,7 +49,7 @@ target_rem:
     movq        %rsp, %rbp
     subq        $16, %rsp
     movl        $1, -4(%rbp)
-    movl        -4(%rbp), %eax
+    movl        $1, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         
@@ -60,7 +60,7 @@ target_eq_true:
     movq        %rsp, %rbp
     subq        $16, %rsp
     movl        $1, -4(%rbp)
-    movl        -4(%rbp), %eax
+    movl        $1, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         
@@ -71,7 +71,7 @@ target_eq_false:
     movq        %rsp, %rbp
     subq        $16, %rsp
     movl        $0, -4(%rbp)
-    movl        -4(%rbp), %eax
+    movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         
@@ -82,7 +82,7 @@ target_neq_true:
     movq        %rsp, %rbp
     subq        $16, %rsp
     movl        $1, -4(%rbp)
-    movl        -4(%rbp), %eax
+    movl        $1, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         
@@ -93,7 +93,7 @@ target_neq_false:
     movq        %rsp, %rbp
     subq        $16, %rsp
     movl        $0, -4(%rbp)
-    movl        -4(%rbp), %eax
+    movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         
@@ -104,7 +104,7 @@ target_gt_true:
     movq        %rsp, %rbp
     subq        $16, %rsp
     movl        $1, -4(%rbp)
-    movl        -4(%rbp), %eax
+    movl        $1, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         
@@ -115,7 +115,7 @@ target_gt_false:
     movq        %rsp, %rbp
     subq        $16, %rsp
     movl        $0, -4(%rbp)
-    movl        -4(%rbp), %eax
+    movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         
@@ -126,7 +126,7 @@ target_ge_true:
     movq        %rsp, %rbp
     subq        $16, %rsp
     movl        $1, -4(%rbp)
-    movl        -4(%rbp), %eax
+    movl        $1, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         
@@ -137,7 +137,7 @@ target_ge_false:
     movq        %rsp, %rbp
     subq        $16, %rsp
     movl        $0, -4(%rbp)
-    movl        -4(%rbp), %eax
+    movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         
@@ -148,7 +148,7 @@ target_lt_true:
     movq        %rsp, %rbp
     subq        $16, %rsp
     movl        $1, -4(%rbp)
-    movl        -4(%rbp), %eax
+    movl        $1, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         
@@ -159,7 +159,7 @@ target_lt_false:
     movq        %rsp, %rbp
     subq        $16, %rsp
     movl        $0, -4(%rbp)
-    movl        -4(%rbp), %eax
+    movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         
@@ -170,7 +170,7 @@ target_le_true:
     movq        %rsp, %rbp
     subq        $16, %rsp
     movl        $1, -4(%rbp)
-    movl        -4(%rbp), %eax
+    movl        $1, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         
@@ -181,7 +181,7 @@ target_le_false:
     movq        %rsp, %rbp
     subq        $16, %rsp
     movl        $0, -4(%rbp)
-    movl        -4(%rbp), %eax
+    movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         

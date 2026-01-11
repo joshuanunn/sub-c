@@ -5,7 +5,7 @@ target_negate:
     movq        %rsp, %rbp
     subq        $16, %rsp
     movl        $-3, -4(%rbp)
-    movl        -4(%rbp), %eax
+    movl        $-3, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         
@@ -16,7 +16,7 @@ target_negate_zero:
     movq        %rsp, %rbp
     subq        $16, %rsp
     movl        $0, -4(%rbp)
-    movl        -4(%rbp), %eax
+    movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         
@@ -27,7 +27,7 @@ target_not:
     movq        %rsp, %rbp
     subq        $16, %rsp
     movl        $0, -4(%rbp)
-    movl        -4(%rbp), %eax
+    movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         
@@ -38,7 +38,7 @@ target_not_zero:
     movq        %rsp, %rbp
     subq        $16, %rsp
     movl        $1, -4(%rbp)
-    movl        -4(%rbp), %eax
+    movl        $1, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         
@@ -49,7 +49,7 @@ target_complement:
     movq        %rsp, %rbp
     subq        $16, %rsp
     movl        $-2, -4(%rbp)
-    movl        -4(%rbp), %eax
+    movl        $-2, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         

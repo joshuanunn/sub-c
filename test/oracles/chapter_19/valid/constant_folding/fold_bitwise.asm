@@ -2,7 +2,7 @@
    [Asm.Function {name = "target_and"; global = true;
       instructions =
       [(Asm.AllocateStack 16); (Asm.Mov ((Asm.Imm 983055), (Asm.Stack -4)));
-        (Asm.Mov ((Asm.Stack -4), (Asm.Reg Asm.AX))); Asm.Ret];
+        (Asm.Mov ((Asm.Imm 983055), (Asm.Reg Asm.AX))); Asm.Ret];
       frame =
       Env.lenv {
         namespace = "target_and";
@@ -15,7 +15,7 @@
        instructions =
        [(Asm.AllocateStack 16);
          (Asm.Mov ((Asm.Imm 268374015), (Asm.Stack -4)));
-         (Asm.Mov ((Asm.Stack -4), (Asm.Reg Asm.AX))); Asm.Ret];
+         (Asm.Mov ((Asm.Imm 268374015), (Asm.Reg Asm.AX))); Asm.Ret];
        frame =
        Env.lenv {
          namespace = "target_or";
@@ -28,7 +28,7 @@
        instructions =
        [(Asm.AllocateStack 16);
          (Asm.Mov ((Asm.Imm 267390960), (Asm.Stack -4)));
-         (Asm.Mov ((Asm.Stack -4), (Asm.Reg Asm.AX))); Asm.Ret];
+         (Asm.Mov ((Asm.Imm 267390960), (Asm.Reg Asm.AX))); Asm.Ret];
        frame =
        Env.lenv {
          namespace = "target_xor";
@@ -41,7 +41,7 @@
        instructions =
        [(Asm.AllocateStack 16);
          (Asm.Mov ((Asm.Imm 76283904), (Asm.Stack -4)));
-         (Asm.Mov ((Asm.Stack -4), (Asm.Reg Asm.AX))); Asm.Ret];
+         (Asm.Mov ((Asm.Imm 76283904), (Asm.Reg Asm.AX))); Asm.Ret];
        frame =
        Env.lenv {
          namespace = "target_shift_left";
@@ -53,7 +53,7 @@
      Asm.Function {name = "target_shift_right"; global = true;
        instructions =
        [(Asm.AllocateStack 16); (Asm.Mov ((Asm.Imm 493447), (Asm.Stack -4)));
-         (Asm.Mov ((Asm.Stack -4), (Asm.Reg Asm.AX))); Asm.Ret];
+         (Asm.Mov ((Asm.Imm 493447), (Asm.Reg Asm.AX))); Asm.Ret];
        frame =
        Env.lenv {
          namespace = "target_shift_right";

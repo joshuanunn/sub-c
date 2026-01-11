@@ -5,7 +5,7 @@ target_jz_to_jmp:
     movq        %rsp, %rbp
     subq        $16, %rsp
     movl        $0, -4(%rbp)
-    movl        -4(%rbp), %eax
+    movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         
@@ -16,7 +16,7 @@ target_remove_jz:
     movq        %rsp, %rbp
     subq        $16, %rsp
     movl        $1, -4(%rbp)
-    movl        -4(%rbp), %eax
+    movl        $1, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         
@@ -27,7 +27,7 @@ target_jnz_to_jmp:
     movq        %rsp, %rbp
     subq        $16, %rsp
     movl        $1, -4(%rbp)
-    movl        -4(%rbp), %eax
+    movl        $1, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         
@@ -38,7 +38,7 @@ target_remove_jnz:
     movq        %rsp, %rbp
     subq        $16, %rsp
     movl        $1, -4(%rbp)
-    movl        -4(%rbp), %eax
+    movl        $1, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         

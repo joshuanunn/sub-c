@@ -16,7 +16,7 @@
        body =
        [Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "i.0")};
          Ir.Copy {src = (Ir.Constant 10); dst = (Ir.Var "i.0")};
-         (Ir.Return (Ir.Var "i.0"))];
+         (Ir.Return (Ir.Constant 10))];
        frame =
        Env.lenv {
          namespace = "target";

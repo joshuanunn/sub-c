@@ -11,9 +11,8 @@
      Ir.Function {name = "target"; global = true; params = [];
        body =
        [Ir.Copy {src = (Ir.Constant 40); dst = (Ir.Var "x.0")};
-         Ir.Binary {op = Ir.Add; src1 = (Ir.Var "x.0");
-           src2 = (Ir.Constant 5); dst = (Ir.Var "tmp.3")};
-         (Ir.Return (Ir.Var "tmp.3"))];
+         Ir.Copy {src = (Ir.Constant 45); dst = (Ir.Var "tmp.3")};
+         (Ir.Return (Ir.Constant 45))];
        frame =
        Env.lenv {
          namespace = "target";

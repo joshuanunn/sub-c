@@ -32,7 +32,7 @@ target_conditional_true:
     movq        %rsp, %rbp
     subq        $16, %rsp
     movl        $2, -4(%rbp)
-    movl        -4(%rbp), %eax
+    movl        $2, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         
@@ -43,7 +43,7 @@ target_conditional_false:
     movq        %rsp, %rbp
     subq        $16, %rsp
     movl        $5, -4(%rbp)
-    movl        -4(%rbp), %eax
+    movl        $5, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         
@@ -55,7 +55,7 @@ target_do_loop:
     subq        $16, %rsp
     movl        $0, -4(%rbp)
     movl        $10, -4(%rbp)
-    movl        -4(%rbp), %eax
+    movl        $10, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         
@@ -66,7 +66,7 @@ target_while_loop_false:
     movq        %rsp, %rbp
     subq        $16, %rsp
     movl        $0, -4(%rbp)
-    movl        -4(%rbp), %eax
+    movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         
@@ -78,7 +78,7 @@ target_while_loop_true:
     subq        $16, %rsp
     movl        $0, -4(%rbp)
     movl        $10, -4(%rbp)
-    movl        -4(%rbp), %eax
+    movl        $10, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         
@@ -90,9 +90,8 @@ target_for_loop_true:
     subq        $16, %rsp
     movl        $0, -4(%rbp)
     movl        $100, -8(%rbp)
-    movl        -8(%rbp), %r10d
-    movl        %r10d, -4(%rbp)
-    movl        -4(%rbp), %eax
+    movl        $100, -4(%rbp)
+    movl        $100, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         
@@ -104,7 +103,7 @@ target_for_loop_false:
     subq        $16, %rsp
     movl        $0, -4(%rbp)
     movl        $100, -8(%rbp)
-    movl        -4(%rbp), %eax
+    movl        $0, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         

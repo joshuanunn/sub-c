@@ -5,7 +5,7 @@ target_and:
     movq        %rsp, %rbp
     subq        $16, %rsp
     movl        $983055, -4(%rbp)
-    movl        -4(%rbp), %eax
+    movl        $983055, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         
@@ -16,7 +16,7 @@ target_or:
     movq        %rsp, %rbp
     subq        $16, %rsp
     movl        $268374015, -4(%rbp)
-    movl        -4(%rbp), %eax
+    movl        $268374015, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         
@@ -27,7 +27,7 @@ target_xor:
     movq        %rsp, %rbp
     subq        $16, %rsp
     movl        $267390960, -4(%rbp)
-    movl        -4(%rbp), %eax
+    movl        $267390960, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         
@@ -38,7 +38,7 @@ target_shift_left:
     movq        %rsp, %rbp
     subq        $16, %rsp
     movl        $76283904, -4(%rbp)
-    movl        -4(%rbp), %eax
+    movl        $76283904, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         
@@ -49,7 +49,7 @@ target_shift_right:
     movq        %rsp, %rbp
     subq        $16, %rsp
     movl        $493447, -4(%rbp)
-    movl        -4(%rbp), %eax
+    movl        $493447, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         

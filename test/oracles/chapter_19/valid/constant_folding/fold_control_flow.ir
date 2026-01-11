@@ -30,7 +30,7 @@
        params = [];
        body =
        [Ir.Copy {src = (Ir.Constant 2); dst = (Ir.Var "tmp.0")};
-         (Ir.Return (Ir.Var "tmp.0"))];
+         (Ir.Return (Ir.Constant 2))];
        frame =
        Env.lenv {
          namespace = "target_conditional_true";
@@ -43,7 +43,7 @@
        params = [];
        body =
        [Ir.Copy {src = (Ir.Constant 5); dst = (Ir.Var "tmp.0")};
-         (Ir.Return (Ir.Var "tmp.0"))];
+         (Ir.Return (Ir.Constant 5))];
        frame =
        Env.lenv {
          namespace = "target_conditional_false";
@@ -56,7 +56,7 @@
        body =
        [Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "retval.0")};
          Ir.Copy {src = (Ir.Constant 10); dst = (Ir.Var "retval.0")};
-         (Ir.Return (Ir.Var "retval.0"))];
+         (Ir.Return (Ir.Constant 10))];
        frame =
        Env.lenv {
          namespace = "target_do_loop";
@@ -69,7 +69,7 @@
        params = [];
        body =
        [Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "retval.1")};
-         (Ir.Return (Ir.Var "retval.1"))];
+         (Ir.Return (Ir.Constant 0))];
        frame =
        Env.lenv {
          namespace = "target_while_loop_false";
@@ -83,7 +83,7 @@
        body =
        [Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "retval.2")};
          Ir.Copy {src = (Ir.Constant 10); dst = (Ir.Var "retval.2")};
-         (Ir.Return (Ir.Var "retval.2"))];
+         (Ir.Return (Ir.Constant 10))];
        frame =
        Env.lenv {
          namespace = "target_while_loop_true";
@@ -96,8 +96,8 @@
        body =
        [Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "retval.3")};
          Ir.Copy {src = (Ir.Constant 100); dst = (Ir.Var "i.4")};
-         Ir.Copy {src = (Ir.Var "i.4"); dst = (Ir.Var "retval.3")};
-         (Ir.Return (Ir.Var "retval.3"))];
+         Ir.Copy {src = (Ir.Constant 100); dst = (Ir.Var "retval.3")};
+         (Ir.Return (Ir.Constant 100))];
        frame =
        Env.lenv {
          namespace = "target_for_loop_true";
@@ -111,7 +111,7 @@
        body =
        [Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "retval.5")};
          Ir.Copy {src = (Ir.Constant 100); dst = (Ir.Var "i.6")};
-         (Ir.Return (Ir.Var "retval.5"))];
+         (Ir.Return (Ir.Constant 0))];
        frame =
        Env.lenv {
          namespace = "target_for_loop_false";

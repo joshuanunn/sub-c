@@ -2,23 +2,22 @@
    [Ir.Function {name = "main"; global = true; params = [];
       body =
       [Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "tmp.1")};
-        Ir.Copy {src = (Ir.Var "tmp.1"); dst = (Ir.Var "dead_div_by_zero.0")};
+        Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "dead_div_by_zero.0")};
         Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "tmp.5")};
         Ir.Copy {src = (Ir.Var "tmp.5");
           dst = (Ir.Var "dead_zero_remainder.1")};
         Ir.Copy {src = (Ir.Constant 100); dst = (Ir.Var "tmp.8")};
         Ir.Copy {src = (Ir.Var "tmp.8"); dst = (Ir.Var "overflow.2")};
-        Ir.Binary {op = Ir.NotEqual; src1 = (Ir.Var "dead_div_by_zero.0");
-          src2 = (Ir.Constant 1); dst = (Ir.Var "tmp.12")};
+        Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "tmp.12")};
         Ir.JumpIfZero {condition = (Ir.Var "tmp.12");
           target = "main.if.en.13"};
         (Ir.Return (Ir.Constant 1)); (Ir.Label "main.if.en.13");
-        Ir.Binary {op = Ir.NotEqual; src1 = (Ir.Var "dead_zero_remainder.1");
+        Ir.Binary {op = Ir.NotEqual; src1 = (Ir.Var "tmp.5");
           src2 = (Ir.Constant 0); dst = (Ir.Var "tmp.14")};
         Ir.JumpIfZero {condition = (Ir.Var "tmp.14");
           target = "main.if.en.15"};
         (Ir.Return (Ir.Constant 2)); (Ir.Label "main.if.en.15");
-        Ir.Binary {op = Ir.NotEqual; src1 = (Ir.Var "overflow.2");
+        Ir.Binary {op = Ir.NotEqual; src1 = (Ir.Var "tmp.8");
           src2 = (Ir.Constant 100); dst = (Ir.Var "tmp.16")};
         Ir.JumpIfZero {condition = (Ir.Var "tmp.16");
           target = "main.if.en.17"};

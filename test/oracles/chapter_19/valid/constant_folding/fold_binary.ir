@@ -2,7 +2,7 @@
    [Ir.Function {name = "target_add"; global = true; params = [];
       body =
       [Ir.Copy {src = (Ir.Constant 300); dst = (Ir.Var "tmp.0")};
-        (Ir.Return (Ir.Var "tmp.0"))];
+        (Ir.Return (Ir.Constant 300))];
       frame =
       Env.lenv {
         namespace = "target_add";
@@ -14,7 +14,7 @@
      Ir.Function {name = "target_sub"; global = true; params = [];
        body =
        [Ir.Copy {src = (Ir.Constant -2147483645); dst = (Ir.Var "tmp.0")};
-         (Ir.Return (Ir.Var "tmp.0"))];
+         (Ir.Return (Ir.Constant -2147483645))];
        frame =
        Env.lenv {
          namespace = "target_sub";
@@ -26,7 +26,7 @@
      Ir.Function {name = "target_mult"; global = true; params = [];
        body =
        [Ir.Copy {src = (Ir.Constant 1000000); dst = (Ir.Var "tmp.0")};
-         (Ir.Return (Ir.Var "tmp.0"))];
+         (Ir.Return (Ir.Constant 1000000))];
        frame =
        Env.lenv {
          namespace = "target_mult";
@@ -38,7 +38,7 @@
      Ir.Function {name = "target_div"; global = true; params = [];
        body =
        [Ir.Copy {src = (Ir.Constant 277); dst = (Ir.Var "tmp.0")};
-         (Ir.Return (Ir.Var "tmp.0"))];
+         (Ir.Return (Ir.Constant 277))];
        frame =
        Env.lenv {
          namespace = "target_div";
@@ -50,7 +50,7 @@
      Ir.Function {name = "target_rem"; global = true; params = [];
        body =
        [Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "tmp.0")};
-         (Ir.Return (Ir.Var "tmp.0"))];
+         (Ir.Return (Ir.Constant 1))];
        frame =
        Env.lenv {
          namespace = "target_rem";
@@ -62,7 +62,7 @@
      Ir.Function {name = "target_eq_true"; global = true; params = [];
        body =
        [Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "tmp.0")};
-         (Ir.Return (Ir.Var "tmp.0"))];
+         (Ir.Return (Ir.Constant 1))];
        frame =
        Env.lenv {
          namespace = "target_eq_true";
@@ -74,7 +74,7 @@
      Ir.Function {name = "target_eq_false"; global = true; params = [];
        body =
        [Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "tmp.0")};
-         (Ir.Return (Ir.Var "tmp.0"))];
+         (Ir.Return (Ir.Constant 0))];
        frame =
        Env.lenv {
          namespace = "target_eq_false";
@@ -86,7 +86,7 @@
      Ir.Function {name = "target_neq_true"; global = true; params = [];
        body =
        [Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "tmp.0")};
-         (Ir.Return (Ir.Var "tmp.0"))];
+         (Ir.Return (Ir.Constant 1))];
        frame =
        Env.lenv {
          namespace = "target_neq_true";
@@ -98,7 +98,7 @@
      Ir.Function {name = "target_neq_false"; global = true; params = [];
        body =
        [Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "tmp.0")};
-         (Ir.Return (Ir.Var "tmp.0"))];
+         (Ir.Return (Ir.Constant 0))];
        frame =
        Env.lenv {
          namespace = "target_neq_false";
@@ -110,7 +110,7 @@
      Ir.Function {name = "target_gt_true"; global = true; params = [];
        body =
        [Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "tmp.0")};
-         (Ir.Return (Ir.Var "tmp.0"))];
+         (Ir.Return (Ir.Constant 1))];
        frame =
        Env.lenv {
          namespace = "target_gt_true";
@@ -122,7 +122,7 @@
      Ir.Function {name = "target_gt_false"; global = true; params = [];
        body =
        [Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "tmp.0")};
-         (Ir.Return (Ir.Var "tmp.0"))];
+         (Ir.Return (Ir.Constant 0))];
        frame =
        Env.lenv {
          namespace = "target_gt_false";
@@ -134,7 +134,7 @@
      Ir.Function {name = "target_ge_true"; global = true; params = [];
        body =
        [Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "tmp.0")};
-         (Ir.Return (Ir.Var "tmp.0"))];
+         (Ir.Return (Ir.Constant 1))];
        frame =
        Env.lenv {
          namespace = "target_ge_true";
@@ -146,7 +146,7 @@
      Ir.Function {name = "target_ge_false"; global = true; params = [];
        body =
        [Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "tmp.0")};
-         (Ir.Return (Ir.Var "tmp.0"))];
+         (Ir.Return (Ir.Constant 0))];
        frame =
        Env.lenv {
          namespace = "target_ge_false";
@@ -158,7 +158,7 @@
      Ir.Function {name = "target_lt_true"; global = true; params = [];
        body =
        [Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "tmp.0")};
-         (Ir.Return (Ir.Var "tmp.0"))];
+         (Ir.Return (Ir.Constant 1))];
        frame =
        Env.lenv {
          namespace = "target_lt_true";
@@ -170,7 +170,7 @@
      Ir.Function {name = "target_lt_false"; global = true; params = [];
        body =
        [Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "tmp.0")};
-         (Ir.Return (Ir.Var "tmp.0"))];
+         (Ir.Return (Ir.Constant 0))];
        frame =
        Env.lenv {
          namespace = "target_lt_false";
@@ -182,7 +182,7 @@
      Ir.Function {name = "target_le_true"; global = true; params = [];
        body =
        [Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "tmp.0")};
-         (Ir.Return (Ir.Var "tmp.0"))];
+         (Ir.Return (Ir.Constant 1))];
        frame =
        Env.lenv {
          namespace = "target_le_true";
@@ -194,7 +194,7 @@
      Ir.Function {name = "target_le_false"; global = true; params = [];
        body =
        [Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "tmp.0")};
-         (Ir.Return (Ir.Var "tmp.0"))];
+         (Ir.Return (Ir.Constant 0))];
        frame =
        Env.lenv {
          namespace = "target_le_false";

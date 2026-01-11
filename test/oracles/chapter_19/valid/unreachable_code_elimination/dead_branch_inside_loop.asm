@@ -55,8 +55,7 @@
        [(Asm.AllocateStack 16); (Asm.Call "target");
          (Asm.Mov ((Asm.Reg Asm.AX), (Asm.Stack -4)));
          (Asm.Mov ((Asm.Imm -4845), (Asm.Stack -8)));
-         (Asm.Mov ((Asm.Stack -8), (Asm.Reg Asm.R10)));
-         (Asm.Cmp ((Asm.Reg Asm.R10), (Asm.Stack -4)));
+         (Asm.Cmp ((Asm.Imm -4845), (Asm.Stack -4)));
          (Asm.Mov ((Asm.Imm 0), (Asm.Stack -12)));
          (Asm.SetCC (Asm.NE, (Asm.Stack -12)));
          (Asm.Cmp ((Asm.Imm 0), (Asm.Stack -12)));

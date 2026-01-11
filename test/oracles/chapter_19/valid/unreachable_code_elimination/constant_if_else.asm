@@ -11,10 +11,8 @@
      Asm.Function {name = "target"; global = true;
        instructions =
        [(Asm.AllocateStack 16); (Asm.Mov ((Asm.Imm 40), (Asm.Stack -4)));
-         (Asm.Mov ((Asm.Stack -4), (Asm.Reg Asm.R10)));
-         (Asm.Mov ((Asm.Reg Asm.R10), (Asm.Stack -12)));
-         Asm.Binary {op = Asm.Add; src = (Asm.Imm 5); dst = (Asm.Stack -12)};
-         (Asm.Mov ((Asm.Stack -12), (Asm.Reg Asm.AX))); Asm.Ret];
+         (Asm.Mov ((Asm.Imm 45), (Asm.Stack -12)));
+         (Asm.Mov ((Asm.Imm 45), (Asm.Reg Asm.AX))); Asm.Ret];
        frame =
        Env.lenv {
          namespace = "target";

@@ -11,7 +11,7 @@ f:
     subl        $1, -4(%rbp)
     movl        -4(%rbp), %r10d
     movl        %r10d, -8(%rbp)
-    cmpl        $0, -8(%rbp)
+    cmpl        $0, -4(%rbp)
     je          .Lf.if.en.1
     movl        $17, %eax
     movq        %rbp, %rsp

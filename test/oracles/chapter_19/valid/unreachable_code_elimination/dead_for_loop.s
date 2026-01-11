@@ -21,7 +21,7 @@ target:
     subq        $16, %rsp
     movl        $0, -4(%rbp)
     movl        $10, -4(%rbp)
-    movl        -4(%rbp), %eax
+    movl        $10, %eax
     movq        %rbp, %rsp
     popq        %rbp
     ret         

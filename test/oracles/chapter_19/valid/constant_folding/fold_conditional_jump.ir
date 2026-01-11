@@ -2,7 +2,7 @@
    [Ir.Function {name = "target_jz_to_jmp"; global = true; params = [];
       body =
       [Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "tmp.0")};
-        (Ir.Return (Ir.Var "tmp.0"))];
+        (Ir.Return (Ir.Constant 0))];
       frame =
       Env.lenv {
         namespace = "target_jz_to_jmp";
@@ -14,7 +14,7 @@
      Ir.Function {name = "target_remove_jz"; global = true; params = [];
        body =
        [Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "tmp.0")};
-         (Ir.Return (Ir.Var "tmp.0"))];
+         (Ir.Return (Ir.Constant 1))];
        frame =
        Env.lenv {
          namespace = "target_remove_jz";
@@ -26,7 +26,7 @@
      Ir.Function {name = "target_jnz_to_jmp"; global = true; params = [];
        body =
        [Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "tmp.0")};
-         (Ir.Return (Ir.Var "tmp.0"))];
+         (Ir.Return (Ir.Constant 1))];
        frame =
        Env.lenv {
          namespace = "target_jnz_to_jmp";
@@ -38,7 +38,7 @@
      Ir.Function {name = "target_remove_jnz"; global = true; params = [];
        body =
        [Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "tmp.0")};
-         (Ir.Return (Ir.Var "tmp.0"))];
+         (Ir.Return (Ir.Constant 1))];
        frame =
        Env.lenv {
          namespace = "target_remove_jnz";
