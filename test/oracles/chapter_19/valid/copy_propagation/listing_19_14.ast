@@ -1,0 +1,60 @@
+(Ast.Program
+   [(Ast.FunDecl
+       { Ast.name = (Ast.Identifier "indirect_update"); params = [];
+         body = None; storage = None });
+     (Ast.FunDecl
+        { Ast.name = (Ast.Identifier "f");
+          params = [(Ast.Identifier "new_total")];
+          body =
+          (Some (Ast.Block
+                   [(Ast.D
+                       (Ast.VarDecl
+                          { Ast.name = (Ast.Identifier "total");
+                            init = (Some (Ast.LiteralInt 0));
+                            storage = (Some Ast.Static) }));
+                     (Ast.S
+                        (Ast.Expression
+                           (Ast.Assignment (
+                              (Ast.Var (Ast.Identifier "total")),
+                              (Ast.Var (Ast.Identifier "new_total"))))));
+                     (Ast.S
+                        Ast.If {
+                          cond_exp =
+                          Ast.Binary {op = Ast.GreaterThan;
+                            left = (Ast.Var (Ast.Identifier "total"));
+                            right = (Ast.LiteralInt 100)};
+                          then_smt = (Ast.Return (Ast.LiteralInt 0));
+                          else_smt = None});
+                     (Ast.S
+                        (Ast.Expression
+                           (Ast.Assignment (
+                              (Ast.Var (Ast.Identifier "total")),
+                              (Ast.LiteralInt 10)))));
+                     (Ast.S
+                        (Ast.Expression
+                           Ast.FunctionCall {
+                             name = (Ast.Identifier "indirect_update");
+                             args = []}));
+                     (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "total"))))]));
+          storage = None });
+     (Ast.FunDecl
+        { Ast.name = (Ast.Identifier "indirect_update"); params = [];
+          body =
+          (Some (Ast.Block
+                   [(Ast.S
+                       (Ast.Expression
+                          Ast.FunctionCall {name = (Ast.Identifier "f");
+                            args = [(Ast.LiteralInt 101)]}));
+                     (Ast.S (Ast.Return (Ast.LiteralInt 0)))]));
+          storage = None });
+     (Ast.FunDecl
+        { Ast.name = (Ast.Identifier "main"); params = [];
+          body =
+          (Some (Ast.Block
+                   [(Ast.S
+                       (Ast.Return
+                          Ast.FunctionCall {name = (Ast.Identifier "f");
+                            args = [(Ast.LiteralInt 1)]}))
+                     ]));
+          storage = None })
+     ])

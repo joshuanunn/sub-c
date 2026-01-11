@@ -1,0 +1,48 @@
+(Ir.Program
+   [Ir.Function {name = "f"; global = true; params = ["src.1"; "flag.2"];
+      body =
+      [Ir.Copy {src = (Ir.Var "src.1"); dst = (Ir.Var "x.3")};
+        Ir.JumpIfZero {condition = (Ir.Var "flag.2"); target = "f.if.en.0"};
+        Ir.Copy {src = (Ir.Constant 65); dst = (Ir.Var "src.1")};
+        (Ir.Label "f.if.en.0");
+        Ir.FunCall {fun_name = "putchar"; args = [(Ir.Var "src.1")];
+          dst = (Ir.Var "tmp.1")};
+        (Ir.Return (Ir.Var "x.3"))];
+      frame =
+      Env.lenv {
+        namespace = "f";
+        counter = 2;
+        offset = -16;
+        stack slots = {
+          x.3    -> -4,
+          tmp.1  -> -8,
+          src.1  -> -12,
+          flag.2 -> -16,
+        }}};
+     Ir.Function {name = "main"; global = true; params = [];
+       body =
+       [Ir.FunCall {fun_name = "f";
+          args = [(Ir.Constant 68); (Ir.Constant 0)]; dst = (Ir.Var "tmp.0")};
+         Ir.Binary {op = Ir.NotEqual; src1 = (Ir.Var "tmp.0");
+           src2 = (Ir.Constant 68); dst = (Ir.Var "tmp.1")};
+         Ir.JumpIfZero {condition = (Ir.Var "tmp.1"); target = "main.if.en.2"};
+         (Ir.Return (Ir.Constant 1)); (Ir.Label "main.if.en.2");
+         Ir.FunCall {fun_name = "f";
+           args = [(Ir.Constant 70); (Ir.Constant 1)]; dst = (Ir.Var "tmp.3")};
+         Ir.Binary {op = Ir.NotEqual; src1 = (Ir.Var "tmp.3");
+           src2 = (Ir.Constant 70); dst = (Ir.Var "tmp.4")};
+         Ir.JumpIfZero {condition = (Ir.Var "tmp.4"); target = "main.if.en.5"};
+         (Ir.Return (Ir.Constant 2)); (Ir.Label "main.if.en.5");
+         (Ir.Return (Ir.Constant 0))];
+       frame =
+       Env.lenv {
+         namespace = "main";
+         counter = 6;
+         offset = -16;
+         stack slots = {
+           tmp.0 -> -4,
+           tmp.1 -> -8,
+           tmp.3 -> -12,
+           tmp.4 -> -16,
+         }}}
+     ])

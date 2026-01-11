@@ -1,0 +1,28 @@
+(Ir.Program
+   [Ir.Function {name = "f"; global = true; params = [];
+      body =
+      [Ir.Copy {src = (Ir.Constant 100); dst = (Ir.Var "global")};
+        (Ir.Return (Ir.Constant 0))];
+      frame =
+      Env.lenv {
+        namespace = "f";
+        counter = 0;
+        offset = 0;
+        stack slots = {
+        }}};
+     Ir.Function {name = "main"; global = true; params = [];
+       body =
+       [Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "global")};
+         Ir.JumpIfZero {condition = (Ir.Var "flag"); target = "main.if.en.0"};
+         Ir.FunCall {fun_name = "f"; args = []; dst = (Ir.Var "tmp.1")};
+         (Ir.Label "main.if.en.0"); (Ir.Return (Ir.Var "global"))];
+       frame =
+       Env.lenv {
+         namespace = "main";
+         counter = 2;
+         offset = -4;
+         stack slots = {
+           tmp.1 -> -4,
+         }}};
+     Ir.StaticVariable {name = "flag"; global = true; init = 1};
+     Ir.StaticVariable {name = "global"; global = true; init = 0}])

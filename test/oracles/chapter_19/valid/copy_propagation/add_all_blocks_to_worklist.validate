@@ -1,0 +1,42 @@
+(Ast.Program
+   [(Ast.VarDecl
+       { Ast.name = (Ast.Identifier "global"); init = None; storage = None });
+     (Ast.VarDecl
+        { Ast.name = (Ast.Identifier "flag");
+          init = (Some (Ast.LiteralInt 1)); storage = None });
+     (Ast.FunDecl
+        { Ast.name = (Ast.Identifier "f"); params = [];
+          body =
+          (Some (Ast.Block
+                   [(Ast.S
+                       (Ast.Expression
+                          (Ast.Assignment (
+                             (Ast.Var (Ast.Identifier "global")),
+                             (Ast.LiteralInt 100)))));
+                     (Ast.S (Ast.Return (Ast.LiteralInt 0)))]));
+          storage = None });
+     (Ast.FunDecl
+        { Ast.name = (Ast.Identifier "main"); params = [];
+          body =
+          (Some (Ast.Block
+                   [(Ast.S
+                       (Ast.Expression
+                          (Ast.Assignment (
+                             (Ast.Var (Ast.Identifier "global")),
+                             (Ast.LiteralInt 0)))));
+                     (Ast.S
+                        Ast.If {cond_exp = (Ast.Var (Ast.Identifier "flag"));
+                          then_smt =
+                          (Ast.Compound
+                             (Ast.Block
+                                [(Ast.S
+                                    (Ast.Expression
+                                       Ast.FunctionCall {
+                                         name = (Ast.Identifier "f");
+                                         args = []}))
+                                  ]));
+                          else_smt = None});
+                     (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "global"))))
+                     ]));
+          storage = None })
+     ])

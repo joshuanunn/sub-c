@@ -1,0 +1,68 @@
+(Ast.Program
+   [(Ast.FunDecl
+       { Ast.name = (Ast.Identifier "putchar");
+         params = [(Ast.Identifier "c.0")]; body = None; storage = None });
+     (Ast.FunDecl
+        { Ast.name = (Ast.Identifier "f");
+          params = [(Ast.Identifier "src.1"); (Ast.Identifier "flag.2")];
+          body =
+          (Some (Ast.Block
+                   [(Ast.D
+                       (Ast.VarDecl
+                          { Ast.name = (Ast.Identifier "x.3");
+                            init = (Some (Ast.Var (Ast.Identifier "src.1")));
+                            storage = None }));
+                     (Ast.S
+                        Ast.If {
+                          cond_exp = (Ast.Var (Ast.Identifier "flag.2"));
+                          then_smt =
+                          (Ast.Compound
+                             (Ast.Block
+                                [(Ast.S
+                                    (Ast.Expression
+                                       (Ast.Assignment (
+                                          (Ast.Var (Ast.Identifier "src.1")),
+                                          (Ast.LiteralInt 65)))))
+                                  ]));
+                          else_smt = None});
+                     (Ast.S
+                        (Ast.Expression
+                           Ast.FunctionCall {
+                             name = (Ast.Identifier "putchar");
+                             args = [(Ast.Var (Ast.Identifier "src.1"))]}));
+                     (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "x.3"))))]));
+          storage = None });
+     (Ast.FunDecl
+        { Ast.name = (Ast.Identifier "main"); params = [];
+          body =
+          (Some (Ast.Block
+                   [(Ast.S
+                       Ast.If {
+                         cond_exp =
+                         Ast.Binary {op = Ast.NotEqual;
+                           left =
+                           Ast.FunctionCall {name = (Ast.Identifier "f");
+                             args = [(Ast.LiteralInt 68); (Ast.LiteralInt 0)]};
+                           right = (Ast.LiteralInt 68)};
+                         then_smt =
+                         (Ast.Compound
+                            (Ast.Block
+                               [(Ast.S (Ast.Return (Ast.LiteralInt 1)))]));
+                         else_smt = None});
+                     (Ast.S
+                        Ast.If {
+                          cond_exp =
+                          Ast.Binary {op = Ast.NotEqual;
+                            left =
+                            Ast.FunctionCall {name = (Ast.Identifier "f");
+                              args =
+                              [(Ast.LiteralInt 70); (Ast.LiteralInt 1)]};
+                            right = (Ast.LiteralInt 70)};
+                          then_smt =
+                          (Ast.Compound
+                             (Ast.Block
+                                [(Ast.S (Ast.Return (Ast.LiteralInt 2)))]));
+                          else_smt = None});
+                     (Ast.S (Ast.Return (Ast.LiteralInt 0)))]));
+          storage = None })
+     ])

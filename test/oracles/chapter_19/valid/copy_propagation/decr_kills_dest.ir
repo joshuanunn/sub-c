@@ -1,0 +1,161 @@
+(Ir.Program
+   [Ir.Function {name = "target"; global = true; params = ["flag.0"];
+      body =
+      [Ir.Copy {src = (Ir.Constant 3); dst = (Ir.Var "w.1")};
+        Ir.JumpIfZero {condition = (Ir.Var "flag.0");
+          target = "target.if.en.0"};
+        Ir.Copy {src = (Ir.Constant 3); dst = (Ir.Var "tmp.1")};
+        Ir.Copy {src = (Ir.Constant 4); dst = (Ir.Var "w.1")};
+        (Ir.Label "target.if.en.0");
+        Ir.Copy {src = (Ir.Constant 10); dst = (Ir.Var "x.2")};
+        Ir.JumpIfZero {condition = (Ir.Var "flag.0");
+          target = "target.if.en.2"};
+        Ir.Copy {src = (Ir.Constant 10); dst = (Ir.Var "tmp.3")};
+        Ir.Copy {src = (Ir.Constant 9); dst = (Ir.Var "x.2")};
+        (Ir.Label "target.if.en.2");
+        Ir.Copy {src = (Ir.Constant -12); dst = (Ir.Var "tmp.4")};
+        Ir.Copy {src = (Ir.Constant -12); dst = (Ir.Var "y.3")};
+        Ir.JumpIfZero {condition = (Ir.Var "flag.0");
+          target = "target.if.en.5"};
+        Ir.Copy {src = (Ir.Constant -11); dst = (Ir.Var "y.3")};
+        (Ir.Label "target.if.en.5");
+        Ir.Copy {src = (Ir.Constant -100); dst = (Ir.Var "tmp.6")};
+        Ir.Copy {src = (Ir.Var "tmp.6"); dst = (Ir.Var "z.4")};
+        Ir.JumpIfZero {condition = (Ir.Var "flag.0");
+          target = "target.if.en.7"};
+        Ir.Binary {op = Ir.Subtract; src1 = (Ir.Var "tmp.6");
+          src2 = (Ir.Constant 1); dst = (Ir.Var "z.4")};
+        (Ir.Label "target.if.en.7");
+        Ir.JumpIfZero {condition = (Ir.Var "flag.0");
+          target = "target.if.el.9"};
+        Ir.Binary {op = Ir.Equal; src1 = (Ir.Var "w.1");
+          src2 = (Ir.Constant 4); dst = (Ir.Var "tmp.10")};
+        Ir.JumpIfZero {condition = (Ir.Var "tmp.10");
+          target = "target.and.fl.13"};
+        Ir.Binary {op = Ir.Equal; src1 = (Ir.Var "x.2");
+          src2 = (Ir.Constant 9); dst = (Ir.Var "tmp.11")};
+        Ir.JumpIfZero {condition = (Ir.Var "tmp.11");
+          target = "target.and.fl.13"};
+        Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "tmp.12")};
+        Ir.Jump {target = "target.and.en.14"}; (Ir.Label "target.and.fl.13");
+        Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "tmp.12")};
+        (Ir.Label "target.and.en.14");
+        Ir.JumpIfZero {condition = (Ir.Var "tmp.12");
+          target = "target.and.fl.18"};
+        Ir.Copy {src = (Ir.Constant -11); dst = (Ir.Var "tmp.15")};
+        Ir.Binary {op = Ir.Equal; src1 = (Ir.Var "y.3");
+          src2 = (Ir.Constant -11); dst = (Ir.Var "tmp.16")};
+        Ir.JumpIfZero {condition = (Ir.Var "tmp.16");
+          target = "target.and.fl.18"};
+        Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "tmp.17")};
+        Ir.Jump {target = "target.and.en.19"}; (Ir.Label "target.and.fl.18");
+        Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "tmp.17")};
+        (Ir.Label "target.and.en.19");
+        Ir.JumpIfZero {condition = (Ir.Var "tmp.17");
+          target = "target.and.fl.23"};
+        Ir.Copy {src = (Ir.Constant -101); dst = (Ir.Var "tmp.20")};
+        Ir.Binary {op = Ir.Equal; src1 = (Ir.Var "z.4");
+          src2 = (Ir.Var "tmp.20"); dst = (Ir.Var "tmp.21")};
+        Ir.JumpIfZero {condition = (Ir.Var "tmp.21");
+          target = "target.and.fl.23"};
+        Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "tmp.22")};
+        Ir.Jump {target = "target.and.en.24"}; (Ir.Label "target.and.fl.23");
+        Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "tmp.22")};
+        (Ir.Label "target.and.en.24");
+        Ir.JumpIfZero {condition = (Ir.Var "tmp.22");
+          target = "target.if.en.25"};
+        (Ir.Return (Ir.Constant 0)); (Ir.Label "target.if.en.25");
+        (Ir.Return (Ir.Constant 1)); (Ir.Label "target.if.el.9");
+        Ir.Binary {op = Ir.Equal; src1 = (Ir.Var "w.1");
+          src2 = (Ir.Constant 3); dst = (Ir.Var "tmp.26")};
+        Ir.JumpIfZero {condition = (Ir.Var "tmp.26");
+          target = "target.and.fl.29"};
+        Ir.Binary {op = Ir.Equal; src1 = (Ir.Var "x.2");
+          src2 = (Ir.Constant 10); dst = (Ir.Var "tmp.27")};
+        Ir.JumpIfZero {condition = (Ir.Var "tmp.27");
+          target = "target.and.fl.29"};
+        Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "tmp.28")};
+        Ir.Jump {target = "target.and.en.30"}; (Ir.Label "target.and.fl.29");
+        Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "tmp.28")};
+        (Ir.Label "target.and.en.30");
+        Ir.JumpIfZero {condition = (Ir.Var "tmp.28");
+          target = "target.and.fl.34"};
+        Ir.Copy {src = (Ir.Constant -12); dst = (Ir.Var "tmp.31")};
+        Ir.Binary {op = Ir.Equal; src1 = (Ir.Var "y.3");
+          src2 = (Ir.Var "tmp.31"); dst = (Ir.Var "tmp.32")};
+        Ir.JumpIfZero {condition = (Ir.Var "tmp.32");
+          target = "target.and.fl.34"};
+        Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "tmp.33")};
+        Ir.Jump {target = "target.and.en.35"}; (Ir.Label "target.and.fl.34");
+        Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "tmp.33")};
+        (Ir.Label "target.and.en.35");
+        Ir.JumpIfZero {condition = (Ir.Var "tmp.33");
+          target = "target.and.fl.39"};
+        Ir.Copy {src = (Ir.Constant -100); dst = (Ir.Var "tmp.36")};
+        Ir.Binary {op = Ir.Equal; src1 = (Ir.Var "z.4");
+          src2 = (Ir.Var "tmp.36"); dst = (Ir.Var "tmp.37")};
+        Ir.JumpIfZero {condition = (Ir.Var "tmp.37");
+          target = "target.and.fl.39"};
+        Ir.Copy {src = (Ir.Constant 1); dst = (Ir.Var "tmp.38")};
+        Ir.Jump {target = "target.and.en.40"}; (Ir.Label "target.and.fl.39");
+        Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "tmp.38")};
+        (Ir.Label "target.and.en.40");
+        Ir.JumpIfZero {condition = (Ir.Var "tmp.38");
+          target = "target.if.en.41"};
+        (Ir.Return (Ir.Constant 0)); (Ir.Label "target.if.en.41");
+        (Ir.Return (Ir.Constant 1))];
+      frame =
+      Env.lenv {
+        namespace = "target";
+        counter = 42;
+        offset = -108;
+        stack slots = {
+          w.1    -> -4,
+          tmp.1  -> -8,
+          x.2    -> -12,
+          tmp.3  -> -16,
+          y.3    -> -20,
+          tmp.4  -> -24,
+          z.4    -> -28,
+          tmp.6  -> -32,
+          tmp.10 -> -36,
+          tmp.11 -> -40,
+          tmp.12 -> -44,
+          tmp.15 -> -48,
+          tmp.16 -> -52,
+          tmp.17 -> -56,
+          tmp.20 -> -60,
+          tmp.21 -> -64,
+          tmp.22 -> -68,
+          tmp.26 -> -72,
+          tmp.27 -> -76,
+          tmp.28 -> -80,
+          tmp.31 -> -84,
+          tmp.32 -> -88,
+          tmp.33 -> -92,
+          tmp.36 -> -96,
+          tmp.37 -> -100,
+          tmp.38 -> -104,
+          flag.0 -> -108,
+        }}};
+     Ir.Function {name = "main"; global = true; params = [];
+       body =
+       [Ir.FunCall {fun_name = "target"; args = [(Ir.Constant 0)];
+          dst = (Ir.Var "tmp.0")};
+         Ir.JumpIfZero {condition = (Ir.Var "tmp.0"); target = "main.if.en.1"};
+         (Ir.Return (Ir.Constant 1)); (Ir.Label "main.if.en.1");
+         Ir.FunCall {fun_name = "target"; args = [(Ir.Constant 1)];
+           dst = (Ir.Var "tmp.2")};
+         Ir.JumpIfZero {condition = (Ir.Var "tmp.2"); target = "main.if.en.3"};
+         (Ir.Return (Ir.Constant 2)); (Ir.Label "main.if.en.3");
+         (Ir.Return (Ir.Constant 0))];
+       frame =
+       Env.lenv {
+         namespace = "main";
+         counter = 4;
+         offset = -8;
+         stack slots = {
+           tmp.0 -> -4,
+           tmp.2 -> -8,
+         }}}
+     ])

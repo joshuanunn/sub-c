@@ -1,0 +1,24 @@
+(Ir.Program
+   [Ir.Function {name = "main"; global = true; params = [];
+      body =
+      [Ir.Copy {src = (Ir.Var "x"); dst = (Ir.Var "y.0")};
+        Ir.Copy {src = (Ir.Constant 4); dst = (Ir.Var "x")};
+        Ir.Binary {op = Ir.NotEqual; src1 = (Ir.Var "y.0");
+          src2 = (Ir.Constant 10); dst = (Ir.Var "tmp.0")};
+        Ir.JumpIfZero {condition = (Ir.Var "tmp.0"); target = "main.if.en.1"};
+        (Ir.Return (Ir.Constant 1)); (Ir.Label "main.if.en.1");
+        Ir.Copy {src = (Ir.Constant 0); dst = (Ir.Var "tmp.2")};
+        Ir.JumpIfZero {condition = (Ir.Var "tmp.2"); target = "main.if.en.3"};
+        (Ir.Return (Ir.Constant 2)); (Ir.Label "main.if.en.3");
+        (Ir.Return (Ir.Constant 0))];
+      frame =
+      Env.lenv {
+        namespace = "main";
+        counter = 4;
+        offset = -12;
+        stack slots = {
+          y.0   -> -4,
+          tmp.0 -> -8,
+          tmp.2 -> -12,
+        }}};
+     Ir.StaticVariable {name = "x"; global = true; init = 10}])

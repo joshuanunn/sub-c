@@ -1,0 +1,56 @@
+(Ir.Program
+   [Ir.Function {name = "three"; global = true; params = [];
+      body = [(Ir.Return (Ir.Constant 3))];
+      frame =
+      Env.lenv {
+        namespace = "three";
+        counter = 0;
+        offset = 0;
+        stack slots = {
+        }}};
+     Ir.Function {name = "target"; global = true; params = ["flag.0"];
+       body =
+       [Ir.JumpIfZero {condition = (Ir.Var "flag.0");
+          target = "target.if.el.1"};
+         Ir.Copy {src = (Ir.Constant 10); dst = (Ir.Var "x.1")};
+         Ir.Jump {target = "target.if.en.0"}; (Ir.Label "target.if.el.1");
+         Ir.FunCall {fun_name = "three"; args = []; dst = (Ir.Var "tmp.2")};
+         Ir.Copy {src = (Ir.Var "tmp.2"); dst = (Ir.Var "x.1")};
+         (Ir.Label "target.if.en.0"); (Ir.Return (Ir.Var "x.1"))];
+       frame =
+       Env.lenv {
+         namespace = "target";
+         counter = 3;
+         offset = -12;
+         stack slots = {
+           x.1    -> -4,
+           tmp.2  -> -8,
+           flag.0 -> -12,
+         }}};
+     Ir.Function {name = "main"; global = true; params = [];
+       body =
+       [Ir.FunCall {fun_name = "target"; args = [(Ir.Constant 1)];
+          dst = (Ir.Var "tmp.0")};
+         Ir.Binary {op = Ir.NotEqual; src1 = (Ir.Var "tmp.0");
+           src2 = (Ir.Constant 10); dst = (Ir.Var "tmp.1")};
+         Ir.JumpIfZero {condition = (Ir.Var "tmp.1"); target = "main.if.en.2"};
+         (Ir.Return (Ir.Constant 1)); (Ir.Label "main.if.en.2");
+         Ir.FunCall {fun_name = "target"; args = [(Ir.Constant 0)];
+           dst = (Ir.Var "tmp.3")};
+         Ir.Binary {op = Ir.NotEqual; src1 = (Ir.Var "tmp.3");
+           src2 = (Ir.Constant 3); dst = (Ir.Var "tmp.4")};
+         Ir.JumpIfZero {condition = (Ir.Var "tmp.4"); target = "main.if.en.5"};
+         (Ir.Return (Ir.Constant 2)); (Ir.Label "main.if.en.5");
+         (Ir.Return (Ir.Constant 0))];
+       frame =
+       Env.lenv {
+         namespace = "main";
+         counter = 6;
+         offset = -16;
+         stack slots = {
+           tmp.0 -> -4,
+           tmp.1 -> -8,
+           tmp.3 -> -12,
+           tmp.4 -> -16,
+         }}}
+     ])

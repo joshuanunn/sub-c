@@ -1,0 +1,32 @@
+(Ast.Program
+   [(Ast.FunDecl
+       { Ast.name = (Ast.Identifier "target");
+         params = [(Ast.Identifier "a"); (Ast.Identifier "flag")];
+         body =
+         (Some (Ast.Block
+                  [(Ast.S
+                      Ast.If {cond_exp = (Ast.Var (Ast.Identifier "flag"));
+                        then_smt =
+                        (Ast.Compound
+                           (Ast.Block
+                              [(Ast.S
+                                  (Ast.Return (Ast.Var (Ast.Identifier "a"))))
+                                ]));
+                        else_smt = None});
+                    (Ast.S
+                       (Ast.Expression
+                          (Ast.Assignment ((Ast.Var (Ast.Identifier "a")),
+                             (Ast.LiteralInt 10)))));
+                    (Ast.S (Ast.Return (Ast.Var (Ast.Identifier "a"))))]));
+         storage = None });
+     (Ast.FunDecl
+        { Ast.name = (Ast.Identifier "main"); params = [];
+          body =
+          (Some (Ast.Block
+                   [(Ast.S
+                       (Ast.Return
+                          Ast.FunctionCall {name = (Ast.Identifier "target");
+                            args = [(Ast.LiteralInt 4); (Ast.LiteralInt 1)]}))
+                     ]));
+          storage = None })
+     ])

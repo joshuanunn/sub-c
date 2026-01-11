@@ -1,0 +1,54 @@
+(Ast.Program
+   [(Ast.FunDecl
+       { Ast.name = (Ast.Identifier "target");
+         params = [(Ast.Identifier "flag.0")];
+         body =
+         (Some (Ast.Block
+                  [(Ast.D
+                      (Ast.VarDecl
+                         { Ast.name = (Ast.Identifier "retval.1");
+                           init = (Some (Ast.LiteralInt 10)); storage = None
+                           }));
+                    (Ast.S
+                       Ast.Switch {
+                         cond = (Ast.Var (Ast.Identifier "flag.0"));
+                         body =
+                         (Ast.Compound
+                            (Ast.Block
+                               [(Ast.S
+                                   Ast.Case {value = (Ast.LiteralInt 1);
+                                     body =
+                                     (Ast.Expression
+                                        (Ast.Assignment (
+                                           (Ast.Var
+                                              (Ast.Identifier "retval.1")),
+                                           (Ast.LiteralInt 0))));
+                                     id = (Some (Ast.SwitchLabel "1"))});
+                                 (Ast.S
+                                    Ast.Case {value = (Ast.LiteralInt 2);
+                                      body =
+                                      (Ast.Return
+                                         (Ast.Var (Ast.Identifier "retval.1")));
+                                      id = (Some (Ast.SwitchLabel "1"))});
+                                 (Ast.S
+                                    Ast.Default {
+                                      body =
+                                      (Ast.Return
+                                         Ast.Unary {op = Ast.Negate;
+                                           exp = (Ast.LiteralInt 1)});
+                                      id = (Some (Ast.SwitchLabel "1"))})
+                                 ]));
+                         id = (Some (Ast.SwitchLabel "1"))})
+                    ]));
+         storage = None });
+     (Ast.FunDecl
+        { Ast.name = (Ast.Identifier "main"); params = [];
+          body =
+          (Some (Ast.Block
+                   [(Ast.S
+                       (Ast.Return
+                          Ast.FunctionCall {name = (Ast.Identifier "target");
+                            args = [(Ast.LiteralInt 1)]}))
+                     ]));
+          storage = None })
+     ])

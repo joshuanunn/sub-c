@@ -1,0 +1,48 @@
+(Ir.Program
+   [Ir.Function {name = "update_x"; global = true; params = [];
+      body =
+      [Ir.Copy {src = (Ir.Constant 4); dst = (Ir.Var "x")};
+        (Ir.Return (Ir.Constant 0))];
+      frame =
+      Env.lenv {
+        namespace = "update_x";
+        counter = 0;
+        offset = 0;
+        stack slots = {
+        }}};
+     Ir.Function {name = "target"; global = true; params = [];
+       body =
+       [Ir.Copy {src = (Ir.Constant 3); dst = (Ir.Var "x")};
+         Ir.FunCall {fun_name = "update_x"; args = []; dst = (Ir.Var "tmp.0")};
+         (Ir.Return (Ir.Var "x"))];
+       frame =
+       Env.lenv {
+         namespace = "target";
+         counter = 1;
+         offset = -4;
+         stack slots = {
+           tmp.0 -> -4,
+         }}};
+     Ir.Function {name = "main"; global = true; params = [];
+       body =
+       [Ir.FunCall {fun_name = "target"; args = []; dst = (Ir.Var "tmp.0")};
+         Ir.Binary {op = Ir.NotEqual; src1 = (Ir.Var "tmp.0");
+           src2 = (Ir.Constant 4); dst = (Ir.Var "tmp.1")};
+         Ir.JumpIfZero {condition = (Ir.Var "tmp.1"); target = "main.if.en.2"};
+         (Ir.Return (Ir.Constant 1)); (Ir.Label "main.if.en.2");
+         Ir.Binary {op = Ir.NotEqual; src1 = (Ir.Var "x");
+           src2 = (Ir.Constant 4); dst = (Ir.Var "tmp.3")};
+         Ir.JumpIfZero {condition = (Ir.Var "tmp.3"); target = "main.if.en.4"};
+         (Ir.Return (Ir.Constant 2)); (Ir.Label "main.if.en.4");
+         (Ir.Return (Ir.Constant 0))];
+       frame =
+       Env.lenv {
+         namespace = "main";
+         counter = 5;
+         offset = -12;
+         stack slots = {
+           tmp.0 -> -4,
+           tmp.1 -> -8,
+           tmp.3 -> -12,
+         }}};
+     Ir.StaticVariable {name = "x"; global = true; init = 0}])
