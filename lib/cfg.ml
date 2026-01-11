@@ -2,8 +2,24 @@
     propagation, unreachable code elimination and dead store elimination.*)
 
 module IntSet = Set.Make (Int)
+module StringSet = Set.Make (String)
+
+module CopySet = Set.Make (struct
+  type t = Ir.instruction
+
+  let compare = compare
+end)
 
 type node_id = Entry | Exit | Block of int
+
+module InstrMap = Map.Make (struct
+  type t = node_id * int (* block_id, instruction index *)
+
+  let compare = compare
+end)
+
+(* This builds a lookup of reaching copies for each instruction in a block *)
+type reaching_copies_info = CopySet.t InstrMap.t
 
 type node =
   | BasicBlock of {
@@ -11,6 +27,7 @@ type node =
       mutable instructions : Ir.instruction list;
       mutable predecessors : node_id list;
       mutable successors : node_id list;
+      mutable reaching_copies : CopySet.t;
     }
   | EntryNode of { mutable successors : node_id list }
   | ExitNode of { mutable predecessors : node_id list }
@@ -33,7 +50,14 @@ let make_cfg () : graph =
 let insert_block (cfg : graph) (ins : Ir.instruction list) : unit =
   let id = cfg.counter in
   let block =
-    BasicBlock { id; instructions = ins; predecessors = []; successors = [] }
+    BasicBlock
+      {
+        id;
+        instructions = ins;
+        predecessors = [];
+        successors = [];
+        reaching_copies = CopySet.empty;
+      }
   in
   Hashtbl.add cfg.blocks id block;
   cfg.counter <- cfg.counter + 1;
@@ -327,6 +351,263 @@ let remove_empty_blocks (cfg : graph) : unit =
     (fun id node -> if IntSet.mem id empties then None else Some node)
     cfg.blocks
 
+let get_block_copies (n : node) : CopySet.t =
+  match n with
+  | BasicBlock r ->
+      List.fold_left
+        (fun acc instr ->
+          match instr with Ir.Copy _ -> CopySet.add instr acc | _ -> acc)
+        CopySet.empty r.instructions
+  | EntryNode _ | ExitNode _ -> CopySet.empty
+
+(** Construct a preliminary set of all copy instructions across all blocks. *)
+let find_all_copy_instructions (blocks : node list) : CopySet.t =
+  List.fold_left
+    (fun acc block ->
+      match block with
+      | BasicBlock _ -> CopySet.union acc (get_block_copies block)
+      | _ -> acc)
+    CopySet.empty blocks
+
+let set_block_annotation (cfg : graph) (id : node_id) (copies : CopySet.t) =
+  match get_node cfg id with
+  | BasicBlock r -> r.reaching_copies <- copies
+  | EntryNode _ | ExitNode _ ->
+      failwith "cannot set a block annotation for EntryNode or ExitNode"
+
+let get_block_annotation (cfg : graph) (id : node_id) =
+  match get_node cfg id with
+  | BasicBlock r -> r.reaching_copies
+  | EntryNode _ | ExitNode _ ->
+      failwith "cannot get block annotation for EntryNode or ExitNode"
+
+(** Meet operator for reaching copies analysis. Computes the set of copy
+    instructions that reach the beginning of a basic block by taking the
+    intersection of the reaching copies at the end of all predecessor blocks. If
+    the block has Entry as a predecessor, the result is the empty set. *)
+let meet (cfg : graph) (id : node_id) (all_copies : CopySet.t) =
+  let predecessors =
+    match get_node cfg id with
+    | BasicBlock r -> r.predecessors
+    | _ -> failwith "meet applied to a non-BasicBlock"
+  in
+
+  List.fold_left
+    (fun incoming_copies prec_id ->
+      match prec_id with
+      | Entry -> CopySet.empty
+      | Block _ ->
+          let pred_out_copies = get_block_annotation cfg prec_id in
+          CopySet.inter incoming_copies pred_out_copies
+      | Exit -> failwith "malformed control-flow graph")
+    all_copies predecessors
+
+(** Special case where x = y reaches y = x, which has no effect. *)
+let is_inverse_copy instr copies =
+  match instr with
+  | Ir.Copy { src; dst } ->
+      CopySet.mem (Ir.Copy { src = dst; dst = src }) copies
+  | _ -> false
+
+(** Kill any copies to or from x, following x = y. *)
+let kill_copy_dest dst copies =
+  CopySet.filter
+    (fun c ->
+      match c with
+      | Ir.Copy { src; dst = d } -> src <> dst && d <> dst
+      | _ -> true)
+    copies
+
+(** Check if variable is static. *)
+let is_static (value : Ir.value) (static_names : StringSet.t) : bool =
+  match value with Ir.Var name -> StringSet.mem name static_names | _ -> false
+
+(** Kill copies to or from variables with static storage duration or any copies
+    to or from the destination of the result from the function call. *)
+let kill_for_fun_call dst static_names copies =
+  CopySet.filter
+    (fun c ->
+      match c with
+      | Ir.Copy { src; dst = d } ->
+          not
+            (is_static src static_names || is_static d static_names || src = dst
+           || d = dst)
+      | _ -> true)
+    copies
+
+(** Transfer function for reaching copies analysis. Given the set of copies that
+    reach the beginning of a basic block, iterates over the block’s
+    instructions, annotating each instruction with the copies that reach just
+    before it and updating the current reaching copies. At the end of the block,
+    records the set of copies that reach the block’s exit. *)
+let transfer (cfg : graph) (id : node_id) initial_reaching_copies static_names
+    instr_info =
+  let current_reaching_copies = ref initial_reaching_copies in
+
+  let block_instructions =
+    match get_node cfg id with
+    | BasicBlock r -> r.instructions
+    | _ -> failwith "transfer applied to a non-BasicBlock"
+  in
+
+  List.iteri
+    (fun idx instruction ->
+      (* Annotate instruction with all reaching copies to just before instruction *)
+      instr_info := InstrMap.add (id, idx) !current_reaching_copies !instr_info;
+
+      (* Update reaching copies *)
+      match instruction with
+      | Ir.Copy { dst; _ } ->
+          if not (is_inverse_copy instruction !current_reaching_copies) then begin
+            current_reaching_copies :=
+              !current_reaching_copies |> kill_copy_dest dst
+              |> CopySet.add instruction
+          end
+      | Ir.FunCall { dst; _ } ->
+          current_reaching_copies :=
+            kill_for_fun_call dst static_names !current_reaching_copies
+      | Ir.Unary { dst; _ } | Ir.Binary { dst; _ } ->
+          current_reaching_copies := kill_copy_dest dst !current_reaching_copies
+      | _ -> ())
+    block_instructions;
+
+  (* Finally, update block (end) reaching copies with surviving copies *)
+  set_block_annotation cfg id !current_reaching_copies
+
+(** Add successors of processed block to worklist, if not already present *)
+let update_worklist (cfg : graph) (id : node_id) (worklist : IntSet.t) =
+  match get_node cfg id with
+  | BasicBlock { successors; _ } ->
+      List.fold_left
+        (fun wl succ ->
+          match get_node cfg succ with
+          | ExitNode _ -> wl
+          | EntryNode _ -> failwith "malformed control-flow graph"
+          | BasicBlock { id; _ } -> IntSet.add id wl)
+        worklist successors
+  | _ -> failwith "can only update worklist from a processed BasicBlock"
+
+(** Preliminary annotation of reaching copies for each block. Sort basic blocks
+    by ID, then annotate each block with the set of cumulative copy instructions
+    which are assumed to have reached the end of each block. Entry and Exit
+    nodes are not annotated. *)
+let find_reaching_copies (cfg : graph) (static_names : StringSet.t) =
+  let sorted_blocks =
+    Hashtbl.fold (fun id node acc -> (id, node) :: acc) cfg.blocks []
+    |> List.sort (fun (a, _) (b, _) -> compare a b)
+    |> List.map snd
+  in
+  let all_copies = find_all_copy_instructions sorted_blocks in
+
+  (* Preliminary annotation of all BasicBlocks with copies from all blocks and
+  build a set of work items to process. *)
+  let worklist = ref IntSet.empty in
+  List.iter
+    (fun block ->
+      match block with
+      | BasicBlock r ->
+          r.reaching_copies <- all_copies;
+          worklist := IntSet.add r.id !worklist
+      | _ -> ())
+    sorted_blocks;
+
+  let instr_info = ref InstrMap.empty in
+
+  (* Iteratively resolve reaching copies for each block *)
+  while not (IntSet.is_empty !worklist) do
+    (* Remove first block from worklist *)
+    let block_id = IntSet.min_elt !worklist in
+    worklist := IntSet.remove block_id !worklist;
+    let block = Block block_id in
+    let old_annotation = get_block_annotation cfg block in
+
+    (* Apply meet and transfer functions to block *)
+    let incoming_copies = meet cfg block all_copies in
+    transfer cfg block incoming_copies static_names instr_info;
+
+    (* Update worklist *)
+    if old_annotation <> get_block_annotation cfg block then begin
+      worklist := update_worklist cfg block !worklist
+    end
+  done;
+  !instr_info
+
+(** Replace a value operand using reaching copies information. If the operand is
+    a variable and there exists a reaching copy that assigns to it, the operand
+    is replaced with the copy’s source. Constants and operands without a
+    defining reaching copy are returned unchanged. *)
+let replace_operand (op : Ir.value) (copies : CopySet.t) : Ir.value =
+  match op with
+  | Ir.Constant _ -> op
+  | Ir.Var _ -> (
+      match
+        CopySet.find_first_opt
+          (function Ir.Copy { dst; _ } when dst = op -> true | _ -> false)
+          copies
+      with
+      | Some (Ir.Copy { src; _ }) -> src
+      | _ -> op)
+
+(** Rewrite a single IR instruction using the set of reaching copies that apply
+    immediately before it. Source operands are replaced where possible using
+    copy propagation. Redundant Copy instructions whose effect is already
+    guaranteed by reaching copies are removed by returning None. *)
+let rewrite_instruction (instr : Ir.instruction) (copies : CopySet.t) :
+    Ir.instruction option =
+  match instr with
+  | Ir.Copy { src; dst } ->
+      let redundant =
+        CopySet.exists
+          (function
+            | Ir.Copy { src = s; dst = d } ->
+                (s = src && d = dst) || (s = dst && d = src)
+            | _ -> false)
+          copies
+      in
+      if redundant then None
+      else
+        let new_src = replace_operand src copies in
+        Some (Ir.Copy { src = new_src; dst })
+  | Ir.Unary { op; src; dst } ->
+      let new_src = replace_operand src copies in
+      Some (Ir.Unary { op; src = new_src; dst })
+  | Ir.Binary { op; src1; src2; dst } ->
+      let new_src1 = replace_operand src1 copies in
+      let new_src2 = replace_operand src2 copies in
+      Some (Ir.Binary { op; src1 = new_src1; src2 = new_src2; dst })
+  | Ir.Return v -> Some (Ir.Return (replace_operand v copies))
+  | Ir.JumpIfZero { condition; target } ->
+      let new_condition = replace_operand condition copies in
+      Some (Ir.JumpIfZero { condition = new_condition; target })
+  | Ir.JumpIfNotZero { condition; target } ->
+      let new_condition = replace_operand condition copies in
+      Some (Ir.JumpIfNotZero { condition = new_condition; target })
+  | Ir.FunCall { fun_name; args; dst } ->
+      let new_args = List.map (fun a -> replace_operand a copies) args in
+      Some (Ir.FunCall { fun_name; args = new_args; dst })
+  | Ir.Label _ | Ir.Jump _ -> Some instr
+
+let rewrite_block (block_id : int) (instrs : Ir.instruction list)
+    (instr_info : CopySet.t InstrMap.t) : Ir.instruction list =
+  instrs
+  |> List.mapi (fun idx instr ->
+      let copies = InstrMap.find (Block block_id, idx) instr_info in
+      rewrite_instruction instr copies)
+  |> List.filter_map Fun.id
+
+(** Rewrite all basic blocks in a control-flow graph using instruction-level
+    reaching copies information. Each instruction is rewritten or removed
+    according to copy propagation rules, and the instructions within each basic
+    block are updated in place. *)
+let rewrite_cfg (cfg : graph) (instr_info : CopySet.t InstrMap.t) =
+  Hashtbl.iter
+    (fun _ node ->
+      match node with
+      | BasicBlock r ->
+          r.instructions <- rewrite_block r.id r.instructions instr_info
+      | _ -> ())
+    cfg.blocks
+
 let string_of_node_id = function
   | Entry -> "ENTRY"
   | Exit -> "EXIT"
@@ -334,6 +615,9 @@ let string_of_node_id = function
 
 let pp_instruction_line fmt ins =
   Format.fprintf fmt "    %s\n" (Ir.show_instruction ins)
+
+let pp_copyset fmt copies =
+  CopySet.elements copies |> List.iter (pp_instruction_line fmt)
 
 let pp_node fmt = function
   | EntryNode { successors } ->
@@ -344,14 +628,17 @@ let pp_node fmt = function
       Format.fprintf fmt "ExitNode\n";
       Format.fprintf fmt "  predecessors: [%s]\n"
         (String.concat ", " (List.map string_of_node_id predecessors))
-  | BasicBlock { id; instructions; predecessors; successors } ->
+  | BasicBlock { id; instructions; predecessors; successors; reaching_copies }
+    ->
       Format.fprintf fmt "BasicBlock B%d\n" id;
       Format.fprintf fmt "  instructions:\n";
       List.iter (pp_instruction_line fmt) instructions;
       Format.fprintf fmt "  predecessors: [%s]\n"
         (String.concat ", " (List.map string_of_node_id predecessors));
       Format.fprintf fmt "  successors: [%s]\n"
-        (String.concat ", " (List.map string_of_node_id successors))
+        (String.concat ", " (List.map string_of_node_id successors));
+      Format.fprintf fmt "  reaching_copies:\n";
+      pp_copyset fmt reaching_copies
 
 let pp_graph fmt { entry; exit; blocks; counter } =
   Format.fprintf fmt "=== CFG ===\n";

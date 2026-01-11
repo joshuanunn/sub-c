@@ -99,10 +99,14 @@ let unreachable_code_elimination (cfg : Cfg.graph) : unit =
   Cfg.remove_unreachable_blocks cfg;
   Cfg.remove_redundant_jumps cfg;
   Cfg.remove_redundant_labels cfg;
-  Cfg.remove_empty_blocks cfg;
-  ()
+  Cfg.remove_empty_blocks cfg
 
-let optimise (body : Ir.instruction list) (o : opts) : Ir.instruction list =
+let copy_propagation (cfg : Cfg.graph) (statics : Cfg.StringSet.t) : unit =
+  let reaching_copies = Cfg.find_reaching_copies cfg statics in
+  Cfg.rewrite_cfg cfg reaching_copies
+
+let optimise (body : Ir.instruction list) (o : opts) (statics : Cfg.StringSet.t)
+    : Ir.instruction list =
   let rec loop body =
     if body = [] then body
     else
@@ -113,23 +117,36 @@ let optimise (body : Ir.instruction list) (o : opts) : Ir.instruction list =
       let cfg = instructions_to_cfg post_folding in
 
       if o.unreachable then unreachable_code_elimination cfg;
+      if o.propagation then copy_propagation cfg statics;
 
-      (*if o.propagation then copy_propagation cfg;
-      if o.deadstores then dead_store_elimination cfg;*)
+      (*if o.deadstores then dead_store_elimination cfg;*)
       let body_opt = cfg_to_instructions cfg in
       if body_opt = body || body_opt = [] then body_opt else loop body_opt
   in
   loop body
 
-let optimise_func (f : Ir.top_level) (o : opts) : Ir.top_level =
+let extract_static_names (f : Ir.top_level) : Cfg.StringSet.t =
+  match f with
+  | Function _ -> Cfg.StringSet.empty
+  | StaticVariable { name; _ } -> Cfg.StringSet.singleton name
+
+(** Construct a set of all static variable names. *)
+let collect_static_names (prog : Ir.top_level list) : Cfg.StringSet.t =
+  List.fold_left
+    (fun acc f -> Cfg.StringSet.union acc (extract_static_names f))
+    Cfg.StringSet.empty prog
+
+let optimise_func (f : Ir.top_level) (o : opts) (statics : Cfg.StringSet.t) :
+    Ir.top_level =
   (* only optimise function bodies *)
   match f with
   | Function { name; global; params; body; frame } ->
-      let body_opt = optimise body o in
+      let body_opt = optimise body o statics in
       Function { name; global; params; body = body_opt; frame }
   | StaticVariable { name; global; init } ->
       StaticVariable { name; global; init }
 
 let optimise_prog (Program p : Ir.prog) (o : opts) : Ir.prog =
-  let compiled_funcs = List.map (function f -> optimise_func f o) p in
+  let statics = collect_static_names p in
+  let compiled_funcs = List.map (function f -> optimise_func f o statics) p in
   Ir.Program compiled_funcs
